@@ -32,23 +32,33 @@ import java.util.logging.Logger;
  */
 public abstract class TestObjet implements Test, Runnable {
 
-    private File avif;
-    private AVIWriter aw;
-    private boolean aviOpen = false;
-    private String filmName;
-    private int idxFilm;
-    private boolean unterminable = true;
-    private long timeStart;
-    private long lastInfoEllapsedMillis;
     public static final int GENERATE_NOTHING = 0;
     public static final int GENERATE_IMAGE = 1;
     public static final int GENERATE_MODEL = 2;
     public static final int GENERATE_OPENGL = 4;
     public static final int GENERATE_MOVIE = 8;
     public static final int GENERATE_NO_IMAGE_FILE_WRITING = 16;
-
-    private int generate = 1;
-
+    public static final ArrayList<TestInstance.Parameter> initParams = new ArrayList<TestInstance.Parameter>();
+    public static final int ON_TEXTURE_ENDS_STOP = 0;
+    public static final int ON_TEXTURE_ENDS_LOOP_TEXTURE = 1;
+    public static final int ON_MAX_FRAMES_STOP = 0;
+    public static final int ON_MAX_FRAMES_CONTINUE = 1;
+    protected Scene scene;
+    protected String description = "";
+    protected Camera c;
+    protected int frame = 0;
+    protected ArrayList<TestInstance.Parameter> dynParams;
+    Properties properties = new Properties();
+    ShowTestResult str;
+    private File avif;
+    private AVIWriter aw;
+    private boolean aviOpen = false;
+    private String filmName;
+    private int idxFilm;
+    private boolean unterminable = false;
+    private long timeStart;
+    private long lastInfoEllapsedMillis;
+    private int generate = 1 | 8;
     private int version = 1;
     private String template = "";
     private String type = "JPEG";
@@ -57,17 +67,13 @@ public abstract class TestObjet implements Test, Runnable {
     private File file = null;
     private int resx = 1600;
     private int resy = 1200;
-    Properties properties = new Properties();
     private File dir = null;
-    protected Scene scene;
-    protected String description = "";
-    protected Camera c;
     private ECBufferedImage ri;
     private String filename = "frame";
     private String fileExtension = "JPG";
     private boolean publish = true;
     private boolean isometrique = false;
-    private boolean loop = false;
+    private boolean loop = true;
     private int maxFrames = 5000;
     private String text = "scene";
     private File fileScene;
@@ -79,7 +85,6 @@ public abstract class TestObjet implements Test, Runnable {
     private boolean structure = false;
     private boolean noZoom;
     private String sousdossier;
-    protected int frame = 0;
     private boolean D3 = false;
     private ImageContainer biic;
     private ECBufferedImage riG;
@@ -90,15 +95,36 @@ public abstract class TestObjet implements Test, Runnable {
     private boolean pauseActive = false;
     private ITexture couleurFond;
     private File directory;
-    protected ArrayList<TestInstance.Parameter> dynParams;
-
-    public static final ArrayList<TestInstance.Parameter> initParams = new ArrayList<TestInstance.Parameter>();
-    ShowTestResult str;
-
     private ZipWriter zip;
-
     private boolean stop = false;
     private ZBuffer z;
+    private RegisterOutput o = new RegisterOutput();
+    private int onTextureEnds = ON_TEXTURE_ENDS_STOP;
+    private int onMaxFrameEvent = ON_MAX_FRAMES_STOP;
+
+    public TestObjet() {
+
+        init();
+    }
+
+
+    public TestObjet(ArrayList<TestInstance.Parameter> params) {
+        init();
+    }
+
+    public TestObjet(boolean binit) {
+        if (binit) {
+            init();
+        } else {
+        }
+    }
+
+    public static void main(String[] args) {
+        TestObjet gui = new TestObjetSub();
+        gui.loop(true);
+        gui.setMaxFrames(2000);
+        new Thread(gui).start();
+    }
 
     public int getIdxFilm() {
         return idxFilm;
@@ -179,27 +205,8 @@ public abstract class TestObjet implements Test, Runnable {
         return "Dernier intervalle de temps : " + (displayLastIntervalTimeInterval * 1E-9) + "\nTemps total partiel : " + (displayPartialTimeInterval * 1E-9);
     }
 
-    
-    private RegisterOutput o = new RegisterOutput();
-
     public RegisterOutput getO() {
         return o;
-    }
-    
-    public TestObjet() {
-        
-        init();
-    }
-
-    public TestObjet(ArrayList<TestInstance.Parameter> params) {
-        init();
-    }
-
-    public TestObjet(boolean binit) {
-        if (binit) {
-            init();
-        } else {
-        }
     }
 
     public abstract void afterRenderFrame();
@@ -259,7 +266,7 @@ public abstract class TestObjet implements Test, Runnable {
 
     }
 
-    public void exportFrame(String format, String filename) throws FileNotFoundException, IOException {
+    public void exportFrame(String format, String filename) throws IOException {
         STLExport.save(
                 new File(directory.getAbsolutePath() + File.separator + filename),
                 scene(),
@@ -301,8 +308,16 @@ public abstract class TestObjet implements Test, Runnable {
         return filename;
     }
 
+    public void setFilename(String fn) {
+        this.filename = fn;
+    }
+
     public int getGenerate() {
         return generate;
+    }
+
+    public void setGenerate(int generate) {
+        this.generate = generate;
     }
 
     public ArrayList<TestInstance.Parameter> getInitParameters() {
@@ -311,27 +326,40 @@ public abstract class TestObjet implements Test, Runnable {
     }
 
     public ArrayList<TestInstance.Parameter> getInitParams() {
-        return this.initParams;
+        return initParams;
     }
 
     public int getMaxFrames() {
         return maxFrames;
     }
 
+    public void setMaxFrames(int maxFrames) {
+        this.maxFrames = maxFrames;
+    }
+
     public int getResx() {
         return resx;
+    }
+
+    public void setResx(int resx) {
+        this.resx = resx;
+        z = ZBufferFactory.instance(resx, resy, D3);
     }
 
     public int getResy() {
         return resy;
     }
 
+    public void setResy(int resy) {
+        this.resy = resy;
+        z = ZBufferFactory.instance(resx, resy, D3);
+    }
 
     public abstract void ginit();
 
     private void init() {
         o.addOutput(System.out);
-        
+
         o.addOutput(Logger.getLogger(getClass().getCanonicalName()));
 
         if (initialise) {
@@ -429,6 +457,10 @@ public abstract class TestObjet implements Test, Runnable {
         return structure;
     }
 
+    public void setStructure(boolean structure) {
+        this.structure = structure;
+    }
+
     public boolean loop() {
         return loop;
     }
@@ -493,11 +525,68 @@ public abstract class TestObjet implements Test, Runnable {
          * ex); } }
          */
 
-        if (loop() && frame > maxFrames || (frame > 1 && !loop())) {
-            return false;
-        }
+        return !(loop() && frame > maxFrames || (frame > 1 && !loop()));
 
-        return true;
+    }
+
+    public boolean nextFrame2UnknownDiplicate() {
+        frame++;
+
+        if (D3()) {
+            fileG = new File(this.dir.getAbsolutePath() + File.separator
+                    + sousdossier + File.separator + "GAUCHE" + File.separator
+                    + "__SERID_" + (serie) + "__" + filename
+                    + (1000000 + frame) + "." + fileExtension);
+            while (fileG == null || fileG.exists()) {
+                serie++;
+                fileG = new File(this.dir.getAbsolutePath() + File.separator
+                        + sousdossier + File.separator + "GAUCHE"
+                        + File.separator + "__SERID_" + (serie) + "__"
+                        + filename + (1000000 + frame) + "." + fileExtension);
+            }
+
+            fileD = new File(this.dir.getAbsolutePath() + File.separator
+                    + sousdossier + File.separator + "DROITE" + File.separator
+                    + "__SERID_" + (serie) + "__" + filename
+                    + (1000000 + frame) + "." + fileExtension);
+            while (fileD == null || fileD.exists()) {
+                serie++;
+                fileD = new File(this.dir.getAbsolutePath() + File.separator
+                        + sousdossier + File.separator + "DROITE"
+                        + File.separator + "__SERID_" + (serie) + "__"
+                        + filename + (1000000 + frame) + "." + fileExtension);
+            }
+        } else {
+            file = new File(this.dir.getAbsolutePath() + File.separator
+                    + sousdossier + File.separator + "__SERID_" + (serie)
+                    + "__" + filename + (1000000 + frame) + "." + fileExtension);
+            fileScene = new File(this.dir.getAbsolutePath() + File.separator
+                    + sousdossier + File.separator + "__SERID_" + (serie)
+                    + "__" + filename + (1000000 + frame) + "."
+                    + binaryExtension);
+            while (file == null || file.exists()) {
+                serie++;
+                file = new File(this.dir.getAbsolutePath() + File.separator
+                        + sousdossier + File.separator + "__SERID_" + (serie)
+                        + "__" + filename + (1000000 + frame) + "."
+                        + fileExtension);
+                fileScene = new File(this.dir.getAbsolutePath()
+                        + File.separator + sousdossier + File.separator
+                        + "__SERID_" + (serie) + "__" + filename
+                        + (1000000 + frame) + "." + binaryExtension);
+            }
+        }
+        /*
+         * ObjectOutputStream oos = null; try { oos = new ObjectOutputStream(new
+         * FileOutputStream(serid)); oos.writeInt(serie); } catch (IOException
+         * ex) { o.println(
+         * null, ex); } finally { try { oos.close(); } catch (IOException ex) {
+         * o.println( null,
+         * ex); } }
+         */
+
+        return !(loop() && frame > maxFrames || (frame > 1 && !loop()));
+
     }
 
     public void PAUSE() {
@@ -603,7 +692,7 @@ public abstract class TestObjet implements Test, Runnable {
         }
         ginit();
 
-            z = ZBufferFactory.instance(resx, resy, D3);
+        z = ZBufferFactory.instance(resx, resy, D3);
 
         if (scene().texture() != null) {
             z.backgroundTexture(scene().texture());
@@ -611,151 +700,149 @@ public abstract class TestObjet implements Test, Runnable {
 
         o.println("");
         o.println(directory().getAbsolutePath());
-        o.println("Generate (0 NOTHING  1 IMAGE  2 MODEL  4 OPENGL) {0}"+ getGenerate());
+        o.println("Generate (0 NOTHING  1 IMAGE  2 MODEL  4 OPENGL) {0}" + getGenerate());
 
-        o.println("Starting movie  {0}"+ runtimeInfoSucc());
+        o.println("Starting movie  {0}" + runtimeInfoSucc());
         while ((nextFrame() || unterminable()) && !stop) {
-            try{
-            pauseActive = true;
-            while (isPause()) {
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-            pauseActive = false;
-
-            finit();
-
-            if ((generate & GENERATE_OPENGL) > 0 && false) {
-                o.println("No OpenGL");
-            } else {
-                try {
-                    testScene();
-
-                } catch (Exception e1) {
-                    reportException(e1);
-                    return;
-                }
-            }
-
-            z.suivante();
-            z.scene(scene);
-
-            if ((generate & GENERATE_IMAGE) > 0) {
-                try {
-                    if (isometrique) {
-                        z.isometrique();
-                        z.isobox(noZoom);
-                    } else {
-                        z.perspective();
+            try {
+                pauseActive = true;
+                while (isPause()) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
                     }
+                }
+                pauseActive = false;
 
-                    if (z instanceof ZBufferImpl) {
-                        ((ZBufferImpl) z).setColoration(true);
+                finit();
+
+                if ((generate & GENERATE_OPENGL) > 0 && false) {
+                    o.println("No OpenGL");
+                } else {
+                    try {
+                        testScene();
+
+                    } catch (Exception e1) {
+                        reportException(e1);
+                        return;
                     }
+                }
 
-                    if (structure && !D3()) {
-                        z.dessinerStructure();
+                z.suivante();
+                z.scene(scene);
 
-                        ri = z.image();
+                if ((generate & GENERATE_IMAGE) > 0) {
+                    try {
+                        if (isometrique) {
+                            z.isometrique();
+                            z.isobox(noZoom);
+                        } else {
+                            z.perspective();
+                        }
 
-                        if (((generate & GENERATE_IMAGE) > 0) && !((generate & GENERATE_NO_IMAGE_FILE_WRITING) > 0)) {
+                        if (z instanceof ZBufferImpl) {
+                            ((ZBufferImpl) z).setColoration(true);
+                        }
 
+                        if (structure && !D3()) {
+                            z.dessinerStructure();
+
+                            ri = z.image();
+
+                            if (((generate & GENERATE_IMAGE) > 0) && !((generate & GENERATE_NO_IMAGE_FILE_WRITING) > 0)) {
+
+                                ecrireImage(ri, type, file);
+                            }
+                            if ((generate & GENERATE_MOVIE) > 0 && true) {
+                                try {
+                                    aw.write(0, ri, 1);
+                                } catch (IOException e) {
+                                    reportException(e);
+                                    return;
+                                }
+                            }
+                        } else if (D3() && z instanceof ZBuffer3D
+                                && scene().cameraActive() instanceof Camera3D) {
+
+                            ((ZBuffer3D) z).genererEtRetourner(scene());
+
+                            riG = ((ZBuffer3D) z).imageGauche();
+                            riD = ((ZBuffer3D) z).imageDroite();
+
+                            ecrireImage(riG, type, fileG);
+                            ecrireImage(riD, type, fileD);
+
+                        } else {
+
+                            z.dessinerSilhouette3D();
+                            afterRenderFrame();
+                            ri = z.image();
+                            if ((generate & GENERATE_MOVIE) > 0 && isAviOpen()) {
+
+                                try {
+
+                                    aw.write(0, ri, 1);
+                                } catch (IOException e) {
+                                    reportException(e);
+                                    return;
+                                }
+                            } else {
+                                o.println(
+                                        "No file open for avi writing");
+
+                            }
                             ecrireImage(ri, type, file);
                         }
-                        if ((generate & GENERATE_MOVIE) > 0 && true) {
-                            try {
-                                aw.write(0, ri, 1);
-                            } catch (IOException e) {
-                                reportException(e);
-                                return;
-                            }
-                        }
-                    } else if (D3() && z instanceof ZBuffer3D
-                            && scene().cameraActive() instanceof Camera3D) {
-
-                        ((ZBuffer3D) z).genererEtRetourner(scene());
-
-                        riG = ((ZBuffer3D) z).imageGauche();
-                        riD = ((ZBuffer3D) z).imageDroite();
-
-                        ecrireImage(riG, type, fileG);
-                        ecrireImage(riD, type, fileD);
-
-                    } else {
-
-                        z.dessinerSilhouette3D();
-                        afterRenderFrame();
-                        ri = ((ZBufferImpl) z).image();
-                        if ((generate & GENERATE_MOVIE) > 0 && isAviOpen()) {
-
-                            try {
-                                
-                                aw.write(0, ri, 1);
-                            } catch (IOException e) {
-                                reportException(e);
-                                return;
-                            }
-                        } else {
-                            o.println(
-                                    "No file open for avi writing");
-
-                        }
-                        ecrireImage(ri, type, file);
+                    } catch (Exception ex) {
+                        o.println(ex.getLocalizedMessage());
+                        reportException(ex);
                     }
-                } catch (Exception ex) {
-                    o.println( ex.getLocalizedMessage());
-                    reportException(ex);
+
+                    biic.setImage(ri != null ? ri : (frame % 2 == 0 ? riG : riD));
+                    biic.setStr("" + frame);
                 }
 
-                biic.setImage(ri != null ? ri : (frame % 2 == 0 ? riG : riD));
-                biic.setStr("" + frame);
-            }
+                afterRenderFrame();
 
-            afterRenderFrame();
+                if (isSaveBMood()) {
+                    try {
+                        File foutm = new File(this.dir.getAbsolutePath()
+                                + File.separator + filename + ".bmood");
+                        new Loader().saveBin(foutm, scene);
+                    } catch (VersionNonSupporteeException ex) {
+                        o.println(ex.getLocalizedMessage());
+                        reportException(ex);
+                    } catch (ExtensionFichierIncorrecteException ex) {
+                        o.println(ex.getLocalizedMessage());
+                        reportException(ex);
+                    }
 
-            if (isSaveBMood()) {
-                try {
-                    File foutm = new File(this.dir.getAbsolutePath()
-                            + File.separator + filename + ".bmood");
-                    new Loader().saveBin(foutm, scene);
-                } catch (VersionNonSupporteeException ex) {
-                    o.println( ex.getLocalizedMessage());
-                    reportException(ex);
-                } catch (ExtensionFichierIncorrecteException ex) {
-                    o.println( ex.getLocalizedMessage());
-                    reportException(ex);
                 }
+                if ((generate & GENERATE_MODEL) > 0) {
+                    try {
+                        o.println("Start generating model");
+                        exportFrame("export-stl", "export-" + frame + ".STL");
+                        o.println("End generating model");
+                    } catch (FileNotFoundException ex) {
+                        o.println(ex.getLocalizedMessage());
+                    } catch (IOException ex) {
+                        o.println(ex.getLocalizedMessage());
+                    } catch (Exception ex) {
+                        o.println("Other exception in generating model" + ex);
+                        ex.printStackTrace();
+                    }
 
-            }
-            if ((generate & GENERATE_MODEL) > 0) {
-                try {
-                    o.println( "Start generating model");
-                    exportFrame("export-stl", "export-" + frame + ".STL");
-                    o.println( "End generating model");
-                } catch (FileNotFoundException ex) {
-                    o.println(  ex.getLocalizedMessage());
-                } catch (IOException ex) {
-                    o.println(  ex.getLocalizedMessage());
-                } catch (Exception ex) {
-                    o.println( "Other exception in generating model"+ ex);
-                    ex.printStackTrace();
                 }
-
-            }
-            }
-            catch(ArrayIndexOutOfBoundsException ex)
-            {
+            } catch (ArrayIndexOutOfBoundsException ex) {
                 ex.printStackTrace();
             }
         }
 
         afterRender();
 
-        o.println(""+frame() + "\n" + runtimeInfoSucc());
+        o.println("" + frame() + "\n" + runtimeInfoSucc());
 
         o.println("Fin de la création des image et/u des modèles" + "\n" + runtimeInfoSucc());
         if (zip != null) {
@@ -787,7 +874,7 @@ public abstract class TestObjet implements Test, Runnable {
                     System.out.print(outputStream);
                 }
             } catch (IOException ex) {
-                o.println(  ex.getLocalizedMessage());
+                o.println(ex.getLocalizedMessage());
             }
         } else if (file.exists()) {
             try {
@@ -797,7 +884,7 @@ public abstract class TestObjet implements Test, Runnable {
                 OutputStream outputStream = runtime.exec(cmd).getOutputStream();
                 System.out.print(outputStream);
             } catch (IOException ex) {
-                o.println( ex.getLocalizedMessage());
+                o.println(ex.getLocalizedMessage());
             }
         }
 
@@ -812,6 +899,10 @@ public abstract class TestObjet implements Test, Runnable {
 
     public Scene scene() {
         return scene;
+    }
+
+    public void paintingAct(Representable representable, PaintingAct pa) {
+        representable.setPaintingAct(getZ(), scene(), pa);
     }
 
     public void closeView() {
@@ -865,30 +956,6 @@ public abstract class TestObjet implements Test, Runnable {
         this.fileExtension = ext;
     }
 
-    public void setFilename(String fn) {
-        this.filename = fn;
-    }
-
-    public void setGenerate(int generate) {
-        this.generate = generate;
-    }
-
-    public void setMaxFrames(int maxFrames) {
-        this.maxFrames = maxFrames;
-    }
-
-    public void setResx(int resx) {
-        this.resx = resx;
-    }
-
-    public void setResy(int resy) {
-        this.resy = resy;
-    }
-
-    public void setStructure(boolean structure) {
-        this.structure = structure;
-    }
-
     public void STOP() {
         stop = true;
         setGenerate(GENERATE_NOTHING);
@@ -926,9 +993,9 @@ public abstract class TestObjet implements Test, Runnable {
                 new Loader().load(f, scene);
 
             } catch (VersionNonSupporteeException ex) {
-                o.println( ex.getLocalizedMessage());
+                o.println(ex.getLocalizedMessage());
             } catch (ExtensionFichierIncorrecteException ex) {
-                o.println( ex.getLocalizedMessage());
+                o.println(ex.getLocalizedMessage());
             }
         } else {
             o.println("Erreur: extension incorrecte");
@@ -951,30 +1018,15 @@ public abstract class TestObjet implements Test, Runnable {
         unterminable = b;
     }
 
-    public static void main(String[] args) {
-        TestObjet gui = new TestObjetStub();
-        gui.loop(true);
-        gui.setMaxFrames(2000);
-        new Thread(gui).start();
-    }
-
     public ZBuffer getZ() {
+        if (z == null)
+            z = ZBufferFactory.instance(resx, resy, D3);
         return z;
     }
-
-    public static final int ON_TEXTURE_ENDS_STOP = 0;
-    public static final int ON_TEXTURE_ENDS_LOOP_TEXTURE = 1;
-
-    public static final int ON_MAX_FRAMES_STOP = 0;
-    public static final int ON_MAX_FRAMES_CONTINUE = 1;
-
-    private int onTextureEnds = ON_TEXTURE_ENDS_STOP;
 
     public void onTextureEnds(ITexture texture, int texture_event) {
         texture.onTextureEnds = texture_event;
     }
-
-    private int onMaxFrameEvent = ON_MAX_FRAMES_STOP;
 
     public void onMaxFrame(int maxFramesEvent) {
         this.onMaxFrameEvent = maxFramesEvent;

@@ -1,12 +1,12 @@
 package info.emptycanvas.library.physics;
 
-import java.awt.Color;
-
 import info.emptycanvas.library.object.*;
-import info.emptycanvas.library.testing.TestObjetStub;
+import info.emptycanvas.library.testing.TestObjetSub;
 import info.emptycanvas.library.tribase.TRISphere;
 
-public class TestTrouNoir extends TestObjetStub {
+import java.awt.*;
+
+public class TestTrouNoir extends TestObjetSub {
 	int X = 10;
 	int Y = 10;
 	int Z = 10;
@@ -52,7 +52,7 @@ public class TestTrouNoir extends TestObjetStub {
 			((TRISphere) r).setMaxX(5);
 			((TRISphere) r).setMaxY(5);
 
-			((TRISphere) r).texture(new TColor(billes[i].color));
+			((TRISphere) r).texture(new ColorTexture(billes[i].color));
 
 			rc.add(r);
 		}

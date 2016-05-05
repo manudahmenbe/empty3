@@ -8,15 +8,16 @@
  */
 package info.emptycanvas.library.object;
 
-import java.awt.Color;
+import org.monte.media.Format;
+import org.monte.media.VideoFormatKeys;
+import org.monte.media.avi.AVIReader;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.monte.media.Format;
-import org.monte.media.VideoFormatKeys;
-import org.monte.media.avi.AVIReader;
 
 /**
  *
@@ -37,7 +38,7 @@ public class TColor extends ITexture {
     private AVIReader reader;
     private int track = 0;
     private File avifile = null;
-    private Color transparent = Color.WHITE;
+    private int transparent = 0xFFFFFF00;
 
     public TColor(Color c) {
         this.couleur = c;
@@ -187,8 +188,16 @@ public class TColor extends ITexture {
         return nom;
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     public String getNomFichier() {
         return nomFichier;
+    }
+
+    public void setNomFichier(String nomFichier) {
+        this.nomFichier = nomFichier;
     }
 
     public boolean readNextFrame() {
@@ -216,16 +225,8 @@ public class TColor extends ITexture {
         this.scene = scene;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public void setNomFichier(String nomFichier) {
-        this.nomFichier = nomFichier;
-    }
-
     public void setTransparent(Color WHITE) {
-        this.transparent = WHITE;
+        this.transparent = WHITE.getRGB();
     }
 
     public void timeNext() {
