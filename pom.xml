@@ -1,12 +1,13 @@
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <!-- please build montemedia first -->
     <groupId>info.emptycanvas</groupId>
     <artifactId>empty3</artifactId>
-    <version>57</version>
+    <version>56</version>
     <packaging>jar</packaging>
     <name>Empty3</name>
     <description>3D rendering engine. Plus modelling.</description>
@@ -64,8 +65,8 @@
                 <version>2.3.2</version>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.5</source>
+                    <target>1.5</target>
                 </configuration>
             </plugin>
 
@@ -75,6 +76,7 @@
                 <executions>
                 </executions>
             </plugin>
+
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.6</version>
@@ -107,11 +109,6 @@
         <url>https://hg.codeplex.com/emptycanvas</url>
     </scm>
     <repositories>
-        <repository>
-            <id>com.springsource.repository.bundles.external</id>
-            <name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
-            <url>http://repository.springsource.com/maven/bundles/external</url>
-        </repository>
         <repository>
             <id>OpenIMAJ maven repository</id>
             <url>http://maven.openimaj.org/</url>
@@ -209,19 +206,12 @@
         </dependency>
         <dependency>
             <groupId>javax.media</groupId>
-            <artifactId>jai-core</artifactId>
-            <type>jar</type>
-            <version>1.1.3</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.media</groupId>
             <artifactId>jmf</artifactId>
             <version>2.1.1e</version>
         </dependency>
-
         <dependency>
-            <groupId>javax.media.jai</groupId>
-            <artifactId>com.springsource.javax.media.jai.core</artifactId>
+            <groupId>javax.media</groupId>
+            <artifactId>jai-core</artifactId>
             <version>1.1.3</version>
         </dependency>
         <dependency>
@@ -324,11 +314,6 @@
             <groupId>com.pojosontheweb</groupId>
             <artifactId>monte-repack</artifactId>
             <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.randelshofer</groupId>
-            <artifactId>montemedia</artifactId>
-            <version>0.7.7</version>
         </dependency>
     </dependencies>
 
