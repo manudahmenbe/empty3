@@ -5,26 +5,20 @@
  */
 package info.emptycanvas.library.object;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import org.monte.media.Format;
-import org.monte.media.VideoFormatKeys;
+import info.emptycanvas.library.tribase.Point;
 import org.monte.media.avi.AVIReader;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+
 /**
- *
  * @author manu
  */
 public class ImageTexture extends ITexture {
 
     private ECBufferedImage image;
-
-    private Color couleur = Color.BLACK;
 
     private String nom = "texture";
 
@@ -34,13 +28,19 @@ public class ImageTexture extends ITexture {
     private AVIReader reader;
     private int track = 0;
     private File avifile = null;
-    private Color transparent = Color.WHITE;
+    private int transparent = 0xFFFFFF00;
 
     public ImageTexture(ECBufferedImage bi) {
         this.image = bi;
     }
 
-    public Color couleur(double rx, double ry) {
+    @Override
+    public int getColorAt(double x, double y) {
+        Point trans = getCoord(x, y);
+        return couleur(trans.x / image.getWidth(), trans.y / image.getHeight()).getRGB();
+    }
+
+    protected Color couleur(double rx, double ry) {
         int x = (int) (rx * image.getWidth());
         int y = (int) (ry * image.getHeight());
         if (x < 0) {
@@ -55,68 +55,66 @@ public class ImageTexture extends ITexture {
         if (y >= image.getHeight()) {
             y = image.getHeight() - 1;
         }
-        return new Color(image.getRGB(x, y));
+
+
+        int c = image != null ? image
+                .getRGB(x, y)
+                :
+                transparent;
+        if (
+
+                c
+
+                        ==
+
+                        transparent
+
+                )
+            return new Color(transparent);
+        else
+            return new Color(c);
     }
 
-    public int getColorAt(double a, double b) {
-        return couleur(a, b).getRGB();
-    }
-    /*        int c = new Color( image
-     .getRGB((int) (a * image
-     .getWidth()),
-     (int) (b * image
-     .getHeight()))
-     ) .getRGB();
-     if(new Color(c).equals(transparent))
-     return 0xFFFFFF00;
-     else
-     return c;
-     }
-     */
 
-    public Color getCouleur() {
-        return couleur;
-    }
 
     public BufferedImage getImage() {
         return image;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getNomFichier() {
-        return nomFichier;
-    }
-
-    void scene(Scene scene) {
-        this.scene = scene;
     }
 
     public void setImage(ECBufferedImage image) {
         this.image = image;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getNomFichier() {
+        return nomFichier;
     }
 
     public void setNomFichier(String nomFichier) {
         this.nomFichier = nomFichier;
     }
 
-    public void setTransparent(Color WHITE) {
-        this.transparent = WHITE;
+    void scene(Scene scene) {
+        this.scene = scene;
+    }
+
+    public void setTransparent(Color tr) {
+        this.transparent = tr.getRGB();
     }
 
     public void timeNext() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void timeNext(long milli) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 
     /**
      * Quadrilatère numQuadX = 1, numQuadY = 1, x, y 3----2 ^2y |\ | | 4 |
@@ -124,15 +122,19 @@ public class ImageTexture extends ITexture {
      *
      * @param numQuadX nombre de maillage en x
      * @param numQuadY nombre de maillage en y
-     * @param x valeur de x
-     * @param y valeur de y
+     * @param x        valeur de x
+     * @param y        valeur de y
      * @return
      */
     public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double x,
-            double y) {
+                                          double y) {
+        Point p = getCoord(x, y);
 
-        int xi = ((int) (1d * image.getWidth() * x));
-        int yi = ((int) (1d * image.getHeight() * y));
+        int xi = ((int) (1d * image.getWidth() * p.x));
+        int yi = ((int) (1d * image.getHeight() * p.y));
+
+
+
         if (xi >= image.getWidth()) {
             xi = image.getWidth() - 1;
         }
@@ -141,7 +143,7 @@ public class ImageTexture extends ITexture {
         }
         Color c = new Color(image.getRGB(xi, yi));
         if (c.equals(transparent)) {
-            return new Color(1f, 1f, 1f, 1f);
+            return new Color(transparent);
         } else {
             return c;
         }
@@ -160,7 +162,7 @@ public class ImageTexture extends ITexture {
      * @return
      */
     public Color getMaillageTRIColor(int numQuadX, int numQuadY, double x,
-            double y, double r11, double r12, int numTRI) {
+                                     double y, double r11, double r12, int numTRI) {
 
         double dx = 0;
         double dy = 0;
@@ -174,7 +176,17 @@ public class ImageTexture extends ITexture {
         int xi = ((int) ((((int) x + dx) / numQuadX + Math.signum(numTRI - 0.5)
                 * image.getWidth())));
         int yi = ((int) ((((int) y + dy) / numQuadY * image.getHeight())));
-        return new Color(image.getRGB(xi, yi));
+        Point p = getCoord(xi / (double) image.getWidth(), yi / (double) image.getHeight());
+
+        int x1 = (int) p.x;
+        int y1 = (int) p.y;
+
+        Color c = new Color(image.getRGB(x1, y1));
+        if (c.equals(transparent)) {
+            return new Color(transparent);
+        } else {
+            return c;
+        }
     }
 
 }

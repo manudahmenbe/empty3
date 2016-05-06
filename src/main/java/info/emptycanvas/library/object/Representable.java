@@ -3,22 +3,46 @@
  */
 package info.emptycanvas.library.object;
 
-import java.awt.Color;
+import java.awt.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Representable implements Serializable {
+    public static final ITexture orange_yellow = new ColorTexture(new Color(255, 128, 0));
+    protected static ArrayList<Painter> classPainters = new ArrayList<Painter>();
     protected double NFAST = 100;
     protected ITexture CFAST = new ColorTexture(Color.GRAY);
-
-    
-    public static final ITexture orange_yellow = new ColorTexture(new Color(255, 128, 0));
     protected Barycentre bc = new Barycentre();
     protected Representable parent;
     protected Scene scene;
     protected ITexture texture = orange_yellow;
+    private Rotation rotation = new Rotation();
     private String id;
+    private Painter painter = null;
 
     public Representable() {
+    }
+
+    public static void setPaintingActForClass(ZBuffer z, Scene s, PaintingAct pa) {
+        Painter p = null;
+        classPainters().add(new Painter(z, s, Representable.class));
+        p.addAction(pa);
+    }
+
+    private static ArrayList<Painter> classPainters() {
+        return classPainters;
+    }
+
+    public Point3D rotation(Point3D p) {
+        return getRotation().rotation(p);
+    }
+
+    public Rotation getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(Rotation r) {
+        this.rotation = r;
     }
 
     public Point3D calculerPoint(Point3D p) {
@@ -84,16 +108,61 @@ public class Representable implements Serializable {
     public Representable strictCopyOf() throws CloneNotSupportedException {
         return (Representable) this.clone();
     }
+
     /***
      * DOn't call ZBuffer dessiine methods here: it would loop.
+     *
      * @param z ZBuffer use plot or dessine(P) or tracerTriangle(TRI, Itexture)
      */
-    public void drawStructureDrawFast(ZBuffer z)
-    {
+    public void drawStructureDrawFast(ZBuffer z) {
         throw new UnsupportedOperationException("No genral method for drawing objects");
     }
-    public boolean ISdrawStructureDrawFastIMPLEMENTED(ZBuffer z)
-    {
+
+    public boolean ISdrawStructureDrawFastIMPLEMENTED(ZBuffer z) {
         return false;
+    }
+
+    /**
+     * When correctly initialized, PaintingAct action method is called while
+     * the shape is rendered.
+     *
+     * @param z  the actual ZBuffer in which the action should occurs
+     * @param s  the scene in which the actions can access to other objects properties.
+     *           Optional parameter
+     * @param pa The "painting act" (term referring to history of arts).
+     */
+    public void setPaintingAct(ZBuffer z, Scene s, PaintingAct pa) {
+        this.painter = new Painter(z, s, this);
+        pa.setObjet(this);
+        pa.setScene(s);
+        pa.setZBuffer(z);
+        painter.addAction(pa);
+    }
+
+    public Painter getPainter() {
+        return painter;
+    }
+
+    public void setPainter(Painter painter) {
+        this.painter = painter;
+    }
+
+    public void paint() {
+        if (getPainter() != null) {
+            getPainter().getPaintingAct().paint();
+        }
+    }
+
+    public class RotationInt extends Rotation {
+
+        public RotationInt() {
+
+        }
+
+        public RotationInt(Matrix33 m, Point3D c) {
+            rot = m;
+            centreRot = c;
+        }
+
     }
 }
