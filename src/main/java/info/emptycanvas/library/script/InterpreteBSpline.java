@@ -28,18 +28,15 @@ public class InterpreteBSpline implements Interprete {
     private int pos = 0;
     private int numPoints = 0;
 
-    @Override
     public InterpreteConstants constant() {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
     public int getPosition() {
         return pos;
     }
 
-    @Override
     public Object interprete(String text, int pos) throws InterpreteException {
         BSpline b = new BSpline();
 
@@ -90,13 +87,11 @@ public class InterpreteBSpline implements Interprete {
         return b;
     }
 
-    @Override
     public void setConstant(InterpreteConstants c) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void setRepertoire(String r) {
         this.repertoire = r;
     }
