@@ -6,18 +6,8 @@
 package info.emptycanvas.library.script;
 
 import info.emptycanvas.library.object.Point3D;
-import info.emptycanvas.library.object.ZBufferImpl;
-import info.emptycanvas.library.object.TRIObject;
-import info.emptycanvas.library.object.Scene;
 import info.emptycanvas.library.object.BSpline;
-import info.emptycanvas.library.object.ZBuffer;
 import java.awt.Color;
-import java.awt.image.RenderedImage;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
