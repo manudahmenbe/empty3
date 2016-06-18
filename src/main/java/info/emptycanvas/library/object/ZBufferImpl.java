@@ -71,6 +71,21 @@ public class ZBufferImpl implements ZBuffer {
         } catch (Exception ex) {
         }
     }
+
+    public ZBufferImpl() {
+        la = Resolution.K4RESOLUTION.x();
+        ha = Resolution.K4RESOLUTION.y();
+        dimx = la;
+        dimy = ha;
+    }
+
+    public ZBufferImpl(Resolution resolution) {
+        la = resolution.x();
+        ha = resolution.y();
+        dimx = la;
+        dimy = ha;
+    }
+
     public ZBufferImpl(int l, int h) {
         la = l;
         ha = h;

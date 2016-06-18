@@ -6,6 +6,7 @@ import com.sun.org.apache.regexp.internal.RE;
  * @author Se7en
  */
 public class Resolution {
+    public static final Resolution K4RESOLUTION = new Resolution(1920 * 2, 1080 * 2).makeFinal();
     public static final Resolution HD720RESOLUTION = new Resolution(1600, 720).makeFinal();
     public static final Resolution HD1080RESOLUTION = new Resolution(1920, 1080).makeFinal();
     public static final Resolution XVGARESOLUTION = new Resolution(640, 480).makeFinal();
