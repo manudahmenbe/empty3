@@ -30,7 +30,7 @@ public class SurfacePointParPoint extends TRIObjetGenerateurAbstract {
 
     @Override
     public Point3D coordPoint3D(int x, int y) {
-        if (y < points.length && x < points[y].length) {
+        if (y < points.length && x < points[y].length && x >= 0 && y >= 0) {
             return points[y][x];
         }
         throw new ArrayIndexOutOfBoundsException("Coordonnée pas normale");
