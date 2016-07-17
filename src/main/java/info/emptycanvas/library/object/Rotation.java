@@ -7,6 +7,9 @@ public class Rotation {
     protected Matrix33 rot = Matrix33.I;
     protected Point3D centreRot = Point3D.O0;
 
+    public Rotation() {
+    }
+
     public Rotation(Matrix33 rot, Point3D centreRot) {
         this.rot = rot;
         this.centreRot = centreRot;

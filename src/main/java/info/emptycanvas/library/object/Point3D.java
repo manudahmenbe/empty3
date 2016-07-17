@@ -19,7 +19,7 @@
  */
 package info.emptycanvas.library.object;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * *
@@ -56,73 +56,21 @@ public class Point3D extends Representable {
      * Point "Infinite" limite pour Z-Buffer
      */
     public static final Point3D INFINI = new Point3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
-
-    /**
-     * *
-     * Distance cartésienne entre 2 points
-     *
-     * @param p1 Point1
-     * @param p2 Point2
-     * @return
-     */
-    public static double distance(Point3D p1, Point3D p2) {
-        return Math.sqrt((p1.getX() - p2.getX()) * (p1.getX() - p2.getX())
-                + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY())
-                + (p1.getZ() - p2.getZ()) * (p1.getZ() - p2.getZ()));
-    }
-
-    /**
-     * *
-     * Rotation dans un système d'axe positionné puis retour dans le système
-     * d'axes d'origine
-     *
-     * @param axes Matrice 3x3
-     * @param origine Point d'origine du système d'axes
-     * @param p Point à déplacers
-     * @return Point déplacé
-     */
-    public static Point3D rotation(Matrix33 axes, Point3D origine, Point3D p) {
-        Point3D ret = axes.mult(p.moins(origine)).plus(origine);
-        ret.texture(p.texture());
-        return ret;
-    }
-
-    /**
-     * @param pa Point origine
-     * @param pb Point extrémité
-     * @return Vecteur résultant pb-pa
-     */
-    public static Point3D vecteur(Point3D pa, Point3D pb) {
-
-        return pb.plus(pa.mult(-1));
-    }
-
-    public static Point3D random(double d) {
-        return new Point3D(Math.random(), Math.random(), Math.random()).norme(d);
-    }
-
-    public static Point3D r(double d) {
-        return random(d);
-    }
-
-    /**
-     * *
-     * id
-     */
-    private String id;
-
-    /**
-     * *
-     * Coordonnées (x,y,z) du point
-     */
-    private double[] x;
-
     /**
      * *
      * Pour le tracé de surface normale au point
      */
     protected Point3D normale;
-
+    /**
+     * *
+     * id
+     */
+    private String id;
+    /**
+     * *
+     * Coordonnées (x,y,z) du point
+     */
+    private double[] x;
     private Barycentre position;
 
     /**
@@ -182,6 +130,59 @@ public class Point3D extends Representable {
         x[2] = p0.getZ();
     }
 
+    /**
+     * *
+     * Distance cartésienne entre 2 points
+     *
+     * @param p1 Point1
+     * @param p2 Point2
+     * @return
+     */
+    public static double distance(Point3D p1, Point3D p2) {
+        return Math.sqrt((p1.getX() - p2.getX()) * (p1.getX() - p2.getX())
+                + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY())
+                + (p1.getZ() - p2.getZ()) * (p1.getZ() - p2.getZ()));
+    }
+
+    /**
+     * *
+     * Rotation dans un système d'axe positionné puis retour dans le système
+     * d'axes d'origine
+     *
+     * @param axes    Matrice 3x3
+     * @param origine Point d'origine du système d'axes
+     * @param p       Point à déplacers
+     * @return Point déplacé
+     */
+    public static Point3D rotation(Matrix33 axes, Point3D origine, Point3D p) {
+        Point3D ret = axes.mult(p.moins(origine)).plus(origine);
+        ret.texture(p.texture());
+        return ret;
+    }
+
+    /**
+     * @param pa Point origine
+     * @param pb Point extrémité
+     * @return Vecteur résultant pb-pa
+     */
+    public static Point3D vecteur(Point3D pa, Point3D pb) {
+
+        return pb.plus(pa.mult(-1));
+    }
+
+    public static Point3D random(double d) {
+        return new Point3D(Math.random(), Math.random(), Math.random()).norme(d);
+    }
+
+    public static Point3D r(double d) {
+        return random(d);
+    }
+
+    public static Point3D random2(double d) {
+
+        return new Point3D(((Math.random() - 1) * 2 * d), ((Math.random() - 1) * 2 * d), ((Math.random() - 1) * 2 * d));
+    }
+
     @Override
     public Object clone() {
         return new Point3D(x[0], x[1], x[2]);
@@ -199,20 +200,40 @@ public class Point3D extends Representable {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = ID.GEN(this);
+    }
+
     public Point3D getNormale() {
         return normale;
+    }
+
+    public void setNormale(Point3D normale) {
+        this.normale = normale;
     }
 
     public double getX() {
         return x[0];
     }
 
+    public void setX(double x0) {
+        x[0] = x0;
+    }
+
     public double getY() {
         return x[1];
     }
 
+    public void setY(double x0) {
+        x[1] = x0;
+    }
+
     public double getZ() {
         return x[2];
+    }
+
+    public void setZ(double x0) {
+        x[2] = x0;
     }
 
     @Deprecated
@@ -269,6 +290,7 @@ public class Point3D extends Representable {
     public Point3D mult(Point3D point3D) {
         return Matrix33.YZX.mult(Matrix33.ZXY.mult(Matrix33.XYZ.mult(point3D)));
     }
+
     /**
      * *
      * norme d'un vecteur (distance du point à l'origine)
@@ -341,26 +363,6 @@ public class Point3D extends Representable {
         x[i] = d;
     }
 
-    public void setId(String id) {
-        this.id = ID.GEN(this);
-    }
-
-    public void setNormale(Point3D normale) {
-        this.normale = normale;
-    }
-
-    public void setX(double x0) {
-        x[0] = x0;
-    }
-
-    public void setY(double x0) {
-        x[1] = x0;
-    }
-
-    public void setZ(double x0) {
-        x[2] = x0;
-    }
-
     public String toLongString() {
         //Color c = texture.toString();
         return "p ( \n\t(" + x[0] + " , " + x[1] + " , " + x[2] + " )\n\t("
@@ -384,13 +386,13 @@ public class Point3D extends Representable {
 
     @Override
     public void drawStructureDrawFast(ZBuffer z) {
-        
+
         z.testPoint(this, new Color(CFAST.getColorAt(0.5, 0.5)));
-        
+
     }
+
     public Point2D get2D()
     {
         return new Point2D(x[0], x[1]);
     }
-
 }
