@@ -1,6 +1,4 @@
-package info.emptycanvas.library.object;
-
-import java.awt.*;
+package info.emptycanvas.library.raytracer;
 
 /**
  * Created by manuel on 30-07-16.
@@ -12,10 +10,10 @@ public class Matiere {/*! \class CMaterial
  */
 
     private String mName;
-    private Color mSpecularColor;
-    private Color mDiffuseColor;
-    private Color mAmbientColor;
-    private Color mSelfIllumColor;
+    private CColor mSpecularColor;
+    private CColor mDiffuseColor;
+    private CColor mAmbientColor;
+    private CColor mSelfIllumColor;
     private float mShininess;
     private float mShinestrength;
     private float mTransmittivity;
@@ -26,10 +24,10 @@ public class Matiere {/*! \class CMaterial
     // constructor and destructor
     public Matiere() {
         mName = "EMPTY MAT";
-        mSpecularColor = new Color(0.0f, 0.0f, 0.0f);
-        mDiffuseColor = new Color(0.0f, 0.0f, 0.0f);
-        mAmbientColor = new Color(0.0f, 0.0f, 0.0f);
-        mSelfIllumColor = new Color(0.0f, 0.0f, 0.0f);
+        mSpecularColor = new CColor(0.0f, 0.0f, 0.0f);
+        mDiffuseColor = new CColor(0.0f, 0.0f, 0.0f);
+        mAmbientColor = new CColor(0.0f, 0.0f, 0.0f);
+        mSelfIllumColor = new CColor(0.0f, 0.0f, 0.0f);
         mShininess = 0.0f;
         mShinestrength = 0.0f;
         mTransmittivity = 0.0f;
@@ -37,7 +35,7 @@ public class Matiere {/*! \class CMaterial
         mPermanent = true;
     }
 
-    public Matiere(String name, Color specular, Color diffuse, Color ambient, Color selfillum, float transmittivity, float reflectivity, float shininess, float shinestrength, boolean permanent) {
+    public Matiere(String name, CColor specular, CColor diffuse, CColor ambient, CColor selfillum, float transmittivity, float reflectivity, float shininess, float shinestrength, boolean permanent) {
         mName = name;
         mSpecularColor = specular;
         mDiffuseColor = diffuse;
@@ -56,19 +54,19 @@ public class Matiere {/*! \class CMaterial
         return mName;
     }
 
-    public Color GetDiffuse() {
+    public CColor GetDiffuse() {
         return mDiffuseColor;
     }
 
-    public Color GetSpecular() {
+    public CColor GetSpecular() {
         return mSpecularColor;
     }
 
-    public Color GetAmbient() {
+    public CColor GetAmbient() {
         return mAmbientColor;
     }
 
-    public Color GetSelfIllum() {
+    public CColor GetSelfIllum() {
         return mSelfIllumColor;
     }
 
@@ -97,19 +95,19 @@ public class Matiere {/*! \class CMaterial
         mName = name;
     }
 
-    public void SetSpecular(Color specular) {
+    public void SetSpecular(CColor specular) {
         mSpecularColor = specular;
     }
 
-    public void SetDiffuse(Color diffuse) {
+    public void SetDiffuse(CColor diffuse) {
         mDiffuseColor = diffuse;
     }
 
-    public void SetAmbient(Color ambient) {
+    public void SetAmbient(CColor ambient) {
         mAmbientColor = ambient;
     }
 
-    public void SetSelfIllum(Color selfIllum) {
+    public void SetSelfIllum(CColor selfIllum) {
         mSelfIllumColor = selfIllum;
     }
 
