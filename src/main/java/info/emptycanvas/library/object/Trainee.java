@@ -6,14 +6,34 @@ import java.util.ArrayList;
 
 /**
  * Created by manuel on 29-07-16.
+ *
+ * Opacités
+ * Lumières diffuse
+ * Lumière ambiante
+ * Diffraction
+ * Réffraction
+ * Réflexion
+ * Ombres
  */
 public class Trainee {
     private ArrayList<Point3D> traines;
     private ApproximationFonction1D taillesF;
     private ArrayList<Double> taille;
+    /***
+     * Distance Unité : px
+     */
     private Double distMax;
+    /***
+     * Distance Unité : px
+     */
     private Double distMin;
+    /***
+     * double 0..1
+     */
     private ArrayList<Double> opacites;
+    /***
+     * Fonction définie sur [0,taille] à valeur dans [0,1]
+     */
     private ApproximationFonction1D opacitesF;
 
     public Trainee() {

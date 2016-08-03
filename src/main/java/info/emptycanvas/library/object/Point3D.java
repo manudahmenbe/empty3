@@ -180,7 +180,7 @@ public class Point3D extends Representable {
 
     public static Point3D random2(double d) {
 
-        return new Point3D(((Math.random() - 1) * 2 * d), ((Math.random() - 1) * 2 * d), ((Math.random() - 1) * 2 * d));
+        return new Point3D(((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d));
     }
 
     @Override
