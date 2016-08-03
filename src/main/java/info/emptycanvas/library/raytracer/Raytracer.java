@@ -9,7 +9,7 @@ public class Raytracer {
 
     /* [ Coeur du raytracer. L'algo du raytracing se trouve dans cette fonction, dont le r�le est de calculer ] */
 /* [ la couleur finale du pixel courant, en lui passant le rayon primaire �mis.                           ] */
-    CColor RayTrace(CScene scene, CRay ray, int depth) {
+    public static CColor rayTrace(CScene scene, CRay ray, int depth) {
         CColor finalColor = new CColor(0.0f, 0.0f, 0.0f);    // La couleur finale (noire au debut ... couleur de fond)
         double distance = 999999.9f;            // La distance parcourue par le rayon avant de toucher la node
         double tmpDistance;                    // Une distance temporaire
@@ -89,7 +89,7 @@ public class Raytracer {
 
     /* [ Fonction de rendu. Parcoure tous les pixels de l'image, cr�e le rayon correpondant et lance le raytracing ] */
 /* [ avec ce rayon. Enregistre le rendu final dans un fichier image.                                           ] */
-    public boolean Render(CScene scene, int width, int height, String outputfilename) throws IOException {
+    public static boolean Render(CScene scene, int width, int height, String outputfilename) throws IOException {
         CRay currentRay = null;            // Le rayon primaire �mis courant (de l'oeil, � travers un pixel, vers la sc�ne).
         Point3D vDir;                // Le vecteur directeur (unitaire) du rayon.
         FileOutputStream mOutputFileRAW;    // Le fichier image destination (format RAW : rvbrvbrvbrvb....).
@@ -112,7 +112,7 @@ public class Raytracer {
                 currentRay.mVDir = vDir;
 
                 // On trace le rayon, et on recup�re la couleur finale du pixel
-                tmpColor = RayTrace(scene, currentRay, 0);
+                tmpColor = rayTrace(scene, currentRay, 0);
 
                 // Affichage de notre "barre de progression" ;)
                 if (x == 0 && y == 0.25f * height)

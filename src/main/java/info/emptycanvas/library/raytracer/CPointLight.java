@@ -3,10 +3,17 @@ package info.emptycanvas.library.raytracer;
 import info.emptycanvas.library.object.Point3D;
 
 public class CPointLight extends CLight {
+    Point3D lightVector;
+    double lightDiffuseColor;
+    double lightSpecularColor;
+    CColor lightColor;
+
+    public CPointLight(Point3D myLightPos, double myLightDiffuseColor, double myLightSpecularColor, CColor myLightColor) {
+        super(LIGHT, "LIGHT");
+    }
 
     @Override
     public CColor getLightAt(Point3D normal, Point3D intersectionPoint, Matiere material) {
-        Point3D lightVector, reflectedLightVec;
         float angle;
         CColor finalColor;
 

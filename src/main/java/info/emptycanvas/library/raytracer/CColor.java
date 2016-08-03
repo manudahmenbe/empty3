@@ -1,6 +1,6 @@
 package info.emptycanvas.library.raytracer;
 
-class CColor {
+public class CColor {
     public float mR, mG, mB, mA;    // Les trois composantes de la couleur
 
     // constructeurs et destructeur

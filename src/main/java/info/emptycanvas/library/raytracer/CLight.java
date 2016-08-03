@@ -26,6 +26,10 @@ public abstract class CLight extends CNode {
         mLightType = type;
     }
 
+    public CLight(int light, String light1) {
+        super(light, light1);
+    }
+
     // get
     public Point3D getPosition() {
         return mPosition;

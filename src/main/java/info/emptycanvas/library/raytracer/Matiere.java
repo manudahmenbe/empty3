@@ -35,6 +35,13 @@ public class Matiere {/*! \class CMaterial
         mPermanent = true;
     }
 
+    public Matiere(String name, CColor specular, CColor diffuse, CColor ambient, CColor selfillum) {
+        this(name, specular, diffuse, ambient, selfillum, 0, 0, 0, 0, true);
+    }
+
+    public Matiere(String name, CColor specular, CColor diffuse, CColor ambient, CColor selfillum, float transmittivity, float reflectivity) {
+        this(name, specular, diffuse, ambient, selfillum, transmittivity, reflectivity, 0, 0, true);
+    }
     public Matiere(String name, CColor specular, CColor diffuse, CColor ambient, CColor selfillum, float transmittivity, float reflectivity, float shininess, float shinestrength, boolean permanent) {
         mName = name;
         mSpecularColor = specular;
@@ -48,6 +55,7 @@ public class Matiere {/*! \class CMaterial
         mReflectivity = reflectivity;
         mPermanent = permanent;
     }
+
 
     // get
     public String GetName() {
