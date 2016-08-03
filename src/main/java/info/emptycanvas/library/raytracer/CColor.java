@@ -52,8 +52,7 @@ class CColor {
     }
 
 
-    // main methods
-    public CColor normalizeColor() {
+    public void normalizeColor() {
         if (mR > 1.0f) mR = 1.0f;
         if (mG > 1.0f) mG = 1.0f;
         if (mB > 1.0f) mB = 1.0f;

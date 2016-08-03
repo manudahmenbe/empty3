@@ -8,6 +8,8 @@ public class CCamera extends CNode {
     protected double mViewplaneDist;
     protected double mViewplaneHeight;
     protected double mViewplaneWidth;
+    protected Point3D mViewPlaneUpLeft;
+    private Point3D mRightVec;
 
     public CCamera(Point3D vCamPos, Point3D vUpVector, int type)
 
@@ -21,12 +23,12 @@ public class CCamera extends CNode {
     }
 
     Point3D calcDirVec(float x, float y, int xRes, int yRes) {
-        float xIndent, yIndent;
+        double xIndent, yIndent;
 
         xIndent = mViewplaneWidth / (float) xRes;
         yIndent = mViewplaneHeight / (float) yRes;
 
-        return (mViewPlaneUpLeft + mRightVec * xIndent * x - mUpVec * yIndent * y) - GetPosition();
+        return (mViewPlaneUpLeft.plus(mRightVec.mult(xIndent * x).moins(mUpVec.mult(yIndent * y))).moins(getPosition()));
     }
 
 
