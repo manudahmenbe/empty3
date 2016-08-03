@@ -395,4 +395,10 @@ public class Point3D extends Representable {
     {
         return new Point2D(x[0], x[1]);
     }
+
+    public void normalize() {
+        double n = norme();
+        for (int i = 0; i < x.length; i++)
+            set(i, get(i) / n);
+    }
 }

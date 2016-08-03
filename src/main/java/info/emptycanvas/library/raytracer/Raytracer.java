@@ -83,7 +83,7 @@ public class Raytracer {
         }
 
 
-        finalColor = finalColor.normalizeColor();
+        finalColor.normalizeColor();
         return finalColor;
     }
 
