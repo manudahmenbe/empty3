@@ -8,7 +8,7 @@ import info.emptycanvas.library.object.Point3D;
 public abstract class CLight extends CNode {
     protected float mDiffuseColor;
     protected float mSpecularColor;
-    protected Point3D mPosition;
+    protected Point3D mPosition = new Point3D();
     protected CColor mColor;
     protected int mLightType;
 
@@ -19,6 +19,7 @@ public abstract class CLight extends CNode {
 
     public CLight(Point3D position, float diffuseColor, float specularColor, CColor color, int type) {
         super(LIGHT, "LIGHT");
+        assert (position != null);
         mPosition = position;
         mDiffuseColor = diffuseColor;
         mSpecularColor = specularColor;

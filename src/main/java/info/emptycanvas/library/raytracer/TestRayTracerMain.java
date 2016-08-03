@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class TestRayTracerMain extends Raytracer {
     public static void main(String[] args) {
-        CScene myScene = null;
+        CScene myScene = new CScene();
 
         // Notre cam�ra
         CTargetCamera myCamera = null;
@@ -48,10 +48,15 @@ public class TestRayTracerMain extends Raytracer {
         mySphere = new CSphere(mySpherePos, mySphereRadius);
         assert (mySphere != null);
         myPlane = new CPlane(myPlanePos, myPlaneNormal);
+        assert (myPlane != null);
         myLight = new CPointLight(myLightPos, myLightDiffuseColor, myLightSpecularColor, myLightColor);
+        assert (myLight != null);
         myLight1 = new CPointLight(myLight1Pos, myLight1DiffuseColor, myLight1SpecularColor, myLight1Color);
+        assert (myLight1 != null);
         myMaterial = new Matiere("myMaterial", new CColor(0.0f, 0.0f, 0.0f), new CColor(1.0f, 1.0f, 1.0f), new CColor(0.0f, 0.0f, 0.0f), new CColor(0.0f, 0.0f, 0.0f), 0.0f, 0.0f);
+        assert (myMaterial != null);
         myMaterial1 = new Matiere("myMaterial1", new CColor(0.0f, 0.0f, 0.0f), new CColor(0.7f, 0.7f, 0.7f), new CColor(0.0f, 0.0f, 0.0f), new CColor(0.0f, 0.0f, 0.0f), 0.0f, 0.0f);
+        assert (myMaterial1 != null);
 
         // On assigne les materiaux � nos objets
         mySphere.setMaterial(myMaterial);
@@ -64,10 +69,10 @@ public class TestRayTracerMain extends Raytracer {
         myScene.addLight(myLight);
         myScene.addLight(myLight1);
         myScene.addMaterial(myMaterial);
-
+        myScene.setActiveCamera(0);
         // On lance le rendu
         try {
-            Render(myScene, 640, 480, "renders//Chapitre2.raw");
+            Render(myScene, 640, 480, "Chapitre2.raw");
         } catch (IOException e) {
             e.printStackTrace();
         }

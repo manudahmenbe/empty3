@@ -1,14 +1,15 @@
 package info.emptycanvas.library.raytracer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CScene {
 
     private int mNumNodes;
-    private List<CNode> mNodes;
-    private List<CCamera> mCameras;
-    private List<CLight> mLights;
-    private List<Matiere> mMaterials;
+    private List<CNode> mNodes = new ArrayList<CNode>();
+    private List<CCamera> mCameras = new ArrayList<CCamera>();
+    private List<CLight> mLights = new ArrayList<CLight>();
+    private List<Matiere> mMaterials = new ArrayList<Matiere>();
     private CCamera mActiveCamera;
 
 
@@ -16,6 +17,8 @@ public class CScene {
     public CScene() {
         mNumNodes = 0;
         mActiveCamera = null;
+
+
     }
 
     // get
@@ -41,6 +44,12 @@ public class CScene {
         return mActiveCamera;
     }
 
+    // set
+    public void setActiveCamera(int i) {
+        assert (i < mCameras.size());
+        mActiveCamera = mCameras.get(i);
+    }
+
     public void setActiveCamera(CCamera cam) {
         assert (cam != null);
         mActiveCamera = cam;
@@ -49,12 +58,6 @@ public class CScene {
     public Matiere getMaterial(int i) {
         assert (i < mMaterials.size());
         return mMaterials.get(i);
-    }
-
-    // set
-    public void setActiveCamera(int i) {
-        assert (i < mCameras.size());
-        mActiveCamera = mCameras.get(i);
     }
 
     // methodes

@@ -79,6 +79,9 @@ public class Point3D extends Representable {
      */
     public Point3D() {
         x = new double[3];
+        x[0] = 0;
+        x[1] = 0;
+        x[2] = 0;
     }
 
     /**

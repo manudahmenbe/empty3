@@ -10,7 +10,10 @@ public class CIntersectInfo {
     public Matiere mMaterial;        // Material au point d'intersection
 
     public CIntersectInfo() {
-
         super();
+        mIntersection = new Point3D();    // Position de l'intersection
+        mNormal = new Point3D();// Normale au point d'intersection
+        mNode = new CDefaultCNode();            // Node touch�e par l'intersection
+        mMaterial = new Matiere();        // Material au point d'intersection
     }
 }

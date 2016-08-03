@@ -3,17 +3,14 @@ package info.emptycanvas.library.raytracer;
 import info.emptycanvas.library.object.Point3D;
 
 public class CCamera extends CNode {
-    protected Point3D mCamPos;
-    protected Point3D mUpVec;
-    protected double mViewplaneDist;
-    protected double mViewplaneHeight;
-    protected double mViewplaneWidth;
-    protected Point3D mViewPlaneUpLeft;
-    private Point3D mRightVec;
+    protected double mViewplaneDist;                                                // Distance du viexplane par rapport � la position de la cam.
+    protected float mViewplaneWidth, mViewplaneHeight;                            // Largeur/Hauteur du viewplane.
+    protected Point3D mCamPos = new Point3D(), mVecDir = new Point3D(), mUpVec = new Point3D(), mRightVec = new Point3D(), mViewPlaneUpLeft = new Point3D();
 
     public CCamera(Point3D vCamPos, Point3D vUpVector, int type)
 
     {
+        super(CAMERA, "CAMERA");
         mCamPos = vCamPos;
         mUpVec = vUpVector;
         mViewplaneDist = 1.0f;

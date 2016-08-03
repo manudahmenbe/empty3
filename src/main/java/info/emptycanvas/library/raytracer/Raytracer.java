@@ -13,10 +13,11 @@ public class Raytracer {
         CColor finalColor = new CColor(0.0f, 0.0f, 0.0f);    // La couleur finale (noire au debut ... couleur de fond)
         double distance = 999999.9f;            // La distance parcourue par le rayon avant de toucher la node
         double tmpDistance;                    // Une distance temporaire
-        CNode currentNode;                    // La node en cours de traitement
+        CNode currentNode;
+        // La node en cours de traitement
         CNode closestNode = null;                // La node qui sera la plus proche
-        CIntersectInfo interInfo = null;                        // Les informations sur l'intersection
-        CIntersectInfo closestInterInfo = null;                // Les informations sur l'intersection de la node la plus proche
+        CIntersectInfo interInfo = new CIntersectInfo();                        // Les informations sur l'intersection
+        CIntersectInfo closestInterInfo = new CIntersectInfo();                // Les informations sur l'intersection de la node la plus proche
 
 
         // Eclairage
@@ -24,8 +25,8 @@ public class Raytracer {
         Point3D lightVec;            // Le vecteur allant de la source lumineuse vers le point d'intersection
         double lightToObjDist;        // La distance entre la source lumineuse et le point d'intersection
         double lightToInterDist;    // La distance entre la source lumineuse et le point d'intersection de la node courante
-        CRay lightRay = null;            // Le rayon lumineux
-        CIntersectInfo lightInterInfo = null;        // Les informations sur l'intersection du rayon lumineux et d'une node
+        CRay lightRay = new CRay();            // Le rayon lumineux
+        CIntersectInfo lightInterInfo = new CIntersectInfo();        // Les informations sur l'intersection du rayon lumineux et d'une node
 
 
         // On parcoure toutes les nodes de notre scene (cameras, objets ...)
@@ -33,7 +34,7 @@ public class Raytracer {
             currentNode = scene.getNode(i);
 
             if (currentNode.intersectsNode(ray, interInfo)) {
-                // On � pas besoin de comparer la longueur en elle meme (qui est la racine carr� de la somme des carr�s des coeeficients)
+                // On n'a pas besoin de comparer la longueur en elle meme (qui est la racine carr� de la somme des carr�s des coeeficients)
                 // En evitant la racine carr� on obtient la meme comparaison, mais en une op�ration de moins (sqrt est tr�s gourmand).
                 tmpDistance = (interInfo.mIntersection.moins(ray.mVStart)).norme();
 
@@ -51,7 +52,8 @@ public class Raytracer {
                 lightBlocked = false;
 
                 // Calc the vec (normalized) going from the light to the intersection point
-                lightVec = closestInterInfo.mIntersection.moins(scene.getLight(i).getPosition());
+                lightVec = closestInterInfo.mIntersection.
+                        moins(scene.getLight(i).getPosition());
                 lightToObjDist = lightVec.norme();//??getMagnitude();
                 lightVec = lightVec.norme1();
 
@@ -90,7 +92,7 @@ public class Raytracer {
     /* [ Fonction de rendu. Parcoure tous les pixels de l'image, cr�e le rayon correpondant et lance le raytracing ] */
 /* [ avec ce rayon. Enregistre le rendu final dans un fichier image.                                           ] */
     public static boolean Render(CScene scene, int width, int height, String outputfilename) throws IOException {
-        CRay currentRay = null;            // Le rayon primaire �mis courant (de l'oeil, � travers un pixel, vers la sc�ne).
+        CRay currentRay = new CRay();            // Le rayon primaire �mis courant (de l'oeil, � travers un pixel, vers la sc�ne).
         Point3D vDir;                // Le vecteur directeur (unitaire) du rayon.
         FileOutputStream mOutputFileRAW;    // Le fichier image destination (format RAW : rvbrvbrvbrvb....).
         CColor tmpColor;            // La couleur finale du pixel courant.
