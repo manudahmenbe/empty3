@@ -1,7 +1,10 @@
 package info.emptycanvas.library.raytracer;
 
+import info.emptycanvas.library.object.ECBufferedImage;
 import info.emptycanvas.library.object.Point3D;
 
+import javax.imageio.ImageIO;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -97,10 +100,15 @@ public class Raytracer {
         FileOutputStream mOutputFileRAW;    // Le fichier image destination (format RAW : rvbrvbrvbrvb....).
         CColor tmpColor;            // La couleur finale du pixel courant.
         byte tmpR, tmpG, tmpB;    // Les trois composantes de la couleur (Rouge Vert Bleu).
+        ECBufferedImage bi2 = new ECBufferedImage(width, height,
+                ECBufferedImage.TYPE_INT_RGB);
 
         // On cree le fichier destination
-        mOutputFileRAW = new FileOutputStream(outputfilename);
-
+        mOutputFileRAW = new FileOutputStream(outputfilename + ".PPM");
+        mOutputFileRAW.write(new byte[]{'P', '6'});
+        mOutputFileRAW.write(width);
+        mOutputFileRAW.write(height);
+        mOutputFileRAW.write(256);
         // On parcoure tous les pixels de l'image finale
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++) {
@@ -133,6 +141,8 @@ public class Raytracer {
                 tmpR = (byte) (tmpColor.mR * 255);
                 tmpG = (byte) (tmpColor.mG * 255);
                 tmpB = (byte) (tmpColor.mB * 255);
+                int elementCouleur = (tmpR << 16) | (tmpG << 8) | (tmpB);
+                bi2.setRGB(x, y, elementCouleur);
 
                 // Et on ecrit finalement la couleur de ce pixel dans le fichier
                 mOutputFileRAW.write(new byte[]{tmpR, tmpG, tmpB});
@@ -140,6 +150,9 @@ public class Raytracer {
 
         mOutputFileRAW.flush();
         mOutputFileRAW.close();
+
+        System.out.print("+");
+        ImageIO.write(bi2, "jpg", new File(outputfilename + ".JPG"));
 
         return true;
     }

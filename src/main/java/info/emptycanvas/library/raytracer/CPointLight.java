@@ -10,6 +10,9 @@ public class CPointLight extends CLight {
 
     public CPointLight(Point3D myLightPos, double myLightDiffuseColor, double myLightSpecularColor, CColor myLightColor) {
         super(LIGHT, "LIGHT");
+        lightDiffuseColor = myLightDiffuseColor;
+        lightSpecularColor = myLightSpecularColor;
+        lightColor = myLightColor;
     }
 
     @Override
