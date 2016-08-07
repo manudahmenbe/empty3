@@ -8,6 +8,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Raytracer {
 
@@ -97,18 +98,18 @@ public class Raytracer {
     public static boolean Render(CScene scene, int width, int height, String outputfilename) throws IOException {
         CRay currentRay = new CRay();            // Le rayon primaire �mis courant (de l'oeil, � travers un pixel, vers la sc�ne).
         Point3D vDir;                // Le vecteur directeur (unitaire) du rayon.
-        FileOutputStream mOutputFileRAW;    // Le fichier image destination (format RAW : rvbrvbrvbrvb....).
+        PrintWriter mOutputFileRAW;    // Le fichier image destination (format RAW : rvbrvbrvbrvb....).
         Color tmpColor;            // La couleur finale du pixel courant.
         byte tmpR, tmpG, tmpB;    // Les trois composantes de la couleur (Rouge Vert Bleu).
         ECBufferedImage bi2 = new ECBufferedImage(width, height,
                 ECBufferedImage.TYPE_INT_RGB);
 
         // On cree le fichier destination
-        mOutputFileRAW = new FileOutputStream(outputfilename + ".PPM");
-        mOutputFileRAW.write(new byte[]{'P', '6'});
-        mOutputFileRAW.write(width);
-        mOutputFileRAW.write(height);
-        mOutputFileRAW.write(256);
+        mOutputFileRAW = new PrintWriter(new FileOutputStream(new File(outputfilename + ".pbm")));
+        mOutputFileRAW.println("P4");
+        mOutputFileRAW.println(width);
+        mOutputFileRAW.println(height);
+        //mOutputFileRAW.write(""+256);
         // On parcoure tous les pixels de l'image finale
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++) {
@@ -145,14 +146,15 @@ public class Raytracer {
                 bi2.setRGB(x, y, elementCouleur);
 
                 // Et on ecrit finalement la couleur de ce pixel dans le fichier
-                mOutputFileRAW.write(new byte[]{tmpR, tmpG, tmpB});
+                mOutputFileRAW.println(tmpR + " " + " " + tmpG + " " + tmpB + "\n");
             }
 
+        System.out.print("+raw");
         mOutputFileRAW.flush();
         mOutputFileRAW.close();
 
-        System.out.print("+");
-        ImageIO.write(bi2, "jpg", new File(outputfilename + ".JPG"));
+        System.out.print("+jpg");
+        ImageIO.write(bi2, "jpg", new File(outputfilename + ".jpg"));
 
         return true;
     }

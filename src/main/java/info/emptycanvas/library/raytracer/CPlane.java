@@ -6,10 +6,9 @@ public class CPlane extends CObject {
     private Point3D mPointPlane;
     private Point3D mNormal;
 
-    public CPlane() {
-    }
 
     public CPlane(Point3D pointplane, Point3D normal) {
+        super();
         mNormal = normal;
         mNormal = mNormal.norme1();
 

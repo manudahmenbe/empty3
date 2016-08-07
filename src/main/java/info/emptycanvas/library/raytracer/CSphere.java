@@ -6,10 +6,9 @@ public class CSphere extends CObject {
     private Point3D mCenter; // Le centre de la sph�re
     private double mRadius; // Le rayon de la sph�re
 
-    public CSphere() {
-    }
 
     public CSphere(Point3D center, double radius) {
+        super();
         mCenter = (center);
         mRadius = (radius);
     }
