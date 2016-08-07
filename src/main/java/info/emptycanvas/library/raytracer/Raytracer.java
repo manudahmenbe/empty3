@@ -100,16 +100,19 @@ public class Raytracer {
         Point3D vDir;                // Le vecteur directeur (unitaire) du rayon.
         PrintWriter mOutputFileRAW;    // Le fichier image destination (format RAW : rvbrvbrvbrvb....).
         Color tmpColor;            // La couleur finale du pixel courant.
-        byte tmpR, tmpG, tmpB;    // Les trois composantes de la couleur (Rouge Vert Bleu).
+        int tmpR;    // Les trois composantes de la couleur (Rouge Vert Bleu).
+        int tmpG;
+        int tmpB;
         ECBufferedImage bi2 = new ECBufferedImage(width, height,
                 ECBufferedImage.TYPE_INT_RGB);
 
         // On cree le fichier destination
-        mOutputFileRAW = new PrintWriter(new FileOutputStream(new File(outputfilename + ".pbm")));
-        mOutputFileRAW.println("P4");
-        mOutputFileRAW.println(width);
-        mOutputFileRAW.println(height);
-        //mOutputFileRAW.write(""+256);
+        mOutputFileRAW = new PrintWriter(new FileOutputStream(new File(outputfilename + ".ppm")));
+        mOutputFileRAW.println("P3");
+        mOutputFileRAW.println("# Image genereted with Empty3 http://gitlab/Graphics3D/Empty3");
+        mOutputFileRAW.println("" + width);
+        mOutputFileRAW.println("" + height);
+        mOutputFileRAW.println("" + 256);
         // On parcoure tous les pixels de l'image finale
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++) {
@@ -139,9 +142,9 @@ public class Raytracer {
                     System.out.printf("100 percent completed !\n");
 
                 // On decompose la couleur dans les trois couleurs de base (Rouge Vert Bleu).
-                tmpR = (byte) (tmpColor.getRed() * 255);
-                tmpG = (byte) (tmpColor.getGreen() * 255);
-                tmpB = (byte) (tmpColor.getBlue() * 255);
+                tmpR = tmpColor.getRed();
+                tmpG = tmpColor.getGreen();
+                tmpB = tmpColor.getBlue();
                 int elementCouleur = (tmpR << 16) | (tmpG << 8) | (tmpB);
                 bi2.setRGB(x, y, elementCouleur);
 
@@ -149,7 +152,7 @@ public class Raytracer {
                 mOutputFileRAW.println(tmpR + " " + " " + tmpG + " " + tmpB + "\n");
             }
 
-        System.out.print("+raw");
+        System.out.print("+ppm");
         mOutputFileRAW.flush();
         mOutputFileRAW.close();
 
