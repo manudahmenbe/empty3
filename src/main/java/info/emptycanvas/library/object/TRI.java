@@ -5,6 +5,10 @@
  */
 package info.emptycanvas.library.object;
 
+import info.emptycanvas.library.lighting.Intersection;
+import info.emptycanvas.library.raytracer.CIntersectInfo;
+import info.emptycanvas.library.raytracer.CRay;
+
 import java.awt.*;
 
 public class TRI extends Representable {
@@ -57,6 +61,10 @@ public class TRI extends Representable {
         return sommet;
     }
 
+    public void setSommet(Point3D[] sommet) {
+        this.sommet = sommet;
+    }
+
     public Point3D normale() {
         return sommet[1].moins(sommet[0]).prodVect(sommet[2].moins(sommet[0]));
     }
@@ -75,10 +83,6 @@ public class TRI extends Representable {
 
     }
 
-    public void setSommet(Point3D[] sommet) {
-        this.sommet = sommet;
-    }
-
     @Override
     public String toString() {
         String t = "tri (";
@@ -86,5 +90,11 @@ public class TRI extends Representable {
             t += "\n\t\t(" + sommet[i].getX() + ", " + sommet[i].getY() + ", " + sommet[i].getZ() + "), ";
         }
         return t + "\n\t\t(" + texture.toString() + ")\n\t)\n";
+    }
+
+    @Override
+    public Intersection intersects(CRay ray, CIntersectInfo cii) {
+        // TODO Implements
+        return null;
     }
 }
