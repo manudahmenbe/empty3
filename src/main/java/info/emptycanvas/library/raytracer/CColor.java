@@ -1,60 +1,83 @@
 package info.emptycanvas.library.raytracer;
 
-public class CColor {
-    public float mR, mG, mB, mA;    // Les trois composantes de la couleur
+import java.awt.*;
 
+public class CColor {
+    public float red, green, blue, alpha;    // Les trois composantes de la couleur
+    Color c;
     // constructeurs et destructeur
     public CColor() {
-        mR = 0;
-        mG = 0;
-        mB = 0;
-        mA = 0;
+        red = 0;
+        green = 0;
+        blue = 0;
+        alpha = 0;
     }
 
     public CColor(float r, float g, float b) {
-        mR = r;
-        mG = g;
-        mB = b;
-        mA = 0;
+        red = r;
+        green = g;
+        blue = b;
+        alpha = 0;
 
     }
 
     public CColor(float r, float g, float b, float a) {
-        mR = r;
-        mG = g;
-        mB = b;
-        mA = a;
+        red = r;
+        green = g;
+        blue = b;
+        alpha = a;
 
     }
 
     // operateurs
-    public static CColor mult(CColor c1, CColor c2) {
-        return new CColor(c1.mR * c2.mR, c1.mG * c2.mG, c1.mB * c2.mB);
+    public static Color mult(Color c1, Color c2) {
+        return new Color(c1.getRed() * c2.getRed(), c1.getGreen() * c2.getGreen(), c1.getBlue() * c2.getBlue());
     }
 
-    public static CColor mult(CColor c1, float multiple) {
-        return new CColor(c1.mR * multiple, c1.mG * multiple, c1.mB * multiple);
+    public static Color mult(Color c1, float multiple) {
+        return new Color(c1.getRed() * multiple, c1.getGreen() * multiple, c1.getBlue() * multiple);
     }
 
-    public static CColor add(CColor c1, CColor c2) {
-        return new CColor(c1.mR + c2.mR,
-                c1.mG + c2.mG,
-                c1.mB + c2.mB
+    public static Color add(Color c1, Color c2) {
+        return new Color(c1.getRed() + c2.getRed(),
+                c1.getGreen() + c2.getGreen(),
+                c1.getBlue() + c2.getBlue()
         );
     }
 
-    public CColor plus(CColor c1, CColor c2) {
-        return new CColor(c1.mR + c2.mR, c1.mG + c2.mG, c1.mB + c2.mB);
+    public static Color plus(Color c1, Color c2) {
+        return new Color(c1.getRed() + c2.getRed(), c1.getGreen() + c2.getGreen(), c1.getBlue() + c2.getBlue());
     }
 
-    public CColor div(CColor c1, float multiple) {
-        return new CColor(c1.mR / multiple, c1.mG / multiple, c1.mB / multiple);
+    public static Color div(Color c1, float multiple) {
+        return new Color(c1.getRed() / multiple, c1.getGreen() / multiple, c1.getBlue() / multiple);
     }
 
 
-    public void normalizeColor() {
-        if (mR > 1.0f) mR = 1.0f;
-        if (mG > 1.0f) mG = 1.0f;
-        if (mB > 1.0f) mB = 1.0f;
+    public static Color normalizeColor(Color finalColor) {
+        if (finalColor.getRed() > 1.0f)
+            finalColor = new Color(finalColor.getRed(), finalColor.getGreen(), finalColor.getBlue(), finalColor.getAlpha());
+        if (finalColor.getGreen() > 1.0f)
+            finalColor = new Color(finalColor.getRed(), finalColor.getGreen(), finalColor.getBlue(), finalColor.getAlpha());
+        if (finalColor.getBlue() > 1.0f)
+            finalColor = new Color(finalColor.getRed(), finalColor.getGreen(), finalColor.getBlue(), finalColor.getAlpha());
+        return finalColor;
     }
+
+    public float getRed() {
+        return red;
+    }
+
+    public float getGreen() {
+        return green;
+    }
+
+    public float getBlue() {
+        return blue;
+    }
+
+    public float getAlpha() {
+        return alpha;
+    }
+
 }

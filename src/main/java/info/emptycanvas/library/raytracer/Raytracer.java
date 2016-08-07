@@ -4,6 +4,7 @@ import info.emptycanvas.library.object.ECBufferedImage;
 import info.emptycanvas.library.object.Point3D;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,8 +13,8 @@ public class Raytracer {
 
     /* [ Coeur du raytracer. L'algo du raytracing se trouve dans cette fonction, dont le r�le est de calculer ] */
 /* [ la couleur finale du pixel courant, en lui passant le rayon primaire �mis.                           ] */
-    public static CColor rayTrace(CScene scene, CRay ray, int depth) {
-        CColor finalColor = new CColor(0.0f, 0.0f, 0.0f);    // La couleur finale (noire au debut ... couleur de fond)
+    public static Color rayTrace(CScene scene, CRay ray, int depth) {
+        Color finalColor = new Color(0.0f, 0.0f, 0.0f);    // La couleur finale (noire au debut ... couleur de fond)
         double distance = 999999.9f;            // La distance parcourue par le rayon avant de toucher la node
         double tmpDistance;                    // Une distance temporaire
         CNode currentNode;
@@ -88,8 +89,7 @@ public class Raytracer {
         }
 
 
-        finalColor.normalizeColor();
-        return finalColor;
+        return finalColor = CColor.normalizeColor(finalColor);
     }
 
     /* [ Fonction de rendu. Parcoure tous les pixels de l'image, cr�e le rayon correpondant et lance le raytracing ] */
@@ -98,7 +98,7 @@ public class Raytracer {
         CRay currentRay = new CRay();            // Le rayon primaire �mis courant (de l'oeil, � travers un pixel, vers la sc�ne).
         Point3D vDir;                // Le vecteur directeur (unitaire) du rayon.
         FileOutputStream mOutputFileRAW;    // Le fichier image destination (format RAW : rvbrvbrvbrvb....).
-        CColor tmpColor;            // La couleur finale du pixel courant.
+        Color tmpColor;            // La couleur finale du pixel courant.
         byte tmpR, tmpG, tmpB;    // Les trois composantes de la couleur (Rouge Vert Bleu).
         ECBufferedImage bi2 = new ECBufferedImage(width, height,
                 ECBufferedImage.TYPE_INT_RGB);
@@ -138,9 +138,9 @@ public class Raytracer {
                     System.out.printf("100 percent completed !\n");
 
                 // On decompose la couleur dans les trois couleurs de base (Rouge Vert Bleu).
-                tmpR = (byte) (tmpColor.mR * 255);
-                tmpG = (byte) (tmpColor.mG * 255);
-                tmpB = (byte) (tmpColor.mB * 255);
+                tmpR = (byte) (tmpColor.getRed() * 255);
+                tmpG = (byte) (tmpColor.getGreen() * 255);
+                tmpB = (byte) (tmpColor.getBlue() * 255);
                 int elementCouleur = (tmpR << 16) | (tmpG << 8) | (tmpB);
                 bi2.setRGB(x, y, elementCouleur);
 

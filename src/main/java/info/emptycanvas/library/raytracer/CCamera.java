@@ -10,7 +10,7 @@ public class CCamera extends CNode {
     public CCamera(Point3D vCamPos, Point3D vUpVector, int type)
 
     {
-        super(CAMERA, "CAMERA");
+        super(type, "CAMERA");
         mCamPos = vCamPos;
         mUpVec = vUpVector;
         mViewplaneDist = 1.0f;

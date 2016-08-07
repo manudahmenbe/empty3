@@ -10,7 +10,7 @@ public class CTargetCamera extends CCamera {
 
     public CTargetCamera(Point3D camPos, Point3D lookAtPoint, Point3D upVector) {
         super(camPos, upVector, TARGETCAMERA);
-
+        mUpVec = upVector;
         mLookAtPoint = lookAtPoint;
 
         // Nous calculons le vecteur directeur de la camera
