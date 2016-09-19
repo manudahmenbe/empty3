@@ -1,9 +1,26 @@
 /*
- * 2013 Manuel Dahmen
+ * 2016 Manuel Dahmen
  */
 package info.emptycanvas.library.object;
 
 public class Point2D {
+
+    public double x;
+    public double y;
+    public Point2D() {
+        super();
+    }
+
+    public Point2D(double x, double y) {
+        super();
+        this.x = x;
+        this.y = y;
+    }
+
+    public Point2D(Point2D p1) {
+        x = p1.getX();
+        y = p1.getY();
+    }
 
     public static double dist(Point2D p0, Point2D plus) {
         double xx = p0.x - plus.x;
@@ -18,24 +35,6 @@ public class Point2D {
         ret.y += p2.y;
 
         return ret;
-    }
-    private double x;
-
-    private double y;
-
-    public Point2D() {
-        super();
-    }
-
-    public Point2D(double x, double y) {
-        super();
-        this.x = x;
-        this.y = y;
-    }
-
-    public Point2D(Point2D p1) {
-        x = p1.getX();
-        y = p1.getY();
     }
 
     public double distance(Point2D p2a) {
@@ -58,8 +57,16 @@ public class Point2D {
         return x;
     }
 
+    public void setX(double x) {
+        this.x = x;
+    }
+
     public double getY() {
         return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
     }
 
     public Point2D moins(Point2D p) {
@@ -87,16 +94,12 @@ public class Point2D {
         this.y = y;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
     public Point3D get3D()
     {
         return new Point3D(x, y, 0);
+    }
+
+    public double get(int axe) {
+        return axe == 0 ? x : (axe == 1 ? y : Double.NaN);
     }
 }

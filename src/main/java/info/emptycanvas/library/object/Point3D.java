@@ -58,6 +58,11 @@ public class Point3D extends Representable {
     public static final Point3D INFINI = new Point3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
     /**
      * *
+     * Coordonnées (x,y,z) du point
+     */
+    public double[] x;
+    /**
+     * *
      * Pour le tracé de surface normale au point
      */
     protected Point3D normale;
@@ -66,11 +71,6 @@ public class Point3D extends Representable {
      * id
      */
     private String id;
-    /**
-     * *
-     * Coordonnées (x,y,z) du point
-     */
-    private double[] x;
     private Barycentre position;
 
     /**
@@ -104,7 +104,6 @@ public class Point3D extends Representable {
      * @param x0 x-coordonnée
      * @param y0 y-coordonnée
      * @param z0 z-coordonnée
-     * @param co Couleur du "point" en vue d'un dessin
      */
     public Point3D(double x0, double y0, double z0, ITexture t) {
         x = new double[3];
@@ -119,7 +118,6 @@ public class Point3D extends Representable {
      * Initialise à partir d'un vecteur
      *
      * @param x0 coordonnées (3)
-     * @param co Couleur
      */
     public Point3D(double[] x0, ITexture t) {
         x = x0;
@@ -403,5 +401,9 @@ public class Point3D extends Representable {
         double n = norme();
         for (int i = 0; i < x.length; i++)
             set(i, get(i) / n);
+    }
+
+    public Point2D to2DwoZ() {
+        return get2D();
     }
 }

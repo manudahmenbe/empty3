@@ -6,13 +6,14 @@ import java.awt.*;
 
 public class CPointLight extends CLight {
     Point3D lightVector;
-    double lightDiffuseColor;
-    double lightSpecularColor;
+    Color lightDiffuseColor;
+    Color lightSpecularColor;
     Color lightColor;
 
-    public CPointLight(Point3D myLightPos, double myLightDiffuseColor, double myLightSpecularColor, Color myLightColor) {
+    public CPointLight(Point3D myLightPos, Color myLightDiffuseColor, Color myLightSpecularColor, Color myLightColor) {
         super(LIGHT, "LIGHT");
         lightDiffuseColor = myLightDiffuseColor;
+        mColor = myLightDiffuseColor;
         lightSpecularColor = myLightSpecularColor;
         lightColor = myLightColor;
     }

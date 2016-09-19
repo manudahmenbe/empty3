@@ -25,7 +25,7 @@ public class TRI extends Representable {
     }
 
     public TRI(Point3D point3d, Point3D point3d2, Point3D point3d3,
-            Color red) {
+               Color red) {
         sommet = new Point3D[3];
         sommet[0] = point3d;
         sommet[1] = point3d2;
@@ -34,7 +34,7 @@ public class TRI extends Representable {
     }
 
     public TRI(Point3D point3d, Point3D point3d2, Point3D point3d3,
-            ITexture red) {
+               ITexture red) {
         sommet = new Point3D[3];
         sommet[0] = point3d;
         sommet[1] = point3d2;
@@ -97,4 +97,16 @@ public class TRI extends Representable {
         // TODO Implements
         return null;
     }
+
+    public Point3D getCentre() {
+        return getSommet()[0].plus(getSommet()[1]).plus(getSommet()[2].mult(1 / 3));
+    }
+
+    public int intersects(TRI tri2) {
+
+
+        return new TRI_Collide().tr_tri_intersect3D(getCentre(), getSommet()[0], getSommet()[1],
+                tri2.getCentre(), tri2.getSommet()[0], tri2.getSommet()[1]);
+    }
+
 }

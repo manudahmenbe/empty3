@@ -15,10 +15,6 @@ public abstract class CLight extends CNode {
     protected int mLightType;
 
 
-    // constructeurs et destructeur
-    public CLight() {
-    }
-
     public CLight(Point3D position, float diffuseColor, float specularColor, Color color, int type) {
         super(LIGHT, "LIGHT");
         assert (position != null);
@@ -30,8 +26,13 @@ public abstract class CLight extends CNode {
     }
 
     public CLight(int light, String light1) {
-        super(light, light1);
+        mLightType = light;
+        mNodeType = LIGHT;
     }
+
+    /*public CLight(int light, String light1) {
+        super(light, light1);
+    }*/
 
     // get
     public Point3D getPosition() {
