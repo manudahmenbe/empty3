@@ -24,6 +24,6 @@ public class CTargetCamera extends CCamera {
 
         // Maintenant nous avons toutes les informations pour d�t�rminer la position
         // en haut � gauche du viewplane.
-        mViewPlaneUpLeft = camPos.plus(mVecDir.mult(mViewplaneDist)).plus(mUpVec.mult(-mViewplaneHeight / 2.0)).plus(mRightVec.mult(mViewplaneWidth / 2.0f));
+        mViewPlaneUpLeft = camPos.plus(mVecDir.mult(-mViewplaneDist)).plus(mUpVec.mult(-mViewplaneHeight / 2.0)).plus(mRightVec.mult(-mViewplaneWidth / 2.0f));
     }
 }
