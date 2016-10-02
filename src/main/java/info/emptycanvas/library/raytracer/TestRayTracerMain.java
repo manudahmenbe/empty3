@@ -11,7 +11,7 @@ public class TestRayTracerMain extends Raytracer {
 
         // Notre cam�ra
         CTargetCamera myCamera = null;
-        Point3D myCameraPos = new Point3D(0.0f, 3.0f, -40f);    // Position de la camera
+        Point3D myCameraPos = new Point3D(0.0f, 3.0f, -15f);    // Position de la camera
         Point3D myCameraLookAt = new Point3D(0.0f, 0.0f, 10.0f);    // Position du point regard�
         Point3D myCameraUpVec = new Point3D(0.0f, 1.0f, 0.0f);    // Vecteur haut de la cam�ra
 

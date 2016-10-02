@@ -29,7 +29,7 @@ public class CCamera extends CNode {
         xIndent = mViewplaneWidth / (float) xRes;
         yIndent = mViewplaneHeight / (float) yRes;
 
-        return mViewPlaneUpLeft.plus(mRightVec.mult(xIndent * x).plus(mUpVec.mult(- yIndent * y)));
+        return mViewPlaneUpLeft.plus(mRightVec.mult(xIndent * x).moins(mUpVec.mult(-yIndent * y))).moins(getPosition());
     }
 
 

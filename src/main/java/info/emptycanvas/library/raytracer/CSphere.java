@@ -28,7 +28,7 @@ public class CSphere extends CObject {
         b = rayOrg.prodScalaire(ray.mVDir);
         c = (rayOrg.prodScalaire(rayOrg)- mRadius * mRadius)*ray.mVDir.prodScalaire(ray.mVDir);
         delta = ((b * b) - c);
-// CHANGES
+// CHA?N
         if (delta < 0.0f)
             return false; // pas d'intersection
 
