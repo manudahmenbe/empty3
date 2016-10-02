@@ -7,9 +7,8 @@ public class CTargetCamera extends CCamera {
     private Point3D mVecDir = null;
     private Point3D mRightVec = null;
     private Point3D mViewPlaneUpLeft = null;
-
     public CTargetCamera(Point3D camPos, Point3D lookAtPoint, Point3D upVector) {
-        super(camPos, upVector, TARGETCAMERA);
+        super(camPos, lookAtPoint, lookAtPoint.prodVect(upVector).norme1(), upVector, TARGETCAMERA);
         mUpVec = upVector;
         mLookAtPoint = lookAtPoint;
 
@@ -25,6 +24,6 @@ public class CTargetCamera extends CCamera {
 
         // Maintenant nous avons toutes les informations pour d�t�rminer la position
         // en haut � gauche du viewplane.
-        mViewPlaneUpLeft = camPos.plus(((mVecDir.mult(mViewplaneDist)).plus((mUpVec.mult((mViewplaneHeight / 2.0)))).moins((mRightVec.mult(((mViewplaneWidth / 2.0f)))))));
+        mViewPlaneUpLeft = camPos.plus(mVecDir.mult(mViewplaneDist)).plus(mUpVec.mult(-mViewplaneHeight / 2.0)).plus(mRightVec.mult(mViewplaneWidth / 2.0f));
     }
 }

@@ -15,6 +15,6 @@ public class CRepresentable extends CObject{
 
     public boolean intersectsNode(CRay ray, CIntersectInfo intersectInfo) {
 
-        return false;
+        return representable.intersects(ray, intersectInfo)!=null; //TODO CHCECK
     }
 }
