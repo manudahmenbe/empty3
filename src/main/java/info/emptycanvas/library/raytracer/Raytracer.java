@@ -65,11 +65,11 @@ public class Raytracer {
 
                     // Calc the vec (normalized) going from the light to the intersection point
                     lightVec = closestInterInfo.mIntersection.
-                            moins(scene.getLight(j).getPosition());
+                            moins(currentLight.getPosition());
                     lightToObjDist = lightVec.norme();//??getMagnitude();
                     lightVec = lightVec.norme1();
 
-                    lightRay.mVStart = scene.getLight(j).getPosition();
+                    lightRay.mVStart = currentLight.getPosition();
                     lightRay.mVDir = lightVec;
 
                     // We go through all the objects to see if one
@@ -83,7 +83,7 @@ public class Raytracer {
                                 lightToInterDist = (lightInterInfo.mIntersection.moins(currentLight.getPosition()).norme());///magnitude
                                 if (lightToInterDist < lightToObjDist)
                                     lightBlocked = true;
-                                passed = false;
+                                //passed = false;
                             }
                     }
 
