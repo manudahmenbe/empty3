@@ -15,10 +15,11 @@ public class Raytracer {
     /* [ Coeur du raytracer. L'algo du raytracing se trouve dans cette fonction, dont le r�le est de calculer ] */
 /* [ la couleur finale du pixel courant, en lui passant le rayon primaire �mis.                           ] */
     public static Color rayTrace(CScene scene, CRay ray, int depth) {
-        Color finalColor = new Color(0.0f, 0.0f, 0.0f);    // La couleur finale (noire au debut ... couleur de fond)
+        CColor finalColor = new CColor(0.0f, 0.0f, 0.0f);    // La couleur finale (noire au debut ... couleur de fond)
         double distance = 999999.9f;            // La distance parcourue par le rayon avant de toucher la node
         double tmpDistance;                    // Une distance temporaire
         CNode currentNode;
+        CNode isCurrentNodeBlockingLight;
         // La node en cours de traitement
         CNode closestNode = null;                // La node qui sera la plus proche
         CIntersectInfo interInfo = new CIntersectInfo();                        // Les informations sur l'intersection
@@ -60,6 +61,8 @@ public class Raytracer {
 
                     lightBlocked = false;
 
+                    CLight currentLight = scene.getLight(j);
+
                     // Calc the vec (normalized) going from the light to the intersection point
                     lightVec = closestInterInfo.mIntersection.
                             moins(scene.getLight(j).getPosition());
@@ -71,13 +74,13 @@ public class Raytracer {
 
                     // We go through all the objects to see if one
                     // of them block the light coming to the dest object
-                    for (int k = 0; k < scene.getNumNodes(); j++) {
-                        currentNode = scene.getNode(k);
+                    for (int l = 0; l < scene.getNumNodes(); l++) {
+                        isCurrentNodeBlockingLight = scene.getNode(l);
 
                         // put away the case of the object itself
-                        if (currentNode != closestInterInfo.mNode)
-                            if (currentNode.intersectsNode(lightRay, lightInterInfo)) {
-                                lightToInterDist = (lightInterInfo.mIntersection.moins(scene.getLight(i).getPosition()).norme());///magnitude
+                        if (isCurrentNodeBlockingLight != closestInterInfo.mNode)
+                            if (isCurrentNodeBlockingLight.intersectsNode(lightRay, lightInterInfo)) {
+                                lightToInterDist = (lightInterInfo.mIntersection.moins(currentLight.getPosition()).norme());///magnitude
                                 if (lightToInterDist < lightToObjDist)
                                     lightBlocked = true;
                                 passed = false;
@@ -85,7 +88,7 @@ public class Raytracer {
                     }
 
                     if (!lightBlocked)
-                        finalColor = CColor.add(finalColor, scene.getLight(i).getLightAt(closestInterInfo.mNormal, closestInterInfo.mIntersection, closestInterInfo.mMaterial));
+                        finalColor = CColor.add(finalColor, new CColor(currentLight.getLightAt(closestInterInfo.mNormal, closestInterInfo.mIntersection, closestInterInfo.mMaterial)));
                 }
 
                 // Clean non permanent material
@@ -95,7 +98,7 @@ public class Raytracer {
             }
         }
 
-        return finalColor = CColor.normalizeColor(finalColor);
+        return finalColor.normalizeColor().convert();
     }
 
     /* [ Fonction de rendu. Parcoure tous les pixels de l'image, cr�e le rayon correpondant et lance le raytracing ] */

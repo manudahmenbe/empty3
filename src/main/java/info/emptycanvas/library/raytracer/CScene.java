@@ -5,7 +5,7 @@ import java.util.List;
 
 public class CScene {
 
-    private int mNumNodes;
+    //private int mNumNodes;
     private List<CNode> mNodes = new ArrayList<CNode>();
     private List<CCamera> mCameras = new ArrayList<CCamera>();
     private List<CLight> mLights = new ArrayList<CLight>();
@@ -15,7 +15,7 @@ public class CScene {
 
     // constructeurs et destructeurs
     public CScene() {
-        mNumNodes = 0;
+        //mNumNodes = 0;
         mActiveCamera = null;
 
 
@@ -78,7 +78,7 @@ public class CScene {
     public boolean addNode(CNode node) {
         assert (node != null);
         mNodes.add(node);
-        mNumNodes++;
+        //mNumNodes++;
         return true;
     }
 

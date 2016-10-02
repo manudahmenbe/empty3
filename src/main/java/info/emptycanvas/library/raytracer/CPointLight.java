@@ -21,7 +21,7 @@ public class CPointLight extends CLight {
     @Override
     public Color getLightAt(Point3D normal, Point3D intersectionPoint, Matiere material) {
         float angle;
-        Color finalColor;
+        CColor finalColor;
 
         lightVector = intersectionPoint.moins(getPosition());
 
@@ -30,12 +30,12 @@ public class CPointLight extends CLight {
         angle = (float) normal.prodScalaire(lightVector.mult(-1));
 
         if (angle <= 0)
-            finalColor = new Color(0.0f, 0.0f, 0.0f);
+            finalColor = new CColor(0.0f, 0.0f, 0.0f);
 
         else
-            finalColor = CColor.mult(getColor(), (CColor.mult(material.GetDiffuse(), angle)));
+            finalColor = CColor.mult(new CColor(getColor()), (CColor.mult(new CColor(material.GetDiffuse()), angle)));
 
-        return finalColor;
+        return finalColor.convert();
     }
 
     @Override
