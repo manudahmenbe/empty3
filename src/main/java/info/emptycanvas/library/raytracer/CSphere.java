@@ -22,13 +22,13 @@ public class CSphere extends CObject {
         Point3D intersect;
         Point3D tmpNormal;
 
+//CNAGES
         Point3D rayOrg = ray.mVStart.moins(mCenter);    // ray in space of the sphere
 
         b = rayOrg.prodScalaire(ray.mVDir);
-        c = Math.pow(rayOrg.norme(), 2) - mRadius * mRadius;
-
+        c = (rayOrg.prodScalaire(rayOrg)- mRadius * mRadius)*ray.mVDir.prodScalaire(ray.mVDir);
         delta = ((b * b) - c);
-
+// CHANGES
         if (delta < 0.0f)
             return false; // pas d'intersection
 
