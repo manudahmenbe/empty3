@@ -74,6 +74,7 @@ public class TestRayTracerMain extends Raytracer {
         // On lance le rendu
         try {
             Render(myScene, 640, 480, "Chapitre2");
+            System.out.println("Chapitre2" + "Rendu effectué");
         } catch (IOException e) {
             e.printStackTrace();
         }

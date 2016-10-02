@@ -32,10 +32,11 @@ public class Raytracer {
         double lightToInterDist;    // La distance entre la source lumineuse et le point d'intersection de la node courante
         CRay lightRay = new CRay();            // Le rayon lumineux
         CIntersectInfo lightInterInfo = new CIntersectInfo();        // Les informations sur l'intersection du rayon lumineux et d'une node
-
+        boolean passed  = false;
 
         // On parcoure toutes les nodes de notre scene (cameras, objets ...)
         for (int i = 0; i < scene.getNumNodes(); i++) {
+            passed = false;
             currentNode = scene.getNode(i);
 
             if (currentNode.intersectsNode(ray, interInfo)) {
@@ -47,48 +48,52 @@ public class Raytracer {
                     distance = tmpDistance;
                     closestNode = currentNode;
                     closestInterInfo = interInfo;
+                    passed = true;
                 }
             }
-        }
 
-        if (closestNode != null) {
-            // On parcoure toute les sources lumineuses
-            for (int i = 0; i < scene.getNumLights(); i++) {
-                lightBlocked = false;
 
-                // Calc the vec (normalized) going from the light to the intersection point
-                lightVec = closestInterInfo.mIntersection.
-                        moins(scene.getLight(i).getPosition());
-                lightToObjDist = lightVec.norme();//??getMagnitude();
-                lightVec = lightVec.norme1();
+            if (passed) {
+                passed = false;
+                // On parcoure toute les sources lumineuses
+                for (int j = 0;j < scene.getNumLights(); j++) {
 
-                lightRay.mVStart = scene.getLight(i).getPosition();
-                lightRay.mVDir = lightVec;
+                    lightBlocked = false;
 
-                // We go through all the objects to see if one
-                // of them block the light coming to the dest object
-                for (int j = 0; j < scene.getNumNodes(); j++) {
-                    currentNode = scene.getNode(j);
+                    // Calc the vec (normalized) going from the light to the intersection point
+                    lightVec = closestInterInfo.mIntersection.
+                            moins(scene.getLight(j).getPosition());
+                    lightToObjDist = lightVec.norme();//??getMagnitude();
+                    lightVec = lightVec.norme1();
 
-                    // put away the case of the object itself
-                    if (currentNode != closestInterInfo.mNode)
-                        if (currentNode.intersectsNode(lightRay, lightInterInfo)) {
-                            lightToInterDist = (lightInterInfo.mIntersection.moins(scene.getLight(i).getPosition()).norme());///magnitude
-                            if (lightToInterDist < lightToObjDist)
-                                lightBlocked = true;
-                        }
+                    lightRay.mVStart = scene.getLight(j).getPosition();
+                    lightRay.mVDir = lightVec;
+
+                    // We go through all the objects to see if one
+                    // of them block the light coming to the dest object
+                    for (int k = 0; k < scene.getNumNodes(); j++) {
+                        currentNode = scene.getNode(k);
+
+                        // put away the case of the object itself
+                        if (currentNode != closestInterInfo.mNode)
+                            if (currentNode.intersectsNode(lightRay, lightInterInfo)) {
+                                lightToInterDist = (lightInterInfo.mIntersection.moins(scene.getLight(i).getPosition()).norme());///magnitude
+                                if (lightToInterDist < lightToObjDist)
+                                    lightBlocked = true;
+                                passed = false;
+                            }
+                    }
+
+                    if (!lightBlocked)
+                        finalColor = CColor.add(finalColor, scene.getLight(i).getLightAt(closestInterInfo.mNormal, closestInterInfo.mIntersection, closestInterInfo.mMaterial));
                 }
 
-                if (!lightBlocked)
-                    finalColor = CColor.add(finalColor, scene.getLight(i).getLightAt(closestInterInfo.mNormal, closestInterInfo.mIntersection, closestInterInfo.mMaterial));
-            }
-
-            // Clean non permanent material
+                // Clean non permanent material
         /*if (closestInterInfo.mMaterial.GetPermanency() == false)
-			delete (closestInterInfo.mMaterial); closestInterInfo.mMaterial = NULL;
+            delete (closestInterInfo.mMaterial); closestInterInfo.mMaterial = NULL;
 			*/
+            }
         }
-
 
         return finalColor = CColor.normalizeColor(finalColor);
     }
@@ -120,7 +125,7 @@ public class Raytracer {
                 // L'origine du rayon est la position de la camera
                 currentRay.mVStart = scene.getActiveCamera().getPosition();
 
-                // On calcule le veteur directeur gr�ce � une m�thode de la classe CCamera
+                // On calcule le veteur directeur grace a une methode de la classe CCamera
                 vDir = scene.getActiveCamera().calcDirVec(x, y, width, height);
                 vDir.normalize();
                 currentRay.mVDir = vDir;
