@@ -18,12 +18,12 @@ public class TestRayTracerMain extends Raytracer {
         // Une sph�re
         CSphere mySphere = null;
         Point3D mySpherePos = new Point3D(0.0f, 0.0f, 10.0f);        // Position de la sph�re
-        float mySphereRadius = 2.0f;                // Rayon de la sph�re
+        float mySphereRadius = 10.0f;                // Rayon de la sph�re
 
         // Un plan
         CPlane myPlane = null;
-        Point3D myPlanePos = new Point3D(0.0f, -2.0f, 0.0f);
-        Point3D myPlaneNormal = new Point3D(0.0f, 1.0f, 0.0f);
+        Point3D myPlanePos = new Point3D(0.0f, 0.0f, 10.0f);
+        Point3D myPlaneNormal = new Point3D(0.0f, 0.0f, 0.1f);
 
         // Une premi�re lumi�re (rouge)
         CPointLight myLight;
@@ -70,6 +70,7 @@ public class TestRayTracerMain extends Raytracer {
         myScene.addLight(myLight);
         myScene.addLight(myLight1);
         myScene.addMaterial(myMaterial);
+        myScene.addMaterial(myMaterial1);
         myScene.setActiveCamera(0);
         // On lance le rendu
         try {
