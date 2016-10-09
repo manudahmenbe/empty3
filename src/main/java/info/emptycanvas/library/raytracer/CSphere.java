@@ -15,14 +15,17 @@ public class CSphere extends CObject {
 
     public boolean intersectsNode(CRay ray, CIntersectInfo intersectInfo) {
 
-        double b, c;
+        double a, b, c;
         double delta;
         double t;
         double t1, t2;
         Point3D intersect;
         Point3D tmpNormal;
 
-        delta = (Math.pow(ray.mVStart.moins(mCenter).prodScalaire(new Point3D(1, 1, 1)), 2) * 2) - 4 * (ray.mVDir.prodScalaire(ray.mVDir)) * (ray.mVStart.moins(mCenter)).prodScalaire(ray.mVStart.moins(mCenter));
+        b = ray.mVStart.moins(mCenter).prodScalaire(new Point3D(1, 1, 1));
+        a = (ray.mVDir.prodScalaire(ray.mVDir));
+        c = ((ray.mVStart.moins(mCenter)).prodScalaire(ray.mVStart.moins(mCenter)) - mRadius * mRadius);
+        delta = b * b - 4 * a * c;
 
         if (delta >= 0) {
             t1 = (-(ray.mVStart.moins(mCenter).prodScalaire(new Point3D(1, 1, 1))) - Math.sqrt(delta)) / (2 * ray.mVDir.prodScalaire(ray.mVDir));
@@ -32,26 +35,35 @@ public class CSphere extends CObject {
             return false;
         }
 
-/*
+
 //CNAGES
+        /*
         Point3D rayOrg = ray.mVStart.moins(mCenter);    // ray in space of the sphere
 
         b = rayOrg.prodScalaire(ray.mVDir);
-        c = (rayOrg.prodScalaire(rayOrg)- mRadius * mRadius)*ray.mVDir.prodScalaire(ray.mVDir);
+        c = (Math.pow(rayOrg.norme(), 2) - mRadius * mRadius);
         delta = ((b * b) - c);
-*/
+
         // CHA?N
         if (delta < 0.0f)
             return false; // pas d'intersection
-
+*/
         if (intersectInfo != null) {
-            //if (t1 < 0) return false;
-            //if (t2 < 0) return false;
+            if (delta != 0) {
+                delta = (float) Math.sqrt(delta);
+                t1 = (-b + delta);
+                if (t1 < 0) return false;
+                t2 = (-b - delta);
+                if (t2 < 0) return false;
 
-            if (t1 < t2)
-                t = t1;
+                if (t1 < t2)
+                    t = t1;
+                else
+                    t = t2;
+            }
+
             else
-                t = t2;
+                t = (-b);
 
             intersect = ray.mVStart.plus(ray.mVDir.mult(t));
 
