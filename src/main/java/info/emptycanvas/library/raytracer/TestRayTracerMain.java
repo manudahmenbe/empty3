@@ -56,7 +56,7 @@ public class TestRayTracerMain extends Raytracer {
         assert (myLight1 != null);
         myMaterial = new Matiere("myMaterial", new Color(1.0f, 1.0f, 0.0f), new Color(1.0f, 1.0f, 1.0f), new Color(0.0f, 0.0f, 0.0f), new Color(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
         assert (myMaterial != null);
-        myMaterial1 = new Matiere("myMaterial1", new Color(1.0f, 1.0f, 0.0f), new Color(0.7f, 0.7f, 0.7f), new Color(0.0f, 0.0f, 0.0f), new Color(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
+        myMaterial1 = new Matiere("myMaterial1", new Color(0.105882354f, 0.14509805f, 1.0f), new Color(0.7f, 0.7f, 0.7f), new Color(0.0f, 0.0f, 0.0f), new Color(0.11372549f, 0.12941177f, 1.0f), 1.0f, 1.0f);
         assert (myMaterial1 != null);
 
         // On assigne les materiaux � nos objets
