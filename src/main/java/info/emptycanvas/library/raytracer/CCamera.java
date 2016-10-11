@@ -18,7 +18,7 @@ public class CCamera extends CNode {
         mViewplaneDist = 1.0f;
         mViewplaneHeight = 0.35f;
         mViewplaneWidth = 0.35f;
-        mViewPlaneUpLeft = mCamPos.plus(direction.mult(mViewplaneDist))
+        mViewPlaneUpLeft = mCamPos.plus(mVecDir.mult(mViewplaneDist))
                 .plus(mRightVec.mult(-mViewplaneWidth/2)).plus(mUpVec.mult(-mViewplaneHeight/2));
 
     }
@@ -29,7 +29,7 @@ public class CCamera extends CNode {
         xIndent = mViewplaneWidth / (float) xRes;
         yIndent = mViewplaneHeight / (float) yRes;
 
-        return mViewPlaneUpLeft.plus(mRightVec.mult(xIndent * x).moins(mUpVec.mult(-yIndent * y))).moins(getPosition());
+        return mViewPlaneUpLeft.plus(mRightVec.mult(xIndent * x).moins(mUpVec.mult(yIndent * y))).moins(getPosition());
     }
 
 

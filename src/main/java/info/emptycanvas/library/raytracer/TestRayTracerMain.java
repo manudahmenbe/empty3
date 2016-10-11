@@ -18,7 +18,7 @@ public class TestRayTracerMain extends Raytracer {
         // Une sph�re
         CSphere mySphere = null;
         Point3D mySpherePos = new Point3D(0.0f, 0.0f, 10.0f);        // Position de la sph�re
-        float mySphereRadius = 10.0f;                // Rayon de la sph�re
+        float mySphereRadius = 5.0f;                // Rayon de la sph�re
 
         // Un plan
         CPlane myPlane = null;
