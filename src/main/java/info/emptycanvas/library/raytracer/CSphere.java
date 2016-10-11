@@ -25,7 +25,7 @@ public class CSphere extends CObject {
         Point3D rayOrg = ray.mVStart.moins(mCenter);    // ray in space of the sphere
 
         b = rayOrg.prodScalaire(new Point3D(1, 1, 1));
-        a = 1;//(ray.mVDir.prodScalaire(ray.mVDir)); // Toujours positif si mVDir !=0
+        a = (ray.mVDir.prodScalaire(ray.mVDir));
         c = (rayOrg.prodScalaire(rayOrg) - mRadius * mRadius);
         delta = b * b - 4 * a * c;
 
