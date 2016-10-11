@@ -23,7 +23,7 @@ public class Raytracer {
         // La node en cours de traitement
         CNode closestNode = null;                // La node qui sera la plus proche
         CIntersectInfo interInfo = new CIntersectInfo();                        // Les informations sur l'intersection
-        CIntersectInfo closestInterInfo = new CIntersectInfo();                // Les informations sur l'intersection de la node la plus proche
+        CIntersectInfo closestInterInfo = null;                // Les informations sur l'intersection de la node la plus proche
 
 
         // Eclairage
@@ -36,10 +36,11 @@ public class Raytracer {
         boolean passed  = false;
 
         // On parcoure toutes les nodes de notre scene (cameras, objets ...)
+        passed = false;
         for (int i = 0; i < scene.getNumNodes(); i++) {
-            passed = false;
             currentNode = scene.getNode(i);
 
+            interInfo = new CIntersectInfo();                        // Les informations sur l'intersection
             if (currentNode.intersectsNode(ray, interInfo)) {
                 // On n'a pas besoin de comparer la longueur en elle meme (qui est la racine carr� de la somme des carr�s des coeeficients)
                 // En evitant la racine carr� on obtient la meme comparaison, mais en une op�ration de moins (sqrt est tr�s gourmand).
@@ -52,10 +53,8 @@ public class Raytracer {
                     passed = true;
                 }
             }
+        }
 
-
-            if (passed) {
-                passed = false;
                 // On parcoure toute les sources lumineuses
                 for (int j = 0;j < scene.getNumLights(); j++) {
 
@@ -91,12 +90,6 @@ public class Raytracer {
                         finalColor = CColor.add(finalColor, new CColor(currentLight.getLightAt(closestInterInfo.mNormal, closestInterInfo.mIntersection, closestInterInfo.mMaterial)));
                 }
 
-                // Clean non permanent material
-        /*if (closestInterInfo.mMaterial.GetPermanency() == false)
-            delete (closestInterInfo.mMaterial); closestInterInfo.mMaterial = NULL;
-			*/
-            }
-        }
 
         return finalColor.normalizeColor().convert();
     }
