@@ -24,7 +24,15 @@ public class CSphere extends CObject {
 
         Point3D rayOrg = ray.mVStart.moins(mCenter);    // ray in space of the sphere
 
-        b = rayOrg.prodScalaire(new Point3D(1, 1, 1));
+//CNAGES
+
+
+        b = rayOrg.prodScalaire(ray.mVDir);
+        c = (Math.pow(rayOrg.NormeCarree(), 2) - mRadius * mRadius);
+        delta = ((b * b) - c);
+
+
+        b = rayOrg.prodScalaire(ray.mVDir);
         a = (ray.mVDir.prodScalaire(ray.mVDir));
         c = (rayOrg.prodScalaire(rayOrg) - mRadius * mRadius);
         delta = b * b - 4 * a * c;
@@ -38,13 +46,7 @@ public class CSphere extends CObject {
         }
 
 
-//CNAGES
-/*
 
-        b = rayOrg.prodScalaire(ray.mVDir);
-        c = (Math.pow(rayOrg.norme(), 2) - mRadius * mRadius);
-        delta = ((b * b) - c);
-*/
         if (delta < 0.0f)
             return false; // pas d'intersection
 

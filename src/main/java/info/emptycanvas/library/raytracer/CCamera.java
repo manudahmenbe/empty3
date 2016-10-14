@@ -5,14 +5,14 @@ import info.emptycanvas.library.object.Point3D;
 public class CCamera extends CNode {
     protected double mViewplaneDist;                                                // Distance du viexplane par rapport � la position de la cam.
     protected float mViewplaneWidth, mViewplaneHeight;                            // Largeur/Hauteur du viewplane.
-    protected Point3D mCamPos = new Point3D(), mVecDir = new Point3D(), mUpVec = new Point3D(), mRightVec = new Point3D(), mViewPlaneUpLeft = new Point3D();
+    protected Point3D mCamPos, mVecDir, mUpVec, mRightVec, mViewPlaneUpLeft;
 
-    public CCamera(Point3D vCamPos, Point3D direction, Point3D vRightVec, Point3D vUpVector, int type)
+    public CCamera(Point3D vCamPos, Point3D directionVec, Point3D vRightVec, Point3D vUpVector, int type)
 
     {
         super(type, "CAMERA");
         mCamPos = vCamPos.norme1();
-        mVecDir = direction.norme1();
+        mVecDir = directionVec.norme1();
         mUpVec = vUpVector.norme1();
         mRightVec = vRightVec.norme1();
         mViewplaneDist = 1.0f;

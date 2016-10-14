@@ -406,4 +406,8 @@ public class Point3D extends Representable {
     public Point2D to2DwoZ() {
         return get2D();
     }
+
+    public double NormeCarree() {
+        return x[0] * x[0] + x[1] * x[1] + x[2] + x[2];
+    }
 }

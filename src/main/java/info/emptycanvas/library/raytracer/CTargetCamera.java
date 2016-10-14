@@ -9,6 +9,6 @@ public class CTargetCamera extends CCamera {
     private Point3D mViewPlaneUpLeft = null;
     */
     public CTargetCamera(Point3D camPos, Point3D lookAtPoint, Point3D upVector) {
-        super(camPos, lookAtPoint, lookAtPoint.prodVect(upVector).norme1(), upVector, TARGETCAMERA);
+        super(camPos, lookAtPoint, lookAtPoint.moins(camPos).norme1().prodVect(upVector).norme1(), upVector, TARGETCAMERA);
     }
 }
