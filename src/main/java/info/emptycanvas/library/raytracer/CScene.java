@@ -1,5 +1,7 @@
 package info.emptycanvas.library.raytracer;
 
+import info.emptycanvas.library.object.Cube;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,5 +95,9 @@ public class CScene {
         assert (material != null);
         mMaterials.add(material);
         return true;
+    }
+
+    public void addObject(Cube myCube) {
+        throw new UnsupportedOperationException("Attends!")
     }
 }

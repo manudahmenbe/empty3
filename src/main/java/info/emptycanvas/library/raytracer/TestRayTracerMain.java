@@ -1,5 +1,7 @@
 package info.emptycanvas.library.raytracer;
 
+import info.emptycanvas.library.object.ColorTexture;
+import info.emptycanvas.library.object.Cube;
 import info.emptycanvas.library.object.Point3D;
 
 import java.awt.*;
@@ -8,6 +10,7 @@ import java.io.IOException;
 public class TestRayTracerMain extends Raytracer {
     public static void main(String[] args) {
         CScene myScene = new CScene();
+        CScene myScene1 = new CScene();
 
         // Notre cam�ra
         CTargetCamera myCamera = null;
@@ -72,15 +75,28 @@ public class TestRayTracerMain extends Raytracer {
         myScene.addMaterial(myMaterial);
         myScene.addMaterial(myMaterial1);
         myScene.setActiveCamera(0);
+
+        myLight1 = new CPointLight(myLight1Pos, myLight1DiffuseColor, myLight1SpecularColor, myLight1Color);
+        assert (myLight1 != null);
+
+        Cube myCube = new Cube(new ColorTexture(Color.RED), 5, Point3D Point3D.O0);
+
+        myScene.addObject(myCube);
+
         // On lance le rendu
         try {
-            Render(myScene, 1920, 1080, "Chapitre2");
-            System.out.println("Chapitre2" + "Rendu effectué");
+            Render(myScene, 1920, 1080, "test plan sphere");
+            System.out.println("test plan sphere" + "Rendu effectué");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return;
+        try {
+            Render(myScene1, 1920, 1080, "test cube");
+            System.out.println("Chapitre2" + "Rendu effectué");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
