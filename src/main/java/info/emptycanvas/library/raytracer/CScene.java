@@ -46,15 +46,15 @@ public class CScene {
         return mActiveCamera;
     }
 
-    public void setActiveCamera(CCamera cam) {
-        assert (cam != null);
-        mActiveCamera = cam;
-    }
-
     // set
     public void setActiveCamera(int i) {
         assert (i < mCameras.size());
         mActiveCamera = mCameras.get(i);
+    }
+
+    public void setActiveCamera(CCamera cam) {
+        assert (cam != null);
+        mActiveCamera = cam;
     }
 
     public Matiere getMaterial(int i) {
@@ -98,6 +98,6 @@ public class CScene {
     }
 
     public void addObject(Cube myCube) {
-        throw new UnsupportedOperationException("Attends!")
+        throw new UnsupportedOperationException("Attends!");
     }
 }

@@ -79,7 +79,7 @@ public class TestRayTracerMain extends Raytracer {
         myLight1 = new CPointLight(myLight1Pos, myLight1DiffuseColor, myLight1SpecularColor, myLight1Color);
         assert (myLight1 != null);
 
-        Cube myCube = new Cube(new ColorTexture(Color.RED), 5, Point3D Point3D.O0);
+        Cube myCube = new Cube(5.0, Point3D.O0, new ColorTexture(Color.RED));
 
         myScene.addObject(myCube);
 
