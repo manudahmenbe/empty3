@@ -28,6 +28,14 @@ public class TestRayTracerMain extends Raytracer {
         Point3D myPlanePos = new Point3D(0.0f, 0.0f, 10.0f);
         Point3D myPlaneNormal = new Point3D(0.0f, 0.0f, 0.1f);
 
+        // Un plan
+        CPlane myPlane1 = null;
+        Point3D myPlanePos1 = new Point3D(0.0f, 10.0f, 0.0f);
+        Point3D myPlaneNormal1 = new Point3D(0f, 1.0f, 0f);
+        // Un plan
+        CPlane myPlane2 = null;
+        Point3D myPlanePos2 = new Point3D(10.0f, 0.0f, 0.0f);
+        Point3D myPlaneNormal2 = new Point3D(-1f, 0.0f, 0f);
         // Une premi�re lumi�re (rouge)
         CPointLight myLight;
         Point3D myLightPos = new Point3D(3.0f, 3.0f, 0.0f);
@@ -53,6 +61,10 @@ public class TestRayTracerMain extends Raytracer {
         assert (mySphere != null);
         myPlane = new CPlane(myPlanePos, myPlaneNormal);
         assert (myPlane != null);
+        myPlane1 = new CPlane(myPlanePos1, myPlaneNormal1);
+        assert (myPlane1 != null);
+        myPlane2 = new CPlane(myPlanePos2, myPlaneNormal2);
+        assert (myPlane2 != null);
         myLight = new CPointLight(myLightPos, myLightDiffuseColor, myLightSpecularColor, myLightColor);
         assert (myLight != null);
         myLight1 = new CPointLight(myLight1Pos, myLight1DiffuseColor, myLight1SpecularColor, myLight1Color);
@@ -65,11 +77,15 @@ public class TestRayTracerMain extends Raytracer {
         // On assigne les materiaux � nos objets
         mySphere.setMaterial(myMaterial);
         myPlane.setMaterial(myMaterial1);
+        myPlane1.setMaterial(myMaterial);
+        myPlane2.setMaterial(myMaterial);
 
         // On ajoute les �l�ments � notre sc�ne
         myScene.addCamera(myCamera);
         myScene.addObject(mySphere);
         myScene.addObject(myPlane);
+        myScene.addObject(myPlane1);
+        myScene.addObject(myPlane2);
         myScene.addLight(myLight);
         myScene.addLight(myLight1);
         myScene.addMaterial(myMaterial);
@@ -90,13 +106,14 @@ public class TestRayTracerMain extends Raytracer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+/*
         try {
             Render(myScene1, 1920, 1080, "test cube");
             System.out.println("Chapitre2" + "Rendu effectué");
+            System.out.println(passed*1.0/1920/1080);
         } catch (IOException e) {
             e.printStackTrace();
         }
+*/
     }
-
 }

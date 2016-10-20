@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Raytracer {
+    static int passed = 0;
+
 
     /* [ Coeur du raytracer. L'algo du raytracing se trouve dans cette fonction, dont le r�le est de calculer ] */
 /* [ la couleur finale du pixel courant, en lui passant le rayon primaire �mis.                           ] */
@@ -22,7 +24,7 @@ public class Raytracer {
         CNode isCurrentNodeBlockingLight;
         // La node en cours de traitement
         CNode closestNode = null;                // La node qui sera la plus proche
-        CIntersectInfo interInfo = new CIntersectInfo();                        // Les informations sur l'intersection
+        CIntersectInfo interInfo;                        // Les informations sur l'intersection
         CIntersectInfo closestInterInfo = null;                // Les informations sur l'intersection de la node la plus proche
 
 
@@ -33,10 +35,9 @@ public class Raytracer {
         double lightToInterDist;    // La distance entre la source lumineuse et le point d'intersection de la node courante
         CRay lightRay = new CRay();            // Le rayon lumineux
         CIntersectInfo lightInterInfo = new CIntersectInfo();        // Les informations sur l'intersection du rayon lumineux et d'une node
-        boolean passed = false;
 
         // On parcoure toutes les nodes de notre scene (cameras, objets ...)
-        passed = false;
+        passed = 0;
         for (int i = 0; i < scene.getNumNodes(); i++) {
             currentNode = scene.getNode(i);
 
@@ -51,48 +52,51 @@ public class Raytracer {
                     closestNode = currentNode;
                     closestInterInfo = interInfo;
 
-                    passed = true;
+                    passed++;
                 }
             }
-        }
-        if (closestNode != null) {
-            // On parcoure toute les sources lumineuses
-            for (int j = 0; j < scene.getNumLights(); j++) {
+            if (closestNode != null) {
+                // On parcoure toute les sources lumineuses
+                for (int j = 0; j < scene.getNumLights(); j++) {
 
-                lightBlocked = false;
+                    lightBlocked = false;
 
-                CLight currentLight = scene.getLight(j);
 
-                // Calc the vec (normalized) going from the light to the intersection point
-                lightVec = closestInterInfo.mIntersection.
-                        moins(currentLight.getPosition());
-                lightToObjDist = lightVec.norme();//??getMagnitude();
-                lightVec = lightVec.mult(1 / lightToObjDist);
+                    CLight currentLight = scene.getLight(j);
 
-                lightRay.mVStart = currentLight.getPosition();
-                lightRay.mVDir = lightVec;
+                    // Calc the vec (normalized) going from the light to the intersection point
+                    lightVec = closestInterInfo.mIntersection.
+                            moins(currentLight.getPosition());
+                    lightToObjDist = lightVec.norme();//??getMagnitude();
+                    lightVec = lightVec.mult(1 / lightToObjDist);
 
-                // We go through all the objects to see if one
-                // of them block the light coming to the dest object
-                for (int l = 0; l < scene.getNumNodes(); l++) {
-                    isCurrentNodeBlockingLight = scene.getNode(l);
+                    lightRay.mVStart = currentLight.getPosition();
+                    lightRay.mVDir = lightVec;
 
-                    // put away the case of the object itself
-                    if (isCurrentNodeBlockingLight != closestInterInfo.mNode)
-                        if (isCurrentNodeBlockingLight.intersectsNode(lightRay, lightInterInfo)) {
-                            lightToInterDist = (lightInterInfo.mIntersection.moins(currentLight.getPosition()).norme());///magnitude
-                            if (lightToInterDist < lightToObjDist)
-                                lightBlocked = true;
-                            //passed = false;
-                        }
+                    // We go through all the objects to see if one
+                    // of them block the light coming to the dest object
+                    for (int l = 0; l < scene.getNumNodes(); l++) {
+                        isCurrentNodeBlockingLight = scene.getNode(l);
+
+                        // put away the case of the object itself
+                        if (isCurrentNodeBlockingLight != closestInterInfo.mNode)
+                            if (isCurrentNodeBlockingLight.intersectsNode(lightRay, lightInterInfo)) {
+                                lightToInterDist = (lightInterInfo.mIntersection.moins(currentLight.getPosition()).norme());///magnitude
+                                if (lightToInterDist < lightToObjDist)
+                                    lightBlocked = true;
+                                //passed = false;
+                            }
+                    }
+
+                    if (!lightBlocked)
+                        finalColor = CColor.add(finalColor, new CColor(currentLight.getLightAt(closestInterInfo.mNormal, closestInterInfo.mIntersection, closestInterInfo.mMaterial)));
+                    else
+                        finalColor = new CColor(1f, 1f, 1f, 1f);
                 }
 
-                if (!lightBlocked)
-                    finalColor = CColor.add(finalColor, new CColor(currentLight.getLightAt(closestInterInfo.mNormal, closestInterInfo.mIntersection, closestInterInfo.mMaterial)));
-                else
-                    finalColor = new CColor(1f, 1f, 1f, 1f);
             }
         }
+
 
         return finalColor.normalizeColor().convert();
     }

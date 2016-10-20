@@ -27,23 +27,17 @@ public class CSphere extends CObject {
 //CNAGES
 
 
+        a = 1;
         b = rayOrg.prodScalaire(ray.mVDir);
         c = (Math.pow(rayOrg.NormeCarree(), 2) - mRadius * mRadius);
         delta = ((b * b) - c);
 
-
+/*
         b = rayOrg.prodScalaire(ray.mVDir);
         a = (ray.mVDir.prodScalaire(ray.mVDir));
         c = (rayOrg.prodScalaire(rayOrg) - mRadius * mRadius);
         delta = b * b - 4 * a * c;
-
-        if (delta >= 0) {
-            t1 = (-b - Math.sqrt(delta)) / (2 * a);
-            t2 = (-b + Math.sqrt(delta)) / (2 * a);
-
-        } else {
-            return false;
-        }
+*/
 
 
 
