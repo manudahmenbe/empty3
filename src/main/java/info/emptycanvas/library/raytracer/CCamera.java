@@ -11,7 +11,7 @@ public class CCamera extends CNode {
 
     {
         super(type, "CAMERA");
-        mCamPos = vCamPos.norme1();
+        mCamPos = vCamPos;
         mVecDir = directionVec.norme1();
         mUpVec = vUpVector.norme1();
         mRightVec = vRightVec.norme1();

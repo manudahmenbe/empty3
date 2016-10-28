@@ -52,23 +52,26 @@ public class Raytracer {
                 }
             }
         }
+
+
         if (closestNode != null) {
             // On parcoure toute les sources lumineuses
             for (int j = 0; j < scene.getNumLights(); j++) {
 
                 lightBlocked = false;
 
-
                 CLight currentLight = scene.getLight(j);
 
                 // Calc the vec (normalized) going from the light to the intersection point
                 lightVec = closestInterInfo.mIntersection.
                         moins(currentLight.getPosition());
-                lightToObjDist = lightVec.NormeCarree();//??getMagnitude();
+                lightToObjDist = lightVec.NormeCarree();
+                //lightToObjDist = lightVec.NormeCarree();//??getMagnitude();
                 lightVec = lightVec.norme1();
-
+                lightRay = new CRay();
                 lightRay.mVStart = currentLight.getPosition();
                 lightRay.mVDir = lightVec;
+
 
                 // We go through all the objects to see if one
                 // of them block the light coming to the dest object
@@ -84,11 +87,11 @@ public class Raytracer {
                             //passed = false;
                         }
                 }
-
                 if (!lightBlocked)
                     finalColor = CColor.add(finalColor, new CColor(currentLight.getLightAt(closestInterInfo.mNormal, closestInterInfo.mIntersection, closestInterInfo.mMaterial)));
                 else
                     finalColor = new CColor(1f, 1f, 1f, 1f);
+
             }
 
         }

@@ -26,20 +26,26 @@ public class CSphere extends CObject {
 
 //CNAGES
 
-
+/*
         a = 1;
         b = rayOrg.prodScalaire(ray.mVDir);
         c = (Math.pow(rayOrg.NormeCarree(), 2) - mRadius * mRadius);
         delta = ((b * b) - c);
-
+*/
 /*
         b = rayOrg.prodScalaire(ray.mVDir);
         a = (ray.mVDir.prodScalaire(ray.mVDir));
         c = (rayOrg.prodScalaire(rayOrg) - mRadius * mRadius);
         delta = b * b - 4 * a * c;
+
 */
-
-
+/*
+Le couple c'est pour les trous de balle
+ */
+        a = ray.mVDir.norme1().moins(ray.mVStart).NormeCarree() - mRadius * mRadius;
+        b = -2 * mCenter.prodScalaire(ray.mVDir.norme1());
+        c = mCenter.NormeCarree();
+        delta = b * b - 4 * a * c;
 
         if (delta < 0.0f)
             return false; // pas d'intersection
@@ -56,9 +62,7 @@ public class CSphere extends CObject {
                     t = t1;
                 else
                     t = t2;
-            }
-
-            else
+            } else
                 t = (-b);
 
             intersect = ray.mVStart.plus(ray.mVDir.mult(t));
