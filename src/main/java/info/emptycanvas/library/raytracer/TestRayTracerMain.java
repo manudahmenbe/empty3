@@ -1,7 +1,5 @@
 package info.emptycanvas.library.raytracer;
 
-import info.emptycanvas.library.object.ColorTexture;
-import info.emptycanvas.library.object.Cube;
 import info.emptycanvas.library.object.Point3D;
 
 import java.awt.*;
@@ -56,23 +54,14 @@ public class TestRayTracerMain extends Raytracer {
 
 
         myCamera = new CTargetCamera(myCameraPos, myCameraLookAt, myCameraUpVec);
-        assert (myCamera != null);
         mySphere = new CSphere(mySpherePos, mySphereRadius);
-        assert (mySphere != null);
         myPlane = new CPlane(myPlanePos, myPlaneNormal);
-        assert (myPlane != null);
         myPlane1 = new CPlane(myPlanePos1, myPlaneNormal1);
-        assert (myPlane1 != null);
         myPlane2 = new CPlane(myPlanePos2, myPlaneNormal2);
-        assert (myPlane2 != null);
         myLight = new CPointLight(myLightPos, myLightDiffuseColor, myLightSpecularColor, myLightColor);
-        assert (myLight != null);
         myLight1 = new CPointLight(myLight1Pos, myLight1DiffuseColor, myLight1SpecularColor, myLight1Color);
-        assert (myLight1 != null);
         myMaterial = new Matiere("myMaterial", new Color(1.0f, 1.0f, 0.0f), new Color(1.0f, 1.0f, 1.0f), new Color(0.0f, 0.0f, 0.0f), new Color(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
-        assert (myMaterial != null);
         myMaterial1 = new Matiere("myMaterial1", new Color(0.105882354f, 0.14509805f, 1.0f), new Color(0.7f, 0.7f, 0.7f), new Color(0.0f, 0.0f, 0.0f), new Color(0.11372549f, 0.12941177f, 1.0f), 1.0f, 1.0f);
-        assert (myMaterial1 != null);
 
         // On assigne les materiaux � nos objets
         mySphere.setMaterial(myMaterial);
@@ -91,13 +80,6 @@ public class TestRayTracerMain extends Raytracer {
         myScene.addMaterial(myMaterial);
         myScene.addMaterial(myMaterial1);
         myScene.setActiveCamera(0);
-
-        myLight1 = new CPointLight(myLight1Pos, myLight1DiffuseColor, myLight1SpecularColor, myLight1Color);
-        assert (myLight1 != null);
-
-        Cube myCube = new Cube(5.0, Point3D.O0, new ColorTexture(Color.RED));
-
-        myScene.addObject(myCube);
 
         // On lance le rendu
         try {

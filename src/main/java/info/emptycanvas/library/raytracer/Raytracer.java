@@ -35,17 +35,17 @@ public class Raytracer {
         CRay lightRay = new CRay();            // Le rayon lumineux
         CIntersectInfo lightInterInfo = new CIntersectInfo();        // Les informations sur l'intersection du rayon lumineux et d'une node
 
+        interInfo = new CIntersectInfo();                        // Les informations sur l'intersection
         // On parcoure toutes les nodes de notre scene (cameras, objets ...)
         for (int i = 0; i < scene.getNumNodes(); i++) {
             currentNode = scene.getNode(i);
 
-            interInfo = new CIntersectInfo();                        // Les informations sur l'intersection
             if (currentNode.intersectsNode(ray, interInfo)) {
                 // On n'a pas besoin de comparer la longueur en elle meme (qui est la racine carr� de la somme des carr�s des coeeficients)
                 // En evitant la racine carr� on obtient la meme comparaison, mais en une op�ration de moins (sqrt est tr�s gourmand).
                 tmpDistance = (interInfo.mIntersection.moins(ray.mVStart)).NormeCarree();
 
-                if (tmpDistance < distance) {
+                if (tmpDistance < distance && tmpDistance > 0) {
                     distance = tmpDistance;
                     closestNode = currentNode;
                     closestInterInfo = interInfo;
