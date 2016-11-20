@@ -53,6 +53,10 @@ public class CColor {
 
 
     public static CColor normalizeColor(CColor finalColor) {
+        float max = Math.max(finalColor.getRed(), Math.max(finalColor.getGreen(), Math.max(finalColor.getBlue(), finalColor.getAlpha())));
+        if (max > 1.0f || max < 0.0f) {
+            finalColor = CColor.mult(finalColor, 1 / max);
+        }
         if (finalColor.getRed() > 1.0f)
             finalColor.red = 1.0f;
         if (finalColor.getGreen() > 1.0f)

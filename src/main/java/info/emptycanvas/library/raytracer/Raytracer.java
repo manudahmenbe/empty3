@@ -150,9 +150,9 @@ public class Raytracer {
                 // On decompose la couleur dans les trois couleurs de base (Rouge Vert Bleu).
                 CColor fc = CColor.normalizeColor(tmpColor);
 
-                tmpR = (int) tmpColor.getRed();
-                tmpG = (int) tmpColor.getGreen();
-                tmpB = (int) tmpColor.getBlue();
+                tmpR = (int) (tmpColor.getRed() * 256);
+                tmpG = (int) (tmpColor.getGreen() * 256);
+                tmpB = (int) (tmpColor.getBlue() * 256);
                 int elementCouleur = (tmpR << 16) | (tmpG << 8) | (tmpB);
                 bi2.setRGB(x, y, elementCouleur);
 

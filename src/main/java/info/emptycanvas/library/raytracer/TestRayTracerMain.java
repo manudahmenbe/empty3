@@ -8,13 +8,13 @@ public class TestRayTracerMain extends Raytracer {
     public static void main(String[] args) {
         CScene myScene = new CScene();
 
-        // Notre cam�ra
+        // Notre camera
         CTargetCamera myCamera = null;
         Point3D myCameraPos = new Point3D(0.0f, 3.0f, -15.0f);    // Position de la camera
         Point3D myCameraLookAt = new Point3D(0.0f, 0.0f, 10.0f);    // Position du point regard�
         Point3D myCameraUpVec = new Point3D(0.0f, 1.0f, 0.0f);    // Vecteur haut de la cam�ra
 
-        // Une sph�re
+        // Une sphere
         CSphere mySphere = null;
         Point3D mySpherePos = new Point3D(0.0f, 0.0f, 10.0f);        // Position de la sph�re
         float mySphereRadius = 2.0f;                // Rayon de la sph�re
@@ -24,14 +24,14 @@ public class TestRayTracerMain extends Raytracer {
         Point3D myPlanePos = new Point3D(0.0f, -2.0f, 0.0f);
         Point3D myPlaneNormal = new Point3D(0.0f, 1.0f, 0.0f);
 
-        // Une premi�re lumi�re (rouge)
+        // Une premiere lumiere (rouge)
         CPointLight myLight;
         Point3D myLightPos = new Point3D(3.0f, 3.0f, 0.0f);
         CColor myLightDiffuseColor = new CColor(1.0f, 0.0f, 0.0f);
         CColor myLightSpecularColor = new CColor(1.0f, 0.0f, 0.0f);
         CColor myLightColor = new CColor(1.0f, 0.0f, 0.0f);
 
-        // Une deuxi�me lumi�re (bleue)
+        // Une deuxieme lumiere (bleue)
         CPointLight myLight1;
         Point3D myLight1Pos = new Point3D(-3.0f, 3.0f, 0.0f);
         CColor myLight1DiffuseColor = new CColor(0.0f, 0.0f, 1.0f);
@@ -58,11 +58,12 @@ public class TestRayTracerMain extends Raytracer {
         myMaterial1 = new Matiere("myMaterial1", new CColor(1.0f, 1.0f, 0.0f), new CColor(0.7f, 0.7f, 0.7f), new CColor(0.0f, 0.0f, 0.0f), new CColor(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
         assert (myMaterial1 != null);
 
-        // On assigne les materiaux � nos objets
+        // On assigne les materiaux a nos objets
         mySphere.setMaterial(myMaterial);
         myPlane.setMaterial(myMaterial1);
 
-        // On ajoute les �l�ments � notre sc�ne
+        // On ajoute les
+        // elements a notre scene
         myScene.addCamera(myCamera);
         myScene.addObject(mySphere);
         myScene.addObject(myPlane);
