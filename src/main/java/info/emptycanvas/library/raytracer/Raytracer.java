@@ -4,7 +4,6 @@ import info.emptycanvas.library.object.ECBufferedImage;
 import info.emptycanvas.library.object.Point3D;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,17 +11,18 @@ import java.io.PrintWriter;
 
 public class Raytracer {
 
+
     /* [ Coeur du raytracer. L'algo du raytracing se trouve dans cette fonction, dont le r�le est de calculer ] */
 /* [ la couleur finale du pixel courant, en lui passant le rayon primaire �mis.                           ] */
-    public static Color rayTrace(CScene scene, CRay ray, int depth) {
-        Color finalColor = new Color(0.0f, 0.0f, 0.0f);    // La couleur finale (noire au debut ... couleur de fond)
+    public static CColor rayTrace(CScene scene, CRay ray, int depth) {
+        CColor finalColor = new CColor(0.0f, 0.0f, 0.0f);    // La couleur finale (noire au debut ... couleur de fond)
         double distance = 999999.9f;            // La distance parcourue par le rayon avant de toucher la node
         double tmpDistance;                    // Une distance temporaire
         CNode currentNode;
         // La node en cours de traitement
         CNode closestNode = null;                // La node qui sera la plus proche
-        CIntersectInfo interInfo = new CIntersectInfo();                        // Les informations sur l'intersection
-        CIntersectInfo closestInterInfo = new CIntersectInfo();                // Les informations sur l'intersection de la node la plus proche
+        CIntersectInfo interInfo;                        // Les informations sur l'intersection
+        CIntersectInfo closestInterInfo = null;                // Les informations sur l'intersection de la node la plus proche
 
 
         // Eclairage
@@ -33,7 +33,7 @@ public class Raytracer {
         CRay lightRay = new CRay();            // Le rayon lumineux
         CIntersectInfo lightInterInfo = new CIntersectInfo();        // Les informations sur l'intersection du rayon lumineux et d'une node
 
-
+        interInfo = new CIntersectInfo();                        // Les informations sur l'intersection
         // On parcoure toutes les nodes de notre scene (cameras, objets ...)
         for (int i = 0; i < scene.getNumNodes(); i++) {
             currentNode = scene.getNode(i);
@@ -41,9 +41,9 @@ public class Raytracer {
             if (currentNode.intersectsNode(ray, interInfo)) {
                 // On n'a pas besoin de comparer la longueur en elle meme (qui est la racine carr� de la somme des carr�s des coeeficients)
                 // En evitant la racine carr� on obtient la meme comparaison, mais en une op�ration de moins (sqrt est tr�s gourmand).
-                tmpDistance = (interInfo.mIntersection.moins(ray.mVStart)).norme();
+                tmpDistance = (interInfo.mIntersection.moins(ray.mVStart)).NormeCarree();
 
-                if (tmpDistance < distance) {
+                if (tmpDistance < distance && tmpDistance > 0) {
                     distance = tmpDistance;
                     closestNode = currentNode;
                     closestInterInfo = interInfo;
@@ -54,6 +54,9 @@ public class Raytracer {
         if (closestNode != null) {
             // On parcoure toute les sources lumineuses
             for (int i = 0; i < scene.getNumLights(); i++) {
+                CLight currentLight = scene.getLight(i);
+
+
                 lightBlocked = false;
 
                 // Calc the vec (normalized) going from the light to the intersection point
@@ -76,13 +79,15 @@ public class Raytracer {
                             lightToInterDist = (lightInterInfo.mIntersection.moins(scene.getLight(i).getPosition()).norme());///magnitude
                             if (lightToInterDist < lightToObjDist)
                                 lightBlocked = true;
+
                         }
                 }
-
                 if (!lightBlocked)
-                    finalColor = CColor.add(finalColor, scene.getLight(i).getLightAt(closestInterInfo.mNormal, closestInterInfo.mIntersection, closestInterInfo.mMaterial));
-            }
+                    finalColor = CColor.add(finalColor, currentLight.getLightAt(closestInterInfo.mNormal, closestInterInfo.mIntersection, closestInterInfo.mMaterial));
+                else
+                    finalColor = new CColor(1f, 1f, 1f, 1f);
 
+            }
             // Clean non permanent material
         /*if (closestInterInfo.mMaterial.GetPermanency() == false)
 			delete (closestInterInfo.mMaterial); closestInterInfo.mMaterial = NULL;
@@ -93,13 +98,14 @@ public class Raytracer {
         return finalColor = CColor.normalizeColor(finalColor);
     }
 
+
     /* [ Fonction de rendu. Parcoure tous les pixels de l'image, cr�e le rayon correpondant et lance le raytracing ] */
 /* [ avec ce rayon. Enregistre le rendu final dans un fichier image.                                           ] */
     public static boolean Render(CScene scene, int width, int height, String outputfilename) throws IOException {
         CRay currentRay = new CRay();            // Le rayon primaire �mis courant (de l'oeil, � travers un pixel, vers la sc�ne).
         Point3D vDir;                // Le vecteur directeur (unitaire) du rayon.
         PrintWriter mOutputFileRAW;    // Le fichier image destination (format RAW : rvbrvbrvbrvb....).
-        Color tmpColor;            // La couleur finale du pixel courant.
+        CColor tmpColor;            // La couleur finale du pixel courant.
         int tmpR;    // Les trois composantes de la couleur (Rouge Vert Bleu).
         int tmpG;
         int tmpB;
@@ -142,9 +148,11 @@ public class Raytracer {
                     System.out.printf("100 percent completed !\n");
 
                 // On decompose la couleur dans les trois couleurs de base (Rouge Vert Bleu).
-                tmpR = tmpColor.getRed();
-                tmpG = tmpColor.getGreen();
-                tmpB = tmpColor.getBlue();
+                CColor fc = CColor.normalizeColor(tmpColor);
+
+                tmpR = (int) tmpColor.getRed();
+                tmpG = (int) tmpColor.getGreen();
+                tmpB = (int) tmpColor.getBlue();
                 int elementCouleur = (tmpR << 16) | (tmpG << 8) | (tmpB);
                 bi2.setRGB(x, y, elementCouleur);
 

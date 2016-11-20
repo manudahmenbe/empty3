@@ -2,7 +2,6 @@ package info.emptycanvas.library.raytracer;
 
 import info.emptycanvas.library.object.Point3D;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class TestRayTracerMain extends Raytracer {
@@ -28,16 +27,16 @@ public class TestRayTracerMain extends Raytracer {
         // Une premi�re lumi�re (rouge)
         CPointLight myLight;
         Point3D myLightPos = new Point3D(3.0f, 3.0f, 0.0f);
-        Color myLightDiffuseColor = new Color(1.0f, 0.0f, 0.0f);
-        Color myLightSpecularColor = new Color(1.0f, 0.0f, 0.0f);
-        Color myLightColor = new Color(1.0f, 0.0f, 0.0f);
+        CColor myLightDiffuseColor = new CColor(1.0f, 0.0f, 0.0f);
+        CColor myLightSpecularColor = new CColor(1.0f, 0.0f, 0.0f);
+        CColor myLightColor = new CColor(1.0f, 0.0f, 0.0f);
 
         // Une deuxi�me lumi�re (bleue)
         CPointLight myLight1;
         Point3D myLight1Pos = new Point3D(-3.0f, 3.0f, 0.0f);
-        Color myLight1DiffuseColor = new Color(0.0f, 0.0f, 1.0f);
-        Color myLight1SpecularColor = new Color(0.0f, 0.0f, 1.0f);
-        Color myLight1Color = new Color(0.0f, 0.0f, 1.0f);
+        CColor myLight1DiffuseColor = new CColor(0.0f, 0.0f, 1.0f);
+        CColor myLight1SpecularColor = new CColor(0.0f, 0.0f, 1.0f);
+        CColor myLight1Color = new CColor(0.0f, 0.0f, 1.0f);
 
         // Deux materiaux
         Matiere myMaterial;
@@ -54,9 +53,9 @@ public class TestRayTracerMain extends Raytracer {
         assert (myLight != null);
         myLight1 = new CPointLight(myLight1Pos, myLight1DiffuseColor, myLight1SpecularColor, myLight1Color);
         assert (myLight1 != null);
-        myMaterial = new Matiere("myMaterial", new Color(1.0f, 1.0f, 0.0f), new Color(1.0f, 1.0f, 1.0f), new Color(0.0f, 0.0f, 0.0f), new Color(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
+        myMaterial = new Matiere("myMaterial", new CColor(1.0f, 1.0f, 0.0f), new CColor(1.0f, 1.0f, 1.0f), new CColor(0.0f, 0.0f, 0.0f), new CColor(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
         assert (myMaterial != null);
-        myMaterial1 = new Matiere("myMaterial1", new Color(1.0f, 1.0f, 0.0f), new Color(0.7f, 0.7f, 0.7f), new Color(0.0f, 0.0f, 0.0f), new Color(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
+        myMaterial1 = new Matiere("myMaterial1", new CColor(1.0f, 1.0f, 0.0f), new CColor(0.7f, 0.7f, 0.7f), new CColor(0.0f, 0.0f, 0.0f), new CColor(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
         assert (myMaterial1 != null);
 
         // On assigne les materiaux � nos objets
@@ -73,7 +72,7 @@ public class TestRayTracerMain extends Raytracer {
         myScene.setActiveCamera(0);
         // On lance le rendu
         try {
-            Render(myScene, 640, 480, "Chapitre2");
+            Render(myScene, 1920, 1080, "Chapitre2");
         } catch (IOException e) {
             e.printStackTrace();
         }
