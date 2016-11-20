@@ -37,7 +37,7 @@ public class CPlane extends CObject {
             intersectInfo.mIntersection = ray.mVStart.plus(ray.mVDir.mult(t));
 
             if (dv < 0)
-                intersectInfo.mNormal.mult(mNormal);
+                intersectInfo.mNormal = mNormal;
 
             else
                 intersectInfo.mNormal = mNormal.mult(-1);

@@ -1,0 +1,6 @@
+
+
+RayTracer (packageinfo\emptycanvas\library\raytracer en date du  18/10/2016) traduit en Java et dérivé de:
+© Benoît Lemaire alias DaRkWoLf 2002. All Rights Reserved. Unauthorized modification/distribution forbidden.
+http://www.alrj.org/docs/3D/raytracer/raytracertutchap2.htm
+

@@ -1,5 +1,8 @@
 package info.emptycanvas.library.raytracer;
 
+import info.emptycanvas.library.object.Cube;
+import info.emptycanvas.library.object.Representable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +10,7 @@ public class CScene {
 
     private int mNumNodes;
     private List<CNode> mNodes = new ArrayList<CNode>();
+    private List<Representable> mNodesR = new ArrayList<Representable>();
     private List<CCamera> mCameras = new ArrayList<CCamera>();
     private List<CLight> mLights = new ArrayList<CLight>();
     private List<Matiere> mMaterials = new ArrayList<Matiere>();
@@ -93,5 +97,9 @@ public class CScene {
         assert (material != null);
         mMaterials.add(material);
         return true;
+    }
+
+    public void addObject(Cube myCube) {
+        mNodesR.add(new Representable());
     }
 }

@@ -3,8 +3,8 @@ package info.emptycanvas.library.raytracer;
 public abstract class CNode {
     public static final int LIGHT = 0x0001000;
     public static final int OMNILIGHT = 0x0001002;
-    public static final int CAMERA = 0x0010000;
-    public static final int TARGETCAMERA = 0x0010002;
+    public static final int CAMERA = 0x0010004;
+    public static final int TARGETCAMERA = 0x0010008;
 
     protected int mNodeType;
     protected String mName;

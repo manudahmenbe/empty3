@@ -164,6 +164,11 @@ public class Representable implements Serializable {
         return null;
     }
 
+    public Representable intersects(Representable r2) {
+        throw new UnsupportedOperationException("Pas implémenté  en cours" +
+                "");
+    }
+
     public class RotationInt extends Rotation {
 
         public RotationInt() {

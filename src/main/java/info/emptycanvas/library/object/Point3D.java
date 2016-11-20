@@ -19,6 +19,9 @@
  */
 package info.emptycanvas.library.object;
 
+import info.emptycanvas.library.nurbs.ParametrizedCurve;
+import info.emptycanvas.library.nurbs.ParametrizedSurface;
+
 import java.awt.*;
 
 /**
@@ -405,5 +408,26 @@ public class Point3D extends Representable {
 
     public Point2D to2DwoZ() {
         return get2D();
+    }
+
+    public double NormeCarree() {
+        return x[0] * x[0] + x[1] * x[1] + x[2] + x[2];
+    }
+
+    @Override
+    public Representable intersects(Representable r2) {
+        if (r2 instanceof Point3D) {
+            Point3D p2 = (Point3D) (r2);
+            return ((x[0] == p2.get(0)) && (x[1] == p2.get(1)) && (x[2] == p2.get(2))) ? this : null;
+        } else if (r2 instanceof SegmentDroite) {
+            SegmentDroite sd = (SegmentDroite) r2;
+
+        } else if (r2 instanceof TRI) {
+            TRI tri = (TRI) r2;
+
+        } else if (r2 instanceof ParametrizedSurface) {
+        } else if (r2 instanceof ParametrizedCurve) {
+        }
+        throw new UnsupportedOperationException("Pas implémenté encore");
     }
 }

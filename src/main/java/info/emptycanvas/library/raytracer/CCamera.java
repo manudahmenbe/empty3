@@ -5,17 +5,21 @@ import info.emptycanvas.library.object.Point3D;
 public class CCamera extends CNode {
     protected double mViewplaneDist;                                                // Distance du viexplane par rapport � la position de la cam.
     protected float mViewplaneWidth, mViewplaneHeight;                            // Largeur/Hauteur du viewplane.
-    protected Point3D mCamPos = new Point3D(), mVecDir = new Point3D(), mUpVec = new Point3D(), mRightVec = new Point3D(), mViewPlaneUpLeft = new Point3D();
+    protected Point3D mCamPos, mVecDir, mUpVec, mRightVec, mViewPlaneUpLeft;
 
-    public CCamera(Point3D vCamPos, Point3D vUpVector, int type)
+    public CCamera(Point3D vCamPos, Point3D directionVec, Point3D vRightVec, Point3D vUpVector, int type)
 
     {
         super(type, "CAMERA");
         mCamPos = vCamPos;
-        mUpVec = vUpVector;
+        mVecDir = directionVec.norme1();
+        mUpVec = vUpVector.norme1();
+        mRightVec = vRightVec.norme1();
         mViewplaneDist = 1.0f;
         mViewplaneHeight = 0.35f;
-        mViewplaneWidth = 0.5f;
+        mViewplaneWidth = 0.35f;
+        mViewPlaneUpLeft = mCamPos.plus(mVecDir.mult(mViewplaneDist))
+                .plus(mRightVec.mult(-mViewplaneWidth/2)).plus(mUpVec.mult(-mViewplaneHeight/2));
 
     }
 
@@ -25,7 +29,7 @@ public class CCamera extends CNode {
         xIndent = mViewplaneWidth / (float) xRes;
         yIndent = mViewplaneHeight / (float) yRes;
 
-        return (mViewPlaneUpLeft.plus(mRightVec.mult(xIndent * x).moins(mUpVec.mult(yIndent * y))).moins(getPosition()));
+        return mViewPlaneUpLeft.plus(mRightVec.mult(xIndent * x).moins(mUpVec.mult(yIndent * y))).moins(getPosition());
     }
 
 
