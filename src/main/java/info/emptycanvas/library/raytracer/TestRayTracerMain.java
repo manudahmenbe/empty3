@@ -10,19 +10,19 @@ public class TestRayTracerMain extends Raytracer {
 
         // Notre camera
         CTargetCamera myCamera = null;
-        Point3D myCameraPos = new Point3D(0.0f, 3.0f, -15.0f);    // Position de la camera
+        Point3D myCameraPos = new Point3D(0.0f, 0.0f, -15.0f);    // Position de la camera
         Point3D myCameraLookAt = new Point3D(0.0f, 0.0f, 10.0f);    // Position du point regard�
         Point3D myCameraUpVec = new Point3D(0.0f, 1.0f, 0.0f);    // Vecteur haut de la cam�ra
 
         // Une sphere
         CSphere mySphere = null;
         Point3D mySpherePos = new Point3D(0.0f, 0.0f, 10.0f);        // Position de la sph�re
-        float mySphereRadius = 2.0f;                // Rayon de la sph�re
+        float mySphereRadius = 5.0f;                // Rayon de la sph�re
 
         // Un plan
         CPlane myPlane = null;
-        Point3D myPlanePos = new Point3D(0.0f, -2.0f, 0.0f);
-        Point3D myPlaneNormal = new Point3D(0.0f, 1.0f, 0.0f);
+        Point3D myPlanePos = new Point3D(0.0f, 0.0f, 10.0f);
+        Point3D myPlaneNormal = new Point3D(0.0f, 0.0f, 1.0f);
 
         // Une premiere lumiere (rouge)
         CPointLight myLight;

@@ -3,8 +3,8 @@ package info.emptycanvas.library.raytracer;
 import info.emptycanvas.library.object.Point3D;
 
 public class CSphere extends CObject {
-    private Point3D mCenter; // Le centre de la sph�re
-    private double mRadius; // Le rayon de la sph�re
+    private Point3D mCenter; // Le centre de la sphere
+    private double mRadius; // Le rayon de la sphere
 
 
     public CSphere(Point3D center, double radius) {
@@ -30,7 +30,7 @@ public class CSphere extends CObject {
         a = 1;
         b = rayOrg.prodScalaire(ray.mVDir);
         c = (Math.pow(rayOrg.NormeCarree(), 2) - mRadius * mRadius);
-        delta = ((b * b) - c);
+        delta = ((b * b) - 4 * a * c);
 
 /*
         b = rayOrg.prodScalaire(ray.mVDir);
@@ -40,9 +40,6 @@ public class CSphere extends CObject {
 
 */
 /*
-Le couple c'est pour les trous de balle
- */
-/*
         a = ray.mVDir.norme1().moins(ray.mVStart).NormeCarree() - mRadius * mRadius;
         b = -2 * mCenter.prodScalaire(ray.mVDir.norme1());
         c = mCenter.NormeCarree();
@@ -51,21 +48,38 @@ Le couple c'est pour les trous de balle
         if (delta < 0.0f)
             return false; // pas d'intersection
 
+
         if (intersectInfo != null) {
             if (delta != 0) {
-                delta = (float) Math.sqrt(delta);
+                delta = Math.sqrt(delta);
                 t1 = (-b + delta) / 2 / a;
-                if (t1 < 0) return false;
                 t2 = (-b - delta) / 2 / a;
-                if (t2 < 0) return false;
 
-                if (t1 < t2)
-                    t = t1;
-                else
-                    t = t2;
-            } else
-                t = (-b);
-
+                double max = Math.max(t1, t2);
+                double min = Math.min(t1, t2);
+                t = min;
+                if (min < 0) {
+                    t = max;
+                    if (max < 0)
+                        return false;
+                }
+                /*
+                if (max < 0)
+                    return false; // Intersection derrière la camera
+                else {
+                    if (t1 >= 0 && t2 >= 0)
+                        t = Math.min(t1, t2);
+                    else if (t1 >= 0)
+                        t = t1;
+                    else if (t2 >= 0) {
+                        t = t2;
+                    }
+                    else
+                        return false; // Ne devrait pas se produire. Pour le compilateur
+                        */
+            } else {
+                t = (-b) / 2 / a;
+            }
             intersect = ray.mVStart.plus(ray.mVDir.norme1().mult(t));
 
             tmpNormal = (intersect.moins(mCenter)).mult(1 / mRadius);
@@ -74,8 +88,10 @@ Le couple c'est pour les trous de balle
             intersectInfo.mNormal = tmpNormal;
             intersectInfo.mNode = getNode();
             intersectInfo.mMaterial = getMaterial();
+            return true;
         }
-
-        return true;
+        return false;
     }
+
 }
+
