@@ -1,13 +1,12 @@
+import be.manudahmen.empty3.library.object.Representable;
 
-import java.awt.Color;
-
-import info.emptycanvas.library.object.Representable;
+import java.awt.*;
 
 public interface DegradeCouleur {
 
-    public Color color(float[] params01);
+    Color color(float[] params01);
 
-    public void dim(int[] params);
+    void dim(int[] params);
 
-    public Representable objet3D();
+    Representable objet3D();
 }
