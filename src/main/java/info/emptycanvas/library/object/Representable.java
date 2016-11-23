@@ -4,9 +4,9 @@
 package info.emptycanvas.library.object;
 
 import info.emptycanvas.library.lighting.Intersection;
-import info.emptycanvas.library.raytracer.CIntersectInfo;
-import info.emptycanvas.library.raytracer.CRay;
-import info.emptycanvas.library.raytracer.Matiere;
+import info.emptycanvas.library.raytracer.RtIntersectInfo;
+import info.emptycanvas.library.raytracer.RtMatiere;
+import info.emptycanvas.library.raytracer.RtRay;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -16,7 +16,7 @@ public class Representable implements Serializable {
     public static final ITexture orange_yellow = new ColorTexture(new Color(255, 128, 0));
     protected static ArrayList<Painter> classPainters = new ArrayList<Painter>();
     protected double NFAST = 100;
-    protected Matiere materiau;
+    protected RtMatiere materiau;
     protected ITexture CFAST = new ColorTexture(Color.GRAY);
     protected Barycentre bc = new Barycentre();
     protected Representable parent;
@@ -159,7 +159,7 @@ public class Representable implements Serializable {
         }
     }
 
-    public Intersection intersects(CRay ray, CIntersectInfo cii) {
+    public Intersection intersects(RtRay ray, RtIntersectInfo cii) {
         // TODO Implements
         return null;
     }

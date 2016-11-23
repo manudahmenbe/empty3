@@ -6,8 +6,8 @@
 package info.emptycanvas.library.object;
 
 import info.emptycanvas.library.lighting.Intersection;
-import info.emptycanvas.library.raytracer.CIntersectInfo;
-import info.emptycanvas.library.raytracer.CRay;
+import info.emptycanvas.library.raytracer.RtIntersectInfo;
+import info.emptycanvas.library.raytracer.RtRay;
 
 import java.awt.*;
 
@@ -93,7 +93,7 @@ public class TRI extends Representable {
     }
 
     @Override
-    public Intersection intersects(CRay ray, CIntersectInfo cii) {
+    public Intersection intersects(RtRay ray, RtIntersectInfo cii) {
         // TODO Implements
         return null;
     }

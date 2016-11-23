@@ -4,58 +4,58 @@ import info.emptycanvas.library.object.Point3D;
 
 import java.io.IOException;
 
-public class TestRayTracerMain extends Raytracer {
+public class TestRayTracerMain extends RtRaytracer {
     public static void main(String[] args) {
-        CScene myScene = new CScene();
+        RtScene myScene = new RtScene();
 
         // Notre camera
-        CTargetCamera myCamera = null;
+        RtTargetCamera myCamera = null;
         Point3D myCameraPos = new Point3D(0.0f, 0.0f, -15.0f);    // Position de la camera
         Point3D myCameraLookAt = new Point3D(0.0f, 0.0f, 10.0f);    // Position du point regard�
         Point3D myCameraUpVec = new Point3D(0.0f, 1.0f, 0.0f);    // Vecteur haut de la cam�ra
 
         // Une sphere
-        CSphere mySphere = null;
+        RtSphere mySphere = null;
         Point3D mySpherePos = new Point3D(0.0f, 0.0f, 10.0f);        // Position de la sph�re
-        float mySphereRadius = 5.0f;                // Rayon de la sph�re
+        float mySphereRadius = 2.0f;                // Rayon de la sph�re
 
         // Un plan
-        CPlane myPlane = null;
+        RtPlane myPlane = null;
         Point3D myPlanePos = new Point3D(0.0f, 0.0f, 10.0f);
         Point3D myPlaneNormal = new Point3D(0.0f, 0.0f, 1.0f);
 
         // Une premiere lumiere (rouge)
-        CPointLight myLight;
+        RtPointLight myLight;
         Point3D myLightPos = new Point3D(3.0f, 3.0f, 0.0f);
-        CColor myLightDiffuseColor = new CColor(1.0f, 0.0f, 0.0f);
-        CColor myLightSpecularColor = new CColor(1.0f, 0.0f, 0.0f);
-        CColor myLightColor = new CColor(1.0f, 0.0f, 0.0f);
+        RtColor myLightDiffuseColor = new RtColor(1.0f, 0.0f, 0.0f);
+        RtColor myLightSpecularColor = new RtColor(1.0f, 0.0f, 0.0f);
+        RtColor myLightColor = new RtColor(1.0f, 0.0f, 0.0f);
 
         // Une deuxieme lumiere (bleue)
-        CPointLight myLight1;
+        RtPointLight myLight1;
         Point3D myLight1Pos = new Point3D(-3.0f, 3.0f, 0.0f);
-        CColor myLight1DiffuseColor = new CColor(0.0f, 0.0f, 1.0f);
-        CColor myLight1SpecularColor = new CColor(0.0f, 0.0f, 1.0f);
-        CColor myLight1Color = new CColor(0.0f, 0.0f, 1.0f);
+        RtColor myLight1DiffuseColor = new RtColor(0.0f, 0.0f, 1.0f);
+        RtColor myLight1SpecularColor = new RtColor(0.0f, 0.0f, 1.0f);
+        RtColor myLight1Color = new RtColor(0.0f, 0.0f, 1.0f);
 
         // Deux materiaux
-        Matiere myMaterial;
-        Matiere myMaterial1;
+        RtMatiere myMaterial;
+        RtMatiere myMaterial1;
 
 
-        myCamera = new CTargetCamera(myCameraPos, myCameraLookAt, myCameraUpVec);
+        myCamera = new RtTargetCamera(myCameraPos, myCameraLookAt, myCameraUpVec);
         assert (myCamera != null);
-        mySphere = new CSphere(mySpherePos, mySphereRadius);
+        mySphere = new RtSphere(mySpherePos, mySphereRadius);
         assert (mySphere != null);
-        myPlane = new CPlane(myPlanePos, myPlaneNormal);
+        myPlane = new RtPlane(myPlanePos, myPlaneNormal);
         assert (myPlane != null);
-        myLight = new CPointLight(myLightPos, myLightDiffuseColor, myLightSpecularColor, myLightColor);
+        myLight = new RtPointLight(myLightPos, myLightDiffuseColor, myLightSpecularColor, myLightColor);
         assert (myLight != null);
-        myLight1 = new CPointLight(myLight1Pos, myLight1DiffuseColor, myLight1SpecularColor, myLight1Color);
+        myLight1 = new RtPointLight(myLight1Pos, myLight1DiffuseColor, myLight1SpecularColor, myLight1Color);
         assert (myLight1 != null);
-        myMaterial = new Matiere("myMaterial", new CColor(1.0f, 1.0f, 0.0f), new CColor(1.0f, 1.0f, 1.0f), new CColor(0.0f, 0.0f, 0.0f), new CColor(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
+        myMaterial = new RtMatiere("myMaterial", new RtColor(1.0f, 1.0f, 0.0f), new RtColor(1.0f, 1.0f, 1.0f), new RtColor(0.0f, 0.0f, 0.0f), new RtColor(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
         assert (myMaterial != null);
-        myMaterial1 = new Matiere("myMaterial1", new CColor(1.0f, 1.0f, 0.0f), new CColor(0.7f, 0.7f, 0.7f), new CColor(0.0f, 0.0f, 0.0f), new CColor(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
+        myMaterial1 = new RtMatiere("myMaterial1", new RtColor(1.0f, 1.0f, 0.0f), new RtColor(0.7f, 0.7f, 0.7f), new RtColor(0.0f, 0.0f, 0.0f), new RtColor(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
         assert (myMaterial1 != null);
 
         // On assigne les materiaux a nos objets
@@ -73,7 +73,7 @@ public class TestRayTracerMain extends Raytracer {
         myScene.setActiveCamera(0);
         // On lance le rendu
         try {
-            Render(myScene, 1920, 1080, "Chapitre2");
+            Render(myScene, 1920, 1080, "Chapitre2-" + Math.random());
         } catch (IOException e) {
             e.printStackTrace();
         }
