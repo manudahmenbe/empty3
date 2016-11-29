@@ -41,9 +41,9 @@ public class RtRaytracer {
             if (currentNode.intersectsNode(ray, interInfo)) {
                 // On n'a pas besoin de comparer la longueur en elle meme (qui est la racine carr� de la somme des carr�s des coeeficients)
                 // En evitant la racine carr� on obtient la meme comparaison, mais en une op�ration de moins (sqrt est tr�s gourmand).
-                tmpDistance = (interInfo.mIntersection.moins(ray.mVStart)).NormeCarree();
+                tmpDistance = interInfo.mIntersection.moins(ray.mVStart).norme();
 
-                if (tmpDistance < distance && tmpDistance > 0) {
+                if (tmpDistance < distance) {
                     distance = tmpDistance;
                     closestNode = currentNode;
                     closestInterInfo = interInfo;
@@ -61,11 +61,11 @@ public class RtRaytracer {
 
                 // Calc the vec (normalized) going from the light to the intersection point
                 lightVec = closestInterInfo.mIntersection.
-                        moins(scene.getLight(i).getPosition());
+                        moins(currentLight.getPosition());
                 lightToObjDist = lightVec.norme();//??getMagnitude();
                 lightVec = lightVec.norme1();
 
-                lightRay.mVStart = scene.getLight(i).getPosition();
+                lightRay.mVStart = currentLight.getPosition();
                 lightRay.mVDir = lightVec;
 
                 // We go through all the objects to see if one
@@ -76,16 +76,16 @@ public class RtRaytracer {
                     // put away the case of the object itself
                     if (currentNode != closestInterInfo.mNode)
                         if (currentNode.intersectsNode(lightRay, lightInterInfo)) {
-                            lightToInterDist = (lightInterInfo.mIntersection.moins(scene.getLight(i).getPosition()).norme());///magnitude
+                            lightToInterDist = (lightInterInfo.mIntersection.moins(currentLight.getPosition()).norme());///magnitude
                             if (lightToInterDist < lightToObjDist)
                                 lightBlocked = true;
 
                         }
                 }
-                if (!lightBlocked)
+                //if (!lightBlocked)
                     finalColor = RtColor.add(finalColor, currentLight.getLightAt(closestInterInfo.mNormal, closestInterInfo.mIntersection, closestInterInfo.mMaterial));
-                else
-                    finalColor = new RtColor(1f, 1f, 1f, 1f);
+                //else
+                //    finalColor = new RtColor(1f, 1f, 1f, 1f);
 
             }
             // Clean non permanent material

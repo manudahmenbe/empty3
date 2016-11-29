@@ -17,12 +17,12 @@ public class TestRayTracerMain extends RtRaytracer {
         // Une sphere
         RtSphere mySphere = null;
         Point3D mySpherePos = new Point3D(0.0f, 0.0f, 10.0f);        // Position de la sph�re
-        float mySphereRadius = 2.0f;                // Rayon de la sph�re
+        float mySphereRadius = 5.0f;                // Rayon de la sph�re
 
         // Un plan
         RtPlane myPlane = null;
         Point3D myPlanePos = new Point3D(0.0f, 0.0f, 10.0f);
-        Point3D myPlaneNormal = new Point3D(0.0f, 0.0f, 1.0f);
+        Point3D myPlaneNormal = new Point3D(0.0f, 0.0f, -1.0f);
 
         // Une premiere lumiere (rouge)
         RtPointLight myLight;
@@ -34,7 +34,7 @@ public class TestRayTracerMain extends RtRaytracer {
         // Une deuxieme lumiere (bleue)
         RtPointLight myLight1;
         Point3D myLight1Pos = new Point3D(-3.0f, 3.0f, 0.0f);
-        RtColor myLight1DiffuseColor = new RtColor(0.0f, 0.0f, 1.0f);
+        RtColor myLight1DiffuseColor = new RtColor(1.0f, 0.0f, 1.0f);
         RtColor myLight1SpecularColor = new RtColor(0.0f, 0.0f, 1.0f);
         RtColor myLight1Color = new RtColor(0.0f, 0.0f, 1.0f);
 
@@ -55,7 +55,7 @@ public class TestRayTracerMain extends RtRaytracer {
         assert (myLight1 != null);
         myMaterial = new RtMatiere("myMaterial", new RtColor(1.0f, 1.0f, 0.0f), new RtColor(1.0f, 1.0f, 1.0f), new RtColor(0.0f, 0.0f, 0.0f), new RtColor(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
         assert (myMaterial != null);
-        myMaterial1 = new RtMatiere("myMaterial1", new RtColor(1.0f, 1.0f, 0.0f), new RtColor(0.7f, 0.7f, 0.7f), new RtColor(0.0f, 0.0f, 0.0f), new RtColor(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
+        myMaterial1 = new RtMatiere("myMaterial1", new RtColor(1.0f, .0f, 1.0f), new RtColor(0.7f, 0.0f, 0.7f), new RtColor(0.0f, 0.0f, 0.0f), new RtColor(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
         assert (myMaterial1 != null);
 
         // On assigne les materiaux a nos objets

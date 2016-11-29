@@ -29,10 +29,10 @@ public class RtSphere extends RtObject {
 
         a = 1;
         b = rayOrg.prodScalaire(ray.mVDir);
-        c = (Math.pow(rayOrg.NormeCarree(), 2) - mRadius * mRadius);
+        c = rayOrg.NormeCarree() - mRadius * mRadius;
         delta = ((b * b) - 4 * a * c);
 
-
+/*
         b = rayOrg.prodScalaire(ray.mVDir);
         a = (ray.mVDir.prodScalaire(ray.mVDir));
         c = (rayOrg.prodScalaire(rayOrg) - mRadius * mRadius);
