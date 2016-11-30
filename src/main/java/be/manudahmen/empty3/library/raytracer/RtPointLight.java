@@ -10,6 +10,7 @@ public class RtPointLight extends RtLight {
 
     public RtPointLight(Point3D myLightPos, RtColor myLightDiffuseColor, RtColor myLightSpecularColor, RtColor myLightColor) {
         super(LIGHT, "LIGHT");
+        mPosition = myLightPos;
         lightDiffuseColor = myLightDiffuseColor;
         mColor = myLightDiffuseColor;
         lightSpecularColor = myLightSpecularColor;
@@ -25,7 +26,7 @@ public class RtPointLight extends RtLight {
 
         lightVector = lightVector.norme1();
 
-        angle = (float) normal.prodScalaire(lightVector.mult(-1));
+        angle = (float) normal.prodScalaire(lightVector.mult(-1 / lightVector.norme()));
 
         if (angle <= 0)
             finalColor = new RtColor(0.0f, 0.0f, 0.0f);

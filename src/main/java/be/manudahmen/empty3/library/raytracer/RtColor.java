@@ -57,7 +57,7 @@ public class RtColor {
         float max = Math.max(finalColor.getRed(), Math.max(finalColor.getGreen(), Math.max(finalColor.getBlue(), finalColor.getAlpha())));
         if (max > 1.0f || max < 0.0f) {
             finalColor = RtColor.mult(finalColor, 1 / max);
-        }
+        }/*
         if (finalColor.getRed() > 1.0f)
             finalColor.red = 1.0f;
         if (finalColor.getGreen() > 1.0f)
@@ -70,6 +70,7 @@ public class RtColor {
             finalColor.green = .0f;
         if (finalColor.getBlue() < .0f)
             finalColor.blue = .0f;
+        */
         return finalColor;
     }
 
