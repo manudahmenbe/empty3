@@ -45,19 +45,12 @@ public class TestRayTracerMain extends RtRaytracer {
 
 
         myCamera = new RtTargetCamera(myCameraPos, myCameraLookAt, myCameraUpVec);
-        assert (myCamera != null);
         mySphere = new RtSphere(mySpherePos, mySphereRadius);
-        assert (mySphere != null);
         myPlane = new RtPlane(myPlanePos, myPlaneNormal);
-        assert (myPlane != null);
         myLight = new RtPointLight(myLightPos, myLightDiffuseColor, myLightSpecularColor, myLightColor);
-        assert (myLight != null);
         myLight1 = new RtPointLight(myLight1Pos, myLight1DiffuseColor, myLight1SpecularColor, myLight1Color);
-        assert (myLight1 != null);
         myMaterial = new RtMatiere("myMaterial", new RtColor(1.0f, 1.0f, 0.0f), new RtColor(1.0f, 1.0f, 1.0f), new RtColor(0.0f, 0.0f, 0.0f), new RtColor(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
-        assert (myMaterial != null);
         myMaterial1 = new RtMatiere("myMaterial1", new RtColor(1.0f, .0f, 1.0f), new RtColor(0.7f, 0.0f, 0.7f), new RtColor(0.0f, 0.0f, 0.0f), new RtColor(1.0f, 1.0f, 0.0f), 1.0f, 1.0f);
-        assert (myMaterial1 != null);
 
         // On assigne les materiaux a nos objets
         mySphere.setMaterial(myMaterial);

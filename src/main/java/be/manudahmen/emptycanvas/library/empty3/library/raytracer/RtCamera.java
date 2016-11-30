@@ -19,17 +19,18 @@ public class RtCamera extends RtNode {
         mViewplaneHeight = 0.35f;
         mViewplaneWidth = 0.35f;
         mViewPlaneUpLeft = mCamPos.plus(mVecDir.mult(mViewplaneDist))
-                .plus(mRightVec.mult(-mViewplaneWidth)).plus(mUpVec.mult(-mViewplaneHeight));
+                .plus(mRightVec.mult(-mViewplaneWidth / 2)).plus(mUpVec.mult(-mViewplaneHeight / 2));
 
     }
 
     Point3D calcDirVec(float x, float y, int xRes, int yRes) {
         double xIndent, yIndent;
-
+        double posX = -xRes + x;
+        double posY = -yRes + y;
         xIndent = mViewplaneWidth / (float) xRes;
         yIndent = mViewplaneHeight / (float) yRes;
 
-        return mViewPlaneUpLeft.plus(mRightVec.mult(xIndent * x).moins(mUpVec.mult(yIndent * y))).moins(getPosition());
+        return mViewPlaneUpLeft.plus(mRightVec.mult(xIndent * posX).moins(mUpVec.mult(yIndent * posY))).moins(getPosition());
     }
 
 
