@@ -109,8 +109,9 @@ public class RtRaytracer {
         int tmpR;    // Les trois composantes de la couleur (Rouge Vert Bleu).
         int tmpG;
         int tmpB;
+        int tmpA;
         ECBufferedImage bi2 = new ECBufferedImage(width, height,
-                ECBufferedImage.TYPE_INT_RGB);
+                ECBufferedImage.TYPE_INT_ARGB);
 
         // On cree le fichier destination
         mOutputFileRAW = new PrintWriter(new FileOutputStream(new File(outputfilename + ".ppm")));
@@ -153,7 +154,8 @@ public class RtRaytracer {
                 tmpR = (int) (tmpColor.getRed() * 256);
                 tmpG = (int) (tmpColor.getGreen() * 256);
                 tmpB = (int) (tmpColor.getBlue() * 256);
-                int elementCouleur = (tmpR << 16) | (tmpG << 8) | (tmpB);
+                tmpA = (int) (tmpColor.getAlpha() * 256);
+                int elementCouleur = (tmpR << 24) | (tmpR << 16) | (tmpG << 8) | (tmpB);
                 bi2.setRGB(x, y, elementCouleur);
 
                 // Et on ecrit finalement la couleur de ce pixel dans le fichier

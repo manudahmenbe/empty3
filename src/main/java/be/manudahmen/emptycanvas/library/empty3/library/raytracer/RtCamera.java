@@ -25,12 +25,12 @@ public class RtCamera extends RtNode {
 
     Point3D calcDirVec(float x, float y, int xRes, int yRes) {
         double xIndent, yIndent;
-        double posX = -xRes + x;
-        double posY = -yRes + y;
+        double posX = x;
+        double posY = y;
         xIndent = mViewplaneWidth / (float) xRes;
         yIndent = mViewplaneHeight / (float) yRes;
 
-        return mViewPlaneUpLeft.plus(mRightVec.mult(xIndent * posX).moins(mUpVec.mult(yIndent * posY))).moins(getPosition());
+        return mViewPlaneUpLeft.plus(mRightVec.mult(-xIndent * posX).plus(mUpVec.mult(yIndent * posY))).moins(getPosition()).norme1();
     }
 
 
