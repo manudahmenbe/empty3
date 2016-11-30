@@ -9,7 +9,7 @@
 
     <groupId>info.emptycanvas</groupId>
     <artifactId>empty3</artifactId>
-    <version>58</version>
+    <version>59</version>
     <description>3D rendering engine. Plus modelling.</description>
     <packaging>jar</packaging>
     <build>
@@ -61,8 +61,8 @@
                 <version>2.3.2</version>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
 

@@ -17,8 +17,8 @@ public class TestRayTracerMain extends RtRaytracer {
 
         // Une sphere
         RtSphere mySphere = null;
-        Point3D mySpherePos = new Point3D(0.0f, 0.0f, 10.0f);        // Position de la sph�re
-        float mySphereRadius = 5.0f;                // Rayon de la sph�re
+        Point3D mySpherePos = new Point3D(0.0f, 0.0f, 10.0f);        // Position de la sphere
+        float mySphereRadius = 5.0f;                // Rayon de la sphere
 
         // Un plan
         RtPlane myPlane = null;
@@ -27,14 +27,14 @@ public class TestRayTracerMain extends RtRaytracer {
 
         // Une premiere lumiere (rouge)
         RtPointLight myLight;
-        Point3D myLightPos = new Point3D(3.0f, 3.0f, 0.0f);
-        RtColor myLightDiffuseColor = new RtColor(1.0f, 0.0f, 0.0f);
+        Point3D myLightPos = new Point3D(10.0f, 5.0f, 0.0f);
+        RtColor myLightDiffuseColor = new RtColor(1.0f, 1.0f, 0.0f);
         RtColor myLightSpecularColor = new RtColor(1.0f, 0.0f, 0.0f);
         RtColor myLightColor = new RtColor(1.0f, 0.0f, 0.0f);
 
         // Une deuxieme lumiere (bleue)
         RtPointLight myLight1;
-        Point3D myLight1Pos = new Point3D(-3.0f, 3.0f, 0.0f);
+        Point3D myLight1Pos = new Point3D(-10.0f, 5.0f, 0.0f);
         RtColor myLight1DiffuseColor = new RtColor(1.0f, 0.0f, 1.0f);
         RtColor myLight1SpecularColor = new RtColor(0.0f, 0.0f, 1.0f);
         RtColor myLight1Color = new RtColor(0.0f, 0.0f, 1.0f);

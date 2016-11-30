@@ -76,7 +76,7 @@ public class RtRaytracer {
                     // put away the case of the object itself
                     if (currentNode != closestInterInfo.mNode)
                         if (currentNode.intersectsNode(lightRay, lightInterInfo)) {
-                            lightToInterDist = (lightInterInfo.mIntersection.moins(currentLight.getPosition()).norme());///magnitude
+                            lightToInterDist = (lightInterInfo.mIntersection.moins(lightRay.mVStart).norme());///magnitude
                             if (lightToInterDist < lightToObjDist)
                                 lightBlocked = true;
 
