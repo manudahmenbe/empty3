@@ -4,18 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!-- please build montemedia first -->
+
+    <name>Empty3</name>
+
     <groupId>info.emptycanvas</groupId>
     <artifactId>empty3</artifactId>
     <version>58</version>
-    <packaging>jar</packaging>
-    <name>Empty3</name>
     <description>3D rendering engine. Plus modelling.</description>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-    <!-- "Project Build" contains more elements than just the BaseBuild set -->
+    <packaging>jar</packaging>
     <build>
         <defaultGoal>install</defaultGoal>
         <directory>${basedir}/target</directory>
@@ -151,6 +147,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>1.6-beta-2</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jogamp.jogl</groupId>

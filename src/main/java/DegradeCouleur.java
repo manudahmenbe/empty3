@@ -1,4 +1,4 @@
-import be.manudahmen.empty3.library.object.Representable;
+import be.manudahmen.emptycanvas.library.empty3.library.object.Representable;
 
 import java.awt.*;
 

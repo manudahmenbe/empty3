@@ -1,0 +1,167 @@
+/**
+ * *
+ * Global license : * GNU GPL v3
+ * <p>
+ * author Manuel Dahmen <manuel.dahmen@gmail.com>
+ * <p>
+ * Creation time 25-oct.-2015 SURFACE D'ÉLASTICITÉ DE FRESNEL Fresnel's
+ * elasticity surface, Fresnelsche Elastizitätfläche
+ * http://www.mathcurve.com/surfaces/elasticite/elasticite.shtml *
+ */
+package be.manudahmen.emptycanvas.library.empty3.library.export;
+
+import be.manudahmen.emptycanvas.library.empty3.library.nurbs.ParametrizedSurface;
+import be.manudahmen.emptycanvas.library.empty3.library.object.*;
+import be.manudahmen.emptycanvas.library.empty3.library.tribase.TRIObjetGenerateur;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
+
+public class STLExport {
+
+    public static void save(File file, Scene scene, boolean override)
+            throws IOException {
+        if (!file.exists() || file.exists() && override) {
+            file.createNewFile();
+            PrintWriter pw = new PrintWriter(new FileOutputStream(file));
+
+            pw.println("solid Emptycanvas_" + scene.description);
+
+            Iterator<Representable> it = scene.iterator();
+
+            while (it.hasNext()) {
+                Representable r = it.next();
+
+                traite(r, pw);
+            }
+
+            pw.println("endsolid");
+
+            pw.close();
+        }
+    }
+
+    public static void traite(ParametrizedSurface n, PrintWriter pw) {
+        traite((TRIObjetGenerateur) n, pw);
+    }
+
+    private static void traite(Polygone r, PrintWriter pw) {
+        write("facet normal 0 0 0 \n" + "outer loop\n", pw);
+        for (int s = 0; s < r.getPoints().size(); s++) {
+            write("vertex ", pw);
+            for (int c = 0; c < 3; c++) {
+                double A = r.getPoints().get(s).get(c);
+                if (Double.isNaN(A)) {
+                    A = 0;
+                }
+                write(A + " ", pw);
+            }
+
+            write("\n", pw);
+        }
+        write("endloop\n", pw);
+        write("endfacet\n", pw);
+    }
+
+    private static void traite(Representable r, PrintWriter pw) {
+        write("", pw);
+
+        if (r instanceof RepresentableConteneur) {
+            traite((RepresentableConteneur) r, pw);
+        }
+        if (r instanceof TRIObject) {
+            traite((TRIObject) r, pw);
+        }
+        if (r instanceof be.manudahmen.emptycanvas.library.empty3.library.tribase.TRIGenerable) {
+            traite((be.manudahmen.emptycanvas.library.empty3.library.tribase.TRIGenerable) r, pw);
+        }
+        if (r instanceof Polygone) {
+            traite((Polygone) r, pw);
+        }
+        if (r instanceof TRI) {
+            traite((TRI) r, pw);
+        }
+        if (r instanceof TRIObjetGenerateur) {
+            traite((TRIObjetGenerateur) r, pw);
+        }
+        if (r instanceof TRIConteneur) {
+            traite((TRIConteneur) r, pw);
+        }
+        if (r instanceof ParametrizedSurface) {
+            traite((ParametrizedSurface) r, pw);
+        }
+    }
+
+    private static void traite(RepresentableConteneur r, PrintWriter pw) {
+        write("", pw);
+        Iterator<Representable> it = r.iterator();
+        while (it.hasNext()) {
+            it.next();
+        }
+    }
+
+    private static void traite(TRI r, PrintWriter pw) {
+        write("facet normal 0 0 0 \n" + "outer loop\n", pw);
+        for (int s = 0; s < 3; s++) {
+            write("vertex ", pw);
+            for (int c = 0; c < 3; c++) {
+                double A = r.getSommet()[s].get(c);
+                if (Double.isNaN(A)) {
+                    A = 0;
+                }
+                write(A + " ", pw);
+            }
+            write("\n", pw);
+        }
+        write("endloop\n", pw);
+        write("endfacet\n", pw);
+
+    }
+
+    public static void traite(TRIConteneur TC, PrintWriter pw) {
+        write("", pw);
+
+        Iterator<TRI> it = TC.iterable().iterator();
+
+        while (it.hasNext()) {
+            TRI t = it.next();
+
+            traite(t, pw);
+        }
+    }
+
+    private static void traite(be.manudahmen.emptycanvas.library.empty3.library.tribase.TRIGenerable r, PrintWriter pw) {
+        r.generate();
+    }
+
+    private static void traite(TRIObject r, PrintWriter pw) {
+        String s = "";
+        Iterator<TRI> it = r.getTriangles().iterator();
+        while (it.hasNext()) {
+
+            traite(it.next(), pw);
+        }
+    }
+
+    private static void traite(TRIObjetGenerateur r, PrintWriter pw) {
+        String s = "";
+        int x = r.getMaxX();
+        int y = r.getMaxY();
+        TRI[] tris = new TRI[2];
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                r.getTris(i, j, tris);
+                traite(tris[0], pw);
+                traite(tris[1], pw);
+
+            }
+        }
+    }
+
+    public static void write(String flowElement, PrintWriter pw) {
+        pw.write(flowElement);
+    }
+}
