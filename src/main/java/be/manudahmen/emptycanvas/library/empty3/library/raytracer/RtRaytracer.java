@@ -155,7 +155,7 @@ public class RtRaytracer {
                 tmpG = (int) (tmpColor.getGreen() * 256);
                 tmpB = (int) (tmpColor.getBlue() * 256);
                 tmpA = (int) (tmpColor.getAlpha() * 256);
-                int elementCouleur = (tmpR << 24) | (tmpR << 16) | (tmpG << 8) | (tmpB);
+                int elementCouleur = (/*tmpA*/255 << 24) | (tmpR << 16) | (tmpG << 8) | (tmpB);
                 bi2.setRGB(x, y, elementCouleur);
 
                 // Et on ecrit finalement la couleur de ce pixel dans le fichier
