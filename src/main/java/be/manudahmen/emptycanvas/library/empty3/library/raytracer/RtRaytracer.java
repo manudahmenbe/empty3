@@ -109,7 +109,7 @@ public class RtRaytracer {
         int tmpR;    // Les trois composantes de la couleur (Rouge Vert Bleu).
         int tmpG;
         int tmpB;
-        int tmpA;
+        int tmpA = 255;
         ECBufferedImage bi2 = new ECBufferedImage(width, height,
                 ECBufferedImage.TYPE_INT_ARGB);
 
@@ -150,12 +150,11 @@ public class RtRaytracer {
 
                 // On decompose la couleur dans les trois couleurs de base (Rouge Vert Bleu).
                 RtColor fc = RtColor.normalizeColor(tmpColor);
-
                 tmpR = (int) (tmpColor.getRed() * 256);
                 tmpG = (int) (tmpColor.getGreen() * 256);
                 tmpB = (int) (tmpColor.getBlue() * 256);
-                tmpA = (int) (tmpColor.getAlpha() * 256);
-                int elementCouleur = (/*tmpA*/255 << 24) | (tmpR << 16) | (tmpG << 8) | (tmpB);
+                //tmpA = (int) (tmpColor.getAlpha() * 256);
+                int elementCouleur = (tmpA << 24) | (tmpR << 16) | (tmpG << 8) | (tmpB);
                 bi2.setRGB(x, y, elementCouleur);
 
                 // Et on ecrit finalement la couleur de ce pixel dans le fichier

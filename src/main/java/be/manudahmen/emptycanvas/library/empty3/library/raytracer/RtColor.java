@@ -1,5 +1,7 @@
 package be.manudahmen.emptycanvas.library.empty3.library.raytracer;
 
+import java.awt.*;
+
 public class RtColor {
     public float red, green, blue, alpha;    // Les trois composantes de la couleur
     RtColor c;
@@ -90,4 +92,8 @@ public class RtColor {
         return alpha;
     }
 
+    public Color toColor() {
+        RtColor c = normalizeColor(this);
+        return new Color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
+    }
 }
