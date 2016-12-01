@@ -82,10 +82,10 @@ public class RtRaytracer {
 
                         }
                 }
-                //if (!lightBlocked)
+                if (!lightBlocked)
                 finalColor = RtColor.add(finalColor, currentLight.getLightAt(closestInterInfo.mNormal, closestInterInfo.mIntersection, closestInterInfo.mMaterial));
-                //else
-                //    finalColor = new RtColor(1f, 1f, 1f, 1f);
+                else
+                    finalColor = new RtColor(1f, 1f, 1f, 1f);
 
             }
             // Clean non permanent material
