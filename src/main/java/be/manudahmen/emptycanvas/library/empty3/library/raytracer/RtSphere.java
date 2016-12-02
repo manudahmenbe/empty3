@@ -30,7 +30,6 @@ public class RtSphere extends RtObject {
         a = 1;
         b = rayOrg.prodScalaire(ray.mVDir);
         c = rayOrg.NormeCarree() - mRadius * mRadius;
-        delta = ((b * b) - 4 * a * c);
 
 /*
         b = rayOrg.prodScalaire(ray.mVDir);
@@ -45,6 +44,13 @@ public class RtSphere extends RtObject {
         c = mCenter.NormeCarree();
         delta = b * b - 4 * a * c;
 */
+        /*
+         c = rayOrg.prodScalaire(rayOrg)-mRadius*mRadius;
+        b = 2*ray.mVDir.prodScalaire(rayOrg);
+        a = 1;
+*/
+        delta = b * b - 4 * a * c;
+
         if (delta < 0.0f)
             return false; // pas d'intersection
 
@@ -82,7 +88,7 @@ public class RtSphere extends RtObject {
             }
             intersect = ray.mVStart.plus(ray.mVDir.norme1().mult(t));
 
-            tmpNormal = (intersect.moins(mCenter)).mult(1 / mRadius);
+            tmpNormal = (intersect.moins(mCenter)).norme1();
 
             intersectInfo.mIntersection = intersect;
             intersectInfo.mNormal = tmpNormal;

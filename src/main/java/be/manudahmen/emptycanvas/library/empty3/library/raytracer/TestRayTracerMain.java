@@ -44,7 +44,7 @@ public class TestRayTracerMain extends RtRaytracer {
         RtMatiere myMaterial1;
 
 
-        myCamera = new RtTargetCamera(myCameraPos, myCameraLookAt, myCameraUpVec);
+        myCamera = new RtParameterCamera(myCameraPos, myCameraLookAt, myCameraUpVec);
         mySphere = new RtSphere(mySpherePos, mySphereRadius);
         myPlane = new RtPlane(myPlanePos, myPlaneNormal);
         myLight = new RtPointLight(myLightPos, myLightDiffuseColor, myLightSpecularColor, myLightColor);
@@ -64,6 +64,7 @@ public class TestRayTracerMain extends RtRaytracer {
         myScene.addLight(myLight);
         myScene.addLight(myLight1);
         myScene.addMaterial(myMaterial);
+        myScene.addMaterial(myMaterial1);
         myScene.setActiveCamera(0);
         // On lance le rendu
         try {
