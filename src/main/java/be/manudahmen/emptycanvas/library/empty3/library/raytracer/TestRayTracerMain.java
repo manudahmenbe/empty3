@@ -28,15 +28,15 @@ public class TestRayTracerMain extends RtRaytracer {
         // Une premiere lumiere (rouge)
         RtPointLight myLight;
         Point3D myLightPos = new Point3D(10.0f, 5.0f, -5.0f);
-        RtColor myLightDiffuseColor = new RtColor(1.0f, 1.0f, 0.0f);
-        RtColor myLightSpecularColor = new RtColor(1.0f, 1.0f, 0.0f);
+        RtColor myLightDiffuseColor = new RtColor(1.0f, 1.0f, 0.5f);
+        RtColor myLightSpecularColor = new RtColor(1.0f, 1.0f, 0.5f);
         RtColor myLightColor = new RtColor(1.0f, 1.0f, 0.0f);
 
         // Une deuxieme lumiere (bleue)
         RtPointLight myLight1;
         Point3D myLight1Pos = new Point3D(-10.0f, 5.0f, -5.0f);
-        RtColor myLight1DiffuseColor = new RtColor(0.0f, 0.0f, 1.0f);
-        RtColor myLight1SpecularColor = new RtColor(0.0f, 0.0f, 1.0f);
+        RtColor myLight1DiffuseColor = new RtColor(0.7f, 0.7f, 0.7f);
+        RtColor myLight1SpecularColor = new RtColor(0.7f, 0.7f, 0.7f);
         RtColor myLight1Color = new RtColor(0.0f, 0.0f, 1.0f);
 
         // Deux materiaux

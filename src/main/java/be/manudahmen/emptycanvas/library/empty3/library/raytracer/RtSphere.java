@@ -88,7 +88,7 @@ public class RtSphere extends RtObject {
             }
             intersect = ray.mVStart.plus(ray.mVDir.norme1().mult(t));
 
-            tmpNormal = (intersect.moins(mCenter)).norme1();
+            tmpNormal = (intersect.moins(mCenter)).norme1().mult(-1);
 
             intersectInfo.mIntersection = intersect;
             intersectInfo.mNormal = tmpNormal;
