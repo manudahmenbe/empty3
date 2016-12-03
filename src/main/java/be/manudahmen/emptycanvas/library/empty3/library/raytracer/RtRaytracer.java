@@ -74,7 +74,7 @@ public class RtRaytracer {
                     currentNode = scene.getNode(j);
 
                     // put away the case of the object itself
-                    if (currentNode != closestInterInfo.mNode)
+                    if (closestNode != closestInterInfo.mNode)
                         if (currentNode.intersectsNode(lightRay, lightInterInfo)) {
                             lightToInterDist = (lightInterInfo.mIntersection.moins(lightRay.mVStart).norme());///magnitude
                             if (lightToInterDist < lightToObjDist)
@@ -111,7 +111,7 @@ public class RtRaytracer {
         int tmpB;
         int tmpA = 255;
         ECBufferedImage bi2 = new ECBufferedImage(width, height,
-                ECBufferedImage.TYPE_INT_ARGB);
+                ECBufferedImage.TYPE_INT_RGB);
 
         // On cree le fichier destination
         mOutputFileRAW = new PrintWriter(new FileOutputStream(new File(outputfilename + ".ppm")));
@@ -153,8 +153,8 @@ public class RtRaytracer {
                 tmpR = (int) (tmpColor.getRed() * 256);
                 tmpG = (int) (tmpColor.getGreen() * 256);
                 tmpB = (int) (tmpColor.getBlue() * 256);
-                //tmpA = (int) (tmpColor.getAlpha() * 256);
-                int elementCouleur = (tmpA << 24) | (tmpR << 16) | (tmpG << 8) | (tmpB);
+                tmpA = (int) (tmpColor.getAlpha() * 256);
+                int elementCouleur = (tmpA << 0) | (tmpR << 24) | (tmpG << 16) | (tmpB << 8);
                 bi2.setRGB(x, y, elementCouleur);
 
                 // Et on ecrit finalement la couleur de ce pixel dans le fichier

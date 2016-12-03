@@ -17,7 +17,7 @@ public class RtSphere extends RtObject {
 
         double a, b, c;
         double delta;
-        double t;
+        double t = -1;
         double t1, t2;
         Point3D intersect;
         Point3D tmpNormal;
@@ -64,11 +64,19 @@ public class RtSphere extends RtObject {
                 double max = Math.max(t1, t2);
                 double min = Math.min(t1, t2);
                 t = min;
-                if (min < 0) {
-                    t = max;
-                    if (max < 0)
-                        return false;
+                if (t2 < 0) {
+                    t = t1;
                 }
+                if (t1 < 0) {
+                    t = t2;
+
+                    if (t2 < 0) {
+                        return false;
+                    }
+                }
+
+            }
+        }
                 /*
                 if (max < 0)
                     return false; // Intersection derrière la camera
@@ -83,7 +91,7 @@ public class RtSphere extends RtObject {
                     else
                         return false; // Ne devrait pas se produire. Pour le compilateur
                         */
-            } else {
+        else {
                 t = (-b) / 2 / a;
             }
             intersect = ray.mVStart.plus(ray.mVDir.norme1().mult(t));
@@ -95,8 +103,7 @@ public class RtSphere extends RtObject {
             intersectInfo.mNode = getNode();
             intersectInfo.mMaterial = getMaterial();
             return true;
-        }
-        return false;
+
     }
 
 }
