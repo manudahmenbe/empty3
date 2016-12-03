@@ -37,7 +37,7 @@ public class RtPlane extends RtObject {
             intersectInfo.mIntersection = ray.mVStart.plus(ray.mVDir.mult(t));
 
             if (dv < 0)
-                intersectInfo.mNormal = mNormal;
+                intersectInfo.mNormal = mNormal.mult(-1);
 
             else
                 intersectInfo.mNormal = mNormal.mult(-1);

@@ -96,4 +96,6 @@ public class RtColor {
         RtColor c = normalizeColor(this);
         return new Color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
     }
+
+
 }

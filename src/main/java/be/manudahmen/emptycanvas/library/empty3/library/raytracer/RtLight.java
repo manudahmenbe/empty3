@@ -11,7 +11,7 @@ public abstract class RtLight extends RtNode {
     protected Point3D mPosition = new Point3D();
     protected RtColor mColor;
     protected int mLightType;
-
+    protected double mIntensite = 1;
 
     public RtLight(Point3D position, float diffuseColor, float specularColor, RtColor CColor, int type) {
         super(LIGHT, "LIGHT");
@@ -47,4 +47,8 @@ public abstract class RtLight extends RtNode {
 
     // La méthode virtuel pure d'éclairage.
     public abstract RtColor getLightAt(Point3D normal, Point3D intersectionPoint, RtMatiere material);
+
+    public void setIntensite(int intensite) {
+        this.mIntensite = intensite;
+    }
 }

@@ -27,8 +27,8 @@ public class RtCamera extends RtNode {
         double xIndent, yIndent;
         double posX = x;
         double posY = y;
-        xIndent = 2 * mViewplaneWidth / (float) xRes;
-        yIndent = 2 * mViewplaneHeight / (float) yRes;
+        xIndent = 2.0 * mViewplaneWidth / xRes;
+        yIndent = 2.0 * mViewplaneHeight / yRes;
 
         return mViewPlaneUpLeft.plus(mRightVec.mult(xIndent * posX).plus(mUpVec.mult(yIndent * posY))).moins(getPosition()).norme1();
     }

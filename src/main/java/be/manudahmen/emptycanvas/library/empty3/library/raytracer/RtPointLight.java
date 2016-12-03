@@ -24,17 +24,17 @@ public class RtPointLight extends RtLight {
 
         lightVector = intersectionPoint.moins(getPosition());
 
-        lightVector = lightVector.norme1();
+        Point3D lightVector2 = lightVector.norme1();
 
-        angle = (float) normal.prodScalaire(lightVector.mult(-1 / lightVector.norme()));
+        angle = (float) normal.prodScalaire(lightVector2.mult(1 / Math.sqrt(lightVector.norme())));
 
-        if (angle <= 0)
-            finalColor = new RtColor(0.0f, 0.0f, 0.0f);
+        //if (angle <= 0)
+        //  finalColor = new RtColor(0.0f, 0.0f, 0.0f);
 
-        else
-            finalColor = RtColor.mult(getColor(), (RtColor.mult(material.GetDiffuse(), angle)));
+        //else
+        finalColor = RtColor.mult(getColor(), (RtColor.mult(material.GetDiffuse(), Math.abs(angle))));
 
-        return finalColor;
+        return RtColor.mult(finalColor, (float) mIntensite);
     }
 
     @Override

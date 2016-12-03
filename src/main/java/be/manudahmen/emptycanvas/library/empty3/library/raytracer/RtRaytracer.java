@@ -15,9 +15,9 @@ public class RtRaytracer {
     /* [ Coeur du raytracer. L'algo du raytracing se trouve dans cette fonction, dont le r�le est de calculer ] */
 /* [ la couleur finale du pixel courant, en lui passant le rayon primaire �mis.                           ] */
     public static RtColor rayTrace(RtScene scene, RtRay ray, int depth) {
-        RtColor finalColor = new RtColor(0.0f, 0.0f, 0.0f);    // La couleur finale (noire au debut ... couleur de fond)
+        RtColor finalColor = new RtColor(0.0f, 0.0f, 0.0f, 0.0f);    // La couleur finale (noire au debut ... couleur de fond)
         double distance = 999999.9f;            // La distance parcourue par le rayon avant de toucher la node
-        double tmpDistance;                    // Une distance temporaire
+        double tmpDistance = distance + 1;                    // Une distance temporaire
         RtNode currentNode;
         // La node en cours de traitement
         RtNode closestNode = null;                // La node qui sera la plus proche
@@ -84,8 +84,8 @@ public class RtRaytracer {
                 }
                 if (!lightBlocked)
                     finalColor = RtColor.add(finalColor, currentLight.getLightAt(closestInterInfo.mNormal, closestInterInfo.mIntersection, closestInterInfo.mMaterial));
-                //else
-                //    finalColor = RtColor.add(finalColor, new RtColor(0f, 0f, 0f, 0f));
+                else
+                    finalColor = RtColor.add(finalColor, new RtColor(0f, 0f, 0f, 0f));
 
             }
             // Clean non permanent material
@@ -95,7 +95,7 @@ public class RtRaytracer {
         }
 
 
-        return finalColor = RtColor.normalizeColor(finalColor);
+        return finalColor; /*RtColor.normalizeColor()*/
     }
 
 
@@ -109,7 +109,7 @@ public class RtRaytracer {
         int tmpR;    // Les trois composantes de la couleur (Rouge Vert Bleu).
         int tmpG;
         int tmpB;
-        int tmpA = 255;
+        int tmpA = 0;
         ECBufferedImage bi2 = new ECBufferedImage(width, height,
                 ECBufferedImage.TYPE_INT_RGB);
 
@@ -154,7 +154,7 @@ public class RtRaytracer {
                 tmpG = (int) (tmpColor.getGreen() * 256);
                 tmpB = (int) (tmpColor.getBlue() * 256);
                 tmpA = (int) (tmpColor.getAlpha() * 256);
-                int elementCouleur = 0xFFFFFF00 & (tmpA << 0) | (tmpR << 24) | (tmpG << 16) | (tmpB << 8);
+                int elementCouleur = 0xFF000000 | ((tmpA << 24) | (tmpR << 16) | (tmpG << 8) | (tmpB << 0));
                 bi2.setRGB(x, y, elementCouleur);
 
                 // Et on ecrit finalement la couleur de ce pixel dans le fichier
