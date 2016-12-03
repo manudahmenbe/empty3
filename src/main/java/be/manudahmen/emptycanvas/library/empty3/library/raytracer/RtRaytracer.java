@@ -84,8 +84,8 @@ public class RtRaytracer {
                 }
                 if (!lightBlocked)
                     finalColor = RtColor.add(finalColor, currentLight.getLightAt(closestInterInfo.mNormal, closestInterInfo.mIntersection, closestInterInfo.mMaterial));
-                else
-                    finalColor = RtColor.add(finalColor, new RtColor(0f, 0f, 0f, 0f));
+                //else
+                //    finalColor = RtColor.add(finalColor, new RtColor(0f, 0f, 0f, 0f));
 
             }
             // Clean non permanent material
@@ -149,12 +149,12 @@ public class RtRaytracer {
                     System.out.printf("100 percent completed !\n");
 
                 // On decompose la couleur dans les trois couleurs de base (Rouge Vert Bleu).
-                RtColor fc = RtColor.normalizeColor(tmpColor);
+                //RtColor fc = RtColor.normalizeColor(tmpColor);
                 tmpR = (int) (tmpColor.getRed() * 256);
                 tmpG = (int) (tmpColor.getGreen() * 256);
                 tmpB = (int) (tmpColor.getBlue() * 256);
                 tmpA = (int) (tmpColor.getAlpha() * 256);
-                int elementCouleur = (tmpA << 0) | (tmpR << 24) | (tmpG << 16) | (tmpB << 8);
+                int elementCouleur = 0xFFFFFF00 & (tmpA << 0) | (tmpR << 24) | (tmpG << 16) | (tmpB << 8);
                 bi2.setRGB(x, y, elementCouleur);
 
                 // Et on ecrit finalement la couleur de ce pixel dans le fichier
