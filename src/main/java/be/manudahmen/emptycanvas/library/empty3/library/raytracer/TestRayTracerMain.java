@@ -37,7 +37,7 @@ public class TestRayTracerMain extends RtRaytracer {
         Point3D myLight1Pos = new Point3D(-10.0f, 5.0f, -5.0f);
         RtColor myLight1DiffuseColor = new RtColor(0.7f, 0.7f, 0.7f);
         RtColor myLight1SpecularColor = new RtColor(0.7f, 0.7f, 0.7f);
-        RtColor myLight1Color = new RtColor(0.0f, 0.0f, 1.0f);
+        RtColor myLight1Color = new RtColor(1.0f, 1.0f, 1.0f);
 
         // Deux materiaux
         RtMatiere myMaterial;
@@ -49,7 +49,7 @@ public class TestRayTracerMain extends RtRaytracer {
         myPlane = new RtPlane(myPlanePos, myPlaneNormal);
         myLight = new RtPointLight(myLightPos, myLightDiffuseColor, myLightSpecularColor, myLightColor);
         myLight1 = new RtPointLight(myLight1Pos, myLight1DiffuseColor, myLight1SpecularColor, myLight1Color);
-        myMaterial = new RtMatiere("myMaterial", new RtColor(0.0f, 1.0f, 0.0f), new RtColor(0.0f, 1.0f, 0.0f), new RtColor(0.0f, 1.0f, 0.0f), new RtColor(0.0f, 1.0f, 0.0f), 1.0f, 1.0f);
+        myMaterial = new RtMatiere("myMaterial", new RtColor(1.0f, 0.0f, 0.0f), new RtColor(1.0f, 0.0f, 0.0f), new RtColor(1.0f, 0.0f, 0.0f), new RtColor(1.0f, 0.0f, 0.0f), 1.0f, 1.0f);
         myMaterial1 = new RtMatiere("myMaterial1", new RtColor(0.0f, 1.0f, 1.0f), new RtColor(0.7f, 1.0f, 0.7f), new RtColor(0.0f, 1.0f, 1.0f), new RtColor(1.0f, 1.0f, 1.0f), 1.0f, 1.0f);
 
         // On assigne les materiaux a nos objets

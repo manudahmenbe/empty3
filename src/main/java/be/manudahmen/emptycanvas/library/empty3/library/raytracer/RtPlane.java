@@ -20,15 +20,15 @@ public class RtPlane extends RtObject {
 
     // [RtNode inherited]
     public boolean intersectsNode(RtRay ray, RtIntersectInfo intersectInfo) {
-        float t;
-        float dv;
+        double t;
+        double dv;
 
         dv = (float) mNormal.prodScalaire(ray.mVDir);
 
         if (dv == 0)
             return false;
 
-        t = (float) (-(mNormal.prodScalaire(ray.mVStart.moins(mPointPlane))) / dv);
+        t = mNormal.prodScalaire(mPointPlane.moins(ray.mVStart)) / dv;
 
         if (t < 0)
             return false;
