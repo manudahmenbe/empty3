@@ -4,7 +4,7 @@ import be.manudahmen.emptycanvas.library.empty3.library.object.Point3D;
 
 public class RtCamera extends RtNode {
     protected double mViewplaneDist;                                                // Distance du viexplane par rapport � la position de la cam.
-    protected float mViewplaneWidth, mViewplaneHeight;                            // Largeur/Hauteur du viewplane.
+    protected double mViewplaneWidth, mViewplaneHeight;                            // Largeur/Hauteur du viewplane.
     protected Point3D mCamPos, mVecDir, mUpVec, mRightVec, mViewPlaneUpLeft;
 
     public RtCamera(Point3D vCamPos, Point3D directionVec, Point3D vRightVec, Point3D vUpVector, int type)
@@ -23,7 +23,7 @@ public class RtCamera extends RtNode {
 
     }
 
-    Point3D calcDirVec(float x, float y, int xRes, int yRes) {
+    Point3D calcDirVec(double x, double y, int xRes, int yRes) {
         double xIndent, yIndent;
         double posX = x;
         double posY = y;

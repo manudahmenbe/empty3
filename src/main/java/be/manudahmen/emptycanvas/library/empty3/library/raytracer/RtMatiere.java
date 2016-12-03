@@ -14,12 +14,16 @@ public class RtMatiere {/*! \class CMaterial
     private RtColor mDiffuseColor;
     private RtColor mAmbientColor;
     private RtColor mSelfIllumColor;
-    private float mShininess;
-    private float mShinestrength;
-    private float mTransmittivity;
-    private float mReflectivity;
-    private boolean mPermanent;
+    private RtColor reflectionColor;
+    private RtColor refractionColor;
 
+    private double mShininess;
+    private double mShinestrength;
+    private double mTransmittivity;
+    private double mReflectivity;
+    private boolean mPermanent;
+    private double reflectionAmount;
+    private double refractionAmount;
 
     // constructor and destructor
     public RtMatiere() {
@@ -79,19 +83,19 @@ public class RtMatiere {/*! \class CMaterial
         return mSelfIllumColor;
     }
 
-    public float GetShininess() {
+    public double GetShininess() {
         return mShininess;
     }
 
-    public float GetShinestStrength() {
+    public double GetShinestStrength() {
         return mShinestrength;
     }
 
-    public float GetTransmittivity() {
+    public double GetTransmittivity() {
         return mTransmittivity;
     }
 
-    public float GetReflectivity() {
+    public double GetReflectivity() {
         return mReflectivity;
     }
 
@@ -139,6 +143,7 @@ public class RtMatiere {/*! \class CMaterial
     public void SetPermanency(boolean permanent) {
         mPermanent = permanent;
     }
+
 /*
         // operators
          public static RtMatiere mult(RtMatiere mat, float multiple)
@@ -189,4 +194,36 @@ public class RtMatiere {/*! \class CMaterial
     };
 
 */
+
+    public RtColor getRefractionColor() {
+        return refractionColor;
+    }
+
+    public void setRefractionColor(RtColor refractionColor) {
+        this.refractionColor = refractionColor;
+    }
+
+    public RtColor getReflectionColor() {
+        return reflectionColor;
+    }
+
+    public void setReflectionColor(RtColor reflectionColor) {
+        this.reflectionColor = reflectionColor;
+    }
+
+    public double getReflectionAmount() {
+        return reflectionAmount;
+    }
+
+    public void setReflectionAmount(double reflectionAmount) {
+        this.reflectionAmount = reflectionAmount;
+    }
+
+    public double getRefractionAmount() {
+        return refractionAmount;
+    }
+
+    public void setRefractionAmount(double refractionAmount) {
+        this.refractionAmount = refractionAmount;
+    }
 }

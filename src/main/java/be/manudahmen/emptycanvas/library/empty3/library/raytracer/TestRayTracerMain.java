@@ -18,7 +18,7 @@ public class TestRayTracerMain extends RtRaytracer {
         // Une sphere
         RtSphere mySphere = null;
         Point3D mySpherePos = new Point3D(0.0f, 0.0f, 9.0f);        // Position de la sphere
-        float mySphereRadius = 4f;                // Rayon de la sphere
+        double mySphereRadius = 4f;                // Rayon de la sphere
 
         // Un plan
         RtPlane myPlane = null;

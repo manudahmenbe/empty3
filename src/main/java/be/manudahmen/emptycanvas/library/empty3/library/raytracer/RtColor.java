@@ -3,7 +3,7 @@ package be.manudahmen.emptycanvas.library.empty3.library.raytracer;
 import java.awt.*;
 
 public class RtColor {
-    public float red, green, blue, alpha;    // Les trois composantes de la couleur
+    public double red, green, blue, alpha;    // Les trois composantes de la couleur
     RtColor c;
 
     // constructeurs et destructeur
@@ -14,7 +14,7 @@ public class RtColor {
         alpha = 0;
     }
 
-    public RtColor(float r, float g, float b) {
+    public RtColor(double r, double g, double b) {
         red = r;
         green = g;
         blue = b;
@@ -22,7 +22,7 @@ public class RtColor {
 
     }
 
-    public RtColor(float r, float g, float b, float a) {
+    public RtColor(double r, double g, double b, double a) {
         red = r;
         green = g;
         blue = b;
@@ -35,7 +35,7 @@ public class RtColor {
         return new RtColor(c1.getRed() * c2.getRed(), c1.getGreen() * c2.getGreen(), c1.getBlue() * c2.getBlue());
     }
 
-    public static RtColor mult(RtColor c1, float multiple) {
+    public static RtColor mult(RtColor c1, double multiple) {
         return new RtColor(c1.getRed() * multiple, c1.getGreen() * multiple, c1.getBlue() * multiple);
     }
 
@@ -56,7 +56,7 @@ public class RtColor {
 
 
     public static RtColor normalizeColor(RtColor finalColor) {
-        float max = Math.max(finalColor.getRed(), Math.max(finalColor.getGreen(), Math.max(finalColor.getBlue(), finalColor.getAlpha())));
+        double max = Math.max(finalColor.getRed(), Math.max(finalColor.getGreen(), Math.max(finalColor.getBlue(), finalColor.getAlpha())));
         if (max > 1.0f || max < 0.0f) {
             finalColor = RtColor.mult(finalColor, 1 / max);
         }/*
@@ -76,25 +76,25 @@ public class RtColor {
         return finalColor;
     }
 
-    public float getRed() {
+    public double getRed() {
         return red;
     }
 
-    public float getGreen() {
+    public double getGreen() {
         return green;
     }
 
-    public float getBlue() {
+    public double getBlue() {
         return blue;
     }
 
-    public float getAlpha() {
+    public double getAlpha() {
         return alpha;
     }
 
     public Color toColor() {
         RtColor c = normalizeColor(this);
-        return new Color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
+        return new Color((float) c.getRed(), (float) c.getGreen(), (float) c.getBlue(), (float) c.getAlpha());
     }
 
 
