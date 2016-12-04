@@ -12,6 +12,8 @@
 
 package be.manudahmen.emptycanvas.library
 
+import be.manudahmen.emptycanvas.library.empty3.library.object.Camera
+import be.manudahmen.emptycanvas.library.empty3.library.object.Point3D
 import be.manudahmen.emptycanvas.library.empty3.library.object.ZBufferFactory
 
 class ZBufferImplTest extends groovy.util.GroovyTestCase {
@@ -20,16 +22,17 @@ class ZBufferImplTest extends groovy.util.GroovyTestCase {
         def Number laPres = 640
         def Number haPres = 480
 
-        def z = ZBufferFactory.instance(laPres, haPres);
+        def z = ZBufferFactory.instance(laPres, haPres)
 
         def la = z.largeur();
         def ha = z.hauteur();
 
         assertTrue(la == 640)
         assertTrue(ha == 480)
-    }
 
-    def void testOtherGettersAndSetters() {
-
+        def Camera camera
+        camera = new Camera(new Point3D(0, 0, 0), new Point3D(0, 0, 1))
+        camera.calculerMatrice()
+        assertNotNull(camera)
     }
 }
