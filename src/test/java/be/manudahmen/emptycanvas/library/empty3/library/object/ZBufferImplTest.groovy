@@ -10,14 +10,22 @@
  * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
 
-package be.manudahmen.emptycanvas.library
+package be.manudahmen.emptycanvas.library.empty3.library.object
 
-import be.manudahmen.emptycanvas.library.empty3.library.object.*
+import junit.framework.TestCase
+import org.junit.Test
 
 import java.awt.*
 
-class ZBufferImplTest extends groovy.util.GroovyTestCase {
-    def void testImageSizeGSZBufferBaseDeliveredByZBufferFactory() {
+/***
+ *
+ */
+public class ZBufferImplTestSuite extends groovy.util.GroovyTestSuite {
+    /***
+     *
+     * @return
+     */
+    public static junit.framework.Test testImageSizeGSZBufferBaseDeliveredByZBufferFactory() {
         def Number laPres = 640
         def Number haPres = 480
 
@@ -26,8 +34,8 @@ class ZBufferImplTest extends groovy.util.GroovyTestCase {
         def la = z.largeur();
         def ha = z.hauteur();
 
-        assertTrue(la == 640)
-        assertTrue(ha == 480)
+        TestCase.assertTrue((boolean) (la == 640))
+        TestCase.assertTrue((boolean) (ha == 480))
 
         def resx = 1024
         def resy = 768
@@ -40,21 +48,14 @@ class ZBufferImplTest extends groovy.util.GroovyTestCase {
 
         z.camera(camera)
 
-        assertNotNull(camera)
+        TestCase.assertNotNull(camera)
     }
 
-    @Override
-    void setUp() {
-        super.setUp()
-
-    }
-
-    @Override
-    void tearDown() {
-        super.tearDown();
-    }
-
-    void testSinglePointAB() {
+/****
+ *
+ * @return
+ */
+    public static junit.framework.Test testSinglePointAB() {
         ZBuffer z = ZBufferFactory.instance(640, 480)
 
 
@@ -79,11 +80,14 @@ class ZBufferImplTest extends groovy.util.GroovyTestCase {
 
         z.plotPoint(new Point3D(0, 0, 0), Color.RED)
 
-        assertEquals(new Color(eCBufferedImage.getRGB(320, 240)), Color.RED)
+        TestCase.assertEquals(new Color(eCBufferedImage.getRGB(320, 240)), Color.RED)
 
     }
-
-    void testCameraDefault() {
+/****
+ *
+ * @return
+ */
+    public static junit.framework.Test testCameraDefault() {
         ZBuffer z = ZBufferFactory.instance(640, 480)
 
         //Camera c = new Camera(new Point3D(0,0,0), new Point3D(0,0,1))
@@ -107,8 +111,19 @@ class ZBufferImplTest extends groovy.util.GroovyTestCase {
 
         z.plotPoint(new Point3D(0, 0, 0), Color.RED)
 
-        assertEquals(new Color(eCBufferedImage.getRGB(320, 240)), Color.RED)
+        TestCase.assertEquals(new Color(eCBufferedImage.getRGB(320, 240)), Color.RED)
 
+    }
+/***
+ *
+ * @return
+ * @throws Exception
+ */
+    @Test
+    public static junit.framework.TestSuite suite() throws Exception {
+        testImageSizeGSZBufferBaseDeliveredByZBufferFactory()
+        testSinglePointAB()
+        testCameraDefault()
     }
 
 }
