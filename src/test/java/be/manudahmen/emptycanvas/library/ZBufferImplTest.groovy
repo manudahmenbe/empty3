@@ -15,7 +15,7 @@ package be.manudahmen.emptycanvas.library
 import be.manudahmen.emptycanvas.library.empty3.library.object.ZBufferFactory
 
 class ZBufferImplTest extends groovy.util.GroovyTestCase {
-    def void testAsssertionZBufferBase() {
+    def void testImageSizeGSZBufferBase() {
         def Number
         def Number laPres = 640
         def Number haPres = 480
@@ -27,5 +27,9 @@ class ZBufferImplTest extends groovy.util.GroovyTestCase {
 
         assertTrue(la == 640)
         assertTrue(ha == 480)
+    }
+
+    def void testOtherGettersAndSetters() {
+
     }
 }
