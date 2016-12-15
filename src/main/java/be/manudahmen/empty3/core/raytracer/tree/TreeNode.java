@@ -1,14 +1,22 @@
 package be.manudahmen.empty3.core.raytracer.tree;
 
+import java.util.ArrayList;
+
 /**
  * Created by mary on 15-12-16.
  */
 public class TreeNode<E extends TreeNodeType> {
     private E type;
     private TreeNodeValue value;
-    private TreeNode<E>[] children;
+    private ArrayList<TreeNode<E>> children;
     private TreeNode<E> parent;
     private String expressionString;
+
+    public TreeNode(TreeNode<E> parent, String expressionString) {
+        this.parent = parent;
+        this.expressionString = expressionString;
+    }
+
     public void setValue(TreeNodeValue value) {
         this.value = value;
     }
@@ -25,11 +33,11 @@ public class TreeNode<E extends TreeNodeType> {
         this.type = type;
     }
 
-    public TreeNode<E>[] getChildren() {
+    public ArrayList<TreeNode<E>> getChildren() {
         return children;
     }
 
-    public void setChildren(TreeNode<E>[] children) {
+    public void setChildren(ArrayList<TreeNode<E>> children) {
         this.children = children;
     }
 
