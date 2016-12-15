@@ -7,10 +7,10 @@ import java.util.Vector;
 /**
  * Created by mary on 15-12-16.
  */
-public class VectorTreeNode extends TreeNodeValue {
+public class VectorTreeNodeType extends TreeNodeValue {
     private Point3D p;
 
-    public VectorTreeNode(TreeNode parent, String expressionString) {
+    public VectorTreeNodeType(TreeNode parent, String expressionString) {
         super(parent, expressionString);
     }
 
