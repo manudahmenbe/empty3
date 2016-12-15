@@ -40,7 +40,21 @@ public class AlgebraicTree extends Tree {
     }
 
     private boolean addVariable(TreeNode src, String subformula) {
+        if(Character.isLetter(subformula.charAt(0) ))
+        {
+            int i=0;
+            while (i<subformula.length() && Character.isLetterOrDigit(i))
+            {
+                i++;
+            }
+            if(i==subformula.length())
+            {
+                src.getChildren().add(new TreeNodeVariable(src, subformula));
 
+                return true;
+            }
+
+        }
         return false;
     }
 
