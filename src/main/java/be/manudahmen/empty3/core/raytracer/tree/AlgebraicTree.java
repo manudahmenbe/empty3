@@ -18,7 +18,7 @@ public class AlgebraicTree extends Tree {
 
     public boolean add(TreeNode src, String subformula) throws AlgebraicFormulaSyntaxException {
 
-        if (addTerms(src, subformula) || addFactors(src, subformula) || addExponent(src, subformula) || addFunction(src, subformula)) {
+        if (addSingleSign(src, subformula) ||addFunction(src, subformula) || addTerms(src, subformula) || addFactors(src, subformula) || addExponent(src, subformula)) {
             Iterator<TreeNode> it = src.getChildren().iterator();
             while(it.hasNext()) {
                 TreeNode children = it.next();
@@ -31,6 +31,10 @@ public class AlgebraicTree extends Tree {
         else
             throw new AlgebraicFormulaSyntaxException();
         return true;
+    }
+
+    private boolean addSingleSign(TreeNode src, String subformula) {
+        return false;
     }
 
 
