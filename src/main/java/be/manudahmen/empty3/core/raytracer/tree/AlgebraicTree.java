@@ -59,6 +59,22 @@ public class AlgebraicTree extends Tree {
     }
 
     private boolean addConstant(TreeNode src, String subformula) {
+        if(Character.isDigit(subformula.charAt(0) ) ||subformula.charAt(0)=='-' )
+        {
+            int i=0;
+            while (i<subformula.length() && (Character.isDigit(i) || Character.toUpperCase(subformula.charAt(i))=='E'
+             ||subformula.charAt(i)=='-'))
+            {
+                i++;
+            }
+            if(i==subformula.length())
+            {
+                src.getChildren().add(new TreeNodeVariable(src, subformula));
+
+                return true;
+            }
+
+        }
         return false;
     }
 
