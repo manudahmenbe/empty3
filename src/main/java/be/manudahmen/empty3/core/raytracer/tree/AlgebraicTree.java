@@ -13,6 +13,19 @@ public class AlgebraicTree extends  Tree{
     {
 
     }
+
+    public TreeNode add(TreeNode src, String subformula)
+    {
+
+        return src;
+    }
+
+    public TreeNode<TreeNode[]> split(String subformula)
+    {
+
+        return null;
+    }
+
     public void addFactors(TreeNode t, String [] values)
     {
 
