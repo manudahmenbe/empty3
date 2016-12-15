@@ -3,5 +3,12 @@ package be.manudahmen.empty3.core.raytracer.tree;
 /**
  * Created by mary on 15-12-16.
  */
-public class TreeNodeValue {
+public abstract  class TreeNodeValue {
+
+    public Object getValue() {
+        return null;
+    }
+
+    public abstract Object eval();
+
 }

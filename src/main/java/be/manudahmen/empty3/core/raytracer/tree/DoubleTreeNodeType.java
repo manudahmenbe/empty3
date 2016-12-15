@@ -5,4 +5,15 @@ package be.manudahmen.empty3.core.raytracer.tree;
  */
 public class DoubleTreeNodeType extends TreeNodeType
 {
+    private double aValue;
+
+    public DoubleTreeNodeType(Double v)
+    {
+        aValue = v;
+    }
+
+    @Override
+    public Object eval() {
+        return aValue;
+    }
 }

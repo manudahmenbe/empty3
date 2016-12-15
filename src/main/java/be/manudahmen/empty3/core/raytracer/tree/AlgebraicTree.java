@@ -17,34 +17,39 @@ public class AlgebraicTree extends  Tree{
     public TreeNode add(TreeNode src, String subformula)
     {
 
+        if(addTerms(src, subformula) || addFactors(src, subformula)||addExponent(src,subformula)||addFunction(src, subformula))
+        {
+            for(TreeNode children : src.getChildren())
+            {
+                add(children, children.getExpressionString());
+            }
+        }
         return src;
     }
 
-    public TreeNode<TreeNode[]> split(String subformula)
-    {
 
-        return null;
+    public boolean addFactors(TreeNode t, String values)
+    {
+        return false;
     }
-
-    public void addFactors(TreeNode t, String [] values)
+    public boolean addTerms(TreeNode t, String values)
     {
-
-    }
-    public void addTerms(TreeNode t, String [] values)
-    {
-
+        return false;
     }
 
     /***
      * signMMantisseSignEExponent
      * @param t
+     * @param values
      */
-    public void addExponent(TreeNode t, String [] values)
+    public boolean addExponent(TreeNode t, String values)
     {
-
+        return false;
     }
-    public void addFunction(Method m, String values)
-    {}
+    public boolean addFunction(TreeNode t,  String values)
+    {
+        return false;
+    }
     private void grammar()
     {
         t = new Tree();

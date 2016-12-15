@@ -3,7 +3,7 @@ package be.manudahmen.empty3.core.raytracer.tree;
 /**
  * Created by mary on 15-12-16.
  */
-public class TreeNode<E> {
+public class TreeNode<E extends TreeNodeType> {
     private E type;
     private TreeNodeValue value;
     private TreeNode<E>[] children;
