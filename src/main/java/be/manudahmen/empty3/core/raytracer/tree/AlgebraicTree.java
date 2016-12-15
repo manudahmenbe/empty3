@@ -99,11 +99,72 @@ public class AlgebraicTree extends Tree {
 
         }
 
-        return false;
+        return true;
     }
 
-    public boolean addTerms(TreeNode t, String values) {
-        return false;
+    public boolean addTerms(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
+
+        int i=0;
+        boolean isNewFactor= false;
+        int count = 0;
+        int newFactorPos = 0;
+        int oldFactorPos = 0;
+        char newFactor = 0;
+        while(i<values.length())
+        {
+            if(values.charAt(i)=='(')
+            {
+                count++;
+            }
+            else if(values.charAt(i)==')')
+            {
+                count--;
+            }
+            else if(values.charAt(i)=='+' && (i<values.length()-1 || values.charAt(i+1)!='+') && count==0)
+            {
+                newFactor='+';
+                newFactorPos = i;
+                isNewFactor = true;
+            }
+            else if(values.charAt(i)=='-' && count==0)
+            {
+                newFactor='-';
+                isNewFactor = true;
+                newFactorPos = i;
+            }
+
+
+            if(isNewFactor)
+            {
+                isNewFactor = false;
+                char op = newFactor;
+
+                String  subsubstring = values.substring(oldFactorPos, newFactorPos-1);
+
+                TreeNode t2 = new TreeNode(t, subsubstring);
+
+
+                t.getChildren().add(t2);
+
+                if(!add(t2, subsubstring))
+                {
+                    throw new AlgebraicFormulaSyntaxException();
+                }
+
+                isNewFactor= false;
+                count = 0;
+                newFactorPos = i+2;
+                oldFactorPos = i+2;
+                newFactor = 0;
+
+            }
+
+
+
+
+        }
+
+        return true;
     }
 
     /***
@@ -111,11 +172,110 @@ public class AlgebraicTree extends Tree {
      * @param t
      * @param values
      */
-    public boolean addExponent(TreeNode t, String values) {
-        return false;
+    public boolean addExponent(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
+        int i=0;
+        boolean isNewFactor= false;
+        int count = 0;
+        int newFactorPos = 0;
+        int oldFactorPos = 0;
+        char newFactor = 0;
+        while(i<values.length())
+        {
+            if(values.charAt(i)=='(')
+            {
+                count++;
+            }
+            else if(values.charAt(i)==')')
+            {
+                count--;
+            }
+            else if(values.charAt(i)=='*' && (i<values.length()-1 && values.charAt(i+1)!='*') && count==0)
+            {
+                newFactor='^';
+                newFactorPos = i;
+                isNewFactor = true;
+            }
+
+
+            if(isNewFactor)
+            {
+                isNewFactor = false;
+                char op = newFactor;
+
+                String  subsubstring = values.substring(oldFactorPos, newFactorPos-1);
+
+                TreeNode t2 = new TreeNode(t, subsubstring);
+
+
+                t.getChildren().add(t2);
+
+                if(!add(t2, subsubstring))
+                {
+                    throw new AlgebraicFormulaSyntaxException();
+                }
+
+                isNewFactor= false;
+                count = 0;
+                newFactorPos = i+2;
+                oldFactorPos = i+2;
+                newFactor = 0;
+
+            }
+
+
+
+
+        }
+
+        return true;
     }
 
-    public boolean addFunction(TreeNode t, String values) {
+    public boolean addFunction(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
+        int i=0;
+        boolean isNewFactor= false;
+        int count = 0;
+        int newFactorPos = 0;
+        int oldFactorPos = 0;
+        char newFactor = 0;
+        int countLetters = 0;
+        while(i<values.length())
+        {
+            if(Character.isLetterOrDigit(values.charAt(i)) && count ==0) {
+                countLetters ++;
+            }
+            else
+                if(values.charAt(i)=='(')
+                {
+                    count++;
+                }
+                else if(values.charAt(i)==')')
+                {
+                    count--;
+                }
+
+
+            if(i==values.length()-1 && count==0 && values.charAt(i)==')')
+            {
+                String  subsubstring = values.substring(oldFactorPos, newFactorPos-1);
+
+                TreeNode t2 = new TreeNode(t, subsubstring);
+
+
+                t.getChildren().add(t2);
+
+                if(!add(t2, subsubstring))
+                {
+                    throw new AlgebraicFormulaSyntaxException();
+                }
+
+                return true;
+            }
+
+
+
+
+        }
+
         return false;
     }
 
