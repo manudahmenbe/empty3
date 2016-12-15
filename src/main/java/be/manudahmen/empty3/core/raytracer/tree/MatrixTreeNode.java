@@ -8,6 +8,11 @@ import be.manudahmen.empty3.Matrix33;
 public class MatrixTreeNode extends TreeNodeValue
 {
     private Matrix33 m;
+
+    public MatrixTreeNode(TreeNode parent, String expressionString) {
+        super(parent, expressionString);
+    }
+
     @Override
     public Object eval() {
         return m;

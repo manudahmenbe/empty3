@@ -11,9 +11,10 @@ import java.util.Map;
 public class AlgebraicTree extends Tree {
 
     private Tree t;
-
-    public AlgebraicTree(String formula, Map.Entry<TreeNodeParameter, Number> parameters) {
-
+    private TreeNode root ;
+    public AlgebraicTree(String formula, Map.Entry<TreeNodeParameter, Number> parameters) throws AlgebraicFormulaSyntaxException {
+        root = new TreeNode(formula);
+        add(root, formula);
     }
 
     public boolean add(TreeNode src, String subformula) throws AlgebraicFormulaSyntaxException {
@@ -334,5 +335,10 @@ public class AlgebraicTree extends Tree {
     private void grammar() {
         t = new Tree();
 
+    }
+
+
+    public double eval() {
+        return -1;
     }
 }

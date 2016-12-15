@@ -9,6 +9,11 @@ import java.util.Vector;
  */
 public class VectorTreeNode extends TreeNodeValue {
     private Point3D p;
+
+    public VectorTreeNode(TreeNode parent, String expressionString) {
+        super(parent, expressionString);
+    }
+
     @Override
     public Object eval() {
         return p;

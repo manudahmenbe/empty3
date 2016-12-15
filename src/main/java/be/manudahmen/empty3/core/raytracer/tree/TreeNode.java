@@ -11,7 +11,11 @@ public class TreeNode<E extends TreeNodeType> {
     private ArrayList<TreeNode<E>> children;
     private TreeNode<E> parent;
     private String expressionString;
-
+    public TreeNode(String expStr)
+    {
+        this.parent = null;
+        this.expressionString = expStr;
+    }
     public TreeNode(TreeNode<E> parent, String expressionString) {
         this.parent = parent;
         this.expressionString = expressionString;
