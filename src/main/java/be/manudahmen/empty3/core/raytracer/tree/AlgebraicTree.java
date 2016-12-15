@@ -18,7 +18,13 @@ public class AlgebraicTree extends Tree {
 
     public boolean add(TreeNode src, String subformula) throws AlgebraicFormulaSyntaxException {
 
-        if (addSingleSign(src, subformula) ||addFunction(src, subformula) || addTerms(src, subformula) || addFactors(src, subformula) || addExponent(src, subformula)) {
+        if (addSingleSign(src, subformula) ||
+                addFunction(src, subformula) ||
+                addTerms(src, subformula) ||
+                addFactors(src, subformula) ||
+                addExponent(src, subformula) ||
+            addVariable(src, subformula) ||
+        addConstant(src, subformula)){
             Iterator<TreeNode> it = src.getChildren().iterator();
             while(it.hasNext()) {
                 TreeNode children = it.next();
@@ -33,7 +39,21 @@ public class AlgebraicTree extends Tree {
         return true;
     }
 
+    private boolean addVariable(TreeNode src, String subformula) {
+
+        return false;
+    }
+
+    private boolean addConstant(TreeNode src, String subformula) {
+        return false;
+    }
+
     private boolean addSingleSign(TreeNode src, String subformula) {
+        if(subformula.charAt(0)=='-')
+        {
+            src.getChildren().add(new TreeNode(src, subformula.substring(1)));
+            return true;
+        }
         return false;
     }
 
@@ -203,11 +223,13 @@ public class AlgebraicTree extends Tree {
                 char op = newFactor;
 
                 String  subsubstring = values.substring(oldFactorPos, newFactorPos-1);
-
-                TreeNode t2 = new TreeNode(t, subsubstring);
+                String substring2 =  values.substring(newFactorPos+1);
+                TreeNode t2 = new TreeNodeOperator(t, subsubstring, substring2, "exp");
 
 
                 t.getChildren().add(t2);
+
+                add(t, substring2);
 
                 if(!add(t2, subsubstring))
                 {

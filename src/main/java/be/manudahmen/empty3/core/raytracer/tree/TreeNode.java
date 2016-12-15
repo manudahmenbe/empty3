@@ -25,6 +25,8 @@ public class TreeNode<E extends TreeNodeType> {
         return value;
     }
 
+    public Object  eval(){return false;}
+
     public E getType() {
         return type;
     }

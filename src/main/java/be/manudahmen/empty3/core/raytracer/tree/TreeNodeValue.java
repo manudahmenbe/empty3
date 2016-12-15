@@ -3,7 +3,12 @@ package be.manudahmen.empty3.core.raytracer.tree;
 /**
  * Created by mary on 15-12-16.
  */
-public abstract  class TreeNodeValue {
+public abstract  class TreeNodeValue  extends TreeNode
+{
+
+    public TreeNodeValue(TreeNode parent, String expressionString) {
+        super(parent, expressionString);
+    }
 
     public Object getValue() {
         return null;
