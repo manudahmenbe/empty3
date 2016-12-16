@@ -6,7 +6,7 @@ import be.manudahmen.empty3.ZBuffer;
 import be.manudahmen.empty3.core.raytracer.RtRaytracer;
 
 /**
- * Created by mary on 15-12-16.
+ * Created by Manuel Dahmen on 15-12-16.
  */
 public abstract class GeometricSolution {
     private ECBufferedImage graph;

@@ -5,7 +5,7 @@ import be.manudahmen.empty3.Point3D;
 import java.util.Vector;
 
 /**
- * Created by mary on 15-12-16.
+ * Created by Manuel Dahmen on 15-12-16.
  */
 public class VectorTreeNodeType extends TreeNodeValue {
     private Point3D p;

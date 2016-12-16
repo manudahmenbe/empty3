@@ -13,7 +13,7 @@
 package be.manudahmen.empty3.core.integration;
 
 /**
- * Created by mary on 19-11-16.
+ * Created by Manuel Dahmen on 19-11-16.
  */
 public class AndroidIntegration {
 }
