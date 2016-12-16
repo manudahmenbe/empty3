@@ -1,7 +1,17 @@
+/*
+ * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
+ * Les parties tierces peuvent être soumises à d'autres licenses.
+ * Montemedia : Creative Commons
+ * ECT : Tests à valeur artistique ou technique.
+ * La partie RayTacer a été honteusement copiée sur le Net. Puis traduite en Java et améliorée.
+ * Java est une marque de la société Oracle.
+ *
+ * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
+ */
+
 package be.manudahmen.empty3.core.raytracer.tree;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -18,6 +28,9 @@ public class AlgebraicTree extends Tree {
     }
 
     public boolean add(TreeNode src, String subformula) throws AlgebraicFormulaSyntaxException {
+
+        if (!(src != null && subformula != null && subformula.length() > 0))
+            return true; //throw new AlgebraicFormulaSyntaxException("Chaine vide");
 
         if (addSingleSign(src, subformula) ||
                 addFunction(src, subformula) ||
@@ -50,13 +63,13 @@ public class AlgebraicTree extends Tree {
             }
             if(i==subformula.length())
             {
-                src.getChildren().add(new TreeNodeVariable(src, subformula));
+                src.getChildren().add(new TreeNode(src, new Object[]{subformula}, new DoubleTreeNodeType()));
 
                 return true;
             }
 
         }
-        return false;
+        return src.getChildren().size() > 0;
     }
 
     private boolean addConstant(TreeNode src, String subformula) {
@@ -70,19 +83,19 @@ public class AlgebraicTree extends Tree {
             }
             if(i==subformula.length())
             {
-                src.getChildren().add(new TreeNodeVariable(src, subformula));
+                src.getChildren().add(new TreeNode(src, new Object[]{subformula}, new DoubleTreeNodeType()));
 
                 return true;
             }
 
         }
-        return false;
+        return src.getChildren().size() > 0;
     }
 
     private boolean addSingleSign(TreeNode src, String subformula) {
         if(subformula.charAt(0)=='-')
         {
-            src.getChildren().add(new TreeNode(src, subformula.substring(1)));
+            src.getChildren().add(new TreeNode(src, new Object[]{subformula.substring(1)}, new SignTreeNodeType()));
             return true;
         }
         return false;
@@ -127,7 +140,7 @@ public class AlgebraicTree extends Tree {
 
                 String  subsubstring = values.substring(oldFactorPos, newFactorPos-1);
 
-                TreeNode t2 = new TreeNode(t, subsubstring);
+                TreeNode t2 = new TreeNode(t, new Object[]{subsubstring}, new FactorTreeNodeType());
 
 
                 t.getChildren().add(t2);
@@ -144,13 +157,12 @@ public class AlgebraicTree extends Tree {
                 newFactor = 0;
 
             }
-            
 
 
+            i++;
 
         }
-
-        return true;
+        return t.getChildren().size() > 0;
     }
 
     public boolean addTerms(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
@@ -192,7 +204,7 @@ public class AlgebraicTree extends Tree {
 
                 String  subsubstring = values.substring(oldFactorPos, newFactorPos-1);
 
-                TreeNode t2 = new TreeNode(t, subsubstring);
+                TreeNode t2 = new TreeNode(t, new Object[]{subsubstring}, new TermTreeNodeType());
 
 
                 t.getChildren().add(t2);
@@ -210,12 +222,12 @@ public class AlgebraicTree extends Tree {
 
             }
 
-
+            i++;
 
 
         }
 
-        return true;
+        return t.getChildren().size() > 0;
     }
 
     /***
@@ -255,7 +267,7 @@ public class AlgebraicTree extends Tree {
 
                 String  subsubstring = values.substring(oldFactorPos, newFactorPos-1);
                 String substring2 =  values.substring(newFactorPos+1);
-                TreeNode t2 = new TreeNodeOperator(t, subsubstring, substring2, "exp");
+                TreeNode t2 = new TreeNode(t, new Object[]{subsubstring, substring2}, new ExponentTreeNodeType());
 
 
                 t.getChildren().add(t2);
@@ -275,12 +287,12 @@ public class AlgebraicTree extends Tree {
 
             }
 
-
+            i++;
 
 
         }
 
-        return true;
+        return t.getChildren().size() > 0;
     }
 
     public boolean addFunction(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
@@ -311,7 +323,7 @@ public class AlgebraicTree extends Tree {
             {
                 String  subsubstring = values.substring(oldFactorPos, newFactorPos-1);
 
-                TreeNode t2 = new TreeNode(t, subsubstring);
+                TreeNode t2 = new TreeNode(t, new Object[]{subsubstring}, new FunctionTreeNodeType());
 
 
                 t.getChildren().add(t2);
@@ -325,11 +337,11 @@ public class AlgebraicTree extends Tree {
             }
 
 
-
+            i++;
 
         }
 
-        return false;
+        return t.getChildren().size() > 0;
     }
 
     private void grammar() {
@@ -338,7 +350,7 @@ public class AlgebraicTree extends Tree {
     }
 
 
-    public double eval() {
-        return -1;
+    public Object eval() {
+        return root.eval();
     }
 }

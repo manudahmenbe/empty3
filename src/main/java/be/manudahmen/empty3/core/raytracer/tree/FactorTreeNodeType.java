@@ -13,20 +13,21 @@
 package be.manudahmen.empty3.core.raytracer.tree;
 
 /**
- * Created by Manuel Dahmen on 15-12-16.
+ * Created by manuel on 16-12-16.
  */
-public abstract class TreeNodeType {
-    private TreeNodeType d;
-    private TreeNodeType tnt;
+public class FactorTreeNodeType extends TreeNodeType {
+    private double exp1, exp2;
 
-    public TreeNodeType() {
+
+    @Override
+    public Object eval() {
+        return exp1 * exp2;
     }
 
-    public abstract Object eval();
-
+    @Override
     protected void instantiate(Object[] objects) {
-        this.tnt = this;
-
+        this.exp1 = (Double) objects[0];
+        this.exp2 = (Double) objects[1];
 
     }
 }

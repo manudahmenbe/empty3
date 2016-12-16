@@ -27,7 +27,8 @@ class ZBufferImplTestSuite extends TestSuite {
      *
      * @return
      */
-    static junit.framework.Test testImageSizeGSZBufferBaseDeliveredByZBufferFactory() {
+    @Test
+    public void testImageSizeGSZBufferBaseDeliveredByZBufferFactory() {
         Number laPres = 640
         Number haPres = 480
 
@@ -57,7 +58,8 @@ class ZBufferImplTestSuite extends TestSuite {
  *
  * @return
  */
-    static junit.framework.Test testSinglePointAB() {
+    @Test
+    public void testSinglePointAB() {
         ZBuffer z = ZBufferFactory.instance(640, 480)
 
 
@@ -89,7 +91,8 @@ class ZBufferImplTestSuite extends TestSuite {
  *
  * @return
  */
-    static junit.framework.Test testCameraDefault() {
+    @Test
+    public void testCameraDefault() {
         ZBuffer z = ZBufferFactory.instance(640, 480)
 
         //Camera c = new Camera(new Point3D(0,0,0), new Point3D(0,0,1))
@@ -121,11 +124,14 @@ class ZBufferImplTestSuite extends TestSuite {
  * @return
  * @throws Exception
  */
+    /*
     @Test
-    static junit.framework.TestSuite suite() throws Exception {
-        testImageSizeGSZBufferBaseDeliveredByZBufferFactory()
-        testSinglePointAB()
-        testCameraDefault()
-    }
+    public static void suite() throws Exception {
 
+        def suite = new ZBufferImplTestSuite();
+suite.testImageSizeGSZBufferBaseDeliveredByZBufferFactory()
+        suite.        testSinglePointAB()
+        suite.testCameraDefault()
+    }
+*/
 }
