@@ -37,7 +37,7 @@ public abstract class GeometricSolution {
     class ZBufferGeometricSolution extends GeometricSolution
     {
         private ZBuffer zbuffer;
-        public ZBufferGeometricSolution(ZBuffer z, ECBufferedImage graph, Scene scene) {
+        public ZBufferGeometricSolution(ZBuffer z, Scene scene) {
             super(graph, scene);
             zbuffer = z;
         }
@@ -51,7 +51,7 @@ public abstract class GeometricSolution {
     {
 
         private RtRaytracer raytracer;
-        public RayTracerGeometricSolution(RtRaytracer rt, ECBufferedImage graph, Scene scene) {
+        public RayTracerGeometricSolution(RtRaytracer rt, Scene scene) {
             super(graph, scene);
             raytracer = rt;
 
