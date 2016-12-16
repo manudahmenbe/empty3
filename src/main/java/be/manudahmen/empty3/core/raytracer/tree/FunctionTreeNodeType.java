@@ -30,4 +30,8 @@ public class FunctionTreeNodeType extends TreeNodeType {
         this.fName = (String) objects[0];
         this.exp1 = (Double) objects[1];
     }
+
+    public String getFName() {
+        return fName;
+    }
 }

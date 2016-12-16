@@ -16,8 +16,24 @@ package be.manudahmen.empty3.core.raytracer.tree;
  * Created by manuel on 16-12-16.
  */
 public class TermTreeNodeType extends TreeNodeType {
-    @Override
+    private int sign1;
+    private int sign2;
+
+    public TermTreeNodeType(int sign1, int sign2) {
+        super();
+        this.sign1 = sign1;
+        this.sign2 = sign2;
+    }
+
     public Object eval() {
         return null;
+    }
+
+    public Object getSign1() {
+        return sign1;
+    }
+
+    public Object getSign2() {
+        return sign2;
     }
 }

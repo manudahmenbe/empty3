@@ -19,6 +19,10 @@ public class DoubleTreeNodeType extends TreeNodeType
 {
     private double aValue;
 
+    public DoubleTreeNodeType(Double d) {
+        this.aValue = d;
+    }
+
     @Override
     public Object eval() {
         return aValue;

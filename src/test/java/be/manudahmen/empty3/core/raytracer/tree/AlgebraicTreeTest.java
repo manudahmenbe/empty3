@@ -62,7 +62,7 @@ public class AlgebraicTreeTest {
         AlgebraicTree algebraicTree = null;
         try {
             algebraicTree = new AlgebraicTree("1+1", null);
-            assertTrue(algebraicTree.eval() == 2);
+            assertTrue((int) algebraicTree.eval() == 2);
         } catch (AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
         }

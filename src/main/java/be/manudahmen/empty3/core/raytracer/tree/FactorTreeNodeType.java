@@ -18,6 +18,10 @@ package be.manudahmen.empty3.core.raytracer.tree;
 public class FactorTreeNodeType extends TreeNodeType {
     private double exp1, exp2;
 
+    public FactorTreeNodeType(Double d1, Double d2) {
+        this.exp1 = d1;
+        this.exp2 = d2;
+    }
 
     @Override
     public Object eval() {

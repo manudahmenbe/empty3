@@ -18,6 +18,11 @@ package be.manudahmen.empty3.core.raytracer.tree;
 public class ExponentTreeNodeType extends TreeNodeType {
     private double exp1, exp2;
 
+    public ExponentTreeNodeType(Double d1, Double d2) {
+        this.exp1 = d1;
+        this.exp2 = d2;
+    }
+
 
     @Override
     public Object eval() {

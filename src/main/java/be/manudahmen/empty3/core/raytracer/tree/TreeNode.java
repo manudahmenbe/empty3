@@ -48,7 +48,34 @@ public class TreeNode {
         this.value = value;
     }
 
-    public Object  eval(){return false;}
+
+    public Object eval() {
+        if (type instanceof DoubleTreeNodeType) {
+            return type.eval();
+        } else if (type instanceof ExponentTreeNodeType) {
+            return Math.pow((Double) getChildren().get(0).eval(), (Double) getChildren().get(1).eval());
+        }
+        if (type instanceof FactorTreeNodeType) {
+            return (Double) getChildren().get(0).eval() * (Double) getChildren().get(1).eval();
+        }
+        if (type instanceof FunctionTreeNodeType) {
+            switch (((FunctionTreeNodeType) type).getFName()) {
+
+            }
+            return false;
+        }
+        if (type instanceof TermTreeNodeType) {
+            int s1 = (Integer) ((TermTreeNodeType) type).getSign1();
+            int s2 = (Integer) ((TermTreeNodeType) type).getSign2();
+            return s1 * (Double) getChildren().get(0).eval() + s2 * (Double) getChildren().get(1).eval();
+        }
+        if (type instanceof SignTreeNodeType) {
+            int s1 = ((SignTreeNodeType) type).getSign();
+            return s1 * (Double) getChildren().get(0).eval();
+        }
+
+        return type.eval();
+    }
 
 
     public ArrayList<TreeNode> getChildren() {
