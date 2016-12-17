@@ -18,6 +18,10 @@ package be.manudahmen.empty3.core.raytracer.tree;
 public class SignTreeNodeType extends TreeNodeType {
     private int sign = 1;
 
+    public SignTreeNodeType(int i) {
+        sign = i;
+    }
+
     public int getSign() {
         return sign;
     }

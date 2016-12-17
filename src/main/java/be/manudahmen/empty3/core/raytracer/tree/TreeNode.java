@@ -29,11 +29,12 @@ public class TreeNode {
         this.expressionString = expStr;
     }
 
-    public TreeNode(TreeNode parent, String expressionString) {
-        this.parent = parent;
-        this.expressionString = expressionString;
-    }
-
+    /*
+        public TreeNode(TreeNode parent, String expressionString) {
+            this.parent = parent;
+            this.expressionString = expressionString;
+        }
+    */
     public TreeNode(TreeNode src, Object[] objects, TreeNodeType clazz) {
         this.parent = src;
         clazz.instantiate(objects);

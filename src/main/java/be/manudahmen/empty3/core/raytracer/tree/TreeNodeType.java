@@ -16,6 +16,7 @@ package be.manudahmen.empty3.core.raytracer.tree;
  * Created by Manuel Dahmen on 15-12-16.
  */
 public abstract class TreeNodeType {
+    protected Object[] values;
     private TreeNodeType d;
     private TreeNodeType tnt;
 
@@ -23,6 +24,10 @@ public abstract class TreeNodeType {
     }
 
     public abstract Object eval();
+
+    public void setValues(Object[] values) {
+        this.values = values;
+    }
 
     protected void instantiate(Object[] objects) {
         this.tnt = this;

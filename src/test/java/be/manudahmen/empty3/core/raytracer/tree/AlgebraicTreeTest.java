@@ -69,4 +69,16 @@ public class AlgebraicTreeTest {
 
     }
 
+    @Test
+    public void testSimple() {
+        AlgebraicTree algebraicTree = null;
+        try {
+            algebraicTree = new AlgebraicTree("1", null);
+            assertTrue((int) algebraicTree.eval() == 1);
+        } catch (AlgebraicFormulaSyntaxException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

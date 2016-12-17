@@ -17,14 +17,16 @@ package be.manudahmen.empty3.core.raytracer.tree;
  */
 public class DoubleTreeNodeType extends TreeNodeType
 {
-    private double aValue;
+    public DoubleTreeNodeType() {
 
+    }
     public DoubleTreeNodeType(Double d) {
-        this.aValue = d;
+        this.setValues(new Object[]{d});
     }
 
     @Override
     public Object eval() {
-        return aValue;
+        return values[0];
     }
+
 }

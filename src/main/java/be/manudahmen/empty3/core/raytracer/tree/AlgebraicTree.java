@@ -30,9 +30,9 @@ public class AlgebraicTree extends Tree {
     public boolean add(TreeNode src, String subformula) throws AlgebraicFormulaSyntaxException {
 
         if (!(src != null && subformula != null && subformula.length() > 0))
-            return true; //throw new AlgebraicFormulaSyntaxException("Chaine vide");
+            return false; //throw new AlgebraicFormulaSyntaxException("Chaine vide");
 
-        if (addSingleSign(src, subformula) ||
+        if (addFormulaSeparator(src, subformula) || addSingleSign(src, subformula) ||
                 addFunction(src, subformula) ||
                 addTerms(src, subformula) ||
                 addFactors(src, subformula) ||
@@ -53,6 +53,10 @@ public class AlgebraicTree extends Tree {
         return true;
     }
 
+    private boolean addFormulaSeparator(TreeNode src, String subformula) {
+        return true;
+    }
+
     private boolean addVariable(TreeNode src, String subformula) {
         if(Character.isLetter(subformula.charAt(0) ))
         {
@@ -63,7 +67,9 @@ public class AlgebraicTree extends Tree {
             }
             if(i==subformula.length())
             {
-                src.getChildren().add(new TreeNode(src, new Object[]{subformula}, new DoubleTreeNodeType()));
+                VariableTreeNodeType ariableTreeNodeType = new VariableTreeNodeType();
+                ariableTreeNodeType.setValues(new Object[]{});
+                src.getChildren().add(new TreeNode(src, new Object[]{subformula}, ariableTreeNodeType));
 
                 return true;
             }
@@ -75,7 +81,7 @@ public class AlgebraicTree extends Tree {
     private boolean addConstant(TreeNode src, String subformula) {
         if(Character.isDigit(subformula.charAt(0) ) ||subformula.charAt(0)=='-' )
         {
-            int i=0;
+            int i = 1;
             while (i<subformula.length() && (Character.isDigit(i) || Character.toUpperCase(subformula.charAt(i))=='E'
              ||subformula.charAt(i)=='-'))
             {
@@ -83,7 +89,7 @@ public class AlgebraicTree extends Tree {
             }
             if(i==subformula.length())
             {
-                src.getChildren().add(new TreeNode(src, new Object[]{subformula}, new DoubleTreeNodeType()));
+                src.getChildren().add(new TreeNode(src, new Object[]{subformula}, new DoubleTreeNodeType(Double.parseDouble(subformula))));
 
                 return true;
             }
@@ -95,7 +101,7 @@ public class AlgebraicTree extends Tree {
     private boolean addSingleSign(TreeNode src, String subformula) {
         if(subformula.charAt(0)=='-')
         {
-            src.getChildren().add(new TreeNode(src, new Object[]{subformula.substring(1)}, new SignTreeNodeType()));
+            src.getChildren().add(new TreeNode(src, new Object[]{subformula.substring(1)}, new SignTreeNodeType(-1)));
             return true;
         }
         return false;
@@ -204,7 +210,7 @@ public class AlgebraicTree extends Tree {
 
                 String  subsubstring = values.substring(oldFactorPos, newFactorPos-1);
 
-                TreeNode t2 = new TreeNode(t, new Object[]{subsubstring}, new TermTreeNodeType());
+                TreeNode t2 = new TreeNode(t, new Object[]{subsubstring}, new TermTreeNodeType(1, 1));
 
 
                 t.getChildren().add(t2);
@@ -267,7 +273,7 @@ public class AlgebraicTree extends Tree {
 
                 String  subsubstring = values.substring(oldFactorPos, newFactorPos-1);
                 String substring2 =  values.substring(newFactorPos+1);
-                TreeNode t2 = new TreeNode(t, new Object[]{subsubstring, substring2}, new ExponentTreeNodeType());
+                TreeNode t2 = new TreeNode(t, new Object[]{subsubstring, substring2}, new ExponentTreeNodeType(1.0, 1.0));
 
 
                 t.getChildren().add(t2);

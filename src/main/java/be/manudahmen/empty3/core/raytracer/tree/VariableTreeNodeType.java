@@ -15,25 +15,9 @@ package be.manudahmen.empty3.core.raytracer.tree;
 /**
  * Created by manuel on 16-12-16.
  */
-public class ExponentTreeNodeType extends TreeNodeType {
-    private double sign1, sign2;
-
-    public ExponentTreeNodeType(Double d1, Double d2) {
-        this.sign1 = d1;
-        this.sign2 = d2;
-    }
-
-
+public class VariableTreeNodeType extends TreeNodeType {
     @Override
     public Object eval() {
-        return Math.pow(sign1, sign2);
+        return null;
     }
-
-    @Override
-    protected void instantiate(Object[] objects) {
-        this.sign1 = (Double) objects[0];
-        this.sign2 = (Double) objects[1];
-    }
-
-
 }
