@@ -23,4 +23,9 @@ public class AlgebraicFormulaSyntaxException extends Throwable {
     public AlgebraicFormulaSyntaxException() {
         super();
     }
+
+    public AlgebraicFormulaSyntaxException(Tree algebraicTree) {
+        this();
+        System.err.println(algebraicTree);
+    }
 }

@@ -16,6 +16,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -61,7 +62,7 @@ public class AlgebraicTreeTest {
         AlgebraicTree algebraicTree = null;
         try {
             algebraicTree = new AlgebraicTree(expr, null);
-            System.out.println(algebraicTree);
+            // System.out.println(algebraicTree);
             try {
                 Object result;
                 System.out.println("Result : " + (result = algebraicTree.eval()));
@@ -71,6 +72,7 @@ public class AlgebraicTreeTest {
                 return true;
             } catch (TreeNodeEvalException e) {
                 e.printStackTrace();
+                assertFalse(false);
             }
         } catch (AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
@@ -86,6 +88,11 @@ public class AlgebraicTreeTest {
     @Test
     public void testSimpleEquationAddSubMult() {
         testResult("2*3+1*6-4", 2.0 * 3 + 1 * 6 - 4);
+    }
+
+    @Test
+    public void testSimpleEquationAddSubMult2() {
+        testResult("2*3-1*6-4", 2.0 * 3 - 1 * 6 - 4);
     }
 
     @Test
@@ -111,5 +118,10 @@ public class AlgebraicTreeTest {
     @Test
     public void testSimple() {
         assertTrue(testResult("1", 1.0));
+    }
+
+    @Test
+    public void testSimple2() {
+        assertTrue(testResult("1.5", 1.5));
     }
 }
