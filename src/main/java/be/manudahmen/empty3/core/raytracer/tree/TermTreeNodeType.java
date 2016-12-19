@@ -16,7 +16,7 @@ package be.manudahmen.empty3.core.raytracer.tree;
  * Created by manuel on 16-12-16.
  */
 public class TermTreeNodeType extends TreeNodeType {
-    private int sign1;
+    private int sign1 = 1;
 
     public TermTreeNodeType(int sign1) {
         super();
@@ -31,4 +31,7 @@ public class TermTreeNodeType extends TreeNodeType {
         return sign1;
     }
 
+    public String toString() {
+        return super.toString() + "\nSign:" + sign1;
+    }
 }

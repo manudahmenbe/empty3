@@ -61,13 +61,13 @@ public class AlgebraicTreeTest {
         AlgebraicTree algebraicTree = null;
         try {
             algebraicTree = new AlgebraicTree(expr, null);
+            System.out.println(algebraicTree);
             try {
                 Object result;
                 System.out.println("Result : " + (result = algebraicTree.eval()));
                 Double expected;
                 System.out.println("Expected : " + (expected = expectedResult));
                 assertTrue((double) result == expected);
-                System.out.println(algebraicTree);
                 return true;
             } catch (TreeNodeEvalException e) {
                 e.printStackTrace();

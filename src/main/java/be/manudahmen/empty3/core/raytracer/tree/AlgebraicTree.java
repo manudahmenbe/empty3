@@ -12,7 +12,6 @@
 
 package be.manudahmen.empty3.core.raytracer.tree;
 
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -45,13 +44,13 @@ public class AlgebraicTree extends Tree {
                         addBracedExpression(src, subformula)
 
                 ) {
-            Iterator<TreeNode> it = src.getChildren().iterator();
+            /*Iterator<TreeNode> it = src.getChildren().iterator();
             while (it.hasNext()) {
                 TreeNode children = it.next();
                 if (!add(children, children.getExpressionString())) {
                     //throw new AlgebraicFormulaSyntaxException();
                 }
-            }
+            }*/
         } else
             throw new AlgebraicFormulaSyntaxException();
         return true;
@@ -115,9 +114,9 @@ public class AlgebraicTree extends Tree {
         int count = 0;
         int newFactorPos = 0;
         int oldFactorPos = 0;
-        char newFactor = 0;
+        char newFactor = '*';
+        int newFactorSign = 1;
         while (i < values.length()) {
-            int newFactorSign = 0;
             if (values.charAt(i) == '(') {
                 count++;
             } else if (values.charAt(i) == ')') {
@@ -183,9 +182,9 @@ public class AlgebraicTree extends Tree {
         int count = 0;
         int newFactorPos = 0;
         int oldFactorPos = 0;
-        char newFactor = 0;
+        char newFactor = '+';
+        int newFactorSign = 1;
         while (i < values.length()) {
-            int newFactorSign = 0;
             if (values.charAt(i) == '(') {
                 count++;
             } else if (values.charAt(i) == ')') {

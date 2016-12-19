@@ -37,10 +37,12 @@ public abstract class TreeNodeType {
 
     public String toString() {
         String s = "Type : " + this.getClass() + " \n";
-        if (values != null)
+        if (values != null) {
+            int i = 0;
             for (Object o : values) {
-                s += this.values + " (+) ";
+                s += this.values[i++].toString() + " (+) ";
             }
+        }
         return s;
     }
 }

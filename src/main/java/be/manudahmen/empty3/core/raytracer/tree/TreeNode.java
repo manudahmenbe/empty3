@@ -102,7 +102,7 @@ public class TreeNode {
             return getChildren().get(0).eval();
         } else
             return type.eval();
-        //throw new TreeNodeEvalException();
+
     }
 
     public ArrayList<TreeNode> getChildren() {
@@ -132,8 +132,9 @@ public class TreeNode {
 
     public String toString() {
         String s = "TreeNode " + this.getClass() +
-                "\nType: " + type.getClass() + "\n " + type.toString()
-                + "\nChildren: \n";
+                (type == null ? "\nType null" :
+                        "\nType: " + type.getClass() + "\n " + type.toString()) +
+                "\nChildren: \n";
         int i = 0;
         for (TreeNode t :
                 getChildren()) {
