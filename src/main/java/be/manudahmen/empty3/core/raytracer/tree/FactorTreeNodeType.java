@@ -19,17 +19,17 @@ public class FactorTreeNodeType extends TreeNodeType {
     private int sign1 = 1; // 1=*
 
     public FactorTreeNodeType(int sign1) {
-        super();
-        this.sign1 = sign1;
+        super(sign1);
+    }
+
+    public Object getSign1() {
+        return sign1;
     }
 
     public Object eval() {
         return null;
     }
 
-    public Object getSign1() {
-        return sign1;
-    }
 
     public String toString() {
         return super.toString() + "\nSign:" + sign1;

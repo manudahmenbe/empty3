@@ -39,6 +39,7 @@ public class TreeNode {
         this.parent = src;
         clazz.instantiate(objects);
         this.type = clazz;
+        expressionString = (String) objects[0];
     }
 
     public Object getValue() {
@@ -51,7 +52,7 @@ public class TreeNode {
 
 
     public Object eval() throws TreeNodeEvalException {
-        type = type == null ? getChildren().get(0).type : type;
+        //type = type == null ? getChildren().get(0).type : type;
         if (type instanceof IdentTreeNodeType) {
             return getChildren().get(0).eval();
         }
@@ -65,14 +66,15 @@ public class TreeNode {
             }
             double dot = 1;
             for (int i = 0; i < getChildren().size(); i++) {
-                int op1 = (Integer) ((FactorTreeNodeType) type).getSign1();
+                TreeNode treeNode = getChildren().get(i);
+                int op1 = (Integer) type.getSign1();
                 if (op1 == 1)
 
 
-                    dot *= (Double) getChildren().get(i).eval();
+                    dot *= (Double) treeNode.eval();
                 else
 
-                    dot /= (Double) getChildren().get(i).eval();
+                    dot /= (Double) treeNode.eval();
             }
             return dot;
 
@@ -88,8 +90,9 @@ public class TreeNode {
             }
             double sum = 0;
             for (int i = 0; i < getChildren().size(); i++) {
-                int s1 = (Integer) ((TermTreeNodeType) type).getSign1();
-                sum += s1 * (Double) getChildren().get(i).eval();
+                TreeNode treeNode = getChildren().get(i);
+                int op1 = (Integer) type.getSign1();
+                sum += op1 * (Double) treeNode.eval();
             }
 
             return sum;
@@ -131,7 +134,8 @@ public class TreeNode {
 
 
     public String toString() {
-        String s = "TreeNode " + this.getClass() +
+        String s = "TreeNode " + this.getClass().getSimpleName() +
+                "\nExpression string: " + expressionString +
                 (type == null ? "\nType null" :
                         "\nType: " + type.getClass() + "\n " + type.toString()) +
                 "\nChildren: \n";

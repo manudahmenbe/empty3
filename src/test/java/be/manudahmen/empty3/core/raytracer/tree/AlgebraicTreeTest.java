@@ -90,7 +90,7 @@ public class AlgebraicTreeTest {
 
     @Test
     public void testSimpleEquationAddMult() {
-        testResult("2*3+1*6-4", 2 * 3 + 1 * 6 + 4);
+        testResult("2*3+1*6+4", 2 * 3 + 1 * 6 + 4);
     }
 
     @Test

@@ -230,7 +230,7 @@ public class AlgebraicTree extends Tree {
                 newFactorPos = i + 1;
                 oldFactorPos = i + 1;
                 newFactor = 0;
-                newFactorSign = 0;
+                newFactorSign = 1;
             }
 
             i++;
