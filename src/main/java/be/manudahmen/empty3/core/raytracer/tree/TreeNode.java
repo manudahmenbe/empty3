@@ -128,4 +128,17 @@ public class TreeNode {
     public void setExpressionString(String expressionString) {
         this.expressionString = expressionString;
     }
+
+
+    public String toString() {
+        String s = "TreeNode " + this.getClass() +
+                "\nType: " + type.getClass() + "\n " + type.toString()
+                + "\nChildren: \n";
+        int i = 0;
+        for (TreeNode t :
+                getChildren()) {
+            s += "Child (" + i++ + ") : " + t.toString();
+        }
+        return s;
+    }
 }

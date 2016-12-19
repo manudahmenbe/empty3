@@ -21,7 +21,8 @@ import java.util.Map;
 public class AlgebraicTree extends Tree {
 
     private Tree t;
-    private TreeNode root ;
+    private TreeNode root;
+
     public AlgebraicTree(String formula, Map.Entry<TreeNodeParameter, Number> parameters) throws AlgebraicFormulaSyntaxException {
         root = new TreeNode(formula);
         add(root, formula);
@@ -34,26 +35,24 @@ public class AlgebraicTree extends Tree {
 
         if (
                 addFormulaSeparator(src, subformula) ||
-                addTerms(src, subformula) ||
-                addFactors(src, subformula) ||
-                addExponent(src, subformula) ||
-                        addBracedExpression(src, subformula) ||
+                        addTerms(src, subformula) ||
+                        addFactors(src, subformula) ||
+                        addExponent(src, subformula) ||
                         addSingleSign(src, subformula) ||
+                        addVariable(src, subformula) ||
+                        addConstant(src, subformula) ||
                         addFunction(src, subformula) ||
-            addVariable(src, subformula) ||
-                        addConstant(src, subformula)
+                        addBracedExpression(src, subformula)
 
                 ) {
             Iterator<TreeNode> it = src.getChildren().iterator();
-            while(it.hasNext()) {
+            while (it.hasNext()) {
                 TreeNode children = it.next();
-                if(!add(children, children.getExpressionString()))
-                {
+                if (!add(children, children.getExpressionString())) {
                     //throw new AlgebraicFormulaSyntaxException();
                 }
             }
-        }
-        else
+        } else
             throw new AlgebraicFormulaSyntaxException();
         return true;
     }
@@ -63,18 +62,15 @@ public class AlgebraicTree extends Tree {
     }
 
     private boolean addVariable(TreeNode src, String subformula) {
-        if(Character.isLetter(subformula.charAt(0) ))
-        {
-            int i=0;
-            while (i<subformula.length() && Character.isLetterOrDigit(i))
-            {
+        if (Character.isLetter(subformula.charAt(0))) {
+            int i = 0;
+            while (i < subformula.length() && Character.isLetterOrDigit(i)) {
                 i++;
             }
-            if(i==subformula.length())
-            {
-                VariableTreeNodeType ariableTreeNodeType = new VariableTreeNodeType();
-                ariableTreeNodeType.setValues(new Object[]{});
-                src.getChildren().add(new TreeNode(src, new Object[]{subformula}, ariableTreeNodeType));
+            if (i == subformula.length()) {
+                VariableTreeNodeType variableTreeNodeType = new VariableTreeNodeType();
+                variableTreeNodeType.setValues(new Object[]{});
+                src.getChildren().add(new TreeNode(src, new Object[]{subformula}, variableTreeNodeType));
 
                 return true;
             }
@@ -84,16 +80,13 @@ public class AlgebraicTree extends Tree {
     }
 
     private boolean addConstant(TreeNode src, String subformula) {
-        if(Character.isDigit(subformula.charAt(0) ) ||subformula.charAt(0)=='-' )
-        {
+        if (Character.isDigit(subformula.charAt(0)) || subformula.charAt(0) == '-') {
             int i = 1;
-            while (i<subformula.length() && (Character.isDigit(i) || Character.toUpperCase(subformula.charAt(i))=='E'
-             ||subformula.charAt(i)=='-'))
-            {
+            while (i < subformula.length() && (Character.isDigit(i) || Character.toUpperCase(subformula.charAt(i)) == 'E'
+                    || subformula.charAt(i) == '-')) {
                 i++;
             }
-            if(i==subformula.length())
-            {
+            if (i == subformula.length()) {
                 src.getChildren().add(new TreeNode(src, new Object[]{subformula}, new DoubleTreeNodeType(Double.parseDouble(subformula))));
 
                 return true;
@@ -104,8 +97,7 @@ public class AlgebraicTree extends Tree {
     }
 
     private boolean addSingleSign(TreeNode src, String subformula) {
-        if(subformula.charAt(0)=='-')
-        {
+        if (subformula.charAt(0) == '-') {
             src.getChildren().add(new TreeNode(src, new Object[]{subformula.substring(1)}, new SignTreeNodeType(-1)));
             return true;
         }
@@ -117,35 +109,27 @@ public class AlgebraicTree extends Tree {
         int countTerms = 0;
 
         TreeNode t2;
-        int i=0;
+        int i = 0;
         boolean firstTermFound = false;
-        boolean isNewFactor= false;
+        boolean isNewFactor = false;
         int count = 0;
         int newFactorPos = 0;
         int oldFactorPos = 0;
         char newFactor = 0;
-        while(i<values.length())
-        {
+        while (i < values.length()) {
             int newFactorSign = 0;
-            if(values.charAt(i)=='(')
-            {
+            if (values.charAt(i) == '(') {
                 count++;
-            }
-            else if(values.charAt(i)==')')
-            {
+            } else if (values.charAt(i) == ')') {
                 count--;
-            }
-            else if(values.charAt(i)=='*' && (i<values.length()-1 || values.charAt(i+1)!='*') && count==0)
-            {
-                newFactor='*';
+            } else if (values.charAt(i) == '*' && (i < values.length() - 1 || values.charAt(i + 1) != '*') && count == 0) {
+                newFactor = '*';
                 newFactorPos = i;
                 isNewFactor = true;
                 firstTermFound = true;
                 newFactorSign = 1;
-            }
-            else if(values.charAt(i)=='/' && count==0)
-            {
-                newFactor='/';
+            } else if (values.charAt(i) == '/' && count == 0) {
+                newFactor = '/';
                 isNewFactor = true;
                 newFactorPos = i;
                 firstTermFound = true;
@@ -157,8 +141,7 @@ public class AlgebraicTree extends Tree {
             }
 
 
-            if(isNewFactor)
-            {
+            if (isNewFactor) {
                 countTerms++;
                 isNewFactor = false;
                 char op = newFactor;
@@ -175,8 +158,7 @@ public class AlgebraicTree extends Tree {
                 }
 
 
-
-                isNewFactor= false;
+                isNewFactor = false;
                 count = 0;
                 newFactorPos = i + 1;
                 oldFactorPos = i + 1;
@@ -195,35 +177,27 @@ public class AlgebraicTree extends Tree {
         int countTerms = 0;
 
         TreeNode t2;
-        int i=0;
+        int i = 0;
         boolean firstTermFound = false;
-        boolean isNewFactor= false;
+        boolean isNewFactor = false;
         int count = 0;
         int newFactorPos = 0;
         int oldFactorPos = 0;
         char newFactor = 0;
-        while(i<values.length())
-        {
+        while (i < values.length()) {
             int newFactorSign = 0;
-            if(values.charAt(i)=='(')
-            {
+            if (values.charAt(i) == '(') {
                 count++;
-            }
-            else if(values.charAt(i)==')')
-            {
+            } else if (values.charAt(i) == ')') {
                 count--;
-            }
-            else if(values.charAt(i)=='+' && (i<values.length()-1 || values.charAt(i+1)!='+') && count==0)
-            {
-                newFactor='+';
+            } else if (values.charAt(i) == '+' && (i < values.length() - 1 || values.charAt(i + 1) != '+') && count == 0) {
+                newFactor = '+';
                 newFactorPos = i;
                 isNewFactor = true;
                 firstTermFound = true;
                 newFactorSign = 1;
-            }
-            else if(values.charAt(i)=='-' && count==0)
-            {
-                newFactor='-';
+            } else if (values.charAt(i) == '-' && count == 0) {
+                newFactor = '-';
                 isNewFactor = true;
                 newFactorPos = i;
                 firstTermFound = true;
@@ -235,8 +209,7 @@ public class AlgebraicTree extends Tree {
             }
 
 
-            if(isNewFactor)
-            {
+            if (isNewFactor) {
                 countTerms++;
                 isNewFactor = false;
                 char op = newFactor;
@@ -253,8 +226,7 @@ public class AlgebraicTree extends Tree {
                 }
 
 
-
-                isNewFactor= false;
+                isNewFactor = false;
                 count = 0;
                 newFactorPos = i + 1;
                 oldFactorPos = i + 1;
@@ -272,41 +244,35 @@ public class AlgebraicTree extends Tree {
 
     /***
      * signMMantisseSignEExponent
+     *
      * @param t
      * @param values
      */
     public boolean addExponent(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
-        int i=0;
-        boolean isNewFactor= false;
+        int i = 0;
+        boolean isNewFactor = false;
         int count = 0;
         int newFactorPos = 0;
         int oldFactorPos = 0;
         char newFactor = 0;
-        while(i<values.length())
-        {
-            if(values.charAt(i)=='(')
-            {
+        while (i < values.length()) {
+            if (values.charAt(i) == '(') {
                 count++;
-            }
-            else if(values.charAt(i)==')')
-            {
+            } else if (values.charAt(i) == ')') {
                 count--;
-            }
-            else if(values.charAt(i)=='*' && (i<values.length()-1 && values.charAt(i+1)!='*') && count==0)
-            {
-                newFactor='^';
+            } else if (values.charAt(i) == '*' && (i < values.length() - 1 && values.charAt(i + 1) != '*') && count == 0) {
+                newFactor = '^';
                 newFactorPos = i;
                 isNewFactor = true;
             }
 
 
-            if(isNewFactor)
-            {
+            if (isNewFactor) {
                 isNewFactor = false;
                 char op = newFactor;
 
-                String  subsubstring = values.substring(oldFactorPos, newFactorPos-1);
-                String substring2 =  values.substring(newFactorPos+1);
+                String subsubstring = values.substring(oldFactorPos, newFactorPos - 1);
+                String substring2 = values.substring(newFactorPos + 1);
                 TreeNode t2 = new TreeNode(t, new Object[]{subsubstring, substring2}, new ExponentTreeNodeType(1.0, 1.0));
 
 
@@ -314,15 +280,14 @@ public class AlgebraicTree extends Tree {
 
                 add(t, substring2);
 
-                if (!add(t, subsubstring))
-                {
+                if (!add(t, subsubstring)) {
                     throw new AlgebraicFormulaSyntaxException();
                 }
 
-                isNewFactor= false;
+                isNewFactor = false;
                 count = 0;
-                newFactorPos = i+2;
-                oldFactorPos = i+2;
+                newFactorPos = i + 2;
+                oldFactorPos = i + 2;
                 newFactor = 0;
 
             }
@@ -337,32 +302,25 @@ public class AlgebraicTree extends Tree {
 
     public boolean addFunction(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
         int i = 1;
-        boolean isNewFactor= false;
+        boolean isNewFactor = false;
         int count = 0;
         int newFactorPos = 0;
         int oldFactorPos = 0;
         char newFactor = 0;
         int countLetters = 0;
 
-        while(i<values.length())
-        {
+        while (i < values.length()) {
             if (Character.isLetter(values.charAt(0)) && Character.isLetterOrDigit(values.charAt(i)) && count == 0) {
-                countLetters ++;
+                countLetters++;
+            } else if (values.charAt(i) == '(') {
+                count++;
+            } else if (values.charAt(i) == ')') {
+                count--;
             }
-            else
-                if(values.charAt(i)=='(')
-                {
-                    count++;
-                }
-                else if(values.charAt(i)==')')
-                {
-                    count--;
-                }
 
 
-            if(i==values.length()-1 && count==0 && values.charAt(i)==')')
-            {
-                String  subsubstring = values.substring(oldFactorPos, newFactorPos-1);
+            if (i == values.length() - 1 && count == 0 && values.charAt(i) == ')') {
+                String subsubstring = values.substring(oldFactorPos, newFactorPos - 1);
 
                 TreeNode t2 = new TreeNode(t, new Object[]{subsubstring}, new FunctionTreeNodeType());
 
@@ -432,5 +390,11 @@ public class AlgebraicTree extends Tree {
 
     public Object eval() throws TreeNodeEvalException {
         return root.eval();
+    }
+
+    public String toString() {
+        String s = "Arbre algébrique\n" +
+                "Racine: " + root.getClass() + root.toString();
+        return s;
     }
 }

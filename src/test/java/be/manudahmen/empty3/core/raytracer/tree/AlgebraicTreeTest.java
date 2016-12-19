@@ -67,6 +67,7 @@ public class AlgebraicTreeTest {
                 Double expected;
                 System.out.println("Expected : " + (expected = expectedResult));
                 assertTrue((double) result == expected);
+                System.out.println(algebraicTree);
                 return true;
             } catch (TreeNodeEvalException e) {
                 e.printStackTrace();
@@ -83,8 +84,13 @@ public class AlgebraicTreeTest {
     }
 
     @Test
-    public void testSimpleEquationAddMult() {
+    public void testSimpleEquationAddSubMult() {
         testResult("2*3+1*6-4", 2 * 3 + 1 * 6 - 4);
+    }
+
+    @Test
+    public void testSimpleEquationAddMult() {
+        testResult("2*3+1*6-4", 2 * 3 + 1 * 6 + 4);
     }
 
     @Test
@@ -99,7 +105,7 @@ public class AlgebraicTreeTest {
 
     @Test
     public void testSimpleEquationBracedAddAdd() {
-        testResult("1+2+3+(4*2/1.5+5)*22+6", 1 + 2 + 3 + (4 * 2 / 1.5 + 5) * 22 + 6);
+        testResult("1+2+3-(4*2/1.5+5)*22+6", 1 + 2 + 3 - (4 * 2 / 1.5 + 5) * 22 + 6);
     }
 
     @Test

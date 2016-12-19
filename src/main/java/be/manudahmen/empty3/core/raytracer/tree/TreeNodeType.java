@@ -34,4 +34,13 @@ public abstract class TreeNodeType {
 
 
     }
+
+    public String toString() {
+        String s = "Type : " + this.getClass() + " \n";
+        if (values != null)
+            for (Object o : values) {
+                s += this.values + " (+) ";
+            }
+        return s;
+    }
 }
