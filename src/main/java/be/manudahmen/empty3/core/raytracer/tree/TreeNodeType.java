@@ -17,7 +17,7 @@ package be.manudahmen.empty3.core.raytracer.tree;
  */
 public abstract class TreeNodeType {
     protected Object[] values;
-    protected int sign1 = 1; // 1=*
+    protected int sign1; // 1=*
     private TreeNodeType d;
     private TreeNodeType tnt;
     public TreeNodeType() {
@@ -28,7 +28,7 @@ public abstract class TreeNodeType {
         this.sign1 = sign1;
     }
 
-    public Object getSign1() {
+    public int getSign1() {
         return sign1;
     }
 

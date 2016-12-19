@@ -22,9 +22,6 @@ public class FactorTreeNodeType extends TreeNodeType {
         super(sign1);
     }
 
-    public Object getSign1() {
-        return sign1;
-    }
 
     public Object eval() {
         return null;

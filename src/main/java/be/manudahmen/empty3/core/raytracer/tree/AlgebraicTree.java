@@ -201,10 +201,16 @@ public class AlgebraicTree extends Tree {
                 newFactorPos = i;
                 firstTermFound = true;
                 newFactorSign = -1;
-            } else if (i == values.length() - 1 && count == 0 && firstTermFound) {
-                newFactor = '+';
+            }
+            if (i == values.length() - 1 && count == 0 && firstTermFound) {
                 isNewFactor = true;
                 newFactorPos = i + 1;
+                if (values.charAt(oldFactorPos - 1) == '-')
+                    newFactorSign = -1;
+                else if (values.charAt(oldFactorPos - 1) == '+')
+                    newFactorSign = 1;
+                else throw new AlgebraicFormulaSyntaxException("Ni + ni -");
+
             }
 
 
@@ -226,11 +232,10 @@ public class AlgebraicTree extends Tree {
 
 
                 isNewFactor = false;
-                count = 0;
                 newFactorPos = i + 1;
                 oldFactorPos = i + 1;
                 newFactor = 0;
-                newFactorSign = 1;
+                newFactorSign = 0;
             }
 
             i++;

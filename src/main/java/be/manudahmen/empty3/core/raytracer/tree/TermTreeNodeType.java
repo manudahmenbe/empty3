@@ -25,10 +25,6 @@ public class TermTreeNodeType extends TreeNodeType {
         return null;
     }
 
-    public Object getSign1() {
-        return sign1;
-    }
-
     public String toString() {
         return super.toString() + "\nSign:" + sign1;
     }
