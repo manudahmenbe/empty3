@@ -106,10 +106,7 @@ public class TreeNode {
             int s1 = ((SignTreeNodeType) cType).getSign();
             return s1 * (Double) getChildren().get(0).eval();
         }
-        if (cType == null && getChildren().get(0) != null) {
-            return getChildren().get(0).eval();
-        } else
-            return type.eval();
+        return type.eval();
 
     }
 

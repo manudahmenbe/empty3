@@ -121,7 +121,7 @@ public class AlgebraicTree extends Tree {
                 count++;
             } else if (values.charAt(i) == ')') {
                 count--;
-            } else if (values.charAt(i) == '*' && (i < values.length() - 1 || values.charAt(i + 1) != '*') && count == 0) {
+            } else if (values.charAt(i) == '*' && /*9(i < values.length() - 1 || values.charAt(i + 1) != '*') &&*/ count == 0) {
                 newFactor = '*';
                 newFactorPos = i;
                 isNewFactor = true;
@@ -134,21 +134,24 @@ public class AlgebraicTree extends Tree {
                 firstTermFound = true;
                 newFactorSign = -1;
             } else if (i == values.length() - 1 && count == 0 && firstTermFound) {
-                newFactor = '*';//??
                 isNewFactor = true;
                 newFactorPos = i + 1;
+                if (values.charAt(oldFactorPos - 1) == '/') {
+                    newFactorSign = -1;
+                    newFactor = '/';//??
+                } else if (values.charAt(oldFactorPos - 1) == '*') {
+                    newFactorSign = 1;
+                    newFactor = '*';//??
+                } else throw new AlgebraicFormulaSyntaxException("Ni + ni -");
             }
 
 
             if (isNewFactor) {
                 countTerms++;
-                isNewFactor = false;
-                char op = newFactor;
-
                 String subsubstring = values.substring(oldFactorPos, newFactorPos);
 
 
-                if (subsubstring != null && subsubstring.length() > 0) {
+                if (subsubstring.length() > 0) {
                     t2 = new TreeNode(t, new Object[]{subsubstring}, new FactorTreeNodeType(newFactorSign));
                     t.getChildren().add(t2);
                     if (!add(t2, subsubstring)) {
@@ -169,7 +172,7 @@ public class AlgebraicTree extends Tree {
 
 
         }
-        return t.getChildren().size() > 0;
+        return t.getChildren().size() > 0 && countTerms > 0;
     }
 
     public boolean addTerms(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
@@ -189,7 +192,7 @@ public class AlgebraicTree extends Tree {
                 count++;
             } else if (values.charAt(i) == ')') {
                 count--;
-            } else if (values.charAt(i) == '+' && (i < values.length() - 1 || values.charAt(i + 1) != '+') && count == 0) {
+            } else if (values.charAt(i) == '+' /*&& (i < values.length() - 1 || values.charAt(i + 1) != '+')*/ && count == 0) {
                 newFactor = '+';
                 newFactorPos = i;
                 isNewFactor = true;
@@ -205,10 +208,13 @@ public class AlgebraicTree extends Tree {
             if (i == values.length() - 1 && count == 0 && firstTermFound) {
                 isNewFactor = true;
                 newFactorPos = i + 1;
-                if (values.charAt(oldFactorPos - 1) == '-')
+                if (values.charAt(oldFactorPos - 1) == '-') {
                     newFactorSign = -1;
-                else if (values.charAt(oldFactorPos - 1) == '+')
+                    newFactor = '-';
+                } else if (values.charAt(oldFactorPos - 1) == '+') {
                     newFactorSign = 1;
+                    newFactor = '+';
+                }
                 else throw new AlgebraicFormulaSyntaxException("Ni + ni -");
 
             }
@@ -222,7 +228,7 @@ public class AlgebraicTree extends Tree {
                 String subsubstring = values.substring(oldFactorPos, newFactorPos);
 
 
-                if (subsubstring != null && subsubstring.length() > 0) {
+                if (subsubstring.length() > 0) {
                     t2 = new TreeNode(t, new Object[]{subsubstring}, new TermTreeNodeType(newFactorSign));
                     t.getChildren().add(t2);
                     if (!add(t2, subsubstring)) {
@@ -243,7 +249,7 @@ public class AlgebraicTree extends Tree {
 
         }
 
-        return t.getChildren().size() > 0;
+        return t.getChildren().size() > 0 && countTerms > 0;
     }
 
     /***
