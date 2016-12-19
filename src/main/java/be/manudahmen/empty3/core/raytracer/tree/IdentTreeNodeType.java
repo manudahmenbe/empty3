@@ -13,22 +13,12 @@
 package be.manudahmen.empty3.core.raytracer.tree;
 
 /**
- * Created by manuel on 16-12-16.
+ * Created by manuel on 19-12-16.
  */
-public class TermTreeNodeType extends TreeNodeType {
-    private int sign1;
-
-    public TermTreeNodeType(int sign1) {
-        super();
-        this.sign1 = sign1;
-    }
-
+public class IdentTreeNodeType extends TreeNodeType {
+    @Override
     public Object eval() {
+
         return null;
     }
-
-    public Object getSign1() {
-        return sign1;
-    }
-
 }

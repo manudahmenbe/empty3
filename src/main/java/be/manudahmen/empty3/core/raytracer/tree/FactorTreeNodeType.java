@@ -17,12 +17,10 @@ package be.manudahmen.empty3.core.raytracer.tree;
  */
 public class FactorTreeNodeType extends TreeNodeType {
     private int sign1; // 1=*
-    private int sign2; // 2=/
 
-    public FactorTreeNodeType(int sign1, int sign2) {
+    public FactorTreeNodeType(int sign1) {
         super();
         this.sign1 = sign1;
-        this.sign2 = sign2;
     }
 
     public Object eval() {
@@ -33,7 +31,4 @@ public class FactorTreeNodeType extends TreeNodeType {
         return sign1;
     }
 
-    public Object getSign2() {
-        return sign2;
-    }
 }

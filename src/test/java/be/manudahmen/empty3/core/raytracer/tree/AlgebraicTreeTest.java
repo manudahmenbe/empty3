@@ -56,55 +56,49 @@ public class AlgebraicTreeTest {
     public void addFunction() throws Exception {
 
     }
-    @Test
-    public void testSimpleEquationAdd()
-    {
+
+    protected boolean testResult(String expr, double expectedResult) {
         AlgebraicTree algebraicTree = null;
         try {
-            algebraicTree = new AlgebraicTree("1+1", null);
+            algebraicTree = new AlgebraicTree(expr, null);
             try {
-                assertTrue((Double) algebraicTree.eval() == 2.0);
+                Object result;
+                System.out.println("Result : " + (result = algebraicTree.eval()));
+                Double expected;
+                System.out.println("Expected : " + (expected = expectedResult));
+                assertTrue((double) result == expected);
+                return true;
             } catch (TreeNodeEvalException e) {
                 e.printStackTrace();
             }
         } catch (AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
         }
+        return false;
+    }
+    @Test
+    public void testSimpleEquationAdd()
+    {
+        testResult("1+1", 2.0);
+    }
 
+    @Test
+    public void testSimpleEquationAddMult() {
+        testResult("2*3+1*6-4", 2 * 3 + 1 * 6 - 4);
     }
 
     @Test
     public void testSimpleEquationMult() {
-        AlgebraicTree algebraicTree = null;
-        try {
-            algebraicTree = new AlgebraicTree("2*3", null);
-            try {
-                assertTrue((Double) algebraicTree.eval() == 6.0);
-            } catch (TreeNodeEvalException e) {
-                e.printStackTrace();
-            }
-        } catch (AlgebraicFormulaSyntaxException e) {
-            e.printStackTrace();
-        }
+        testResult("2*3", 6.0);
+    }
 
+    @Test
+    public void testSimpleEquationAddAdd() {
+        testResult("1+2+3+4+5+6", 1.0 + 2 + 3 + 4 + 5 + 6);
     }
 
     @Test
     public void testSimple() {
-        AlgebraicTree algebraicTree = null;
-        try {
-            algebraicTree = new AlgebraicTree("1", null);
-            assertTrue(1.0 == (Double) algebraicTree.eval());
-        } catch (AlgebraicFormulaSyntaxException e) {
-            e.printStackTrace();
-        } catch (TreeNodeEvalException e) {
-            e.printStackTrace();
-        }
-        try {
-            System.err.println("Eval (1) : " + algebraicTree.eval());
-        } catch (TreeNodeEvalException e) {
-            e.printStackTrace();
-        }
+        assertTrue(testResult("1", 1.0));
     }
-
 }

@@ -23,8 +23,8 @@ public class TreeNode {
     private ArrayList<TreeNode> children = new ArrayList<TreeNode>();
     private TreeNode parent;
     private String expressionString;
-    public TreeNode(String expStr)
-    {
+
+    public TreeNode(String expStr) {
         this.parent = null;
         this.expressionString = expStr;
     }
@@ -52,6 +52,9 @@ public class TreeNode {
 
     public Object eval() throws TreeNodeEvalException {
         type = type == null ? getChildren().get(0).type : type;
+        if (type instanceof IdentTreeNodeType) {
+            return getChildren().get(0).eval();
+        }
         if (type instanceof DoubleTreeNodeType) {
             return type.eval();
         } else if (type instanceof ExponentTreeNodeType) {
@@ -60,16 +63,19 @@ public class TreeNode {
             if (getChildren().size() == 1) {
                 return getChildren().get(0).eval();
             }
-            int op1 = (Integer) ((FactorTreeNodeType) type).getSign1();
-            int op2 = (Integer) ((FactorTreeNodeType) type).getSign2();
-            if (op1 == 1)
+            double dot = 1;
+            for (int i = 0; i < getChildren().size(); i++) {
+                int op1 = (Integer) ((FactorTreeNodeType) type).getSign1();
+                if (op1 == 1)
 
 
-            return (Double) getChildren().get(0).eval() * (Double) getChildren().get(1).eval();
+                    dot *= (Double) getChildren().get(i).eval();
+                else
 
-            else
+                    dot /= (Double) getChildren().get(i).eval();
+            }
+            return dot;
 
-                return (Double) getChildren().get(0).eval() / (Double) getChildren().get(1).eval();
 
         } else if (type instanceof FunctionTreeNodeType) {
             switch (((FunctionTreeNodeType) type).getFName()) {
@@ -80,9 +86,13 @@ public class TreeNode {
             if (getChildren().size() == 1) {
                 return getChildren().get(0).eval();
             }
-            int s1 = (Integer) ((TermTreeNodeType) type).getSign1();
-            int s2 = (Integer) ((TermTreeNodeType) type).getSign2();
-            return s1 * (Double) getChildren().get(0).eval() + s2 * (Double) getChildren().get(1).eval();
+            double sum = 0;
+            for (int i = 0; i < getChildren().size(); i++) {
+                int s1 = (Integer) ((TermTreeNodeType) type).getSign1();
+                sum += s1 * (Double) getChildren().get(i).eval();
+            }
+
+            return sum;
         }
         if (type instanceof SignTreeNodeType) {
             int s1 = ((SignTreeNodeType) type).getSign();
