@@ -44,7 +44,7 @@ public class AlgebraicTree extends Tree {
                 TreeNode children = it.next();
                 if(!add(children, children.getExpressionString()))
                 {
-                    throw new AlgebraicFormulaSyntaxException();
+                    //throw new AlgebraicFormulaSyntaxException();
                 }
             }
         }
@@ -54,7 +54,7 @@ public class AlgebraicTree extends Tree {
     }
 
     private boolean addFormulaSeparator(TreeNode src, String subformula) {
-        return true;
+        return false;
     }
 
     private boolean addVariable(TreeNode src, String subformula) {
@@ -109,7 +109,11 @@ public class AlgebraicTree extends Tree {
 
 
     public boolean addFactors(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
+        int countTerms = 0;
+
+        TreeNode t2;
         int i=0;
+        boolean firstTermFound = false;
         boolean isNewFactor= false;
         int count = 0;
         int newFactorPos = 0;
@@ -130,50 +134,62 @@ public class AlgebraicTree extends Tree {
                 newFactor='*';
                 newFactorPos = i;
                 isNewFactor = true;
+                firstTermFound = true;
             }
             else if(values.charAt(i)=='/' && count==0)
             {
                 newFactor='/';
                 isNewFactor = true;
                 newFactorPos = i;
+                firstTermFound = true;
+            } else if (i == values.length() - 1 && count == 0 && firstTermFound) {
+                newFactor = '*';//??
+                isNewFactor = true;
+                newFactorPos = i + 1;
             }
-            
-            
+
+
             if(isNewFactor)
             {
+                countTerms++;
                 isNewFactor = false;
                 char op = newFactor;
 
-                String  subsubstring = values.substring(oldFactorPos, newFactorPos-1);
-
-                TreeNode t2 = new TreeNode(t, new Object[]{subsubstring}, new FactorTreeNodeType());
+                String subsubstring = values.substring(oldFactorPos, newFactorPos);
 
 
-                t.getChildren().add(t2);
-
-                if(!add(t2, subsubstring))
-                {
-                    throw new AlgebraicFormulaSyntaxException();
+                if (subsubstring != null && subsubstring.length() > 0) {
+                    t2 = new TreeNode(t, new Object[]{subsubstring}, new FactorTreeNodeType(1, 1));
+                    t.getChildren().add(t2);
+                    if (!add(t2, subsubstring)) {
+                        throw new AlgebraicFormulaSyntaxException();
+                    }
                 }
+
+
 
                 isNewFactor= false;
                 count = 0;
-                newFactorPos = i+2;
-                oldFactorPos = i+2;
+                newFactorPos = i + 1;
+                oldFactorPos = i + 1;
                 newFactor = 0;
 
             }
 
-
             i++;
 
+
         }
+        System.out.println(countTerms);
         return t.getChildren().size() > 0;
     }
 
     public boolean addTerms(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
+        int countTerms = 0;
 
+        TreeNode t2;
         int i=0;
+        boolean firstTermFound = false;
         boolean isNewFactor= false;
         int count = 0;
         int newFactorPos = 0;
@@ -194,36 +210,44 @@ public class AlgebraicTree extends Tree {
                 newFactor='+';
                 newFactorPos = i;
                 isNewFactor = true;
+                firstTermFound = true;
             }
             else if(values.charAt(i)=='-' && count==0)
             {
                 newFactor='-';
                 isNewFactor = true;
                 newFactorPos = i;
+                firstTermFound = true;
+            } else if (i == values.length() - 1 && count == 0 && firstTermFound) {
+                newFactor = '+';
+                isNewFactor = true;
+                newFactorPos = i + 1;
             }
 
 
             if(isNewFactor)
             {
+                countTerms++;
                 isNewFactor = false;
                 char op = newFactor;
 
-                String  subsubstring = values.substring(oldFactorPos, newFactorPos-1);
-
-                TreeNode t2 = new TreeNode(t, new Object[]{subsubstring}, new TermTreeNodeType(1, 1));
+                String subsubstring = values.substring(oldFactorPos, newFactorPos);
 
 
-                t.getChildren().add(t2);
-
-                if(!add(t2, subsubstring))
-                {
-                    throw new AlgebraicFormulaSyntaxException();
+                if (subsubstring != null && subsubstring.length() > 0) {
+                    t2 = new TreeNode(t, new Object[]{subsubstring}, new TermTreeNodeType(1, 1));
+                    t.getChildren().add(t2);
+                    if (!add(t2, subsubstring)) {
+                        throw new AlgebraicFormulaSyntaxException();
+                    }
                 }
+
+
 
                 isNewFactor= false;
                 count = 0;
-                newFactorPos = i+2;
-                oldFactorPos = i+2;
+                newFactorPos = i + 1;
+                oldFactorPos = i + 1;
                 newFactor = 0;
 
             }
@@ -232,7 +256,7 @@ public class AlgebraicTree extends Tree {
 
 
         }
-
+        System.out.println(countTerms);
         return t.getChildren().size() > 0;
     }
 
@@ -280,7 +304,7 @@ public class AlgebraicTree extends Tree {
 
                 add(t, substring2);
 
-                if(!add(t2, subsubstring))
+                if (!add(t, subsubstring))
                 {
                     throw new AlgebraicFormulaSyntaxException();
                 }
@@ -311,7 +335,7 @@ public class AlgebraicTree extends Tree {
         int countLetters = 0;
         while(i<values.length())
         {
-            if(Character.isLetterOrDigit(values.charAt(i)) && count ==0) {
+            if (Character.isLetter(values.charAt(0)) && Character.isLetterOrDigit(values.charAt(i)) && count == 0) {
                 countLetters ++;
             }
             else
@@ -356,7 +380,7 @@ public class AlgebraicTree extends Tree {
     }
 
 
-    public Object eval() {
+    public Object eval() throws TreeNodeEvalException {
         return root.eval();
     }
 }

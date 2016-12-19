@@ -13,19 +13,7 @@
 package be.manudahmen.empty3.core.raytracer.tree;
 
 /**
- * Created by Manuel Dahmen on 15-12-16.
+ * Created by manuel on 17-12-16.
  */
-public abstract  class TreeNodeValue  extends TreeNode
-{
-
-    public TreeNodeValue(TreeNode parent, Object[] values) {
-        super(parent, values, new VariableTreeNodeType());
-    }
-
-    public Object getValue() {
-        return null;
-    }
-
-    public abstract Object eval();
-
+public class TreeNodeEvalException extends Throwable {
 }

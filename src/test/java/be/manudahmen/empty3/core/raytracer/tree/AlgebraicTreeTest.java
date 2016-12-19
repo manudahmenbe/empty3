@@ -57,12 +57,32 @@ public class AlgebraicTreeTest {
 
     }
     @Test
-    public void testSimpleEquation()
+    public void testSimpleEquationAdd()
     {
         AlgebraicTree algebraicTree = null;
         try {
             algebraicTree = new AlgebraicTree("1+1", null);
-            assertTrue((int) algebraicTree.eval() == 2);
+            try {
+                assertTrue((Double) algebraicTree.eval() == 2.0);
+            } catch (TreeNodeEvalException e) {
+                e.printStackTrace();
+            }
+        } catch (AlgebraicFormulaSyntaxException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void testSimpleEquationMult() {
+        AlgebraicTree algebraicTree = null;
+        try {
+            algebraicTree = new AlgebraicTree("2*3", null);
+            try {
+                assertTrue((Double) algebraicTree.eval() == 6.0);
+            } catch (TreeNodeEvalException e) {
+                e.printStackTrace();
+            }
         } catch (AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
         }
@@ -74,11 +94,17 @@ public class AlgebraicTreeTest {
         AlgebraicTree algebraicTree = null;
         try {
             algebraicTree = new AlgebraicTree("1", null);
-            assertTrue((int) algebraicTree.eval() == 1);
+            assertTrue(1.0 == (Double) algebraicTree.eval());
         } catch (AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
+        } catch (TreeNodeEvalException e) {
+            e.printStackTrace();
         }
-
+        try {
+            System.err.println("Eval (1) : " + algebraicTree.eval());
+        } catch (TreeNodeEvalException e) {
+            e.printStackTrace();
+        }
     }
 
 }

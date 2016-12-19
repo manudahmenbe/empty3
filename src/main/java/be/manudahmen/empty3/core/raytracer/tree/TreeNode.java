@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Created by Manuel Dahmen on 15-12-16.
  */
 public class TreeNode {
-    private TreeNodeType type = null;
+    protected TreeNodeType type = null;
     private TreeNodeValue value;
     private ArrayList<TreeNode> children = new ArrayList<TreeNode>();
     private TreeNode parent;
@@ -50,22 +50,36 @@ public class TreeNode {
     }
 
 
-    public Object eval() {
+    public Object eval() throws TreeNodeEvalException {
+        type = type == null ? getChildren().get(0).type : type;
         if (type instanceof DoubleTreeNodeType) {
             return type.eval();
         } else if (type instanceof ExponentTreeNodeType) {
             return Math.pow((Double) getChildren().get(0).eval(), (Double) getChildren().get(1).eval());
-        }
-        if (type instanceof FactorTreeNodeType) {
+        } else if (type instanceof FactorTreeNodeType) {
+            if (getChildren().size() == 1) {
+                return getChildren().get(0).eval();
+            }
+            int op1 = (Integer) ((FactorTreeNodeType) type).getSign1();
+            int op2 = (Integer) ((FactorTreeNodeType) type).getSign2();
+            if (op1 == 1)
+
+
             return (Double) getChildren().get(0).eval() * (Double) getChildren().get(1).eval();
-        }
-        if (type instanceof FunctionTreeNodeType) {
+
+            else
+
+                return (Double) getChildren().get(0).eval() / (Double) getChildren().get(1).eval();
+
+        } else if (type instanceof FunctionTreeNodeType) {
             switch (((FunctionTreeNodeType) type).getFName()) {
 
             }
             return false;
-        }
-        if (type instanceof TermTreeNodeType) {
+        } else if (type instanceof TermTreeNodeType) {
+            if (getChildren().size() == 1) {
+                return getChildren().get(0).eval();
+            }
             int s1 = (Integer) ((TermTreeNodeType) type).getSign1();
             int s2 = (Integer) ((TermTreeNodeType) type).getSign2();
             return s1 * (Double) getChildren().get(0).eval() + s2 * (Double) getChildren().get(1).eval();
@@ -74,10 +88,12 @@ public class TreeNode {
             int s1 = ((SignTreeNodeType) type).getSign();
             return s1 * (Double) getChildren().get(0).eval();
         }
-
-        return type.eval();
+        if (type == null && getChildren().get(0) != null) {
+            return getChildren().get(0).eval();
+        } else
+            return type.eval();
+        //throw new TreeNodeEvalException();
     }
-
 
     public ArrayList<TreeNode> getChildren() {
         return children;

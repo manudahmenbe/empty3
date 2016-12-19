@@ -16,21 +16,24 @@ package be.manudahmen.empty3.core.raytracer.tree;
  * Created by manuel on 16-12-16.
  */
 public class FactorTreeNodeType extends TreeNodeType {
-    private double exp1, exp2;
+    private int sign1; // 1=*
+    private int sign2; // 2=/
 
-    public FactorTreeNodeType() {
-
+    public FactorTreeNodeType(int sign1, int sign2) {
+        super();
+        this.sign1 = sign1;
+        this.sign2 = sign2;
     }
 
-    @Override
     public Object eval() {
-        return exp1 * exp2;
+        return null;
     }
 
-    @Override
-    protected void instantiate(Object[] objects) {
-        this.exp1 = (Double) objects[0];
-        this.exp2 = (Double) objects[1];
+    public Object getSign1() {
+        return sign1;
+    }
 
+    public Object getSign2() {
+        return sign2;
     }
 }
