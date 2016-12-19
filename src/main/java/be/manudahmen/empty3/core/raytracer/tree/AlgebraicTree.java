@@ -32,13 +32,18 @@ public class AlgebraicTree extends Tree {
         if (!(src != null && subformula != null && subformula.length() > 0))
             return false; //throw new AlgebraicFormulaSyntaxException("Chaine vide");
 
-        if (addFormulaSeparator(src, subformula) || addSingleSign(src, subformula) ||
-                addFunction(src, subformula) ||
+        if (
+                addFormulaSeparator(src, subformula) ||
                 addTerms(src, subformula) ||
                 addFactors(src, subformula) ||
                 addExponent(src, subformula) ||
+                        addBracedExpression(src, subformula) ||
+                        addSingleSign(src, subformula) ||
+                        addFunction(src, subformula) ||
             addVariable(src, subformula) ||
-        addConstant(src, subformula)){
+                        addConstant(src, subformula)
+
+                ) {
             Iterator<TreeNode> it = src.getChildren().iterator();
             while(it.hasNext()) {
                 TreeNode children = it.next();
@@ -183,7 +188,6 @@ public class AlgebraicTree extends Tree {
 
 
         }
-        System.out.println(countTerms);
         return t.getChildren().size() > 0;
     }
 
@@ -215,7 +219,7 @@ public class AlgebraicTree extends Tree {
                 newFactorPos = i;
                 isNewFactor = true;
                 firstTermFound = true;
-                newFactorSign = -1;
+                newFactorSign = 1;
             }
             else if(values.charAt(i)=='-' && count==0)
             {
@@ -255,14 +259,14 @@ public class AlgebraicTree extends Tree {
                 newFactorPos = i + 1;
                 oldFactorPos = i + 1;
                 newFactor = 0;
-
+                newFactorSign = 0;
             }
 
             i++;
 
 
         }
-        System.out.println(countTerms);
+
         return t.getChildren().size() > 0;
     }
 
@@ -332,7 +336,7 @@ public class AlgebraicTree extends Tree {
     }
 
     public boolean addFunction(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
-        int i=0;
+        int i = 1;
         boolean isNewFactor= false;
         int count = 0;
         int newFactorPos = 0;
@@ -368,9 +372,10 @@ public class AlgebraicTree extends Tree {
                 if (!add(t2, subsubstring)) // (add () parameters)
                 {
                     throw new AlgebraicFormulaSyntaxException();
-                }
+                } else {
 
-                return true;
+                    return true;
+                }
             }
 
 
@@ -405,9 +410,10 @@ public class AlgebraicTree extends Tree {
                 if (!add(t2, subsubstring)) // (add () parameters)
                 {
                     throw new AlgebraicFormulaSyntaxException();
+                } else {
+                    return true;
                 }
 
-                return true;
             }
 
 
