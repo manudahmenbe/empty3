@@ -53,6 +53,9 @@ public class TreeNode {
 
     public Object eval() throws TreeNodeEvalException {
         TreeNodeType cType = (getChildren().size() == 0) ? type : getChildren().get(0).type;
+        if (type instanceof IdentTreeNodeType) {
+            return getChildren().get(0).eval();
+        }
         if (cType instanceof IdentTreeNodeType) {
             return getChildren().get(0).eval();
         }

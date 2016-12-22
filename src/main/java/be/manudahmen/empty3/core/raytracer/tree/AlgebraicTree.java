@@ -127,6 +127,7 @@ public class AlgebraicTree extends Tree {
         int oldFactorPos = 0;
         char newFactor = '*';
         int newFactorSign = 1;
+        int oldFactorSign = 1;
         while (i < values.length()) {
             if (values.charAt(i) == '(') {
                 count++;
@@ -147,13 +148,14 @@ public class AlgebraicTree extends Tree {
             } else if (i == values.length() - 1 && count == 0 && firstTermFound) {
                 isNewFactor = true;
                 newFactorPos = i + 1;
-                if (values.charAt(oldFactorPos - 1) == '/') {
+                /*if (values.charAt(oldFactorPos - 1) == '/') {
                     newFactorSign = -1;
                     newFactor = '/';//??
                 } else if (values.charAt(oldFactorPos - 1) == '*') {
                     newFactorSign = 1;
                     newFactor = '*';//??
                 } else throw new AlgebraicFormulaSyntaxException("Ni + ni -");
+            */
             }
 
 
@@ -163,7 +165,7 @@ public class AlgebraicTree extends Tree {
 
 
                 if (subsubstring.length() > 0) {
-                    t2 = new TreeNode(t, new Object[]{subsubstring}, new FactorTreeNodeType(newFactorSign));
+                    t2 = new TreeNode(t, new Object[]{subsubstring}, new FactorTreeNodeType(oldFactorSign));
                     t.getChildren().add(t2);
                     if (!add(t2, subsubstring)) {
                         return false;
@@ -176,7 +178,7 @@ public class AlgebraicTree extends Tree {
                 newFactorPos = i + 1;
                 oldFactorPos = i + 1;
                 newFactor = 0;
-
+                oldFactorSign = newFactorSign;
             }
 
             i++;
@@ -384,7 +386,7 @@ public class AlgebraicTree extends Tree {
 
                     TreeNode t2 = new TreeNode(t, new Object[]{subsubstring}, new IdentTreeNodeType());
 
-                    System.err.println(subsubstring);
+                    //System.err.println(subsubstring);
 
                     t.getChildren().add(t2);
 

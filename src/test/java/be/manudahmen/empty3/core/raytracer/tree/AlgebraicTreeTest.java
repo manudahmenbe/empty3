@@ -58,11 +58,11 @@ public class AlgebraicTreeTest {
 
     }
 
-    protected boolean testResult(String expr, double expectedResult) {
+    protected boolean testResult(String expr, double expectedResult, boolean echo) {
         AlgebraicTree algebraicTree = null;
         try {
             algebraicTree = new AlgebraicTree(expr, null);
-            // System.out.println(algebraicTree);
+            if (echo) System.out.println(algebraicTree);
             try {
                 Object result;
                 System.out.println("Result : " + (result = algebraicTree.eval()));
@@ -82,46 +82,61 @@ public class AlgebraicTreeTest {
     @Test
     public void testSimpleEquationAdd()
     {
-        testResult("1+1", 2.0);
+        testResult("1+1", 2.0, false);
     }
 
     @Test
     public void testSimpleEquationAddSubMult() {
-        testResult("2*3+1*6-4", 2.0 * 3 + 1 * 6 - 4);
+        testResult("2*3+1*6-4", 2.0 * 3 + 1 * 6 - 4, false);
     }
 
     @Test
     public void testSimpleEquationAddSubMult2() {
-        testResult("2*3-1*6-4", 2.0 * 3 - 1 * 6 - 4);
+        testResult("2*3-1*6-4", 2.0 * 3 - 1 * 6 - 4, false);
     }
 
     @Test
     public void testSimpleEquationAddMult() {
-        testResult("2*3+1*6+4", 2 * 3 + 1 * 6 + 4);
+        testResult("2*3+1*6+4", 2 * 3 + 1 * 6 + 4, false);
     }
 
     @Test
     public void testSimpleEquationMult() {
-        testResult("2*3", 6.0);
+        testResult("2*3", 6.0, false);
     }
 
     @Test
     public void testSimpleEquationAddAdd() {
-        testResult("1+2+3+4+5+6", 1.0 + 2 + 3 + 4 + 5 + 6);
+        testResult("1+2+3+4+5+6", 1.0 + 2 + 3 + 4 + 5 + 6, false);
+    }
+
+    @Test
+    public void testSimpleEquationAddSub() {
+        testResult("1-2+3-4+5-6", 1.0 - 2 + 3 - 4 + 5 - 6, false);
     }
 
     @Test
     public void testSimpleEquationBracedAddAdd() {
-        testResult("1+2+3-(4*2/1.5+5)*22+6", 1 + 2 + 3 - (4 * 2 / 1.5 + 5) * 22 + 6);
+        testResult("1+2+3-(4*2/1.5+5)*22+6", 1. + 2. + 3. - (4. * 2. / 1.5 + 5.) * 22. + 6., true);
     }
 
     @Test
+    public void testSimpleEquationAddSub2() {
+
+        testResult("4*2/5", 4 * 2.0 / 5, false);
+    }
+
+    @Test
+    public void testSimpleEquationBracedMultDiv() {
+        testResult("1*2*3/4*5*4", 1.0 * 2.0 * 3.0 / 4.0 * 5.0 * 4.0, true);
+    }
+    @Test
     public void testSimple() {
-        assertTrue(testResult("1", 1.0));
+        assertTrue(testResult("1", 1.0, false));
     }
 
     @Test
     public void testSimple2() {
-        assertTrue(testResult("1.5", 1.5));
+        assertTrue(testResult("1.5", 1.5, false));
     }
 }
