@@ -53,9 +53,9 @@ public class TreeNode {
 
     public Object eval() throws TreeNodeEvalException {
         TreeNodeType cType = (getChildren().size() == 0) ? type : getChildren().get(0).type;
-        if (type instanceof IdentTreeNodeType) {
+        /*if (type instanceof IdentTreeNodeType) {
             return getChildren().get(0).eval();
-        }
+        }*/
         if (cType instanceof IdentTreeNodeType) {
             return getChildren().get(0).eval();
         }
@@ -74,7 +74,7 @@ public class TreeNode {
                 if (op1 == 1)
 
 
-                    dot *= (Double) treeNode.eval();
+                    dot *= op1 * (Double) treeNode.eval();
                 else
 
                     dot /= (Double) treeNode.eval();
@@ -95,13 +95,9 @@ public class TreeNode {
             for (int i = 0; i < getChildren().size(); i++) {
                 TreeNode treeNode = getChildren().get(i);
                 int op1 = treeNode.type.getSign1();
-                if (op1 == 1) {
-                    sum += (Double) treeNode.eval();
-                } else {
-                    sum -= (Double) treeNode.eval();
+                sum += op1 * (Double) treeNode.eval();
                 }
 
-            }
 
             return sum;
         }

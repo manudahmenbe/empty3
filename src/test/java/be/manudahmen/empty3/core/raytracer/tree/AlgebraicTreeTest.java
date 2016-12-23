@@ -117,7 +117,7 @@ public class AlgebraicTreeTest {
 
     @Test
     public void testSimpleEquationBracedAddAdd() {
-        testResult("1+2+3-(4*2/1.5+5)*22+6", 1. + 2. + 3. - (4. * 2. / 1.5 + 5.) * 22. + 6., true);
+        testResult("1+2+3-(4*2/1.5+5)*22+6", 1 + 2 + 3 - (4 * 2 / 1.5 + 5) * 22 + 6, true);
     }
 
     @Test
