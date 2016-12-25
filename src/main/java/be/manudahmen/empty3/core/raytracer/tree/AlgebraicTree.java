@@ -21,7 +21,6 @@ public class AlgebraicTree extends Tree {
 
     private Tree t;
     private TreeNode root;
-
     public AlgebraicTree(String formula, Map.Entry<TreeNodeParameter, Number> parameters) throws AlgebraicFormulaSyntaxException {
         root = new TreeNode(formula);
         add(root, formula);
@@ -57,7 +56,14 @@ public class AlgebraicTree extends Tree {
     }
 
     private boolean addFormulaSeparator(TreeNode src, String subformula) {
-        return false;
+        String[] s;
+        s = subformula.split("=");
+        if (s.length > 1) {
+            EquationTreeNode tt = new EquationTreeNode(subformula);
+            tt.getChildren().add(new EquationTreeNode(s[0]));
+            tt.getChildren().add(new EquationTreeNode(s[1]));
+        }
+        return true;
     }
 
     private boolean addVariable(TreeNode src, String subformula) {
