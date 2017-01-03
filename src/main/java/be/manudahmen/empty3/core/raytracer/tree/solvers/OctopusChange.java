@@ -10,13 +10,10 @@
  * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
 
-package be.manudahmen.empty3.core.raytracer.tree;
+package be.manudahmen.empty3.core.raytracer.tree.solvers;
 
 /**
- * Created by manuel on 25-12-16.
+ * Created by manuel on 30-12-16.
  */
-public class EquationSystem extends TreeNode {
-    public EquationSystem(String expStr) {
-        super(expStr);
-    }
+public class OctopusChange {
 }

@@ -10,13 +10,25 @@
  * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
 
-package be.manudahmen.empty3.core.raytracer.tree;
+package be.manudahmen.empty3.core.raytracer.tree.solvers;
+
+import be.manudahmen.empty3.core.raytracer.tree.AlgebraicTree;
+import be.manudahmen.empty3.core.raytracer.tree.Constraint;
+
+import java.util.ArrayList;
 
 /**
- * Created by manuel on 25-12-16.
+ * Created by manuel on 29-12-16.
  */
-public class EquationSystem extends TreeNode {
-    public EquationSystem(String expStr) {
-        super(expStr);
+public abstract class Solver {
+    protected ArrayList<AlgebraicTree> equations = new ArrayList<>();
+    protected ArrayList<Constraint> solution;
+
+
+    public Solver(ArrayList<AlgebraicTree> equations, ArrayList<Constraint> solution) {
+        this.equations = equations;
+        this.solution = solution;
     }
+
+    public abstract ArrayList<Constraint> solve();
 }
