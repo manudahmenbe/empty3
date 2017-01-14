@@ -13,13 +13,27 @@
 package be.manudahmen.empty3.core.suvoxel;
 
 import be.manudahmen.empty3.Point2D;
+import be.manudahmen.empty3.Point3D;
+import be.manudahmen.empty3.Representable;
 import be.manudahmen.empty3.ZBuffer;
+
+import java.util.List;
 
 /**
  * Created by manuel on 07-01-17.
  */
 public class Voxel implements Xel {
-    public Point2D reduce(ZBuffer z) {
+    public Point2D reduce(ZBuffer z, int nPixels) {
+        return null;
+    }
+
+    @Override
+    public Representable cell(ZBuffer z, Point3D p) {
+        return null;
+    }
+
+    @Override
+    public List<Cell> cells() {
         return null;
     }
 }

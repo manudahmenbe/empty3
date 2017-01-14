@@ -13,7 +13,11 @@
 package be.manudahmen.empty3.core.suvoxel;
 
 import be.manudahmen.empty3.Point2D;
+import be.manudahmen.empty3.Point3D;
+import be.manudahmen.empty3.Representable;
 import be.manudahmen.empty3.ZBuffer;
+
+import java.util.List;
 
 /**
  * Created by manuel on 11-01-17.
@@ -22,9 +26,13 @@ public interface Xel {
     /**
      * Méthode de réduction de surfaces ou de volumes. Réduction à un point dans l'image.
      * Peut-être à séparer en plusieurs méthodes, selon le type d'objet.
-     *
+     * Réduction à un point ou un ensemble de point (Wikipedia)
      * @param z
      * @return
      */
-    Point2D reduce(ZBuffer z);
+    Point2D reduce(ZBuffer z, int nPixels);
+
+    Representable cell(ZBuffer z, Point3D p);
+
+    List<Cell> cells();
 }

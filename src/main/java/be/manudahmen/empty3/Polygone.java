@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -75,12 +75,12 @@ public class Polygone extends Representable implements TRIGenerable {
         return points;
     }
 
-    public void setPoints(ArrayList<Point3D> points) {
-        this.points = points;
-    }
-
     public void setPoints(Point3D[] point3D) {
         points.addAll(Arrays.asList(point3D));
+    }
+
+    public void setPoints(ArrayList<Point3D> points) {
+        this.points = points;
     }
 
     @Override
@@ -94,4 +94,19 @@ public class Polygone extends Representable implements TRIGenerable {
         return t;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Polygone polygone = (Polygone) o;
+
+        return getPoints() != null ? getPoints().equals(polygone.getPoints()) : polygone.getPoints() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getPoints() != null ? getPoints().hashCode() : 0;
+    }
 }
