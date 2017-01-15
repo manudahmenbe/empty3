@@ -13,6 +13,7 @@
 package be.manudahmen.empty3.core.suvoxel;
 
 import be.manudahmen.empty3.Point3D;
+import be.manudahmen.empty3.ZBuffer;
 
 /**
  * Created by manuel on 15-01-17.
@@ -23,4 +24,51 @@ public class ZCell {
      * "Pyramide"
      */
     private double xMin, xMax, yMin, yMax;
+    private ZBuffer z;
+
+    public ZCell(Point3D origin, ZBuffer z) {
+        this.origin = origin;
+        this.z = z;
+    }
+
+    public Point3D getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(Point3D origin) {
+        this.origin = origin;
+    }
+
+    public double getxMin() {
+        return xMin;
+    }
+
+    public void setxMin(double xMin) {
+        this.xMin = xMin;
+    }
+
+    public double getxMax() {
+        return xMax;
+    }
+
+    public void setxMax(double xMax) {
+        this.xMax = xMax;
+    }
+
+    public double getyMin() {
+        return yMin;
+    }
+
+    public void setyMin(double yMin) {
+        this.yMin = yMin;
+    }
+
+    public double getyMax() {
+        return yMax;
+    }
+
+    public void setyMax(double yMax) {
+        this.yMax = yMax;
+    }
+
 }
