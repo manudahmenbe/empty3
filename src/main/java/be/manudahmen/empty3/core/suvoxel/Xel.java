@@ -17,7 +17,7 @@ import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Representable;
 import be.manudahmen.empty3.ZBuffer;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by manuel on 11-01-17.
@@ -32,7 +32,11 @@ public interface Xel {
      */
     Point2D reduce(ZBuffer z, int nPixels);
 
-    Representable cell(ZBuffer z, Point3D p);
+    Set<Point2D> reduceToSurface2d(ZBuffer z, Representable t);
 
-    List<Cell> cells();
+    ZCell zcell(ZBuffer z, Point3D p);
+
+    Set<Cell> cells();
+
+    Set<ZCell> zCells();
 }

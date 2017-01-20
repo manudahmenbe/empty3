@@ -17,23 +17,35 @@ import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Representable;
 import be.manudahmen.empty3.ZBuffer;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by manuel on 07-01-17.
  */
 public class Voxel implements Xel {
+
+    @Override
     public Point2D reduce(ZBuffer z, int nPixels) {
         return null;
     }
 
     @Override
-    public Representable cell(ZBuffer z, Point3D p) {
+    public Set<Point2D> reduceToSurface2d(ZBuffer z, Representable t) {
         return null;
     }
 
     @Override
-    public List<Cell> cells() {
+    public ZCell zcell(ZBuffer z, Point3D p) {
+        return null;
+    }
+
+    @Override
+    public Set<Cell> cells() {
+        return null;
+    }
+
+    @Override
+    public Set<ZCell> zCells() {
         return null;
     }
 }
