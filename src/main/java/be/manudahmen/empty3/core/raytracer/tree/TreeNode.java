@@ -86,10 +86,7 @@ public class TreeNode {
 
 
         } else if (cType instanceof FunctionTreeNodeType) {
-            switch (((FunctionTreeNodeType) cType).getFName()) {
-
-            }
-            return false;
+            return (((FunctionTreeNodeType) cType).compute());
         } else if (cType instanceof TermTreeNodeType) {
             if (getChildren().size() == 1) {
                 return getChildren().get(0).eval();

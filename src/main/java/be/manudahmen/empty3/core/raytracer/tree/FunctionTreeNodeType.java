@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -18,6 +18,7 @@ package be.manudahmen.empty3.core.raytracer.tree;
 public class FunctionTreeNodeType extends TreeNodeType {
     private double exp1;
     private String fName;
+    private double[] objects;
 
 
     @Override
@@ -34,4 +35,17 @@ public class FunctionTreeNodeType extends TreeNodeType {
     public String getFName() {
         return fName;
     }
+
+    public Double compute() {
+        return 0.0;
+    }
+
+    public void setObjects(double[] objects) {
+        this.objects = objects;
+    }
+
+    public double[] getValue() {
+        return objects;
+    }
+
 }

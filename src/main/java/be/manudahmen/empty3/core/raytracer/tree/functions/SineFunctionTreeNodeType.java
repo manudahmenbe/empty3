@@ -10,21 +10,17 @@
  * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
 
-package be.manudahmen.empty3.core.raytracer.tree;
+package be.manudahmen.empty3.core.raytracer.tree.functions;
 
-import java.util.HashMap;
+import be.manudahmen.empty3.core.raytracer.tree.FunctionTreeNodeType;
 
 /**
- * Created by manuel on 25-12-16.
+ * Created by manuel on 24-01-17.
  */
-public class EquationSystem extends TreeNode {
-    private String[] inconnues;
-    private HashMap<String, Double> constantes;
-
-    public EquationSystem(String expStr, String[] inconnue, HashMap<String, Double> values) {
-        super(expStr);
-        this.inconnues = inconnue;
-        this.constantes = values;
-        // Fonctions...
+public class SineFunctionTreeNodeType extends FunctionTreeNodeType {
+    @Override
+    public Double compute() {
+        return Math.sin(getValue()[0]);
     }
+
 }
