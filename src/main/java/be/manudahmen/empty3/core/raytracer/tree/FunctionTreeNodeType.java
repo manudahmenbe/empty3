@@ -37,7 +37,6 @@ public class FunctionTreeNodeType extends TreeNodeType {
     @Override
     protected void instantiate(Object[] objects) {
         this.fName = (String) objects[0];
-        this.exp1 = (Double) objects[1];
     }
 
     public String getFName() {

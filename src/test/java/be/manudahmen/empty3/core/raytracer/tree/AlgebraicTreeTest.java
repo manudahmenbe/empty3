@@ -65,10 +65,10 @@ public class AlgebraicTreeTest {
             if (echo) System.out.println(algebraicTree);
             try {
                 Object result;
-                System.out.println("Result : " + (result = algebraicTree.eval()));
-                Double expected;
-                System.out.println("Expected : " + (expected = expectedResult));
-                assertTrue((double) result == expected);
+                result = algebraicTree.eval();
+                if (echo) System.out.println("Result : " + result);
+                if (echo) System.out.println("Expected : " + expectedResult);
+                assertTrue((double) result == expectedResult);
                 return true;
             } catch (TreeNodeEvalException e) {
                 e.printStackTrace();
@@ -82,7 +82,7 @@ public class AlgebraicTreeTest {
 
     @Test
     public void testSimpleEquation1() {
-        testResult("1", 2.0, false);
+        testResult("1", 1.0, false);
     }
     @Test
     public void testSimpleEquationAdd()
@@ -122,7 +122,7 @@ public class AlgebraicTreeTest {
 
     @Test
     public void testSimpleEquationBracedAddAdd() {
-        testResult("1+2+3-(4*2/1.5+5)*22+6", 1 + 2 + 3 - (4 * 2 / 1.5 + 5) * 22 + 6, true);
+        testResult("1+2+3-(4*2/1.5+5)*22+6", 1 + 2 + 3 - (4 * 2 / 1.5 + 5) * 22 + 6, false);
     }
 
     @Test
@@ -133,11 +133,11 @@ public class AlgebraicTreeTest {
 
     @Test
     public void testSimpleEquationBracedMultDiv() {
-        testResult("1*2*3/4*5*4", 1.0 * 2.0 * 3.0 / 4.0 * 5.0 * 4.0, true);
+        testResult("1*2*3/4*5*4", 1.0 * 2.0 * 3.0 / 4.0 * 5.0 * 4.0, false);
     }
     @Test
     public void testSimpleFunction() {
-        testResult("sin(3.14)*4", Math.sin(3.14) * 4, true);
+        testResult("sin(3.14)*4", Math.sin(3.14) * 4, false);
     }
     @Test
     public void testSimple() {

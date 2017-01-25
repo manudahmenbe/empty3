@@ -22,10 +22,11 @@ import java.lang.reflect.Method;
  * Created by manuel on 24-01-17.
  */
 public class MathFunctionTreeNodeType extends FunctionTreeNodeType {
-    public Double compute(String function, Double value) {
+    public Double compute(String function) {
         try {
+            System.out.println(function);
             Method method;
-            method = Math.class.getMethod((function), Double.class);
+            method = Math.class.getMethod((function), double.class);
             try {
                 return (Double) method.invoke(Math.class, getAlgebraicTree().eval());
             } catch (TreeNodeEvalException e) {

@@ -88,8 +88,7 @@ public class TreeNode {
 
 
         } else if (cType instanceof MathFunctionTreeNodeType) {
-            return ((MathFunctionTreeNodeType) cType).compute(((FunctionTreeNodeType) cType).getFName(),
-                    ((FunctionTreeNodeType) cType).getValue()[0]);
+            return ((MathFunctionTreeNodeType) cType).compute(((FunctionTreeNodeType) cType).getFName());
         } else if (cType instanceof TermTreeNodeType) {
             if (getChildren().size() == 1) {
                 return getChildren().get(0).eval();

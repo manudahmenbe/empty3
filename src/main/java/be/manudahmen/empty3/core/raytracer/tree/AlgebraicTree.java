@@ -348,7 +348,7 @@ public class AlgebraicTree extends Tree {
                 countLetters++;
             } else if (values.charAt(i) == '(') {
                 if (count == 0) {
-                    newFactorPos = i - 1;
+                    newFactorPos = i + 1;
                 }
                 count++;
             } else if (values.charAt(i) == ')') {
@@ -360,7 +360,7 @@ public class AlgebraicTree extends Tree {
 
 
                 String fName = values.substring(oldFactorPos, newFactorPos - 1);
-                String fParamString = values.substring(newFactorPos + 1, i - 1);
+                String fParamString = values.substring(newFactorPos, i);
 
 
                 MathFunctionTreeNodeType mathFunctionTreeNodeType = new MathFunctionTreeNodeType();
@@ -374,13 +374,13 @@ public class AlgebraicTree extends Tree {
 
                 t.getChildren().add(t2);
 
-                if (!add(t2, fName)) // (add () parameters)
+/*                if (!add(t2, fName)) // (add () parameters)
                 {
                     throw new AlgebraicFormulaSyntaxException();
                 } else {
-
+*/
                     return true;
-                }
+                //              }
             }
 
 
