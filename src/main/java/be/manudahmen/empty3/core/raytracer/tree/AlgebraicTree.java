@@ -347,6 +347,9 @@ public class AlgebraicTree extends Tree {
             if (Character.isLetter(values.charAt(0)) && Character.isLetterOrDigit(values.charAt(i)) && count == 0) {
                 countLetters++;
             } else if (values.charAt(i) == '(') {
+                if (count == 0) {
+                    newFactorPos = i - 1;
+                }
                 count++;
             } else if (values.charAt(i) == ')') {
                 count--;
@@ -357,7 +360,7 @@ public class AlgebraicTree extends Tree {
 
 
                 String fName = values.substring(oldFactorPos, newFactorPos - 1);
-                String fParamString = values.substring(newFactorPos, i - 1);
+                String fParamString = values.substring(newFactorPos + 1, i - 1);
 
 
                 MathFunctionTreeNodeType mathFunctionTreeNodeType = new MathFunctionTreeNodeType();
