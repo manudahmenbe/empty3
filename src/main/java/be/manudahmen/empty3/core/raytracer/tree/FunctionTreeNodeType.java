@@ -16,10 +16,18 @@ package be.manudahmen.empty3.core.raytracer.tree;
  * Created by manuel on 16-12-16.
  */
 public class FunctionTreeNodeType extends TreeNodeType {
+    private AlgebraicTree algebraicTree;
     private double exp1;
     private String fName;
     private double[] objects;
 
+    public AlgebraicTree getAlgebraicTree() {
+        return algebraicTree;
+    }
+
+    public void setAlgebraicTree(AlgebraicTree algebraicTree) {
+        this.algebraicTree = algebraicTree;
+    }
 
     @Override
     public Object eval() {

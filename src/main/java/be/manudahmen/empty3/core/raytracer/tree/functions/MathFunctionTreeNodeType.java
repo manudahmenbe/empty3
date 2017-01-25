@@ -12,9 +12,34 @@
 
 package be.manudahmen.empty3.core.raytracer.tree.functions;
 
+import be.manudahmen.empty3.core.raytracer.tree.FunctionTreeNodeType;
+import be.manudahmen.empty3.core.raytracer.tree.TreeNodeEvalException;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 /**
  * Created by manuel on 24-01-17.
  */
-public class MathFunctionTreeNodeType {
+public class MathFunctionTreeNodeType extends FunctionTreeNodeType {
+    public Double compute(String function, Double value) {
+        try {
+            Method method;
+            method = Math.class.getMethod((function), Double.class);
+            try {
+                return (Double) method.invoke(Math.class, getAlgebraicTree().eval());
+            } catch (TreeNodeEvalException e) {
+                e.printStackTrace();
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
 }

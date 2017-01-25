@@ -12,6 +12,8 @@
 
 package be.manudahmen.empty3.core.raytracer.tree;
 
+import be.manudahmen.empty3.core.raytracer.tree.functions.MathFunctionTreeNodeType;
+
 import java.util.ArrayList;
 
 /**
@@ -85,8 +87,9 @@ public class TreeNode {
             return dot;
 
 
-        } else if (cType instanceof FunctionTreeNodeType) {
-            return (((FunctionTreeNodeType) cType).compute());
+        } else if (cType instanceof MathFunctionTreeNodeType) {
+            return ((MathFunctionTreeNodeType) cType).compute(((FunctionTreeNodeType) cType).getFName(),
+                    ((FunctionTreeNodeType) cType).getValue()[0]);
         } else if (cType instanceof TermTreeNodeType) {
             if (getChildren().size() == 1) {
                 return getChildren().get(0).eval();

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -11,6 +11,8 @@
  */
 
 package be.manudahmen.empty3.core.raytracer.tree;
+
+import be.manudahmen.empty3.core.raytracer.tree.functions.MathFunctionTreeNodeType;
 
 import java.util.Map;
 
@@ -350,14 +352,24 @@ public class AlgebraicTree extends Tree {
 
 
             if (i == values.length() - 1 && count == 0 && values.charAt(i) == ')') {
-                String subsubstring = values.substring(oldFactorPos, newFactorPos - 1);
 
-                TreeNode t2 = new TreeNode(t, new Object[]{subsubstring}, new FunctionTreeNodeType());
+
+                String fName = values.substring(oldFactorPos, newFactorPos - 1);
+                String fParamString = values.substring(newFactorPos, i - 1);
+
+
+                MathFunctionTreeNodeType mathFunctionTreeNodeType = new MathFunctionTreeNodeType();
+
+                AlgebraicTree algebraicTree = new AlgebraicTree(fParamString, null);
+
+                mathFunctionTreeNodeType.setAlgebraicTree(algebraicTree);
+
+                TreeNode t2 = new TreeNode(t, new Object[]{fName}, mathFunctionTreeNodeType);
 
 
                 t.getChildren().add(t2);
 
-                if (!add(t2, subsubstring)) // (add () parameters)
+                if (!add(t2, fName)) // (add () parameters)
                 {
                     throw new AlgebraicFormulaSyntaxException();
                 } else {

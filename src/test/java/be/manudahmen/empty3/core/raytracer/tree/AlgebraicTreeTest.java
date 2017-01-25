@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -79,6 +79,11 @@ public class AlgebraicTreeTest {
         }
         return false;
     }
+
+    @Test
+    public void testSimpleEquation1() {
+        testResult("1", 2.0, false);
+    }
     @Test
     public void testSimpleEquationAdd()
     {
@@ -129,6 +134,10 @@ public class AlgebraicTreeTest {
     @Test
     public void testSimpleEquationBracedMultDiv() {
         testResult("1*2*3/4*5*4", 1.0 * 2.0 * 3.0 / 4.0 * 5.0 * 4.0, true);
+    }
+    @Test
+    public void testSimpleFunction() {
+        testResult("sin(3.14)*4", Math.sin(3.14) * 4, true);
     }
     @Test
     public void testSimple() {
