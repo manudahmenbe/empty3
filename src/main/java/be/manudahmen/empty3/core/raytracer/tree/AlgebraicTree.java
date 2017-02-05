@@ -21,10 +21,11 @@ import java.util.Map;
  */
 public class AlgebraicTree extends Tree {
 
+    Map<String, Double> parametersValues;
     private Tree t;
     private TreeNode root;
 
-    public AlgebraicTree(String formula, Map.Entry<TreeNodeParameter, Number> parameters) throws AlgebraicFormulaSyntaxException {
+    public AlgebraicTree(String formula, Map<TreeNodeParameter, Double> parameters) throws AlgebraicFormulaSyntaxException {
         root = new TreeNode(formula);
         add(root, formula);
     }
@@ -446,5 +447,9 @@ public class AlgebraicTree extends Tree {
         String s = "Arbre algébrique\n" +
                 "Racine: " + root.getClass() + root.toString();
         return s;
+    }
+
+    public void setParametersValues(Map<String, Double> parametersValues) {
+        this.parametersValues = parametersValues;
     }
 }
