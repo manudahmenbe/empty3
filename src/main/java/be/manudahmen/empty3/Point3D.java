@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -24,7 +24,6 @@ import java.awt.*;
  * @author Manuel Dahmen
  */
 public class Point3D extends Representable {
-
     /**
      * *
      * axe X vector
@@ -66,7 +65,6 @@ public class Point3D extends Representable {
      */
     private String id;
     private Barycentre position;
-
     /**
      * *
      * Constructeur Point Origine
@@ -77,7 +75,6 @@ public class Point3D extends Representable {
         x[1] = 0;
         x[2] = 0;
     }
-
     /**
      * *
      *
@@ -123,6 +120,10 @@ public class Point3D extends Representable {
         x[0] = p0.getX();
         x[1] = p0.getY();
         x[2] = p0.getZ();
+    }
+
+    public static Point3D n(double a, double b, double c) {
+        return new Point3D(a, b, c);
     }
 
     /**
@@ -419,5 +420,8 @@ public class Point3D extends Representable {
         } else if (r2 instanceof ParametrizedCurve) {
         }
         throw new UnsupportedOperationException("Pas implémenté encore");
+    }
+
+    public class P extends Point3D {
     }
 }

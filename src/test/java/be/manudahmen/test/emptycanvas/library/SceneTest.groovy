@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -11,21 +11,3 @@
  */
 
 package be.manudahmen.test.emptycanvas.library
-
-import junit.framework.TestCase
-import junit.framework.TestResult
-
-/**
- * Created by manuel on 04-12-16.
- */
-class Test extends TestCase {
-    @Override
-    int countTestCases() {
-        return 0
-    }
-
-    @Override
-    void run(TestResult testResult) {
-
-    }
-}

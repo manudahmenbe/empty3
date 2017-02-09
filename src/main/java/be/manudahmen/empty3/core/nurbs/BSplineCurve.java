@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -32,6 +32,11 @@ public class BSplineCurve extends ParametrizedCurve {
 
     protected List<Double> knots = new ArrayList<Double>();
     protected List<Point3D> points = new ArrayList<Point3D>();
+
+    public void add(Double knot, Point3D p) {
+        knots.add(knot);
+        points.add(p);
+    }
 
     protected double b(int i, int n, double t) {
         if (n == 0) {

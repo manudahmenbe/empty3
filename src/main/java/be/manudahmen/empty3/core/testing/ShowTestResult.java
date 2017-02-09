@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -185,7 +185,7 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
         try {
             image = new ECBufferedImage(
                     ImageIO.read(
-                            getClass().getResourceAsStream("be/ibiiztera/md/pmatrix/test/pushmatrix/newtest/skull-cross-bones-evil.ico")
+                            getClass().getResourceAsStream("be/manudahmen/empty3/core/testing/skull-cross-bones-evil.ico")
                     )
             );
         } catch (IOException e) {
@@ -351,7 +351,7 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
         jSplitPane2.setRightComponent(jPanel3);
 
         jCheckBoxOGL.setText("Open GL");
-        jCheckBoxOGL.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/info/emptycanvas/library/testing/RESULT_SUCCESS.jpg"))); // NOI18N
+        jCheckBoxOGL.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/be/manudahmen/empty3/core/testing/RESULT_SUCCESS.jpg"))); // NOI18N
         jCheckBoxOGL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxOGLActionPerformed(evt);
@@ -359,7 +359,7 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
         });
 
         jCheckBoxModeles.setText("Modèles");
-        jCheckBoxModeles.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/info/emptycanvas/library/testing/RESULT_SUCCESS.jpg"))); // NOI18N
+        jCheckBoxModeles.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/be/manudahmen/empty3/core/testing/RESULT_SUCCESS.jpg"))); // NOI18N
         jCheckBoxModeles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxModelesActionPerformed(evt);
@@ -367,7 +367,7 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
         });
 
         jCheckBoxFilmRec.setText("Enregistrer film");
-        jCheckBoxFilmRec.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/info/emptycanvas/library/testing/RESULT_SUCCESS.jpg"))); // NOI18N
+        jCheckBoxFilmRec.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/be/manudahmen/empty3/core/testing/RESULT_SUCCESS.jpg"))); // NOI18N
         jCheckBoxFilmRec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxFilmRecActionPerformed(evt);
@@ -375,7 +375,7 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
         });
 
         jCheckBoxImagesRec.setText("Enregistrer images");
-        jCheckBoxImagesRec.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/info/emptycanvas/library/testing/RESULT_SUCCESS.jpg"))); // NOI18N
+        jCheckBoxImagesRec.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/be/manudahmen/empty3/core/testing/RESULT_SUCCESS.jpg"))); // NOI18N
         jCheckBoxImagesRec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxImagesRecActionPerformed(evt);
