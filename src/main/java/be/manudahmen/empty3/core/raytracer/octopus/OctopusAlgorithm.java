@@ -16,35 +16,47 @@ import be.manudahmen.empty3.Point2D;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Polygon;
 import be.manudahmen.empty3.ZBuffer;
-import be.manudahmen.empty3.core.nurbs.ParametrizedSurface;
+import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 import be.manudahmen.empty3.core.raytracer.RtRay;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class OctopusAlgorithm {
     private final RtRay ray;
-    private final ParametrizedSurface rep;
+    private final ParametricSurface rep;
+    /***
+     * Min value: 2
+     */
+    private final int subDivideBase;
 
-    public OctopusAlgorithm(RtRay ray, ParametrizedSurface rep) {
+    public OctopusAlgorithm(RtRay ray, int subDivideBase, ParametricSurface rep) {
         this.ray = ray;
         this.rep = rep;
+        this.subDivideBase = subDivideBase;
     }
 
-    public Polygon getBounds(Map<Double, Double> map) {
-        Polygon p = new Polygon();
-        for (Map.Entry<Double, Double> edd : map.entrySet()) {
-            p.getPoints().add(rep.calculerPoint3D(edd.getKey(), edd.getValue()));
+    public PolygonUV getBounds(ArrayList<Point2D> point2DS) {
+        if (point2DS == null) {
+            point2DS = new ArrayList<>();
+            for (double u = 0; u <= 1.0; u += 1.0 / subDivideBase)
+                for (double v = 0; v <= 1.0; v += 1.0 / subDivideBase)
+                    point2DS.add(new Point2D(u, v));
+        }
+        PolygonUV p = new PolygonUV();
+        for (Point2D edd : point2DS) {
+            p.p.getPoints().add(rep.calculerPoint3D(edd.getX(), edd.getY()));
+            p.uv.add(new Point2D(edd.getX(), edd.getY()));
         }
         return p;
     }
 
-    public SortedMap<Double, Map.Entry<Double, Double>> getRefinedMap(ParametrizedSurface rep, Polygon poly, Map<Double, Double> map, boolean firstTime) {
-        SortedMap<Double, Map.Entry<Double, Double>> distances = new TreeMap<Double, Map.Entry<Double, Double>>();
-        for (Map.Entry<Double, Double> doubleDoubleEntry : map.entrySet()) {
-            distances.put(distancePointPolygon(rep.calculerPoint3D(doubleDoubleEntry.getKey(), doubleDoubleEntry.getValue()), poly), doubleDoubleEntry);
+    public SortedMap<Double, Point2D> getRefinedMap(ParametricSurface rep, Polygon poly, ArrayList<Point2D> point2DS, boolean firstTime) {
+        SortedMap<Double, Point2D> distances = new TreeMap<Double, Point2D>();
+        for (Point2D point2D : point2DS) {
+            distances.put(distancePointPolygon(rep.calculerPoint3D(point2D.getX(), point2D.getY()), poly), point2D);
         }
 
         // L'entrée la plus proche du polygone donne lieu à une nouvelle map.
@@ -92,8 +104,8 @@ public class OctopusAlgorithm {
 
             polygons.add(p);
 
-            for (int i = 0; i < 2; i++) {
-                for (int j = 0; j < 2; j++) {
+            for (int i = 0; i < subDivideBase; i++) {
+                for (int j = 0; j < subDivideBase; j++) {
                     k++;
                     us.add(coordinatesUV.getX() + i * value);
                     vs.add(coordinatesUV.getY() + j * value);
@@ -110,7 +122,7 @@ public class OctopusAlgorithm {
             for (int i = 0; i < p.getPoints().size(); i++) {
 
 
-                double distance = distancePointPolygon(ray.mVStart.plus(p.getPoints().get(i).prodScalaire(ray.mVDir)).mult(ray.mVDir.norme()), p);
+                double distance = distancePointPolygon(ray.mVStart.plus(p.getPoints().get(i).moins(ray.mVStart).prodScalaire(ray.mVDir)).mult(1 / ray.mVDir.norme()), p);
 
                 submap.put(distance, new Point2D(us.get(dists.get(p)), vs.get(dists.get(p))));
             }
@@ -120,13 +132,41 @@ public class OctopusAlgorithm {
 
     }
 
-    public boolean isEqualOrLessThanOnePixel(Map.Entry<Double, Double> map) {
-        return false;
+    public boolean isEqualOrLessThanOnePixel(SortedMap<Double, Point2D> point2DS) {
+        throw new NotImplementedException();
     }
 
     public boolean isEqualOrLessThanOnePixel(ZBuffer zbuffer, Polygon polyhedron)
 
     {
-        return false;
+        throw new NotImplementedException();
+    }
+
+    public Point3D trace() {
+
+        PolygonUV bounds = getBounds(null);
+        SortedMap<Double, Point2D> closestUVFromMap;
+        do {
+            TreeMap<Double, Point2D> submap = new TreeMap<>();
+            int i = 0;
+
+            for (Point3D p : bounds.p.getPoints()) {
+                Point2D uv = bounds.uv.get(i);
+                double distance = distancePointPolygon(p, bounds.p);
+
+                submap.put(distance, new Point2D(uv.x, uv.y));
+                i++;
+            }
+            closestUVFromMap = getClosestUVFromMap(submap, 1.0 / subDivideBase / 1.2);
+
+        } while (!isEqualOrLessThanOnePixel(closestUVFromMap));
+        Point2D uv = closestUVFromMap.get(closestUVFromMap.firstKey());
+
+        return rep.calculerPoint3D(uv.x, uv.y);
+    }
+
+    public class PolygonUV {
+        public Polygon p;
+        public ArrayList<Point2D> uv;
     }
 }

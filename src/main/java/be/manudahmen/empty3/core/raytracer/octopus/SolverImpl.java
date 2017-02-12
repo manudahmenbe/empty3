@@ -14,13 +14,13 @@ package be.manudahmen.empty3.core.raytracer.octopus;
 
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Representable;
+import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 import be.manudahmen.empty3.core.nurbs.ParametrizedCurve;
-import be.manudahmen.empty3.core.nurbs.ParametrizedSurface;
 import be.manudahmen.empty3.core.raytracer.RtRay;
 
 public class SolverImpl implements Solver {
     @Override
-    public Point3D solve(RtRay ray, ParametrizedSurface rep) {
+    public Point3D solve(RtRay ray, ParametricSurface rep) {
         return null;
     }
 

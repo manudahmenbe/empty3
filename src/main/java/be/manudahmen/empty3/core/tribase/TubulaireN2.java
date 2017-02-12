@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -24,13 +24,13 @@ package be.manudahmen.empty3.core.tribase;
 
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TRIObject;
+import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 import be.manudahmen.empty3.core.nurbs.ParametrizedCurve;
-import be.manudahmen.empty3.core.nurbs.ParametrizedSurface;
 
 import java.awt.*;
 
 public class TubulaireN2<T extends ParametrizedCurve>
-        extends ParametrizedSurface {
+        extends ParametricSurface {
     public static double TAN_FCT_INCR = 0.00005;
     public static double NORM_FCT_INCR = 0.0005;
 

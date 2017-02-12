@@ -13,14 +13,14 @@
 package be.manudahmen.empty3.core.raytracer.tree;
 
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.nurbs.ParametrizedSurface;
+import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 
 import java.util.HashMap;
 
 /**
  * Created by manuel on 05-02-17.
  */
-public class MathExprParametricSurface extends ParametrizedSurface {
+public class MathExprParametricSurface extends ParametricSurface {
     /***
      * a, b: parameters
      */

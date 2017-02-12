@@ -23,7 +23,7 @@
 package be.manudahmen.empty3.core.export;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.nurbs.ParametrizedSurface;
+import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 import be.manudahmen.empty3.core.tribase.TRIGenerable;
 import be.manudahmen.empty3.core.tribase.TRIObjetGenerateur;
 
@@ -57,7 +57,7 @@ public class STLExport {
         }
     }
 
-    public static void traite(ParametrizedSurface n, PrintWriter pw) {
+    public static void traite(ParametricSurface n, PrintWriter pw) {
         traite((TRIObjetGenerateur) n, pw);
     }
 
@@ -103,8 +103,8 @@ public class STLExport {
         if (r instanceof TRIConteneur) {
             traite((TRIConteneur) r, pw);
         }
-        if (r instanceof ParametrizedSurface) {
-            traite((ParametrizedSurface) r, pw);
+        if (r instanceof ParametricSurface) {
+            traite((ParametricSurface) r, pw);
         }
     }
 

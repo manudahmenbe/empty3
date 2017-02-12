@@ -23,8 +23,8 @@
 package be.manudahmen.empty3;
 
 import be.manudahmen.empty3.core.extra.SimpleSphere;
+import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 import be.manudahmen.empty3.core.nurbs.ParametrizedCurve;
-import be.manudahmen.empty3.core.nurbs.ParametrizedSurface;
 import be.manudahmen.empty3.core.tribase.TRIObjetGenerateurAbstract;
 
 import javax.imageio.ImageIO;
@@ -596,9 +596,9 @@ public class ZBufferImpl implements ZBuffer {
                     // .print("+"+n.calculerPoint3D(i).toString());
                 }
 
-            } else if (r instanceof ParametrizedSurface) {
+            } else if (r instanceof ParametricSurface) {
                 // System.out.println("Surface");
-                ParametrizedSurface n = (ParametrizedSurface) r;
+                ParametricSurface n = (ParametricSurface) r;
                 interactionCourant = n;
                 for (double i = n.getStartU(); i <= n.getEndU() - n.getIncrU(); i += n.getIncrU()) {
                     for (double j = n.getStartU(); j <= n.getEndV() - n.getIncrV(); j += n.getIncrV()) {
