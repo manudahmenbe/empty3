@@ -133,7 +133,21 @@ public class OctopusAlgorithm {
     }
 
     public boolean isEqualOrLessThanOnePixel(SortedMap<Double, Point2D> point2DS) {
-        throw new NotImplementedException();
+        boolean cont = false;
+        for (Point2D coord : point2DS.values()) {
+            Point3D target = rep.calculerPoint3D(coord.x, coord.y);
+            Point3D moins = target.moins(ray.mVStart);
+            moins.normalize();
+            if (moins.getX() < ray.mVDirX1.getX() && moins.getX() > ray.mVDirX_1.getX()
+                    && moins.getY() < ray.mVDirY1.getY() && moins.getY() > ray.mVDirY_1.getY()) {
+                cont = true;
+
+            } else {
+                cont = false;
+                break;
+            }
+        }
+        return cont;
     }
 
     public boolean isEqualOrLessThanOnePixel(ZBuffer zbuffer, Polygon polyhedron)
