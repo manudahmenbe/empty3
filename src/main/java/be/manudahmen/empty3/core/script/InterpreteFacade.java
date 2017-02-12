@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -16,6 +16,7 @@
 package be.manudahmen.empty3.core.script;
 
 import be.manudahmen.empty3.*;
+import be.manudahmen.empty3.Polygon;
 import be.manudahmen.empty3.core.extra.*;
 import be.manudahmen.empty3.core.nurbs.NurbsSurface;
 import be.manudahmen.empty3.core.tribase.Plan3D;
@@ -568,12 +569,12 @@ public class InterpreteFacade {
 
     }
 
-    public Polygone interpretePolygone() throws InterpreteException {
+    public Polygon interpretePolygone() throws InterpreteException {
         InterpretePolygone interpreteH = new InterpretePolygone();
         interpreteH.setRepertoire(repertoire);
-        Polygone s = null;
+        Polygon s = null;
         try {
-            s = (Polygone) interpreteH.interprete(text, pos);
+            s = (Polygon) interpreteH.interprete(text, pos);
             pos = interpreteH.getPosition();
         } catch (InterpreteException ex) {
             throw new InterpreteException(

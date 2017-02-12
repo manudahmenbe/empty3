@@ -23,7 +23,7 @@ import java.util.Iterator;
 /**
  * @author Manuel
  */
-public class Polygone extends Representable implements TRIGenerable {
+public class Polygon extends Representable implements TRIGenerable {
 
     /**
      *
@@ -31,22 +31,22 @@ public class Polygone extends Representable implements TRIGenerable {
     private static final long serialVersionUID = -852637190575721116L;
     private ArrayList<Point3D> points = new ArrayList<Point3D>();
 
-    public Polygone() {
+    public Polygon() {
     }
 
-    public Polygone(Color c) {
+    public Polygon(Color c) {
         texture(new ColorTexture(c));
     }
 
-    public Polygone(ITexture c) {
+    public Polygon(ITexture c) {
         texture(c);
     }
 
-    public Polygone(Point3D[] list, Color c) {
+    public Polygon(Point3D[] list, Color c) {
         this(list, new ColorTexture(c));
     }
 
-    public Polygone(Point3D[] list, ITexture c) {
+    public Polygon(Point3D[] list, ITexture c) {
         this.texture = c;
         points.addAll(Arrays.asList(list));
     }
@@ -75,12 +75,12 @@ public class Polygone extends Representable implements TRIGenerable {
         return points;
     }
 
-    public void setPoints(Point3D[] point3D) {
-        points.addAll(Arrays.asList(point3D));
-    }
-
     public void setPoints(ArrayList<Point3D> points) {
         this.points = points;
+    }
+
+    public void setPoints(Point3D[] point3D) {
+        points.addAll(Arrays.asList(point3D));
     }
 
     @Override
@@ -99,7 +99,7 @@ public class Polygone extends Representable implements TRIGenerable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Polygone polygone = (Polygone) o;
+        Polygon polygone = (Polygon) o;
 
         return getPoints() != null ? getPoints().equals(polygone.getPoints()) : polygone.getPoints() == null;
 

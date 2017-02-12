@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -30,7 +30,7 @@ public class Quads extends RepresentableConteneur {
 
         for (int i = 0; i < quads.length - 1; i++) {
             for (int j = 0; j < quads[i].length - 1; j++) {
-                Polygone poly = new Polygone();
+                Polygon poly = new Polygon();
 
                 poly.add(quads[i][j]);
                 poly.add(quads[i][j + 1]);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class PolyMap extends Representable {
 
-    private List<Polygone> polys = new ArrayList<Polygone>();
+    private List<Polygon> polys = new ArrayList<Polygon>();
     private int size;
 
     /**
@@ -108,7 +108,7 @@ public class PolyMap extends Representable {
      *
      * @return polygones
      */
-    public List<Polygone> getPolys() {
+    public List<Polygon> getPolys() {
         return polys;
     }
 }

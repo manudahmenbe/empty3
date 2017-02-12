@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -368,7 +368,7 @@ public class ZBufferImpl implements ZBuffer {
                 int i1 = 10, i2 = 10;
                 for (int i = 0; i < i1; i++) {
                     for (int j = 0; j < i2; j++) {
-                        dessinerSilhouette3D(new Polygone(new Point3D[]{
+                        dessinerSilhouette3D(new Polygon(new Point3D[]{
                                 b.getControle(i - 1 < 0 ? 0 : i - 1, j),
                                 b.getControle(i, j),
                                 b.getControle(i, j - 1 < 0 ? 0 : j - 1),
@@ -527,7 +527,7 @@ public class ZBufferImpl implements ZBuffer {
                 int i1 = BezierCubique2D.DIM1, i2 = BezierCubique2D.DIM2;
                 for (int i = 0; i < i1; i++) {
                     for (int j = 0; j < i2; j++) {
-                        dessinerSilhouette3D(new Polygone(
+                        dessinerSilhouette3D(new Polygon(
                                 new Point3D[]{
                                         r.rotation(b.calculerPoint3D((i - 1 < 0 ? 0
                                                 : i - 1) * 1d / i1, (j) * 1d

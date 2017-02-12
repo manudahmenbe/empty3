@@ -40,7 +40,7 @@ public class Parallelepiped extends RepresentableConteneur {
             p[2] = new Point3D(x * a, 1 * b, 1 * c);
             p[3] = new Point3D(x * a, -1 * b, 1 * c);
 
-            add(new Polygone(p, texture()));
+            add(new Polygon(p, texture()));
         }
         for (int y = -1; y <= 1; y++) {
             p[0] = new Point3D(1 * a, y * b, 1 * c);
@@ -48,7 +48,7 @@ public class Parallelepiped extends RepresentableConteneur {
             p[2] = new Point3D(-1 * a, y * b, -1 * c);
             p[3] = new Point3D(-1 * a, y * b, 1 * c);
 
-            add(new Polygone(p, texture()));
+            add(new Polygon(p, texture()));
         }
         for (int z = -1; z <= 1; z++) {
             p[0] = new Point3D(-1 * a, -1 * b, z * c);
@@ -56,7 +56,7 @@ public class Parallelepiped extends RepresentableConteneur {
             p[2] = new Point3D(1 * a, 1 * b, z * c);
             p[3] = new Point3D(1 * a, -1 * b, z * c);
 
-            add(new Polygone(p, texture()));
+            add(new Polygon(p, texture()));
         }
     }
 

@@ -13,7 +13,7 @@
 package be.manudahmen.empty3.core.suvoxel;
 
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.Polygone;
+import be.manudahmen.empty3.Polygon;
 import be.manudahmen.empty3.Representable;
 
 /**
@@ -21,7 +21,7 @@ import be.manudahmen.empty3.Representable;
  */
 public class Cell extends Representable {
     private Point3D origin;
-    private Polygone avant, arriere, gauche, droite, haut, bas;
+    private Polygon avant, arriere, gauche, droite, haut, bas;
 
     public Cell(Point3D p) {
         generatePolygons();
@@ -43,51 +43,51 @@ public class Cell extends Representable {
         this.origin = origin;
     }
 
-    public Polygone getAvant() {
+    public Polygon getAvant() {
         return avant;
     }
 
-    public void setAvant(Polygone avant) {
+    public void setAvant(Polygon avant) {
         this.avant = avant;
     }
 
-    public Polygone getArriere() {
+    public Polygon getArriere() {
         return arriere;
     }
 
-    public void setArriere(Polygone arriere) {
+    public void setArriere(Polygon arriere) {
         this.arriere = arriere;
     }
 
-    public Polygone getGauche() {
+    public Polygon getGauche() {
         return gauche;
     }
 
-    public void setGauche(Polygone gauche) {
+    public void setGauche(Polygon gauche) {
         this.gauche = gauche;
     }
 
-    public Polygone getDroite() {
+    public Polygon getDroite() {
         return droite;
     }
 
-    public void setDroite(Polygone droite) {
+    public void setDroite(Polygon droite) {
         this.droite = droite;
     }
 
-    public Polygone getHaut() {
+    public Polygon getHaut() {
         return haut;
     }
 
-    public void setHaut(Polygone haut) {
+    public void setHaut(Polygon haut) {
         this.haut = haut;
     }
 
-    public Polygone getBas() {
+    public Polygon getBas() {
         return bas;
     }
 
-    public void setBas(Polygone bas) {
+    public void setBas(Polygon bas) {
         this.bas = bas;
     }
 

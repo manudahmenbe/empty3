@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -61,7 +61,7 @@ public class STLExport {
         traite((TRIObjetGenerateur) n, pw);
     }
 
-    private static void traite(Polygone r, PrintWriter pw) {
+    private static void traite(Polygon r, PrintWriter pw) {
         write("facet normal 0 0 0 \n" + "outer loop\n", pw);
         for (int s = 0; s < r.getPoints().size(); s++) {
             write("vertex ", pw);
@@ -91,8 +91,8 @@ public class STLExport {
         if (r instanceof TRIGenerable) {
             traite((TRIGenerable) r, pw);
         }
-        if (r instanceof Polygone) {
-            traite((Polygone) r, pw);
+        if (r instanceof Polygon) {
+            traite((Polygon) r, pw);
         }
         if (r instanceof TRI) {
             traite((TRI) r, pw);
