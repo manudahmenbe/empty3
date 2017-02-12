@@ -115,6 +115,11 @@ public class Point3D extends Representable {
         texture(t);
     }
 
+    /***
+     *
+     *
+     * @param p0 point à copier
+     */
     public Point3D(Point3D p0) {
         x = new double[3];
         x[0] = p0.getX();

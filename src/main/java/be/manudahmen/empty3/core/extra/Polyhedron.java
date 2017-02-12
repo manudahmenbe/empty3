@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -28,17 +28,17 @@ import java.util.ArrayList;
  *         <p>
  *         27 déc. 2011
  */
-public class Polyhedre extends Representable implements TRIConteneur {
+public class Polyhedron extends Representable implements TRIConteneur {
 
     private TRIObject tris = new TRIObject();
     private ArrayList<Point3D> points;
     private Object co;
 
-    public Polyhedre() {
+    public Polyhedron() {
         this.points = new ArrayList<Point3D>();
     }
 
-    public Polyhedre(ArrayList<Point3D> points) {
+    public Polyhedron(ArrayList<Point3D> points) {
         this.points = points;
         for (int a = 0; a < points.size(); a++) {
             Point3D pa = points.get(a);
@@ -55,7 +55,7 @@ public class Polyhedre extends Representable implements TRIConteneur {
         }
     }
 
-    public Polyhedre(ArrayList<Point3D> list, ColorTexture tColor) {
+    public Polyhedron(ArrayList<Point3D> list, ColorTexture tColor) {
         this.points = list;
         this.texture = tColor;
         for (int a = 0; a < points.size(); a++) {

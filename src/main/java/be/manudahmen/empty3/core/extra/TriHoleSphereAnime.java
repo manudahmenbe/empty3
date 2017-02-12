@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -26,14 +26,14 @@ package be.manudahmen.empty3.core.extra;
  */
 /*
  public class TriHoleSphereAnime extends Animation {
- Polyhedre th ;
+ Polyhedron th ;
  int n=0;
  public TriHoleSphereAnime(Scene s) {
  super(s);
  }
 	
  private Point3D pcurrent = new Point3D(0,0,0);
- private void modifier(Polyhedre th2) {
+ private void modifier(Polyhedron th2) {
  th2.deleteAll();
  double a = 0, b=0, R=10;
  n++;
