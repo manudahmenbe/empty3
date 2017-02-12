@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -12,7 +12,6 @@
 
 package be.manudahmen.empty3.core.raytracer;
 
-import be.manudahmen.empty3.Cube;
 import be.manudahmen.empty3.Representable;
 
 import java.util.ArrayList;
@@ -60,15 +59,15 @@ public class RtScene {
         return mActiveCamera;
     }
 
+    public void setActiveCamera(RtCamera cam) {
+        assert (cam != null);
+        mActiveCamera = cam;
+    }
+
     // set
     public void setActiveCamera(int i) {
         assert (i < mCameras.size());
         mActiveCamera = mCameras.get(i);
-    }
-
-    public void setActiveCamera(RtCamera cam) {
-        assert (cam != null);
-        mActiveCamera = cam;
     }
 
     public RtMatiere getMaterial(int i) {
@@ -111,7 +110,11 @@ public class RtScene {
         return true;
     }
 
-    public void addObject(Cube myCube) {
+    public void addObject(Representable myCube) {
         mNodesR.add(new Representable());
+    }
+
+    public List<Representable> getRepresentables() {
+        return mNodesR;
     }
 }

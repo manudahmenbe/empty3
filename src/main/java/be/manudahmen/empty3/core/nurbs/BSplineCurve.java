@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class BSplineCurve extends ParametrizedCurve {
+public class BSplineCurve extends ParametricCurve {
 
     protected List<Double> knots = new ArrayList<Double>();
     protected List<Point3D> points = new ArrayList<Point3D>();

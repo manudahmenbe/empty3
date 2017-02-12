@@ -24,12 +24,12 @@ package be.manudahmen.empty3.core.tribase;
 
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TRIObject;
+import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
-import be.manudahmen.empty3.core.nurbs.ParametrizedCurve;
 
 import java.awt.*;
 
-public class TubulaireN2<T extends ParametrizedCurve>
+public class TubulaireN2<T extends ParametricCurve>
         extends ParametricSurface {
     public static double TAN_FCT_INCR = 0.00005;
     public static double NORM_FCT_INCR = 0.0005;

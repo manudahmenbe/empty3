@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -16,16 +16,16 @@ import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Matrix33;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.math.E3MathWaw;
-import be.manudahmen.empty3.core.nurbs.ParametrizedCurve;
+import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 
 /**
  * @author Se7en
  */
 public class CameraInPath extends Camera {
-    ParametrizedCurve courbe;
+    ParametricCurve courbe;
     private double temps01;
 
-    public CameraInPath(ParametrizedCurve maCourbe) {
+    public CameraInPath(ParametricCurve maCourbe) {
         courbe = maCourbe;
     }
 
@@ -37,11 +37,11 @@ public class CameraInPath extends Camera {
         this.temps01 = temps01;
     }
 
-    public ParametrizedCurve getCourbe() {
+    public ParametricCurve getCourbe() {
         return courbe;
     }
 
-    public void setCourbe(ParametrizedCurve maCourbe) {
+    public void setCourbe(ParametricCurve maCourbe) {
         this.courbe = maCourbe;
     }
 

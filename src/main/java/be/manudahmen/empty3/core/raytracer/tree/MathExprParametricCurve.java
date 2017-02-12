@@ -13,14 +13,14 @@
 package be.manudahmen.empty3.core.raytracer.tree;
 
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.nurbs.ParametrizedCurve;
+import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 
 import java.util.HashMap;
 
 /**
  * Created by manuel on 05-02-17.
  */
-public class MathExprParametricCurve extends ParametrizedCurve {
+public class MathExprParametricCurve extends ParametricCurve {
     /***
      * t: parameter
      */

@@ -14,14 +14,14 @@ package be.manudahmen.empty3.core.raytracer.octopus;
 
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Representable;
+import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
-import be.manudahmen.empty3.core.nurbs.ParametrizedCurve;
 import be.manudahmen.empty3.core.raytracer.RtRay;
 
 public interface Solver {
     Point3D solve(RtRay ray, ParametricSurface rep);
 
-    Point3D solve(RtRay ray, ParametrizedCurve rep);
+    Point3D solve(RtRay ray, ParametricCurve rep);
 
     Point3D solve(RtRay ray, Representable rep);
 

@@ -11,8 +11,8 @@
  */
 package be.manudahmen.empty3;
 
+import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
-import be.manudahmen.empty3.core.nurbs.ParametrizedCurve;
 
 import java.awt.*;
 
@@ -422,7 +422,7 @@ public class Point3D extends Representable {
             TRI tri = (TRI) r2;
 
         } else if (r2 instanceof ParametricSurface) {
-        } else if (r2 instanceof ParametrizedCurve) {
+        } else if (r2 instanceof ParametricCurve) {
         }
         throw new UnsupportedOperationException("Pas implémenté encore");
     }

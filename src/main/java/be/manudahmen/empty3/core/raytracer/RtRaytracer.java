@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -14,22 +14,27 @@ package be.manudahmen.empty3.core.raytracer;
 
 import be.manudahmen.empty3.ECBufferedImage;
 import be.manudahmen.empty3.Point3D;
+import be.manudahmen.empty3.Representable;
+import be.manudahmen.empty3.core.nurbs.ParametricSurface;
+import be.manudahmen.empty3.core.raytracer.octopus.OctopusAlgorithm;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 public class RtRaytracer {
+    public static double maxDistance = 999999.9f;            // La distance parcourue par le rayon avant de toucher la node
 
 
     /* [ Coeur du raytracer. L'algo du raytracing se trouve dans cette fonction, dont le r�le est de calculer ] */
 /* [ la couleur finale du pixel courant, en lui passant le rayon primaire �mis.                           ] */
     public static RtColor rayTrace(RtScene scene, RtRay ray, int depth) {
         RtColor finalColor = new RtColor(0.0f, 0.0f, 0.0f, 0.0f);    // La couleur finale (noire au debut ... couleur de fond)
-        double distance = 999999.9f;            // La distance parcourue par le rayon avant de toucher la node
-        double tmpDistance = distance + 1;                    // Une distance temporaire
+        double tmpDistance = maxDistance + 1;                    // Une distance temporaire
+        double distance = tmpDistance;            // La distance parcourue par le rayon avant de toucher la node
         RtNode currentNode;
         // La node en cours de traitement
         RtNode closestNode = null;                // La node qui sera la plus proche
@@ -79,7 +84,7 @@ public class RtRaytracer {
 
                 lightRay.mVStart = currentLight.getPosition();
                 lightRay.mVDir = lightVec;
-
+                lightRay.distance = distance;
                 // We go through all the objects to see if one
                 // of them block the light coming to the dest object
                 for (int j = 0; j < scene.getNumNodes(); j++) {
@@ -141,11 +146,46 @@ public class RtRaytracer {
 
                 // On calcule le veteur directeur gr�ce � une m�thode de la classe RtCamera
                 vDir = scene.getActiveCamera().calcDirVec(x, y, width, height);
+                Point3D vDirX1 = scene.getActiveCamera().calcDirVec(x + 1, y, width, height);
+                Point3D vDirX_1 = scene.getActiveCamera().calcDirVec(x - 1, y, width, height);
+                Point3D vDirY1 = scene.getActiveCamera().calcDirVec(x, y + 1, width, height);
+                Point3D vDirY_1 = scene.getActiveCamera().calcDirVec(x, y - 1, width, height);
                 vDir.normalize();
+                vDirX1.normalize();
+                vDirX_1.normalize();
+                vDirY1.normalize();
+                vDirY_1.normalize();
                 currentRay.mVDir = vDir;
+                currentRay.mVDirX1 = vDir;
+                currentRay.mVDirX_1 = vDir;
+                currentRay.mVDirY1 = vDir;
+                currentRay.mVDirY_1 = vDir;
 
                 // On trace le rayon, et on recup�re la couleur finale du pixel
                 tmpColor = rayTrace(scene, currentRay, 0);
+
+
+                double zMin = maxDistance;
+                Point3D choisi;
+                choisi = Point3D.INFINI;
+                for (Representable rep : scene.getRepresentables()) {
+                    Class<?>[] b = rep.getClass().getClasses();
+                    for (Class<?> s : b) {
+                        if (s.equals(ParametricSurface.class)) {
+                            ParametricSurface surface = (ParametricSurface) rep;
+                            OctopusAlgorithm octopusAlgorithm = new OctopusAlgorithm(currentRay, 5, surface);
+                            Point3D point3D = octopusAlgorithm.trace();
+
+                            if (point3D.getZ() < zMin) {
+                                choisi = point3D;
+                            }
+                        }
+                    }
+                }
+
+                if (zMin < currentRay.distance) {
+                    tmpColor = new RtColor(new Color(choisi.texture().getColorAt(0.5, 0.5)));
+                }
 
                 // Affichage de notre "barre de progression" ;)
                 if (x == 0 && y == 0.25f * height)

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -13,7 +13,7 @@ package be.manudahmen.empty3.core.sanorm;
 
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.math.E3MathWaw;
-import be.manudahmen.empty3.core.nurbs.ParametrizedCurve;
+import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import be.manudahmen.empty3.core.tribase.TRIObjetGenerateurAbstract;
 
 /**
@@ -21,11 +21,11 @@ import be.manudahmen.empty3.core.tribase.TRIObjetGenerateurAbstract;
  *         2. Extrusion 3D.
  */
 public class Sanorm extends TRIObjetGenerateurAbstract {
-    ParametrizedCurve curveBase;
-    ParametrizedCurve curveRepeat;
+    ParametricCurve curveBase;
+    ParametricCurve curveRepeat;
     double intervalleApproxTgt = 0.00001;
 
-    public Sanorm(ParametrizedCurve curveBase, ParametrizedCurve curveRepeat) {
+    public Sanorm(ParametricCurve curveBase, ParametricCurve curveRepeat) {
         this.curveBase = curveBase;
         this.curveRepeat = curveRepeat;
     }
@@ -48,19 +48,19 @@ public class Sanorm extends TRIObjetGenerateurAbstract {
         return r.transform(p);
     }
 
-    public ParametrizedCurve getCurveBase() {
+    public ParametricCurve getCurveBase() {
         return curveBase;
     }
 
-    public void setCurveBase(ParametrizedCurve curveBase) {
+    public void setCurveBase(ParametricCurve curveBase) {
         this.curveBase = curveBase;
     }
 
-    public ParametrizedCurve getCurveRepeat() {
+    public ParametricCurve getCurveRepeat() {
         return curveRepeat;
     }
 
-    public void setCurveRepeat(ParametrizedCurve curveRepeat) {
+    public void setCurveRepeat(ParametricCurve curveRepeat) {
         this.curveRepeat = curveRepeat;
     }
 

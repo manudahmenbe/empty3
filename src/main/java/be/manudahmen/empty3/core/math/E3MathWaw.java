@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -17,7 +17,7 @@ package be.manudahmen.empty3.core.math;
 
 import be.manudahmen.empty3.Matrix33;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.nurbs.ParametrizedCurve;
+import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 
 /**
  * @author Se7en
@@ -43,7 +43,7 @@ public class E3MathWaw {
      * <p>
      * Choix des normales.
      */
-    public Point3D[] calculRepere(ParametrizedCurve c, double emplacementT) {
+    public Point3D[] calculRepere(ParametricCurve c, double emplacementT) {
         Point3D[] pts = new Point3D[4];
 
         pts[0] = calculerPointCourbe(c, emplacementT);
@@ -66,11 +66,11 @@ public class E3MathWaw {
         return pts;
     }
 
-    public Point3D calculerPointCourbe(ParametrizedCurve c, double t) {
+    public Point3D calculerPointCourbe(ParametricCurve c, double t) {
         return c.calculerPoint3D(t);
     }
 
-    public Point3D tangente(ParametrizedCurve c, double t, int degre) {
+    public Point3D tangente(ParametricCurve c, double t, int degre) {
         if (degre > 1) {
             System.out.println("Degré est supérieur à 1: pas d'implémentation actuelle");
         }
@@ -105,7 +105,7 @@ public class E3MathWaw {
      * @param degre    = 1
      * @return
      */
-    public Point3D normale1(ParametrizedCurve c, double t, int degre) {
+    public Point3D normale1(ParametricCurve c, double t, int degre) {
         // Calcul de la direction générale de la courbe:
         /*for(double  a=0; a<Math.log((long)(1/approxTangente)); a++)
          {
