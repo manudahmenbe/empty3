@@ -21,6 +21,7 @@ import be.manudahmen.empty3.core.raytracer.RtRay;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -83,12 +84,13 @@ public class OctopusAlgorithm {
      * @param coordinates
      * @return
      */
+    // TODO NOT CORRECT
     public SortedMap<Double, Point2D> getClosestUVFromMap(SortedMap<Double, Point2D> coordinates, double value) {
 
         SortedMap<Double, Point2D> submap = new TreeMap<Double, Point2D>();
 
         ArrayList<Polygon> polygons = new ArrayList<Polygon>();
-        SortedMap<Polygon, Integer> dists = new TreeMap<>();
+        SortedMap<Double, Point2D> dists = new TreeMap<Double, Point2D>();
         ArrayList<Double> us = new ArrayList<Double>();
         ArrayList<Double> vs = new ArrayList<Double>();
 
@@ -98,38 +100,43 @@ public class OctopusAlgorithm {
 
             if (value == -1) value = 1;
 
-            Polygon p = new Polygon();
-
             double distanceMin = Double.MAX_VALUE, d;
-
-            polygons.add(p);
-
+            Point2D d1 = new Point2D();
             for (int i = 0; i < subDivideBase; i++) {
                 for (int j = 0; j < subDivideBase; j++) {
-                    k++;
-                    us.add(coordinatesUV.getX() + i * value);
-                    vs.add(coordinatesUV.getY() + j * value);
-                    p.getPoints().add(rep.calculerPoint3D(
+                    us.add(coordinatesUV.getX() + i * value);//TODO
+                    vs.add(coordinatesUV.getY() + j * value);//TODO
+                    Point3D calculerPoint3D = rep.calculerPoint3D(
                             us.get(us.size() - 1),
-                            vs.get(us.size() - 1)));
-                    dists.put(p, k);
+                            vs.get(us.size() - 1));
+                    k++;
+                    Double dist =
+                            calculerPoint3D.moins(ray.mVStart)
+                                    .prodScalaire(ray.mVDir)
+                                    * 1 / ray.mVDir.norme();
+                    if (dist < distanceMin) {
+                        distanceMin = dist;
+                        d1 = new Point2D(
+                                us.get(us.size() - 1),
+                                vs.get(vs.size() - 1));
+                    }
                 }
             }
+            dists.put(distanceMin, d1);
+        }
+        Double firstKey;
+        try {
+            firstKey = submap.firstKey();
+            Point2D point2D = submap.get(firstKey);
+
+            SortedMap<Double, Point2D> subsubmap = new TreeMap<Double, Point2D>();
+
+            subsubmap.put(firstKey, point2D);
+            return subsubmap;
+        } catch (NoSuchElementException ex) {
         }
 
-        k = 0;
-        for (Polygon p : polygons) {
-            for (int i = 0; i < p.getPoints().size(); i++) {
-
-
-                double distance = distancePointPolygon(ray.mVStart.plus(p.getPoints().get(i).moins(ray.mVStart).prodScalaire(ray.mVDir)).mult(1 / ray.mVDir.norme()), p);
-
-                submap.put(distance, new Point2D(us.get(dists.get(p)), vs.get(dists.get(p))));
-            }
-        }
-
-        return submap;
-
+        return null;
     }
 
     public boolean isEqualOrLessThanOnePixel(SortedMap<Double, Point2D> point2DS) {
@@ -173,14 +180,17 @@ public class OctopusAlgorithm {
             }
             closestUVFromMap = getClosestUVFromMap(submap, 1.0 / subDivideBase / 1.2);
 
-        } while (!isEqualOrLessThanOnePixel(closestUVFromMap));
-        Point2D uv = closestUVFromMap.get(closestUVFromMap.firstKey());
+        } while (closestUVFromMap != null && !isEqualOrLessThanOnePixel(closestUVFromMap));
 
-        return rep.calculerPoint3D(uv.x, uv.y);
+        if (closestUVFromMap != null) {
+            Point2D uv = closestUVFromMap.get(closestUVFromMap.firstKey());
+            return rep.calculerPoint3D(uv.x, uv.y);
+        } else
+            return null;
     }
 
     public class PolygonUV {
-        public Polygon p;
-        public ArrayList<Point2D> uv;
+        public Polygon p = new Polygon();
+        public ArrayList<Point2D> uv = new ArrayList<Point2D>();
     }
 }

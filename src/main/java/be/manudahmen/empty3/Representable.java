@@ -24,7 +24,7 @@ import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Representable implements Serializable {
+public class Representable implements Serializable, Comparable {
     public static final ITexture orange_yellow = new ColorTexture(new Color(255, 128, 0));
     protected static ArrayList<Painter> classPainters = new ArrayList<Painter>();
     public Rotation rotation = new Rotation();
@@ -179,6 +179,21 @@ public class Representable implements Serializable {
     public Representable intersects(Representable r2) {
         throw new UnsupportedOperationException("Pas implémenté  en cours" +
                 "");
+    }
+
+
+    /***
+     *
+     * @param o
+     * @return ???
+     */
+    @Override
+    public int compareTo(Object o) {
+        if (!(o instanceof Representable))
+            return 0;
+        else
+            return 1;
+
     }
 
     public class RotationInt extends Rotation {

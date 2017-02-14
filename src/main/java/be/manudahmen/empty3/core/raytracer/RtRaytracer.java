@@ -169,19 +169,17 @@ public class RtRaytracer {
                 Point3D choisi;
                 choisi = Point3D.INFINI;
                 for (Representable rep : scene.getRepresentables()) {
-                    Class<?>[] b = rep.getClass().getClasses();
-                    for (Class<?> s : b) {
-                        if (s.equals(ParametricSurface.class)) {
-                            ParametricSurface surface = (ParametricSurface) rep;
-                            OctopusAlgorithm octopusAlgorithm = new OctopusAlgorithm(currentRay, 5, surface);
-                            Point3D point3D = octopusAlgorithm.trace();
+                    if (rep instanceof ParametricSurface) {
+                        ParametricSurface surface = (ParametricSurface) rep;
+                        OctopusAlgorithm octopusAlgorithm = new OctopusAlgorithm(currentRay, 5, surface);
+                        Point3D point3D = octopusAlgorithm.trace();
 
-                            if (point3D.getZ() < zMin) {
-                                choisi = point3D;
-                            }
+                        if (point3D != null && point3D.getZ() < zMin) {
+                            choisi = point3D;
                         }
                     }
                 }
+
 
                 if (zMin < currentRay.distance) {
                     tmpColor = new RtColor(new Color(choisi.texture().getColorAt(0.5, 0.5)));

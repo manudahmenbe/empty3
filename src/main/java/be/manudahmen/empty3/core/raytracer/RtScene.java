@@ -59,15 +59,15 @@ public class RtScene {
         return mActiveCamera;
     }
 
-    public void setActiveCamera(RtCamera cam) {
-        assert (cam != null);
-        mActiveCamera = cam;
-    }
-
     // set
     public void setActiveCamera(int i) {
         assert (i < mCameras.size());
         mActiveCamera = mCameras.get(i);
+    }
+
+    public void setActiveCamera(RtCamera cam) {
+        assert (cam != null);
+        mActiveCamera = cam;
     }
 
     public RtMatiere getMaterial(int i) {
@@ -110,8 +110,8 @@ public class RtScene {
         return true;
     }
 
-    public void addObject(Representable myCube) {
-        mNodesR.add(new Representable());
+    public void addObject(Representable myRep) {
+        mNodesR.add(myRep);
     }
 
     public List<Representable> getRepresentables() {
