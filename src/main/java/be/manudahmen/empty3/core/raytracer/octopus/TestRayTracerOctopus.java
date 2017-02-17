@@ -27,7 +27,7 @@ public class TestRayTracerOctopus extends RtRaytracer {
 
         // Notre camera
         RtTargetCamera myCamera = null;
-        Point3D myCameraPos = new Point3D(0.0f, 0.0f, -5.0f);    // Position de la camera
+        Point3D myCameraPos = new Point3D(0.0f, 0.0f, -10.0f);    // Position de la camera
         Point3D myCameraLookAt = new Point3D(0.0f, 0.0f, 10.0f);    // Position du point regard�
         Point3D myCameraUpVec = new Point3D(0.0f, 1.0f, 0.0f);    // Vecteur haut de la cam�ra
 
@@ -77,9 +77,9 @@ public class TestRayTracerOctopus extends RtRaytracer {
         // On ajoute les
         // elements a notre scene
         myScene.addCamera(myCamera);
+        myScene.addLight(myLight);
         myScene.addObject(mySphere);
         myScene.addObject(myPlane);
-        myScene.addLight(myLight);
         myScene.addLight(myLight1);
         myScene.addMaterial(myMaterial);
         myScene.addMaterial(myMaterial1);
@@ -91,7 +91,6 @@ public class TestRayTracerOctopus extends RtRaytracer {
             e.printStackTrace();
         }
 
-        return;
     }
 
 }

@@ -215,8 +215,9 @@ public class RtRaytracer {
         mOutputFileRAW.flush();
         mOutputFileRAW.close();
 
-        System.out.print("+jpg");
-        ImageIO.write(bi2, "jpg", new File(outputfilename + ".jpg"));
+        File file = new File(outputfilename + ".jpg");
+        System.out.print("+jpg: " + file.getAbsolutePath());
+        ImageIO.write(bi2, "jpg", file);
 
         return true;
     }

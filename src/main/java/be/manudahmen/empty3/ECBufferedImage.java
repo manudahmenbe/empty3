@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -11,6 +11,9 @@
  */
 
 package be.manudahmen.empty3;
+
+import be.manudahmen.empty3.gui.elements.PPMFileInputStream;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -35,6 +38,16 @@ public class ECBufferedImage extends BufferedImage {
 
     public ECBufferedImage(int width, int height, int imageType) {
         super(width, height, imageType);
+    }
+
+    public ECBufferedImage(PPMFileInputStream ppmFileInputStream) {
+
+        super(0, 0, 0);
+
+    }
+
+    public static ECBufferedImage ppm(byte[] bytes, String ppm) {
+        throw new NotImplementedException();
     }
 
     public static ECBufferedImage getFromFile(File url) throws IOException {
