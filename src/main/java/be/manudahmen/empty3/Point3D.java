@@ -23,7 +23,7 @@ import java.awt.*;
  *
  * @author Manuel Dahmen
  */
-public class Point3D extends Representable {
+public class Point3D extends Representable implements IMovable {
     /**
      * *
      * axe X vector
@@ -425,6 +425,21 @@ public class Point3D extends Representable {
         } else if (r2 instanceof ParametricCurve) {
         }
         throw new UnsupportedOperationException("Pas implémenté encore");
+    }
+
+    @Override
+    public void moveAdd(Point3D add) {
+        this.set(0, add.get(0));
+        this.set(1, add.get(1));
+        this.set(2, add.get(2));
+    }
+
+    @Override
+    public void moveTo(Point3D to) {
+        this.set(0, to.get(0));
+        this.set(1, to.get(1));
+        this.set(2, to.get(2));
+
     }
 
     public class P extends Point3D {

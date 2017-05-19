@@ -23,7 +23,7 @@ import java.util.Iterator;
 /**
  * @author Manuel
  */
-public class Polygon extends Representable implements TRIGenerable {
+public class Polygon extends Representable implements TRIGenerable, IMovable, IScalable {
 
     /**
      *
@@ -75,12 +75,12 @@ public class Polygon extends Representable implements TRIGenerable {
         return points;
     }
 
-    public void setPoints(ArrayList<Point3D> points) {
-        this.points = points;
-    }
-
     public void setPoints(Point3D[] point3D) {
         points.addAll(Arrays.asList(point3D));
+    }
+
+    public void setPoints(ArrayList<Point3D> points) {
+        this.points = points;
     }
 
     @Override
@@ -108,5 +108,41 @@ public class Polygon extends Representable implements TRIGenerable {
     @Override
     public int hashCode() {
         return getPoints() != null ? getPoints().hashCode() : 0;
+    }
+
+    @Override
+    public void moveAdd(Point3D add) {
+        for (int i = 0; i < points.size(); i++)
+            points.get(i).moveAdd(add);
+    }
+
+    @Override
+    public void moveTo(Point3D to) {
+        for (int i = 0; i < points.size(); i++)
+            points.get(i).moveAdd(to);
+
+    }
+
+    @Override
+    public void scale(Point3D center, double scale) {
+        for (int i = 0; i < points.size(); i++) {
+            Point3D newPos = points.get(i).moins(center).mult(scale);
+            points.remove(i);
+            points.add(i, newPos);
+
+        }
+
+
+    }
+
+    @Override
+    public void scale(double scale) {
+        Point3D center = Point3D.O0;
+        for (int i = 0; i < points.size(); i++) {
+            center = center.plus(points.get(i));
+        }
+        center = center.mult(1.0 / points.size());
+
+        scale(center, scale);
     }
 }

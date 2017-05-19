@@ -20,7 +20,7 @@
 
     <groupId>info.emptycanvas</groupId>
     <artifactId>empty3</artifactId>
-    <version>61</version>
+    <version>62</version>
     <description>3D rendering engine. Plus modelling.</description>
     <packaging>jar</packaging>
     <build>

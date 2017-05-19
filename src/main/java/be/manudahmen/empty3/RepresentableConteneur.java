@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -21,7 +21,7 @@ import java.util.*;
 /**
  * @author Atelier
  */
-public class RepresentableConteneur extends Representable {
+public class RepresentableConteneur extends Representable implements IMovable, IScalable {
 
     private Collection<Representable> re = Collections.synchronizedCollection(new ArrayList<Representable>());
 
@@ -67,5 +67,61 @@ public class RepresentableConteneur extends Representable {
         s += "\n\n)\n\n";
 
         return s;
+    }
+
+    @Override
+    public void moveAdd(Point3D add) {
+        Iterator<Representable> rs = iterator();
+
+        while (rs.hasNext()) {
+            Representable next = rs.next();
+
+            if (next instanceof IMovable) {
+                ((IMovable) next).moveAdd(add);
+            }
+        }
+
+    }
+
+    @Override
+    public void moveTo(Point3D to) {
+
+        Iterator<Representable> rs = iterator();
+
+        while (rs.hasNext()) {
+            Representable next = rs.next();
+            if (next instanceof IMovable) {
+                ((IMovable) next).moveTo(to);
+            }
+
+        }
+    }
+
+    @Override
+    public void scale(Point3D center, double scale) {
+
+        Iterator<Representable> rs = iterator();
+
+        while (rs.hasNext()) {
+            Representable next = rs.next();
+
+            if (next instanceof IScalable) {
+                ((IScalable) next).scale(center, scale);
+            }
+        }
+    }
+
+    @Override
+    public void scale(double scale) {
+
+        Iterator<Representable> rs = iterator();
+
+        while (rs.hasNext()) {
+            Representable next = rs.next();
+
+            if (next instanceof IScalable) {
+                ((IScalable) next).scale(scale);
+            }
+        }
     }
 }
