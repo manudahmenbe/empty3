@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -23,7 +23,7 @@ import be.manudahmen.empty3.core.raytracer.RtRay;
 
 import java.awt.*;
 
-public class TRI extends Representable {
+public class TRI extends Representable implements IMovable, IScalable {
 
     private Point3D[] sommet;
     private Barycentre position;
@@ -121,4 +121,38 @@ public class TRI extends Representable {
                 tri2.getCentre(), tri2.getSommet()[0], tri2.getSommet()[1]);
     }
 
+    @Override
+    public void moveAdd(Point3D add) {
+        for (int i = 0; i < sommet.length; i++)
+            sommet[i].moveAdd(add);
+    }
+
+    @Override
+    public void moveTo(Point3D to) {
+        for (int i = 0; i < sommet.length; i++)
+            sommet[i].moveTo(to);
+
+    }
+
+    @Override
+    public void scale(Point3D center, double scale) {
+        for (int i = 0; i < sommet.length; i++) {
+            Point3D newPos = sommet[i].moins(center).mult(scale);
+            sommet[i] = newPos;
+
+        }
+
+
+    }
+
+    @Override
+    public void scale(double scale) {
+        Point3D center = Point3D.O0;
+        for (int i = 0; i < sommet.length; i++) {
+            center = center.plus(sommet[i]);
+        }
+        center = center.mult(1.0 / sommet.length);
+
+        scale(center, scale);
+    }
 }

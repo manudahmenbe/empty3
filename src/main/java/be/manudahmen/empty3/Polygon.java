@@ -75,12 +75,12 @@ public class Polygon extends Representable implements TRIGenerable, IMovable, IS
         return points;
     }
 
-    public void setPoints(Point3D[] point3D) {
-        points.addAll(Arrays.asList(point3D));
-    }
-
     public void setPoints(ArrayList<Point3D> points) {
         this.points = points;
+    }
+
+    public void setPoints(Point3D[] point3D) {
+        points.addAll(Arrays.asList(point3D));
     }
 
     @Override
@@ -119,7 +119,7 @@ public class Polygon extends Representable implements TRIGenerable, IMovable, IS
     @Override
     public void moveTo(Point3D to) {
         for (int i = 0; i < points.size(); i++)
-            points.get(i).moveAdd(to);
+            points.get(i).moveTo(to);
 
     }
 

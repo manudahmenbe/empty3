@@ -18,7 +18,7 @@
 
     <name>Empty3</name>
 
-    <groupId>info.emptycanvas</groupId>
+    <groupId>be.manudahmen</groupId>
     <artifactId>empty3</artifactId>
     <version>62</version>
     <description>3D rendering engine. Plus modelling.</description>
