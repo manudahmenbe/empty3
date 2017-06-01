@@ -112,16 +112,16 @@ public abstract class TestObjet implements Test, Runnable {
     private RegisterOutput o = new RegisterOutput();
     private int onTextureEnds = ON_TEXTURE_ENDS_STOP;
     private int onMaxFrameEvent = ON_MAX_FRAMES_STOP;
+    private ExportAnimationData dataWriter;
 
     public TestObjet() {
 
         init();
     }
-
-
     public TestObjet(ArrayList<TestInstance.Parameter> params) {
         init();
     }
+
 
     public TestObjet(boolean binit) {
         if (binit) {
@@ -135,6 +135,10 @@ public abstract class TestObjet implements Test, Runnable {
         gui.loop(true);
         gui.setMaxFrames(2000);
         new Thread(gui).start();
+    }
+
+    public ExportAnimationData getDataWriter() {
+        return dataWriter;
     }
 
     public int getIdxFilm() {
@@ -527,6 +531,8 @@ public abstract class TestObjet implements Test, Runnable {
                         + (1000000 + frame) + "." + binaryExtension);
             }
         }
+
+
         /*
          * ObjectOutputStream oos = null; try { oos = new ObjectOutputStream(new
          * FileOutputStream(serid)); oos.writeInt(serie); } catch (IOException
@@ -693,6 +699,15 @@ public abstract class TestObjet implements Test, Runnable {
         File zipf = new File(this.dir.getAbsolutePath() + File.separator
                 + sousdossier + File.separator + filename + ".ZIP");
         zip = new ZipWriter();
+
+        File dataf = new File(this.dir.getAbsolutePath() + File.separator
+                + filename + ".XML");
+
+        try {
+            dataWriter = new ExportAnimationData(dataf, this);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         try {
             zip.init(zipf);
@@ -898,6 +913,9 @@ public abstract class TestObjet implements Test, Runnable {
                 o.println(ex.getLocalizedMessage());
             }
         }
+
+        dataWriter.end();
+
 
         o.println("End movie       " + runtimeInfoSucc());
         o.println("Quit run method " + runtimeInfoSucc());
