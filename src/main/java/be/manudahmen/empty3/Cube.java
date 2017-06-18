@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -17,7 +17,7 @@
  */
 package be.manudahmen.empty3;
 
-public class Cube extends Representable implements TRIGenerable {
+public class Cube extends Representable implements TRIGenerable, IMovable {
 
     /**
      *
@@ -142,4 +142,15 @@ public class Cube extends Representable implements TRIGenerable {
         return "cube(\n\t" + position.toString() + "\n\t" + mlc + "\n)\n";
     }
 
+    @Override
+    public void moveAdd(Point3D add) {
+        position = position.plus(add);
+        generate();
+    }
+
+    @Override
+    public void moveTo(Point3D to) {
+        position = to;
+        generate();
+    }
 }

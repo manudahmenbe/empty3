@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -9,7 +9,7 @@
  *
  * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
-
+@Deprecated
 package be.manudahmen.empty3.core.renderer;
 
 /***
@@ -18,6 +18,7 @@ package be.manudahmen.empty3.core.renderer;
  *
  * @author Manuel Dahmen
  */
+@Deprecated
 class TODO {
 }
 

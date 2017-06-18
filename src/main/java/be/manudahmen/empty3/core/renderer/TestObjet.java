@@ -41,6 +41,7 @@ import java.util.logging.Logger;
 /**
  * @author Manuel DAHMEN
  */
+@Deprecated
 public abstract class TestObjet implements Test, Runnable {
 
     public static final int GENERATE_NOTHING = 0;
