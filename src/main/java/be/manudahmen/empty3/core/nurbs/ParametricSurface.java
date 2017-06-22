@@ -32,6 +32,8 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
 
     public double incr1 = 0.01;
     public double incr2 = 0.01;
+    public double incrVitesse = 0.0001;
+    public double incrNormale = 0.000001;
     protected double start1 = 0, start2 = 0;
     protected double end1 = 1, end2 = 1;
     protected double NFAST = 100;
@@ -39,7 +41,18 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
 
     public abstract Point3D calculerPoint3D(double u, double v);
 
-    public abstract Point3D calculerVitesse3D(double u, double v);
+    public Point3D calculerVitesse3D(double u, double v) {
+        Point3D moins = calculerPoint3D(u + incrVitesse, v).moins(calculerPoint3D(u, v));
+        Point3D moins1 = calculerPoint3D(u, v + incrVitesse).moins(calculerPoint3D(u, v));
+        return moins.plus(moins1).mult(0.5 / incrVitesse / incrVitesse);
+    }
+
+    public Point3D calculerNormale3D(double u, double v) {
+        Point3D moins = calculerVitesse3D(u + incrNormale, v).moins(calculerVitesse3D(u, v));
+        Point3D moins1 = calculerVitesse3D(u, v + incrNormale).moins(calculerVitesse3D(u, v));
+        return moins.plus(moins1).mult(0.5 / incrNormale / incrNormale);
+    }
+
 
     public double incr1() {
         return incr1;
