@@ -65,6 +65,7 @@
     <orderEntry type="library" name="Maven: org.jogamp.gluegen:gluegen-rt:natives-solaris-amd64:2.0.2-rc12" level="project" />
     <orderEntry type="library" name="Maven: org.jogamp.gluegen:gluegen-rt:natives-solaris-i586:2.0.2-rc12" level="project" />
     <orderEntry type="library" name="Maven: org.jogamp.gluegen:gluegen-rt:natives-windows-i586:2.0.2-rc12" level="project" />
+    <orderEntry type="library" name="Maven: ch.randelshofer:montemedia:0.7.7" level="project" />
     <orderEntry type="library" name="Maven: com.github.sarxos:webcam-capture:0.3.9" level="project" />
     <orderEntry type="library" name="Maven: com.jhlabs:filters:2.0.235-1" level="project" />
     <orderEntry type="library" name="Maven: com.nativelibs4java:bridj:0.6.2" level="project" />

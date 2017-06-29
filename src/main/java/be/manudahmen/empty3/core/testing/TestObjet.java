@@ -780,6 +780,7 @@ public abstract class TestObjet implements Test, Runnable {
                             if (((generate & GENERATE_IMAGE) > 0) && !((generate & GENERATE_NO_IMAGE_FILE_WRITING) > 0)) {
 
                                 ecrireImage(ri, type, file);
+                                dataWriter.writeFrameData(frame(), file.getAbsolutePath());
                             }
                             if ((generate & GENERATE_MOVIE) > 0 && true) {
                                 try {
@@ -798,7 +799,9 @@ public abstract class TestObjet implements Test, Runnable {
                             riD = ((ZBuffer3D) z).imageDroite();
 
                             ecrireImage(riG, type, fileG);
+                            dataWriter.writeFrameData(frame(), fileG.getAbsolutePath());
                             ecrireImage(riD, type, fileD);
+                            dataWriter.writeFrameData(frame(), fileD.getAbsolutePath());
 
                         } else {
 
@@ -810,6 +813,8 @@ public abstract class TestObjet implements Test, Runnable {
                                 try {
 
                                     aw.write(0, ri, 1);
+                                    dataWriter.writeFrameData(frame(), "Writing movie frame");
+
                                 } catch (IOException e) {
                                     reportException(e);
                                     return;
@@ -837,6 +842,7 @@ public abstract class TestObjet implements Test, Runnable {
                         File foutm = new File(this.dir.getAbsolutePath()
                                 + File.separator + filename + ".bmood");
                         new Loader().saveBin(foutm, scene);
+                        dataWriter.writeFrameData(frame(), "Save bin: " + foutm.getAbsolutePath());
                     } catch (VersionNonSupporteeException ex) {
                         o.println(ex.getLocalizedMessage());
                         reportException(ex);
@@ -849,7 +855,9 @@ public abstract class TestObjet implements Test, Runnable {
                 if ((generate & GENERATE_MODEL) > 0) {
                     try {
                         o.println("Start generating model");
-                        exportFrame("export-stl", "export-" + frame + ".STL");
+                        String filename = "export-" + frame + ".STL";
+                        exportFrame("export-stl", filename);
+                        dataWriter.writeFrameData(frame(), "Export model: " + filename);
                         o.println("End generating model");
                     } catch (FileNotFoundException ex) {
                         o.println(ex.getLocalizedMessage());

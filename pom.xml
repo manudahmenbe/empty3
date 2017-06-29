@@ -112,10 +112,7 @@
     </build>
 
 
-    <scm>
-        <connection>scm:hg:https://hg.codeplex.com/emptycanvas</connection>
-        <url>https://hg.codeplex.com/emptycanvas</url>
-    </scm>
+
     <repositories>
         <repository>
             <id>OpenIMAJ maven repository</id>
@@ -152,6 +149,10 @@
             <name>Codehaus Snapshots</name>
             <url>http://snapshots.maven.codehaus.org/maven2</url>
             <layout>default</layout>
+        </repository>
+        <repository>
+            <id>localrepository</id>
+            <url>file://c:/Users/manuel/m2</url>
         </repository>
     </repositories>
     <dependencies>
@@ -205,13 +206,13 @@
             <artifactId>gluegen-rt-main</artifactId>
             <version>2.0.2-rc12</version>
         </dependency>
-        <!--
-                <dependency>
+
+        <dependency>
                     <groupId>ch.randelshofer</groupId>
                     <artifactId>montemedia</artifactId>
                     <version>0.7.7</version>
                     <type>jar</type>
-                </dependency>-->
+        </dependency>
         <dependency>
             <groupId>com.github.sarxos</groupId>
             <artifactId>webcam-capture</artifactId>
