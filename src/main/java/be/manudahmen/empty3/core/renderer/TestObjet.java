@@ -705,7 +705,7 @@ public abstract class TestObjet implements Test, Runnable {
 
                         } else {
 
-                            z.dessinerSilhouette3D();
+                            z.draw();
                             afterRenderFrame();
                             ri = z.image();
                             if ((generate & GENERATE_MOVIE) > 0 && isAviOpen()) {

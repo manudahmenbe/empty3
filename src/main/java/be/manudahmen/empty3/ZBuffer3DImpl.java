@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -28,13 +28,13 @@ package be.manudahmen.empty3;
  suivante();
 
  LR(0);
- dessinerSilhouette3D();
+ draw();
  this.imageGauche = (image());
 
  suivante();
 
  LR(1);
- dessinerSilhouette3D();
+ draw();
  this.imageDroite = (image());
  return;
  }

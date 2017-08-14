@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -28,7 +28,7 @@ class ZBufferImplTestSuite extends TestSuite {
      * @return
      */
     @Test
-    public void testImageSizeGSZBufferBaseDeliveredByZBufferFactory() {
+    void testImageSizeGSZBufferBaseDeliveredByZBufferFactory() {
         Number laPres = 640
         Number haPres = 480
 
@@ -59,7 +59,7 @@ class ZBufferImplTestSuite extends TestSuite {
  * @return
  */
     @Test
-    public void testSinglePointAB() {
+    void testSinglePointAB() {
         ZBuffer z = ZBufferFactory.instance(640, 480)
 
 
@@ -75,7 +75,7 @@ class ZBufferImplTestSuite extends TestSuite {
 
         z.scene(sc)
 
-        z.dessinerSilhouette3D()
+        z.draw()
 
         ECBufferedImage eCBufferedImage = z.image()
 
@@ -92,7 +92,7 @@ class ZBufferImplTestSuite extends TestSuite {
  * @return
  */
     @Test
-    public void testCameraDefault() {
+    void testCameraDefault() {
         ZBuffer z = ZBufferFactory.instance(640, 480)
 
         //Camera c = new Camera(new Point3D(0,0,0), new Point3D(0,0,1))
@@ -107,7 +107,7 @@ class ZBufferImplTestSuite extends TestSuite {
 
         z.scene(sc)
 
-        z.dessinerSilhouette3D()
+        z.draw()
 
         ECBufferedImage eCBufferedImage = z.image()
 

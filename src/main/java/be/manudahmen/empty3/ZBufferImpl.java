@@ -77,13 +77,6 @@ public class ZBufferImpl implements ZBuffer {
     private Representable interactionCourant;
     private Point3D activeLight = new Point3D(-10, 0, 100);
 
-    {
-        try {
-            backgroundTexture(new ImageTexture(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("fondParDefaut.jpg")))));
-        } catch (Exception ex) {
-        }
-    }
-
     public ZBufferImpl() {
         la = Resolution.K4RESOLUTION.x();
         ha = Resolution.K4RESOLUTION.y();
@@ -307,6 +300,13 @@ public class ZBufferImpl implements ZBuffer {
     @Deprecated
 
     public void dessinerSilhouette() {
+
+        try {
+            backgroundTexture(new ImageTexture(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("fondParDefaut.jpg")))));
+        } catch (Exception ex) {
+        }
+
+
         Scene scene = currentScene;
         id++;
         box = new Box2D();
@@ -368,7 +368,7 @@ public class ZBufferImpl implements ZBuffer {
                 int i1 = 10, i2 = 10;
                 for (int i = 0; i < i1; i++) {
                     for (int j = 0; j < i2; j++) {
-                        dessinerSilhouette3D(new Polygon(new Point3D[]{
+                        draw(new Polygon(new Point3D[]{
                                 b.getControle(i - 1 < 0 ? 0 : i - 1, j),
                                 b.getControle(i, j),
                                 b.getControle(i, j - 1 < 0 ? 0 : j - 1),
@@ -404,7 +404,7 @@ public class ZBufferImpl implements ZBuffer {
         }
     }
 
-    public void dessinerSilhouette3D() {
+    public void draw() {
         if (firstRun) {
             ime = new ImageMap(la, ha);
             firstRun = false;
@@ -420,10 +420,11 @@ public class ZBufferImpl implements ZBuffer {
             box = new Box2D();
 
         }
-        dessinerSilhouette3D(currentScene, null);
+        draw(currentScene, null);
     }
 
-    public void dessinerSilhouette3D(Representable re, Representable refObject) {
+    public void draw(Representable re, Representable refObject) {
+
         if (re.getPainter() != null) {
             try {
                 re.paint();
@@ -437,13 +438,13 @@ public class ZBufferImpl implements ZBuffer {
             RepresentableConteneur name = (RepresentableConteneur) re;
             it = name.getListRepresentable().iterator();
             while (it.hasNext()) {
-                dessinerSilhouette3D(it.next(), re);
+                draw(it.next(), re);
             }
         } else if (re instanceof Scene) {
             Scene scene = (Scene) re;
             it = scene.iterator();
             while (it.hasNext()) {
-                dessinerSilhouette3D(it.next(), re);
+                draw(it.next(), re);
             }
         } else if (re != null) {
             Representable r = re;
@@ -527,7 +528,7 @@ public class ZBufferImpl implements ZBuffer {
                 int i1 = BezierCubique2D.DIM1, i2 = BezierCubique2D.DIM2;
                 for (int i = 0; i < i1; i++) {
                     for (int j = 0; j < i2; j++) {
-                        dessinerSilhouette3D(new Polygon(
+                        draw(new Polygon(
                                 new Point3D[]{
                                         r.rotation(b.calculerPoint3D((i - 1 < 0 ? 0
                                                 : i - 1) * 1d / i1, (j) * 1d
@@ -588,7 +589,7 @@ public class ZBufferImpl implements ZBuffer {
                 interactionCourant = n;
                 double incr = n.getIncr();
                 for (double i = 0; i <= 1 - incr; i += incr) {
-                    dessinerSilhouette3D(new SegmentDroite(
+                    draw(new SegmentDroite(
                             n.calculerPoint3D(i), n.calculerPoint3D(i + incr),
                             new ColorTexture(Color.MAGENTA)), n);
 
@@ -604,11 +605,11 @@ public class ZBufferImpl implements ZBuffer {
                     for (double j = n.getStartU(); j <= n.getEndV() - n.getIncrV(); j += n.getIncrV()) {
                         double u = i;
                         double v = j;
-                        dessinerSilhouette3D(new TRI(n.calculerPoint3D(u, v),
+                        draw(new TRI(n.calculerPoint3D(u, v),
                                 n.calculerPoint3D(u + n.getIncrU(), v),
                                 n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
                                 n.texture()), n);
-                        dessinerSilhouette3D(new TRI(n.calculerPoint3D(u, v),
+                        draw(new TRI(n.calculerPoint3D(u, v),
                                 n.calculerPoint3D(u, v + n.getIncrV()),
                                 n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
                                 n.texture()), n);
@@ -1445,10 +1446,11 @@ public class ZBufferImpl implements ZBuffer {
                 if (scene().lumiereActive() != null) {
                     c = new Color(scene().lumiereTotaleCouleur(
                             new ColorTexture(c), x3d,
-                            x3d.getNormale() != null ? x3d.getNormale() : null)
+                            x3d.getNormale())
                             .getColorAt(0.5, 0.5));
 
                 }
+
                 ime.setElementCouleur(x, y, c);
                 ime.setProf(x, y, prof);
                 interaction(x, y, interactionCourant);
@@ -1465,9 +1467,9 @@ public class ZBufferImpl implements ZBuffer {
                 ime.setElementID(x, y, id);
                 if (scene().lumiereActive() != null) {
                     t = scene().lumiereActive().getCouleur(t, x3d,
-                            x3d.getNormale() != null ? x3d.getNormale() : null);
+                            x3d.getNormale());
                     t = scene().calculerCouleurLumiere(t, x3d,
-                            x3d.getNormale() != null ? x3d.getNormale() : null);
+                            x3d.getNormale());
                 }
                 ime.setElementPoint(x, y, x3d);
                 ime.setElementCouleur(x, y, new Color(t.getColorAt(0.5, 0.5)));
@@ -1527,7 +1529,7 @@ public class ZBufferImpl implements ZBuffer {
         }
 
         public int getElementCouleur(int x, int y) {
-            if (checkCoordonnees(x, y) && Simeid[x][y] == id()) {
+            if (checkCoordonnees(x, y) && Simeid[x][y] == id() && Simeprof[x][y] < INFINI.getZ()) {
                 return getRGBInt(Sc, x, y);
             } else {
                 return COULEUR_FOND_INT(x, y);

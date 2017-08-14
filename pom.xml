@@ -42,6 +42,7 @@
             </resource>
         </resources>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+
         <scriptSourceDirectory>${basedir}/src/main/scripts</scriptSourceDirectory>
         <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
         <outputDirectory>${basedir}/target/classes</outputDirectory>
@@ -212,6 +213,8 @@
                     <artifactId>montemedia</artifactId>
                     <version>0.7.7</version>
                     <type>jar</type>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/montemedia-0.7.7.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.github.sarxos</groupId>

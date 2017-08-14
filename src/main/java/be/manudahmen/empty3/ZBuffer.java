@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
  * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
  * Les parties tierces peuvent être soumises à d'autres licenses.
  * Montemedia : Creative Commons
@@ -88,7 +88,7 @@ public interface ZBuffer {
     /**
      * Dessine la scène complète
      */
-    void dessinerSilhouette3D();
+    void draw();
 
     /**
      * Ajoute un objet à l'image... (le dessine si tout est bien initialisé
@@ -96,7 +96,7 @@ public interface ZBuffer {
      * @param r         Objet à ajouter
      * @param refObject Objet de référence pour le déplacement et la rotation
      */
-    void dessinerSilhouette3D(Representable r, Representable refObject);
+    void draw(Representable r, Representable refObject);
 
     void dessinerStructure();
 
@@ -131,7 +131,7 @@ public interface ZBuffer {
     Representable getObjectAt(Point p);
 
     /**
-     * Retourne l'image, après dessin par dessinerSilhouette3D
+     * Retourne l'image, après dessin par draw
      *
      * @return image
      */
