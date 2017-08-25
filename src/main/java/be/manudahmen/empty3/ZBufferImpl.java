@@ -27,7 +27,6 @@ import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 import be.manudahmen.empty3.core.tribase.TRIObjetGenerateurAbstract;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Iterator;
@@ -50,7 +49,7 @@ public class ZBufferImpl implements ZBuffer {
     protected Point3D planproj = null;
     protected Point3D camera = null;
     protected boolean colorationActive = false;
-    protected boolean experimental = false;
+    protected boolean experimental = true;
     protected double angleX = Math.PI / 3;
     protected double angleY = Math.PI / 3;
     protected ECBufferedImage bi;
@@ -181,227 +180,6 @@ public class ZBufferImpl implements ZBuffer {
                     (int) (-x3d.getY() * scale * ha + ha / 2));
         }
         return null;
-    }
-
-    @Deprecated
-
-    public void dessinerContours() {
-        Scene scene = currentScene;
-        id++;
-        box = new Box2D();
-        Iterator<Representable> it = scene.iterator();
-        while (it.hasNext()) {
-            Representable r = it.next();
-            if (r instanceof TRIGenerable) {
-                r = ((TRIGenerable) r).generate();
-            }
-            if (r instanceof TRIConteneur) {
-                r = ((TRIConteneur) r).getObj();
-            }
-            if (r instanceof TRIObject) {
-                TRIObject o = (TRIObject) r;
-                Iterator<TRI> ts = o.triangles().iterator();
-                while (ts.hasNext()) {
-                    // System.out.println("Triangle suivant");
-
-                    TRI t = ts.next();
-
-                    tracerTriangle(t.getSommet()[0], t.getSommet()[1],
-                            t.getSommet()[2],
-                            new Color(t.texture().getColorAt(0.5, 0.5)));
-                }
-            } else if (r instanceof BSpline) {
-                BSpline b = (BSpline) r;
-                int nt = 100;
-                for (double t = 0; t < 1.0; t += 1.0 / nt) {
-                    try {
-                        Point3D p3d = b.calculerPoint3D(t);
-                        ime.testProf(p3d, b.getColor());
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            } else if (r instanceof Point3D) {
-                Point3D p = (Point3D) r;
-                ime.testProf(p, p.texture());
-            } else if (r instanceof SegmentDroite) {
-                SegmentDroite s = (SegmentDroite) r;
-
-                Point x1 = coordonneesPoint2D(s.getOrigine());
-                Point x2 = coordonneesPoint2D(s.getExtremite());
-                if (x1 != null && x2 != null) {
-                    double x = Math.max(x1.getX(), x2.getX());
-                    double y = Math.max(x1.getY(), x2.getY());
-
-                    double itere = Math.max(x, y) * 4;
-                    for (int i = 0; i < itere; i++) {
-                        Point3D p = s.getOrigine().mult(i / itere)
-                                .plus(s.getExtremite().mult(1 - i / itere));
-                        p.texture(s.texture());
-                        ime.testProf(p, p.texture());
-                    }
-                }
-
-            } else if (r instanceof BezierCubique) {
-                BezierCubique b = (BezierCubique) r;
-                int nt = 100;
-                for (double t = 0; t < 1.0; t += 1.0 / nt) {
-                    try {
-                        Point3D p3d = b.calculerPoint3D(t);
-                        ime.testProf(p3d, b.getColor());
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            } else if (r instanceof BezierCubique2D) {
-                BezierCubique2D b = (BezierCubique2D) r;
-                int i1 = 10, i2 = 10;
-                for (int i = 0; i < i1; i++) {
-                    for (int j = 0; j < i2; j++) {
-                        ligne(b.getControle(i - 1 < 0 ? 0 : i - 1, j),
-                                b.getControle(i, j),
-                                new ColorTexture(b.getColor(i1, i2, 1.0 * i
-                                        / i1, 1.0 * j / i2)));
-                        ligne(b.getControle(i, j - 1 < 0 ? 0 : j - 1),
-                                b.getControle(i, j),
-                                new ColorTexture(b.getColor(i1, i2, 1.0 * i
-                                        / i1, 1.0 * j / i2)));
-                        ligne(b.getControle(i - 1 < 0 ? 0 : i - 1,
-                                j - 1 < 0 ? 0 : j - 1),
-                                b.getControle(i, j),
-                                new ColorTexture(b.getColor(i1, i2, 1.0 * i
-                                        / i1, 1.0 * j / i2)));
-                    }
-                }
-            } else if (r instanceof PObjet) {
-                PObjet b = (PObjet) r;
-                for (Point3D p : b.getPoints()) {
-                    ime.testProf(p, p.texture());
-                }
-            } else if (r instanceof POConteneur) {
-                POConteneur c = (POConteneur) r;
-                for (Point3D p : c.iterable()) {
-                    ime.testProf(p, p.texture());
-                }
-            } else if (r instanceof TRIConteneur) {
-                for (TRI t : ((TRIConteneur) r).iterable()) {
-                    Color c = new Color(t.texture().getColorAt(0.5, 0.5));
-
-                    tracerAretes(t.getSommet()[0], t.getSommet()[1], c);
-                    tracerAretes(t.getSommet()[1], t.getSommet()[2], c);
-                    tracerAretes(t.getSommet()[2], t.getSommet()[0], c);
-
-                }
-
-            }
-        }
-    }
-
-    @Deprecated
-
-    public void dessinerSilhouette() {
-
-        try {
-            backgroundTexture(new ImageTexture(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("fondParDefaut.jpg")))));
-        } catch (Exception ex) {
-        }
-
-
-        Scene scene = currentScene;
-        id++;
-        box = new Box2D();
-        Iterator<Representable> it = scene.iterator();
-        while (it.hasNext()) {
-            Representable r = it.next();
-            if (r instanceof TRIGenerable) {
-                r = ((TRIGenerable) r).generate();
-            }
-            if (r instanceof TRIConteneur) {
-                r = ((TRIConteneur) r).getObj();
-            }
-            if (r instanceof TRIObject) {
-                TRIObject o = (TRIObject) r;
-                Iterator<TRI> ts = o.triangles().iterator();
-                while (ts.hasNext()) {
-                    // System.out.println("Triangle suivant");
-
-                    TRI t = ts.next();
-
-                    tracerTriangle(t.getSommet()[0], t.getSommet()[1],
-                            t.getSommet()[2],
-                            new Color(t.texture().getColorAt(0.5, 0.5)));
-                }
-
-            } else if (r instanceof Point3D) {
-                Point3D p = (Point3D) r;
-                ime.testProf(p, p.texture());
-            } else if (r instanceof SegmentDroite) {
-                SegmentDroite s = (SegmentDroite) r;
-                Point x1 = coordonneesPoint2D(s.getOrigine());
-                Point x2 = coordonneesPoint2D(s.getExtremite());
-                if (x1 != null && x2 != null) {
-                    double x = Math.max(x1.getX(), x2.getX());
-                    double y = Math.max(x1.getY(), x2.getY());
-
-                    double itere = Math.max(x, y) * 4;
-                    for (int i = 0; i < itere; i++) {
-                        Point3D p = s.getOrigine().mult(i / itere)
-                                .plus(s.getExtremite().mult(1 - i / itere));
-                        p.texture(s.texture());
-                        ime.testProf(p, p.texture());
-                    }
-                }
-
-            } else if (r instanceof BezierCubique) {
-                BezierCubique b = (BezierCubique) r;
-                int nt = 100;
-                for (double t = 0; t < 1.0; t += 1.0 / nt) {
-                    try {
-                        Point3D p3d = b.calculerPoint3D(t);
-                        ime.testProf(p3d, b.getColor());
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            } else if (r instanceof BezierCubique2D) {
-                BezierCubique2D b = (BezierCubique2D) r;
-                int i1 = 10, i2 = 10;
-                for (int i = 0; i < i1; i++) {
-                    for (int j = 0; j < i2; j++) {
-                        draw(new Polygon(new Point3D[]{
-                                b.getControle(i - 1 < 0 ? 0 : i - 1, j),
-                                b.getControle(i, j),
-                                b.getControle(i, j - 1 < 0 ? 0 : j - 1),
-                                b.getControle(i - 1 < 0 ? 0 : i - 1,
-                                        j - 1 < 0 ? 0 : j - 1)}, new ColorTexture(
-                                b.getColor(i1, i2, 1d * i / i1, 1d * j / i2))), r);
-                    }
-                }
-            } else if (r instanceof PObjet) {
-                PObjet b = (PObjet) r;
-                for (Point3D p : b.getPoints()) {
-                    ime.testProf(p, p.texture());
-                }
-            } else if (r instanceof POConteneur) {
-                POConteneur c = (POConteneur) r;
-                for (Point3D p : c.iterable()) {
-                    ime.testProf(p, p.texture());
-                }
-            } else if (r instanceof TRIConteneur) {
-                for (TRI t : ((TRIConteneur) r).iterable()) {
-                    // pi = new TrianglePix();
-                    tracerAretes(t.getSommet()[0], t.getSommet()[1], new Color(
-                            t.texture().getColorAt(0.5, 0.5)));
-                    tracerAretes(t.getSommet()[1], t.getSommet()[2], new Color(
-                            t.texture().getColorAt(0.5, 0.5)));
-                    tracerAretes(t.getSommet()[2], t.getSommet()[0], new Color(
-                            t.texture().getColorAt(0.5, 0.5)));
-                    // tracerTriangle(pi);
-
-                }
-
-            }
-        }
     }
 
     public void draw() {
@@ -1068,7 +846,10 @@ public class ZBufferImpl implements ZBuffer {
     }
 
     public void backgroundTexture(ITexture tex) {
-        backgroundTexture.setText(tex);
+        if (tex != null) {
+            backgroundTexture.setText(tex);
+            backgroundTexture.applyTex();
+        }
     }
 
     public class ImageFond {
@@ -1088,6 +869,9 @@ public class ZBufferImpl implements ZBuffer {
         }
 
         public void applyTex() {
+            if (tex instanceof VideoTexture) {
+                ((VideoTexture) tex).nextFrame();
+            }
             for (int i = 0; i < la; i++) {
                 for (int j = 0; j < ha; j++) {
                     ime.getIME().setElementCouleur(
@@ -1096,9 +880,6 @@ public class ZBufferImpl implements ZBuffer {
                             new Color(tex
                                     .getColorAt(1.0 * i / la, 1.0 * j / ha)));
                 }
-            }
-            if (tex instanceof VideoTexture) {
-                ((VideoTexture) tex).nextFrame();
             }
         }
     }
@@ -1510,6 +1291,9 @@ public class ZBufferImpl implements ZBuffer {
             for (int i = 0; i < la; i++) {
                 for (int j = 0; j < ha; j++) {
                     Simeprof[i][j] = (float) INFINI.getZ();
+                    Simeid[i][j] = id;
+                    Sc[j * la + i] = COULEUR_FOND_INT(i, j);
+
                 }
             }
         }

@@ -59,7 +59,7 @@ public interface ZBuffer {
      */
     public void couleurDeFond(Color c);
 
-    public void couleurDeFond(ColorTexture couleurFond);
+    public void couleurDeFond(ITexture couleurFond);
 
     /**
      *

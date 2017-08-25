@@ -170,7 +170,7 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
                         // jPanel1.getGraphics().drawRect(0, 0, 400, 200);
                         jPanel1.getGraphics().drawString(biic.getStr(), 10, 10);
                         jPanel1.getGraphics().drawString(" ? Pause ? " + testRef.isPause() + " ? Pause active ? " + testRef.isPauseActive(), 50, 10);
-                        jLabelFrame.setText("f n°" + testRef.frame());
+                        jLabelFrame.setText("f n°" + testRef.frame() + " / " + testRef.getMaxFrames());
                     }
                     //Graphics gg = jPanel4.getGraphics();
                     //gimballs.draw(gg, new Rectangle(jPanel4.getWidth()-30, jPanel4.getHeight()-30, jPanel4.getWidth()-1,jPanel4.getHeight()-1));

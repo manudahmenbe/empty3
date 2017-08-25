@@ -54,8 +54,8 @@ public class ECBufferedImage extends BufferedImage {
         return new ECBufferedImage(ImageIO.read(url));
     }
 
-    public static ECBufferedImage getFromPackage(String resource) throws IOException {
-        return new ECBufferedImage(ImageIO.read(new Object().getClass().getResourceAsStream(resource)));
+    public static ECBufferedImage getFromPackage(Class c, String resource) throws IOException {
+        return new ECBufferedImage(ImageIO.read(c.getResourceAsStream(resource)));
     }
 
     public static ECBufferedImage getFromURL(URL url) {

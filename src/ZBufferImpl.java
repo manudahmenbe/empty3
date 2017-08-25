@@ -428,6 +428,8 @@ public class ZBufferImpl implements ZBuffer {
             for (int i = 0; i < la; i++) {
                 for (int j = 0; j < ha; j++) {
                     Simeprof[i][j] = (float) INFINI.getZ();
+                    Sc[i][j] = COULEUR_FOND_INT();
+                    Simeid[i][j] = id();
                 }
             }
         }
@@ -701,12 +703,13 @@ public class ZBufferImpl implements ZBuffer {
     @Override
     public void couleurDeFond(Color c) {
         COULEUR_FOND = c;
+        coul
         for (int i = 0; i < original.length; i++) {
             original[i] = c.getRGB();
         }
     }
 
-    public void couleurDeFond(ColorTexture c) {
+    public void couleurDeFond(ITexture c) {
         if (original == null) {
             original = new int[la * ha];
         }

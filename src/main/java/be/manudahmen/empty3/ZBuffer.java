@@ -73,17 +73,6 @@ public interface ZBuffer {
      */
     void couleurDeFond(ITexture couleurFond);
 
-    /**
-     * @deprecated
-     */
-    @Deprecated
-    void dessinerContours();
-
-    /**
-     * @deprecated
-     */
-    @Deprecated
-    void dessinerSilhouette();
 
     /**
      * Dessine la scène complète
@@ -97,8 +86,6 @@ public interface ZBuffer {
      * @param refObject Objet de référence pour le déplacement et la rotation
      */
     void draw(Representable r, Representable refObject);
-
-    void dessinerStructure();
 
     /**
      * Distance à la caméra ???

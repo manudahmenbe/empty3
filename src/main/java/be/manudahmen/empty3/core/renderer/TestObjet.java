@@ -676,7 +676,7 @@ public abstract class TestObjet implements Test, Runnable {
                         }
 
                         if (structure && !D3()) {
-                            z.dessinerStructure();
+                            //z.dessinerStructure();
 
                             ri = z.image();
 

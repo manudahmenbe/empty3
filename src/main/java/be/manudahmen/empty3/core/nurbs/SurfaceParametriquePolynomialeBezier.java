@@ -67,4 +67,8 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface {
         return sum;
     }
 
+    public Point3D[][] getCoefficients() {
+        return coefficients;
+    }
+
 }

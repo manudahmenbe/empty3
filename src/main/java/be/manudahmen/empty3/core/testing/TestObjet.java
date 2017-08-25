@@ -720,9 +720,9 @@ public abstract class TestObjet implements Test, Runnable {
 
         z = ZBufferFactory.instance(resx, resy, D3);
 
-        if (scene().texture() != null) {
+        /*if (scene().texture() != null) {
             z.backgroundTexture(scene().texture());
-        }
+        }*/
 
         o.println("");
         o.println(directory().getAbsolutePath());
@@ -773,7 +773,7 @@ public abstract class TestObjet implements Test, Runnable {
                         }
 
                         if (structure && !D3()) {
-                            z.dessinerStructure();
+                            //z.dessinerStructure();
 
                             ri = z.image();
 
