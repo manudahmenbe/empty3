@@ -118,5 +118,5 @@ Différents calculs sont posibles:
 - Déplacement d'objets (y compris la caméra)
 - La rotation d'objet n'est pas toujours au point, il faudrait l'écrire pour 
 chaque objet, ou enregistrer (registerPoint) les points qui comptent dans le
-dessin auprès de la matrice d'homothétie... Mais là je vais quand prendre un
-dafalgan même si j'ai presque 40 ans.
+dessin auprès de la matrice d'homothétie... Mais là je vais quand même prendre
+un dafalgan même si j'ai presque 40 ans et que j'ai réussi mes cours de maths.
