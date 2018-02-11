@@ -1,9 +1,13 @@
 /*
-
- Copyright (C) 2010-2013  DAHMEN, Manuel, Daniel
-
- * Microsoft Public Licence
- * 
+ * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+ * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
+ * Les parties tierces peuvent être soumises à d'autres licenses.
+ * Montemedia : Creative Commons
+ * ECT : Tests à valeur artistique ou technique.
+ * La partie RayTacer a été honteusement copiée sur le Net. Puis traduite en Java et améliorée.
+ * Java est une marque de la société Oracle.
+ *
+ * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
 package info.emptycanvas.library.object;
 
@@ -424,6 +428,8 @@ public class ZBufferImpl implements ZBuffer {
             for (int i = 0; i < la; i++) {
                 for (int j = 0; j < ha; j++) {
                     Simeprof[i][j] = (float) INFINI.getZ();
+                    Sc[i][j] = COULEUR_FOND_INT();
+                    Simeid[i][j] = id();
                 }
             }
         }
@@ -697,12 +703,13 @@ public class ZBufferImpl implements ZBuffer {
     @Override
     public void couleurDeFond(Color c) {
         COULEUR_FOND = c;
+        coul
         for (int i = 0; i < original.length; i++) {
             original[i] = c.getRGB();
         }
     }
 
-    public void couleurDeFond(ColorTexture c) {
+    public void couleurDeFond(ITexture c) {
         if (original == null) {
             original = new int[la * ha];
         }
@@ -890,7 +897,7 @@ public class ZBufferImpl implements ZBuffer {
                 int i1 = 10, i2 = 10;
                 for (int i = 0; i < i1; i++) {
                     for (int j = 0; j < i2; j++) {
-                        dessinerSilhouette3D(new Polygone(new Point3D[]{
+                        draw(new Polygone(new Point3D[]{
                             b.getControle(i - 1 < 0 ? 0 : i - 1, j),
                             b.getControle(i, j),
                             b.getControle(i, j - 1 < 0 ? 0 : j - 1),
@@ -927,7 +934,7 @@ public class ZBufferImpl implements ZBuffer {
     }
 
     @Override
-    public void dessinerSilhouette3D() {
+    public void draw() {
         if (firstRun) {
             ime = new ImageMap(la, ha);
             firstRun = false;
@@ -943,10 +950,10 @@ public class ZBufferImpl implements ZBuffer {
             box = new Box2D();
 
         }
-        dessinerSilhouette3D(currentScene);
+        draw(currentScene);
     }
 
-    public void dessinerSilhouette3D(Representable re) {
+    public void draw(Representable re) {
 
         Iterator<Representable> it = null;
         // COLLECTION
@@ -954,13 +961,13 @@ public class ZBufferImpl implements ZBuffer {
             RepresentableConteneur name = (RepresentableConteneur) re;
             it = name.getListRepresentable().iterator();
             while (it.hasNext()) {
-                dessinerSilhouette3D(it.next());
+                draw(it.next());
             }
         } else if (re instanceof Scene) {
             Scene scene = (Scene) re;
             it = scene.iterator();
             while (it.hasNext()) {
-                dessinerSilhouette3D(it.next());
+                draw(it.next());
             }
         } else if (re != null) {
             Representable r = re;
@@ -1040,7 +1047,7 @@ public class ZBufferImpl implements ZBuffer {
                 int i1 = BezierCubique2D.DIM1, i2 = BezierCubique2D.DIM2;
                 for (int i = 0; i < i1; i++) {
                     for (int j = 0; j < i2; j++) {
-                        dessinerSilhouette3D(new Polygone(
+                        draw(new Polygone(
                                 new Point3D[]{
                                     b.calculerPoint3D((i - 1 < 0 ? 0
                                                     : i - 1) * 1d / i1, (j) * 1d
@@ -1094,8 +1101,8 @@ public class ZBufferImpl implements ZBuffer {
                 /*
                  * for(int i=0; i<to.getMaxX(); i++) for(int j=0;
                  * j<to.getMaxY(); j++) { TRI[] tris = new TRI[2]; to.getTris(i,
-                 * j, tris); dessinerSilhouette3D(tris[0]);
-                 * dessinerSilhouette3D(tris[1]); } //to.draw(this);
+                 * j, tris); draw(tris[0]);
+                 * draw(tris[1]); } //to.draw(this);
                  */
             } else if (r instanceof PGeneratorZ) {
                 PGeneratorZ p = (PGeneratorZ) r;
@@ -1110,8 +1117,8 @@ public class ZBufferImpl implements ZBuffer {
                         TRI[] tris = new TRI[2];
                         tris[0] = new TRI(n.formule(i, j), n.formule(i + incr, j), n.formule(i + incr, j + incr), new ColorTexture(Color.WHITE));
                         tris[1] = new TRI(n.formule(i + incr, j + incr), n.formule(i, j + incr), n.formule(i, j), new ColorTexture(Color.WHITE));
-                        dessinerSilhouette3D(tris[0]);
-                        dessinerSilhouette3D(tris[1]);
+                        draw(tris[0]);
+                        draw(tris[1]);
                     }
                 }
             } else if (r instanceof ParametrizedCurve) {
@@ -1120,7 +1127,7 @@ public class ZBufferImpl implements ZBuffer {
                 interactionCourant = n;
                 double incr = n.getIncr();
                 for (double i = 0; i <= 1 - incr; i += incr) {
-                    dessinerSilhouette3D(new SegmentDroite(n.calculerPoint3D(i),
+                    draw(new SegmentDroite(n.calculerPoint3D(i),
                             n.calculerPoint3D(i + incr), Color.MAGENTA));
 
                     //System.out
@@ -1137,12 +1144,12 @@ public class ZBufferImpl implements ZBuffer {
                     for (double j = 0; j <= 1 - incr2; j += incr2) {
                         double u = i;
                         double v = j;
-                        dessinerSilhouette3D(new TRI(n.calculerPoint3D(u, v),
+                        draw(new TRI(n.calculerPoint3D(u, v),
                                 n.calculerPoint3D(u + incr1, v),
                                 n.calculerPoint3D(u + incr2,
                                         v + incr2),
                                 new ColorTexture(Color.MAGENTA)));
-                        dessinerSilhouette3D(new TRI(n.calculerPoint3D(u, v),
+                        draw(new TRI(n.calculerPoint3D(u, v),
                                 n.calculerPoint3D(u, v + incr2),
                                 n.calculerPoint3D(u + incr2,
                                         v + incr2),

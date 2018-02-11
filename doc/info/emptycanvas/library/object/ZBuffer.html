@@ -1,3 +1,15 @@
+<!--
+  ~ Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
+  ~ La plupart des licenses de parties tièrces sont compatibles avec la license principale.
+  ~ Les parties tierces peuvent être soumises à d'autres licenses.
+  ~ Montemedia : Creative Commons
+  ~ ECT : Tests à valeur artistique ou technique.
+  ~ La partie RayTacer a été honteusement copiée sur le Net. Puis traduite en Java et améliorée.
+  ~ Java est une marque de la société Oracle.
+  ~
+  ~ Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
+  -->
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!-- NewPage -->
 <html lang="fr">
@@ -126,7 +138,7 @@
                                         <th class="colLast" scope="col">Method and Description</th>
                                     </tr>
                                     <tr id="i0" class="altColor">
-                                        <td class="colFirst"><code>be.manudahmen.emptycanvas.library.empty3.library.object.Camera</code>
+                                        <td class="colFirst"><code>be.manudahmen.empty3.Camera</code>
                                         </td>
                                         <td class="colLast"><code><span class="memberNameLink"><a href="../../../../info/emptycanvas/library/object/ZBuffer.html#camera--">camera</a></span>()</code>
                                             <div class="block">Retourne la caméra de la scène virtuelle</div>
@@ -141,7 +153,7 @@
                                         </td>
                                     </tr>
                                     <tr id="i2" class="altColor">
-                                        <td class="colFirst"><code>be.manudahmen.emptycanvas.library.empty3.library.object.Point3D</code>
+                                        <td class="colFirst"><code>be.manudahmen.empty3.Point3D</code>
                                         </td>
                                         <td class="colLast"><code><span class="memberNameLink"><a href="../../../../info/emptycanvas/library/object/ZBuffer.html#camera-info.emptycanvas.library.object.Point3D-">camera</a></span>(info.emptycanvas.library.object.Point3D&nbsp;p)</code>&nbsp;</td>
                                     </tr>
@@ -152,7 +164,7 @@
                                         </td>
                                     </tr>
                                     <tr id="i4" class="altColor">
-                                        <td class="colFirst"><code>be.manudahmen.emptycanvas.library.empty3.library.object.Point3D</code>
+                                        <td class="colFirst"><code>be.manudahmen.empty3.Point3D</code>
                                         </td>
                                         <td class="colLast"><code><span class="memberNameLink"><a href="../../../../info/emptycanvas/library/object/ZBuffer.html#coordonneesPoint3D-java.awt.Point-double-">coordonneesPoint3D</a></span>(java.awt.Point&nbsp;p,
                                                 double&nbsp;zdistance)</code>&nbsp;</td>
@@ -183,7 +195,8 @@
                                     </tr>
                                     <tr id="i9" class="rowColor">
                                         <td class="colFirst"><code>void</code></td>
-                                        <td class="colLast"><code><span class="memberNameLink"><a href="../../../../info/emptycanvas/library/object/ZBuffer.html#dessinerSilhouette3D--">dessinerSilhouette3D</a></span>()</code>
+                                        <td class="colLast"><code><span class="memberNameLink"><a
+                                                href="../../../../info/emptycanvas/library/object/ZBuffer.html#draw--">draw</a></span>()</code>
                                             <div class="block">Dessine la scène complète</div>
                                         </td>
                                     </tr>
@@ -215,7 +228,7 @@
                                     <tr id="i15" class="rowColor">
                                         <td class="colFirst"><code>info.emptycanvas.library.object.ECBufferedImage</code></td>
                                         <td class="colLast"><code><span class="memberNameLink"><a href="../../../../info/emptycanvas/library/object/ZBuffer.html#image--">image</a></span>()</code>
-                                            <div class="block">Retourne l'image, après dessin par dessinerSilhouette3D</div>
+                                            <div class="block">Retourne l'image, après dessin par draw</div>
                                         </td>
                                     </tr>
                                     <tr id="i16" class="altColor">
@@ -266,7 +279,7 @@
                                         </td>
                                     </tr>
                                     <tr id="i24" class="altColor">
-                                        <td class="colFirst"><code>be.manudahmen.emptycanvas.library.empty3.library.object.Scene</code>
+                                        <td class="colFirst"><code>be.manudahmen.empty3.Scene</code>
                                         </td>
                                         <td class="colLast"><code><span class="memberNameLink"><a href="../../../../info/emptycanvas/library/object/ZBuffer.html#scene--">scene</a></span>()</code>
                                             <div class="block">Retourne la scène en cours de traitement</div>
@@ -436,13 +449,13 @@ void&nbsp;dessinerSilhouette()</pre>
                                         <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;</div>
                                     </li>
                                 </ul>
-                                <a name="dessinerSilhouette3D--">
+                                <a name="draw--">
                                     <!--   -->
                                 </a>
                                 <ul class="blockList">
                                     <li class="blockList">
-                                        <h4>dessinerSilhouette3D</h4>
-                                        <pre>void&nbsp;dessinerSilhouette3D()</pre>
+                                        <h4>draw</h4>
+                                        <pre>void&nbsp;draw()</pre>
                                         <div class="block">Dessine la scène complète</div>
                                     </li>
                                 </ul>
@@ -514,7 +527,7 @@ void&nbsp;dessinerSilhouette()</pre>
                                     <li class="blockList">
                                         <h4>image</h4>
                                         <pre>info.emptycanvas.library.object.ECBufferedImage&nbsp;image()</pre>
-                                        <div class="block">Retourne l'image, après dessin par dessinerSilhouette3D</div>
+                                        <div class="block">Retourne l'image, après dessin par draw</div>
                                         <dl>
                                             <dt><span class="returnLabel">Returns:</span></dt>
                                             <dd>image</dd>
