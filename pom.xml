@@ -13,8 +13,8 @@
   -->
 
 <project
-        xmlns="http://maven.apache.org/POM/4.0.0">
-    <modelVersion>4.0.0</modelVersion>
+        xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <name>Empty3</name>
 
@@ -23,6 +23,7 @@
     <version>63</version>
     <description>3D rendering engine. Plus modelling.</description>
     <packaging>jar</packaging>
+    <modelVersion>4.0.0</modelVersion>
 
     <distributionManagement>
         <repository>
@@ -130,7 +131,6 @@
     </build>
 
 
-
     <repositories>
         <repository>
             <id>OpenIMAJ maven repository</id>
@@ -169,18 +169,15 @@
             <layout>default</layout>
         </repository>
 
-            <repository>
-                <id>local-maven-repo</id>
-                <url>file:///${project.basedir}/lib</url>
-            </repository>
-            <repository>
-                <id>ftp-repository</id>
-                <url>ftp://ftp.manudahmen.be/m2repository</url>
-            </repository>
-        </repositories>
-
-
-
+        <repository>
+            <id>local-maven-repo</id>
+            <url>file:///${project.basedir}/lib</url>
+        </repository>
+        <repository>
+            <id>ftp-repository</id>
+            <url>ftp://ftp.manudahmen.be/m2repository</url>
+        </repository>
+    </repositories>
 
 
     <dependencies>
@@ -237,10 +234,10 @@
         </dependency>
 
         <dependency>
-                    <groupId>ch.randelshofer</groupId>
-                    <artifactId>montemedia</artifactId>
-                    <version>0.7.7</version>
-                    <type>jar</type>
+            <groupId>ch.randelshofer</groupId>
+            <artifactId>montemedia</artifactId>
+            <version>0.7.7</version>
+            <type>jar</type>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/montemedia-0.7.7.jar</systemPath>
         </dependency>
