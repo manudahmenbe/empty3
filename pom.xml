@@ -82,8 +82,8 @@
                 <version>2.3.2</version>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>7</source>
+                    <target>7</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
