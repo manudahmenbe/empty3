@@ -69,4 +69,10 @@ public class CouleurOutils {
     public String couleurLongID() {
         return "Couleur";
     }
+
+    public Color randomColor() {
+        return new Color((float) Math.random(),
+                (float) Math.random(),
+                (float) Math.random());
+    }
 }

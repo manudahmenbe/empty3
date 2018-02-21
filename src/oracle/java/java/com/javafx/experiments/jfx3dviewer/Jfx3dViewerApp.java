@@ -11,22 +11,22 @@
  */
 package com.javafx.experiments.jfx3dviewer;
 
-import java.io.File;
-import java.util.List;
-
+import com.javafx.experiments.jfx3dviewer.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.util.List;
 /**
  * JavaFX 3D Viewer Application
  */
 public class Jfx3dViewerApp extends Application {
     public static final String FILE_URL_PROPERTY = "fileUrl";
-    private static ContentModel contentModel;
-    private SessionManager sessionManager;
+    private static com.javafx.experiments.jfx3dviewer.ContentModel contentModel;
+    private com.javafx.experiments.jfx3dviewer.SessionManager sessionManager;
 
     public static ContentModel getContentModel() {
         return contentModel;

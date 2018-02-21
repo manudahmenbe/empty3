@@ -15,6 +15,7 @@ import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 
 import java.awt.*;
+import java.util.Arrays;
 
 /**
  * *
@@ -443,5 +444,20 @@ public class Point3D extends Representable implements IMovable {
     }
 
     public class P extends Point3D {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Point3D)) return false;
+
+        Point3D point3D = (Point3D) o;
+
+        return Arrays.equals(x, point3D.x);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(x);
     }
 }

@@ -9,14 +9,9 @@
  *
  * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
-package com.javafx.experiments.height2normal;
+package java.com.javafx.experiments.height2normal;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-
-import javax.imageio.ImageIO;
-
+import com.javafx.experiments.jfx3dviewer.AutoScalingGroup;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -28,12 +23,7 @@ import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.control.Slider;
-import javafx.scene.control.ToolBar;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -48,7 +38,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import com.javafx.experiments.jfx3dviewer.AutoScalingGroup;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 /**
  * Gui Util App for converting Heights 2 Normals
@@ -87,7 +80,7 @@ public class Height2NormalApp  extends Application {
                 new ObjectBinding<Image>() {
                     { bind(heightImage, invertCheckBox.selectedProperty(), scaleSlider.valueProperty()); }
                     @Override protected Image computeValue() {
-                        return Height2NormalConverter.convertToNormals(heightImage.get(), invertCheckBox.isSelected(), scaleSlider.getValue());
+                        return com.javafx.experiments.height2normal.Height2NormalConverter.convertToNormals(heightImage.get(), invertCheckBox.isSelected(), scaleSlider.getValue());
                     }
                 });
 

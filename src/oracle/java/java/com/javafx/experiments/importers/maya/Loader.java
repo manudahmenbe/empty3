@@ -9,23 +9,17 @@
  *
  * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
-package com.javafx.experiments.importers.maya;
+package java.com.javafx.experiments.importers.maya;
 
 import com.javafx.experiments.importers.SmoothingGroups;
-
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import com.javafx.experiments.importers.maya.*;
+import com.javafx.experiments.importers.maya.parser.MParser;
+import com.javafx.experiments.importers.maya.values.*;
+import com.javafx.experiments.shape3d.PolygonMesh;
+import com.javafx.experiments.shape3d.PolygonMeshView;
+import com.javafx.experiments.shape3d.SkinningMesh;
+import com.javafx.experiments.utils3d.geom.Vec3f;
+import javafx.animation.AnimationTimer;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -33,6 +27,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.scene.DepthTest;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
@@ -41,33 +36,12 @@ import javafx.scene.shape.TriangleMesh;
 import javafx.scene.transform.Affine;
 import javafx.util.Duration;
 
-import com.javafx.experiments.importers.maya.parser.MParser;
-import com.javafx.experiments.importers.maya.values.MArray;
-import com.javafx.experiments.importers.maya.values.MBool;
-import com.javafx.experiments.importers.maya.values.MCompound;
-import com.javafx.experiments.importers.maya.values.MData;
-import com.javafx.experiments.importers.maya.values.MFloat;
-import com.javafx.experiments.importers.maya.values.MFloat2Array;
-import com.javafx.experiments.importers.maya.values.MFloat3;
-import com.javafx.experiments.importers.maya.values.MFloat3Array;
-import com.javafx.experiments.importers.maya.values.MFloatArray;
-import com.javafx.experiments.importers.maya.values.MInt;
-import com.javafx.experiments.importers.maya.values.MInt3Array;
-import com.javafx.experiments.importers.maya.values.MIntArray;
-import com.javafx.experiments.importers.maya.values.MPolyFace;
-import com.javafx.experiments.importers.maya.values.MString;
-import com.javafx.experiments.shape3d.PolygonMesh;
-import com.javafx.experiments.shape3d.PolygonMeshView;
-import com.javafx.experiments.shape3d.SkinningMesh;
-import com.javafx.experiments.utils3d.geom.Vec3f;
-
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Arrays;
-
-import javafx.animation.AnimationTimer;
-import javafx.scene.Parent;
-
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /** Loader */
 class Loader {
     public static final boolean DEBUG = false;

@@ -16,7 +16,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="empty3" target="7" />
+      <module name="empty3" target="1.8" />
       <module name="emptycanvas" target="1.6" />
     </bytecodeTargetLevel>
   </component>
