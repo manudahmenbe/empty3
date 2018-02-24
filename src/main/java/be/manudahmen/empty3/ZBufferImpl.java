@@ -81,9 +81,11 @@ public class ZBufferImpl implements ZBuffer {
         ha = Resolution.K4RESOLUTION.y();
         dimx = la;
         dimy = ha;
+        this.ime = new ImageMap(la, ha);
     }
 
     public ZBufferImpl(Resolution resolution) {
+        this();
         la = resolution.x();
         ha = resolution.y();
         dimx = la;
@@ -91,6 +93,7 @@ public class ZBufferImpl implements ZBuffer {
     }
 
     public ZBufferImpl(int l, int h) {
+        this();
         la = l;
         ha = h;
         dimx = la;
@@ -871,6 +874,12 @@ public class ZBufferImpl implements ZBuffer {
         public void applyTex() {
             if (tex instanceof VideoTexture) {
                 ((VideoTexture) tex).nextFrame();
+            }
+            if (ime == null) {
+                ime = new ImageMap(la, ha);
+            }
+            if (this.getTex() == null) {
+                throw new NullPointerException("tex null");
             }
             for (int i = 0; i < la; i++) {
                 for (int j = 0; j < ha; j++) {

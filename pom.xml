@@ -28,7 +28,7 @@
     <distributionManagement>
         <repository>
             <id>ftp-repository</id>
-            <url>sftp://ftp.manudahmen.be/m2repository</url>
+            <url>ftp://ftp.manudahmen.be/m2repository</url>
         </repository>
     </distributionManagement>
 
@@ -132,8 +132,8 @@
             <!-- Enabling the use of FTP -->
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh-external</artifactId>
-                <version>3.0.0</version>
+                <artifactId>wagon-ftp</artifactId>
+                <version>2.12</version>
             </extension>
         </extensions>
     </build>
