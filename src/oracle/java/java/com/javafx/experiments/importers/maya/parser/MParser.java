@@ -9,8 +9,8 @@
  *
  * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
-package com.javafx.experiments.importers.maya.parser;
-
+//package com.javafx.experiments.importers.maya.parser;
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -540,3 +540,4 @@ public class MParser {
         }
     }
 }
+*/

@@ -14,9 +14,11 @@ package be.manudahmen.empty3.core.physics;
 
 import be.manudahmen.empty3.Point3D;
 
-public class Force {
+public class Force implements IntForce {
     public double amortissement = 0;
     public double intensiteRepulsion = 0;
+    private double distMinFusion;
+    private boolean fusion;
     private double G = 6.67E-11;
     private Bille[] courant = null;
     private Bille[] next = null;
@@ -26,15 +28,18 @@ public class Force {
     private double distMax = 0.0;
     private double distMin = Double.MAX_VALUE;
 
+    @Override
     public void configurer(Bille[] courant) {
         this.courant = courant;
 
     }
 
+    @Override
     public Point3D centreMasse() {
         return cm;
     }
 
+    @Override
     public Point3D attractionRepulsion(Bille other, Bille p) {
         if (p != other) {
             double r = other.position.moins(p.position).norme();
@@ -58,35 +63,66 @@ public class Force {
         return Point3D.O0;
     }
 
+    @Override
     public Point3D frottement(Bille p) {
         Point3D fvp = p.vitesse.mult(p.amortissement * amortissement * -1);
 
         return fvp;
     }
 
+    private void delete1(int ind) {
+        Bille[] courantMinus1 = new Bille[courant.length - 1];
+
+        int i = 0;
+        for (int a = 0; a < courant.length - 1; a++) {
+
+            if (a == ind)
+                continue;
+            courantMinus1[a] = courant[i];
+            i++;
+        }
+
+        this.courant = courantMinus1;
+    }
+
+
+    @Override
     public Point3D force(int ind) {
         Point3D f = Point3D.O0;
         for (int i = 0; i < courant.length; i++) {
-            if (courant[i] != courant[ind])
-                f = f.plus(attractionRepulsion(courant[i], courant[ind]));
+            if (courant[i] != courant[ind]) {
+                f = f.plus(attractionRepulsion(courant[i], courant[ind])).plus(frottement(courant[i]));
+                if (isFusion()) {
+                    courant[ind].masse += courant[i].masse;
+                    courant[ind].vitesse = courant[ind].vitesse.plus(courant[i].vitesse);
+
+                    courant[i] = courant[ind];
+
+                    delete1(ind);
+                }
+            }
         }
         f = f.plus(frottement(courant[ind]));
 
         return f;
     }
 
+    @Override
     public Point3D acc(int ind) {
         return force(ind).mult(1 / courant[ind].masse);
     }
 
+    @Override
     public Point3D vitesse(int ind) {
         return (next[ind].vitesse = courant[ind].vitesse.plus(acc(ind).mult(dt)));
     }
 
+    @Override
     public Point3D position(int ind) {
         return (next[ind].position = courant[ind].position.plus(vitesse(ind).mult(dt)));
     }
 
+    @Override
     public void calculer() {
         cm = Point3D.O0;
         cmd = 0.0;
@@ -112,52 +148,83 @@ public class Force {
         courant = next;
     }
 
+    @Override
     public double getDistMax() {
         return distMax;
     }
 
+    @Override
     public void setDistMax(double distMax) {
         this.distMax = distMax;
     }
 
+    @Override
     public double getDistMin() {
         return distMin;
     }
 
+    @Override
     public void setDistMin(double distMin) {
         this.distMin = distMin;
     }
 
+    @Override
     public Bille[] getCourant() {
         return courant;
     }
 
+    @Override
     public void setCourant(Bille[] courant) {
         this.courant = courant;
     }
 
+    @Override
     public Bille[] getNext() {
         return next;
     }
 
+    @Override
     public void setNext(Bille[] next) {
         this.next = next;
     }
 
+    @Override
     public double getDt() {
         return dt;
     }
 
+    @Override
     public void setDt(double dt) {
         this.dt = dt;
     }
 
+    @Override
     public double getG() {
         return G;
     }
 
+    @Override
     public void setG(double g) {
         G = g;
     }
 
+    @Override
+    public double getDistMinFusion() {
+        return distMinFusion;
+    }
+
+    @Override
+    public void setDistMinFusion(double distMinFusion) {
+        this.distMinFusion = distMinFusion;
+    }
+
+    @Override
+    public boolean isFusion() {
+        return fusion;
+    }
+
+    @Override
+    public void setFusion(boolean fusion) {
+        this.fusion = fusion;
+    }
 }

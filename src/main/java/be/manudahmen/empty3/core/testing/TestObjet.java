@@ -1068,4 +1068,13 @@ public abstract class TestObjet implements Test, Runnable {
     public void onMaxFrame(int maxFramesEvent) {
         this.onMaxFrameEvent = maxFramesEvent;
     }
+
+    public TestObjet getInstance() throws ClassNotFoundException {
+        try {
+            return this.getClass().newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        throw new ClassNotFoundException("Impossible to initialize class");
+    }
 }
