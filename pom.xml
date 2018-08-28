@@ -21,7 +21,7 @@
 
     <groupId>be.manudahmen</groupId>
     <artifactId>empty3</artifactId>
-    <version>65</version>
+    <version>67</version>
     <description>3D rendering engine. Plus modelling.</description>
     <packaging>jar</packaging>
 

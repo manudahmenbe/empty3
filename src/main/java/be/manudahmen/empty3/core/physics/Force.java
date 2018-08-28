@@ -27,10 +27,15 @@ public class Force implements IntForce {
     private double cmd;
     private double distMax = 0.0;
     private double distMin = Double.MAX_VALUE;
+    private double[] dMin;
+    private double[] dMax;
 
     @Override
     public void configurer(Bille[] courant) {
         this.courant = courant;
+        this.dMax = new double[courant.length];
+        this.dMin = new double[courant.length];
+
 
     }
 
@@ -85,12 +90,27 @@ public class Force implements IntForce {
         this.courant = courantMinus1;
     }
 
+    public double dMin(int ind) {
+        return dMin[ind];
+    }
 
+    public double dMax(int ind) {
+        return dMax[ind];
+    }
     @Override
     public Point3D force(int ind) {
         Point3D f = Point3D.O0;
+        dMin[ind] = Double.MAX_VALUE;
+        dMax[ind] = Double.MIN_VALUE;
         for (int i = 0; i < courant.length; i++) {
             if (courant[i] != courant[ind]) {
+
+                double dTmp = courant[ind].position.moins(courant[i].position).norme();
+                if (dTmp < dMin[ind])
+                    dMin[ind] = dTmp;
+                if (dTmp > dMax[ind])
+                    dMax[ind] = dTmp;
+
                 f = f.plus(attractionRepulsion(courant[i], courant[ind])).plus(frottement(courant[i]));
                 if (isFusion()) {
                     courant[ind].masse += courant[i].masse;

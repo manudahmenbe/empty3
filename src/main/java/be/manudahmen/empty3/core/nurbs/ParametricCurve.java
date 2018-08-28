@@ -45,6 +45,8 @@ public abstract class ParametricCurve extends Representable {
         end = e;
     }
 
+
+    // TODO PRECISION!!!
     public double getIncr() {
         return incr == 0 ? 0.01 : incr;
     }
