@@ -372,7 +372,7 @@ public class ZBufferImpl implements ZBuffer {
                 for (double i = 0; i <= 1 - incr; i += incr) {
                     draw(new SegmentDroite(
                             n.calculerPoint3D(i), n.calculerPoint3D(i + incr),
-                            new ColorTexture(Color.MAGENTA)), n);
+                            n.texture()), n);
 
                     // System.out
                     // .print("+"+n.calculerPoint3D(i).toString());

@@ -1,15 +1,16 @@
-package be.manudahmen.empty3.core.nurbs;
+package be.manudahmen.empty3.core;
 
 import be.manudahmen.empty3.Axe;
 import be.manudahmen.empty3.Point3D;
+import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 
 /**
  * Created by Win on 28-08-18.
  */
-public class Sphere extends ParametricSurface {
+public class Citron extends ParametricSurface {
     private Circle circle;
 
-    public Sphere(Axe axis, Point3D center, double radius) {
+    public Citron(Axe axis, Point3D center, double radius) {
 
         circle = new Circle(axis, center, radius);
     }

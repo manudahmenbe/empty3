@@ -51,4 +51,8 @@ public class Axe {
     public Point3D rotation(double angle, Point3D point) {
         return point;
     }
+
+    public Point3D getCenter() {
+        return p1.plus(p2).mult(0.5);
+    }
 }
