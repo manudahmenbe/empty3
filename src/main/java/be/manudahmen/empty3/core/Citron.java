@@ -12,18 +12,18 @@ public class Citron extends ParametricSurface {
 
     public Citron(Axe axis, Point3D center, double radius) {
 
-        circle = new Circle(axis, center, radius);
+        circle = new Circle(axis, radius);
     }
 
     public Point3D calculerPoint3D(double u, double v) {
         Circle c = circle;
-        return c.center.plus(
-                c.vA.mult(
+        return c.getCenter().plus(
+                c.vectX.mult(
                         Math.cos(2.0 * Math.PI * u)).plus(
-                        c.vB.mult(
+                        c.vectY.mult(
                                 Math.sin(2.0 * Math.PI * u)).
                                 mult(Math.cos(2.0 * Math.PI * v))
-                                .plus(c.vC.mult(Math.sin(2 * Math.PI * v)))
+                                .plus(c.vectZ.mult(Math.sin(2 * Math.PI * v)))
                 ).mult(c.radius));
     }
 

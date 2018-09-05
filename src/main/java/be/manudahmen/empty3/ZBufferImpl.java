@@ -24,7 +24,6 @@ package be.manudahmen.empty3;
 
 import be.manudahmen.empty3.core.extra.SimpleSphere;
 import be.manudahmen.empty3.core.nurbs.ParametricCurve;
-import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 import be.manudahmen.empty3.core.tribase.TRIObjetGenerateurAbstract;
 
 import java.awt.*;
@@ -378,10 +377,12 @@ public class ZBufferImpl implements ZBuffer {
                     // .print("+"+n.calculerPoint3D(i).toString());
                 }
 
-            } else if (r instanceof ParametricSurface) {
+            }
+            /*else if (r instanceof ParametricSurface) {
                 // System.out.println("Surface");
                 ParametricSurface n = (ParametricSurface) r;
                 interactionCourant = n;
+                // TODO Dessiner les bords
                 for (double i = n.getStartU(); i <= n.getEndU() - n.getIncrU(); i += n.getIncrU()) {
                     for (double j = n.getStartU(); j <= n.getEndV() - n.getIncrV(); j += n.getIncrV()) {
                         double u = i;
@@ -398,7 +399,7 @@ public class ZBufferImpl implements ZBuffer {
                     }
 
                 }
-            }
+            }*/
         }
 
     }

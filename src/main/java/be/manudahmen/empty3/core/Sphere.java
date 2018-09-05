@@ -4,25 +4,23 @@ import be.manudahmen.empty3.Axe;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 
-/**
- * Created by Win on 28-08-18.
- */
+
 public class Sphere extends ParametricSurface {
     private Circle circle;
 
     public Sphere(Axe axis, double radius) {
 
-        circle = new Circle(axis, axis.getCenter(), radius);
+        circle = new Circle(axis, radius);
     }
 
     public Point3D calculerPoint3D(double u, double v) {
         Circle c = circle;
-        return c.center.plus(
-                c.vA.mult(
+        return c.getCenter().plus(
+                c.vectX.mult(
                         Math.cos(2.0 * Math.PI * u) * Math.cos(2.0 * Math.PI * v)).plus(
-                        c.vB.mult(
-                                Math.cos(2.0 * Math.PI * u) * Math.cos(2.0 * Math.PI * v))
-                                .plus(c.vC.mult(Math.sin(2 * Math.PI * v)))
+                        c.vectY.mult(
+                                Math.sin(2.0 * Math.PI * u) * Math.cos(2.0 * Math.PI * v))
+                                .plus(c.vectZ.mult(Math.sin(2 * Math.PI * v)))
                 ).mult(c.radius));
     }
 

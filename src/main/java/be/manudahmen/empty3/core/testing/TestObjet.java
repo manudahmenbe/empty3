@@ -149,6 +149,11 @@ public abstract class TestObjet implements Test, Runnable {
         return directory;
     }
 
+    public void setResolution(int x, int y) {
+        setResx(x);
+        setResy(y);
+    }
+
     void startNewMovie() {
         if ((generate & GENERATE_MOVIE) > 0) {
             if (isAviOpen()) {
@@ -162,7 +167,6 @@ public abstract class TestObjet implements Test, Runnable {
                 }
             }
         }
-
         idxFilm++;
         avif = new File(this.dir.getAbsolutePath() + File.separator
                 + sousdossier + this.getClass().getName() + "__" + filmName + idxFilm + ".AVI");
@@ -352,10 +356,12 @@ public abstract class TestObjet implements Test, Runnable {
         this.maxFrames = maxFrames;
     }
 
+
     public int getResx() {
         return resx;
     }
 
+    @Deprecated
     public void setResx(int resx) {
         this.resx = resx;
         z = ZBufferFactory.instance(resx, resy, D3);
@@ -365,6 +371,7 @@ public abstract class TestObjet implements Test, Runnable {
         return resy;
     }
 
+    @Deprecated
     public void setResy(int resy) {
         this.resy = resy;
         z = ZBufferFactory.instance(resx, resy, D3);

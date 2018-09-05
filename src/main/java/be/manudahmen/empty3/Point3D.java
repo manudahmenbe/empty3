@@ -66,6 +66,8 @@ public class Point3D extends Representable implements IMovable {
      */
     private String id;
     private Barycentre position;
+    private ParametricCurve curve;
+
     /**
      * *
      * Constructeur Point Origine
@@ -441,6 +443,22 @@ public class Point3D extends Representable implements IMovable {
         this.set(1, to.get(1));
         this.set(2, to.get(2));
 
+    }
+
+    public void changeTo(Point3D orig) {
+        for (int i = 0; i < x.length; i++)
+            this.x[i] = orig.x[i];
+    }
+
+
+    // TODO Implement and refactor other classes
+    public void stitchToCurve(ParametricCurve curve) {
+        this.curve = curve;
+        throw new UnsupportedOperationException("To implement");
+    }
+
+    public ParametricCurve getTrajectory() {
+        return curve;
     }
 
     public class P extends Point3D {
