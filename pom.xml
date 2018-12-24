@@ -21,14 +21,15 @@
 
     <groupId>be.manudahmen</groupId>
     <artifactId>empty3</artifactId>
-    <version>67.2</version>
+    <version>67.3</version>
     <description>3D rendering engine. Plus modelling.</description>
     <packaging>jar</packaging>
 
     <distributionManagement>
         <repository>
-            <id>ftp-repository</id>
-            <url>ftp://ftp.manudahmen.be/m2repository</url>
+            <id>demoniakmachine.com</id>
+            <name>demoniakmachine.com</name>
+            <url>ftp://ftp.demoniakmachine.com/m2</url>
         </repository>
     </distributionManagement>
 
@@ -60,6 +61,14 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12.4</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.0</version>
                 <configuration>
@@ -85,7 +94,9 @@
                     <source>1.8</source>
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
+
                 </configuration>
+
             </plugin>
 
 
@@ -118,14 +129,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>com.zenjava</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>8.8.3</version>
-                <configuration>
-                    <mainClass>com.javafx.experiments.jfx3dviewer.Jfx3dViewerApp</mainClass>
-                </configuration>
-            </plugin>
+
         </plugins>
 
         <extensions>
@@ -138,20 +142,15 @@
         </extensions>
     </build>
 
-
     <dependencies>
-
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.9</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>1.6-beta-2</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.jogamp.jogl</groupId>
             <artifactId>jogl-all-main</artifactId>
@@ -229,6 +228,7 @@
             <groupId>xuggle</groupId>
             <artifactId>xuggle-xuggler</artifactId>
             <version>5.4</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.humble</groupId>
@@ -310,11 +310,11 @@
             <artifactId>monte-repack</artifactId>
             <version>1.0</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>javax.media</groupId>
             <artifactId>jai_codec</artifactId>
             <version>1.1.3</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>javax.media</groupId>
             <artifactId>jai_imageio</artifactId>

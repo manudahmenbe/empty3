@@ -17,6 +17,7 @@ package be.manudahmen.empty3.core.testing;
 
 import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.RegisterOutput;
+import be.manudahmen.empty3.core.export.ObjExport;
 import be.manudahmen.empty3.core.export.STLExport;
 import be.manudahmen.empty3.core.script.ExtensionFichierIncorrecteException;
 import be.manudahmen.empty3.core.script.Loader;
@@ -48,6 +49,7 @@ public abstract class TestObjet implements Test, Runnable {
     public static final int GENERATE_MODEL = 2;
     public static final int GENERATE_OPENGL = 4;
     public static final int GENERATE_MOVIE = 8;
+    public static final int GENERATE_OBJ = 16;
     public static final int GENERATE_NO_IMAGE_FILE_WRITING = 16;
     public static final ArrayList<TestInstance.Parameter> initParams = new ArrayList<TestInstance.Parameter>();
     public static final int ON_TEXTURE_ENDS_STOP = 0;
@@ -286,8 +288,13 @@ public abstract class TestObjet implements Test, Runnable {
     }
 
     public void exportFrame(String format, String filename) throws IOException {
+
         STLExport.save(
-                new File(directory.getAbsolutePath() + File.separator + filename),
+                new File(directory.getAbsolutePath() + File.separator + filename + ".stl"),
+                scene(),
+                false);
+        ObjExport.save(
+                new File(directory.getAbsolutePath() + File.separator + filename + ".obj"),
                 scene(),
                 false);
     }
@@ -853,17 +860,15 @@ public abstract class TestObjet implements Test, Runnable {
                     } catch (VersionNonSupporteeException ex) {
                         o.println(ex.getLocalizedMessage());
                         reportException(ex);
-                    } catch (ExtensionFichierIncorrecteException ex) {
-                        o.println(ex.getLocalizedMessage());
-                        reportException(ex);
+                    } catch (ExtensionFichierIncorrecteException e) {
+                        e.printStackTrace();
                     }
-
                 }
                 if ((generate & GENERATE_MODEL) > 0) {
                     try {
                         o.println("Start generating model");
                         String filename = "export-" + frame + ".STL";
-                        exportFrame("export-stl", filename);
+                        exportFrame("export", filename);
                         dataWriter.writeFrameData(frame(), "Export model: " + filename);
                         o.println("End generating model");
                     } catch (FileNotFoundException ex) {

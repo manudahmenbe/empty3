@@ -32,8 +32,32 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
+import java.util.List;
 
-public class STLExport {
+public class ObjExport {
+    public class Object {
+        private List<Face> faces;
+    }
+
+    public class Vertex {
+        private double x, y, z;
+    }
+
+    public class VertexTexture {
+        private double u, v;
+    }
+
+    public class VertexNormal {
+        private double vx, vy, vz;
+    }
+
+    public class Face {
+        private Vertex v;
+        private VertexTexture vt;
+        private VertexNormal vn;
+
+    }
+
 
     public static void save(File file, Scene scene, boolean override)
             throws IOException {
@@ -41,7 +65,7 @@ public class STLExport {
             file.createNewFile();
             PrintWriter pw = new PrintWriter(new FileOutputStream(file));
 
-            pw.println("solid Emptycanvas_" + scene.description);
+            pw.println("o " + scene.description);
 
             Iterator<Representable> it = scene.iterator();
 
@@ -51,16 +75,13 @@ public class STLExport {
                 traite(r, pw);
             }
 
-            pw.println("endsolid");
-
             pw.close();
         }
     }
 
     private static void traite(Polygon r, PrintWriter pw) {
-        write("facet normal 0 0 0 \n" + "outer loop\n", pw);
         for (int s = 0; s < r.getPoints().size(); s++) {
-            write("vertex ", pw);
+            write("t ", pw);
             for (int c = 0; c < 3; c++) {
                 double A = r.getPoints().get(s).get(c);
                 if (Double.isNaN(A)) {
@@ -71,8 +92,6 @@ public class STLExport {
 
             write("\n", pw);
         }
-        write("endloop\n", pw);
-        write("endfacet\n", pw);
     }
 
     private static void traite(Representable r, PrintWriter pw) {
@@ -124,9 +143,8 @@ public class STLExport {
     }
 
     private static void traite(TRI r, PrintWriter pw) {
-        write("facet normal 0 0 0 \n" + "outer loop\n", pw);
         for (int s = 0; s < 3; s++) {
-            write("vertex ", pw);
+            write("f ", pw);
             for (int c = 0; c < 3; c++) {
                 double A = r.getSommet()[s].get(c);
                 if (Double.isNaN(A)) {
@@ -136,9 +154,11 @@ public class STLExport {
             }
             write("\n", pw);
         }
-        write("endloop\n", pw);
-        write("endfacet\n", pw);
 
+
+        write("f 1/1/2", pw);
+        write(" 2/2/2", pw);
+        write(" 3/3/3\n", pw);
     }
 
     public static void traite(TRIConteneur TC, PrintWriter pw) {

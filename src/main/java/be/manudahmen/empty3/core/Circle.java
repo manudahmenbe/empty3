@@ -12,13 +12,13 @@ import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 
 
 public class Circle extends ParametricCurve {
-    public Axe axis;
+    protected Axe axis;
     //public Point3D center;
-    public double radius;
-    public Point3D vectX;
-    public Point3D vectY;
-    public Point3D vectZ;
-    public Point3D vAxis;
+    protected double radius;
+    protected Point3D vectX;
+    protected Point3D vectY;
+    protected Point3D vectZ;
+    protected final Point3D vAxis;
 
     public Circle(Axe axis, double radius) {
         this.axis = axis;
@@ -29,17 +29,19 @@ public class Circle extends ParametricCurve {
 
     }
 
-    public Circle(Point3D center, Point3D vAxis, double radius) {
+    /*
+        public Circle(Point3D center, Point3D vAxis, double radius) {
 
-        this.vAxis = vAxis.norme1();
-        this.axis = new Axe(
-                center.plus(vAxis),
-                center.moins(vAxis)
-        );
-        this.radius = radius;
-        calculerRepere2();
-    }
-
+            this.vAxis = vAxis.norme1();
+            this.axis = new Axe(
+                    center.plus(vAxis),
+                    center.moins(vAxis)
+            );
+            this.radius = radius;
+            calculerRepere2();
+        }
+    */
+/*
     private void calculerRepere2() {
 
     }
@@ -57,7 +59,7 @@ public class Circle extends ParametricCurve {
     private void calculerRepere3() {
 
     }
-
+*/
     private void calculerRepere1() {
         boolean success = false;
         for (int i = 0; i < 3; i++) {
@@ -66,8 +68,8 @@ public class Circle extends ParametricCurve {
             Point3D mult = vAxis.norme1().prodVect(axis.getCenter().moins(pRef));
             if (mult.norme() > 0.8) {
                 vectX = mult.norme1();
-                vectZ = vAxis;
-                vectY = vectZ.prodVect(vectX);
+                vectZ = vAxis.norme1();
+                vectY = vectZ.prodVect(vectX).norme1();
                 success = true;
                 break;
             }
@@ -86,12 +88,15 @@ public class Circle extends ParametricCurve {
     @Override
     public Point3D calculerPoint3D(double t) {
         return getCenter().plus(
-                vectX.mult(
-                        Math.cos(2.0 * Math.PI * t)).plus(
-                        vectY.mult(
-                                Math.sin(2.0 * Math.PI * t)))
-
-                        .mult(radius));
+                (
+                        vectX.mult(
+                                Math.cos(2.0 * Math.PI * t))
+                                .plus(
+                                        vectY.mult(
+                                                Math.sin(2.0 * Math.PI * t)))
+                )
+                        .mult(radius)
+        );
     }
 
     @Override
@@ -141,5 +146,9 @@ public class Circle extends ParametricCurve {
 
     public void setVectZ(Point3D vectZ) {
         this.vectZ = vectZ;
+    }
+
+    public Point3D getvAxis() {
+        return vAxis;
     }
 }

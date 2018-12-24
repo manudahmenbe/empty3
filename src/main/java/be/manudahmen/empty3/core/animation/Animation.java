@@ -8,6 +8,7 @@ import be.manudahmen.empty3.core.ECDim;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * @author Manuel
@@ -57,9 +58,15 @@ public class Animation {
 
     public void update(int numberOfFrames) {
         for (Point3D point : points) {
-            double t = (time.getTimeCurrentInAnimation() + numberOfFrames * time.getFps()) / duration;
+            time.forEach(new Consumer<AnimationTime>() {
+                @Override
+                public void accept(AnimationTime animationTime) {
+                    double t = (animationTime.getTimeCurrentInAnimation() + numberOfFrames * animationTime.getFps()) / duration;
 
-            point.changeTo(point.getTrajectory().calculerPoint3D(t));
+                    point.changeTo(point.getTrajectory().calculerPoint3D(t));
+
+                }
+            });
         }
     }
 

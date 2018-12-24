@@ -21,6 +21,7 @@
 package be.manudahmen.empty3.core.nurbs;
 
 import be.manudahmen.empty3.*;
+import be.manudahmen.empty3.Polygon;
 import be.manudahmen.empty3.core.tribase.TRIObjetGenerateurAbstract;
 
 import java.awt.*;
@@ -143,5 +144,18 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
             }
         }
         System.out.println("Drawn structure ffaast END");
+    }
+
+    public Polygon getElementSurface(double u, double incrU, double v, double incrV) {
+        double[][] uvincr = new double[][]{
+                {u, v},
+                {u + incrU, v},
+                {u + incrU, v + incrV},
+                {u, v + incrV}
+        };
+        Polygon polygon = new Polygon(new Point3D[]{
+                calculerPoint3D(uvincr[0][0], uvincr[1][0]),
+                calculerPoint3D(uvincr[2][1], uvincr[3][1])}, texture());
+        return polygon;
     }
 }
