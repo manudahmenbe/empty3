@@ -51,6 +51,7 @@ public class ObjExport {
             while (it.hasNext()) {
                 Representable r = it.next();
 
+
                 traite(r, pw);
             }
 
@@ -60,7 +61,7 @@ public class ObjExport {
 
     private static void traite(Polygon r, PrintWriter pw) {
         for (int s = 0; s < r.getPoints().size(); s++) {
-            write("t ", pw);
+            write("v ", pw);
             for (int c = 0; c < 3; c++) {
                 double A = r.getPoints().get(s).get(c);
                 if (Double.isNaN(A)) {
@@ -68,8 +69,14 @@ public class ObjExport {
                 }
                 write(A + " ", pw);
             }
+            traite(r.getIsocentre(), pw);
 
-            write("\n", pw);
+
+        }
+        int size = r.getPoints().size();
+        for (int t = 0; t < size; t++) {
+            write("f " + (t % size) + " " +
+                    ((t + 1) % size) + " " + size + "\n", pw);
         }
     }
 
@@ -121,7 +128,14 @@ public class ObjExport {
         }
     }
 
+    private static void traite(Point3D r, PrintWriter pw) {
+        write("v " + r.get(0) + " " + r.get(1) + " " + r.get(2) + "\n", pw);
+    }
+
     private static void traite(TRI r, PrintWriter pw) {
+        for (int i = 0; i < 3; i++) {
+            traite(r.getSommet()[i], pw);
+        }
         for (int s = 0; s < 3; s++) {
             write("f ", pw);
             for (int c = 0; c < 3; c++) {

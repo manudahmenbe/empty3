@@ -58,21 +58,13 @@ public class STLExport {
     }
 
     private static void traite(Polygon r, PrintWriter pw) {
-        write("facet normal 0 0 0 \n" + "outer loop\n", pw);
+        Point3D isocentre = r.getIsocentre();
+        int count = r.getPoints().size();
         for (int s = 0; s < r.getPoints().size(); s++) {
-            write("vertex ", pw);
-            for (int c = 0; c < 3; c++) {
-                double A = r.getPoints().get(s).get(c);
-                if (Double.isNaN(A)) {
-                    A = 0;
-                }
-                write(A + " ", pw);
-            }
-
-            write("\n", pw);
+            traite(new TRI(r.getPoints().get(s),
+                    r.getPoints().get((s + 1) % count),
+                    isocentre), pw);
         }
-        write("endloop\n", pw);
-        write("endfacet\n", pw);
     }
 
     private static void traite(Representable r, PrintWriter pw) {

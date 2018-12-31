@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-/**
- * @author Manuel
- */
 public class Animation {
     protected List<Point3D> points = new ArrayList<>();
     protected List<AnimationTime> time = new ArrayList<>();

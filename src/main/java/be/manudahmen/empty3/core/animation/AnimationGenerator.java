@@ -20,9 +20,6 @@
  */
 package be.manudahmen.empty3.core.animation;
 
-/**
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
- */
 public class AnimationGenerator extends Thread {
 
     private final Animation animation;

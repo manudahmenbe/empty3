@@ -19,6 +19,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.function.Consumer;
 
 /**
  * @author Manuel
@@ -144,5 +145,18 @@ public class Polygon extends Representable implements TRIGenerable, IMovable, IS
         center = center.mult(1.0 / points.size());
 
         scale(center, scale);
+    }
+
+    Point3D p;
+
+    public Point3D getIsocentre() {
+
+        getPoints().forEach(new Consumer<Point3D>() {
+            @Override
+            public void accept(Point3D point3D) {
+                p = p.plus(point3D);
+            }
+        });
+        return p;
     }
 }

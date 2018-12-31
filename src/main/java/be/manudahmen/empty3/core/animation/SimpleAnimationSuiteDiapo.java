@@ -28,9 +28,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
- */
 public class SimpleAnimationSuiteDiapo extends Animation {
 
     public SimpleAnimationSuiteDiapo(Scene s, ECDim dim) {

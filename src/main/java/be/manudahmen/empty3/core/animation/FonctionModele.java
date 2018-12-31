@@ -22,9 +22,6 @@ package be.manudahmen.empty3.core.animation;
 
 import be.manudahmen.empty3.Representable;
 
-/**
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
- */
 public abstract class FonctionModele<R> extends Fonction {
 
     public abstract R fonctionModele(double time);

@@ -35,9 +35,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
- */
 public class Export3DXML {
 
     public DOMBuilder domBuilder;
