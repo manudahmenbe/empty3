@@ -150,6 +150,7 @@ public class Polygon extends Representable implements TRIGenerable, IMovable, IS
     Point3D p;
 
     public Point3D getIsocentre() {
+        p = Point3D.O0;
 
         getPoints().forEach(new Consumer<Point3D>() {
             @Override
@@ -157,6 +158,6 @@ public class Polygon extends Representable implements TRIGenerable, IMovable, IS
                 p = p.plus(point3D);
             }
         });
-        return p;
+        return p.mult(1. / getPoints().size());
     }
 }

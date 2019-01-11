@@ -60,7 +60,7 @@ public class STLExport {
     private static void traite(Polygon r, PrintWriter pw) {
         Point3D isocentre = r.getIsocentre();
         int count = r.getPoints().size();
-        for (int s = 0; s < r.getPoints().size(); s++) {
+        for (int s = 0; s < count; s++) {
             traite(new TRI(r.getPoints().get(s),
                     r.getPoints().get((s + 1) % count),
                     isocentre), pw);
@@ -98,11 +98,19 @@ public class STLExport {
 
     private static void traite(ParametricSurface r, PrintWriter pw) {
         write("", pw);
-        for (double u = 0; u < r.getEndU(); u += r.incr1())
-            for (double v = 0; v < r.getEndV(); v += r.incr2())
+        int countU = (int) ((r.getStartU() - r.getEndU()) / r.getIncrU());
+        int countV = (int) ((r.getStartV() - r.getEndV()) / r.getIncrV());
+        int incrU;
+        int incrV;
+        double u = r.getStartU();
+        double v = r.getStartV();
+        for (int i = 0; i < countU; u += r.getIncrU(), i++) {
+            for (int j = 0; j < countU; u += r.getIncrV(), j++) {
                 traite(r.getElementSurface(u,
                         u + r.getIncrU(),
                         v, v + r.getIncrV()), pw);
+            }
+        }
 
     }
 
