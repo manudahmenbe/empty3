@@ -4,9 +4,10 @@ package be.manudahmen.empty3.core.iterate;
  * Created by Win on 10-01-19.
  */
 public class IntervalIterator {
-    public double xmin[];
-    public double xmax[];
-    public int incr[];
+    public int dim;
+    public double[] xmin;
+    public double[] xmax;
+    public int[] incr;
     public int currentDim;
     public double[] currentCordinates;
 
@@ -27,12 +28,13 @@ public class IntervalIterator {
         if (currentCordinates[currentDim] > xmax[currentDim]) {
             currentCordinates[currentDim] = xmin[currentDim];
             currentDim++;
-            return true;
         }
         if (currentDim >= currentCordinates.length) {
             currentDim = 0;
             return false;
+        } else {
+            return true;
+
         }
-        throw new InvalidObjectConfiguration("next() unexpected result");
     }
 }
