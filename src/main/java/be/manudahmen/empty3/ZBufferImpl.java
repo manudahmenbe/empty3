@@ -205,6 +205,13 @@ public class ZBufferImpl implements ZBuffer {
     }
 
     public void draw(Representable re, Representable refObject) {
+        if (re instanceof RepresentableType) {
+            try {
+                ((RepresentableType) re).draw(this);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
 
         if (re.getPainter() != null) {
             try {

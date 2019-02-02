@@ -196,6 +196,9 @@ public class Representable implements Serializable, Comparable {
 
     }
 
+    public void draw(ZBufferImpl zBuffer) {
+    }
+
     public class RotationInt extends Rotation {
 
         public RotationInt() {
