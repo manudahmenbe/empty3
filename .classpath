@@ -113,5 +113,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.badlogicgames.gdx:gdx:1.5.3"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.jcraft:jsch:0.1.54"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: de.javagl:obj:0.3.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: junit:junit:4.12"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

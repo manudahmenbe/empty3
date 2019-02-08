@@ -49,6 +49,8 @@ public class SegmentDroite extends ParametricCurve {
     public SegmentDroite(Point3D camera, Point3D camera2, ITexture texture) {
         this(camera, camera2);
         this.texture(texture);
+        camera.texture(texture);
+        camera2.texture(texture);
     }
 
     public Point3D calculerPoint3D(double d) {
