@@ -66,4 +66,11 @@ public class ColorTexture extends ITexture {
                                           double y) {
         return color;
     }
+
+    public String toString() {
+        return "texture ( red:" + color.getRed() + "; green:" +
+                color.getGreen() + "; blue:" + color.getBlue() +
+                "; alpha:" + color.getAlpha() + ")\n";
+    }
+
 }

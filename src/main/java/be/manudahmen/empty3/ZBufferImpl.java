@@ -25,6 +25,7 @@ package be.manudahmen.empty3;
 import be.manudahmen.empty3.core.extra.SimpleSphere;
 import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
+import be.manudahmen.empty3.core.nurbs.ThickSurface;
 import be.manudahmen.empty3.core.tribase.TRIObjetGenerateurAbstract;
 
 import java.awt.*;
@@ -237,6 +238,37 @@ public class ZBufferImpl implements ZBuffer {
         } else if (re != null) {
             Representable r = re;
 
+            // GENERATORS
+            if (r instanceof ThickSurface) {
+                // System.out.println("Surface");
+                ThickSurface n = (ThickSurface) r;
+                interactionCourant = n;
+                // TODO Dessiner les bords
+                for (double i = n.getStartU(); i <= n.getEndU() - n.getIncrU(); i += n.getIncrU()) {
+                    for (double j = n.getStartU(); j <= n.getEndV() - n.getIncrV(); j += n.getIncrV()) {
+                        double u = i;
+                        double v = j;
+                        draw(new TRI(n.computeInt(u, v),
+                                n.computeInt(u + n.getIncrU(), v),
+                                n.computeInt(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture()), n);
+                        draw(new TRI(n.computeInt(u, v),
+                                n.computeInt(u, v + n.getIncrV()),
+                                n.computeInt(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture()), n);
+                        draw(new TRI(n.computeExt(u, v),
+                                n.computeExt(u + n.getIncrU(), v),
+                                n.computeExt(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture()), n);
+                        draw(new TRI(n.computeExt(u, v),
+                                n.computeExt(u, v + n.getIncrV()),
+                                n.computeExt(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture()), n);
+
+                    }
+
+                }
+            }
             // GENERATORS
             if (r instanceof ParametricSurface) {
                 // System.out.println("Surface");
