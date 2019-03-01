@@ -1,12 +1,12 @@
 package tests.tests;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class TestBezier2D extends TestObjetStub {
+public class TestBezier2D extends TestObjetSub {
     public static void main(String[] args) {
         //GCOP gc = new GCOP(10);
         //gc.start();

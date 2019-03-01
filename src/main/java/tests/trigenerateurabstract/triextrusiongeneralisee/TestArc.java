@@ -13,7 +13,7 @@ import be.manudahmen.empty3.BezierCubique;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.CheminBezier;
 import be.manudahmen.empty3.core.tribase.SurfaceCercle;
 import be.manudahmen.empty3.core.tribase.TRIExtrusionGeneralisee;
@@ -23,7 +23,7 @@ import java.awt.*;
 /**
  * @author Manuel Dahmen <manuel.dahmen@gmail.com>
  */
-public class TestArc extends TestObjetStub {
+public class TestArc extends TestObjetSub {
 
     private TRIExtrusionGeneralisee eg;
 

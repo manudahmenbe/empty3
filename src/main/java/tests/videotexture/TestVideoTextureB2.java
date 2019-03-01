@@ -11,13 +11,13 @@ package tests.videotexture;
 
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.renderer.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRIBezier2D;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-class TestVideoTextureB2 extends TestObjetStub {
+class TestVideoTextureB2 extends TestObjetSub {
     public String moviefilename;
     TRI tri = null;
     VideoTexture videoTexture;
@@ -27,7 +27,7 @@ class TestVideoTextureB2 extends TestObjetStub {
     }
 
     public static void testing(String arg) {
-        TestObjetStub to;
+        TestObjetSub to;
         to = new TestVideoTextureB2(arg);
         to.setMaxFrames(25 * 60 * 120);
         to.loop(true);

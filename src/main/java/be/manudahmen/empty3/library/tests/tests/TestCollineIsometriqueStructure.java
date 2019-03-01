@@ -20,12 +20,12 @@
 package be.manudahmen.empty3.library.tests.tests;
 
 import be.manudahmen.empty3.core.extra.CollineModele1;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 /**
  * @author Atelier
  */
-public class TestCollineIsometriqueStructure extends TestObjetStub {
+public class TestCollineIsometriqueStructure extends TestObjetSub {
 
     public static void main(String[] args) {
         TestCollineIsometriqueStructure to = new TestCollineIsometriqueStructure();

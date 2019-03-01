@@ -1,7 +1,7 @@
 package be.manudahmen.empty3.library.tests.spherestournent;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.awt.*;
 /**
  * Created by Win on 24-01-16.
  */
-public class TestSpheresTournent extends TestObjetStub {
+public class TestSpheresTournent extends TestObjetSub {
     private TRISphere[] sps;
     private Trajectoire tr;
     private Matrix33[] matricess = new Matrix33[]{Matrix33.I, Matrix33.XYZ, Matrix33.YZX, Matrix33.ZXY};

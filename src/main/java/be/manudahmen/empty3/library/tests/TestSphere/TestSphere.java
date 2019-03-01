@@ -10,7 +10,7 @@
 package be.manudahmen.empty3.library.tests.TestSphere;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import javax.imageio.ImageIO;
@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class TestSphere extends TestObjetStub {
+public class TestSphere extends TestObjetSub {
     public int size = 10;
     public double taille = 0.2;
     public double incrlong = 0.001;

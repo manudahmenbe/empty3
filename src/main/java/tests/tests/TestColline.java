@@ -22,12 +22,12 @@ package tests.tests;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.extra.CollineModele1;
-import be.manudahmen.empty3.core.renderer.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 /**
  * @author Atelier
  */
-public class TestColline extends TestObjetStub {
+public class TestColline extends TestObjetSub {
 
     public static void main(String[] args) {
         TestColline to = new TestColline();

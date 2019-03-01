@@ -8,18 +8,18 @@ package be.manudahmen.empty3.library.tests.tests;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Polygon;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 
 /**
  * @author Manuel DAHMEN
  */
-public class TestCubeTroue extends TestObjetStub {
+public class TestCubeTroue extends TestObjetSub {
 
     public static void main(String[] args) {
-        TestCubeTroue TestObjetStub = new TestCubeTroue();
-        TestObjetStub.run();
+        TestCubeTroue TestObjetSub = new TestCubeTroue();
+        TestObjetSub.run();
     }
 
     @Override

@@ -8,7 +8,7 @@ import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TColor;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;
@@ -16,7 +16,7 @@ import java.awt.*;
 /**
  * @author Manuel DAHMEN
  */
-public class Spheres extends TestObjetStub {
+public class Spheres extends TestObjetSub {
     TRISphere[] s;
     Point3D[] v;
     int N;

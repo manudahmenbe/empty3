@@ -2,7 +2,7 @@ package be.manudahmen.empty3.library.tests.ballecouleur;
 
 import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.gdximports.gdx_BSplineCurve;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TubulaireN2;
 import be.manudahmen.empty3.library.tests.balleclou.BalleClous2;
 
@@ -15,7 +15,7 @@ import java.util.HashMap;
  * @author Manuel Dahmen
  * Doesn't work
  */
-public class TestBalleCouleur001 extends TestObjetStub {
+public class TestBalleCouleur001 extends TestObjetSub {
 
     public int MAXFRAMES = 2000;
     public int N = 7;

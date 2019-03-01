@@ -13,7 +13,7 @@ import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.ECBufferedImage;
 import be.manudahmen.empty3.ImageTexture;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.Plan3D;
 
 import javax.imageio.ImageIO;
@@ -21,7 +21,7 @@ import javax.imageio.ImageIO;
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class TestTransparence extends TestObjetStub {
+public class TestTransparence extends TestObjetSub {
 
     public static void main(String[] ar) {
         TestTransparence tth = new TestTransparence();

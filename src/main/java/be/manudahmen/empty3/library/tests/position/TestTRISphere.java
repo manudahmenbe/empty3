@@ -3,7 +3,7 @@ package be.manudahmen.empty3.library.tests.position;
 import be.manudahmen.empty3.Barycentre;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TColor;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.awt.*;
 /**
  * @author Se7en
  */
-public class TestTRISphere extends TestObjetStub {
+public class TestTRISphere extends TestObjetSub {
 
     public TestTRISphere() {
     }

@@ -3,7 +3,7 @@ package be.manudahmen.empty3.library.tests.balleclou;
 
 import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.extra.BalleClous;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 /**
  * @author Se7en
  */
-public class TestBalleClous extends TestObjetStub {
+public class TestBalleClous extends TestObjetSub {
     public int MAXFRAMES;
     private TColor tc = new TColor(Color.red);
     private BalleClous ballec;

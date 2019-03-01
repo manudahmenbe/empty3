@@ -4,7 +4,7 @@
 package tests.cubes;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author Se7en
  */
-public class TestCubes extends TestObjetStub {
+public class TestCubes extends TestObjetSub {
 
     public static void main(String[] args) {
         TestCubes tc = new TestCubes();

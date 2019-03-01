@@ -10,7 +10,7 @@ import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.ECBufferedImage;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TColor;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import javax.imageio.ImageIO;
@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * @author Manuel DAHMEN
  * @date
  */
-public class TestSphere extends TestObjetStub {
+public class TestSphere extends TestObjetSub {
 
     public static void main(String[] args) {
         TestSphere ts = new TestSphere();

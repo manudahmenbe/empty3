@@ -6,7 +6,7 @@ package be.manudahmen.empty3.library.tests.dossierimages;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TColor;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.Plan3D;
 
 import java.awt.*;
@@ -15,7 +15,7 @@ import java.io.File;
 /**
  * @author Se7en
  */
-public class TestDossier extends TestObjetStub {
+public class TestDossier extends TestObjetSub {
 
     private int[][] coordCube = new int[][]{{-1, -1, -1, 1}, {-1, 1, 1, 1}, {1, 1, 1, -1}, {1, -1, -1, -1}};
     private int[][] coordCube2 = new int[][]{{-1, -1, -1, 1}, {-1, 1, 1, 1}, {1, 1, 1, -1}, {1, -1, -1, -1}};

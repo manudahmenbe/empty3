@@ -10,7 +10,7 @@
 package be.manudahmen.empty3.library.tests.cadeau;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.renderer.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;
@@ -18,7 +18,7 @@ import java.awt.*;
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class SphereCube1 extends TestObjetStub {
+public class SphereCube1 extends TestObjetSub {
     private final double t0 = -1;
     private final double t1 = 1;
     double d = 90;

@@ -12,13 +12,13 @@ package be.manudahmen.empty3.library.tests.feudartifice;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.RepresentableConteneur;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.library.tests.balleclou.TestBalleClous111;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class TestFeu extends TestObjetStub {
+public class TestFeu extends TestObjetSub {
 
     public static void main(String[] args) {
         TestFeu th = new TestFeu();

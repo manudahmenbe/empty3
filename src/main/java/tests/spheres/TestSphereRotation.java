@@ -16,7 +16,7 @@ import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.Cube;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 import tests.TestSphere.Trajectoires;
 
@@ -25,7 +25,7 @@ import java.awt.*;
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class TestSphereRotation extends TestObjetStub {
+public class TestSphereRotation extends TestObjetSub {
     TRISphere ts;
 
     public static void main(String[] args) {

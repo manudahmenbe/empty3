@@ -8,14 +8,14 @@ package tests.courbes_bsplines;
 import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.nurbs.BSplineCurve;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 
 /**
  * @author Manuel Dahmen <manuel.dahmen@gmail.com>
  */
-public class TestBSpline extends TestObjetStub {
+public class TestBSpline extends TestObjetSub {
 
     private BSplineCurve b;
 

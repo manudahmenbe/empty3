@@ -3,12 +3,12 @@ package be.manudahmen.empty3.library.tests.tests;
 import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.physics.Bille;
 import be.manudahmen.empty3.core.physics.Force;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;
 
-public class TestTrouNoir extends TestObjetStub {
+public class TestTrouNoir extends TestObjetSub {
     int X = 10;
     int Y = 10;
     int Z = 10;

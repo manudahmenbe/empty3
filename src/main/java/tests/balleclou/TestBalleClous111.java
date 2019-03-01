@@ -2,7 +2,7 @@ package tests.balleclou;
 
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.renderer.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 
@@ -10,7 +10,7 @@ import java.awt.*;
 /**
  * @author Se7en
  */
-public class TestBalleClous111 extends TestObjetStub {
+public class TestBalleClous111 extends TestObjetSub {
 
     public int MAXFRAMES = 2000;
     public int N = 2;

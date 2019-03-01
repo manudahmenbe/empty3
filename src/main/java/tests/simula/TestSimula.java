@@ -3,11 +3,11 @@ package tests.simula;
 import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.physics.Bille;
 import be.manudahmen.empty3.core.physics.Force;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 
-public class TestSimula extends TestObjetStub {
+public class TestSimula extends TestObjetSub {
     private int N = 10;
     private ITexture tc = new ColorTexture(Color.red);
     private double V = 0.03;

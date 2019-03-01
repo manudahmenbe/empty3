@@ -7,7 +7,7 @@ package be.manudahmen.empty3.library.tests.tests;
 
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Polygon;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * @author Manuel DAHMEN
  */
-public class TestPolygones extends TestObjetStub {
+public class TestPolygones extends TestObjetSub {
 
     public static void main(String[] argd) {
         TestPolygones tp = new TestPolygones();

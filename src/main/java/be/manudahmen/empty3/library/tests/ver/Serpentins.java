@@ -1,7 +1,7 @@
 package be.manudahmen.empty3.library.tests.ver;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TubulaireN;
 
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.util.HashMap;
 /**
  * @author Se7en
  */
-public class Serpentins extends TestObjetStub {
+public class Serpentins extends TestObjetSub {
 
     public int MAXFRAMES = 2000;
     public int Ns = 4;

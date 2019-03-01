@@ -10,7 +10,7 @@
 package be.manudahmen.empty3.library.tests.trigenerateurabstract.triextrusiongeneralisee;
 
 import be.manudahmen.empty3.ColorTexture;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.*;
 
 import java.awt.*;
@@ -18,7 +18,7 @@ import java.awt.*;
 /**
  * @author Manuel Dahmen <manuel.dahmen@gmail.com>
  */
-public class TestTore extends TestObjetStub {
+public class TestTore extends TestObjetSub {
     public static void main(String[] args) {
         TestTore tp = new TestTore();
         tp.setGenerate(GENERATE_IMAGE | GENERATE_MODEL);

@@ -10,14 +10,14 @@
 package tests.dna;
 
 import be.manudahmen.empty3.TColor;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class TestDH extends TestObjetStub {
+public class TestDH extends TestObjetSub {
 
     public static void main(String[] args) {
         TestDH dh = new TestDH();

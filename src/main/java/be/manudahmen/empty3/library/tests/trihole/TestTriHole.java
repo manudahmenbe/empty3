@@ -5,14 +5,14 @@ import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.LumierePonctuelle;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.extra.Polyhedron;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 
 /**
  * @author Se7en
  */
-public class TestTriHole extends TestObjetStub {
+public class TestTriHole extends TestObjetSub {
     private Polyhedron th;
     private Polyhedron th2;
 

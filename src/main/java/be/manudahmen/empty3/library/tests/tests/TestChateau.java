@@ -3,14 +3,14 @@ package be.manudahmen.empty3.library.tests.tests;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Polygon;
-import be.manudahmen.empty3.core.renderer.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 
 /**
  * @author Atelier
  */
-public class TestChateau extends TestObjetStub {
+public class TestChateau extends TestObjetSub {
     public static void main(String[] args) {
         TestChateau tc = new TestChateau();
         tc.setResx(640);

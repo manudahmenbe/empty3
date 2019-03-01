@@ -3,12 +3,12 @@ package be.manudahmen.empty3.library.tests.tests;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TColor;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;
 
-public class TestSphereRot extends TestObjetStub {
+public class TestSphereRot extends TestObjetSub {
     double[] a;
     double[] b;
     double[] r;

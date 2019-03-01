@@ -5,7 +5,7 @@
 package be.manudahmen.empty3.library.tests.tests;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.renderer.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import javax.imageio.ImageIO;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 /**
  * @author Atelier
  */
-public class TestAnimSIBSurvol extends TestObjetStub {
+public class TestAnimSIBSurvol extends TestObjetSub {
 
     Point3D aPos = Point3D.O0;
     private double a;

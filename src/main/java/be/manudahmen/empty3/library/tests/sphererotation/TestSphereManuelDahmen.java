@@ -10,8 +10,8 @@
 package be.manudahmen.empty3.library.tests.sphererotation;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.renderer.TestObjet;
-import be.manudahmen.empty3.core.renderer.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjet;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import javax.imageio.ImageIO;
@@ -23,13 +23,11 @@ import java.util.logging.Logger;
  * cette classe produit une image de sphère avec "Manuel Dahmen" écrit dessus. La sphère tourne
  * puis s'en va et revient à l'écran.
  *
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
-public class TestSphereManuelDahmen extends TestObjetStub {
+public class TestSphereManuelDahmen extends TestObjetSub {
     double distance = 35;
     double rayon = 10;
-    int maxx = 100;
-    int maxy = 100;
     TRISphere tp = new TRISphere(Point3D.O0, rayon);
 
     public static void main(String[] args) {
@@ -37,6 +35,7 @@ public class TestSphereManuelDahmen extends TestObjetStub {
         TestSphereManuelDahmen ts = new TestSphereManuelDahmen();
 
         ts.setGenerate(TestObjet.GENERATE_IMAGE | GENERATE_MOVIE);
+
 
         ts.loop(true);
 
@@ -51,8 +50,6 @@ public class TestSphereManuelDahmen extends TestObjetStub {
         scene().cameraActive(new Camera(Point3D.Z.mult(distance), Point3D.O0));
 
         //tp.setRotation(tp.new Rotation(new Matrix33(new Point3D[] {Point3D.Z, Point3D.X, Point3D.Y}), Point3D.O0));
-        tp.setMaxX(maxx);
-        tp.setMaxY(maxy);
 
         try {
             ImageTexture imageTexture = new ImageTexture(new ECBufferedImage(ImageIO.read(this.getClass().getResourceAsStream("map2.png"))));

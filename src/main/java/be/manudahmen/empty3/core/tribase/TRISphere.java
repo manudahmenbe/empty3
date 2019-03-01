@@ -17,7 +17,9 @@
  */
 package be.manudahmen.empty3.core.tribase;
 
+import be.manudahmen.empty3.Matrix33;
 import be.manudahmen.empty3.Point3D;
+import be.manudahmen.empty3.Rotation;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 
 /**
@@ -32,6 +34,7 @@ public class TRISphere extends ParametricSurface {
     private double radius = 1.0;
 
     public TRISphere(Point3D c, double r) {
+        rotation = new Rotation(Matrix33.I, c);
         this.centre = c;
         this.radius = r;
         setCirculaireY(true);
@@ -39,12 +42,16 @@ public class TRISphere extends ParametricSurface {
     }
 
     @Override
-    public Point3D calculerPoint3D(double u, double v) {
+    public Point3D calculerPoint3D(double u1, double v1) {
 
         Point3D centre = this.centre;
 
-        Point3D p
-                = rotation(new Point3D(centre.getX() + Math.sin(u) * Math.sin(v)
+
+        double u = 2*Math.PI*u1;
+        double v = Math.PI*v1;
+
+        Point3D p = rotation(
+                new Point3D(centre.getX() + Math.sin(u) * Math.sin(v)
                 * radius, centre.getY() + Math.sin(u) * Math.cos(v) * radius,
                 centre.getZ() + Math.cos(u) * radius));
         return p;
@@ -68,6 +75,8 @@ public class TRISphere extends ParametricSurface {
     }
 
     public void setCentre(Point3D centre) {
+
+        rotation = new Rotation(Matrix33.I, centre);
         this.centre = centre;
     }
 

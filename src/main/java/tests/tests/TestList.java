@@ -14,7 +14,7 @@ public class TestList {
     public static List<Class> main() {
         List<Class> listCls = new ArrayList<Class>();
         ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
-        provider.addIncludeFilter(new AssignableTypeFilter(TestObjetStub.class));
+        provider.addIncludeFilter(new AssignableTypeFilter(TestObjetSub.class));
 
 // scan in org.example.package
         Set<BeanDefinition> components = provider.findCandidateComponents("*");

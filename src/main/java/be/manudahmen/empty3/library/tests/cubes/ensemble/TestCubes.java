@@ -8,9 +8,9 @@ import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.Matrix33;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.lighting.Colors;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
-public class TestCubes extends TestObjetStub {
+public class TestCubes extends TestObjetSub {
     private static final int M = 10;
     private static final int N = 10;
     private static final double r = 0.33;

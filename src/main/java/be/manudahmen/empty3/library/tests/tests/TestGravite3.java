@@ -4,14 +4,14 @@ import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.extra.Polyhedron;
 import be.manudahmen.empty3.core.physics.Bille;
 import be.manudahmen.empty3.core.physics.Force;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class TestGravite3 extends TestObjetStub {
+public class TestGravite3 extends TestObjetSub {
     int X = 2;
     int Y = 2;
     int Z = 2;

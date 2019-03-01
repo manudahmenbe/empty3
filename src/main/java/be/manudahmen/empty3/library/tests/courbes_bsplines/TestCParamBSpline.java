@@ -9,7 +9,7 @@ package be.manudahmen.empty3.library.tests.courbes_bsplines;
 import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.nurbs.CourbeParametriqueBSpline;
-import be.manudahmen.empty3.core.renderer.TestObjet;
+import be.manudahmen.empty3.core.testing.TestObjet;
 
 import java.awt.*;
 

@@ -29,7 +29,7 @@ public class TestBSpline extends TestObjetSub {
         bSpline.add(points[1]);
         bSpline.add(points[2]);
         bSpline.add(points[3]);
-        scene().cameraActive(new Camera(new Point3D(0.5, 0.5, 2),
+        scene().cameraActive(new Camera(new Point3D(0.5, 0.5, -2),
                 new Point3D(0.5, 0.5, 0)));
         scene().add(bSpline);
 

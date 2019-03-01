@@ -2,14 +2,14 @@ package be.manudahmen.empty3.library.tests.balleclou;
 
 import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.extra.BalleClous;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 
 /**
  * @author Se7en
  */
-public class TestBalleClous11 extends TestObjetStub {
+public class TestBalleClous11 extends TestObjetSub {
 
     public int MAXFRAMES = 2000;
     public int N = 2;

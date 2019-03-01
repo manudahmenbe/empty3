@@ -3,7 +3,7 @@ package tests.film_1;
 import be.manudahmen.empty3.Cube;
 import be.manudahmen.empty3.Matrix33;
 import be.manudahmen.empty3.SegmentDroite;
-import be.manudahmen.empty3.core.renderer.TestObjet;
+import be.manudahmen.empty3.core.testing.TestObjet;
 
 /**
  * @author Se7en

@@ -2,7 +2,7 @@ package tests.balleclou;
 
 import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.extra.BalleClous;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 /**
  * @author Se7en
  */
-public class TestBalleClous1 extends TestObjetStub {
+public class TestBalleClous1 extends TestObjetSub {
 
     public int MAXFRAMES = 2000;
     public int N = 21;

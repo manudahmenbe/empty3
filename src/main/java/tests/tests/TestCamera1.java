@@ -4,14 +4,14 @@ import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.Cube;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 
 /**
  * @author Atelier
  */
-public class TestCamera1 extends TestObjetStub {
+public class TestCamera1 extends TestObjetSub {
 
     double a = 0;
     double d = 3;

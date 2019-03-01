@@ -5,7 +5,7 @@
 package tests.tests;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.renderer.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import javax.imageio.ImageIO;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 /**
  * @author Atelier
  */
-public class TestAnimSIB extends TestObjetStub {
+public class TestAnimSIB extends TestObjetSub {
 
     private double a;
     private double b;

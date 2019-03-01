@@ -3,7 +3,7 @@ package be.manudahmen.empty3.library.tests.texturevideo;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.VideoTexture;
-import be.manudahmen.empty3.core.renderer.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.Plan3D;
 
 import java.io.File;
@@ -11,7 +11,7 @@ import java.io.File;
 /**
  * @author Dahmen Manuel
  */
-public class PlansVideo extends TestObjetStub {
+public class PlansVideo extends TestObjetSub {
     private final String avi1;
     private final String avi2;
     private final String avi3;

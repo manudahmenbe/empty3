@@ -12,13 +12,13 @@ package be.manudahmen.empty3.library.tests.videotexture;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TRI;
 import be.manudahmen.empty3.VideoTexture;
-import be.manudahmen.empty3.core.renderer.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.Plan3D;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class TestVideoTexturePlan extends TestObjetStub {
+public class TestVideoTexturePlan extends TestObjetSub {
     public String moviefilename;
     TRI tri = null;
     VideoTexture videoTexture;
@@ -28,7 +28,7 @@ public class TestVideoTexturePlan extends TestObjetStub {
     }
 
     public static void testing(String arg) {
-        TestObjetStub to;
+        TestObjetSub to;
         to = new TestVideoTexturePlan(arg);
         to.setMaxFrames(25 * 60 * 120);
         to.setResx(600);

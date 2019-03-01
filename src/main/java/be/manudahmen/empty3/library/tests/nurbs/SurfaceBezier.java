@@ -14,13 +14,13 @@ package be.manudahmen.empty3.library.tests.nurbs;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.nurbs.SurfaceParametriquePolynomialeBezier;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 /**
  *
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class SurfaceBezier extends TestObjetStub {
+public class SurfaceBezier extends TestObjetSub {
 
     public static void main(String[] arg) {
         SurfaceBezier t1 = new SurfaceBezier();

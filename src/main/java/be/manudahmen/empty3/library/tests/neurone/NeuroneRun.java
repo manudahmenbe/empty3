@@ -7,7 +7,7 @@ package be.manudahmen.empty3.library.tests.neurone;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;
@@ -15,7 +15,7 @@ import java.awt.*;
 /**
  * @author Se7en
  */
-public class NeuroneRun extends TestObjetStub {
+public class NeuroneRun extends TestObjetSub {
     Neurone[] neurones;
 
     public NeuroneRun() {

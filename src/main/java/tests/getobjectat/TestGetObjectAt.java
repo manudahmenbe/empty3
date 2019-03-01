@@ -15,7 +15,7 @@ import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TColor;
 import be.manudahmen.empty3.TRI;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 
@@ -26,7 +26,7 @@ import java.awt.*;
  *
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class TestGetObjectAt extends TestObjetStub {
+public class TestGetObjectAt extends TestObjetSub {
 
     @Override
     public void testScene() throws Exception {

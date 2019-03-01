@@ -1,12 +1,12 @@
 package be.manudahmen.empty3.library.tests.tests.ombre;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;
 
-public class TestSphereBleue extends TestObjetStub {
+public class TestSphereBleue extends TestObjetSub {
 
     private static int N = 24 * 5;
 

@@ -8,16 +8,16 @@ package tests.tests;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Cube;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 /**
  * @author Manuel DAHMEN
  */
-public class TestCubeTroueTriangles extends TestObjetStub {
+public class TestCubeTroueTriangles extends TestObjetSub {
 
     public static void main(String[] args) {
-        TestCubeTroueTriangles TestObjetStub = new TestCubeTroueTriangles();
-        TestObjetStub.run();
+        TestCubeTroueTriangles TestObjetSub = new TestCubeTroueTriangles();
+        TestObjetSub.run();
     }
 
     @Override

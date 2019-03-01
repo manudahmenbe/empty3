@@ -3,7 +3,7 @@ package tests;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TColor;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.Plan3D;
 import tests.TestSphere.Trajectoires;
 
@@ -24,7 +24,7 @@ import java.awt.*;
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class TestAxesAnim extends TestObjetStub {
+public class TestAxesAnim extends TestObjetSub {
     private Camera camera;
 
     public static void main(String[] args) {

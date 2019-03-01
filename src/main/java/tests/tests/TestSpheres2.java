@@ -3,13 +3,13 @@ package tests.tests;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TColor;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;
 import java.util.Arrays;
 
-public class TestSpheres2 extends TestObjetStub {
+public class TestSpheres2 extends TestObjetSub {
     private TRISphere[] spheres;
     private int N = 3;
 

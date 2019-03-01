@@ -4,9 +4,9 @@ import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Camera3D;
 import be.manudahmen.empty3.Cube;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
-public class TestCube3D extends TestObjetStub {
+public class TestCube3D extends TestObjetSub {
     protected Cube c;
 
     public static void main(String[] args) {

@@ -1,7 +1,7 @@
 package tests.spherestournent;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.awt.*;
 /**
  * Created by Win on 24-01-16.
  */
-public class TestSpheresTournent extends TestObjetStub {
+public class TestSpheresTournent extends TestObjetSub {
     private TRISphere[] sps;
     private Trajectoire tr;
     private Matrix33[] matricess = new Matrix33[]{Matrix33.I, Matrix33.XYZ, Matrix33.YZX, Matrix33.ZXY};
@@ -30,7 +30,7 @@ public class TestSpheresTournent extends TestObjetStub {
         for (i = 0; i < sps.length; i++) {
             sps[i] = new TRISphere(Point3D.X.mult(i), 1);
 
-            sps[i].texture(new ColorTexture(Color.blue));
+            sps[i].texture(new ColorTexture(Color.BLUE));
         }
 
         camera(new Camera(Point3D.Z.mult(-sps.length), Point3D.O0));

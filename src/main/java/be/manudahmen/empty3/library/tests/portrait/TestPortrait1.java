@@ -9,7 +9,7 @@
 package be.manudahmen.empty3.library.tests.portrait;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;
@@ -18,7 +18,7 @@ import java.awt.*;
  *
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class TestPortrait1 extends TestObjetStub {
+public class TestPortrait1 extends TestObjetSub {
 
     public static void main(String[] args) {
         TestPortrait1 tp = new TestPortrait1();

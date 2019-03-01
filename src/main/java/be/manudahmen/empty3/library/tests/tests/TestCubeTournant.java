@@ -1,11 +1,11 @@
 package be.manudahmen.empty3.library.tests.tests;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 
-public class TestCubeTournant extends TestObjetStub {
+public class TestCubeTournant extends TestObjetSub {
     protected Cube c;
     private double a = 0;
     private double f = 5;

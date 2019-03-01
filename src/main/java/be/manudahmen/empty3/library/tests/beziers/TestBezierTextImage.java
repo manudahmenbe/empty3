@@ -11,7 +11,7 @@ package be.manudahmen.empty3.library.tests.beziers;
 
 import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.nurbs.SurfaceParametriquePolynomialeBezier;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 import java.io.File;
@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class TestBezierTextImage extends TestObjetStub {
+public class TestBezierTextImage extends TestObjetSub {
     private final Point3D[][] coeff = new Point3D[][]{
             {P.n(2, -2, 0), P.n(2, -1, 0), P.n(2, 0, 0), P.n(2, 1, 0), P.n(2, 2, 0)},
             {P.n(1, -2, 0), P.n(1, -1, 0), P.n(1, 0, 0), P.n(1, 1, 0), P.n(1, 2, 0)},

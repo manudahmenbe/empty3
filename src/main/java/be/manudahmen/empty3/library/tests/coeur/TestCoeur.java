@@ -12,7 +12,7 @@
 package be.manudahmen.empty3.library.tests.coeur;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  *
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class TestCoeur extends TestObjetStub {
+public class TestCoeur extends TestObjetSub {
     private Coeur coeur;
 
     public static void main(String[] args) {

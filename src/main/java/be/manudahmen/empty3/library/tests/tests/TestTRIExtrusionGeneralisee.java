@@ -4,14 +4,14 @@ import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.SegmentDroite;
 import be.manudahmen.empty3.TColor;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.CheminDroite;
 import be.manudahmen.empty3.core.tribase.SurfaceCercle;
 import be.manudahmen.empty3.core.tribase.TRIExtrusionGeneralisee;
 
 import java.awt.*;
 
-public class TestTRIExtrusionGeneralisee extends TestObjetStub {
+public class TestTRIExtrusionGeneralisee extends TestObjetSub {
 
     public static void main(String[] args) {
         TestTRIExtrusionGeneralisee te = new TestTRIExtrusionGeneralisee();

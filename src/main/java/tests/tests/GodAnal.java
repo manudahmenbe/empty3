@@ -9,9 +9,9 @@ import be.manudahmen.empty3.library.base.ExtrusionGeneralisee.EG_Fonction_Courbe
 import be.manudahmen.empty3.library.base.ExtrusionGeneralisee.EG_Fonction_Surface;
 import be.manudahmen.empty3.library.base.ExtrusionGeneralisee.Point;
 import be.manudahmen.empty3.library.base.TourDeRevolution;
-import be.manudahmen.empty3.library.tests.be.ibiiztera.md.pmatrix.test.pushmatrix.newtest.TestObjetStub;
+import be.manudahmen.empty3.library.tests.be.ibiiztera.md.pmatrix.test.pushmatrix.newtest.TestObjetSub;
 
-public class GodAnal extends TestObjetStub {
+public class GodAnal extends TestObjetSub {
 
 	public GodAnal() {
 	}

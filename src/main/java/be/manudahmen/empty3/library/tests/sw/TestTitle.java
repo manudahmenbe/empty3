@@ -2,7 +2,7 @@ package be.manudahmen.empty3.library.tests.sw;
 
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.io.InputStream;
 /**
  * Created by Win on 16-01-16.
  */
-public class TestTitle extends TestObjetStub {
+public class TestTitle extends TestObjetSub {
     String text;
     TextObjet textObjet = new TextObjet(new Point3D(1000, 1000, 1000), new Point3D(-2000, 0, 0), new Point3D(0, -2000 * Math.tan(angle()), -2000 * Math.sin(angle())));
     Camera c = new Camera(new Point3D(0, 0, -1000), new Point3D(0, 0, 1000));

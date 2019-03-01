@@ -8,7 +8,7 @@ import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.ECBufferedImage;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TColor;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import javax.imageio.ImageIO;
@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 /**
  * @author Atelier
  */
-public class TestSphereInterieur extends TestObjetStub {
+public class TestSphereInterieur extends TestObjetSub {
     public static void main(String[] args) {
         TestSphereInterieur to = new TestSphereInterieur();
         to.run();

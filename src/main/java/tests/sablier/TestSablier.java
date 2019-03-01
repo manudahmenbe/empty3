@@ -4,7 +4,7 @@ import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.Point2D;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import tests.TestSphere.Trajectoires;
 
 import java.awt.*;
@@ -14,7 +14,7 @@ import java.awt.*;
  * Created by manuel on 01-11-15.
  * Copyright Manuel Dahmen. 2017
  */
-public class TestSablier extends TestObjetStub {
+public class TestSablier extends TestObjetSub {
     public static void main(String[] args) {
 
         TestSablier target = new TestSablier();

@@ -13,7 +13,7 @@ import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.SegmentDroite;
 import be.manudahmen.empty3.core.nurbs.NurbsCurve;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 import java.util.AbstractMap;
@@ -22,10 +22,10 @@ import java.util.Arrays;
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class TestNurbsCurve extends TestObjetStub {
+public class TestNurbsCurve extends TestObjetSub {
     public static void main(String[] args) {
         System.err.println("Circle");
-        TestObjetStub t;
+        TestObjetSub t;
 
         t = new TestNurbsCurve();
         t.setResx(320);

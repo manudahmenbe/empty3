@@ -26,7 +26,7 @@ import be.manudahmen.empty3.TRI;
 import be.manudahmen.empty3.core.script.ExtensionFichierIncorrecteException;
 import be.manudahmen.empty3.core.script.Loader;
 import be.manudahmen.empty3.core.script.VersionNonSupporteeException;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 import java.io.File;
@@ -36,7 +36,7 @@ import java.util.logging.Logger;
 /**
  * @author Atelier
  */
-public class ApartTestLoaderBin extends TestObjetStub {
+public class ApartTestLoaderBin extends TestObjetSub {
 
     public static void main(String[] args) {
         ApartTestLoaderBin bin = new ApartTestLoaderBin();

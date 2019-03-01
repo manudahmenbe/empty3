@@ -9,12 +9,12 @@
 
 package tests.spirale;
 
-import be.manudahmen.empty3.core.renderer.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class Spirale extends TestObjetStub {
+public class Spirale extends TestObjetSub {
     public static void main(String[] args) {
         Spirale s = new Spirale();
 

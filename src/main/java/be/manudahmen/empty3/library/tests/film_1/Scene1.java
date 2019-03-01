@@ -8,7 +8,7 @@ package be.manudahmen.empty3.library.tests.film_1;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.renderer.TestObjet;
+import be.manudahmen.empty3.core.testing.TestObjet;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;

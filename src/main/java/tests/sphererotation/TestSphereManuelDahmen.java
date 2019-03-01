@@ -10,8 +10,8 @@
 package tests.sphererotation;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.renderer.TestObjet;
-import be.manudahmen.empty3.core.renderer.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjet;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import javax.imageio.ImageIO;
@@ -19,13 +19,14 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  * cette classe produit une image de sphère avec "Manuel Dahmen" écrit dessus. La sphère tourne
  * puis s'en va et revient à l'écran.
  *
  * @author Manuel Dahmen <manuel.dahmen@gmail.com>
  */
-public class TestSphereManuelDahmen extends TestObjetStub {
+public class TestSphereManuelDahmen extends TestObjetSub {
     double distance = 35;
     double rayon = 10;
     int maxx = 100;
@@ -42,7 +43,8 @@ public class TestSphereManuelDahmen extends TestObjetStub {
 
         ts.setMaxFrames(500);
 
-        new Thread(ts).start();
+        new Thread(ts).
+                start();
     }
 
     @Override

@@ -11,16 +11,17 @@
  */
 package be.manudahmen.empty3;
 
+import be.manudahmen.empty3.core.nurbs.ParametricCurve;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * @author Manuel Dahmen
- * @deprecated
  */
-@Deprecated
-public class BSpline extends Representable {
+
+public class BSpline extends Representable{
 
     private ArrayList<Point3D> controls = new ArrayList<Point3D>();
     private int degree = 4;
@@ -47,6 +48,7 @@ public class BSpline extends Representable {
     }
 
     public Point3D calculerPoint3D(double t) {
+
         return boor(t, (int) t - (getDegree() - 1), getDegree() - 1);
     }
 
@@ -104,7 +106,7 @@ public class BSpline extends Representable {
     private double T(int i) {
         if (i < 0)
             return T[0];
-        else if (i > T.length - 1)
+        else if (i >= T.length - 1)
             return T[T.length - 1];
         else
             return T[i];

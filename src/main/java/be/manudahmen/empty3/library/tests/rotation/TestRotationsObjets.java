@@ -11,7 +11,7 @@ package be.manudahmen.empty3.library.tests.rotation;
 
 import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.testing.TestObjet;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import javax.imageio.ImageIO;
@@ -24,7 +24,7 @@ import java.io.IOException;
  *
  * @author Manuel Dahmen <manuel.dahmen@gmail.com>
  */
-public class TestRotationsObjets extends TestObjetStub {
+public class TestRotationsObjets extends TestObjetSub {
     static int nObjets = 2;
     static int rotationsParObjets = 3;
     protected Representable representable; // l'obserbvé (ou observable, à contrôler

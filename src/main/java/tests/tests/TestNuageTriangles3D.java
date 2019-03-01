@@ -1,14 +1,14 @@
 package tests.tests;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-public class TestNuageTriangles3D extends TestObjetStub {
+public class TestNuageTriangles3D extends TestObjetSub {
     public double DIM = 10.0;
     public double temps = 30.0;
     public int fps = 25;

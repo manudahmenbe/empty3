@@ -11,13 +11,13 @@ package tests.formesbase;
 
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRIEllipsoide;
 
 /**
  * @author Manuel Dahmen <manuel.dahmen@gmail.com>
  */
-public class TestEllipsoide extends TestObjetStub {
+public class TestEllipsoide extends TestObjetSub {
 
     public static void main(String[] args) {
 

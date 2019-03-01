@@ -2,8 +2,8 @@ package be.manudahmen.empty3.library.tests.paintingActs;
 
 import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.renderer.TestObjet;
-import be.manudahmen.empty3.core.renderer.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjet;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.awt.*;
 /**
  * Created by manue on 12-10-15.
  */
-public class TestSpheres extends TestObjetStub {
+public class TestSpheres extends TestObjetSub {
     public static void main(String[] args) {
         TestObjet to = new TestSpheres();
 

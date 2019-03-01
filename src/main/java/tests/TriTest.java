@@ -4,7 +4,7 @@ import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
-import be.manudahmen.empty3.core.renderer.TestObjet;
+import be.manudahmen.empty3.core.testing.TestObjet;
 
 import java.awt.*;
 

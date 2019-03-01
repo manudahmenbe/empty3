@@ -6,7 +6,7 @@ package be.manudahmen.empty3.library.tests.tests;
 
 import be.manudahmen.empty3.Scene;
 import be.manudahmen.empty3.core.script.Loader;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -101,7 +101,7 @@ public class TestListJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonRun.setText("Loads and runs class TestObjetStub");
+        jButtonRun.setText("Loads and runs class TestObjetSub");
         jButtonRun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRunActionPerformed(evt);
@@ -182,9 +182,9 @@ public class TestListJFrame extends javax.swing.JFrame {
         if (classname != null && classname.length() > 0) {
             try {
                 Class c = Class.forName(classname);
-                if (TestObjetStub.class.isAssignableFrom(c)) {
+                if (TestObjetSub.class.isAssignableFrom(c)) {
                     Constructor con = c.getConstructor();
-                    final TestObjetStub to = ((TestObjetStub) con.newInstance());
+                    final TestObjetSub to = ((TestObjetSub) con.newInstance());
                     new Thread() {
 
                         @Override
@@ -221,7 +221,7 @@ public class TestListJFrame extends javax.swing.JFrame {
                 )
         ) {
             Scene sc = new Scene();
-            TestObjetStub to = new TestObjetStub();
+            TestObjetSub to = new TestObjetSub();
             new Loader().loadData(f, sc);
             to.scene(sc);
             to.setFilename(f.getName());

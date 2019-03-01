@@ -1,17 +1,8 @@
 /*
- * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
- * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
- * Les parties tierces peuvent être soumises à d'autres licenses.
- * Montemedia : Creative Commons
- * ECT : Tests à valeur artistique ou technique.
- * La partie RayTacer a été honteusement copiée sur le Net. Puis traduite en Java et améliorée.
- * Java est une marque de la société Oracle.
  *
- * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
- */
 
 /*
- * 2013-2015 Manuel Dahmen
+ * 2013-2019 Manuel Dahmen
  */
 package be.manudahmen.empty3.core.testing;
 
@@ -395,28 +386,29 @@ public abstract class TestObjet implements Test, Runnable {
             return;
         }
         c = new Camera(new Point3D(0, 0, -10), Point3D.O0);
-        ResourceBundle bundle1 = ResourceBundle
-                .getBundle("be/manudahmen/empty3/core/testing/Bundle");
 
-        File dirl = null;
+        File dir1 = null;
+
+        scene = new Scene();
 
         Properties config = new Properties();
         try {
             config.load(new FileInputStream(System.getProperty("user.home")
-                    + File.separator + ".starbuck"));
-            if (config.getProperty("folder.output") != null) {
-                dirl = new File(config.getProperty("folder.output"));
+                    + File.separator + "empty3.config"));
+            if (config.getProperty("folderoutput") != null) {
+                dir1 = new File(config.getProperty("folderoutput"));
+            }
+            else
+            {
+                dir1 = new File (System.getProperty("user.home")
+                        + File.separator + ".empty3");
             }
         } catch (IOException ex) {
             o.println(ex.getLocalizedMessage());
         }
-        if (dirl == null) {
-            dirl = new File(bundle1.getString("testpath"));
-        }
-        if (!dirl.exists()) {
-            dirl.mkdirs();
-        }
-        this.dir = new File(dirl.getAbsolutePath() + File.separator
+        dir1.mkdirs();
+
+        this.dir = new File(dir1.getAbsolutePath() + File.separator
                 + this.getClass().getName());
         if (!this.dir.exists()) {
             this.dir.mkdirs();
@@ -427,31 +419,13 @@ public abstract class TestObjet implements Test, Runnable {
         serid = new File(this.dir.getAbsolutePath() + File.separator
                 + "__SERID");
 
-        if (filename == null) {
-            filename = bundle1.getString("src");
-        }
-        if (fileExtension == null) {
-            fileExtension = bundle1.getString("type");
-        }
-
-        template = bundle1.getString("template");
-
-        properties.put("name", this.getClass().getName());
-        properties.put("version", version);
-
-        resx = Integer.parseInt(bundle1.getString("resx"));
-        resy = Integer.parseInt(bundle1.getString("resy"));
-        scene = new Scene();
-
-        binaryExtension = bundle1.getString("binaryExtension");
-
         sousdossier = "FICHIERS_" + dateForFilename(new Date());
 
         directory = new File(this.dir.getAbsolutePath() + File.separator
                 + sousdossier);
         directory.mkdirs();
-        new File(directory.getAbsolutePath() + File.separator + "GAUCHE").mkdir();
-        new File(directory.getAbsolutePath() + File.separator + "DROITE").mkdir();
+//        new File(directory.getAbsolutePath() + File.separator + "GAUCHE").mkdir();
+//        new File(directory.getAbsolutePath() + File.separator + "DROITE").mkdir();
         initialise = true;
     }
 

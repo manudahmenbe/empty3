@@ -6,12 +6,12 @@ import be.manudahmen.empty3.Representable;
 import be.manudahmen.empty3.TColor;
 import be.manudahmen.empty3.core.physics.Bille;
 import be.manudahmen.empty3.core.physics.Force;
-import be.manudahmen.empty3.core.testing.TestObjetStub;
+import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;
 
-public class TestGravite4 extends TestObjetStub {
+public class TestGravite4 extends TestObjetSub {
     int X = 4;
     int Y = 4;
     int Z = 4;
