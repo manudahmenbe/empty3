@@ -431,10 +431,15 @@ public class ZBufferImpl implements ZBuffer {
                 interactionCourant = n;
                 double incr = n.getIncr();
                 for (double i = 0; i <= 1 - incr; i += incr) {
-                    draw(new SegmentDroite(
-                            n.calculerPoint3D(i), n.calculerPoint3D(i + incr),
-                            n.texture()), n);
-
+                    if(n.isConnected()) {
+                        draw(new SegmentDroite(
+                                n.calculerPoint3D(i), n.calculerPoint3D(i + incr),
+                                n.texture()), n);
+                    }
+                    else
+                    {
+                        draw(n.calculerPoint3D(i), n);
+                    }
                     // System.out
                     // .print("+"+n.calculerPoint3D(i).toString());
                 }

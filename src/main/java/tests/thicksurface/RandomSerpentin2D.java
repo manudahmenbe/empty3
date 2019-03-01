@@ -7,10 +7,10 @@ import be.manudahmen.empty3.core.nurbs.ThickSurface;
 /**
  * Created by manue on 16-02-19.
  */
-public class RanndomSerpentin2D extends ThickSurface {
+public class RandomSerpentin2D extends ThickSurface {
     SurfaceParametriquePolynomialeBezier surfaceParametriquePolynomialeBezier;
 
-    public RanndomSerpentin2D() {
+    public RandomSerpentin2D() {
         surfaceParametriquePolynomialeBezier = new SurfaceParametriquePolynomialeBezier
                 (
                         new Point3D[][]{

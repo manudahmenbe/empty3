@@ -7,10 +7,10 @@ import be.manudahmen.empty3.core.nurbs.RubanSurface;
 /**
  * Created by manue on 16-02-19.
  */
-public class RandonSerpentin1D extends RubanSurface {
+public class RandomSerpentin1D extends RubanSurface {
     CourbeParametriquePolynomialeBezier courbeParametriquePolynomialeBezier;
 
-    public RandonSerpentin1D() {
+    public RandomSerpentin1D() {
         courbeParametriquePolynomialeBezier = new CourbeParametriquePolynomialeBezier(
                 new Point3D[]
                         {

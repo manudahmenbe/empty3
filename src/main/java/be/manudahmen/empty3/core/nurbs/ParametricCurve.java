@@ -29,10 +29,10 @@ import be.manudahmen.empty3.ZBuffer;
  */
 public abstract class ParametricCurve extends Representable {
 
-    public double incr = 0;
+    public double incr = 0.01;
     protected double start;
     protected double end;
-
+    protected boolean connected = true;
     public abstract Point3D calculerPoint3D(double t);
 
     public abstract Point3D calculerVitesse3D(double t);
@@ -77,5 +77,11 @@ public abstract class ParametricCurve extends Representable {
         }
     }
 
+    public boolean isConnected() {
+        return connected;
+    }
 
+    public void setConnected(boolean connected) {
+        this.connected = connected;
+    }
 }

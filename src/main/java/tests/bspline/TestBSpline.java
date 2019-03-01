@@ -44,6 +44,9 @@ public class TestBSpline extends TestObjetSub {
         gdx_BSplineCurve gdx_bSplineCurve = new gdx_BSplineCurve();
         gdx_bSplineCurve.instantiate(points, 4);
         scene().add(gdx_bSplineCurve);
+
+        scene().cameraActive(new Camera(Point3D.Z.mult(-2),
+                Point3D.O0));
     }
 
     public static void main(String[] args) {
