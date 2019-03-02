@@ -25,6 +25,7 @@ package be.manudahmen.empty3;
 import be.manudahmen.empty3.core.extra.SimpleSphere;
 import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
+import be.manudahmen.empty3.core.nurbs.SurfaceParametriquePolynomialeBezier;
 import be.manudahmen.empty3.core.nurbs.ThickSurface;
 import be.manudahmen.empty3.core.tribase.TRIObjetGenerateurAbstract;
 
@@ -292,13 +293,42 @@ public class ZBufferImpl implements ZBuffer {
                         draw(new TRI(n.calculerPoint3D(u, v),
                                 n.calculerPoint3D(u, v + n.getIncrV()),
                                 n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
-                                n.texture()), n);
-                        tracerQuad(n.calculerPoint3D(u, v),
+                                n.texture()), n); /*tracerTriangle(n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u + n.getIncrU(), v),
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                new Color(n.texture().getColorAt(0.5,0.5)));
+                        tracerTriangle(n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u, v + n.getIncrV()),
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                new Color(n.texture().getColorAt(0.5,0.5)));
+*//*
+                        tracerTriangle(n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u + n.getIncrU(), v),
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture());
+                        tracerTriangle(n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u, v + n.getIncrV()),
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture());
+
+*/
+                        /*
+                        Point3D[][] point3DS = {{n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u + n.getIncrU(), v)},
+                                {n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                        n.calculerPoint3D(u, v + n.getIncrV())}};
+
+                        SurfaceParametriquePolynomialeBezier surfaceParametriquePolynomialeBezier = new SurfaceParametriquePolynomialeBezier(point3DS);
+                        draw(surfaceParametriquePolynomialeBezier, n);
+*/
+                        /*
+tracerQuad(n.calculerPoint3D(u, v),
                                 n.calculerPoint3D(u + n.getIncrU(), v),
                                 n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
                                 n.calculerPoint3D(u , v+n.getIncrV()),
                                 n.texture(), u, v, u+n.getIncrU(), v+n.getIncrV());
-//
+                       */
+                        //
 //
 //                        draw(new TRI(n.calculerPoint3D(u, v),
 //                                n.calculerPoint3D(u + n.getIncrU(), v),
@@ -336,7 +366,7 @@ public class ZBufferImpl implements ZBuffer {
                     interactionCourant = t;
                     tracerTriangle(r.rotation(camera(t.getSommet()[0])),
                             r.rotation(camera(t.getSommet()[1])), r.rotation(camera(t.getSommet()[2])),
-                            new Color(t.texture().getColorAt(0.5, 0.5)));
+                            t.texture());
 
                 }
             } else if (r instanceof Point3D) {
@@ -424,8 +454,8 @@ public class ZBufferImpl implements ZBuffer {
                         interactionCourant = t;
                         tracerTriangle(r.rotation(camera(t.getSommet()[0])),
                                 r.rotation(camera(t.getSommet()[1])),
-                                r.rotation(camera(t.getSommet()[2])), new Color(t.texture()
-                                        .getColorAt(0.5, 0.5)));
+                                r.rotation(camera(t.getSommet()[2])),
+                                t.texture());
                     }
                 }
 
@@ -469,7 +499,7 @@ public class ZBufferImpl implements ZBuffer {
      Point3D p3 = (refObject == null ? camera(t.getSommet()[2]) : refObject.rotation(camera(t.getSommet()[2])));
 
      //TODO
-     tracerTriangle(p1, p2, p3, new Color(t.texture().getColorAt(0.5, 0.5)));
+     tracerTriangle(p1, p2, p3, refObject.texture);
  }
 
     public double distanceCamera(Point3D x3d) {
@@ -726,7 +756,7 @@ public class ZBufferImpl implements ZBuffer {
         // Templates.
     }
 
-    public void tracerQuad(Point3D pp1, Point3D pp2, Point3D pp3, Color c) {
+    public void tracerTriangle(Point3D pp1, Point3D pp2, Point3D pp3, Color c) {
         Point p1 = coordonneesPoint2D(pp1);
         Point p2 = coordonneesPoint2D(pp2);
         Point p3 = coordonneesPoint2D(pp3);
@@ -795,7 +825,8 @@ public class ZBufferImpl implements ZBuffer {
                 maxDistance(p3, p4, p1));
     }
 
-    public void tracerTriangle(Point3D pp1, Point3D pp2, Point3D pp3, Color c) {
+    public void tracerTriangle(Point3D pp1, Point3D pp2, Point3D pp3,
+                               ITexture c) {
         Point p1, p2, p3;
         p1 = coordonneesPoint2D(pp1);
         p2 = coordonneesPoint2D(pp2);
@@ -813,7 +844,7 @@ public class ZBufferImpl implements ZBuffer {
             for (double b = 0; b < 1.0; b += iteres2) {
                 Point3D p = p3d.plus(p3d.mult(-1).plus(pp3).mult(b));
                 p.setNormale(n);
-                ime.testDeep(p, n, c);
+                ime.testDeep(p, n, new Color(c.getColorAt(a, b)));
             }
         }
     }
@@ -1259,6 +1290,9 @@ public class ZBufferImpl implements ZBuffer {
             // Color cc = c.getCouleur();
             p.setNormale(n);
             testDeep(p, c);
+        }
+        public void testDeep(Point3D p, Point3D n, int c) {
+            testDeep(p, n, new Color(c));
         }
 
         public void testDeep(Point3D p, ITexture texture) {

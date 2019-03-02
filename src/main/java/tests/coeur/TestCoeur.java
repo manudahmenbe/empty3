@@ -16,6 +16,7 @@ import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +40,8 @@ public class TestCoeur extends TestObjetSub {
     public void ginit() {
         coeur = new Coeur();
         try {
-            coeur.texture(new ImageTexture(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("be.manudahmen.empty3.library.tests.coeur.jpg")))));
+            coeur.texture(new ImageTexture(new ECBufferedImage(
+                    ImageIO.read(new File("samples/img/coeur.jpg")))));
         } catch (IOException ex) {
             coeur.texture(new ColorTexture(Color.PINK));
             Logger.getLogger(TestCoeur.class.getName()).log(Level.SEVERE, null, ex);

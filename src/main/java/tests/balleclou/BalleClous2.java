@@ -59,9 +59,14 @@ public class BalleClous2 extends TRISphere {
 
     @Override
     public Point3D coordPoint3D(int x, int y) {
-        Point3D p = super.coordPoint3D(x, y);
+        return calculerPoint3D(1.0*x/getMaxX(), 1.0*y/getMaxY());
+    }
 
-        Point2D p0 = new Point2D(1.0 * x / getMaxX(), 1.0 * y / getMaxY());
+    @Override
+    public Point3D calculerPoint3D(double x, double y) {
+        Point3D p = super.calculerPoint3D(x, y);
+
+        Point2D p0 = new Point2D(1.0 , 1.0 );
 
         double mult = 1.0;
 
@@ -74,6 +79,5 @@ public class BalleClous2 extends TRISphere {
         return p.mult(mult / points.size());
 
     }
-
 
 }

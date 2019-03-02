@@ -53,7 +53,7 @@ public class TestBezierTextVideo extends TestObjetSub {
 
     @Override
     public void ginit() {
-        videoTexture = new VideoTexture("C:\\Emptycanvas\\textures\\Il embrasse sur la bouche.mp4");
+        videoTexture = new VideoTexture("samples/mov/Il embrasse sur la bouche.mp4");
         s.texture(videoTexture);
         scene().add(s);
         scene().cameraActive().setEye(Point3D.Z.mult(-6));

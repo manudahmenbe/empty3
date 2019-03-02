@@ -45,12 +45,12 @@ public class TestBalleCouleur001 extends TestObjetSub {
         LumierePonctuelle lumierePonctuelle = new LumierePonctuelle(Point3D.X, Color.RED);
         lumierePonctuelle.setR0(1);
 
-        scene().lumieres().add(lumierePonctuelle);
+//        scene().lumieres().add(lumierePonctuelle);
 
         lumierePonctuelle = new LumierePonctuelle(Point3D.Y, Color.BLUE);
         lumierePonctuelle.setR0(1);
 
-        scene().lumieres().add(lumierePonctuelle);
+//        scene().lumieres().add(lumierePonctuelle);
         for (int c = 0; c < Ncolors; c++) {
             map.put(new Point2D(Math.random() * 100, Math.random() * 100), new Color((float) Math.random(), (float) Math.random(), (float) Math.random(), (float) Math.random()));
         }
@@ -78,7 +78,7 @@ public class TestBalleCouleur001 extends TestObjetSub {
 
         scene().add(ballec);
 
-        scene().lumieres().add(new LumierePonctuelle(Point3D.O0, Color.WHITE));
+//        scene().lumieres().add(new LumierePonctuelle(Point3D.O0, Color.WHITE));
 
         Camera camera;
         camera = new Camera(new Point3D(0d, 0d, -2d),
@@ -158,8 +158,6 @@ public class TestBalleCouleur001 extends TestObjetSub {
             tubulaireN2.curve(gdx_BSplineCurve);
 
             scene().add(tubulaireN2);
-
-//ballec.be.manudahmen.empty3.library.tests.position().be.manudahmen.empty3.library.tests.rotation = ballec.be.manudahmen.empty3.library.tests.position().be.manudahmen.empty3.library.tests.rotation.mult(matrix1(totalA, totalB));
 
         }
 
