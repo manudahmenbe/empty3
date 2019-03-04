@@ -95,7 +95,7 @@ public interface ZBuffer {
      */
     double distanceCamera(Point3D p);
 
-    Color getColorAt(Point p);
+    int getColorAt(Point p);
 
     /**
      * *

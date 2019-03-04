@@ -79,9 +79,9 @@ public class Scene extends Representable implements Serializable {
 
     }
 
-    public ITexture calculerCouleurLumiere(ITexture t, Point3D point, Point3D normale) {
+    public int calculerCouleurLumiere(int t, Point3D point, Point3D normale) {
         int size = lumieres().size();
-        ITexture[] cs = new ColorTexture[size];
+        int[] cs = new int[size];
         for (int i = 0; i < size; i++) {
 
             cs[i] = lumieres().get(i).getCouleur(t, point, normale);
@@ -132,19 +132,19 @@ public class Scene extends Representable implements Serializable {
         lumieres.clear();
     }
 
-    protected ITexture colorAdd(ITexture[] cs) {
+    protected int colorAdd(int[] cs) {
         float[] compArray = new float[4];
         float[] compArray3 = new float[4];
 
         int l = cs.length;
         for (int c = 0; c < l; c++) {
             for (int i = 0; i < 3; i++) {
-                compArray3 = new Color(cs[i].getColorAt(0.5, 0.5)).getRGBComponents(compArray);
+                compArray3 = new Color(cs[i]).getRGBComponents(compArray);
 
                 compArray3[i] += compArray[i] / l;
             }
         }
-        ColorTexture res = new ColorTexture(new Color(compArray3[0], compArray3[1], compArray3[2], compArray3[3]));
+        int res = new Color(compArray3[0], compArray3[1], compArray3[2], compArray3[3]).getRGB();
 
         return res;
     }
@@ -223,7 +223,7 @@ public class Scene extends Representable implements Serializable {
         this.lumieres = lumieres;
     }
 
-    public ITexture lumiereTotaleCouleur(ITexture c, Point3D p, Point3D n) {
+    public int lumiereTotaleCouleur(int c, Point3D p, Point3D n) {
         if (lumieres.isEmpty()) {
             return c;
         }
@@ -235,15 +235,16 @@ public class Scene extends Representable implements Serializable {
         for (int i = 0; i < lumieres.size(); i++) {
             Lumiere l = lumieres.get(i);
 
-            ITexture cP = l.getCouleur(c, p, n);
+            int cP = l.getCouleur(c, p, n);
 
-            t[0] += new Color(cP.getColorAt(0.5, 0.5)).getRed() / 256.0;
+            Color color = new Color(cP);
+            t[0] += color.getRed() / 256.0;
 
-            t[1] += new Color(cP.getColorAt(0.5, 0.5)).getGreen() / 256.0;
+            t[1] += color.getGreen() / 256.0;
 
-            t[2] += new Color(cP.getColorAt(0.5, 0.5)).getBlue() / 256.0;
+            t[2] += color.getBlue() / 256.0;
 
-            t[3] += new Color(cP.getColorAt(0.5, 0.5)).getAlpha() / 256.0;
+            t[3] += color.getAlpha() / 256.0;
 
             cpt++;
         }
@@ -252,7 +253,7 @@ public class Scene extends Representable implements Serializable {
             t[i] /= cpt;
         }
 
-        return new ColorTexture(new Color(t[0], t[1], t[2], t[3]));
+        return new Color(t[0], t[1], t[2], t[3]).getRGB();
     }
 
     public Representable place(MODObjet aThis) {

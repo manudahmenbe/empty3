@@ -25,7 +25,6 @@ package be.manudahmen.empty3;
 import be.manudahmen.empty3.core.extra.SimpleSphere;
 import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
-import be.manudahmen.empty3.core.nurbs.SurfaceParametriquePolynomialeBezier;
 import be.manudahmen.empty3.core.nurbs.ThickSurface;
 import be.manudahmen.empty3.core.tribase.TRIObjetGenerateurAbstract;
 
@@ -293,7 +292,9 @@ public class ZBufferImpl implements ZBuffer {
                         draw(new TRI(n.calculerPoint3D(u, v),
                                 n.calculerPoint3D(u, v + n.getIncrV()),
                                 n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
-                                n.texture()), n); /*tracerTriangle(n.calculerPoint3D(u, v),
+                                n.texture()), n);
+
+ /*tracerTriangle(n.calculerPoint3D(u, v),
                                 n.calculerPoint3D(u + n.getIncrU(), v),
                                 n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
                                 new Color(n.texture().getColorAt(0.5,0.5)));
@@ -321,13 +322,13 @@ public class ZBufferImpl implements ZBuffer {
                         SurfaceParametriquePolynomialeBezier surfaceParametriquePolynomialeBezier = new SurfaceParametriquePolynomialeBezier(point3DS);
                         draw(surfaceParametriquePolynomialeBezier, n);
 */
-                        /*
-tracerQuad(n.calculerPoint3D(u, v),
+
+                        tracerQuad(n.calculerPoint3D(u, v),
                                 n.calculerPoint3D(u + n.getIncrU(), v),
                                 n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
                                 n.calculerPoint3D(u , v+n.getIncrV()),
-                                n.texture(), u, v, u+n.getIncrU(), v+n.getIncrV());
-                       */
+                                n.texture(), u, u+n.getIncrU(), v, v+n.getIncrV());
+
                         //
 //
 //                        draw(new TRI(n.calculerPoint3D(u, v),
@@ -388,7 +389,7 @@ tracerQuad(n.calculerPoint3D(u, v),
                     try {
                         Point3D p3d = camera(b
                                 .calculerPoint3D(3.0 + 1.0 * nt / 200));
-                        ime.testDeep(p3d, b.getColor());
+                        ime.testDeep(p3d, b.texture().getColorAt(0.5,0.5));
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
@@ -519,12 +520,12 @@ tracerQuad(n.calculerPoint3D(u, v),
         return box.echelleEcran();
     }
 
-    public Color getColorAt(Point p) {
+    public int getColorAt(Point p) {
         if (ime.getIME().getElementProf((int) p.getX(), (int) p.getY()) >= INFINI_PROF) {
-            return new Color(ime.getIME().getElementCouleur((int) p.getX(),
-                    (int) p.getY()));
+            return ime.getIME().getElementCouleur((int) p.getX(),
+                    (int) p.getY());
         } else {
-            return new Color(Color.TRANSLUCENT);
+            return Color.TRANSLUCENT;
         }
     }
 
@@ -658,7 +659,7 @@ tracerQuad(n.calculerPoint3D(u, v),
 
     public void plotPoint(Color color, Point3D p) {
         if (p != null && color != null) {
-            ime.testDeep(p, coordonneesPoint2D(p), new ColorTexture(color));
+            ime.testDeep(p, color.getRGB()|0xff000000);
         }
 
     }
@@ -715,13 +716,13 @@ tracerQuad(n.calculerPoint3D(u, v),
         }
     }
 
-    public void testPoint(Point3D p, Color c) {
+    public void testPoint(Point3D p, Color c) {int cc = c.getRGB();
+
         if (scene().lumiereActive() != null) {
-            ITexture t = scene().lumiereActive().getCouleur(
-                    new ColorTexture(c), p, p.getNormale());
-            p.texture(t);
+            cc = scene().lumiereActive().getCouleur(
+                    c.getRGB(), p, p.getNormale());
         }
-        ime.testDeep(p, c);
+        ime.testDeep(p, cc);
     }
 
     private void tracerAretes(Point3D point3d, Point3D point3d2, Color c) {
@@ -737,7 +738,7 @@ tracerQuad(n.calculerPoint3D(u, v),
             Point3D p = point3d.mult(a).plus(point3d2.mult(1 - a));
             pp.setLocation(p1.getX() + (int) (a * (p2.getX() - p1.getX())),
                     p1.getY() + (int) (a * (p2.getY() - p1.getY())));
-            ime.testDeep(p, c);
+            ime.testDeep(p, c.getRGB());
 
         }
 
@@ -773,7 +774,7 @@ tracerQuad(n.calculerPoint3D(u, v),
             for (double b = 0; b < 1.0; b += iteres2) {
                 Point3D p = p3d.plus(p3d.mult(-1).plus(pp3).mult(b));
                 // Point p22 = coordonneesPoint2D(p);
-                ime.testDeep(p, c);
+                ime.testDeep(p, c.getRGB());
             }
         }
     }
@@ -786,36 +787,22 @@ tracerQuad(n.calculerPoint3D(u, v),
         p4 = coordonneesPoint2D(pp3);
 
         TRI triBas = new TRI(pp1, pp2, pp3, texture);
-        TRI triHaut = new TRI(pp3, pp4, pp1, texture);
         if (p1 == null || p2 == null || p3 == null) {
             return;
         }
         Point3D normale = triBas.normale();
-        double iteres1 = 1.0 / (maxDistance(p1, p2, p3) + 1) / 3;
-        for (double a = 0; a < 1.0; a += iteres1) {
-            Point3D p3d = pp1.plus(pp1.mult(-1).plus(pp2).mult(a));
-            double iteres2 = 1.0 / maxDistance(p1, p2, p3) / 3;
-            for (double b = 0; b < 1.0; b += iteres2) {
-                Point3D p = p3d.plus(p3d.mult(-1).plus(pp3).mult(b));
-                p.setNormale(triBas.normale());
-                ime.testDeep(p, normale,
-                        new Color(
-                texture.getColorAt(u0+(u1-u0)*a,
-                        v0+(v1-v0)*b)));
-            }
-        }
-        normale = triHaut.normale();
-        iteres1 = 1.0 / (maxDistance(p3, p4, p1) + 1) / 3;
-        for (double a = 0; a < 1.0; a += iteres1) {
-            Point3D p3d = pp4.plus(pp4.mult(-1).plus(pp3).mult(a));
-            double iteres2 = 1.0 / maxDistance(p1, p2, p3) / 3;
-            for (double b = 0; b < 1.0; b += iteres2) {
-                Point3D p = p3d.plus(p3d.mult(-1).plus(pp1).mult(b));
-                p.setNormale(normale);
-                ime.testDeep(p, triHaut.normale(),
-                        new Color(
-                                texture.getColorAt(u0+(u1-u0)*a,
-                                        v1-(v1-v0)*b)));
+        double iter1 = 1.0 / (maxDistance(p1, p2, p3, p4) + 1) / 3;
+        for (double a = 0; a < 1.0; a += iter1) {
+            Point3D pElevation1 = pp1.plus(pp1.mult(-1).plus(pp2).mult(a));
+            Point3D pElevation2 = pp4.plus(pp4.mult(-1).plus(pp3).mult(a));
+            double inter2 = 1.0 / maxDistance(p1, p2, p3) / 3;
+            for (double b = 0; b < 1.0; b += inter2) {
+                Point3D pFinal = pElevation1.plus(pElevation1
+                        .mult(-1).plus(pElevation2.mult(b)));
+                pFinal.setNormale(normale);
+                ;
+                ime.testDeep(pFinal, texture.getColorAt(u0 + (u1 - u0) * a,
+                        v0 + (v1 - v0) * b));
             }
         }
     }
@@ -904,8 +891,8 @@ tracerQuad(n.calculerPoint3D(u, v),
                     ime.getIME().setElementCouleur(
                             i,
                             j,
-                            new Color(tex
-                                    .getColorAt(1.0 * i / la, 1.0 * j / ha)));
+                            tex
+                                    .getColorAt(1.0 * i / la, 1.0 * j / ha));
                 }
             }
         }
@@ -1023,7 +1010,7 @@ tracerQuad(n.calculerPoint3D(u, v),
 
                     } else if (r instanceof RepresentableConteneur) {
                         throw new UnsupportedOperationException(
-                                "Conteneur non support�");
+                                "Conteneur non supporté");
                     }
                 }
             }
@@ -1167,7 +1154,7 @@ tracerQuad(n.calculerPoint3D(u, v),
                 for (int j = 0; j < y; j++) {
                     ime.setElementID(x, y, id);
                     ime.setElementPoint(x, y, INFINI);
-                    ime.setElementCouleur(x, y, Color.white);
+                    ime.setElementCouleur(x, y, 0);
                 }
             }
         }
@@ -1183,8 +1170,8 @@ tracerQuad(n.calculerPoint3D(u, v),
             if (x >= 0 & x < la & y >= 0 & y < ha && c.getAlpha() == 255) {
                 ime.setElementID(x, y, id);
                 ime.setElementPoint(x, y, x3d);
-                ime.setElementCouleur(x, y, c);
-                ime.setProf(x, y, prof);
+                ime.setElementCouleur(x, y, c.getRGB());
+                ime.setDeep(x, y, prof);
                 interaction[x * la + y] = interactionCourant;
             }
         }
@@ -1233,13 +1220,13 @@ tracerQuad(n.calculerPoint3D(u, v),
             ime.setElementID(x, y, id);
         }
 
-        public void testDeep(Point3D x3d, Color c) {
-
+        public void testDeep(Point3D x3d, int c) {
+            int cc = c;
             Point ce = coordonneesPoint2D(x3d);
-            if (ce == null || c == null) {
+            if (ce == null) {
                 return;
             }
-            double prof = distanceCamera(x3d);
+            double deep = distanceCamera(x3d);
 
             int x = (int) ce.getX();
             int y = (int) ce.getY();
@@ -1247,56 +1234,35 @@ tracerQuad(n.calculerPoint3D(u, v),
                     & x < la
                     & y >= 0
                     & y < ha
-                    && (prof < ime.getElementProf(x, y) || ime.getElementID(x,
-                    y) != id) && c.getAlpha() == 255) {
+                    && (deep < ime.getElementProf(x, y) || ime.getElementID(x,
+                    y) != id) && (((cc)&255) == 255)) {
                 ime.setElementID(x, y, id);
                 ime.setElementPoint(x, y, x3d);
                 if (scene().lumiereActive() != null) {
-                    c = new Color(scene().lumiereTotaleCouleur(
-                            new ColorTexture(c), x3d,
-                            x3d.getNormale())
-                            .getColorAt(0.5, 0.5));
+                    cc = scene().lumiereTotaleCouleur(c,
+                            x3d,
+                            x3d.getNormale());
 
                 }
 
-                ime.setElementCouleur(x, y, c);
-                ime.setProf(x, y, prof);
+                ime.setElementCouleur(x, y, cc);
+                ime.setDeep(x, y, deep);
                 interaction(x, y, interactionCourant);
             }
         }
 
-        public void testDeep(Point3D x3d, Point coordonneesPointEcra, ITexture t) {
-            int x = (int) coordonneesPointEcra.getX();
-            int y = (int) coordonneesPointEcra.getY();
-            double prof = distanceCamera(x3d);
-            if (x >= 0 & x < la & y >= 0 & y < ha
-                    && prof < ime.getElementProf(x, y)
-                    && new Color(t.getColorAt(0.5, 0.5)).getAlpha() == 255) {
-                ime.setElementID(x, y, id);
-                if (scene().lumiereActive() != null) {
-                    t = scene().lumiereActive().getCouleur(t, x3d,
-                            x3d.getNormale());
-                    t = scene().calculerCouleurLumiere(t, x3d,
-                            x3d.getNormale());
-                }
-                ime.setElementPoint(x, y, x3d);
-                ime.setElementCouleur(x, y, new Color(t.getColorAt(0.5, 0.5)));
-
-                ime.setProf(x, y, prof);
-            }
-        }
 
         public void testDeep(Point3D p, Point3D n, Color c) {
             // Color cc = c.getCouleur();
             p.setNormale(n);
-            testDeep(p, c);
+            testDeep(p, c.getRGB());
         }
         public void testDeep(Point3D p, Point3D n, int c) {
             testDeep(p, n, new Color(c));
         }
 
         public void testDeep(Point3D p, ITexture texture) {
-            testDeep(p, new Color(texture.getColorAt(0.5, 0.5)));
+            testDeep(p, texture.getColorAt(0.5, 0.5));
 
         }
 
@@ -1304,6 +1270,7 @@ tracerQuad(n.calculerPoint3D(u, v),
             dessine(p, new Color(texture.getColorAt(0.5, 0.5)));
 
         }
+
     }
 
     public class ImageMapElement {
@@ -1399,7 +1366,7 @@ tracerQuad(n.calculerPoint3D(u, v),
 
         }
 
-        public void setElementCouleur(int x, int y, Color pc) {
+        public void setElementCouleur(int x, int y, int pc) {
 
             if (checkCoordonnees(x, y)) {
                 setElementID(x, y, id);
@@ -1427,19 +1394,18 @@ tracerQuad(n.calculerPoint3D(u, v),
             }
         }
 
-        private void setProf(int x, int y, double d) {
+        private void setDeep(int x, int y, double d) {
             if (checkCoordonnees(x, y)) {
                 Simeprof[x][y] = (float) d;
             }
         }
 
-        private void setRGBInts(Color rgb, int[] sc, int x, int y) {
+        private void setRGBInts(int rgb, int[] sc, int x, int y) {
             /*
              * sc[(x + y * la) * 3 + 0] = rgb.getRed(); sc[(x + y * la) * 3 + 1]
              * = rgb.getGreen(); sc[(x + y * la) * 3 + 2] = rgb.getBlue();
              */
-            sc[x + y * la] = 0xFF000000 | rgb.getRed() << 16
-                    | rgb.getGreen() << 8 | rgb.getBlue();
+            sc[x + y * la] = rgb;
         }
     }
 

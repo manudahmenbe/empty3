@@ -41,7 +41,7 @@ public class ColorTexture extends ITexture {
     }
 
     public int getColorAt(double x, double y) {
-        return color.getRGB();
+        return color.getRGB()|0xff000000;
     }
 
     public void timeNext() {

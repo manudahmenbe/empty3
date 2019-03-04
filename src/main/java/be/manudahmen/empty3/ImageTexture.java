@@ -49,10 +49,10 @@ public class ImageTexture extends ITexture {
     @Override
     public int getColorAt(double x, double y) {
         Point trans = getCoord(x, y);
-        return couleur(trans.x / image.getWidth(), trans.y / image.getHeight()).getRGB();
+        return couleur(trans.x / image.getWidth(), trans.y / image.getHeight());
     }
 
-    protected Color couleur(double rx, double ry) {
+    protected int couleur(double rx, double ry) {
         int x = (int) (rx * image.getWidth());
         int y = (int) (ry * image.getHeight());
         if (x < 0) {
@@ -73,18 +73,8 @@ public class ImageTexture extends ITexture {
                 .getRGB(x, y)
                 :
                 transparent;
-        if (
 
-                c
-
-                        ==
-
-                        transparent
-
-                )
-            return new Color(transparent);
-        else
-            return new Color(c);
+        return c;
     }
 
 

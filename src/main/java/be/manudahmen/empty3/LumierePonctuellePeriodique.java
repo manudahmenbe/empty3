@@ -38,11 +38,12 @@ public final class LumierePonctuellePeriodique implements Lumiere {
     }
 
     @Override
-    public ITexture getCouleur(ITexture base, Point3D p, Point3D n) {
+    public int getCouleur(int base, Point3D p, Point3D n) {
         double x = (n.norme1().prodScalaire(position.moins(p).norme1()) + 1) / 2;
         double r = x;
-        Color couleurObjet = new Color(base.getColorAt(0.5, 0.5));
-        return new ColorTexture(new Color((float) ((couleurObjet.getRed() / 256.0) * r + (couleurLumiere.getRed() / 256.0) * (1 - r)), (float) ((couleurObjet.getGreen() / 256.0) * r + (couleurLumiere.getGreen() / 256.0) * (1 - r)), (float) ((couleurObjet.getBlue() / 256.0) * r + (couleurLumiere.getBlue() / 256.0) * (1 - r))));
+        Color couleurObjet = new Color(base);
+        return new Color((float) ((couleurObjet.getRed() / 256.0) * r + (couleurLumiere.getRed() / 256.0) * (1 - r)), (float) ((couleurObjet.getGreen() / 256.0) * r + (couleurLumiere.getGreen() / 256.0) * (1 - r)), (float) ((couleurObjet.getBlue()
+                / 256.0) * r + (couleurLumiere.getBlue() / 256.0) * (1 - r))).getRGB();
     }
 
     public void r0(int r0) {

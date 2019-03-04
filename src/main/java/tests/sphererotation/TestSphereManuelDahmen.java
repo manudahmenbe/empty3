@@ -15,6 +15,7 @@ import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import javax.imageio.ImageIO;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,7 +58,7 @@ public class TestSphereManuelDahmen extends TestObjetSub {
         tp.setMaxY(maxy);
 
         try {
-            ImageTexture imageTexture = new ImageTexture(new ECBufferedImage(ImageIO.read(this.getClass().getResourceAsStream("map2.png"))));
+            ImageTexture imageTexture = new ImageTexture(new ECBufferedImage(ImageIO.read(new File("samples/img/map2-modif.png"))));
             imageTexture.setColorMask(ITexture.COLOR_MIROR_XY);
             tp.texture(imageTexture);
         } catch (IOException ex) {
