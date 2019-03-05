@@ -19,29 +19,29 @@ import java.awt.*;
  */
 public class ColorTexture extends ITexture {
 
-    private Color color;
+    private int color;
 
     public ColorTexture() {
-        color = Color.BLACK;
+        color = Color.BLACK.getRGB();
     }
 
     public ColorTexture(Color c) {
         this();
         if (c != null) {
-            color = c;
+            color = c.getRGB();
         }
     }
 
-    public Color color() {
+    public int color() {
         return color;
     }
 
     public void color(Color c) {
-        color = c;
+        color = c.getRGB();
     }
 
     public int getColorAt(double x, double y) {
-        return color.getRGB()|0xff000000;
+        return color;
     }
 
     public void timeNext() {
@@ -64,10 +64,11 @@ public class ColorTexture extends ITexture {
      */
     public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double x,
                                           double y) {
-        return color;
+        return new Color(color);
     }
 
     public String toString() {
+        Color color = new Color(this.color);
         return "texture ( red:" + color.getRed() + "; green:" +
                 color.getGreen() + "; blue:" + color.getBlue() +
                 "; alpha:" + color.getAlpha() + ")\n";

@@ -23,6 +23,7 @@
 package be.manudahmen.empty3;
 
 import be.manudahmen.empty3.core.extra.SimpleSphere;
+import be.manudahmen.empty3.core.lighting.Colors;
 import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 import be.manudahmen.empty3.core.nurbs.ThickSurface;
@@ -43,7 +44,7 @@ public class ZBufferImpl implements ZBuffer {
     /**
      * Couleur de fond (texture: couleur, image, vidéo, ...
      */
-    protected final ImageFond backgroundTexture = new ImageFond(new ColorTexture(Color.WHITE));
+    protected final ImageFond backgroundTexture = new ImageFond(new ColorTexture(Colors.random()));
     // DEFINITIONS
     public double INFINI_PROF = Double.MAX_VALUE;
     public int type_perspective = PERSPECTIVE_OEIL;
@@ -67,8 +68,8 @@ public class ZBufferImpl implements ZBuffer {
     private int id = 1;
     private int dimx;
     private int dimy;
-    private Point3D[][] Sx;
-    private int[] Sc;
+    private Point3D[][] Scordinate;
+    private int[] Scolor;
     private int[][] Simeid;
     private float[][] Simeprof;
     private Representable[] interaction;
@@ -175,15 +176,15 @@ public class ZBufferImpl implements ZBuffer {
     }
 
     public Point coordonneesPointEcranPerspective(Point3D x3d) {
-        if (x3d.getZ() > 0 && -angleX < Math.atan(x3d.getX() / x3d.getZ())
+        /*if (x3d.getZ() > 0 && -angleX < Math.atan(x3d.getX() / x3d.getZ())
                 && Math.atan(x3d.getX() / x3d.getZ()) < angleX
                 && -angleY < Math.atan(x3d.getY() / x3d.getZ())
                 && Math.atan(x3d.getY() / x3d.getZ()) < angleY) {
-            double scale = (1.0 / (x3d.getZ()));
+         */   double scale = (1.0 / (x3d.getZ()));
             return new Point((int) (x3d.getX() * scale * la + la / 2),
                     (int) (-x3d.getY() * scale * ha + ha / 2));
-        }
-        return null;
+        //}
+        //return null;
     }
 
     public void draw() {
@@ -284,7 +285,7 @@ public class ZBufferImpl implements ZBuffer {
                     for (double j = n.getStartU(); j <= n.getEndV() - n.getIncrV(); j += n.getIncrV()) {
                         double u = i;
                         double v = j;
-
+/*
                         draw(new TRI(n.calculerPoint3D(u, v),
                                 n.calculerPoint3D(u + n.getIncrU(), v),
                                 n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
@@ -293,7 +294,7 @@ public class ZBufferImpl implements ZBuffer {
                                 n.calculerPoint3D(u, v + n.getIncrV()),
                                 n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
                                 n.texture()), n);
-
+*/
  /*tracerTriangle(n.calculerPoint3D(u, v),
                                 n.calculerPoint3D(u + n.getIncrU(), v),
                                 n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
@@ -530,7 +531,7 @@ public class ZBufferImpl implements ZBuffer {
     }
 
     public int[] getData() {
-        return Sc;
+        return Scolor;
     }
 
     public ZBuffer getInstance(int x, int y) {
@@ -659,7 +660,7 @@ public class ZBufferImpl implements ZBuffer {
 
     public void plotPoint(Color color, Point3D p) {
         if (p != null && color != null) {
-            ime.testDeep(p, color.getRGB()|0xff000000);
+            ime.testDeep(p, color.getRGB());
         }
 
     }
@@ -800,7 +801,6 @@ public class ZBufferImpl implements ZBuffer {
                 Point3D pFinal = pElevation1.plus(pElevation1
                         .mult(-1).plus(pElevation2.mult(b)));
                 pFinal.setNormale(normale);
-                ;
                 ime.testDeep(pFinal, texture.getColorAt(u0 + (u1 - u0) * a,
                         v0 + (v1 - v0) * b));
             }
@@ -1223,9 +1223,6 @@ public class ZBufferImpl implements ZBuffer {
         public void testDeep(Point3D x3d, int c) {
             int cc = c;
             Point ce = coordonneesPoint2D(x3d);
-            if (ce == null) {
-                return;
-            }
             double deep = distanceCamera(x3d);
 
             int x = (int) ce.getX();
@@ -1235,7 +1232,7 @@ public class ZBufferImpl implements ZBuffer {
                     & y >= 0
                     & y < ha
                     && (deep < ime.getElementProf(x, y) || ime.getElementID(x,
-                    y) != id) && (((cc)&255) == 255)) {
+                    y) != id) && (((cc>>24)&0xff) == 0)) {
                 ime.setElementID(x, y, id);
                 ime.setElementPoint(x, y, x3d);
                 if (scene().lumiereActive() != null) {
@@ -1247,6 +1244,7 @@ public class ZBufferImpl implements ZBuffer {
 
                 ime.setElementCouleur(x, y, cc);
                 ime.setDeep(x, y, deep);
+                ime.setElementPoint(x, y, x3d);
                 interaction(x, y, interactionCourant);
             }
         }
@@ -1279,8 +1277,8 @@ public class ZBufferImpl implements ZBuffer {
         private ImageMapElement instance;
 
         public ImageMapElement() {
-            Sx = new Point3D[la][ha];
-            Sc = new int[la * ha];
+            Scordinate = new Point3D[la][ha];
+            Scolor = new int[la * ha];
             Simeid = new int[la][ha];
             Simeprof = new float[la][ha];
             interaction = new Representable[la * ha];
@@ -1289,18 +1287,18 @@ public class ZBufferImpl implements ZBuffer {
                 for (int j = 0; j < ha; j++) {
                     Simeprof[i][j] = (float) INFINI.getZ();
                     Simeid[i][j] = id;
-                    Sc[j * la + i] = COULEUR_FOND_INT(i, j);
+                    Scolor[j * la + i] = COULEUR_FOND_INT(i, j);
 
                 }
             }
         }
 
-        public boolean checkCoordonnees(int x, int y) {
+        public boolean checkCordinates(int x, int y) {
             return x >= 0 && x < resX() && y >= 0 && y < resY();
         }
 
         public boolean checkID(int x, int y, int id2) {
-            return checkCoordonnees(x, y) && Simeid[x][y] == id2;
+            return checkCordinates(x, y) && Simeid[x][y] == id2;
         }
 
         public int COULEUR_FOND_INT(int x, int y) {
@@ -1310,15 +1308,15 @@ public class ZBufferImpl implements ZBuffer {
         }
 
         public int getElementCouleur(int x, int y) {
-            if (checkCoordonnees(x, y) && Simeid[x][y] == id() && Simeprof[x][y] < INFINI.getZ()) {
-                return getRGBInt(Sc, x, y);
+            if (checkCordinates(x, y) && Simeid[x][y] == id() && Simeprof[x][y] < INFINI.getZ()) {
+                return getRGBInt(Scolor, x, y);
             } else {
                 return COULEUR_FOND_INT(x, y);
             }
         }
 
         public int getElementID(int x, int y) {
-            if (checkCoordonnees(x, y)) {
+            if (checkCordinates(x, y)) {
                 return Simeid[x][y];
             } else {
                 return -1;
@@ -1326,15 +1324,15 @@ public class ZBufferImpl implements ZBuffer {
         }
 
         public Point3D getElementPoint(int x, int y) {
-            if (checkCoordonnees(x, y) && Simeid[x][y] == id) {
-                return Sx[x][y];
+            if (checkCordinates(x, y) && Simeid[x][y] == id) {
+                return Scordinate[x][y];
             } else {
                 return INFINI;
             }
         }
 
         private double getElementProf(int x, int y) {
-            if (checkCoordonnees(x, y) && Simeid[x][y] == id) {
+            if (checkCordinates(x, y) && Simeid[x][y] == id) {
                 return Simeprof[x][y];
             } else {
                 return INFINI_PROF;
@@ -1342,7 +1340,7 @@ public class ZBufferImpl implements ZBuffer {
         }
 
         public Representable getElementRepresentable(int x, int y) {
-            if (checkCoordonnees(x, y)) {
+            if (checkCordinates(x, y)) {
                 return interaction[x + y * la];
             } else {
                 return null;
@@ -1368,34 +1366,34 @@ public class ZBufferImpl implements ZBuffer {
 
         public void setElementCouleur(int x, int y, int pc) {
 
-            if (checkCoordonnees(x, y)) {
+            if (checkCordinates(x, y)) {
                 setElementID(x, y, id);
-                setRGBInts(pc, Sc, x, y);
+                setRGBInts(pc, Scolor, x, y);
             }
         }
 
         public void setElementID(int x, int y, int id) {
-            if (checkCoordonnees(x, y)) {
+            if (checkCordinates(x, y)) {
                 Simeid[x][y] = id;
             }
         }
 
         public void setElementPoint(int x, int y, Point3D px) {
-            if (checkCoordonnees(x, y)) {
+            if (checkCordinates(x, y)) {
                 setElementID(x, y, id);
-                Sx[x][y] = px;
+                Scordinate[x][y] = px;
             }
         }
 
         public void setElementRepresentable(int x, int y, Representable r) {
-            if (checkCoordonnees(x, y)) {
+            if (checkCordinates(x, y)) {
                 setElementID(x, y, id);
                 interaction[la * y + x] = r;
             }
         }
 
         private void setDeep(int x, int y, double d) {
-            if (checkCoordonnees(x, y)) {
+            if (checkCordinates(x, y)) {
                 Simeprof[x][y] = (float) d;
             }
         }

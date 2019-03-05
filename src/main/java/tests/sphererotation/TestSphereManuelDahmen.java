@@ -32,7 +32,7 @@ public class TestSphereManuelDahmen extends TestObjetSub {
     double rayon = 10;
     int maxx = 100;
     int maxy = 100;
-    TRISphere tp = new TRISphere(Point3D.O0, rayon);
+    TRISphere triSphere = new TRISphere(Point3D.O0, rayon);
 
     public static void main(String[] args) {
 
@@ -50,17 +50,17 @@ public class TestSphereManuelDahmen extends TestObjetSub {
 
     @Override
     public void ginit() {
-        scene().add(tp);
+        scene().add(triSphere);
         scene().cameraActive(new Camera(Point3D.Z.mult(distance), Point3D.O0));
 
-        //tp.setRotation(tp.new Rotation(new Matrix33(new Point3D[] {Point3D.Z, Point3D.X, Point3D.Y}), Point3D.O0));
-        tp.setMaxX(maxx);
-        tp.setMaxY(maxy);
+        //triSphere.setRotation(triSphere.new Rotation(new Matrix33(new Point3D[] {Point3D.Z, Point3D.X, Point3D.Y}), Point3D.O0));
+        triSphere.setMaxX(maxx);
+        triSphere.setMaxY(maxy);
 
         try {
             ImageTexture imageTexture = new ImageTexture(new ECBufferedImage(ImageIO.read(new File("samples/img/map2-modif.png"))));
             imageTexture.setColorMask(ITexture.COLOR_MIROR_XY);
-            tp.texture(imageTexture);
+            triSphere.texture(imageTexture);
         } catch (IOException ex) {
             Logger.getLogger(TestSphereManuelDahmen.class.getName()).log(Level.SEVERE, null, ex);
         }
