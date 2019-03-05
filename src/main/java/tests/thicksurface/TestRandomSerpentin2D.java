@@ -33,7 +33,7 @@ public class TestRandomSerpentin2D extends TestObjetSub {
 
     public void finit()
     {
-        Point3D[][] coefficients = ranndomSerpentin2D.surfaceParametriquePolynomialeBezier.getCoefficients();
+        Point3D[][] coefficients = ranndomSerpentin2D.surfaceParametricPolygonalBezier.getCoefficients();
         for(int i=0; i<coefficients.length; i++)
             for(int j=0; j<coefficients[i].length; j++)
             {

@@ -5,7 +5,7 @@
 package tests;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.nurbs.SurfaceParametriquePolynomialeBezier;
+import be.manudahmen.empty3.core.nurbs.SurfaceParametricPolygonalBezier;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
@@ -21,7 +21,7 @@ public class TestThierryJaspart extends TestObjetSub {
             {Point3D.P.n(-2, -2, 0), Point3D.P.n(-2, -1, 0), Point3D.P.n(-2, 0, 0), Point3D.P.n(-2, 1, 0), Point3D.P.n(-2, 2, 0)}
     };
     ITexture texture;
-    private SurfaceParametriquePolynomialeBezier s = new SurfaceParametriquePolynomialeBezier(coeff);
+    private SurfaceParametricPolygonalBezier s = new SurfaceParametricPolygonalBezier(coeff);
 
     public TestThierryJaspart() {
         setMaxFrames(25 * 60 * 5);
@@ -40,7 +40,8 @@ public class TestThierryJaspart extends TestObjetSub {
         scene().add(s);
         scene().cameraActive().setEye(Point3D.Z.mult(-6));
         try {
-            texture = new ImageTexture(ECBufferedImage.getFromFile(new File("C:\\Emptycanvas\\Images\\thierry-jaspart-disguised-as-a-girl-clara-gnagna-13-wordpress.png")));
+            texture = new ImageTexture(ECBufferedImage.getFromFile(new File(
+                    "samples\\img\\thierry-jaspart-catch-a-moustache-saint-gilles-bruxelles-clara-gnagna-vintage-comic-strip-wrestling-duck-pom-pom-girl.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }

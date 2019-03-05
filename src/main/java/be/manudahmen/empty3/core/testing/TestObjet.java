@@ -667,7 +667,12 @@ public abstract class TestObjet implements Test, Runnable {
             ex.printStackTrace();
         }
     }
-
+    public boolean copyResources()
+    {
+        // TODO Parcourir les textures de la scène
+        // TODO
+        throw new UnsupportedOperationException("Not implemented");
+    }
     public void run() {
 
         timeStart = System.nanoTime();

@@ -16,9 +16,8 @@
  */
 package be.manudahmen.empty3;
 
-import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
-import be.manudahmen.empty3.core.nurbs.SurfaceParametriquePolynomialeBezier;
+import be.manudahmen.empty3.core.nurbs.SurfaceParametricPolygonalBezier;
 
 /**
  * @author Se7en
@@ -35,7 +34,7 @@ public class WireRepresentation extends RepresentableConteneur {
     }
     public WireRepresentation(Point3D [][] point3DS) {
 
-        this.surface = new SurfaceParametriquePolynomialeBezier(point3DS);
+        this.surface = new SurfaceParametricPolygonalBezier(point3DS);
         getRP();
     }
 

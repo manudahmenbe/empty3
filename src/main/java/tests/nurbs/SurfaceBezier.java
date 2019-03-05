@@ -13,7 +13,7 @@ package tests.nurbs;
 
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.nurbs.SurfaceParametriquePolynomialeBezier;
+import be.manudahmen.empty3.core.nurbs.SurfaceParametricPolygonalBezier;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 /**
@@ -39,8 +39,8 @@ public class SurfaceBezier extends TestObjetSub {
             }
             m++;
         }
-        SurfaceParametriquePolynomialeBezier surfaceParametriquePolynomialeBezier = new SurfaceParametriquePolynomialeBezier(p);
-        boolean add = scene().add(surfaceParametriquePolynomialeBezier);
+        SurfaceParametricPolygonalBezier surfaceParametricPolygonalBezier = new SurfaceParametricPolygonalBezier(p);
+        boolean add = scene().add(surfaceParametricPolygonalBezier);
         scene().cameraActive(new Camera(Point3D.Z.mult(-10), Point3D.O0));
 
     }

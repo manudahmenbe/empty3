@@ -38,7 +38,7 @@ public class VideoTexture extends ITexture {
     private boolean notSuivante;
     private int track = 0;
     private File file = null;
-    private Color transparent = Color.WHITE;
+    private int transparent = Color.WHITE.getRGB();
     /**
      * The video stream index, used to ensure we display frames from one and
      * only one video stream from the media container.
@@ -139,14 +139,13 @@ public class VideoTexture extends ITexture {
     }
 
     public int getColorAt(double a, double b) {
-        int c = new Color(mtImage
+        int c = mtImage
                 .getRGB((int) (a * mtImage
                                 .maxX),
                         (int) (b * mtImage
-                                .maxY))
-        ).getRGB();
-        if (new Color(c).equals(transparent)) {
-            return 0xFFFFFF00;
+                                .maxY));
+        if (c==transparent) {
+            return transparent;
         } else {
             return c;
         }
@@ -185,37 +184,7 @@ public class VideoTexture extends ITexture {
         }
     }
 
-    /**
-     * +|--r11->/-----| y^r12^ 0/1 ^r12^ -|-----/<-r11--|+x
-     *
-     * @param numQuadX
-     * @param numQuadY
-     * @param x
-     * @param y
-     * @param r11
-     * @param r12
-     * @param numTRI
-     * @return
-     */
-    public Color getMaillageTRIColor(int numQuadX, int numQuadY, double x,
-                                     double y, double r11, double r12, int numTRI) {
-        double dx = 0;
-        double dy = 0;
-        if (numTRI == 0) {
-            dx = r11;
-            dy = r12;
-        } else if (numTRI == 1) {
-            dx = 1 - r11;
-            dy = r12;
-        }
-        int xi = ((int) ((((int) x + dx) / numQuadX + Math.signum(numTRI - 0.5)
-                * mtImage.maxX)));
-        int yi = ((int) ((((int) y + dy) / numQuadY * mtImage.maxY)));
-        Point p = getCoord(xi, yi);
-        xi = (int) p.x;
-        yi = (int) p.y;
-        return new Color(mtImage.getRGB(xi, yi));
-    }
+
 
     public boolean nextFrame() {
         try {
@@ -265,7 +234,7 @@ public class VideoTexture extends ITexture {
     }
 
     public void setTransparent(Color WHITE) {
-        this.transparent = WHITE;
+        this.transparent = WHITE.getRGB();
     }
 
     public void timeNext() {

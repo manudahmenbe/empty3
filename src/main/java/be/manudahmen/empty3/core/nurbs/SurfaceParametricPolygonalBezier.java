@@ -27,12 +27,12 @@ import be.manudahmen.empty3.Point3D;
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class SurfaceParametriquePolynomialeBezier extends ParametricSurface {
+public class SurfaceParametricPolygonalBezier extends ParametricSurface {
 
     protected final Point3D[][] coefficients;
     protected int power1, power2;
 
-    public SurfaceParametriquePolynomialeBezier(Point3D[][] coefficients) {
+    public SurfaceParametricPolygonalBezier(Point3D[][] coefficients) {
         this.coefficients = coefficients;
         power1 = coefficients.length;
         power2 = coefficients[0].length;

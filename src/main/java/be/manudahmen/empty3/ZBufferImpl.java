@@ -320,7 +320,7 @@ public class ZBufferImpl implements ZBuffer {
                                 {n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
                                         n.calculerPoint3D(u, v + n.getIncrV())}};
 
-                        SurfaceParametriquePolynomialeBezier surfaceParametriquePolynomialeBezier = new SurfaceParametriquePolynomialeBezier(point3DS);
+                        SurfaceParametricPolygonalBezier surfaceParametriquePolynomialeBezier = new SurfaceParametricPolygonalBezier(point3DS);
                         draw(surfaceParametriquePolynomialeBezier, n);
 */
 
@@ -792,15 +792,20 @@ public class ZBufferImpl implements ZBuffer {
             return;
         }
         Point3D normale = triBas.normale();
-        double iter1 = 1.0 / (maxDistance(p1, p2, p3, p4) + 1) / 3;
-        for (double a = 0; a < 1.0; a += iter1) {
+        double inter = 1.0 / (maxDistance(p1, p2, p3, p4) + 1) / 3;
+        for (double a = 0; a < 1.0; a += inter) {
             Point3D pElevation1 = pp1.plus(pp1.mult(-1).plus(pp2).mult(a));
             Point3D pElevation2 = pp4.plus(pp4.mult(-1).plus(pp3).mult(a));
-            double inter2 = 1.0 / maxDistance(p1, p2, p3) / 3;
-            for (double b = 0; b < 1.0; b += inter2) {
+            for (double b = 0; b < 1.0; b += inter) {
                 Point3D pFinal = pElevation1.plus(pElevation1
                         .mult(-1).plus(pElevation2.mult(b)));
                 pFinal.setNormale(normale);
+                /*System.out.print("u:"+(
+                                u0 + (u1 - u0) * a
+                        )+", v:"+(
+                        v0 + (v1 - v0) * b
+
+                        )+"\n");*/
                 ime.testDeep(pFinal, texture.getColorAt(u0 + (u1 - u0) * a,
                         v0 + (v1 - v0) * b));
             }

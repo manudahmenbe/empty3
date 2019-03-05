@@ -1,17 +1,17 @@
 package tests.thicksurface;
 
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.nurbs.SurfaceParametriquePolynomialeBezier;
+import be.manudahmen.empty3.core.nurbs.SurfaceParametricPolygonalBezier;
 import be.manudahmen.empty3.core.nurbs.ThickSurface;
 
 /**
  * Created by manue on 16-02-19.
  */
 public class RandomSerpentin2D extends ThickSurface {
-    SurfaceParametriquePolynomialeBezier surfaceParametriquePolynomialeBezier;
+    SurfaceParametricPolygonalBezier surfaceParametricPolygonalBezier;
 
     public RandomSerpentin2D() {
-        surfaceParametriquePolynomialeBezier = new SurfaceParametriquePolynomialeBezier
+        surfaceParametricPolygonalBezier = new SurfaceParametricPolygonalBezier
                 (
                         new Point3D[][]{
                                 {
@@ -40,14 +40,14 @@ public class RandomSerpentin2D extends ThickSurface {
                                 }
                         }
                 );
-        surfaceParametriquePolynomialeBezier.setIncrU(0.001);
-        surfaceParametriquePolynomialeBezier.setIncrV(0.001);
+        surfaceParametricPolygonalBezier.setIncrU(0.001);
+        surfaceParametricPolygonalBezier.setIncrV(0.001);
     }
 
 
     @Override
     public Point3D calculerPoint3D(double u, double v) {
-        return surfaceParametriquePolynomialeBezier
+        return surfaceParametricPolygonalBezier
                 .calculerPoint3D(u, v);
     }
 

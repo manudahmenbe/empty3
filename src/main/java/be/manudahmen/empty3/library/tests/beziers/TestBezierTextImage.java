@@ -10,7 +10,7 @@
 package be.manudahmen.empty3.library.tests.beziers;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.nurbs.SurfaceParametriquePolynomialeBezier;
+import be.manudahmen.empty3.core.nurbs.SurfaceParametricPolygonalBezier;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
@@ -31,7 +31,7 @@ public class TestBezierTextImage extends TestObjetSub {
             {P.n(-2, -2, 0), P.n(-2, -1, 0), P.n(-2, 0, 0), P.n(-2, 1, 0), P.n(-2, 2, 0)}
     };
     ImageTexture imgTexture;
-    private SurfaceParametriquePolynomialeBezier s = new SurfaceParametriquePolynomialeBezier(coeff);
+    private SurfaceParametricPolygonalBezier s = new SurfaceParametricPolygonalBezier(coeff);
 
     public TestBezierTextImage() {
     }

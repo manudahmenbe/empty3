@@ -12,10 +12,8 @@ package tests.beziers;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Point3D.P;
 import be.manudahmen.empty3.VideoTexture;
-import be.manudahmen.empty3.core.nurbs.SurfaceParametriquePolynomialeBezier;
+import be.manudahmen.empty3.core.nurbs.SurfaceParametricPolygonalBezier;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
-
-import java.io.File;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
@@ -30,7 +28,7 @@ public class TestBezierTextVideo extends TestObjetSub {
             {P.n(-2, -2, 0), P.n(-2, -1, 0), P.n(-2, 0, 0), P.n(-2, 1, 0), P.n(-2, 2, 0)}
     };
     VideoTexture videoTexture;
-    private SurfaceParametriquePolynomialeBezier s = new SurfaceParametriquePolynomialeBezier(coeff);
+    private SurfaceParametricPolygonalBezier s;
 
     public TestBezierTextVideo() {
     }
@@ -47,26 +45,20 @@ public class TestBezierTextVideo extends TestObjetSub {
         new Thread(tss).start();
     }
 
-    @Override
-    public void testScene(File f) throws Exception {
-    }
 
     @Override
     public void ginit() {
-        videoTexture = new VideoTexture("samples/mov/tannoir.mp4");
+        scene().cameraActive().setEye(Point3D.Z.mult(-6));
+        videoTexture = new VideoTexture(".\\samples\\mov\\tannoir1.mp4");
+        s = new SurfaceParametricPolygonalBezier(coeff);
+        s.setIncrU(0.01);
+        s.setIncrV(0.01);
         s.texture(videoTexture);
         scene().add(s);
-        scene().cameraActive().setEye(Point3D.Z.mult(-6));
     }
 
     @Override
     public void finit() {
         videoTexture.nextFrame();
     }
-
-    @Override
-    public void testScene() throws Exception {
-
-    }
-
 }
