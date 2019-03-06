@@ -49,7 +49,7 @@ public class TestBezierTextVideo extends TestObjetSub {
     @Override
     public void ginit() {
         scene().cameraActive().setEye(Point3D.Z.mult(-6));
-        videoTexture = new VideoTexture(".\\samples\\mov\\tannoir1.mp4");
+        videoTexture = new VideoTexture(".\\samples\\mov\\tannoir.mp4");
         s = new SurfaceParametricPolygonalBezier(coeff);
         s.setIncrU(0.01);
         s.setIncrV(0.01);

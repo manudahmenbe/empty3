@@ -362,10 +362,6 @@ public class VideoTexture extends ITexture {
 
         }
 
-        public boolean isProcesseeding() {
-            return verrou();
-        }
-
         private void mettreVerrou() {
             verrou = true;
 

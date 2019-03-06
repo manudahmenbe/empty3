@@ -653,7 +653,13 @@ public class ZBufferImpl implements ZBuffer {
                         Point.distance(p2.x, p2.y, p3.x, p3.y)),
                 Point.distance(p3.x, p3.y, p1.x, p1.y));
     }
-
+    private double maxDistance(Point p1, Point p2, Point p3, Point p4) {
+        return Math.max(Math.max(
+                Math.max(Point.distance(p1.x, p1.y, p2.x, p2.y),
+                        Point.distance(p2.x, p2.y, p3.x, p3.y)),
+                Point.distance(p3.x, p3.y, p1.x, p1.y)),
+                Point.distance(p4.x, p4.y, p1.x, p1.y));
+    }
     public void perspective() {
         type_perspective = PERSPECTIVE_OEIL;
     }
@@ -812,10 +818,7 @@ public class ZBufferImpl implements ZBuffer {
         }
     }
 
-    private double maxDistance(Point p1, Point p2, Point p3, Point p4) {
-        return Math.min(maxDistance(p1, p2, p3),
-                maxDistance(p3, p4, p1));
-    }
+
 
     public void tracerTriangle(Point3D pp1, Point3D pp2, Point3D pp3,
                                ITexture c) {
