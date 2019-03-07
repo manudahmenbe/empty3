@@ -290,7 +290,7 @@ public abstract class TestObjet implements Test, Runnable {
                 false);
     }
 
-    public abstract void finit();
+    public abstract void finit() throws Exception;
 
     public int frame() {
         return frame;
@@ -735,8 +735,14 @@ public abstract class TestObjet implements Test, Runnable {
                 }
                 pauseActive = false;
 
-                finit();
-
+                try {
+                    finit();
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                    reportException(ex);
+                }
                 if ((generate & GENERATE_OPENGL) > 0 && false) {
                     o.println("No OpenGL");
                 } else {

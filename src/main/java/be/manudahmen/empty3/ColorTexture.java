@@ -13,6 +13,7 @@
 package be.manudahmen.empty3;
 
 import java.awt.*;
+import java.awt.Color;
 
 /**
  * @author Manuel Dahmen

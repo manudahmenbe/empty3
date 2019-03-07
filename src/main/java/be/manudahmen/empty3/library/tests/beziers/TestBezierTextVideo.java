@@ -9,6 +9,7 @@
  */
 package be.manudahmen.empty3.library.tests.beziers;
 
+import be.manudahmen.empty3.EOFilmException;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Point3D.P;
 import be.manudahmen.empty3.VideoTexture;
@@ -61,7 +62,7 @@ public class TestBezierTextVideo extends TestObjetSub {
     }
 
     @Override
-    public void finit() {
+    public void finit() throws EOFilmException {
         videoTexture.nextFrame();
     }
 

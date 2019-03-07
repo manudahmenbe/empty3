@@ -4,6 +4,7 @@
 package be.manudahmen.empty3.library.tests.repereAssocieAUneCourbeEX;
 
 import be.manudahmen.empty3.Camera;
+import be.manudahmen.empty3.EOFilmException;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.VideoTexture;
 import be.manudahmen.empty3.core.sanorm.CameraInPath;
@@ -37,7 +38,7 @@ public class TestCameraEnMouvementCylindre extends TestObjet {
     }
 
     @Override
-    public void finit() {
+    public void finit() throws EOFilmException {
         cam.setTemps01(frame / 25.0 / 8);
         videoTexture.nextFrame();
     }

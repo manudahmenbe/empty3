@@ -282,6 +282,7 @@ public class ZBufferImpl implements ZBuffer {
                 interactionCourant = n;
                 // TODO Dessiner les bords
                 for (double i = n.getStartU(); i <= n.getEndU() - n.getIncrU(); i += n.getIncrU()) {
+                    System.out.println("(u,v) = ("+i+","+")");
                     for (double j = n.getStartU(); j <= n.getEndV() - n.getIncrV(); j += n.getIncrV()) {
                         double u = i;
                         double v = j;
@@ -324,11 +325,31 @@ public class ZBufferImpl implements ZBuffer {
                         draw(surfaceParametriquePolynomialeBezier, n);
 */
 
+/*
                         tracerQuad(n.calculerPoint3D(u, v),
                                 n.calculerPoint3D(u + n.getIncrU(), v),
                                 n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
                                 n.calculerPoint3D(u , v+n.getIncrV()),
                                 n.texture(), u, u+n.getIncrU(), v, v+n.getIncrV());
+*/
+
+
+                        line(n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u + n.getIncrU(), v),
+                                n.texture, u);
+                        line(
+                            n.calculerPoint3D(u + n.getIncrU(), v),
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture, v);
+                        line(
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                n.calculerPoint3D(u, v + n.getIncrV()),
+                                n.texture, u);
+                        line(
+                        n.calculerPoint3D(u, v + n.getIncrV()),
+                                n.calculerPoint3D(u, v),
+                                n.texture, v);
+
 
                         //
 //
@@ -380,8 +401,7 @@ public class ZBufferImpl implements ZBuffer {
                 interactionCourant = s;
                 Point3D pO = refObject == null ? camera(s.getOrigine()) : refObject.rotation(s.getOrigine());
                 Point3D pE = refObject == null ? camera(s.getExtremite()) : refObject.rotation(camera(s.getExtremite()));
-                ligne(pO, pE,
-                        s.texture());
+                line(pO, pE,s.texture(), 0);
             } else if (r instanceof BSpline) {
                 BSpline b = (BSpline) r;
                 interactionCourant = r;
@@ -403,7 +423,8 @@ public class ZBufferImpl implements ZBuffer {
                 for (double t = 0; t < 1.0; t += 1.0 / nt) {
                     try {
                         Point3D p1 = camera(b.calculerPoint3D(t));
-                        ligne(p0, p1, new ColorTexture(b.getColor()));
+                        line(p0, p1, b.texture(),
+                        t);
                         p0 = p1;
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -601,17 +622,17 @@ public class ZBufferImpl implements ZBuffer {
     /**
      * @param p1 premier point
      * @param p2 second point
-     * @param t  couleur de la ligne
+     * @param t  couleur de la line
      */
-    public void ligne(Point3D p1, Point3D p2, ITexture t) {
+    public void line(Point3D p1, Point3D p2, ITexture t, double u) {
         Point x1 = coordonneesPoint2D(p1);
         Point x2 = coordonneesPoint2D(p2);
         if (x1 == null || x2 == null) {
             return;
         }
         Point3D n = p1.moins(p2).norme1();
-        double itere = Math.max(Math.abs(x1.getX() - x2.getX()),
-                Math.abs(x1.getY() - x2.getY())) * 4;
+        double itere = Math.max(Math.abs(x1.getX() - x2.getX())+1,
+                Math.abs(x1.getY() - x2.getY())+1) * 4;
         for (int i = 0; i < itere; i++) {
             Point3D p = p1.mult(i / itere).plus(p2.mult(1 - i / itere));
             p.texture(t);
@@ -886,7 +907,13 @@ public class ZBufferImpl implements ZBuffer {
 
         public void applyTex() {
             if (tex instanceof VideoTexture) {
-                ((VideoTexture) tex).nextFrame();
+                try {
+                    ((VideoTexture) tex).nextFrame();
+                } catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                    return;
+                }
             }
             if (ime == null) {
                 ime = new ImageMap(la, ha);

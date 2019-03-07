@@ -34,7 +34,7 @@ public class Representable implements Serializable, Comparable {
     protected Barycentre bc = new Barycentre();
     protected Representable parent;
     protected Scene scene;
-    protected ITexture texture = orange_yellow;
+    protected ITexture texture = CFAST;
     private String id;
     private Painter painter = null;
     private int RENDERING_DEFAULT = 0;

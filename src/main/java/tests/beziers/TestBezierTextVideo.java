@@ -9,11 +9,15 @@
  */
 package tests.beziers;
 
+import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.EOFilmException;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Point3D.P;
 import be.manudahmen.empty3.VideoTexture;
 import be.manudahmen.empty3.core.nurbs.SurfaceParametricPolygonalBezier;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
+
+import java.awt.*;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
@@ -49,16 +53,17 @@ public class TestBezierTextVideo extends TestObjetSub {
     @Override
     public void ginit() {
         scene().cameraActive().setEye(Point3D.Z.mult(-6));
-        videoTexture = new VideoTexture(".\\samples\\mov\\tannoir.mp4");
         s = new SurfaceParametricPolygonalBezier(coeff);
         s.setIncrU(0.01);
         s.setIncrV(0.01);
-        s.texture(videoTexture);
+           // videoTexture = new VideoTexture(".\\samples\\mov\\tannoir.mp4");
+            //s.texture(videoTexture);
+        s.texture(new ColorTexture(Color.BLUE));
         scene().add(s);
     }
 
     @Override
-    public void finit() {
-        videoTexture.nextFrame();
+    public void finit()throws Exception {
+//        videoTexture.nextFrame();
     }
 }

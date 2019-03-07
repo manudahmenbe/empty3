@@ -186,13 +186,8 @@ public class VideoTexture extends ITexture {
 
 
 
-    public boolean nextFrame() {
-        try {
-            mtImage = new MapTextImage(vp.imageSuivante());
-        } catch (EOFilmException ex) {
-            Logger.getLogger(VideoTexture.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
+    public boolean nextFrame() throws EOFilmException {
+        mtImage = new MapTextImage(vp.imageSuivante());
         notSuivante = false;
         return true;
     }
@@ -272,7 +267,16 @@ public class VideoTexture extends ITexture {
 
         @Override
         public void finit() {
-            videoTexture.nextFrame();
+
+            try
+
+            {
+                videoTexture.nextFrame();
+            }
+            catch (EOFilmException ex)
+            {
+                ex.printStackTrace();
+            }
         }
 
     }

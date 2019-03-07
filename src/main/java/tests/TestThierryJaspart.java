@@ -61,7 +61,7 @@ public class TestThierryJaspart extends TestObjetSub {
 
 
     @Override
-    public void finit() {
+    public void finit() throws Exception {
         super.finit();
         scene().texture(new ColorTexture(Color.WHITE));
 

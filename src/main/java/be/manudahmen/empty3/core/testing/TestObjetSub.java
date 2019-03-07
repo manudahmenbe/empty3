@@ -18,7 +18,7 @@ public class TestObjetSub extends TestObjet {
 
     }
 
-    public void finit() {
+    public void finit() throws Exception {
 
     }
 

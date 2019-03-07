@@ -40,10 +40,13 @@ public class TestThierryJaspart extends TestObjetSub {
         scene().add(s);
         scene().cameraActive().setEye(Point3D.Z.mult(-6));
         try {
-            texture = new ImageTexture(ECBufferedImage.getFromFile(new File("C:\\Emptycanvas\\Images\\thierry-jaspart-disguised-as-a-girl-clara-gnagna-13-wordpress.png")));
+            texture = new ImageTexture(ECBufferedImage.getFromFile(
+                    new File("samples/img/thierry-jaspart-catch-a-moustache-saint-gilles-bruxelles-clara-gnagna-vintage-comic-strip-wrestling-duck-pom-pom-girl.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        s.setIncrU(0.1);
+        s.setIncrV(0.1);
         s.texture(texture);
     }
 
@@ -60,7 +63,7 @@ public class TestThierryJaspart extends TestObjetSub {
 
 
     @Override
-    public void finit() {
+    public void finit() throws Exception {
         super.finit();
         scene().texture(new ColorTexture(Color.WHITE));
 

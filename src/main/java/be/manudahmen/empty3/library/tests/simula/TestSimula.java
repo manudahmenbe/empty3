@@ -52,7 +52,7 @@ public class TestSimula extends TestObjetSub {
     Force force;
 
     @Override
-    public void finit() {
+    public void finit() throws Exception {
         super.finit();
         force.calculer();
 
