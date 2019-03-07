@@ -38,7 +38,7 @@ public class TestThierryJaspart extends TestObjetSub {
     public void ginit() {
         s.texture(texture);
         scene().add(s);
-        scene().cameraActive().setEye(Point3D.Z.mult(-6));
+        scene().cameraActive().setEye(Point3D.Z.mult(-20));
         try {
             texture = new ImageTexture(ECBufferedImage.getFromFile(
                     new File("samples/img/thierry-jaspart-catch-a-moustache-saint-gilles-bruxelles-clara-gnagna-vintage-comic-strip-wrestling-duck-pom-pom-girl.png")));

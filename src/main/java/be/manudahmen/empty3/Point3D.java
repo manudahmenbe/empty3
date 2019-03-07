@@ -391,7 +391,7 @@ public class Point3D extends Representable implements IMovable {
     @Override
     public void drawStructureDrawFast(ZBuffer z) {
 
-        z.testPoint(this, new Color(CFAST.getColorAt(0.5, 0.5)));
+        z.testDeep(this, new Color(CFAST.getColorAt(0.5, 0.5)));
 
     }
 

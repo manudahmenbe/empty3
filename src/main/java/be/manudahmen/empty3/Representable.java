@@ -38,7 +38,8 @@ public class Representable implements Serializable, Comparable {
     private String id;
     private Painter painter = null;
     private int RENDERING_DEFAULT = 0;
-    protected int renderingType = RENDERING_DEFAULT;
+    protected Render render = Render.getInstance(0,-1);
+
     public Representable() {
     }
 
@@ -211,13 +212,5 @@ public class Representable implements Serializable, Comparable {
             centreRot = c;
         }
 
-    }
-
-    public int getRenderingType() {
-        return renderingType;
-    }
-
-    public void setRenderingType(int renderingType) {
-        this.renderingType = renderingType;
     }
 }

@@ -37,15 +37,6 @@ public interface ZBuffer {
      */
     Camera camera();
 
-    /**
-     * Fixe une caméra dans la scène virtuelle L'appel est inutile si la
-     * cameraActive de la scène est définie.
-     *
-     * @param c
-     */
-    void camera(Camera c);
-
-    Point3D camera(Point3D p);
 
     /**
      * Coordonnées du point sur écran
@@ -60,10 +51,9 @@ public interface ZBuffer {
      * ???
      *
      * @param p
-     * @param zdistance
-     * @return
+      * @return
      */
-    Point3D coordonneesPoint3D(Point p, double zdistance);
+    Point3D coordonneesPoint3D(Point3D p);
 
     /**
      * *
@@ -108,14 +98,6 @@ public interface ZBuffer {
      */
     ZBuffer getInstance(int x, int y);
 
-    /**
-     * *
-     * Retourne l'objet situé en (x,y)
-     *
-     * @param p
-     * @return
-     */
-    Representable getObjectAt(Point p);
 
     /**
      * Retourne l'image, après dessin par draw
@@ -198,7 +180,7 @@ public interface ZBuffer {
      *
      * @param point3D point
      */
-    void testPoint(Point3D point3D);
+    void testDeep(Point3D point3D);
 
     /**
      * Dessine un point
@@ -206,8 +188,9 @@ public interface ZBuffer {
      * @param p point
      * @param c couleur
      */
-    void testPoint(Point3D p, Color c);
+    void testDeep(Point3D p, Color c);
 
+    void testDeep(Point3D p, int c);
     void tracerLumineux();
 
     /**
@@ -224,7 +207,7 @@ public interface ZBuffer {
      */
     void zoom(float z);
 
-    void backgroundTexture(ITexture tex);
+    ITexture backgroundTexture();
 
     int largeur();
 

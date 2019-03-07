@@ -13,6 +13,7 @@ import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.testing.TestObjet;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
+import tests.TestSphere.Trajectoires;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -69,7 +70,7 @@ public class TestSphereManuelDahmen extends TestObjetSub {
     @Override
     public void testScene() throws Exception {
 
-        scene().cameraActive().setEye(Matrix33.rot(90 / 360.0 * 2 * Math.PI, 0).mult(be.manudahmen.empty3.core.move.Trajectoires.sphere(0, 1.0 * frame() / 250, distance)));
+        scene().cameraActive().setEye(Trajectoires.sphere(Math.random()/2+0.5, 2.0 * frame() / getMaxFrames(), distance));
 
     }
 

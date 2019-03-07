@@ -22,7 +22,7 @@ public class PcOnPs extends Representable implements RepresentableType {
             Point3D p = pc.calculerPoint3D(t);
             Point3D point3D = ps.calculerPoint3D(p.get(0), p.get(1));
             point3D.texture(pc.texture());
-            zBuffer.testPoint(point3D);
+            zBuffer.testDeep(point3D);
         }
     }
 
