@@ -5,7 +5,7 @@
 package be.manudahmen.empty3.library.tests.neurone;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
@@ -59,13 +59,13 @@ public class NeuroneRun extends TestObjetSub {
             for (int y = 0; y < 10; y++) {
                 Point3D p0 = (Point3D) neurones[x * 10 + y].objet;
 
-                p0.texture(new ColorTexture(Color.WHITE));
+                p0.texture(new TextureCol(Color.WHITE));
 
                 O = O.plus(p0);
 
                 TRISphere s = new TRISphere(p0, 1);
 
-                s.texture(new ColorTexture(Color.WHITE));
+                s.texture(new TextureCol(Color.WHITE));
 
                 scene().add(s);
 

@@ -40,9 +40,9 @@ public class TestCoeur extends TestObjetSub {
     public void ginit() {
         coeur = new Coeur();
         try {
-            coeur.texture(new ImageTexture(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("be.manudahmen.empty3.library.tests.coeur.jpg")))));
+            coeur.texture(new TextureImg(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("be.manudahmen.empty3.library.tests.coeur.jpg")))));
         } catch (IOException ex) {
-            coeur.texture(new ColorTexture(Color.PINK));
+            coeur.texture(new TextureCol(Color.PINK));
             Logger.getLogger(TestCoeur.class.getName()).log(Level.SEVERE, null, ex);
         }
 

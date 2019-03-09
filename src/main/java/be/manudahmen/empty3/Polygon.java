@@ -36,7 +36,7 @@ public class Polygon extends Representable implements TRIGenerable, IMovable, IS
     }
 
     public Polygon(Color c) {
-        texture(new ColorTexture(c));
+        texture(new TextureCol(c));
     }
 
     public Polygon(ITexture c) {
@@ -44,7 +44,7 @@ public class Polygon extends Representable implements TRIGenerable, IMovable, IS
     }
 
     public Polygon(Point3D[] list, Color c) {
-        this(list, new ColorTexture(c));
+        this(list, new TextureCol(c));
     }
 
     public Polygon(Point3D[] list, ITexture c) {

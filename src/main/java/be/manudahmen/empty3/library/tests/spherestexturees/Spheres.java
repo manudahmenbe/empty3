@@ -5,7 +5,7 @@
 package be.manudahmen.empty3.library.tests.spherestexturees;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TColor;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
@@ -43,7 +43,7 @@ public class Spheres extends TestObjetSub {
         for (int i = 0; i < N; i++) {
             s[i] = new TRISphere(Point3D.O0, 0.1);
 
-            s[i].texture(new ColorTexture(Color.WHITE));
+            s[i].texture(new TextureCol(Color.WHITE));
 
             scene().add(s[i]);
 

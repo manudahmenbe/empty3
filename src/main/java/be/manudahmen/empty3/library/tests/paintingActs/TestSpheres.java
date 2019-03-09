@@ -1,6 +1,6 @@
 package be.manudahmen.empty3.library.tests.paintingActs;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.testing.TestObjet;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
@@ -25,7 +25,7 @@ public class TestSpheres extends TestObjetSub {
 
     public void ginit() {
         TRISphere sphere = new TRISphere(Point3D.O0, 10);
-        sphere.texture(new ColorTexture(Color.GREEN));
+        sphere.texture(new TextureCol(Color.GREEN));
         scene().add(sphere);
         sphere.setPaintingAct(getZ(), scene(), new SpheresPA());
     }

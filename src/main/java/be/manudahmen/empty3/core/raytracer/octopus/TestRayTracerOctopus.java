@@ -12,7 +12,7 @@
 
 package be.manudahmen.empty3.core.raytracer.octopus;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.raytracer.*;
 import be.manudahmen.empty3.core.tribase.TRISphere;
@@ -71,7 +71,7 @@ public class TestRayTracerOctopus extends RtRaytracer {
         myMaterial1 = new RtMatiere("myMaterial1", new RtColor(0.0f, 1.0f, 1.0f), new RtColor(0.7f, 1.0f, 0.7f), new RtColor(0.0f, 1.0f, 1.0f), new RtColor(1.0f, 1.0f, 1.0f), 1.0f, 1.0f);
 
         // On assigne les materiaux a nos objets
-        mySphere.texture(new ColorTexture(Color.GREEN));
+        mySphere.texture(new TextureCol(Color.GREEN));
         myPlane.setMaterial(myMaterial1);
 
         // On ajoute les

@@ -46,11 +46,11 @@ public class TestSpheres extends TestObjet {
             Axe axe = new Axe(Point3D.random(100), Point3D.random(100));
             spheres[i] = new Sphere(axe,
                     100);
-            spheres[i].texture(new ColorTexture(Color.ORANGE));
+            spheres[i].texture(new TextureCol(Color.ORANGE));
             spheres[i].setIncrU(.01);
             spheres[i].setIncrV(.01);
             try {
-                ImageTexture imageTexture = new ImageTexture(
+                TextureImg imageTexture = new TextureImg(
                         new ECBufferedImage(
                                 ImageIO.read(new File("./textures/herbe.jpg"))));
 

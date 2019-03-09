@@ -123,7 +123,7 @@ public class LumiereScene {/*
             synthese = new Color(f[0], f[1], f[2]);
         }
 
-        return new ColorTexture(synthese);
+        return new TextureCol(synthese);
     }
 
     private float[] synthese(float[] ratio, Color[] colors) {

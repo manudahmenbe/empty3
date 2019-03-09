@@ -1,7 +1,7 @@
 package be.manudahmen.empty3.library.tests.sablier;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point2D;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
@@ -27,7 +27,7 @@ public class TestSablier extends TestObjetSub {
     public void ginit() {
         this.setMaxFrames(1);
         Sablier s = new Sablier();
-        s.texture(new ColorTexture(Color.BLUE));
+        s.texture(new TextureCol(Color.BLUE));
         scene().add(s);
 
     }

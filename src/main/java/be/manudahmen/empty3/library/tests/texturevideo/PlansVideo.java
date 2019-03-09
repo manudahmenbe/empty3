@@ -2,7 +2,7 @@ package be.manudahmen.empty3.library.tests.texturevideo;
 
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.VideoTexture;
+import be.manudahmen.empty3.TextureMov;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.Plan3D;
 
@@ -62,12 +62,12 @@ public class PlansVideo extends TestObjetSub {
     @Override
     public void testScene() throws Exception {
 
-        VideoTexture tc1, tc2, tc3, tc4;
+        TextureMov tc1, tc2, tc3, tc4;
 
-        tc1 = new VideoTexture(avi1);
-        tc2 = new VideoTexture(avi2);
-        tc3 = new VideoTexture(avi3);
-        tc4 = new VideoTexture(avi4);
+        tc1 = new TextureMov(avi1);
+        tc2 = new TextureMov(avi2);
+        tc3 = new TextureMov(avi3);
+        tc4 = new TextureMov(avi4);
 
         Plan3D p1, p2, p3, p4;
 

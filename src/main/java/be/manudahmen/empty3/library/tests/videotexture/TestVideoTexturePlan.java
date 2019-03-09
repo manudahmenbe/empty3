@@ -11,7 +11,7 @@ package be.manudahmen.empty3.library.tests.videotexture;
 
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TRI;
-import be.manudahmen.empty3.VideoTexture;
+import be.manudahmen.empty3.TextureMov;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.Plan3D;
 
@@ -21,7 +21,7 @@ import be.manudahmen.empty3.core.tribase.Plan3D;
 public class TestVideoTexturePlan extends TestObjetSub {
     public String moviefilename;
     TRI tri = null;
-    VideoTexture videoTexture;
+    TextureMov textureMov;
 
     private TestVideoTexturePlan(String arg) {
         moviefilename = arg;
@@ -49,18 +49,18 @@ public class TestVideoTexturePlan extends TestObjetSub {
 
     @Override
     public void ginit() {
-        videoTexture = new VideoTexture(moviefilename);
+        textureMov = new TextureMov(moviefilename);
         Plan3D plan3d = new Plan3D();
         plan3d.pointOrigine(new Point3D(-100, -100, 0));
         plan3d.pointYExtremite(new Point3D(-100, 100, 0));
         plan3d.pointXExtremite(new Point3D(100, -100, 0));
-        plan3d.texture(videoTexture);
+        plan3d.texture(textureMov);
         scene().add(plan3d);
     }
 
     @Override
     public void testScene() throws Exception {
-        videoTexture.nextFrame();
+        textureMov.nextFrame();
     }
 
     @Override

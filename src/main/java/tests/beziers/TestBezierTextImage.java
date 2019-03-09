@@ -30,7 +30,7 @@ public class TestBezierTextImage extends TestObjetSub {
             {P.n(-1, -2, 0), P.n(-1, -1, 0), P.n(-1, 0, 0), P.n(-1, 1, 0), P.n(-1, 2, 0)},
             {P.n(-2, -2, 0), P.n(-2, -1, 0), P.n(-2, 0, 0), P.n(-2, 1, 0), P.n(-2, 2, 0)}
     };
-    ImageTexture imgTexture;
+    TextureImg imgTexture;
     private SurfaceParametricPolygonalBezier s = new SurfaceParametricPolygonalBezier(coeff);
 
     public TestBezierTextImage() {
@@ -52,10 +52,10 @@ public class TestBezierTextImage extends TestObjetSub {
     @Override
     public void ginit() {
         try {
-            imgTexture = new ImageTexture(ECBufferedImage.getFromFile(new File("C:\\Emptycanvas\\textures\\text1.jpg")));
+            imgTexture = new TextureImg(ECBufferedImage.getFromFile(new File("C:\\Emptycanvas\\textures\\text1.jpg")));
             s.texture(imgTexture);
         } catch (IOException ex) {
-            s.texture(new ColorTexture(Color.WHITE));
+            s.texture(new TextureCol(Color.WHITE));
             Logger.getLogger(TestBezierTextImage.class.getName()).log(Level.SEVERE, null, ex);
         }
         scene().add(s);

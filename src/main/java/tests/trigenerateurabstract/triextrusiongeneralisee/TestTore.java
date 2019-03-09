@@ -9,7 +9,7 @@
 
 package tests.trigenerateurabstract.triextrusiongeneralisee;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.*;
 
@@ -43,7 +43,7 @@ public class TestTore extends TestObjetSub {
         tri.setMaxX(100);
         tri.setMaxY(100);
 
-        tri.texture(new ColorTexture(Color.WHITE));
+        tri.texture(new TextureCol(Color.WHITE));
 
         scene().add(tri);
     }

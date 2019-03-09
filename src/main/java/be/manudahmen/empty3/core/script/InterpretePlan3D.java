@@ -17,7 +17,7 @@
  */
 package be.manudahmen.empty3.core.script;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.tribase.Plan3D;
 
@@ -68,7 +68,7 @@ public class InterpretePlan3D implements Interprete {
         is = new InterpreteTColor();
         is.setRepertoire(repertoire);
 
-        ColorTexture tc = (ColorTexture) is.interprete(text, pos);
+        TextureCol tc = (TextureCol) is.interprete(text, pos);
         plan.texture(tc);
         pos = is.getPosition();
 

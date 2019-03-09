@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 /**
  * @author manu
  */
-public class VideoTexture extends ITexture {
+public class TextureMov extends ITexture {
     public final int maxBuffSize = 25 * 60 * 700;
     private final Object e = null;
     MapTextImage mtImage;
@@ -45,16 +45,16 @@ public class VideoTexture extends ITexture {
      */
     private int mVideoStreamIndex = -1;
 
-    public VideoTexture() {
+    public TextureMov() {
 
     }
 
-    public VideoTexture(URL vid) {
+    public TextureMov(URL vid) {
         this(vid.toExternalForm());
 
     }
 
-    public VideoTexture(String filename) {
+    public TextureMov(String filename) {
         this.file = new File(filename);
 
         vp = new VideoPipe();
@@ -85,7 +85,7 @@ public class VideoTexture extends ITexture {
                         try {
                             Thread.sleep(100);
                         } catch (InterruptedException ex) {
-                            Logger.getLogger(VideoTexture.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(TextureMov.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 }
@@ -194,7 +194,7 @@ public class VideoTexture extends ITexture {
 
     @Override
     public void onVideoPicture(IVideoPictureEvent event) {
-        /*Logger.getLogger(VideoTexture.class.getName()).log(Level.INFO, ""
+        /*Logger.getLogger(TextureMov.class.getName()).log(Level.INFO, ""
          + "Class"+event.getClass()
          + "Image Class"+event.getImage().getClass()
          + "JavaData"+event.getJavaData()
@@ -206,13 +206,13 @@ public class VideoTexture extends ITexture {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
-                Logger.getLogger(VideoTexture.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TextureMov.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
         BufferedImage mtImage1 = event.getImage();
         if (mtImage1 != null) {
-            vp.add(new ECBufferedImage(convert(mtImage1, BufferedImage.TYPE_INT_ARGB)));
+            vp.add(new ECBufferedImage(convert(mtImage1, BufferedImage.TYPE_INT_RGB)));
             mtImage = new MapTextImage(mtImage1);
             notSuivante = true;
         }
@@ -248,12 +248,12 @@ public class VideoTexture extends ITexture {
     static class sTestObjet extends TestObjetSub {
 
         TRI tri = null;
-        VideoTexture videoTexture;
+        TextureMov textureMov;
 
         @Override
         public void ginit() {
-            videoTexture = new VideoTexture("F:\\Bibliothèque Portable\\Films\\Cinema anglais" + "\\" + "Sailor.Et.Lula.1990.FRENCH.BRRiP.XViD.AC3-HuSh.avi");
-            tri = new TRI(new Point3D[]{P.n(0, 0, 0), P.n(0, 1, 0), P.n(1, 1, 0)}, videoTexture);
+            textureMov = new TextureMov("F:\\Bibliothèque Portable\\Films\\Cinema anglais" + "\\" + "Sailor.Et.Lula.1990.FRENCH.BRRiP.XViD.AC3-HuSh.avi");
+            tri = new TRI(new Point3D[]{P.n(0, 0, 0), P.n(0, 1, 0), P.n(1, 1, 0)}, textureMov);
 
             scene().add(tri);
 
@@ -271,7 +271,7 @@ public class VideoTexture extends ITexture {
             try
 
             {
-                videoTexture.nextFrame();
+                textureMov.nextFrame();
             }
             catch (EOFilmException ex)
             {

@@ -416,7 +416,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                                         r.rotation(b.calculerPoint3D((i - 1 < 0 ? 0
                                                         : i - 1) * 1d / i1,
                                                 (j - 1 < 0 ? 0 : j - 1) * 1d
-                                                        / i2))}, new ColorTexture(
+                                                        / i2))}, new TextureCol(
                                 b.getColor(i1, i2, 1.0d * i / i1, 1.d
                                         * j / i2))), r);
                     }
@@ -530,7 +530,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     public ECBufferedImage image() {
         ECBufferedImage bi2 = new ECBufferedImage(la, ha,
-                ECBufferedImage.TYPE_INT_ARGB);
+                ECBufferedImage.TYPE_INT_RGB);
         for (int i = 0; i < la; i++) {
             for (int j = 0; j < ha; j++) {
                 int elementCouleur = ime.ime.getElementCouleur(i, j);
@@ -684,10 +684,10 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     }
 
     public void suivante() {
-        if(texture() instanceof VideoTexture)
+        if(texture() instanceof TextureMov)
         {
             try {
-                ((VideoTexture) texture()).nextFrame();
+                ((TextureMov) texture()).nextFrame();
             } catch (EOFilmException e) {
                 e.printStackTrace();
             }
@@ -781,7 +781,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         p1 = coordonneesPoint2D(pp1);
         p2 = coordonneesPoint2D(pp2);
         p3 = coordonneesPoint2D(pp3);
-        p4 = coordonneesPoint2D(pp3);
+        p4 = coordonneesPoint2D(pp4);
 
         TRI triBas = new TRI(pp1, pp2, pp3, texture);
         if (p1 == null || p2 == null || p3 == null) {
@@ -864,7 +864,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     }
 
         public void applyTex() {
-            if (texture instanceof VideoTexture) {
+            if (texture instanceof TextureMov) {
                 for (int i = 0; i < la; i++) {
                     for (int j = 0; j < ha; j++) {
                         ime.ime.setElementCouleur(

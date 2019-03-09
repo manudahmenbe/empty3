@@ -20,7 +20,7 @@
  */
 package be.manudahmen.empty3.core.script;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.SegmentDroite;
 
@@ -96,7 +96,7 @@ public class InterpreteSegment implements Interprete {
         this.pos = pos;
 
         SegmentDroite sd = new SegmentDroite(p1, p2);
-        sd.texture(new ColorTexture(c));
+        sd.texture(new TextureCol(c));
 
         return sd;
     }

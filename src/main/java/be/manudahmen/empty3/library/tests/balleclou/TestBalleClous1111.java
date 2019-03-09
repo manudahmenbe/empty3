@@ -14,13 +14,13 @@ public class TestBalleClous1111 extends TestObjetSub {
     public int MAXFRAMES = 2000;
 
     public int N = 3;
-    private ITexture tc = new ColorTexture(Color.red);
+    private ITexture tc = new TextureCol(Color.red);
     private BalleClous2 ballec;
     private Point3D[][] s;
     private Point3D[][] v;
     private double V = 0.03;
     private double D = 1;
-    private VideoTexture videoTexture;
+    private TextureMov textureMov;
     private BalleClous2[] balles = new BalleClous2[N];
     private int nBalles = 5;
 
@@ -59,13 +59,13 @@ public class TestBalleClous1111 extends TestObjetSub {
             for (int i = 0; i < N; i++) {
                 s[b][i] = new Point3D(Point3D.O0);
 
-                s[b][i].texture(new ColorTexture(Colors.random()));
+                s[b][i].texture(new TextureCol(Colors.random()));
 
                 v[b][i] = new Point3D(Math.random() * (V / 2 - V), Math.random() * (V / 2 - V), Math.random() * (V / 2 - V));
 
             }
             tc =
-                    new ColorTexture(
+                    new TextureCol(
                             Colors.random());
 
 
@@ -77,10 +77,10 @@ public class TestBalleClous1111 extends TestObjetSub {
             ballec = new BalleClous2(Point3D.random2(5), 1);
 
             balles[i] = ballec;
-            ballec.texture(new ColorTexture(Colors.random()));
-            //videoTexture = new VideoTexture("C:\\Emptycanvas\\Resources\\BigFloEtOlie.mp4");
-            //videoTexture.setTransparent(Color.BLACK);
-            //ballec.texture(videoTexture);
+            ballec.texture(new TextureCol(Colors.random()));
+            //textureMov = new TextureMov("C:\\Emptycanvas\\Resources\\BigFloEtOlie.mp4");
+            //textureMov.setTransparent(Color.BLACK);
+            //ballec.texture(textureMov);
             scene().add(ballec);
 
 
@@ -162,7 +162,7 @@ public class TestBalleClous1111 extends TestObjetSub {
 
     @Override
     public void finit() {
-      /*  if (!videoTexture.nextFrame()) {
+      /*  if (!textureMov.nextFrame()) {
             this.STOP();
         }
     */

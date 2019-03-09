@@ -20,7 +20,7 @@ import be.manudahmen.empty3.core.tribase.TRIBezier2D;
 class TestVideoTextureB2 extends TestObjetSub {
     public String moviefilename;
     TRI tri = null;
-    VideoTexture videoTexture;
+    TextureMov textureMov;
 
     private TestVideoTextureB2(String arg) {
         moviefilename = arg;
@@ -46,7 +46,7 @@ class TestVideoTextureB2 extends TestObjetSub {
 
     @Override
     public void ginit() {
-        videoTexture = new VideoTexture(moviefilename);
+        textureMov = new TextureMov(moviefilename);
         Point3D[][] controle = new Point3D[][]
                 {
                         {P.n(-100, -100, 0), P.n(-100, -33, 0), P.n(-100, 33, 0), P.n(-100, 100, 0)},
@@ -61,7 +61,7 @@ class TestVideoTextureB2 extends TestObjetSub {
 
     @Override
     public void testScene() throws Exception {
-        videoTexture.nextFrame();
+        textureMov.nextFrame();
     }
 
     @Override

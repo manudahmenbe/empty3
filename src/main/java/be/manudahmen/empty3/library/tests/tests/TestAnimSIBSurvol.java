@@ -77,7 +77,7 @@ public class TestAnimSIBSurvol extends TestObjetSub {
             super.ginit();
 
             ts = new TRISphere(new Point3D(0, 0, 0), 100);
-            ts.texture(new ImageTexture(new ECBufferedImage(ImageIO.read(new File(
+            ts.texture(new TextureImg(new ECBufferedImage(ImageIO.read(new File(
                     "C:\\Emptycanvas\\textures\\be.manudahmen.empty3.library.tests.spirale.jpg")))));
             scene().add(ts);
         } catch (IOException ex) {

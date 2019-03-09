@@ -13,7 +13,7 @@ public class TestBalleClous11 extends TestObjetSub {
 
     public int MAXFRAMES = 2000;
     public int N = 2;
-    private ColorTexture tc = new ColorTexture(Color.red);
+    private TextureCol tc = new TextureCol(Color.red);
     private BalleClous ballec;
     private Point3D[] s;
     private Point3D[] v;
@@ -54,7 +54,7 @@ public class TestBalleClous11 extends TestObjetSub {
 
         }
         tc
-                = new ColorTexture(
+                = new TextureCol(
                 Color.YELLOW);
 
         ballec = new BalleClous(Point3D.O0, 50);
@@ -62,7 +62,7 @@ public class TestBalleClous11 extends TestObjetSub {
         ballec.param(0.03);
 
         tc
-                = new ColorTexture(
+                = new TextureCol(
                 Color.PINK);
 
         ballec.texture(tc);

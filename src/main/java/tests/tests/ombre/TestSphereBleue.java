@@ -41,9 +41,9 @@ public class TestSphereBleue extends TestObjetSub {
             triSphere.setMaxX(100);
             triSphere.setMaxY(100);
         }
-        sphere.texture(new ColorTexture(Color.BLUE));
-        sphereI.texture(new ColorTexture(Color.GREEN));
-        sphereL.texture(new ColorTexture(Color.YELLOW));
+        sphere.texture(new TextureCol(Color.BLUE));
+        sphereI.texture(new TextureCol(Color.GREEN));
+        sphereL.texture(new TextureCol(Color.YELLOW));
         scene().add(sphere);
         scene().add(sphereI);
         scene().add(sphereL);

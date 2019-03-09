@@ -9,7 +9,7 @@
 
 package tests.nurbs;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.SegmentDroite;
 import be.manudahmen.empty3.core.nurbs.NurbsCurve;
@@ -62,9 +62,9 @@ public class TestNurbsCurve extends TestObjetSub {
         scene().cameraActive().setEye(Point3D.Z.mult(-5));
 
 
-        scene().add(new SegmentDroite(Point3D.O0, Point3D.X, new ColorTexture(Color.RED)));
-        scene().add(new SegmentDroite(Point3D.O0, Point3D.Y, new ColorTexture(Color.GREEN)));
-        scene().add(new SegmentDroite(Point3D.O0, Point3D.Z, new ColorTexture(Color.BLUE)));
+        scene().add(new SegmentDroite(Point3D.O0, Point3D.X, new TextureCol(Color.RED)));
+        scene().add(new SegmentDroite(Point3D.O0, Point3D.Y, new TextureCol(Color.GREEN)));
+        scene().add(new SegmentDroite(Point3D.O0, Point3D.Z, new TextureCol(Color.BLUE)));
     }
 
     @Override

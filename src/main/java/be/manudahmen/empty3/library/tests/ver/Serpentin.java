@@ -39,9 +39,9 @@ public class Serpentin extends TestObjetSub {
     @Override
     public void ginit() {
         try {
-            itext = new ImageTexture(ECBufferedImage.getFromFile(new File("c:\\Emptycanvas\\textures\\text1.jpg")));
+            itext = new TextureImg(ECBufferedImage.getFromFile(new File("c:\\Emptycanvas\\textures\\text1.jpg")));
         } catch (IOException ex) {
-            itext = new ColorTexture(Color.BLUE);
+            itext = new TextureCol(Color.BLUE);
         }
 
         LumierePonctuelle lumierePonctuelle = new LumierePonctuelle(Point3D.X, Color.RED);

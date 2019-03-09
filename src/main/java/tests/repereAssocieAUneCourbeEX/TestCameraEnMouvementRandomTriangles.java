@@ -6,7 +6,7 @@ package tests.repereAssocieAUneCourbeEX;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.EOFilmException;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.VideoTexture;
+import be.manudahmen.empty3.TextureMov;
 import be.manudahmen.empty3.core.sanorm.CameraInPath;
 import be.manudahmen.empty3.core.testing.TestObjet;
 import be.manudahmen.empty3.core.tribase.TRIObjetGenerateurAbstract;
@@ -18,7 +18,7 @@ import java.awt.*;
  */
 public class TestCameraEnMouvementRandomTriangles extends TestObjet {
 
-    VideoTexture videoTexture;
+    TextureMov textureMov;
     private CameraInPath cam;
     private TRIObjetGenerateurAbstract e;
 
@@ -39,7 +39,7 @@ public class TestCameraEnMouvementRandomTriangles extends TestObjet {
     @Override
     public void finit() throws EOFilmException {
         cam.setTemps01(frame / 25.0 / 8);
-        if (!videoTexture.nextFrame()) {
+        if (!textureMov.nextFrame()) {
             this.STOP();
         }
     }
@@ -51,9 +51,9 @@ public class TestCameraEnMouvementRandomTriangles extends TestObjet {
         cam = new CameraInPath(cc);
 
         e = new tests.repereAssocieAUneCourbeEX.TRITRINuage(20.0, 10.0, 10.0, 1.0, 0.4);
-        videoTexture = new VideoTexture("C:\\Users\\manue\\Videos\\Beautifull.mp4");
-        videoTexture.setTransparent(Color.BLACK);
-        e.texture(videoTexture);
+        textureMov = new TextureMov("C:\\Users\\manue\\Videos\\Beautifull.mp4");
+        textureMov.setTransparent(Color.BLACK);
+        e.texture(textureMov);
 
         e.setMaxX(40);
         e.setMaxY(40);

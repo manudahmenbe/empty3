@@ -6,7 +6,7 @@ package tests.repereAssocieAUneCourbeEX;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.EOFilmException;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.VideoTexture;
+import be.manudahmen.empty3.TextureMov;
 import be.manudahmen.empty3.core.sanorm.CameraInPath;
 import be.manudahmen.empty3.core.testing.TestObjet;
 import be.manudahmen.empty3.core.tribase.TRIEllipsoide;
@@ -18,7 +18,7 @@ import java.awt.*;
  */
 public class TestCameraEnMouvement extends TestObjet {
 
-    VideoTexture videoTexture;
+    TextureMov textureMov;
     private CameraInPath cam;
     private TRIEllipsoide e;
 
@@ -39,7 +39,7 @@ public class TestCameraEnMouvement extends TestObjet {
     @Override
     public void finit() throws EOFilmException {
         cam.setTemps01(frame / 25.0 / 8);
-        videoTexture.nextFrame();
+        textureMov.nextFrame();
     }
 
     @Override
@@ -49,9 +49,9 @@ public class TestCameraEnMouvement extends TestObjet {
         cam = new CameraInPath(cc);
 
         e = new TRIEllipsoide(Point3D.O0, 20, 10, 10);
-        videoTexture = new VideoTexture("../../../Videos/animal2.mp4");
-        videoTexture.setTransparent(Color.BLACK);
-        e.texture(videoTexture);
+        textureMov = new TextureMov("../../../Videos/animal2.mp4");
+        textureMov.setTransparent(Color.BLACK);
+        e.texture(textureMov);
 
         e.setMaxX(40);
         e.setMaxY(40);

@@ -1,6 +1,6 @@
 package be.manudahmen.empty3.library.tests.courbes_bsplines;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.gdximports.gdx_BSplineCurve;
 import be.manudahmen.empty3.core.testing.TestObjet;
@@ -40,14 +40,14 @@ public class TestGDXBSpline1 extends TestObjet {
 
         b.instantiate(TestsBSpline.p2(frame()), 6);
 
-        b.texture(new ColorTexture(Color.WHITE));
+        b.texture(new TextureCol(Color.WHITE));
 
         t.curve(b);
 
         t.nbrAnneaux((int) (1 / INCR_PRECISION));
         t.diam(1);
         t.nbrRotations(10);
-        t.texture(new ColorTexture(Color.WHITE));
+        t.texture(new TextureCol(Color.WHITE));
 
         scene().add(t);
 

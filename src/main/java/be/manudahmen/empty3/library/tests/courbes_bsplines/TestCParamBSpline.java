@@ -6,7 +6,7 @@
 package be.manudahmen.empty3.library.tests.courbes_bsplines;
 
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.nurbs.CourbeParametriqueBSpline;
 import be.manudahmen.empty3.core.testing.TestObjet;
@@ -47,7 +47,7 @@ public class TestCParamBSpline extends TestObjet {
 
         b = new CourbeParametriqueBSpline(TestsBSpline.u(frame() + 1), TestsBSpline.p(frame()), 5);
 
-        b.texture(new ColorTexture(Color.WHITE));
+        b.texture(new TextureCol(Color.WHITE));
         scene().add(b);
 
         scene.cameraActive().setEye(Point3D.Z.mult(-2 * frame() - 2));

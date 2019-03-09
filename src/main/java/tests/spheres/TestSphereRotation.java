@@ -13,7 +13,7 @@
 package tests.spheres;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Cube;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
@@ -47,8 +47,8 @@ public class TestSphereRotation extends TestObjetSub {
         ts.setMaxY(400);
         Cube c = new Cube(0.7, Point3D.O0);
 
-        ts.texture(new ColorTexture(Color.RED));
-        c.texture(new ColorTexture(Color.BLUE));
+        ts.texture(new TextureCol(Color.RED));
+        c.texture(new TextureCol(Color.BLUE));
 
 
         scene().add(ts);

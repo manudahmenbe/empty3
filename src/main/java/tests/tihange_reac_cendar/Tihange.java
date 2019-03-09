@@ -1,6 +1,6 @@
 package tests.tihange_reac_cendar;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.ITexture;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.RepresentableConteneur;
@@ -17,12 +17,12 @@ public class Tihange extends RepresentableConteneur {
 
         clear();
 
-        ITexture texture1 = new ColorTexture(Color.RED);
-        ITexture texture2 = new ColorTexture(Color.GREEN);
-        ITexture texture3 = new ColorTexture(Color.BLUE);
-        ITexture texture4 = new ColorTexture(Color.MAGENTA);
-        ITexture texture5 = new ColorTexture(Color.CYAN);
-        ITexture texture6 = new ColorTexture(Color.YELLOW);
+        ITexture texture1 = new TextureCol(Color.RED);
+        ITexture texture2 = new TextureCol(Color.GREEN);
+        ITexture texture3 = new TextureCol(Color.BLUE);
+        ITexture texture4 = new TextureCol(Color.MAGENTA);
+        ITexture texture5 = new TextureCol(Color.CYAN);
+        ITexture texture6 = new TextureCol(Color.YELLOW);
 
 
         // Paroi extérieure haut

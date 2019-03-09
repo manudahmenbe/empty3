@@ -1,7 +1,7 @@
 package tests;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 import be.manudahmen.empty3.core.testing.TestObjet;
@@ -51,7 +51,7 @@ public class TriTest extends TestObjet {
     @Override
     public void ginit() {
         f = new Forme();
-        f.texture(new ColorTexture(Color.BLUE));
+        f.texture(new TextureCol(Color.BLUE));
         scene().add(f);
     }
 

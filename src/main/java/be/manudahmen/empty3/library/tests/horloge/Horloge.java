@@ -105,44 +105,44 @@ public class Horloge extends JFrame {
                 .mult(80), 10);
         TRISphere sG9 = new TRISphere(position(f * 9.0 / 12)
                 .mult(80), 10);
-        sG0.texture(new ColorTexture(Color.GREEN));
-        sG3.texture(new ColorTexture(Color.GREEN));
-        sG6.texture(new ColorTexture(Color.GREEN));
-        sG9.texture(new ColorTexture(Color.GREEN));
-        s0.texture(new ColorTexture(Color.WHITE));
-        sH.texture(new ColorTexture(Color.MAGENTA));
-        sM.texture(new ColorTexture(Color.BLUE));
-        sS.texture(new ColorTexture(Color.RED));
+        sG0.texture(new TextureCol(Color.GREEN));
+        sG3.texture(new TextureCol(Color.GREEN));
+        sG6.texture(new TextureCol(Color.GREEN));
+        sG9.texture(new TextureCol(Color.GREEN));
+        s0.texture(new TextureCol(Color.WHITE));
+        sH.texture(new TextureCol(Color.MAGENTA));
+        sM.texture(new TextureCol(Color.BLUE));
+        sS.texture(new TextureCol(Color.RED));
         try {
             s0.texture(
-                    new ImageTexture(
+                    new TextureImg(
                             new ECBufferedImage(
                                     ImageIO.read(new File("c:\\Emptycanvas\\textures\\troisbandes.jpg")))));
             sH.texture(
-                    new ImageTexture(
+                    new TextureImg(
                             new ECBufferedImage(
                                     ImageIO.read(new File("c:\\Emptycanvas\\textures\\moi1.jpg")))));
             sM.texture(
-                    new ImageTexture(
+                    new TextureImg(
                             new ECBufferedImage(
                                     ImageIO.read(new File("c:\\Emptycanvas\\textures\\be.manudahmen.empty3.library.tests.spheres.jpg")))));
             sS.texture(
-                    new ImageTexture(
+                    new TextureImg(
                             new ECBufferedImage(
                                     ImageIO.read(new File("c:\\Emptycanvas\\textures\\paillettes.jpg")))));
 
         } catch (Exception ex) {
-            s0.texture(new ColorTexture(Color.RED));
-            sH.texture(new ColorTexture(Color.GREEN));
-            sM.texture(new ColorTexture(Color.BLUE));
-            sS.texture(new ColorTexture(Color.YELLOW));
+            s0.texture(new TextureCol(Color.RED));
+            sH.texture(new TextureCol(Color.GREEN));
+            sM.texture(new TextureCol(Color.BLUE));
+            sS.texture(new TextureCol(Color.YELLOW));
             Logger.getLogger(Horloge.class.getName()).log(Level.SEVERE, "Fichiers textures absents", ex);
         }
 
         for (int i = 0; i < 12; i++) {
             TRISphere sGm = new TRISphere(position(f * i / 12)
                     .mult(80), 6);
-            sGm.texture(new ColorTexture(Color.BLUE));
+            sGm.texture(new TextureCol(Color.BLUE));
             sc.add(sGm);
         }
         sc.add(s0);
@@ -155,12 +155,12 @@ public class Horloge extends JFrame {
         sc.add(sG9);
         droite0 = new SegmentDroite(
                 position(f * d.getHours() / 12).mult(60),
-                Point3D.O0, new ColorTexture(Color.GREEN));
+                Point3D.O0, new TextureCol(Color.GREEN));
         droite1 = new SegmentDroite(position(f * d.getHours() / 12).mult(60),
-                Point3D.O0, new ColorTexture(Color.BLUE));
+                Point3D.O0, new TextureCol(Color.BLUE));
         droite2 = new SegmentDroite(
                 position(f * d.getHours() / 12).mult(60),
-                Point3D.O0, new ColorTexture(Color.RED));
+                Point3D.O0, new TextureCol(Color.RED));
         sc.add(droite0);
         sc.add(droite1);
         sc.add(droite2);
@@ -216,7 +216,7 @@ public class Horloge extends JFrame {
                     this.getHeight());
             time();
             z.suivante();
-            z.couleurDeFond(new ColorTexture(Color.WHITE));
+            z.couleurDeFond(new TextureCol(Color.WHITE));
             z.scene(sc);
             z.draw();
 

@@ -52,7 +52,7 @@ public class TestSphereManuelDahmen extends TestObjetSub {
         //tp.setRotation(tp.new Rotation(new Matrix33(new Point3D[] {Point3D.Z, Point3D.X, Point3D.Y}), Point3D.O0));
 
         try {
-            ImageTexture imageTexture = new ImageTexture(new ECBufferedImage(ImageIO.read(this.getClass().getResourceAsStream("map2.png"))));
+            TextureImg imageTexture = new TextureImg(new ECBufferedImage(ImageIO.read(this.getClass().getResourceAsStream("map2.png"))));
             imageTexture.setColorMask(ITexture.COLOR_MIROR_XY);
             tp.texture(imageTexture);
         } catch (IOException ex) {

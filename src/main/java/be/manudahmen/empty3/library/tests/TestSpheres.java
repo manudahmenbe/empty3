@@ -1,7 +1,7 @@
 package be.manudahmen.empty3.library.tests;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.lighting.Colors;
 import be.manudahmen.empty3.core.testing.TestObjet;
@@ -77,7 +77,7 @@ public class TestSpheres extends TestObjet {
         int i = 0;
         for (i = 0; i < NUMBER; i++) {
             arraySp[i] = new TRISphere(Point3D.random2(RMax), Math.random() * RMax);
-            arraySp[i].texture(new ColorTexture(Colors.random()));
+            arraySp[i].texture(new TextureCol(Colors.random()));
             scene().add(arraySp[i]);
         }
         scene().cameraActive(new Camera(triSphereCamEye.getCentre(), triSphereCamLookAt.getCentre()));

@@ -5,7 +5,7 @@
  */
 package be.manudahmen.empty3.library.tests.courbes_bsplines;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.nurbs.BSplineCurve;
 import be.manudahmen.empty3.core.testing.TestObjet;
@@ -52,7 +52,7 @@ public class TestBSplineCurve extends TestObjet {
     public void ginit() {
         b = new BSplineCurve();
         //TestsBSpline.u(), TestsBSpline.p(), 4);
-        b.texture(new ColorTexture(Color.WHITE));
+        b.texture(new TextureCol(Color.WHITE));
     }
 
     @Override

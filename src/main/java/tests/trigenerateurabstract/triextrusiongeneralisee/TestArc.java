@@ -11,7 +11,7 @@ package tests.trigenerateurabstract.triextrusiongeneralisee;
 
 import be.manudahmen.empty3.BezierCubique;
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.CheminBezier;
@@ -37,7 +37,7 @@ public class TestArc extends TestObjetSub {
     @Override
     public void ginit() {
         eg = new TRIExtrusionGeneralisee();
-        //CheminDroite cd = new CheminDroite(new SegmentDroite(Point3D.X, Point3D.Y, new ColorTexture(Color.WHITE)));
+        //CheminDroite cd = new CheminDroite(new SegmentDroite(Point3D.X, Point3D.Y, new TextureCol(Color.WHITE)));
         BezierCubique bezierCubique = new BezierCubique();
         bezierCubique.add(Point3D.O0);
         bezierCubique.add(Point3D.X);
@@ -53,7 +53,7 @@ public class TestArc extends TestObjetSub {
 
         eg.setMaxY(100);
 
-        eg.texture(new ColorTexture(Color.WHITE));
+        eg.texture(new TextureCol(Color.WHITE));
 
         this.description = "Cylindre ";
     }

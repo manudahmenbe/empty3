@@ -1,7 +1,7 @@
 package be.manudahmen.empty3.library.tests.anneaux;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.move.Trajectoires;
 import be.manudahmen.empty3.core.nurbs.CourbeParametriquePolynomialeBezier;
@@ -54,7 +54,7 @@ public class TestAnneau extends TestObjet {
         courbeParametriquePolynomialeBezier = new CourbeParametriquePolynomialeBezier(this.point3DS.toArray(ds));
         scene().add(courbeParametriquePolynomialeBezier);
 
-        courbeParametriquePolynomialeBezier.texture(new ColorTexture(Color.BLUE));
+        courbeParametriquePolynomialeBezier.texture(new TextureCol(Color.BLUE));
         courbeParametriquePolynomialeBezier.incr = 0.0001;
         camera(new Camera(Point3D.Z.mult(3), Point3D.O0));
     }

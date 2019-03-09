@@ -6,7 +6,7 @@ package be.manudahmen.empty3.library.tests.repereAssocieAUneCourbeEX;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.EOFilmException;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.VideoTexture;
+import be.manudahmen.empty3.TextureMov;
 import be.manudahmen.empty3.core.sanorm.CameraInPath;
 import be.manudahmen.empty3.core.testing.TestObjet;
 import be.manudahmen.empty3.core.tribase.TRICylindre;
@@ -19,7 +19,7 @@ import java.awt.*;
  */
 public class TestCameraEnMouvementCylindre extends TestObjet {
 
-    VideoTexture videoTexture;
+    TextureMov textureMov;
     private CameraInPath cam;
     private TRICylindre e;
 
@@ -40,7 +40,7 @@ public class TestCameraEnMouvementCylindre extends TestObjet {
     @Override
     public void finit() throws EOFilmException {
         cam.setTemps01(frame / 25.0 / 8);
-        videoTexture.nextFrame();
+        textureMov.nextFrame();
     }
 
     @Override
@@ -50,9 +50,9 @@ public class TestCameraEnMouvementCylindre extends TestObjet {
         cam = new CameraInPath(cc);
 
         e = new TRICylindre(10, 20);
-        videoTexture = new VideoTexture("C:\\Users\\Win\\Videos\\MOV0007A.AVI");
-        videoTexture.setTransparent(Color.BLACK);
-        e.texture(videoTexture);
+        textureMov = new TextureMov("C:\\Users\\Win\\Videos\\MOV0007A.AVI");
+        textureMov.setTransparent(Color.BLACK);
+        e.texture(textureMov);
 
         e.setMaxX(40);
         e.setMaxY(40);

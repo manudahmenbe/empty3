@@ -50,7 +50,7 @@ public class SphereCube12 extends TestObjetSub {
         c = new Cube(d / 10, Point3D.O0);
 
 
-        c.texture(new ColorTexture(Color.BLUE));
+        c.texture(new TextureCol(Color.BLUE));
 
         s = new TRISphere(Point3D.X.mult(t0), d / 10);
 

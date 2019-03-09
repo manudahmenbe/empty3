@@ -9,10 +9,10 @@ import java.awt.*;
 
 public class TestSimula extends TestObjetSub {
     private int N = 10;
-    private ITexture tc = new ColorTexture(Color.red);
+    private ITexture tc = new TextureCol(Color.red);
     private double V = 0.03;
     private double D = 1;
-    private VideoTexture videoTexture;
+    private TextureMov textureMov;
     private Point3D[] positions = new Point3D[N * N * N];
     private Point3D[] s;
     private Point3D[] v = new Point3D[N * N * N];
@@ -65,7 +65,7 @@ public class TestSimula extends TestObjetSub {
         for (int i = 0; i < N * N * N; i++) {
             Point3D p = billes[i].position;
 
-            p.texture(new ColorTexture(billes[i].color));
+            p.texture(new TextureCol(billes[i].color));
 
             scene().add(p);
 

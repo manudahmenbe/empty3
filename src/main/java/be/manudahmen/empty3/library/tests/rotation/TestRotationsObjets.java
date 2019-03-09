@@ -32,7 +32,7 @@ public class TestRotationsObjets extends TestObjetSub {
     double dim = 100;
     int maxx = 100;
     int maxy = 100;
-    ImageTexture imageTexture;
+    TextureImg imageTexture;
     private double globalTimeMillis = 1000;
     private String label;
     private int actionCourante;
@@ -54,7 +54,7 @@ public class TestRotationsObjets extends TestObjetSub {
         System.out.println("Nombre de secondes de la vidéo par objet : " + globalTimeMillis / 1000.0 / nObjets);
         System.out.println("Nombre de secondes de la vidéo par action : " + globalTimeMillis / 1000.0 / nObjets / rotationsParObjets);
         try {
-            imageTexture = new ImageTexture(new ECBufferedImage(ImageIO.read(this.getClass().getResourceAsStream("map2.png"))));
+            imageTexture = new TextureImg(new ECBufferedImage(ImageIO.read(this.getClass().getResourceAsStream("map2.png"))));
         } catch (IOException e) {
             e.printStackTrace();
             System.err.print("Fichier non trouvé : texture. Choisir une autre texture ou retrouveer le fichier\nOu rrecompiler si fichier ressource");
@@ -92,7 +92,7 @@ public class TestRotationsObjets extends TestObjetSub {
     protected Representable initObjet(int no) {
         switch (no) {
             case 0:
-                representable = new SegmentDroite(Point3D.Y.mult(-dim), Point3D.Y.mult(dim), new ColorTexture(Color.BLACK));
+                representable = new SegmentDroite(Point3D.Y.mult(-dim), Point3D.Y.mult(dim), new TextureCol(Color.BLACK));
 
                 scene().add(representable);
 

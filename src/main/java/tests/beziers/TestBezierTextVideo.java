@@ -9,11 +9,11 @@
  */
 package tests.beziers;
 
-import be.manudahmen.empty3.ColorTexture;
 import be.manudahmen.empty3.EOFilmException;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Point3D.P;
-import be.manudahmen.empty3.VideoTexture;
+import be.manudahmen.empty3.TextureMov;
 import be.manudahmen.empty3.core.nurbs.SurfaceParametricPolygonalBezier;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 
@@ -31,7 +31,7 @@ public class TestBezierTextVideo extends TestObjetSub {
             {P.n(-1, -2, 0), P.n(-1, -1, 0), P.n(-1, 0, 0), P.n(-1, 1, 0), P.n(-1, 2, 0)},
             {P.n(-2, -2, 0), P.n(-2, -1, 0), P.n(-2, 0, 0), P.n(-2, 1, 0), P.n(-2, 2, 0)}
     };
-    VideoTexture videoTexture;
+    TextureMov textureMov;
     private SurfaceParametricPolygonalBezier s;
 
     public TestBezierTextVideo() {
@@ -56,14 +56,14 @@ public class TestBezierTextVideo extends TestObjetSub {
         s = new SurfaceParametricPolygonalBezier(coeff);
         s.setIncrU(0.01);
         s.setIncrV(0.01);
-           // videoTexture = new VideoTexture(".\\samples\\mov\\tannoir.mp4");
-            //s.texture(videoTexture);
-        s.texture(new ColorTexture(Color.BLUE));
+        textureMov = new TextureMov(".\\samples\\mov\\tannoir.mp4");
+        s.texture(textureMov);
+        s.texture(new TextureCol(Color.BLUE));
         scene().add(s);
     }
 
     @Override
     public void finit()throws Exception {
-//        videoTexture.nextFrame();
+//        textureMov.nextFrame();
     }
 }

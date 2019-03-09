@@ -17,11 +17,11 @@
  */
 package be.manudahmen.empty3.core.texturing;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 
 /**
  * @author Manuel Dahmen <manuel.dahmen@gmail.com>
  */
 public abstract class TextureOp0D extends TextureOp {
-    public abstract ColorTexture reverseVideo(final ColorTexture c);
+    public abstract TextureCol reverseVideo(final TextureCol c);
 }

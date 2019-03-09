@@ -17,7 +17,7 @@
  */
 package be.manudahmen.empty3.core.script;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.tribase.TRIEllipsoide;
 
@@ -84,7 +84,7 @@ public class InterpreteTRIEllipsoide implements Interprete {
         pos = ib.getPosition();
 
         InterpreteTColor pc = new InterpreteTColor();
-        ColorTexture tc = (ColorTexture) pc.interprete(text, pos);
+        TextureCol tc = (TextureCol) pc.interprete(text, pos);
         pos = pc.getPosition();
 
         pattern = new ArrayList<Integer>();

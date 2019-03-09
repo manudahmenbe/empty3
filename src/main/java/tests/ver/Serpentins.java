@@ -41,9 +41,9 @@ public class Serpentins extends TestObjetSub {
     public void ginit() {
         for (int i = 0; i < Ns; i++) {
             try {
-                itext[i] = new ImageTexture(ECBufferedImage.getFromFile(new File("c:\\Emptycanvas\\textures\\photo" + (i + 1) + ".jpg")));
+                itext[i] = new TextureImg(ECBufferedImage.getFromFile(new File("c:\\Emptycanvas\\textures\\photo" + (i + 1) + ".jpg")));
             } catch (IOException ex) {
-                itext[i] = new ColorTexture(Color.BLUE);
+                itext[i] = new TextureCol(Color.BLUE);
             }
         }
         LumierePonctuelle lumierePonctuelle = new LumierePonctuelle(Point3D.X, Color.RED);

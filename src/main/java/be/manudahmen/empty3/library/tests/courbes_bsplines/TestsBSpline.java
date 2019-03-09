@@ -5,7 +5,7 @@
  */
 package be.manudahmen.empty3.library.tests.courbes_bsplines;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 
 import java.awt.*;
@@ -45,7 +45,7 @@ public class TestsBSpline {
         for (int i = 0; i < N; i++) {
             p[i] = new Point3D(1.0 * i * Math.cos((i / 6) * (Math.PI * 2.0) * ((double) i) / N),
                     1.0 * i * Math.sin((i / 6) * (Math.PI * 2.0) * ((double) i) / N), 0);
-            p[i].texture(new ColorTexture(Color.WHITE));
+            p[i].texture(new TextureCol(Color.WHITE));
         }
         return p;
     }
@@ -55,7 +55,7 @@ public class TestsBSpline {
         for (int i = 0; i < N; i++) {
             p[i] = new Point3D(1.0 * i * Math.cos((i / 6.0) * (Math.PI * 2.0) * ((double) i) / N),
                     1.0 * i * Math.sin((i / 6.0) * (Math.PI * 2.0) * ((double) i) / N), 0);
-            p[i].texture(new ColorTexture(Color.WHITE));
+            p[i].texture(new TextureCol(Color.WHITE));
         }
         return p;
     }

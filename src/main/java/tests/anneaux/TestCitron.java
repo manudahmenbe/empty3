@@ -35,11 +35,11 @@ public class TestCitron extends TestObjetSub {
                     Trajectoires.sphere(
                             1.0 * frame() / getMaxFrames(), 0.0, DIM),
                     DIM * 4);
-            citrons[i].texture(new ColorTexture(Color.ORANGE));
+            citrons[i].texture(new TextureCol(Color.ORANGE));
             citrons[i].setMaxX(20);
             citrons[i].setMaxY(20);
             try {
-                citrons[i].texture(new ImageTexture(ECBufferedImage.getFromFile(new java.io.File("./textures/herbe.jpg"))));
+                citrons[i].texture(new TextureImg(ECBufferedImage.getFromFile(new java.io.File("./textures/herbe.jpg"))));
             } catch (IOException e) {
                 e.printStackTrace();
             }

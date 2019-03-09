@@ -28,7 +28,7 @@ import java.io.File;
 /**
  * @author manu
  */
-public class ImageTexture extends ITexture {
+public class TextureImg extends ITexture {
 
     private ECBufferedImage image;
 
@@ -42,7 +42,7 @@ public class ImageTexture extends ITexture {
     private File avifile = null;
     private int transparent = 0xFFFFFF00;
 
-    public ImageTexture(ECBufferedImage bi) {
+    public TextureImg(ECBufferedImage bi) {
         this.image = bi;
     }
 

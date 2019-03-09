@@ -1,7 +1,7 @@
 package tests.thicksurface;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.lighting.Colors;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
@@ -18,7 +18,7 @@ public class TestRandomSerpentin1D extends TestObjetSub {
 
     public void add() {
         ranndomSerpentin1D = new RandomSerpentin1D();
-        ranndomSerpentin1D.texture(new ColorTexture(Colors.random()));
+        ranndomSerpentin1D.texture(new TextureCol(Colors.random()));
         ranndomSerpentin1D.setInnerWidth(0.5);
         ranndomSerpentin1D.setOuterWidth(0.5);
         scene().add(ranndomSerpentin1D);

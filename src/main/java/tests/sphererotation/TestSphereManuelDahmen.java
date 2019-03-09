@@ -59,7 +59,7 @@ public class TestSphereManuelDahmen extends TestObjetSub {
         triSphere.setMaxY(maxy);
 
         try {
-            ImageTexture imageTexture = new ImageTexture(new ECBufferedImage(ImageIO.read(new File("samples/img/map2-modif.png"))));
+            TextureImg imageTexture = new TextureImg(new ECBufferedImage(ImageIO.read(new File("samples/img/map2-modif.png"))));
             imageTexture.setColorMask(ITexture.COLOR_MIROR_XY);
             triSphere.texture(imageTexture);
         } catch (IOException ex) {

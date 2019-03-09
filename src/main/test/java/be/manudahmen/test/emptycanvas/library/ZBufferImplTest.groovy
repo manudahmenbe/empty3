@@ -71,7 +71,7 @@ class ZBufferImplTestSuite extends TestSuite {
 
         Scene sc = new Scene()
 
-        sc.add(new Point3D(0, 0, 0, new ColorTexture(Color.RED)))
+        sc.add(new Point3D(0, 0, 0, new TextureCol(Color.RED)))
 
         z.scene(sc)
 
@@ -103,7 +103,7 @@ class ZBufferImplTestSuite extends TestSuite {
 
         Scene sc = new Scene()
 
-        sc.add(new Point3D(0, 0, 0, new ColorTexture(Color.RED)))
+        sc.add(new Point3D(0, 0, 0, new TextureCol(Color.RED)))
 
         z.scene(sc)
 

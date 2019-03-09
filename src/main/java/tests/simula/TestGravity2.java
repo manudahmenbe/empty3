@@ -88,7 +88,7 @@ public class TestGravity2 extends TestObjetSub {
 //            ((TRISphere) r).setMaxX(7);
 //            ((TRISphere) r).setMaxY(7);
 
-            r.texture(new ColorTexture(billes[i].color));
+            r.texture(new TextureCol(billes[i].color));
 
             rc.add(r);
 

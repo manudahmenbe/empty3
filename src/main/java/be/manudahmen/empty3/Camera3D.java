@@ -122,7 +122,7 @@ public class Camera3D extends Camera {
 
     }
 
-    public ColorTexture texture() {
+    public TextureCol texture() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

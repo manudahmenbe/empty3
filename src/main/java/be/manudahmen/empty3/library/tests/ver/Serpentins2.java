@@ -45,9 +45,9 @@ public class Serpentins2 extends TestObjetSub {
     public void ginit() {
         for (int i = 0; i < Ns; i++) {
             try {
-                itext[i] = new ImageTexture(ECBufferedImage.getFromFile(new File("c:\\Emptycanvas\\textures\\photo" + (i + 1) + ".jpg")));
+                itext[i] = new TextureImg(ECBufferedImage.getFromFile(new File("c:\\Emptycanvas\\textures\\photo" + (i + 1) + ".jpg")));
             } catch (IOException ex) {
-                itext[i] = new ColorTexture(Colors.random());
+                itext[i] = new TextureCol(Colors.random());
 
             }
         }

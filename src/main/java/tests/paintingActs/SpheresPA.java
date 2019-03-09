@@ -1,6 +1,6 @@
 package tests.paintingActs;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.PaintingAct;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
@@ -34,7 +34,7 @@ public class SpheresPA extends PaintingAct {
 
             for (int i = 0; i < s[0].length; i++) {
                 TRISphere s2 = new TRISphere(sph.calculerPoint3D(s[0][i], s[1][i]), 2);
-                s2.texture(new ColorTexture(Color.BLUE));
+                s2.texture(new TextureCol(Color.BLUE));
                 getZBuffer().draw(s2, null);
             }
         }

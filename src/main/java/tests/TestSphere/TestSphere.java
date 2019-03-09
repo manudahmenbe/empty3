@@ -64,9 +64,9 @@ public class TestSphere extends TestObjetSub {
         for (int i = 0; i < s.length; i++) {
             s[i] = new TRISphere(Point3D.O0, taille);
             try {
-                s[i].texture(new ImageTexture(new ECBufferedImage(ImageIO.read(new File("C:\\Users\\Se7en\\Pictures\\manu2.jpg")))));
+                s[i].texture(new TextureImg(new ECBufferedImage(ImageIO.read(new File("C:\\Users\\Se7en\\Pictures\\manu2.jpg")))));
             } catch (IOException ex) {
-                s[i].texture(new ColorTexture(Color.PINK));
+                s[i].texture(new TextureCol(Color.PINK));
                 Logger.getLogger(TestSphere.class.getName()).log(Level.SEVERE, null, ex);
             }
             scene().add(s[i]);

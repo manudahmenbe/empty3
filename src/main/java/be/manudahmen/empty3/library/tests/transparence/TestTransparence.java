@@ -11,7 +11,7 @@ package be.manudahmen.empty3.library.tests.transparence;
 
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.ECBufferedImage;
-import be.manudahmen.empty3.ImageTexture;
+import be.manudahmen.empty3.TextureImg;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.Plan3D;
@@ -39,7 +39,7 @@ public class TestTransparence extends TestObjetSub {
         plan3D.pointOrigine(new Point3D(-1, -1, 0));
         plan3D.pointXExtremite(new Point3D(1, 0, 0));
         plan3D.pointYExtremite(new Point3D(0, 1, 0));
-        ImageTexture tColor = new ImageTexture(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("be.manudahmen.empty3.library.tests.cubes-be.manudahmen.empty3.library.tests.transparence.png"))));
+        TextureImg tColor = new TextureImg(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("be.manudahmen.empty3.library.tests.cubes-be.manudahmen.empty3.library.tests.transparence.png"))));
         //tColor.setTransparent(Color.GREEN);
         plan3D.texture(tColor);
 

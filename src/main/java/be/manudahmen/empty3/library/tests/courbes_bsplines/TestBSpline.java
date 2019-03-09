@@ -5,7 +5,7 @@
  */
 package be.manudahmen.empty3.library.tests.courbes_bsplines;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.nurbs.BSplineCurve;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
@@ -41,7 +41,7 @@ public class TestBSpline extends TestObjetSub {
         for (Point3D p : TestsBSpline.p(frame())) {
             b.add(1.0, p);
         }
-        b.texture(new ColorTexture(Color.BLACK));
+        b.texture(new TextureCol(Color.BLACK));
 
         scene().add(b);
 

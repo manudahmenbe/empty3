@@ -38,7 +38,7 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
     protected double start1 = 0, start2 = 0;
     protected double end1 = 1, end2 = 1;
     protected double NFAST = 100;
-    protected ITexture CFAST = new ColorTexture(Color.GRAY);
+    protected ITexture CFAST = new TextureCol(Color.GRAY);
 
     public abstract Point3D calculerPoint3D(double u, double v);
 

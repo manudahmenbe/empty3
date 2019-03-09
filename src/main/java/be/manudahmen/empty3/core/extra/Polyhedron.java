@@ -137,7 +137,7 @@ public class Polyhedron extends Representable implements TRIConteneur {
     }
 
 
-    public Polyhedron(ArrayList<Point3D> list, ColorTexture tColor) {
+    public Polyhedron(ArrayList<Point3D> list, TextureCol tColor) {
         this.points = list;
         this.texture = tColor;
         steps();

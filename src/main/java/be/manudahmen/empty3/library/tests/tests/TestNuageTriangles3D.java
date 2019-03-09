@@ -69,7 +69,7 @@ public class TestNuageTriangles3D extends TestObjetSub {
                 * DIM - DIM / 2, Math.random() * DIM + DIM / 2);
 
         Cube c = new Cube(10, p);
-        c.texture(new ColorTexture(Color.RED));
+        c.texture(new TextureCol(Color.RED));
 
         return c;
     }

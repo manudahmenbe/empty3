@@ -74,7 +74,7 @@ public class TestBalleCouleur001 extends TestObjetSub {
         ballec.param(ballecparam);
 
 
-        ballec.texture(new ColorTexture(Color.GRAY));
+        ballec.texture(new TextureCol(Color.GRAY));
 
         scene().add(ballec);
 
@@ -148,7 +148,7 @@ public class TestBalleCouleur001 extends TestObjetSub {
             TubulaireN2<gdx_BSplineCurve> tubulaireN2;
             tubulaireN2 = new TubulaireN2<gdx_BSplineCurve>();
             tubulaireN2.diam((float) TUBE_RAYON);
-            tubulaireN2.texture(new ImageTexture(new ECBufferedImage(ImageIO.read(new File("C:\\EmptyCanvas\\Images\\PHOTO-NU.jpg")))));
+            tubulaireN2.texture(new TextureImg(new ECBufferedImage(ImageIO.read(new File("C:\\EmptyCanvas\\Images\\PHOTO-NU.jpg")))));
 
             gdx_BSplineCurve gdx_BSplineCurve = new gdx_BSplineCurve();
 

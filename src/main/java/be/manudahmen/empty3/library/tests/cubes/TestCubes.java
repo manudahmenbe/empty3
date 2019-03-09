@@ -69,7 +69,7 @@ class Cube extends RepresentableConteneur {
                         cube.add(new SegmentDroite(
                                         new Point3D(1.0 * i, 1.0 * j, 1.0 * k),
                                         new Point3D(1.0 * i + 1.0 * dim / pas, 1.0 * j, 1.0 * k),
-                                        new ColorTexture(c)
+                                        new TextureCol(c)
                                 )
                         );
                     }
@@ -77,14 +77,14 @@ class Cube extends RepresentableConteneur {
                         cube.add(new SegmentDroite(
                                         new Point3D(1.0 * i, 1.0 * j, 1.0 * k),
                                         new Point3D(1.0 * i, 1.0 * j + 1.0 * dim / pas, 1.0 * k),
-                                        new ColorTexture(c)
+                                        new TextureCol(c)
                                 )
                         );
                     if (1.0 * k + 1.0 * dim / pas < dim / 2 + pas)
                         cube.add(new SegmentDroite(
                                         new Point3D(1.0 * i, 1.0 * j, 1.0 * k),
                                         new Point3D(1.0 * i, 1.0 * j, 1.0 * k + 1.0 * dim / pas),
-                                        new ColorTexture(c)
+                                        new TextureCol(c)
                                 )
                         );
                 }

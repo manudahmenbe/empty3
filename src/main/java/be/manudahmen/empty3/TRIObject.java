@@ -167,7 +167,7 @@ public class TRIObject extends Representable {
         return p1;
     }
 
-    public ColorTexture texture() {
+    public TextureCol texture() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

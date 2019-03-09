@@ -6,7 +6,7 @@
 package be.manudahmen.empty3.library.tests.film_1;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.testing.TestObjet;
 import be.manudahmen.empty3.core.tribase.TRISphere;
@@ -93,15 +93,15 @@ public class Scene1 extends TestObjet {
         /*s1 = new TRISphere(Point3D.X.mult(1000), 100);
         s2 = new TRISphere(Point3D.X.mult(-1000), 100);
 
-        s1.texture(new ColorTexture(Color.BLACK));
-        s2.texture(new ColorTexture(Color.BLACK));
+        s1.texture(new TextureCol(Color.BLACK));
+        s2.texture(new TextureCol(Color.BLACK));
 
         scene().add(s1);
         scene().add(s2);
 */
         for (int i = 0; i < NUMBRE; i++) {
             s1 = new TRISphere(Point3D.X.mult(1000), 100);
-            s1.texture(new ColorTexture(Color.BLACK));
+            s1.texture(new TextureCol(Color.BLACK));
             spheres.add(s1);
             scene().add(s1);
         }

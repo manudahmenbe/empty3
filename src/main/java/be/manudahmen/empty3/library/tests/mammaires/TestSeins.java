@@ -1,7 +1,7 @@
 package be.manudahmen.empty3.library.tests.mammaires;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point2D;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
@@ -33,16 +33,16 @@ public class TestSeins extends TestObjetSub {
     public void finit() {
         if (frame() == 0) {
             mammaires.Sein1 s = new mammaires.Sein1();
-            s.texture(new ColorTexture(Color.BLUE));
+            s.texture(new TextureCol(Color.BLUE));
             scene().add(s);
         } else if (frame() == 1) {
             mammaires.Sein2 s = new mammaires.Sein2();
-            s.texture(new ColorTexture(Color.BLUE));
+            s.texture(new TextureCol(Color.BLUE));
             scene().clear();
             scene().add(s);
         } else if (frame() == 2) {
             mammaires.Sein3 s = new mammaires.Sein3();
-            s.texture(new ColorTexture(Color.BLUE));
+            s.texture(new TextureCol(Color.BLUE));
             scene().clear();
             scene().add(s);
         }

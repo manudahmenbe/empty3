@@ -1,8 +1,8 @@
 package be.manudahmen.empty3.library.tests.sw;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.ECBufferedImage;
-import be.manudahmen.empty3.ImageTexture;
+import be.manudahmen.empty3.TextureImg;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.tribase.Plan3D;
 
@@ -29,7 +29,7 @@ public class TextObjet extends Plan3D {
         this.pointXExtremite(orig.plus(x2Vect));
         this.pointYExtremite(orig.plus(y2Vect));
 
-        ColorTexture c = new ColorTexture(Color.BLACK);
+        TextureCol c = new TextureCol(Color.BLACK);
         texture(c);
 
 
@@ -53,7 +53,7 @@ public class TextObjet extends Plan3D {
 
         prerenderedImgGraphics.drawString(txt, 0, 0);
 
-        texture(new ImageTexture(prerenderedImg));
+        texture(new TextureImg(prerenderedImg));
 
     }
 

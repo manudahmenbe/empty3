@@ -1,7 +1,7 @@
 package tests.tests;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Cube;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
@@ -33,7 +33,7 @@ public class TestCamera extends TestObjetSub {
     public void ginit() {
         super.ginit();
         Cube c = new Cube(2, Point3D.O0);
-        c.texture(new ColorTexture(Color.RED));
+        c.texture(new TextureCol(Color.RED));
         scene().add(c);
     }
 

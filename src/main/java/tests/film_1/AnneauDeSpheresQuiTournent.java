@@ -1,7 +1,7 @@
 package tests.film_1;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.lighting.Colors;
 import be.manudahmen.empty3.core.move.Trajectoires;
@@ -72,15 +72,15 @@ public class AnneauDeSpheresQuiTournent extends TestObjet {
         /*s1 = new TRISphere(Point3D.X.mult(1000), 100);
          s2 = new TRISphere(Point3D.X.mult(-1000), 100);
 
-         s1.texture(new ColorTexture(Color.BLACK));
-         s2.texture(new ColorTexture(Color.BLACK));
+         s1.texture(new TextureCol(Color.BLACK));
+         s2.texture(new TextureCol(Color.BLACK));
 
          scene().add(s1);
          scene().add(s2);
          */
         for (int i = 0; i < NOMBRE; i++) {
             s1 = new TRISphere(Point3D.X.mult(1000), 100);
-            s1.texture(new ColorTexture(Colors.random()));
+            s1.texture(new TextureCol(Colors.random()));
             spheres.add(s1);
             scene().add(s1);
         }
@@ -93,7 +93,7 @@ public class AnneauDeSpheresQuiTournent extends TestObjet {
         for (int i = 0; i < NOMBRE; i++) {
             s1 = spheres.get(i);
             Point3D centre = s1.getCentre();
-            centre.texture(new ColorTexture(Color.PINK));
+            centre.texture(new TextureCol(Color.PINK));
             scene().add(centre);
             s1.setCentre(Trajectoires.sphere(longiI(i), latI(i), RI(i)));
         }

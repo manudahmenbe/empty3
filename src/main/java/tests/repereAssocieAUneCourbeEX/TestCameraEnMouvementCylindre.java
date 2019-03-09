@@ -4,9 +4,8 @@
 package tests.repereAssocieAUneCourbeEX;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.VideoTexture;
 import be.manudahmen.empty3.core.sanorm.CameraInPath;
 import be.manudahmen.empty3.core.testing.TestObjet;
 import be.manudahmen.empty3.core.tribase.TRICylindre;
@@ -18,7 +17,7 @@ import java.awt.*;
  */
 public class TestCameraEnMouvementCylindre extends TestObjet {
 
-    ColorTexture colorTexture;
+    TextureCol textureCol;
     private CameraInPath cam;
     private TRICylindre e;
 
@@ -47,8 +46,8 @@ public class TestCameraEnMouvementCylindre extends TestObjet {
         cam = new CameraInPath(cc);
 
         e = new TRICylindre(10, 20);
-        colorTexture = new ColorTexture(new Color(120, 50, 50));
-        e.texture(colorTexture);
+        textureCol = new TextureCol(new Color(120, 50, 50));
+        e.texture(textureCol);
 
         e.setMaxX(40);
         e.setMaxY(40);

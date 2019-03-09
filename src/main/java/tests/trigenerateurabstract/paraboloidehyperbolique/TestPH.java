@@ -10,7 +10,7 @@
 package tests.trigenerateurabstract.paraboloidehyperbolique;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.LumierePointSimple;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.testing.TestObjet;
@@ -45,7 +45,7 @@ public class TestPH extends TestObjet {
         double angleV = Math.abs(Math.sin(2.0 * Math.PI * frame() / getMaxFrames() * 6));
         ph = new ParaboloideHyperbolique(angleU, angleV, 1);
         scene().add(ph);
-        ph.texture(new ColorTexture(Color.RED));
+        ph.texture(new TextureCol(Color.RED));
     }
 
     @Override

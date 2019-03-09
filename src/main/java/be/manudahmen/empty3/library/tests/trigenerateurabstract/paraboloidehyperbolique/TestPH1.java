@@ -10,7 +10,7 @@
 package be.manudahmen.empty3.library.tests.trigenerateurabstract.paraboloidehyperbolique;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.LumierePointSimple;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.testing.TestObjet;
@@ -48,7 +48,7 @@ public class TestPH1 extends TestObjet {
         ph.setMaxX(100);
         ph.setMaxY(100);
         scene().add(ph);
-        ph.texture(new ColorTexture(Color.RED));
+        ph.texture(new TextureCol(Color.RED));
     }
 
     @Override

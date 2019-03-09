@@ -6,10 +6,10 @@
  * <p>
  * *
  */
-package tests.ballecouleur;
+package be.manudahmen.empty3.library.tests.ballecouleur;
 
 import be.manudahmen.empty3.ECBufferedImage;
-import be.manudahmen.empty3.ImageTexture;
+import be.manudahmen.empty3.TextureImg;
 import be.manudahmen.empty3.Point2D;
 
 import java.awt.*;
@@ -17,9 +17,10 @@ import java.util.HashMap;
 import java.util.function.BiConsumer;
 
 /**
+ *
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class TextureTache extends ImageTexture {
+public class TextureImgTache extends TextureImg {
 
     private final HashMap<Point2D, Color> map;
     double dist = 0.0;
@@ -29,7 +30,7 @@ public class TextureTache extends ImageTexture {
     float actuG;
     float actuB;
 
-    public TextureTache(HashMap<Point2D, Color> colors) {
+    public TextureImgTache(HashMap<Point2D, Color> colors) {
         super(new ECBufferedImage(100, 100, ECBufferedImage.TYPE_INT_ARGB));
         map = colors;
     }

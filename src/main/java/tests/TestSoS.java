@@ -20,9 +20,9 @@ public class TestSoS extends TestObjetSub {
             = new RepresentableConteneur();
     private Sphere sphere;
     private Point3D sphereOrig = Point3D.O0;
-    ColorTexture colorTexture = new ColorTexture(Color.BLACK);
+    TextureCol textureCol = new TextureCol(Color.BLACK);
     private Point3D sphereDest = Point3D.Y;
-    ITexture colorTextureSurface = new ColorTexture(Color.GREEN);
+    ITexture colorTextureSurface = new TextureCol(Color.GREEN);
 
     public void ginit() {
         representableConteneur.clear();
@@ -31,9 +31,9 @@ public class TestSoS extends TestObjetSub {
             pointsA[s] = Point3D.random(1).moins(new Point3D(0.5, 0.5, 0.5));
             pointsB[s] = Point3D.random(0.5).moins(new Point3D(0.5, 0.5, 0.5));
             SegmentDroite segmentDroite = new SegmentDroite(pointsA[s], pointsB[s]);
-            segmentDroite.texture(colorTexture);
-            segmentDroite.getOrigine().texture(colorTexture);
-            segmentDroite.getExtremite().texture(colorTexture);
+            segmentDroite.texture(textureCol);
+            segmentDroite.getOrigine().texture(textureCol);
+            segmentDroite.getExtremite().texture(textureCol);
             representableConteneur.add(new PcOnPs(sphere, segmentDroite));
 
         }
@@ -60,7 +60,7 @@ public class TestSoS extends TestObjetSub {
                 );
         sphere.texture(colorTextureSurface);
         segmentsOnSurface.texture(colorTextureSurface);
-        representableConteneur.texture(colorTexture);
+        representableConteneur.texture(textureCol);
         scene().cameraActive(
                 new Camera(sphereOrig, sphereDest));
     }

@@ -1,7 +1,7 @@
 package be.manudahmen.empty3.library.tests.trihole;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.LumierePonctuelle;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.extra.Polyhedron;
@@ -35,7 +35,7 @@ public class TestTriHole extends TestObjetSub {
     public void ginit() {
         th = new Polyhedron();
 
-        th.texture(new ColorTexture(Color.GREEN));
+        th.texture(new TextureCol(Color.GREEN));
 
         scene().add(th);
 
@@ -53,7 +53,7 @@ public class TestTriHole extends TestObjetSub {
 
         th2 = new Polyhedron();
 
-        th2.texture(new ColorTexture(Color.RED));
+        th2.texture(new TextureCol(Color.RED));
 
         scene().add(th2);
 
