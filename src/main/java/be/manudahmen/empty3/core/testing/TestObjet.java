@@ -400,8 +400,8 @@ public abstract class TestObjet implements Test, Runnable {
             }
             else
             {
-                dir1 = new File (System.getProperty("user.home")
-                        + File.separator + ".empty3");
+                dir1 = new File ("/"
+                        + File.separator + "EmptyCanvas");
             }
         } catch (IOException ex) {
             o.println(ex.getLocalizedMessage());
