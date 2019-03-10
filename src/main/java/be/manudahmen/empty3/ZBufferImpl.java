@@ -258,7 +258,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 ParametricSurface n = (ParametricSurface) r;
                 // TODO Dessiner les bords
                 for (double u = n.getStartU(); u <= n.getEndU(); u += n.getIncrU()) {
-                    System.out.println("(u,v) = ("+u+","+")");
+                    //System.out.println("(u,v) = ("+u+","+")");
                     for (double v = n.getStartU(); v <= n.getEndV(); v += n.getIncrV()) {
                 /*
                         draw(new TRI(n.calculerPoint3D(u, v),
@@ -1187,8 +1187,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                     & x < la
                     & y >= 0
                     & y < ha
-                    && (deep < ime.getElementProf(x, y) || ime.getElementID(x,
-                    y) != idImg) /*&& (((cc>>24)&0xff) == 0)*/) {
+                    && (deep < ime.getElementProf(x, y) /*|| ime.getElementID(x,
+                    y) != idImg*/) /*&& (((cc>>24)&0xff) == 0)*/) {
                 ime.setElementID(x, y, idImg);
                 ime.setElementPoint(x, y, x3d);
                 if (scene().lumiereActive() != null) {

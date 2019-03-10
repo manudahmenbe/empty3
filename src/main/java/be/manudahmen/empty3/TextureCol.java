@@ -32,6 +32,9 @@ public class TextureCol extends ITexture {
         }
     }
 
+    public TextureCol(int c) {
+        color = c;
+    }
     public int color() {
         return color;
     }

@@ -33,9 +33,9 @@ public abstract class ITexture extends MediaListenerAdapter {
     public static final int COLOR_MIROR_X = 1;
     public static final int COLOR_MIROR_Y = 2;
     public static final int COLOR_MIROR_XY = 4;
-    public static final int COLOR_ROT_090 = 4;
-    public static final int COLOR_ROT_180 = 4;
-    public static final int COLOR_ROT_270 = 4;
+    public static final int COLOR_ROT_090 = 8;
+    public static final int COLOR_ROT_180 = 16;
+    public static final int COLOR_ROT_270 = 32;
     public int onTextureEnds = 0;
     protected int colorMask = 0;
     DeformMap dm;

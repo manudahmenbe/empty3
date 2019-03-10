@@ -18,7 +18,7 @@ public class TestBalleClous1 extends TestObjetSub {
 
     public int MAXFRAMES = 2000;
     public int N = 21;
-    private TColor tc = new TColor(Color.red);
+    private ITexture tc = new TextureCol(Color.red);
     private BalleClous ballec;
     private Point3D[] s;
     private Point3D[] v;
@@ -48,7 +48,7 @@ public class TestBalleClous1 extends TestObjetSub {
         for (int i = 0; i < N; i++) {
             s[i] = new Point3D(Point3D.O0);
 
-            s[i].texture(new TColor(Color.WHITE));
+            s[i].texture(new TextureCol(Color.WHITE));
 
             v[i] = new Point3D(Math.random() * (V / 2 - V), Math.random() * (V / 2 - V), Math.random() * (V / 2 - V));
 
@@ -56,8 +56,8 @@ public class TestBalleClous1 extends TestObjetSub {
         try {
 
             tc =
-                    new TColor(
-                            new ECBufferedImage(ImageIO.read(new File("c:/EmptyCanvas/textures/troisbandes.jpg"))));
+                    new TextureImg(
+                            new ECBufferedImage(ImageIO.read(new File("samples/img/manu.jpg"))));
 
 
         } catch (IOException ex) {
@@ -146,8 +146,4 @@ public class TestBalleClous1 extends TestObjetSub {
 
     }
 
-    @Override
-    public void finit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

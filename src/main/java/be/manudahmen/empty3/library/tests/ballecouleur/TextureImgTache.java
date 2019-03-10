@@ -40,10 +40,6 @@ public class TextureImgTache extends TextureImg {
         return calculerCouleur(x, y).getRGB();
     }
 
-    @Override
-    public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double x, double y) {
-        return calculerCouleur(x, y);
-    }
 
     public Color calculerCouleur(double x, double y) {
         final Point2D pData = new Point2D(x, y);
@@ -52,29 +48,22 @@ public class TextureImgTache extends TextureImg {
         final HashMap<Point2D, Double> pond;
         pond = new HashMap<Point2D, Double>();
 
-        map.forEach(new BiConsumer<Point2D, Color>() {
+        map.forEach((u, t) -> {
+                    double dist2 = u.distance(pData);
 
-                        public void accept(Point2D u, Color t) {
-                            double dist2 = u.distance(pData);
+                    pond.put(u, dist2);
 
-                            pond.put(u, dist2);
-
-                            dist += dist2;
-                        }
-                    }
+                    dist += dist2;
+                }
         );
 
-        pond.forEach(new BiConsumer<Point2D, Double>() {
+        pond.forEach((t, u) -> {
+            actuA += map.get(t).getAlpha() / 256f * u;
+            actuR += map.get(t).getRed() / 256f * u;
+            actuG += map.get(t).getGreen() / 256f * u;
+            actuB += map.get(t).getBlue() / 256f * u;
 
-            public void accept(Point2D t, Double u) {
-                actuA += map.get(t).getAlpha() / 256f * u;
-                actuR += map.get(t).getRed() / 256f * u;
-                actuG += map.get(t).getGreen() / 256f * u;
-                actuB += map.get(t).getBlue() / 256f * u;
-
-                actu = new Color((float) (actuR / dist), (float) (actuG / dist), (float) (actuB / dist), (float) (actuA / dist));
-            }
-
+            actu = new Color((float) (actuR / dist), (float) (actuG / dist), (float) (actuB / dist), (float) (actuA / dist));
         });
 
         return actu;

@@ -36,8 +36,9 @@ public class SVGTexture extends ITexture {
 
     @Override
     public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double u, double v) {
-        return Color.GRAY;
+        return null;
     }
+
 
     @Override
     public void timeNext() {

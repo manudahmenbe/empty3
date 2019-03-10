@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class TestBalleClous extends TestObjetSub {
     public int MAXFRAMES;
-    private TColor tc = new TColor(Color.red);
+    private ITexture tc = new TextureCol(Color.red);
     private BalleClous ballec;
 
     public static void main(String[] args) {
@@ -25,14 +25,11 @@ public class TestBalleClous extends TestObjetSub {
 
         th.loop(true);
 
-        th.MAXFRAMES = 1000;
-
-        th.setResx(400);
-        th.setResy(300);
+        th.setMaxFrames(1000);
 
         th.setMaxFrames(th.MAXFRAMES);
 
-        th.setGenerate(GENERATE_MODEL | GENERATE_IMAGE);
+        th.setGenerate(GENERATE_MOVIE | GENERATE_IMAGE);
 
         th.run();
     }
@@ -44,8 +41,10 @@ public class TestBalleClous extends TestObjetSub {
         try {
 
             tc =
-                    new TColor(
-                            new ECBufferedImage(ImageIO.read(new File("C:\\Emptycanvas\\textures\\moi1.jpg")))
+                    new TextureImg(
+                            new ECBufferedImage(ImageIO.read(new File(
+                                    "samples/img/manu.jpg"
+                            )))
                     );
 
 
@@ -53,11 +52,6 @@ public class TestBalleClous extends TestObjetSub {
             Logger.getLogger(TestBalleClous1.class.getName()).log(Level.SEVERE, null, ex);
         }
         ballec = new BalleClous(Point3D.O0, 50);
-
-
-        ballec.setMaxX(40);
-
-        ballec.setMaxY(40);
 
 
         int m, n;
@@ -79,7 +73,7 @@ public class TestBalleClous extends TestObjetSub {
 
 
         Camera camera;
-        camera = new Camera(new Point3D(0d, 0d, -500d),
+        camera = new Camera(new Point3D(0d, 0d, -200d),
                 new Point3D(0d, 0d, 0d));
 
         scene().cameraActive(camera);
@@ -88,15 +82,12 @@ public class TestBalleClous extends TestObjetSub {
 
     @Override
     public void testScene() throws Exception {
-        ballec.param(1.0 * (frame + 1) / MAXFRAMES);
+        ballec.param(1.0 * (frame + 10) / MAXFRAMES);
         exportFrame("export-stl", "export-" + frame + ".STL");
 
 
     }
 
-    @Override
-    public void finit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 }
 

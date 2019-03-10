@@ -40,16 +40,16 @@ public class TextureImg extends ITexture {
     private AVIReader reader;
     private int track = 0;
     private File avifile = null;
-    private int transparent = 0xFFFFFF00;
+    private int transparent = Color.TRANSLUCENT;
 
     public TextureImg(ECBufferedImage bi) {
         this.image = bi;
     }
 
     @Override
-    public int getColorAt(double x, double y) {
-        Point trans = getCoord(x, y);
-        return couleur(trans.x / image.getWidth(), trans.y / image.getHeight());
+    public int getColorAt(double rx, double ry) {
+        Point trans = getCoord(rx, ry);
+        return couleur(trans.x, trans.y);
     }
 
     protected int couleur(double rx, double ry) {
@@ -142,46 +142,6 @@ public class TextureImg extends ITexture {
             yi = image.getHeight() - 1;
         }
         Color c = new Color(image.getRGB(xi, yi));
-        if (c.equals(transparent)) {
-            return new Color(transparent);
-        } else {
-            return c;
-        }
-    }
-
-    /**
-     * +|--r11->/-----| y^r12^ 0/1 ^r12^ -|-----/<-r11--|+x
-     *
-     * @param numQuadX
-     * @param numQuadY
-     * @param x
-     * @param y
-     * @param r11
-     * @param r12
-     * @param numTRI
-     * @return
-     */
-    public Color getMaillageTRIColor(int numQuadX, int numQuadY, double x,
-                                     double y, double r11, double r12, int numTRI) {
-
-        double dx = 0;
-        double dy = 0;
-        if (numTRI == 0) {
-            dx = r11;
-            dy = r12;
-        } else if (numTRI == 1) {
-            dx = 1 - r11;
-            dy = r12;
-        }
-        int xi = ((int) ((((int) x + dx) / numQuadX + Math.signum(numTRI - 0.5)
-                * image.getWidth())));
-        int yi = ((int) ((((int) y + dy) / numQuadY * image.getHeight())));
-        Point p = getCoord(xi / (double) image.getWidth(), yi / (double) image.getHeight());
-
-        int x1 = (int) p.x;
-        int y1 = (int) p.y;
-
-        Color c = new Color(image.getRGB(x1, y1));
         if (c.equals(transparent)) {
             return new Color(transparent);
         } else {

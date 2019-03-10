@@ -59,9 +59,14 @@ public class TestSphereManuelDahmen extends TestObjetSub {
         triSphere.setMaxY(maxy);
 
         try {
-            TextureImg imageTexture = new TextureImg(new ECBufferedImage(ImageIO.read(new File("samples/img/map2-modif.png"))));
-            imageTexture.setColorMask(ITexture.COLOR_MIROR_XY);
+            TextureImg imageTexture = new TextureImg(new ECBufferedImage(
+                    ImageIO.read(new File(
+                            "samples/img/map2-modif.png"
+                            //"samples/img/blue.jpg"
+                    ))));
+            //imageTexture.setColorMask(ITexture.COLOR_MIROR_XY);
             triSphere.texture(imageTexture);
+            //System.out.println(triSphere);
         } catch (IOException ex) {
             Logger.getLogger(TestSphereManuelDahmen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -70,7 +75,8 @@ public class TestSphereManuelDahmen extends TestObjetSub {
     @Override
     public void testScene() throws Exception {
 
-        scene().cameraActive().setEye(Trajectoires.sphere(Math.random()/2+0.5, 2.0 * frame() / getMaxFrames(), distance));
+        scene().cameraActive().setEye(Trajectoires.sphere(2.0 * frame() / getMaxFrames(),
+                0, distance));
 
     }
 

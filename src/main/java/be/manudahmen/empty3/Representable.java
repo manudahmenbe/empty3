@@ -34,13 +34,14 @@ public class Representable implements Serializable, Comparable {
     protected Barycentre bc = new Barycentre();
     protected Representable parent;
     protected Scene scene;
-    protected ITexture texture = CFAST;
+    protected ITexture texture;
     private String id;
     private Painter painter = null;
     private int RENDERING_DEFAULT = 0;
     protected Render render = Render.getInstance(0,-1);
 
     public Representable() {
+        texture = CFAST;
     }
 
     public static void setPaintingActForClass(ZBuffer z, Scene s, PaintingAct pa) {
