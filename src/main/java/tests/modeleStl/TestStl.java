@@ -16,15 +16,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class TestStl extends TestObjetSub {
-    private BufferedReader reader;
-
     @Override
     public void ginit() {
         super.ginit();
         StlFile file = new StlFile();
         Scene load = new Scene();
         try {
-            File file1 = new File("target/classes/be/manudahmen/empty3/library/tests/modeleStl/another_nude_girl-ascii.stl");
+            File file1 = new File("samples/stl/another_nude_girl-ascii.stl");
             load = file.load(file1.getAbsolutePath());
         } catch (IncorrectFormatException | IOException | ParsingErrorException e) {
             e.printStackTrace();
@@ -37,6 +35,7 @@ public class TestStl extends TestObjetSub {
 
     public static void main(String[] args) {
         TestStl stl = new TestStl();
+        stl.setMaxFrames(1);
         new Thread(stl).start();
     }
 

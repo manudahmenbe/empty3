@@ -48,13 +48,13 @@ public class TestSeins extends TestObjetSub {
         }
     }
 
-    private Point2D cercle() {
+    private Point3D cercle() {
 
-        return Trajectoires.sphere(0.0 + 1.0 * frame / getMaxFrames(), 0, 1).get2D();
+        return Trajectoires.sphere(0.0 + 1.0 * frame / getMaxFrames(), 0, 3);
     }
 
     public void testScene() {
-        scene().cameraActive(new Camera(cercle().get3D().mult(2.5), Point3D.O0));
+        scene().cameraActive(new Camera(cercle(), Point3D.O0));
 
     }
 }
