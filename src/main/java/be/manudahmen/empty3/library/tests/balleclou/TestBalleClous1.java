@@ -141,9 +141,6 @@ public class TestBalleClous1 extends TestObjetSub {
         }
 
 
-        exportFrame("export-stl", "export-" + frame + ".STL");
-
-
     }
 
 }

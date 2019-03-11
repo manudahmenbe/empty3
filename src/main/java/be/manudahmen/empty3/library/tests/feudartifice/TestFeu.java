@@ -31,7 +31,7 @@ public class TestFeu extends TestObjetSub {
 
         th.setResy(1080);
 
-        th.setGenerate(TestBalleClous111.GENERATE_IMAGE);
+        th.setGenerate(GENERATE_IMAGE|GENERATE_MOVIE);
 
         th.run();
     }
@@ -52,11 +52,6 @@ public class TestFeu extends TestObjetSub {
         scene().cameraActive(new Camera(Point3D.Z.mult(-100 + frame / 2.0), Point3D.Z.mult(200)));
 
 
-    }
-
-    @Override
-    public void finit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
