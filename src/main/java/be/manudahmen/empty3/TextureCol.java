@@ -71,10 +71,10 @@ public class TextureCol extends ITexture {
     }
 
     public String toString() {
-        Color color = new Color(this.color);
-        return "texture ( red:" + color.getRed() + "; green:" +
-                color.getGreen() + "; blue:" + color.getBlue() +
-                "; alpha:" + color.getAlpha() + ")\n";
+        long c = this.color;
+        return "texture ( red:" + ((c&0x000000FF)>>0)+ "; green:" +
+                ((c&0x0000FF00)>>8)+ "; blue:" + ((c&0x00FF0000)>>16) +
+                "; alpha:" + ((c&0xFF000000)>>24) + ")\n";
     }
 
 }

@@ -66,15 +66,5 @@ public class TestNurbsCurve extends TestObjetSub {
         scene().add(new SegmentDroite(Point3D.O0, Point3D.Y, new TextureCol(Color.GREEN)));
         scene().add(new SegmentDroite(Point3D.O0, Point3D.Z, new TextureCol(Color.BLUE)));
     }
-
-    @Override
-    public void finit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void ginit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
 
