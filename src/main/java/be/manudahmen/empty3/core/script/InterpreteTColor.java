@@ -87,7 +87,7 @@ public class InterpreteTColor implements Interprete {
 				
                  ECBufferedImage ec = (ECBufferedImage) iPGM.interprete(text, pos);
 				
-                 tc = new ColorTexture(ec);
+                 tc = new TextureCol(ec);
 				
                  this.pos = inf.getPosition();
                  */

@@ -17,7 +17,7 @@
  */
 package be.manudahmen.empty3.core.script;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Polygon;
 
@@ -79,7 +79,7 @@ public class InterpretePolygone implements Interprete {
         ib.read(text, pos);
         pos = ib.getPosition();
         InterpreteTColor pc = new InterpreteTColor();
-        ColorTexture c = (ColorTexture) pc.interprete(text, pos);
+        TextureCol c = (TextureCol) pc.interprete(text, pos);
         pos = pc.getPosition();
         ib = new InterpretesBase();
         pattern = new ArrayList<Integer>();

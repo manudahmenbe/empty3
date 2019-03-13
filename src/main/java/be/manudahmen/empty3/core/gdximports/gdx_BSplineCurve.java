@@ -16,6 +16,7 @@ import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import com.badlogic.gdx.math.BSpline;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * @author Manuel Dahmen <manuel.dahmen@gmail.com>
@@ -32,14 +33,17 @@ public class gdx_BSplineCurve extends ParametricCurve {
     public void instantiate(Point3D[] controlPoints, int degree) {
         this.controlPoints = controlPoints;
         Vector3[] arr = new Vector3[controlPoints.length];
+        Array<Vector3> knots = new Array<Vector3>();
         int i = 0;
+        bspline = new BSpline<Vector3>();
         for (Point3D p : controlPoints) {
             Vector3 v = new Vector3();
             arr[i++] = Conv.conv(v, p);
+            knots.add(v);
 
         }
-        bspline = new BSpline<Vector3>();
         bspline.set(arr, degree, true);
+        bspline.knots = knots;
     }
 
     public int getDegree() {

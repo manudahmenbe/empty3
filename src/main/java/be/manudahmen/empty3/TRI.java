@@ -42,7 +42,7 @@ public class TRI extends Representable implements IMovable, IScalable {
         sommet[0] = point3d;
         sommet[1] = point3d2;
         sommet[2] = point3d3;
-        this.texture(new ColorTexture(red));
+        this.texture(new TextureCol(red));
     }
 
     public TRI(Point3D point3d, Point3D point3d2, Point3D point3d3,
@@ -91,7 +91,7 @@ public class TRI extends Representable implements IMovable, IScalable {
     }
 
     public void setCouleur(Color couleur) {
-        this.texture(new ColorTexture(couleur));
+        this.texture(new TextureCol(couleur));
 
     }
 

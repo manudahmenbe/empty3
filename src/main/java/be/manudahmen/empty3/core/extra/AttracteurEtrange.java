@@ -18,7 +18,7 @@ import be.manudahmen.empty3.*;
  */
 public final class AttracteurEtrange extends Representable implements POConteneur {
 
-    public static int NOMBRE_POINTS = 100000;
+    public static int NOMBRE_POINTS = 1000000;
     private final double A;
     private final double B;
     private final double C;

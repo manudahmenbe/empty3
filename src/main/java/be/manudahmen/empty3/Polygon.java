@@ -19,6 +19,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.function.Consumer;
 
 /**
  * @author Manuel
@@ -35,7 +36,7 @@ public class Polygon extends Representable implements TRIGenerable, IMovable, IS
     }
 
     public Polygon(Color c) {
-        texture(new ColorTexture(c));
+        texture(new TextureCol(c));
     }
 
     public Polygon(ITexture c) {
@@ -43,7 +44,7 @@ public class Polygon extends Representable implements TRIGenerable, IMovable, IS
     }
 
     public Polygon(Point3D[] list, Color c) {
-        this(list, new ColorTexture(c));
+        this(list, new TextureCol(c));
     }
 
     public Polygon(Point3D[] list, ITexture c) {
@@ -144,5 +145,19 @@ public class Polygon extends Representable implements TRIGenerable, IMovable, IS
         center = center.mult(1.0 / points.size());
 
         scale(center, scale);
+    }
+
+    Point3D p;
+
+    public Point3D getIsocentre() {
+        p = Point3D.O0;
+
+        getPoints().forEach(new Consumer<Point3D>() {
+            @Override
+            public void accept(Point3D point3D) {
+                p = p.plus(point3D);
+            }
+        });
+        return p.mult(1. / getPoints().size());
     }
 }

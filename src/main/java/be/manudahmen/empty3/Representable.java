@@ -25,20 +25,23 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Representable implements Serializable, Comparable {
-    public static final ITexture orange_yellow = new ColorTexture(new Color(255, 128, 0));
+    public static final ITexture orange_yellow = new TextureCol(new Color(255, 128, 0));
     protected static ArrayList<Painter> classPainters = new ArrayList<Painter>();
     public Rotation rotation = new Rotation();
     protected double NFAST = 100;
     protected RtMatiere materiau;
-    protected ITexture CFAST = new ColorTexture(Color.GRAY);
+    protected ITexture CFAST = new TextureCol(Color.GRAY);
     protected Barycentre bc = new Barycentre();
     protected Representable parent;
     protected Scene scene;
-    protected ITexture texture = orange_yellow;
+    protected ITexture texture;
     private String id;
     private Painter painter = null;
+    private int RENDERING_DEFAULT = 0;
+    protected Render render = Render.getInstance(0,-1);
 
     public Representable() {
+        texture = CFAST;
     }
 
     public static void setPaintingActForClass(ZBuffer z, Scene s, PaintingAct pa) {
@@ -194,6 +197,9 @@ public class Representable implements Serializable, Comparable {
         else
             return 1;
 
+    }
+
+    public void draw(ZBufferImpl zBuffer) {
     }
 
     public class RotationInt extends Rotation {

@@ -61,4 +61,7 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
         return sum;
     }
 
+    public Point3D[] getCoefficients() {
+        return coefficients;
+    }
 }

@@ -20,7 +20,7 @@
  */
 package be.manudahmen.empty3.core.script;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Quads;
 
@@ -86,7 +86,7 @@ public class InterpreteQuads implements Interprete {
         pos = ib.getPosition();
 
         InterpreteTColor itc = new InterpreteTColor();
-        ColorTexture tc = (ColorTexture) itc.interprete(text, pos);
+        TextureCol tc = (TextureCol) itc.interprete(text, pos);
         pos = itc.getPosition();
 
         ib = new InterpretesBase();

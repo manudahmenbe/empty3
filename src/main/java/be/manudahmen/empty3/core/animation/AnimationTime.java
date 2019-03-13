@@ -20,47 +20,67 @@
  */
 package be.manudahmen.empty3.core.animation;
 
-/**
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
- */
 public class AnimationTime {
-    protected long temps;
-    int fpsDest = 25;
+    protected long fps;
+    protected long frame;
+    protected double timeCurrentInAnimation;
 
-    public AnimationTime(double tempsSecondes) {
-        this.temps = (long) (tempsSecondes * 1000.0);
+    public AnimationTime(long fps) {
+        this.fps = (fps);
     }
 
-    public AnimationTime(long temps) {
-        this.temps = temps;
-    }
+    protected double timeMin;
+    protected double timeMax;
 
     public void avanceUneFrame() {
-        temps += 1000 / fpsDest;
+        timeCurrentInAnimation += 1.0 / fps;
     }
 
-    public int getFpsDest() {
-        return fpsDest;
+    public long getFps() {
+        return fps;
     }
 
-    public void setFpsDest(int fpsDest) {
-        this.fpsDest = fpsDest;
+    public void setFps(long fps) {
+        this.fps = fps;
     }
 
-    public long getTemps() {
-        return temps;
+    public long getFrame() {
+        return frame;
     }
 
-    public void setTemps(long temps) {
-        this.temps = temps;
+    public void setFrame(long frame) {
+        this.frame = frame;
     }
 
-    public long getTime() {
-        return temps;
+    public double getTimeCurrentInAnimation() {
+        return timeCurrentInAnimation;
     }
 
-    public double getTimeInSeconds() {
-        return temps / 1000.0;
+    public void setTimeCurrentInAnimation(double timeCurrentInAnimation) {
+        this.timeCurrentInAnimation = timeCurrentInAnimation;
     }
 
+    public void increase(double time) {
+        // TODO
+    }
+
+    public void increase(int numberOfFrames) {
+        // TODO
+    }
+
+    public double getTimeMin() {
+        return timeMin;
+    }
+
+    public void setTimeMin(double timeMin) {
+        this.timeMin = timeMin;
+    }
+
+    public double getTimeMax() {
+        return timeMax;
+    }
+
+    public void setTimeMax(double timeMax) {
+        this.timeMax = timeMax;
+    }
 }

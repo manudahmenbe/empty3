@@ -21,6 +21,7 @@
 package be.manudahmen.empty3.core.nurbs;
 
 import be.manudahmen.empty3.*;
+import be.manudahmen.empty3.Polygon;
 import be.manudahmen.empty3.core.tribase.TRIObjetGenerateurAbstract;
 
 import java.awt.*;
@@ -30,14 +31,14 @@ import java.awt.*;
  */
 public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
 
-    public double incr1 = 0.01;
-    public double incr2 = 0.01;
+    public double incr1 = 0.1;
+    public double incr2 = 0.1;
     public double incrVitesse = 0.0001;
     public double incrNormale = 0.000001;
     protected double start1 = 0, start2 = 0;
     protected double end1 = 1, end2 = 1;
     protected double NFAST = 100;
-    protected ITexture CFAST = new ColorTexture(Color.GRAY);
+    protected ITexture CFAST = new TextureCol(Color.GRAY);
 
     public abstract Point3D calculerPoint3D(double u, double v);
 
@@ -143,5 +144,21 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
             }
         }
         System.out.println("Drawn structure ffaast END");
+    }
+
+    public Polygon getElementSurface(double u, double incrU, double v, double incrV) {
+        double[][] uvincr = new double[][]{
+                {u, v},
+                {u + incrU, v},
+                {u + incrU, v + incrV},
+                {u, v + incrV}
+        };
+        Polygon polygon = new Polygon(new Point3D[]{
+                calculerPoint3D(uvincr[0][0], uvincr[0][1]),
+                calculerPoint3D(uvincr[1][0], uvincr[1][1]),
+                calculerPoint3D(uvincr[2][0], uvincr[2][1]),
+                calculerPoint3D(uvincr[3][0], uvincr[3][1])},
+                texture());
+        return polygon;
     }
 }

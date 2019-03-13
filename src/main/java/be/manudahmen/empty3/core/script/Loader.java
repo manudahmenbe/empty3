@@ -574,7 +574,7 @@ public class Loader implements SceneLoader {
             if ("polymap".equals(id)) {
                 try {
                     PolyMap pm = interpreteH.interpretePolyMapDef();
-                    WiredRepresentation wr = new WiredRepresentation(pm.getMaillage());
+                    WireRepresentation wr = new WireRepresentation(pm.getMaillage());
                     sc.add(wr);
                     latest = wr;
 
@@ -734,7 +734,7 @@ public class Loader implements SceneLoader {
                     interpreteH.interpreteBlank();
                     String ido = interpreteH.interpreteIdentifier();
                     interpreteH.interpreteBlank();
-                    ColorTexture tc = interpreteH.interpreteTColor();
+                    TextureCol tc = interpreteH.interpreteTColor();
                     interpreteH.interpreteBlank();
 
                     Representable r = sc.find(ido);

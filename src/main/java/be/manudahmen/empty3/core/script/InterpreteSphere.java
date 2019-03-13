@@ -18,7 +18,7 @@
 package be.manudahmen.empty3.core.script;
 
 import be.manudahmen.empty3.ECBufferedImage;
-import be.manudahmen.empty3.ImageTexture;
+import be.manudahmen.empty3.TextureImg;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
@@ -89,7 +89,7 @@ public class InterpreteSphere implements Interprete {
         TRISphere sphere = new TRISphere(centre, pos);
         try {
             sphere.texture(
-                    new ImageTexture(new ECBufferedImage(ImageIO.read(file))));
+                    new TextureImg(new ECBufferedImage(ImageIO.read(file))));
 
             return sphere;
         } catch (IOException ex) {

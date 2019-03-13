@@ -11,7 +11,7 @@
  */
 package be.manudahmen.empty3.core.script;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
@@ -69,13 +69,13 @@ public class InterpreteTRISphere implements Interprete {
         Double r = (Double) ib.read(text, pos).get(1);
         pos = ib.getPosition();
 
-        ColorTexture tc = null;
+        TextureCol tc = null;
 
         InterpreteTColor tci = new InterpreteTColor();
 
         tci.setRepertoire(repertoire);
 
-        tc = (ColorTexture) tci.interprete(text, pos);
+        tc = (TextureCol) tci.interprete(text, pos);
 
         pos = tci.getPosition();
 

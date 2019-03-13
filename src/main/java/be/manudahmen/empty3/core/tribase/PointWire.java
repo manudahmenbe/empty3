@@ -87,7 +87,7 @@ public class PointWire extends Representable implements IFct1D3D {
                         .mult(-1));
     }
 
-    public ColorTexture texture() {
+    public TextureCol texture() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -650,7 +650,7 @@ public class InterpreteFacade {
 
     }
 
-    ColorTexture interpreteTColor() {
+    TextureCol interpreteTColor() {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 

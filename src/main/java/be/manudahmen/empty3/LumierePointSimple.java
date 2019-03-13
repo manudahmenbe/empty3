@@ -35,7 +35,7 @@ public class LumierePointSimple implements LumierePoint {
     }
 
     @Override
-    public ITexture getCouleur(ITexture base, Point3D p, Point3D n) {
+    public int getCouleur(int base, Point3D p, Point3D n) {
         if (p != null && n != null) {
             return mult(
                     (float) (Math.abs(n.norme1().prodScalaire(
@@ -45,12 +45,13 @@ public class LumierePointSimple implements LumierePoint {
         }
     }
 
-    public ITexture getCouleur(Point3D p) {
-        return getCouleur(p.texture(), p, p.getNormale());
+    public int getCouleur(Point3D p) {
+        return getCouleur(p.texture.getColorAt(0.5,0.5)
+                , p, p.getNormale());
     }
 
-    private ITexture mult(float d, ITexture base1) {
-        new Color(base1.getColorAt(0.5, 0.5)).getColorComponents(f);
+    private int mult(float d, int base1) {
+        new Color(base1).getColorComponents(f);
         for (int i = 0; i < 3; i++) {
             f[i] = (float) (f[i] * comp[i] * intensite);
             if (f[i] > 1f) {
@@ -60,7 +61,7 @@ public class LumierePointSimple implements LumierePoint {
                 f[i] = 0f;
             }
         }
-        return new ColorTexture(new Color(f[0], f[1], f[2]));
+        return new Color(f[0], f[1], f[2]).getRGB();
     }
 
 }

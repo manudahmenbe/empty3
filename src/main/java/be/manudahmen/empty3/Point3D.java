@@ -15,6 +15,7 @@ import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 
 import java.awt.*;
+import java.util.Arrays;
 
 /**
  * *
@@ -65,6 +66,8 @@ public class Point3D extends Representable implements IMovable {
      */
     private String id;
     private Barycentre position;
+    private ParametricCurve curve;
+
     /**
      * *
      * Constructeur Point Origine
@@ -388,7 +391,7 @@ public class Point3D extends Representable implements IMovable {
     @Override
     public void drawStructureDrawFast(ZBuffer z) {
 
-        z.testPoint(this, new Color(CFAST.getColorAt(0.5, 0.5)));
+        z.testDeep(this, new Color(CFAST.getColorAt(0.5, 0.5)));
 
     }
 
@@ -442,6 +445,37 @@ public class Point3D extends Representable implements IMovable {
 
     }
 
+    public void changeTo(Point3D orig) {
+        for (int i = 0; i < x.length; i++)
+            this.x[i] = orig.x[i];
+    }
+
+
+    // TODO Implement and refactor other classes
+    public void stitchToCurve(ParametricCurve curve) {
+        this.curve = curve;
+        throw new UnsupportedOperationException("To implement");
+    }
+
+    public ParametricCurve getTrajectory() {
+        return curve;
+    }
+
     public class P extends Point3D {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Point3D)) return false;
+
+        Point3D point3D = (Point3D) o;
+
+        return Arrays.equals(x, point3D.x);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(x);
     }
 }

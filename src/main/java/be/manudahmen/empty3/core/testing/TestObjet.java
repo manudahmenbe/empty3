@@ -1,22 +1,14 @@
 /*
- * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
- * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
- * Les parties tierces peuvent être soumises à d'autres licenses.
- * Montemedia : Creative Commons
- * ECT : Tests à valeur artistique ou technique.
- * La partie RayTacer a été honteusement copiée sur le Net. Puis traduite en Java et améliorée.
- * Java est une marque de la société Oracle.
  *
- * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
- */
 
 /*
- * 2013-2015 Manuel Dahmen
+ * 2013-2019 Manuel Dahmen
  */
 package be.manudahmen.empty3.core.testing;
 
 import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.RegisterOutput;
+import be.manudahmen.empty3.core.export.ObjExport;
 import be.manudahmen.empty3.core.export.STLExport;
 import be.manudahmen.empty3.core.script.ExtensionFichierIncorrecteException;
 import be.manudahmen.empty3.core.script.Loader;
@@ -48,6 +40,7 @@ public abstract class TestObjet implements Test, Runnable {
     public static final int GENERATE_MODEL = 2;
     public static final int GENERATE_OPENGL = 4;
     public static final int GENERATE_MOVIE = 8;
+    public static final int GENERATE_OBJ = 16;
     public static final int GENERATE_NO_IMAGE_FILE_WRITING = 16;
     public static final ArrayList<TestInstance.Parameter> initParams = new ArrayList<TestInstance.Parameter>();
     public static final int ON_TEXTURE_ENDS_STOP = 0;
@@ -149,6 +142,11 @@ public abstract class TestObjet implements Test, Runnable {
         return directory;
     }
 
+    public void setResolution(int x, int y) {
+        setResx(x);
+        setResy(y);
+    }
+
     void startNewMovie() {
         if ((generate & GENERATE_MOVIE) > 0) {
             if (isAviOpen()) {
@@ -162,7 +160,6 @@ public abstract class TestObjet implements Test, Runnable {
                 }
             }
         }
-
         idxFilm++;
         avif = new File(this.dir.getAbsolutePath() + File.separator
                 + sousdossier + this.getClass().getName() + "__" + filmName + idxFilm + ".AVI");
@@ -282,13 +279,18 @@ public abstract class TestObjet implements Test, Runnable {
     }
 
     public void exportFrame(String format, String filename) throws IOException {
+
         STLExport.save(
-                new File(directory.getAbsolutePath() + File.separator + filename),
+                new File(directory.getAbsolutePath() + File.separator + filename + ".stl"),
+                scene(),
+                false);
+        ObjExport.save(
+                new File(directory.getAbsolutePath() + File.separator + filename + ".obj"),
                 scene(),
                 false);
     }
 
-    public abstract void finit();
+    public abstract void finit() throws Exception;
 
     public int frame() {
         return frame;
@@ -352,10 +354,12 @@ public abstract class TestObjet implements Test, Runnable {
         this.maxFrames = maxFrames;
     }
 
+
     public int getResx() {
         return resx;
     }
 
+    @Deprecated
     public void setResx(int resx) {
         this.resx = resx;
         z = ZBufferFactory.instance(resx, resy, D3);
@@ -365,6 +369,7 @@ public abstract class TestObjet implements Test, Runnable {
         return resy;
     }
 
+    @Deprecated
     public void setResy(int resy) {
         this.resy = resy;
         z = ZBufferFactory.instance(resx, resy, D3);
@@ -381,28 +386,29 @@ public abstract class TestObjet implements Test, Runnable {
             return;
         }
         c = new Camera(new Point3D(0, 0, -10), Point3D.O0);
-        ResourceBundle bundle1 = ResourceBundle
-                .getBundle("be/manudahmen/empty3/core/testing/Bundle");
 
-        File dirl = null;
+        File dir1 = null;
+
+        scene = new Scene();
 
         Properties config = new Properties();
         try {
             config.load(new FileInputStream(System.getProperty("user.home")
-                    + File.separator + ".starbuck"));
-            if (config.getProperty("folder.output") != null) {
-                dirl = new File(config.getProperty("folder.output"));
+                    + File.separator + "empty3.config"));
+            if (config.getProperty("folderoutput") != null) {
+                dir1 = new File(config.getProperty("folderoutput"));
+            }
+            else
+            {
+                dir1 = new File ("/"
+                        + File.separator + "EmptyCanvas");
             }
         } catch (IOException ex) {
             o.println(ex.getLocalizedMessage());
         }
-        if (dirl == null) {
-            dirl = new File(bundle1.getString("testpath"));
-        }
-        if (!dirl.exists()) {
-            dirl.mkdirs();
-        }
-        this.dir = new File(dirl.getAbsolutePath() + File.separator
+        dir1.mkdirs();
+
+        this.dir = new File(dir1.getAbsolutePath() + File.separator
                 + this.getClass().getName());
         if (!this.dir.exists()) {
             this.dir.mkdirs();
@@ -413,31 +419,13 @@ public abstract class TestObjet implements Test, Runnable {
         serid = new File(this.dir.getAbsolutePath() + File.separator
                 + "__SERID");
 
-        if (filename == null) {
-            filename = bundle1.getString("src");
-        }
-        if (fileExtension == null) {
-            fileExtension = bundle1.getString("type");
-        }
-
-        template = bundle1.getString("template");
-
-        properties.put("name", this.getClass().getName());
-        properties.put("version", version);
-
-        resx = Integer.parseInt(bundle1.getString("resx"));
-        resy = Integer.parseInt(bundle1.getString("resy"));
-        scene = new Scene();
-
-        binaryExtension = bundle1.getString("binaryExtension");
-
         sousdossier = "FICHIERS_" + dateForFilename(new Date());
 
         directory = new File(this.dir.getAbsolutePath() + File.separator
                 + sousdossier);
         directory.mkdirs();
-        new File(directory.getAbsolutePath() + File.separator + "GAUCHE").mkdir();
-        new File(directory.getAbsolutePath() + File.separator + "DROITE").mkdir();
+//        new File(directory.getAbsolutePath() + File.separator + "GAUCHE").mkdir();
+//        new File(directory.getAbsolutePath() + File.separator + "DROITE").mkdir();
         initialise = true;
     }
 
@@ -679,7 +667,12 @@ public abstract class TestObjet implements Test, Runnable {
             ex.printStackTrace();
         }
     }
-
+    public boolean copyResources()
+    {
+        // TODO Parcourir les textures de la scène
+        // TODO
+        throw new UnsupportedOperationException("Not implemented");
+    }
     public void run() {
 
         timeStart = System.nanoTime();
@@ -742,8 +735,14 @@ public abstract class TestObjet implements Test, Runnable {
                 }
                 pauseActive = false;
 
-                finit();
-
+                try {
+                    finit();
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                    reportException(ex);
+                }
                 if ((generate & GENERATE_OPENGL) > 0 && false) {
                     o.println("No OpenGL");
                 } else {
@@ -846,17 +845,15 @@ public abstract class TestObjet implements Test, Runnable {
                     } catch (VersionNonSupporteeException ex) {
                         o.println(ex.getLocalizedMessage());
                         reportException(ex);
-                    } catch (ExtensionFichierIncorrecteException ex) {
-                        o.println(ex.getLocalizedMessage());
-                        reportException(ex);
+                    } catch (ExtensionFichierIncorrecteException e) {
+                        e.printStackTrace();
                     }
-
                 }
                 if ((generate & GENERATE_MODEL) > 0) {
                     try {
                         o.println("Start generating model");
                         String filename = "export-" + frame + ".STL";
-                        exportFrame("export-stl", filename);
+                        exportFrame("export", filename);
                         dataWriter.writeFrameData(frame(), "Export model: " + filename);
                         o.println("End generating model");
                     } catch (FileNotFoundException ex) {
@@ -1067,5 +1064,14 @@ public abstract class TestObjet implements Test, Runnable {
 
     public void onMaxFrame(int maxFramesEvent) {
         this.onMaxFrameEvent = maxFramesEvent;
+    }
+
+    public TestObjet getInstance() throws ClassNotFoundException {
+        try {
+            return this.getClass().newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        throw new ClassNotFoundException("Impossible to initialize class");
     }
 }

@@ -21,7 +21,7 @@
 package be.manudahmen.empty3.core.nurbs;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.move.Trajectoires;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
@@ -108,7 +108,7 @@ public class TestNurbsComplexe1 extends TestObjetSub {
                 {0, 0, 0, 0, 0.5, 0.5, 1, 1, 1, 1}
         });
 
-        n.texture(new ColorTexture(Color.WHITE));
+        n.texture(new TextureCol(Color.WHITE));
 
         n.setMaxX(30);
         n.setMaxY(30);

@@ -25,6 +25,7 @@ package be.manudahmen.empty3;
 import be.manudahmen.empty3.core.extra.SimpleSphere;
 import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
+import be.manudahmen.empty3.core.nurbs.ThickSurface;
 import be.manudahmen.empty3.core.tribase.TRIObjetGenerateurAbstract;
 
 import java.awt.*;
@@ -35,14 +36,13 @@ import java.util.Iterator;
  * *
  * Classe de rendu graphique
  */
-public class ZBufferImpl implements ZBuffer {
+public class ZBufferImpl extends Representable implements ZBuffer {
 
     public static final int PERSPECTIVE_ISOM = 0;
     public static final int PERSPECTIVE_OEIL = 1;
     /**
      * Couleur de fond (texture: couleur, image, vidéo, ...
      */
-    protected final ImageFond backgroundTexture = new ImageFond(new ColorTexture(Color.WHITE));
     // DEFINITIONS
     public double INFINI_PROF = Double.MAX_VALUE;
     public int type_perspective = PERSPECTIVE_OEIL;
@@ -63,17 +63,15 @@ public class ZBufferImpl implements ZBuffer {
     private boolean locked = false;
     private boolean firstRun = true;
     // VARIABLES
-    private int id = 1;
+    private long idImg = 1;
     private int dimx;
     private int dimy;
-    private Point3D[][] Sx;
-    private int[] Sc;
-    private int[][] Simeid;
+    private Point3D[][] Scordinate;
+    private int[] Scolor;
+    private long[][] Simeid;
     private float[][] Simeprof;
-    private Representable[] interaction;
     private Scene currentScene;
     private Box2D box;
-    private Representable interactionCourant;
     private Point3D activeLight = new Point3D(-10, 0, 100);
 
     public ZBufferImpl() {
@@ -81,9 +79,11 @@ public class ZBufferImpl implements ZBuffer {
         ha = Resolution.K4RESOLUTION.y();
         dimx = la;
         dimy = ha;
+        this.ime = new ImageMap(la, ha);
     }
 
     public ZBufferImpl(Resolution resolution) {
+        this();
         la = resolution.x();
         ha = resolution.y();
         dimx = la;
@@ -91,14 +91,15 @@ public class ZBufferImpl implements ZBuffer {
     }
 
     public ZBufferImpl(int l, int h) {
+        this();
         la = l;
         ha = h;
         dimx = la;
         dimy = ha;
     }
 
-    protected long id() {
-        return id;
+    protected long idImg() {
+        return idImg;
     }
 
     public Point3D activeLight() {
@@ -110,49 +111,31 @@ public class ZBufferImpl implements ZBuffer {
     }
 
     public Camera camera() {
-        return this.cameraC;
+        return this.scene().cameraActive;
     }
 
     public void camera(Camera c) {
         this.cameraC = c;
     }
 
-    public Point3D camera(Point3D p) {
-        /*
-         * if (this instanceof ZBuffer3DImpl && currentScene.cameraActive()
-         * instanceof Camera3D) { if ((((ZBuffer3DImpl) this).LR()) == 0) {
-         * Point3D p2 = ((Camera3D) currentScene.cameraActive())
-         * .calculerPointDansRepereGAUCHE(p); if (p.getNormale() != null) {
-         * p2.setNormale(((Camera3D) currentScene.cameraActive())
-         * .calculerPointDansRepereGAUCHE(p.getNormale())); } return p2; } if
-         * (((ZBuffer3DImpl) this).LR() == 1) { Point3D p2 = ((Camera3D)
-         * currentScene.cameraActive()) .calculerPointDansRepereDROIT(p); if
-         * (p.getNormale() != null) { p2.setNormale(((Camera3D)
-         * currentScene.cameraActive())
-         * .calculerPointDansRepereDROIT(p.getNormale())); } return p2; } }
-         */
-        Point3D p2 = currentScene.cameraActive().calculerPointDansRepere(p);
-        if (p.getNormale() != null) {
-            p2.setNormale(currentScene.cameraActive().calculerPointDansRepere(
-                    p.getNormale()));
-        }
-        return p2;
-    }
 
     public Point coordonneesPoint2D(Point3D p) {
         switch (type_perspective) {
             case PERSPECTIVE_ISOM:
-                return coordonneesPointEcranIsometrique(p);
+                return coordonneesPointEcranIsometrique(
+                        coordonneesPoint3D(p));
             case PERSPECTIVE_OEIL:
-                return coordonneesPointEcranPerspective(p);
+                return coordonneesPointEcranPerspective(
+                        coordonneesPoint3D(p)
+                        );
             default:
                 throw new UnsupportedOperationException(
                         "Type de perspective non reconnu");
         }
     }
 
-    public Point3D coordonneesPoint3D(Point p, double zdistance) {
-        throw new UnsupportedOperationException("Operation non supportee");
+    public Point3D coordonneesPoint3D(Point3D p) {
+        return scene().cameraActive().calculerPointDansRepere(p);
     }
 
     protected Point coordonneesPointEcranIsometrique(Point3D p) {
@@ -171,6 +154,7 @@ public class ZBufferImpl implements ZBuffer {
     }
 
     public Point coordonneesPointEcranPerspective(Point3D x3d) {
+
         if (x3d.getZ() > 0 && -angleX < Math.atan(x3d.getX() / x3d.getZ())
                 && Math.atan(x3d.getX() / x3d.getZ()) < angleX
                 && -angleY < Math.atan(x3d.getY() / x3d.getZ())
@@ -188,10 +172,9 @@ public class ZBufferImpl implements ZBuffer {
             firstRun = false;
         }
 
-        id++;
+        suivante();
 
         currentScene.cameraActive().calculerMatrice();
-        camera(currentScene.cameraActive());
 
         if (type_perspective == PERSPECTIVE_ISOM) {
 
@@ -202,6 +185,13 @@ public class ZBufferImpl implements ZBuffer {
     }
 
     public void draw(Representable re, Representable refObject) {
+        if (re instanceof RepresentableType) {
+            try {
+                ((RepresentableType) re).draw(this);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
 
         if (re.getPainter() != null) {
             try {
@@ -228,16 +218,135 @@ public class ZBufferImpl implements ZBuffer {
             Representable r = re;
 
             // GENERATORS
+            if (r instanceof ThickSurface) {
+                // System.out.println("Surface");
+                ThickSurface n = (ThickSurface) r;
+                // TODO Dessiner les bords
+                for (double i = n.getStartU(); i <= n.getEndU() - n.getIncrU(); i += n.getIncrU()) {
+                    for (double j = n.getStartU(); j <= n.getEndV() - n.getIncrV(); j += n.getIncrV()) {
+                        double u = i;
+                        double v = j;
+
+
+
+
+
+                        draw(new TRI(n.computeInt(u, v),
+                                n.computeInt(u + n.getIncrU(), v),
+                                n.computeInt(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture()), n);
+                        draw(new TRI(n.computeInt(u, v),
+                                n.computeInt(u, v + n.getIncrV()),
+                                n.computeInt(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture()), n);
+                        draw(new TRI(n.computeExt(u, v),
+                                n.computeExt(u + n.getIncrU(), v),
+                                n.computeExt(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture()), n);
+                        draw(new TRI(n.computeExt(u, v),
+                                n.computeExt(u, v + n.getIncrV()),
+                                n.computeExt(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture()), n);
+
+                    }
+
+                }
+            }
+            // GENERATORS
+            if (r instanceof ParametricSurface) {
+                // System.out.println("Surface");
+                ParametricSurface n = (ParametricSurface) r;
+                // TODO Dessiner les bords
+                for (double u = n.getStartU(); u <= n.getEndU(); u += n.getIncrU()) {
+                    //System.out.println("(u,v) = ("+u+","+")");
+                    for (double v = n.getStartU(); v <= n.getEndV(); v += n.getIncrV()) {
+                /*
+                        draw(new TRI(n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u + n.getIncrU(), v),
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture()), n);
+                        draw(new TRI(n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u, v + n.getIncrV()),
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture()), n);
+*/
+ /*tracerTriangle(n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u + n.getIncrU(), v),
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                new Color(n.texture().getColorAt(0.5,0.5)));
+                        tracerTriangle(n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u, v + n.getIncrV()),
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                new Color(n.texture().getColorAt(0.5,0.5)));
+*//*
+                        tracerTriangle(n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u + n.getIncrU(), v),
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture());
+                        tracerTriangle(n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u, v + n.getIncrV()),
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture());
+
+*/
+                        /*
+                        Point3D[][] point3DS = {{n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u + n.getIncrU(), v)},
+                                {n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                        n.calculerPoint3D(u, v + n.getIncrV())}};
+
+                        SurfaceParametricPolygonalBezier surfaceParametriquePolynomialeBezier = new SurfaceParametricPolygonalBezier(point3DS);
+                        draw(surfaceParametriquePolynomialeBezier, n);
+*/
+
+
+                        tracerQuad(n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u + n.getIncrU(), v),
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                n.calculerPoint3D(u , v+n.getIncrV()),
+                                n.texture(), u, u+n.getIncrU(), v, v+n.getIncrV());
+
+
+/*
+                        line(n.calculerPoint3D(u, v),
+                                n.calculerPoint3D(u + n.getIncrU(), v),
+                                n.texture, u);
+                        line(
+                            n.calculerPoint3D(u + n.getIncrU(), v),
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                n.texture, v);
+                        line(
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                n.calculerPoint3D(u, v + n.getIncrV()),
+                                n.texture, u);
+                        line(
+                        n.calculerPoint3D(u, v + n.getIncrV()),
+                                n.calculerPoint3D(u, v),
+                                n.texture, v);
+*/
+
+                        //
+//
+//                        draw(new TRI(n.calculerPoint3D(u, v),
+//                                n.calculerPoint3D(u + n.getIncrU(), v),
+//                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+//                                n.texture()), n, u, v);
+//                        draw(new TRI(n.calculerPoint3D(u, v),
+//                                n.calculerPoint3D(u, v + n.getIncrV()),
+//                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+//                                n.texture()), n, u, v);
+//
+                    }
+
+                }
+            }
             if (r instanceof TRIGenerable) {
                 r = ((TRIGenerable) r).generate();
-                interactionCourant = r;
             } else if (r instanceof PGenerator) {
                 r = ((PGenerator) r).generatePO();
-                interactionCourant = r;
-            }
+             }
             if (r instanceof TRIConteneur) {
                 r = ((TRIConteneur) r).getObj();
-                interactionCourant = r;
             }
 
             // OBJETS
@@ -248,53 +357,40 @@ public class ZBufferImpl implements ZBuffer {
                     // System.out.println("Triangle suivant");
 
                     TRI t = ts.next();
-                    interactionCourant = t;
-                    tracerTriangle(r.rotation(camera(t.getSommet()[0])),
-                            r.rotation(camera(t.getSommet()[1])), r.rotation(camera(t.getSommet()[2])),
-                            new Color(t.texture().getColorAt(0.5, 0.5)));
+                    tracerTriangle(r.rotation(t.getSommet()[0]),
+                            r.rotation(t.getSommet()[1]), r.rotation(t.getSommet()[2]),
+                            t.texture());
 
                 }
             } else if (r instanceof Point3D) {
-                Point3D p = refObject == null ? camera(((Point3D) r)) : refObject.rotation(camera(((Point3D) r)));
-                interactionCourant = r;
-                ime.testProf(p, r.texture());
+                Point3D p = refObject == null ? ((Point3D) r) : refObject.rotation(((Point3D) r));
+                ime.testDeep(p, r.texture());
             } else if (r instanceof SegmentDroite) {
                 SegmentDroite s = (SegmentDroite) r;
-                interactionCourant = s;
-                Point3D pO = refObject == null ? camera(s.getOrigine()) : refObject.rotation(s.getOrigine());
-                Point3D pE = refObject == null ? camera(s.getExtremite()) : refObject.rotation(camera(s.getExtremite()));
-                ligne(pO, pE,
-                        s.texture());
-            } else if (r instanceof TRI) {
-                TRI t = (TRI) r;
-                interactionCourant = r;
-                Point3D p1 = refObject == null ? camera(t.getSommet()[0]) : refObject.rotation(camera(t.getSommet()[0]));
-                Point3D p2 = refObject == null ? camera(t.getSommet()[1]) : refObject.rotation(camera(t.getSommet()[1]));
-                Point3D p3 = refObject == null ? camera(t.getSommet()[2]) : refObject.rotation(camera(t.getSommet()[2]));
-                //TODO
-                tracerTriangle(p1, p2, p3, new Color(t.texture().getColorAt(0.5, 0.5)));
+                Point3D pO = refObject == null ? s.getOrigine() : refObject.rotation(s.getOrigine());
+                Point3D pE = refObject == null ? s.getExtremite() : refObject.rotation(s.getExtremite());
+                line(pO, pE,s.texture(), 0);
             } else if (r instanceof BSpline) {
                 BSpline b = (BSpline) r;
-                interactionCourant = r;
                 int nt = 100;
                 for (double i = 0; i < nt; i++) {
                     try {
-                        Point3D p3d = camera(b
-                                .calculerPoint3D(3.0 + 1.0 * nt / 200));
-                        ime.testProf(p3d, b.getColor());
+                        Point3D p3d = b
+                                .calculerPoint3D(3.0 + 1.0 * nt / 200);
+                        ime.testDeep(p3d, b.texture().getColorAt(0.5,0.5));
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 }
             } else if (r instanceof BezierCubique) {
                 BezierCubique b = (BezierCubique) r;
-                interactionCourant = b;
                 int nt = largeur() / 10;
-                Point3D p0 = camera(b.calculerPoint3D(0.0));
+                Point3D p0 = b.calculerPoint3D(0.0);
                 for (double t = 0; t < 1.0; t += 1.0 / nt) {
                     try {
-                        Point3D p1 = camera(b.calculerPoint3D(t));
-                        ligne(p0, p1, new ColorTexture(b.getColor()));
+                        Point3D p1 = b.calculerPoint3D(t);
+                        line(p0, p1, b.texture(),
+                        t);
                         p0 = p1;
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -302,7 +398,6 @@ public class ZBufferImpl implements ZBuffer {
                 }
             } else if (r instanceof BezierCubique2D) {
                 BezierCubique2D b = (BezierCubique2D) r;
-                interactionCourant = b;
                 int i1 = BezierCubique2D.DIM1, i2 = BezierCubique2D.DIM2;
                 for (int i = 0; i < i1; i++) {
                     for (int j = 0; j < i2; j++) {
@@ -319,42 +414,37 @@ public class ZBufferImpl implements ZBuffer {
                                         r.rotation(b.calculerPoint3D((i - 1 < 0 ? 0
                                                         : i - 1) * 1d / i1,
                                                 (j - 1 < 0 ? 0 : j - 1) * 1d
-                                                        / i2))}, new ColorTexture(
+                                                        / i2))}, new TextureCol(
                                 b.getColor(i1, i2, 1.0d * i / i1, 1.d
                                         * j / i2))), r);
                     }
                 }
             } else if (r instanceof PObjet) {
                 PObjet b = (PObjet) r;
-                interactionCourant = b;
                 for (Point3D p : b.getPoints()) {
                     {
-                        interactionCourant = p;
-                        ime.testProf(r.rotation(camera(p)), p.texture());
+                        ime.testDeep(r.rotation(p), p.texture());
                     }
                 }
             } else if (r instanceof POConteneur) {
                 POConteneur c = (POConteneur) r;
                 for (Point3D p : c.iterable()) {
                     {
-                        interactionCourant = p;
-                        ime.testProf(r.rotation(camera(p)), p.texture());
+                        ime.testDeep(r.rotation(p), p.texture());
                     }
                 }
             } else if (r instanceof TRIConteneur) {
                 for (TRI t : ((TRIConteneur) r).iterable()) {
                     {
-                        interactionCourant = t;
-                        tracerTriangle(r.rotation(camera(t.getSommet()[0])),
-                                r.rotation(camera(t.getSommet()[1])),
-                                r.rotation(camera(t.getSommet()[2])), new Color(t.texture()
-                                        .getColorAt(0.5, 0.5)));
+                        tracerTriangle(r.rotation(t.getSommet()[0]),
+                                r.rotation(t.getSommet()[1]),
+                                r.rotation(t.getSommet()[2]),
+                                t.texture());
                     }
                 }
 
             } else if (r instanceof TRIObjetGenerateurAbstract) {
                 TRIObjetGenerateurAbstract to = (TRIObjetGenerateurAbstract) r;
-                interactionCourant = to;
 
                 to.draw(this);
             } else if (r instanceof PGeneratorZ) {
@@ -364,177 +454,34 @@ public class ZBufferImpl implements ZBuffer {
             } else if (r instanceof ParametricCurve) {
                 // System.out.println("Curve");
                 ParametricCurve n = (ParametricCurve) r;
-                interactionCourant = n;
-                double incr = n.getIncr();
+                 double incr = n.getIncr();
                 for (double i = 0; i <= 1 - incr; i += incr) {
-                    draw(new SegmentDroite(
-                            n.calculerPoint3D(i), n.calculerPoint3D(i + incr),
-                            new ColorTexture(Color.MAGENTA)), n);
-
+                    if(n.isConnected()) {
+                        draw(new SegmentDroite(
+                                n.calculerPoint3D(i), n.calculerPoint3D(i + incr),
+                                n.texture()), n);
+                    }
+                    else
+                    {
+                        draw(n.calculerPoint3D(i), n);
+                    }
                     // System.out
                     // .print("+"+n.calculerPoint3D(i).toString());
                 }
 
-            } else if (r instanceof ParametricSurface) {
-                // System.out.println("Surface");
-                ParametricSurface n = (ParametricSurface) r;
-                interactionCourant = n;
-                for (double i = n.getStartU(); i <= n.getEndU() - n.getIncrU(); i += n.getIncrU()) {
-                    for (double j = n.getStartU(); j <= n.getEndV() - n.getIncrV(); j += n.getIncrV()) {
-                        double u = i;
-                        double v = j;
-                        draw(new TRI(n.calculerPoint3D(u, v),
-                                n.calculerPoint3D(u + n.getIncrU(), v),
-                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
-                                n.texture()), n);
-                        draw(new TRI(n.calculerPoint3D(u, v),
-                                n.calculerPoint3D(u, v + n.getIncrV()),
-                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
-                                n.texture()), n);
-
-                    }
-
-                }
-            }
-        }
-
-    }
-
-    public void dessinerStructure() {
-        if (firstRun) {
-            ime = new ImageMap(la, ha);
-            firstRun = false;
-        }
-        id++;
-        currentScene.cameraActive().calculerMatrice();
-        camera(currentScene.cameraActive());
-        if (type_perspective == PERSPECTIVE_ISOM) {
-
-            box = new Box2D();
-        }
-        dessinerStructure(currentScene);
-    }
-
-    public void dessinerStructure(Representable re) {
-
-        Iterator<Representable> it = null;
-        // COLLECTION
-        if (re instanceof RepresentableConteneur) {
-            RepresentableConteneur name = (RepresentableConteneur) re;
-            it = name.getListRepresentable().iterator();
-            while (it.hasNext()) {
-                dessinerStructure(it.next());
-            }
-        } else if (re instanceof Scene) {
-            Scene scene = (Scene) re;
-            it = scene.iterator();
-            while (it.hasNext()) {
-                dessinerStructure(it.next());
-            }
-        } else if (re != null) {
-            Representable r = re;
-
-            // GENERATORS
-            if (r instanceof TRIGenerable) {
-                r = ((TRIGenerable) r).generate();
-            } else if (r instanceof PGenerator) {
-                r = ((PGenerator) r).generatePO();
-            }
-            if (r instanceof TRIConteneur) {
-                r = ((TRIConteneur) r).getObj();
-            }
-
-            // OBJETS
-            if (r instanceof TRIObject) {
-                TRIObject o = (TRIObject) r;
-                Iterator<TRI> ts = o.triangles().iterator();
-                while (ts.hasNext()) {
-                    // System.out.println("Triangle suivant");
-
-                    TRI t = ts.next();
-
-                    dessinerStructure(t);
-
-                }
-            } else if (r instanceof Point3D) {
-                Point3D p = camera((Point3D) r);
-                ime.testProf(p, r.texture());
-            } else if (r instanceof SegmentDroite) {
-                SegmentDroite s = (SegmentDroite) r;
-                ligne(camera(s.getOrigine()), camera(s.getExtremite()),
-                        s.texture());
-            } else if (r instanceof TRI) {
-                TRI t = (TRI) r;
-                dessinerStructure(new SegmentDroite(camera(t.getSommet()[0]),
-                        camera(t.getSommet()[1]), t.texture()));
-                dessinerStructure(new SegmentDroite(camera(t.getSommet()[1]),
-                        camera(t.getSommet()[2]), t.texture()));
-                dessinerStructure(new SegmentDroite(camera(t.getSommet()[2]),
-                        camera(t.getSommet()[0]), t.texture()));
-            } else if (r instanceof BSpline) {
-                BSpline b = (BSpline) r;
-                int nt = 100;
-                for (double i = 0; i < nt; i++) {
-                    try {
-                        Point3D p3d = camera(b
-                                .calculerPoint3D(3.0 + 1.0 * nt / 200));
-                        ime.testProf(p3d, b.getColor());
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            } else if (r instanceof BezierCubique) {
-                BezierCubique b = (BezierCubique) r;
-                int nt = largeur() / 10;
-                Point3D p0 = camera(b.calculerPoint3D(0.0));
-                for (double t = 0; t < 1.0; t += 1.0 / nt) {
-                    try {
-                        Point3D p1 = camera(b.calculerPoint3D(t));
-                        ligne(p0, p1, new ColorTexture(b.getColor()));
-                        p0 = p1;
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-
-            } else if (r instanceof PObjet) {
-                PObjet b = (PObjet) r;
-                for (Point3D p : b.getPoints()) {
-                    ime.testProf(camera(p), p.texture());
-                }
-            } else if (r instanceof POConteneur) {
-                POConteneur c = (POConteneur) r;
-                for (Point3D p : c.iterable()) {
-                    ime.testProf(camera(p), p.texture());
-                }
-            } else if (r instanceof TRIConteneur) {
-                for (TRI t : ((TRIConteneur) r).iterable()) {
-                    dessinerStructure(t);
-
-                }
-
-            } else if (r instanceof TRIObjetGenerateurAbstract) {
-                TRIObjetGenerateurAbstract to = (TRIObjetGenerateurAbstract) r;
-                // to.drawStructure(this);
-                throw new UnsupportedOperationException(
-                        "drawStructure TRIGenerateurAbbstract)");
-            } else if (r instanceof PGeneratorZ) {
-                PGeneratorZ p = (PGeneratorZ) r;
-                p.generate(this);
-                p.dessine(this);
-                p.dessineStructure(this);
             }
 
         }
 
     }
+
 
     public double distanceCamera(Point3D x3d) {
         switch (type_perspective) {
             case PERSPECTIVE_ISOM:
-                return x3d.getZ();
+                return x3d.getZ()-scene().cameraActive.eye.getZ();
             case PERSPECTIVE_OEIL:
-                return x3d.norme();
+                return x3d.moins(scene().cameraActive().eye()).norme();
             default:
                 throw new UnsupportedOperationException(
                         "Type de perspective non reconnu");
@@ -546,31 +493,23 @@ public class ZBufferImpl implements ZBuffer {
         return box.echelleEcran();
     }
 
-    public Color getColorAt(Point p) {
+    public int getColorAt(Point p) {
         if (ime.getIME().getElementProf((int) p.getX(), (int) p.getY()) >= INFINI_PROF) {
-            return new Color(ime.getIME().getElementCouleur((int) p.getX(),
-                    (int) p.getY()));
+            return ime.getIME().getElementCouleur((int) p.getX(),
+                    (int) p.getY());
         } else {
-            return new Color(Color.TRANSLUCENT);
+            return Color.TRANSLUCENT;
         }
     }
 
     public int[] getData() {
-        return Sc;
+        return Scolor;
     }
 
     public ZBuffer getInstance(int x, int y) {
         return new ZBufferImpl(x, y);
     }
 
-    public Representable getObjectAt(Point p) {
-        if (ime.getIME().getElementProf((int) p.getX(), (int) p.getY()) >= INFINI_PROF) {
-            return ime.getIME().getElementRepresentable((int) p.getX(),
-                    (int) p.getY());
-        } else {
-            return null;
-        }
-    }
 
     /**
      * @return hauteur du zbuffer
@@ -584,7 +523,7 @@ public class ZBufferImpl implements ZBuffer {
                 ECBufferedImage.TYPE_INT_RGB);
         for (int i = 0; i < la; i++) {
             for (int j = 0; j < ha; j++) {
-                int elementCouleur = ime.getIME().getElementCouleur(i, j);
+                int elementCouleur = ime.ime.getElementCouleur(i, j);
                 bi2.setRGB(i, j, elementCouleur);
 
             }
@@ -599,10 +538,6 @@ public class ZBufferImpl implements ZBuffer {
         BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
         bi.setRGB(0, 0, la, ha, getData(), 0, la);
         return new ECBufferedImage(bi);
-    }
-
-    public void interactionCourant(Representable r) {
-        interactionCourant = r;
     }
 
     public boolean isLocked() {
@@ -626,21 +561,21 @@ public class ZBufferImpl implements ZBuffer {
     /**
      * @param p1 premier point
      * @param p2 second point
-     * @param t  couleur de la ligne
+     * @param t  couleur de la line
      */
-    public void ligne(Point3D p1, Point3D p2, ITexture t) {
+    public void line(Point3D p1, Point3D p2, ITexture t, double u) {
         Point x1 = coordonneesPoint2D(p1);
         Point x2 = coordonneesPoint2D(p2);
         if (x1 == null || x2 == null) {
             return;
         }
         Point3D n = p1.moins(p2).norme1();
-        double itere = Math.max(Math.abs(x1.getX() - x2.getX()),
-                Math.abs(x1.getY() - x2.getY())) * 4;
+        double itere = Math.max(Math.abs(x1.getX() - x2.getX())+1,
+                Math.abs(x1.getY() - x2.getY())+1) * 4;
         for (int i = 0; i < itere; i++) {
             Point3D p = p1.mult(i / itere).plus(p2.mult(1 - i / itere));
             p.texture(t);
-            ime.testProf(p, t);
+            ime.testDeep(p, n, t.getColorAt(i, 0.5));
         }
 
     }
@@ -678,14 +613,20 @@ public class ZBufferImpl implements ZBuffer {
                         Point.distance(p2.x, p2.y, p3.x, p3.y)),
                 Point.distance(p3.x, p3.y, p1.x, p1.y));
     }
-
+    private double maxDistance(Point p1, Point p2, Point p3, Point p4) {
+        return Math.max(Math.max(
+                Math.max(Point.distance(p1.x, p1.y, p2.x, p2.y),
+                        Point.distance(p2.x, p2.y, p3.x, p3.y)),
+                Point.distance(p3.x, p3.y, p4.x, p4.y)),
+                Point.distance(p4.x, p4.y, p1.x, p1.y));
+    }
     public void perspective() {
         type_perspective = PERSPECTIVE_OEIL;
     }
 
     public void plotPoint(Color color, Point3D p) {
         if (p != null && color != null) {
-            ime.testProf(p, coordonneesPoint2D(p), new ColorTexture(color));
+            ime.testDeep(p, color.getRGB());
         }
 
     }
@@ -733,22 +674,42 @@ public class ZBufferImpl implements ZBuffer {
     }
 
     public void suivante() {
-        id++;
+        if(texture() instanceof TextureMov)
+        {
+            try {
+                ((TextureMov) texture()).nextFrame();
+            } catch (EOFilmException e) {
+                e.printStackTrace();
+            }
+        }
+        idImg++;
     }
 
-    public void testPoint(Point3D p) {
+    @Override
+    public void testDeep(Point3D p, Color c) {
+
+        ime.testDeep(p, c);
+    }
+
+    @Override
+    public void testDeep(Point3D p, int c) {
+        ime.testDeep(p, c);
+
+    }
+
+    public void testDeep(Point3D p) {
         if (p != null && p.texture() != null) {
-            ime.testProf(p, p.texture());
+            ime.testDeep(p, p.texture());
         }
     }
 
-    public void testPoint(Point3D p, Color c) {
+    public void testPoint(Point3D p, Color c) {int cc = c.getRGB();
+
         if (scene().lumiereActive() != null) {
-            ITexture t = scene().lumiereActive().getCouleur(
-                    new ColorTexture(c), p, p.getNormale());
-            p.texture(t);
+            cc = scene().lumiereActive().getCouleur(
+                    c.getRGB(), p, p.getNormale());
         }
-        ime.testProf(p, c);
+        ime.testDeep(p, cc);
     }
 
     private void tracerAretes(Point3D point3d, Point3D point3d2, Color c) {
@@ -764,7 +725,7 @@ public class ZBufferImpl implements ZBuffer {
             Point3D p = point3d.mult(a).plus(point3d2.mult(1 - a));
             pp.setLocation(p1.getX() + (int) (a * (p2.getX() - p1.getX())),
                     p1.getY() + (int) (a * (p2.getY() - p1.getY())));
-            ime.testProf(p, c);
+            ime.testDeep(p, c.getRGB());
 
         }
 
@@ -783,7 +744,7 @@ public class ZBufferImpl implements ZBuffer {
         // Templates.
     }
 
-    public void tracerQuad(Point3D pp1, Point3D pp2, Point3D pp3, Color c) {
+    public void tracerTriangle(Point3D pp1, Point3D pp2, Point3D pp3, Color c) {
         Point p1 = coordonneesPoint2D(pp1);
         Point p2 = coordonneesPoint2D(pp2);
         Point p3 = coordonneesPoint2D(pp3);
@@ -800,12 +761,51 @@ public class ZBufferImpl implements ZBuffer {
             for (double b = 0; b < 1.0; b += iteres2) {
                 Point3D p = p3d.plus(p3d.mult(-1).plus(pp3).mult(b));
                 // Point p22 = coordonneesPoint2D(p);
-                ime.testProf(p, c);
+                ime.testDeep(p, c.getRGB());
+            }
+        }
+    }
+    public void tracerQuad(Point3D pp1, Point3D pp2, Point3D pp3, Point3D pp4, ITexture texture,
+                           double u0, double u1, double v0, double v1) {
+        Point p1, p2, p3, p4;
+        p1 = coordonneesPoint2D(pp1);
+        p2 = coordonneesPoint2D(pp2);
+        p3 = coordonneesPoint2D(pp3);
+        p4 = coordonneesPoint2D(pp4);
+
+        TRI triBas = new TRI(pp1, pp2, pp3, texture);
+        if (p1 == null || p2 == null || p3 == null) {
+            return;
+        }
+        Point3D normale = triBas.normale();
+        double inter = 1.0 / (maxDistance(p1, p2, p3, p4) + 1) / 3;
+        for (double a = 0; a < 1.0; a += inter) {
+            Point3D pElevation1 = pp1.plus(pp1.mult(-1).plus(pp2).mult(a));
+            Point3D pElevation2 = pp4.plus(pp4.mult(-1).plus(pp3).mult(a));
+            for (double b = 0; b < 1.0; b += inter) {
+                Point3D pFinal = (
+                        pElevation1.plus(pElevation1
+                        .mult(-1).plus(pElevation2).mult(b)
+                        )
+                );
+                pFinal.setNormale(normale);
+                /*System.out.print("u:"+(
+                                u0 + (u1 - u0) * a
+                        )+", v:"+(
+                        v0 + (v1 - v0) * b
+
+                        )+"\n");*/
+                pFinal.texture(texture);
+                ime.testDeep(pFinal, texture.getColorAt(u0 + (u1 - u0) * a,
+                        v0 + (v1 - v0) * b));
             }
         }
     }
 
-    public void tracerTriangle(Point3D pp1, Point3D pp2, Point3D pp3, Color c) {
+
+
+    public void tracerTriangle(Point3D pp1, Point3D pp2, Point3D pp3,
+                               ITexture c) {
         Point p1, p2, p3;
         p1 = coordonneesPoint2D(pp1);
         p2 = coordonneesPoint2D(pp2);
@@ -823,7 +823,7 @@ public class ZBufferImpl implements ZBuffer {
             for (double b = 0; b < 1.0; b += iteres2) {
                 Point3D p = p3d.plus(p3d.mult(-1).plus(pp3).mult(b));
                 p.setNormale(n);
-                ime.testProf(p, n, c);
+                ime.testDeep(p, n, c.getColorAt(a, b));
             }
         }
     }
@@ -842,48 +842,34 @@ public class ZBufferImpl implements ZBuffer {
         }
     }
 
+    @Override
+    public ITexture backgroundTexture() {
+        return texture();
+    }
+
     public void couleurDeFond(ITexture couleurFond) {
     }
 
-    public void backgroundTexture(ITexture tex) {
-        if (tex != null) {
-            backgroundTexture.setText(tex);
-            backgroundTexture.applyTex();
+    public void backgroundTexture(ITexture texture) {
+        if (texture != null) {
+            texture(texture);
+            applyTex();
         }
     }
 
-    public class ImageFond {
-
-        ITexture tex;
-
-        public ImageFond(ITexture tex) {
-            this.tex = tex;
-        }
-
-        public void setText(ITexture tex) {
-            this.tex = tex;
-        }
-
-        public ITexture getTex() {
-            return tex;
-        }
-
         public void applyTex() {
-            if (tex instanceof VideoTexture) {
-                ((VideoTexture) tex).nextFrame();
-            }
-            for (int i = 0; i < la; i++) {
-                for (int j = 0; j < ha; j++) {
-                    ime.getIME().setElementCouleur(
-                            i,
-                            j,
-                            new Color(tex
-                                    .getColorAt(1.0 * i / la, 1.0 * j / ha)));
+            if (texture instanceof TextureMov) {
+                for (int i = 0; i < la; i++) {
+                    for (int j = 0; j < ha; j++) {
+                        ime.ime.setElementCouleur(
+                                i,
+                                j,
+                                texture()
+                                        .getColorAt(1.0 * i / la, 1.0 * j / ha));
+                    }
                 }
             }
         }
-    }
-
     public class Box2D {
 
         private double minx = 1000000;
@@ -996,7 +982,7 @@ public class ZBufferImpl implements ZBuffer {
 
                     } else if (r instanceof RepresentableConteneur) {
                         throw new UnsupportedOperationException(
-                                "Conteneur non support�");
+                                "Conteneur non supporté");
                     }
                 }
             }
@@ -1130,7 +1116,7 @@ public class ZBufferImpl implements ZBuffer {
 
     public class ImageMap {
 
-        private ImageMapElement ime;
+        protected ImageMapElement ime;
 
         public ImageMap(int x, int y) {
             dimx = x;
@@ -1138,9 +1124,9 @@ public class ZBufferImpl implements ZBuffer {
             ime = new ImageMapElement();
             for (int i = 0; i < x; i++) {
                 for (int j = 0; j < y; j++) {
-                    ime.setElementID(x, y, id);
+                    ime.setElementID(x, y, idImg);
                     ime.setElementPoint(x, y, INFINI);
-                    ime.setElementCouleur(x, y, Color.white);
+                    ime.setElementCouleur(x, y, 0);
                 }
             }
         }
@@ -1154,12 +1140,11 @@ public class ZBufferImpl implements ZBuffer {
             int x = (int) ce.getX();
             int y = (int) ce.getY();
             if (x >= 0 & x < la & y >= 0 & y < ha && c.getAlpha() == 255) {
-                ime.setElementID(x, y, id);
+                ime.setElementID(x, y, idImg);
                 ime.setElementPoint(x, y, x3d);
-                ime.setElementCouleur(x, y, c);
-                ime.setProf(x, y, prof);
-                interaction[x * la + y] = interactionCourant;
-            }
+                ime.setElementCouleur(x, y, c.getRGB());
+                ime.setDeep(x, y, prof);
+           }
         }
 
         public int getDimx() {
@@ -1174,28 +1159,9 @@ public class ZBufferImpl implements ZBuffer {
             return ime;
         }
 
-        /*
-         * public void testProf(Point3D p, Point3D n, ColorTexture c) { Color cc =
-         * c.getCouleur(); float[] compArray = new float[3];
-         * cc.getColorComponents(compArray); double m =
-         * Math.abs(n.norme1().prodScalaire(p.moins(activeLight()).norme1()));
-         * if (m >= 0 && m <= 1.0) { for (int i = 0; i < 3; i++) { compArray[i]
-         * = (float) (compArray[i] * (1f + m / 3f)); if (compArray[i] < 0) {
-         * compArray[i] = 0.0f; } if (compArray[i] > 1) { compArray[i] = 1.0f; }
-         * }
-         *
-         * cc = new Color(compArray[0], compArray[1], compArray[2]); testProf(p,
-         * cc); } }
-         */
-        private void interaction(int x, int y, Representable interactionCourant) {
-            if (x >= 0 && x < la && y >= 0 && y < ha) {
-                interaction[y * la + x] = interactionCourant;
-            }
-
-        }
 
         public void reinit() {
-            id++;
+            idImg++;
         }
 
         /*
@@ -1203,16 +1169,17 @@ public class ZBufferImpl implements ZBuffer {
          * & y >= 0 & y < ha) { return true; } return false; }
          */
         public void setIME(int x, int y) {
-            ime.setElementID(x, y, id);
+            ime.setElementID(x, y, idImg);
         }
 
-        public void testProf(Point3D x3d, Color c) {
-
-            Point ce = coordonneesPoint2D(x3d);
-            if (ce == null || c == null) {
+        public void testDeep(Point3D x3d, int c) {
+            if(x3d==null)
                 return;
-            }
-            double prof = distanceCamera(x3d);
+            int cc = c;
+            Point ce = coordonneesPoint2D(x3d);
+            if(ce==null)
+                return;
+            double deep = distanceCamera(x3d);
 
             int x = (int) ce.getX();
             int y = (int) ce.getY();
@@ -1220,59 +1187,49 @@ public class ZBufferImpl implements ZBuffer {
                     & x < la
                     & y >= 0
                     & y < ha
-                    && (prof < ime.getElementProf(x, y) || ime.getElementID(x,
-                    y) != id) && c.getAlpha() == 255) {
-                ime.setElementID(x, y, id);
+                    && (deep < ime.getElementProf(x, y) /*|| ime.getElementID(x,
+                    y) != idImg*/) /*&& (((cc>>24)&0xff) == 0)*/) {
+                ime.setElementID(x, y, idImg);
                 ime.setElementPoint(x, y, x3d);
                 if (scene().lumiereActive() != null) {
-                    c = new Color(scene().lumiereTotaleCouleur(
-                            new ColorTexture(c), x3d,
-                            x3d.getNormale())
-                            .getColorAt(0.5, 0.5));
+                    cc = scene().lumiereTotaleCouleur(c,
+                            x3d,
+                            x3d.getNormale());
 
                 }
 
-                ime.setElementCouleur(x, y, c);
-                ime.setProf(x, y, prof);
-                interaction(x, y, interactionCourant);
-            }
-        }
-
-        public void testProf(Point3D x3d, Point coordonneesPointEcra, ITexture t) {
-            int x = (int) coordonneesPointEcra.getX();
-            int y = (int) coordonneesPointEcra.getY();
-            double prof = distanceCamera(x3d);
-            if (x >= 0 & x < la & y >= 0 & y < ha
-                    && prof < ime.getElementProf(x, y)
-                    && new Color(t.getColorAt(0.5, 0.5)).getAlpha() == 255) {
-                ime.setElementID(x, y, id);
-                if (scene().lumiereActive() != null) {
-                    t = scene().lumiereActive().getCouleur(t, x3d,
-                            x3d.getNormale());
-                    t = scene().calculerCouleurLumiere(t, x3d,
-                            x3d.getNormale());
-                }
+                ime.setElementCouleur(x, y, cc);
+                ime.setDeep(x, y, deep);
                 ime.setElementPoint(x, y, x3d);
-                ime.setElementCouleur(x, y, new Color(t.getColorAt(0.5, 0.5)));
-
-                ime.setProf(x, y, prof);
             }
         }
 
-        public void testProf(Point3D p, Point3D n, Color c) {
+
+        public void testDeep(Point3D p, Point3D n, Color c) {
             // Color cc = c.getCouleur();
             p.setNormale(n);
-            testProf(p, c);
+            testDeep(p, c.getRGB());
+        }
+        public void testDeep(Point3D p, Point3D n, int c) {
+            testDeep(p, n, new Color(c));
         }
 
-        public void testProf(Point3D p, ITexture texture) {
-            testProf(p, new Color(texture.getColorAt(0.5, 0.5)));
+        public void testDeep(Point3D p, ITexture texture) {
+            testDeep(p, texture.getColorAt(0.5, 0.5));
 
         }
 
         public void dessine(Point3D p, ITexture texture) {
             dessine(p, new Color(texture.getColorAt(0.5, 0.5)));
 
+        }
+
+        public void testDeep(Point3D p) {
+            testDeep(p, p.texture());
+        }
+
+        public void testDeep(Point3D p, Color c) {
+            testDeep(p, p.getNormale(), c);
         }
     }
 
@@ -1282,46 +1239,41 @@ public class ZBufferImpl implements ZBuffer {
         private ImageMapElement instance;
 
         public ImageMapElement() {
-            Sx = new Point3D[la][ha];
-            Sc = new int[la * ha];
-            Simeid = new int[la][ha];
+            Scordinate = new Point3D[la][ha];
+            Scolor = new int[la * ha];
+            Simeid = new long[la][ha];
             Simeprof = new float[la][ha];
-            interaction = new Representable[la * ha];
 
             for (int i = 0; i < la; i++) {
                 for (int j = 0; j < ha; j++) {
                     Simeprof[i][j] = (float) INFINI.getZ();
-                    Simeid[i][j] = id;
-                    Sc[j * la + i] = COULEUR_FOND_INT(i, j);
+                    Simeid[i][j] = idImg;
+                    Scolor[j * la + i] = COULEUR_FOND_INT(i, j);
 
                 }
             }
         }
 
-        public boolean checkCoordonnees(int x, int y) {
+        public boolean checkCordinates(int x, int y) {
             return x >= 0 && x < resX() && y >= 0 && y < resY();
         }
 
-        public boolean checkID(int x, int y, int id2) {
-            return checkCoordonnees(x, y) && Simeid[x][y] == id2;
-        }
-
         public int COULEUR_FOND_INT(int x, int y) {
-            couleur_fond_int = backgroundTexture.getTex().getColorAt(
+            couleur_fond_int = texture().getColorAt(
                     1.0 * x / largeur(), 1.0 * y / hauteur());
             return couleur_fond_int;
         }
 
         public int getElementCouleur(int x, int y) {
-            if (checkCoordonnees(x, y) && Simeid[x][y] == id() && Simeprof[x][y] < INFINI.getZ()) {
-                return getRGBInt(Sc, x, y);
+            if (checkCordinates(x, y) && Simeid[x][y] == idImg() && Simeprof[x][y] < INFINI.getZ()) {
+                return getRGBInt(Scolor, x, y);
             } else {
                 return COULEUR_FOND_INT(x, y);
             }
         }
 
-        public int getElementID(int x, int y) {
-            if (checkCoordonnees(x, y)) {
+        public long getElementID(int x, int y) {
+            if (checkCordinates(x, y)) {
                 return Simeid[x][y];
             } else {
                 return -1;
@@ -1329,28 +1281,21 @@ public class ZBufferImpl implements ZBuffer {
         }
 
         public Point3D getElementPoint(int x, int y) {
-            if (checkCoordonnees(x, y) && Simeid[x][y] == id) {
-                return Sx[x][y];
+            if (checkCordinates(x, y) && Simeid[x][y] == idImg) {
+                return Scordinate[x][y];
             } else {
                 return INFINI;
             }
         }
 
         private double getElementProf(int x, int y) {
-            if (checkCoordonnees(x, y) && Simeid[x][y] == id) {
+            if (checkCordinates(x, y) && Simeid[x][y] == idImg) {
                 return Simeprof[x][y];
             } else {
                 return INFINI_PROF;
             }
         }
 
-        public Representable getElementRepresentable(int x, int y) {
-            if (checkCoordonnees(x, y)) {
-                return interaction[x + y * la];
-            } else {
-                return null;
-            }
-        }
 
         public ImageMapElement getInstance(int x, int y) {
             if (instance == null) {
@@ -1360,56 +1305,40 @@ public class ZBufferImpl implements ZBuffer {
         }
 
         private int getRGBInt(int[] sc, int x, int y) {
-
-            /*
-             * return sc[(x + y * la) * 3 + 0] << 16 | sc[(x + y * la) * 3 + 1]
-             * << 8 | sc[(x + y * la) * 3 + 2];
-             */
             return sc[x + y * la];
 
         }
 
-        public void setElementCouleur(int x, int y, Color pc) {
+        public void setElementCouleur(int x, int y, int pc) {
 
-            if (checkCoordonnees(x, y)) {
-                setElementID(x, y, id);
-                setRGBInts(pc, Sc, x, y);
+            if (checkCordinates(x, y)) {
+                setElementID(x, y, idImg);
+                setRGBInts(pc, Scolor, x, y);
             }
         }
 
-        public void setElementID(int x, int y, int id) {
-            if (checkCoordonnees(x, y)) {
-                Simeid[x][y] = id;
+        public void setElementID(int x, int y, long id) {
+            if (checkCordinates(x, y)) {
+                Simeid[x][y] = idImg;
             }
         }
 
         public void setElementPoint(int x, int y, Point3D px) {
-            if (checkCoordonnees(x, y)) {
-                setElementID(x, y, id);
-                Sx[x][y] = px;
+            if (checkCordinates(x, y)) {
+                setElementID(x, y, idImg);
+                Scordinate[x][y] = px;
             }
         }
 
-        public void setElementRepresentable(int x, int y, Representable r) {
-            if (checkCoordonnees(x, y)) {
-                setElementID(x, y, id);
-                interaction[la * y + x] = r;
-            }
-        }
 
-        private void setProf(int x, int y, double d) {
-            if (checkCoordonnees(x, y)) {
+        private void setDeep(int x, int y, double d) {
+            if (checkCordinates(x, y)) {
                 Simeprof[x][y] = (float) d;
             }
         }
 
-        private void setRGBInts(Color rgb, int[] sc, int x, int y) {
-            /*
-             * sc[(x + y * la) * 3 + 0] = rgb.getRed(); sc[(x + y * la) * 3 + 1]
-             * = rgb.getGreen(); sc[(x + y * la) * 3 + 2] = rgb.getBlue();
-             */
-            sc[x + y * la] = 0xFF000000 | rgb.getRed() << 16
-                    | rgb.getGreen() << 8 | rgb.getBlue();
+        private void setRGBInts(int rgb, int[] sc, int x, int y) {
+            sc[x + y * la] = rgb;
         }
     }
 

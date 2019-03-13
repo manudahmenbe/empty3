@@ -57,26 +57,14 @@ public class STLExport {
         }
     }
 
-    public static void traite(ParametricSurface n, PrintWriter pw) {
-        traite((TRIObjetGenerateur) n, pw);
-    }
-
     private static void traite(Polygon r, PrintWriter pw) {
-        write("facet normal 0 0 0 \n" + "outer loop\n", pw);
-        for (int s = 0; s < r.getPoints().size(); s++) {
-            write("vertex ", pw);
-            for (int c = 0; c < 3; c++) {
-                double A = r.getPoints().get(s).get(c);
-                if (Double.isNaN(A)) {
-                    A = 0;
-                }
-                write(A + " ", pw);
-            }
-
-            write("\n", pw);
+        Point3D isocentre = r.getIsocentre();
+        int count = r.getPoints().size();
+        for (int s = 0; s < count; s++) {
+            traite(new TRI(r.getPoints().get(s),
+                    r.getPoints().get((s + 1) % count),
+                    isocentre), pw);
         }
-        write("endloop\n", pw);
-        write("endfacet\n", pw);
     }
 
     private static void traite(Representable r, PrintWriter pw) {
@@ -84,6 +72,9 @@ public class STLExport {
 
         if (r instanceof RepresentableConteneur) {
             traite((RepresentableConteneur) r, pw);
+        }
+        if (r instanceof ParametricSurface) {
+            traite((ParametricSurface) r, pw);
         }
         if (r instanceof TRIObject) {
             traite((TRIObject) r, pw);
@@ -103,16 +94,32 @@ public class STLExport {
         if (r instanceof TRIConteneur) {
             traite((TRIConteneur) r, pw);
         }
-        if (r instanceof ParametricSurface) {
-            traite((ParametricSurface) r, pw);
+    }
+
+    private static void traite(ParametricSurface r, PrintWriter pw) {
+        write("", pw);
+        int countU = (int) ((r.getStartU() - r.getEndU()) / r.getIncrU());
+        int countV = (int) ((r.getStartV() - r.getEndV()) / r.getIncrV());
+        int incrU;
+        int incrV;
+        double u = r.getStartU();
+        double v = r.getStartV();
+        for (int i = 0; i < countU; u += r.getIncrU(), i++) {
+            for (int j = 0; j < countU; u += r.getIncrV(), j++) {
+                traite(r.getElementSurface(u,
+                        u + r.getIncrU(),
+                        v, v + r.getIncrV()), pw);
+            }
         }
+
     }
 
     private static void traite(RepresentableConteneur r, PrintWriter pw) {
         write("", pw);
         Iterator<Representable> it = r.iterator();
         while (it.hasNext()) {
-            it.next();
+            Representable next = it.next();
+            traite(next, pw);
         }
     }
 

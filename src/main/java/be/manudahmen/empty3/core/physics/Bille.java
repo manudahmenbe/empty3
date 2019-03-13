@@ -18,12 +18,7 @@ import java.awt.*;
 
 
 public class Bille implements IPoint {
-    public final static int STAT_GAGNE = 0;
-    public final static int STAT_PERDU = 1;
-    public final static int STAT_ENJEU = 2;
-    public final static int STAT_COINCE = 3;
     public Color color;
-    public int statut;
     public String nom;
     public Point3D position;
     public Point3D vitesse = new Point3D(0, 0, 0);
@@ -38,7 +33,6 @@ public class Bille implements IPoint {
                  double amortissement) {
         super();
         this.color = color;
-        this.statut = statut;
         this.nom = nom;
         this.position = position;
         this.vitesse = vitesse;
@@ -51,7 +45,6 @@ public class Bille implements IPoint {
     public Bille(Bille b) {
         super();
         this.color = b.color;
-        this.statut = b.statut;
         this.nom = b.nom;
         this.position = b.position;
         this.vitesse = b.vitesse;

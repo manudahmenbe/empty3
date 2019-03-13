@@ -22,7 +22,8 @@ import javax.swing.*;
 public class OpenGLWindow extends JFrame {
     private GLCanvas canvas;
 
-    public OpenGLWindow(String title) {
+    public OpenGLWindow(String title, GLCanvas canvas) {
         super(title);
+        this.canvas = canvas;
     }
 }

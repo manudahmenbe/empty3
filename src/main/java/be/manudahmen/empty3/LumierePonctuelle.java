@@ -38,7 +38,7 @@ public final class LumierePonctuelle implements Lumiere {
     }
 
     @Override
-    public ITexture getCouleur(ITexture base, Point3D p, Point3D n) {
+    public int getCouleur(int base, Point3D p, Point3D n) {
         double x = p.moins(position).norme();
         double r = 0.0;
         if (directional) {
@@ -55,11 +55,11 @@ public final class LumierePonctuelle implements Lumiere {
             r = 1.0;
         }
 
-        Color couleurObjet = new Color(base.getColorAt(0.5, 0.5));
-        return new ColorTexture(new Color(
+        Color couleurObjet = new Color(base);
+        return new Color(
                 (float) ((couleurObjet.getRed() / 256.0) * r + (couleurLumiere.getRed() / 256.0) * (1 - r)),
                 (float) ((couleurObjet.getGreen() / 256.0) * r + (couleurLumiere.getGreen() / 256.0) * (1 - r)),
-                (float) ((couleurObjet.getBlue() / 256.0) * r + (couleurLumiere.getBlue() / 256.0) * (1 - r))));
+                (float) ((couleurObjet.getBlue() / 256.0) * r + (couleurLumiere.getBlue() / 256.0) * (1 - r))).getRGB();
     }
 
     public void intensite(int r0) {

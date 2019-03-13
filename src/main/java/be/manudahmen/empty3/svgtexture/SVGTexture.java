@@ -13,7 +13,6 @@
 package be.manudahmen.empty3.svgtexture;
 
 import be.manudahmen.empty3.ITexture;
-import org.apache.batik.util.XMLResourceDescriptor;
 
 import java.awt.*;
 import java.io.File;
@@ -24,7 +23,7 @@ import java.io.File;
 public class SVGTexture extends ITexture {
 
     public SVGTexture(File file) {
-        String parser = XMLResourceDescriptor.getXMLParserClassName();
+        // String parser = XMLResourceDescriptor.getXMLParserClassName();
         //SAXSVGDocumentFactory f = new SAXSVGDocumentFactory(parser);
         String uri = file.toURI().toString();
 
@@ -37,8 +36,9 @@ public class SVGTexture extends ITexture {
 
     @Override
     public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double u, double v) {
-        return Color.GRAY;
+        return null;
     }
+
 
     @Override
     public void timeNext() {

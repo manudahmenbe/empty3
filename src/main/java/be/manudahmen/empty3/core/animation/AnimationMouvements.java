@@ -14,13 +14,6 @@ package be.manudahmen.empty3.core.animation;
 
 import be.manudahmen.empty3.Representable;
 
-/**
- * @author MANUEL DAHMEN
- *         <p>
- *         dev
- *         <p>
- *         14 déc. 2011
- */
 public class AnimationMouvements {
 
     private Animation animation;

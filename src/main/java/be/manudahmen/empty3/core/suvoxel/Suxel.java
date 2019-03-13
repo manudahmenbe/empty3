@@ -13,8 +13,6 @@
 package be.manudahmen.empty3.core.suvoxel;
 
 import be.manudahmen.empty3.Point2D;
-import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.Representable;
 import be.manudahmen.empty3.ZBuffer;
 
 import java.util.Set;
@@ -22,20 +20,11 @@ import java.util.Set;
 /**
  * Created by manuel on 07-01-17.
  */
-public class Suxel implements Xel {
+public abstract class Suxel implements Xel {
     public Point2D reduce(ZBuffer z, int nPixels) {
         return null;
     }
 
-    @Override
-    public Set<Point2D> reduceToSurface2d(ZBuffer z, Representable t) {
-        return null;
-    }
-
-    @Override
-    public ZCell zcell(ZBuffer z, Point3D p) {
-        return null;
-    }
 
     @Override
     public Set<Cell> cells() {

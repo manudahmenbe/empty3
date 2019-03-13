@@ -23,9 +23,6 @@ package be.manudahmen.empty3.core.animation;
 import be.manudahmen.empty3.Scene;
 import be.manudahmen.empty3.core.ECDim;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
- */
 public class AnimationVideo extends Animation {
 
     public AnimationVideo(Scene s, ECDim dim) {

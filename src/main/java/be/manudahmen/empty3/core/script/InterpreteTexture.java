@@ -12,10 +12,10 @@
 
 package be.manudahmen.empty3.core.script;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.ECBufferedImage;
 import be.manudahmen.empty3.ITexture;
-import be.manudahmen.empty3.ImageTexture;
+import be.manudahmen.empty3.TextureImg;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -53,7 +53,7 @@ public class InterpreteTexture implements Interprete {
             pos = ic.getPosition();
             pass = true;
 
-            tc = new ColorTexture(c);
+            tc = new TextureCol(c);
 
         } catch (InterpreteException ex) {
         }
@@ -67,7 +67,7 @@ public class InterpreteTexture implements Interprete {
                 pass = true;
 
                 try {
-                    tc = new ImageTexture(new ECBufferedImage(ImageIO.read(f)));
+                    tc = new TextureImg(new ECBufferedImage(ImageIO.read(f)));
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

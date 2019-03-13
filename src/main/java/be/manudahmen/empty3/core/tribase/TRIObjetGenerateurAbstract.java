@@ -149,8 +149,8 @@ public abstract class TRIObjetGenerateurAbstract extends Representable implement
             Point3D ret = sommet[0].plus(
                     sommet[1].moins(sommet[0]).mult(ratioX)).plus(
                     sommet[2].moins(sommet[1]).mult(ratioY));
-            if (texture() == null) texture = new ColorTexture(new Color(255, 128, 0));
-            ret.texture(new ColorTexture(texture.getMaillageTexturedColor(numX, numY,
+            if (texture() == null) texture = new TextureCol(new Color(255, 128, 0));
+            ret.texture(new TextureCol(texture.getMaillageTexturedColor(numX, numY,
                     ((numX + ratioX) / maxX), ((numY + ratioY) / maxY))));
 
             ret.setNormale((tris[0].getSommet()[1].moins(tris[0].getSommet()[0])).prodVect((tris[0]
@@ -159,11 +159,11 @@ public abstract class TRIObjetGenerateurAbstract extends Representable implement
             return ret;
         } else {
             Point3D[] sommet = tris[1].getSommet();
-            if (texture() == null) texture = new ColorTexture(new Color(255, 128, 0));
+            if (texture() == null) texture = new TextureCol(new Color(255, 128, 0));
             Point3D ret = sommet[1].plus(
                     sommet[0].moins(sommet[1]).mult(ratioY)).plus(
                     sommet[2].moins(sommet[0]).mult(ratioX));
-            ret.texture(new ColorTexture(texture.getMaillageTexturedColor(numX, numY,
+            ret.texture(new TextureCol(texture.getMaillageTexturedColor(numX, numY,
                     ((numX + ratioX) / maxX), ((numY + ratioY) / maxY))));
 
             ret.setNormale((tris[1].getSommet()[1].moins(tris[1].getSommet()[0])).prodVect((tris[1]
@@ -182,7 +182,7 @@ public abstract class TRIObjetGenerateurAbstract extends Representable implement
      * @param z
      */
     public void draw(ZBuffer z) {
-        Point3D INFINI = new Point3D(0, 0, 10000, new ColorTexture(Color.BLUE));
+        Point3D INFINI = new Point3D(0, 0, 10000, new TextureCol(Color.BLUE));
         TRI[] tris = new TRI[2];
         tris[0] = new TRI(INFINI, INFINI, INFINI);
         tris[1] = new TRI(INFINI, INFINI, INFINI);
@@ -207,10 +207,10 @@ public abstract class TRIObjetGenerateurAbstract extends Representable implement
                 double incrMax = 1;
                 for (int t = 0; t < 2; t++) {
                     for (int c = 0; c < 3; c++) {
-                        Point p1 = z.coordonneesPoint2D(z.camera(tris[t]
-                                .getSommet()[c]));
-                        Point p2 = z.coordonneesPoint2D(z.camera(tris[t]
-                                .getSommet()[(c + 1) % 3]));
+                        Point p1 = z.coordonneesPoint2D(tris[t]
+                                .getSommet()[c]);
+                        Point p2 = z.coordonneesPoint2D(tris[t]
+                                .getSommet()[(c + 1) % 3]);
                         if (p1 != null & p2 != null) {
                             double incr = 1.0 / (Math
                                     .abs(p1.getX() - p2.getX()) + Math.abs(p1
@@ -226,8 +226,8 @@ public abstract class TRIObjetGenerateurAbstract extends Representable implement
                 }
                 for (double rx = 0; rx < 1.0; rx += incrMax) {
                     for (double ry = 0; ry < 1.0; ry += incrMax) {
-                        z.testPoint(z.camera(getPoint3D(tris, numX, numY, rx,
-                                ry)));
+                        z.testDeep(getPoint3D(tris, numX, numY, rx,
+                                ry));
                     }
                 }
             }

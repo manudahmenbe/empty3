@@ -17,5 +17,5 @@ package be.manudahmen.empty3;
  */
 public interface Lumiere {
 
-    ITexture getCouleur(ITexture base, Point3D p, Point3D n);
+    public int getCouleur(int base, Point3D p, Point3D n);
 }

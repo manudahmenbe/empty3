@@ -17,7 +17,7 @@
  */
 package be.manudahmen.empty3.core.script;
 
-import be.manudahmen.empty3.ColorTexture;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 
 import java.awt.*;
@@ -80,7 +80,7 @@ public class InterpretePoint3DCouleur implements Interprete {
 
         pos = ib.getPosition();
 
-        p.texture(new ColorTexture(cc));
+        p.texture(new TextureCol(cc));
 
         this.pos = pos;
 
