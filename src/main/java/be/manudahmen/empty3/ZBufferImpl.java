@@ -570,8 +570,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             return;
         }
         Point3D n = p1.moins(p2).norme1();
-        double itere = Math.max(Math.abs(x1.getX() - x2.getX())+1,
-                Math.abs(x1.getY() - x2.getY())+1) * 4;
+        double itere = Math.max(Math.abs(x1.getX() - x2.getX()),
+                Math.abs(x1.getY() - x2.getY())) *4 + 1;
         for (int i = 0; i < itere; i++) {
             Point3D p = p1.mult(i / itere).plus(p2.mult(1 - i / itere));
             p.texture(t);

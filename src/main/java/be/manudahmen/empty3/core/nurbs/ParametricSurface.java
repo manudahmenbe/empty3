@@ -31,8 +31,8 @@ import java.awt.*;
  */
 public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
 
-    public double incr1 = 0.1;
-    public double incr2 = 0.1;
+    public double incr1 = 0.001;
+    public double incr2 = 0.001;
     public double incrVitesse = 0.0001;
     public double incrNormale = 0.000001;
     protected double start1 = 0, start2 = 0;
