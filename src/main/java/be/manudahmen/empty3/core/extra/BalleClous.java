@@ -17,6 +17,7 @@ package be.manudahmen.empty3.core.extra;
 
 import be.manudahmen.empty3.Point2D;
 import be.manudahmen.empty3.Point3D;
+import be.manudahmen.empty3.core.HeightMapSurface;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 /**
  * @author Se7en
  */
-public class BalleClous extends TRISphere {
+public class BalleClous extends TRISphere implements HeightMapSurface{
 
     private ArrayList<Point2D> points = new ArrayList<Point2D>();
     private double d;
@@ -82,4 +83,19 @@ public class BalleClous extends TRISphere {
         return points;
     }
 
+    @Override
+    public double height(double u, double v) {
+        Point2D p0 = new Point2D(u, v);
+
+        double mult = 1.0;
+
+        for (int i = 0; i < points.size(); i++) {
+
+            mult += 1 / (d + dmindist(p0, points.get(i)));
+
+        }
+
+        return mult / points.size();
+
+    }
 }

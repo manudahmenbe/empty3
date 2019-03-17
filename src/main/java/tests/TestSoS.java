@@ -4,6 +4,7 @@ import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.Sphere;
 import be.manudahmen.empty3.core.nurbs.PcOnPs;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
+import be.manudahmen.empty3.core.tribase.TRISphere;
 
 import java.awt.*;
 
@@ -18,13 +19,16 @@ public class TestSoS extends TestObjetSub {
     private Point3D[] pointsA = new Point3D[NSEG];
     private RepresentableConteneur representableConteneur
             = new RepresentableConteneur();
-    private Sphere sphere;
+    private TRISphere sphere;
     private Point3D sphereOrig = Point3D.O0;
-    TextureCol textureCol = new TextureCol(Color.BLACK);
+    TextureCol textureCol = new TextureCol(Color.RED);
     private Point3D sphereDest = Point3D.Y;
     ITexture colorTextureSurface = new TextureCol(Color.GREEN);
 
-    public void ginit() {
+    public void finit() {
+        scene().clear();
+        representableConteneur.clear();
+        sphere = new TRISphere(sphereOrig, RADIUS);
         representableConteneur.clear();
         for (int s = 0; s < NSEG;
              s++) {
@@ -38,32 +42,31 @@ public class TestSoS extends TestObjetSub {
 
         }
         scene().add(representableConteneur);
-
-    }
-
-    public void finit() {
-
-//        representableConteneur
-        //= new RepresentableConteneur();
+        scene().add(sphere);
 
 
         sphereOrig = sphereOrig.plus(Point3D.random(RADIUS / 100));
         sphereDest = sphereDest.plus(Point3D.random(RADIUS / 100));
 
 
-        sphere = new Sphere(new Axe(sphereOrig, sphereDest), RADIUS);
+        sphere = new TRISphere(sphereOrig, RADIUS);
         SegmentsOnSurface segmentsOnSurface = new SegmentsOnSurface
                 (
                         sphere
                         ,
-                        new SegmentDroite(Point3D.O0, Point3D.O0)
+                        new SegmentDroite(Point3D.X, Point3D.Y)
                 );
         sphere.texture(colorTextureSurface);
         segmentsOnSurface.texture(colorTextureSurface);
         representableConteneur.texture(textureCol);
+
+        scene().add(sphere);
+        scene().add(representableConteneur);
+
         scene().cameraActive(
-                new Camera(sphereOrig, sphereDest));
+                new Camera(sphereOrig.plus(sphereDest).mult(2.0), Point3D.O0));
     }
+
 
     public static void main(String[] args) {
         TestSoS testSoS = new TestSoS();

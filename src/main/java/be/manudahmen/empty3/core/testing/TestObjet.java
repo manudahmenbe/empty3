@@ -767,10 +767,6 @@ public abstract class TestObjet implements Test, Runnable {
                             z.perspective();
                         }
 
-                        if (z instanceof ZBufferImpl) {
-                            ((ZBufferImpl) z).setColoration(true);
-                        }
-
                         if (structure && !D3()) {
                             //z.dessinerStructure();
 

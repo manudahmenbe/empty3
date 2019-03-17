@@ -1,9 +1,6 @@
 package be.manudahmen.empty3.core.nurbs;
 
-import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.Representable;
-import be.manudahmen.empty3.RepresentableType;
-import be.manudahmen.empty3.ZBuffer;
+import be.manudahmen.empty3.*;
 
 /**
  * Created by manue on 02-02-19.
@@ -18,11 +15,14 @@ public class PcOnPs extends Representable implements RepresentableType {
     }
 
     public void draw(ZBuffer zBuffer) {
-        for (double t = pc.start(); t < pc.end(); pc.getIncr()) {
-            Point3D p = pc.calculerPoint3D(t);
-            Point3D point3D = ps.calculerPoint3D(p.get(0), p.get(1));
-            point3D.texture(pc.texture());
-            zBuffer.testDeep(point3D);
+        for (double t = pc.start(); t < pc.end(); t+=pc.getIncr()) {
+            Point3D p1 = pc.calculerPoint3D(t);
+            Point3D p2 = pc.calculerPoint3D(t);
+            Point3D pos1 = ps.calculerPoint3D(p1.get(0), p1.get(1));
+            Point3D pos2 = ps.calculerPoint3D(p2.get(0), p2.get(1));
+            pos1.texture(pc.texture());
+            pos2.texture(pc.texture());
+            zBuffer.line(pos1, pos2, pc.texture());
         }
     }
 

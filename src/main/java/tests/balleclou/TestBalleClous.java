@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class TestBalleClous extends TestObjetSub {
     public int MAXFRAMES;
-    private TColor tc = new TColor(Color.red);
+    private TextureCol tc = new TextureCol(Color.red);
     private BalleClous ballec;
 
     public static void main(String[] args) {
@@ -41,17 +41,6 @@ public class TestBalleClous extends TestObjetSub {
     public void ginit() {
 
 
-        try {
-
-            tc =
-                    new TColor(
-                            new ECBufferedImage(ImageIO.read(new File("C:\\Emptycanvas\\textures\\moi1.jpg")))
-                    );
-
-
-        } catch (IOException ex) {
-            Logger.getLogger(TestBalleClous1.class.getName()).log(Level.SEVERE, null, ex);
-        }
         ballec = new BalleClous(Point3D.O0, 50);
 
 
@@ -70,7 +59,18 @@ public class TestBalleClous extends TestObjetSub {
             }
 
 
-        ballec.texture(tc);
+        try {
+
+            ballec.texture(
+                    new TextureImg(
+                            new ECBufferedImage(ImageIO.read(new File("samples/img/PHOTO-NU.jpg")))
+                    ));
+
+
+        } catch (IOException ex) {
+            Logger.getLogger(TestBalleClous1.class.getName()).log(Level.SEVERE, null, ex);
+            ballec.texture(new TextureCol(Color.RED));
+        }
 
         scene().add(ballec);
 
@@ -79,7 +79,7 @@ public class TestBalleClous extends TestObjetSub {
 
 
         Camera camera;
-        camera = new Camera(new Point3D(0d, 0d, -500d),
+        camera = new Camera(new Point3D(0d, 0d, -200d),
                 new Point3D(0d, 0d, 0d));
 
         scene().cameraActive(camera);
@@ -92,11 +92,6 @@ public class TestBalleClous extends TestObjetSub {
         exportFrame("export-stl", "export-" + frame + ".STL");
 
 
-    }
-
-    @Override
-    public void finit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 

@@ -121,6 +121,13 @@ public interface ZBuffer {
     void isometrique();
 
     /**
+     * @param p1 premier point
+     * @param p2 second point
+     * @param t  couleur de la line
+     */
+    void line(Point3D p1, Point3D p2, ITexture t);
+
+    /**
      * Verouille le zbuffer pendant les calculs.
      *
      * @return false si le zbuffer a été préalablement verrouillé. true si

@@ -37,13 +37,4 @@ public class TestTRISphere extends TestObjetSub {
 
     }
 
-    @Override
-    public void finit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void ginit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
