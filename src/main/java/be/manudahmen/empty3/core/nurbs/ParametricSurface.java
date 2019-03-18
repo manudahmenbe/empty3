@@ -53,6 +53,14 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
         Point3D moins1 = calculerPoint3D(u, v + incrNormale).plus(calculerPoint3D(u, v));
         return moins.prodVect(moins1).mult(0.5 / incrNormale / incrNormale).norme1();
     }
+    public Point3D calculerTangenteU(double u, double v) {
+        Point3D moins = calculerPoint3D(u + incrVitesse, v).moins(calculerPoint3D(u, v));
+        return moins.mult(1.0 / incrVitesse / incrVitesse).norme1();
+    }
+    public Point3D calculerTangenteV(double u, double v) {
+        Point3D moins1 = calculerPoint3D(u, v + incrVitesse).moins(calculerPoint3D(u, v));
+        return moins1.mult(1.0 / incrVitesse).norme1();
+    }
 
 
     public double incr1() {

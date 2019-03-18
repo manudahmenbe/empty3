@@ -27,12 +27,9 @@ public class TestBalleClous extends TestObjetSub {
 
         th.MAXFRAMES = 1000;
 
-        th.setResx(400);
-        th.setResy(300);
-
         th.setMaxFrames(th.MAXFRAMES);
 
-        th.setGenerate(GENERATE_MODEL | GENERATE_IMAGE);
+        th.setGenerate(GENERATE_MOVIE | GENERATE_IMAGE);
 
         th.run();
     }
@@ -88,7 +85,7 @@ public class TestBalleClous extends TestObjetSub {
 
     @Override
     public void testScene() throws Exception {
-        ballec.param(1.0 * (frame + 1) / MAXFRAMES);
+        ballec.param(1.0 / (0.001+frame /0.001) * MAXFRAMES);
         exportFrame("export-stl", "export-" + frame + ".STL");
 
 
