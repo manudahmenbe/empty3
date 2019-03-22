@@ -33,9 +33,6 @@ public class Serpentins2 extends TestObjetSub {
 
         th.loop(true);
 
-        th.setResx(640);
-        th.setResy(480);
-
         th.setGenerate(GENERATE_IMAGE | GENERATE_MOVIE);
 
         th.run();

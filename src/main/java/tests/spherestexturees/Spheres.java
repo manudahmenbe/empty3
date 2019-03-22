@@ -43,6 +43,10 @@ public class Spheres extends TestObjetSub {
         for (int i = 0; i < N; i++) {
             s[i] = new TRISphere(Point3D.O0, 0.1);
 
+
+            s[i].setIncrU(1./N);
+            s[i].setIncrV(1./N);
+
             s[i].texture(new TextureCol(Color.WHITE));
 
             scene().add(s[i]);
@@ -52,7 +56,7 @@ public class Spheres extends TestObjetSub {
         }
 
 
-        scene().cameraActive(new Camera(Point3D.Z.mult(-5), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-2.5), Point3D.O0));
     }
 
     public void bounce(int i) {
