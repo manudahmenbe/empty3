@@ -83,6 +83,12 @@ public class BalleClous extends TRISphere implements HeightMapSurface{
         return points;
     }
 
+
+    public Point3D calculerPoint3D(double u, double v)
+    {
+        return super.calculerPoint3D(u, v);
+    }
+
     @Override
     public double height(double u, double v) {
         Point2D p0 = new Point2D(u, v);

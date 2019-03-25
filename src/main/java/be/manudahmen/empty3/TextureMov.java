@@ -187,9 +187,15 @@ public class TextureMov extends ITexture {
 
 
     public boolean nextFrame() throws EOFilmException {
-        mtImage = new MapTextImage(vp.imageSuivante());
-        notSuivante = false;
-        return true;
+        try {
+            mtImage = new MapTextImage(vp.imageSuivante());
+            return true;
+        } catch (EOFilmException ex)
+        {
+            notSuivante = false;
+            return false;
+
+        }
     }
 
     @Override
@@ -252,7 +258,7 @@ public class TextureMov extends ITexture {
 
         @Override
         public void ginit() {
-            textureMov = new TextureMov("F:\\Bibliothèque Portable\\Films\\Cinema anglais" + "\\" + "Sailor.Et.Lula.1990.FRENCH.BRRiP.XViD.AC3-HuSh.avi");
+            textureMov = new TextureMov("");
             tri = new TRI(new Point3D[]{P.n(0, 0, 0), P.n(0, 1, 0), P.n(1, 1, 0)}, textureMov);
 
             scene().add(tri);
@@ -312,8 +318,12 @@ public class TextureMov extends ITexture {
         }
 
         private int getRGB(int xi, int yi) {
-
-            return addsToMapIfNotPresentAndReturns(xi, yi);
+            if(xi>=0&&xi<maxX&&yi>=0&&yi<maxY) {
+                return addsToMapIfNotPresentAndReturns(xi, yi);
+            } else
+            {
+                return transparent;
+            }
         }
     }
 
@@ -355,8 +365,9 @@ public class TextureMov extends ITexture {
 
                 mtImage = new MapTextImage(ret);
 
-                mtImages.remove(0);
-
+                if(mtImages.size()>0) {
+                    mtImages.remove(0);
+                }
                 reprendre();
 
                 return ret;

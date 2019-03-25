@@ -85,7 +85,7 @@ public class TestBalleClous extends TestObjetSub {
 
     @Override
     public void testScene() throws Exception {
-        ballec.param(1.0 / (0.001+frame /0.001) * MAXFRAMES);
+        ballec.param(frame /1000);
         exportFrame("export-stl", "export-" + frame + ".STL");
 
 

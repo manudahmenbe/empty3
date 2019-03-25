@@ -1,6 +1,7 @@
 package tests.balleclou;
 
 import be.manudahmen.empty3.*;
+import be.manudahmen.empty3.core.extra.BalleClous;
 import be.manudahmen.empty3.core.lighting.Colors;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 
@@ -15,14 +16,15 @@ public class TestBalleClous1111 extends TestObjetSub {
 
     public int N = 3;
     private ITexture tc = new TextureCol(Color.red);
-    private BalleClous2 ballec;
-    private Point3D[][] s;
-    private Point3D[][] v;
+    private BalleClous ballec;
+    private Point2D[][] s;
+    private Point2D[][] v;
     private double V = 0.03;
     private double D = 1;
     private TextureMov textureMov;
-    private BalleClous2[] balles = new BalleClous2[N];
-    private int nBalles = 5;
+    private BalleClous[] balles = new BalleClous[N];
+    private int nBalles = 1;
+    private int nPoints = 10;
 
     public static void main(String[] args) {
         TestBalleClous1111 th = new TestBalleClous1111();
@@ -52,35 +54,28 @@ public class TestBalleClous1111 extends TestObjetSub {
         scene().lumieres().add(lumierePonctuelle);
         scene().lumieres().add(new LumierePonctuelle(Point3D.O0, Colors.random()));
 
-        s = new Point3D[nBalles][N];
-        v = new Point3D[nBalles][N];
+        s = new Point2D[nBalles][N];
+        v = new Point2D[nBalles][N];
 
         for (int b = 0; b < nBalles; b++) {
-            for (int i = 0; i < N; i++) {
-                s[b][i] = new Point3D(Point3D.O0);
-
-                s[b][i].texture(new TextureCol(Colors.random()));
-
-                v[b][i] = new Point3D(Math.random() * (V / 2 - V), Math.random() * (V / 2 - V), Math.random() * (V / 2 - V));
-
-            }
             tc =
                     new TextureCol(
                             Colors.random());
+            for (int i = 0; i < N; i++) {
+                s[b][i] = new Point2D(Math.random(), Math.random());
 
+                v[b][i] = new Point2D(Math.random() * (V / 2 - V), Math.random() * (V / 2 - V));
 
-        }
-        for (int i = 0; i < balles.length; i++
-                ) {
+            }
+            ballec = new BalleClous(Point3D.O0, 10);
 
-
-            ballec = new BalleClous2(Point3D.random2(5), 1);
-
-            balles[i] = ballec;
+            balles[b] = ballec;
             ballec.texture(new TextureCol(Colors.random()));
             //textureMov = new TextureMov("C:\\Emptycanvas\\Resources\\BigFloEtOlie.mp4");
             //textureMov.setTransparent(Color.BLACK);
             //ballec.texture(textureMov);
+            for(int j=0; j<nPoints; j++)
+                ballec.addPoint(new Point2D(Math.random(), Math.random()));
             scene().add(ballec);
 
 
@@ -108,17 +103,11 @@ public class TestBalleClous1111 extends TestObjetSub {
         if (s[numBalle][i].getY() < -D && v[numBalle][i].getY() < 0) {
             v[numBalle][i].setY(-v[numBalle][i].getY());
         }
-        if (s[numBalle][i].getZ() > D && v[numBalle][i].getZ() > 0) {
-            v[numBalle][i].setZ(-v[numBalle][i].getZ());
-        }
-        if (s[numBalle][i].getZ() < -D && v[numBalle][i].getZ() < 0) {
-            v[numBalle][i].setZ(-v[numBalle][i].getZ());
-        }
     }
 
     @Override
     public void testScene() throws Exception {
-        for (int b = 0; b < balles.length; b++) {
+        for (int b = 0; b < nBalles; b++) {
             ballec = balles[b];
 
             for (int i = 0; i < s[0].length; i++) {
@@ -130,7 +119,7 @@ public class TestBalleClous1111 extends TestObjetSub {
             double totalA = 0;
             double totalB = 0;
 
-            for (int j = 0; j < s[b].length; j++) {
+            for (int j = 0; j < N; j++) {
                 if (s[b][j].getX() < 0) {
                     s[b][j].setX(s[b][j].getX() + D);
                 }
@@ -149,22 +138,9 @@ public class TestBalleClous1111 extends TestObjetSub {
 
                 ballec.addPoint(new Point2D(s[b][j].getX(), s[b][j].getY()));
 
-
-                ballec.position().rotation = ballec.position().rotation.mult(matrix1(totalA, totalB));
             }
 
         }
     }
 
-    private Matrix33 matrix1(double a, double b) {
-        return Matrix33.rot(a, b);
-    }
-
-    @Override
-    public void finit() {
-      /*  if (!textureMov.nextFrame()) {
-            this.STOP();
-        }
-    */
-    }
 }

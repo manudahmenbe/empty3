@@ -17,8 +17,9 @@ package be.manudahmen.empty3.core.tribase;
 
 import be.manudahmen.empty3.Barycentre;
 import be.manudahmen.empty3.Point3D;
+import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 
-public class Plan3D extends TRIObjetGenerateurAbstract {
+public class Plan3D extends ParametricSurface {
 
     private Point3D p0 = new Point3D(0.0, 0.0, 0.0);
     private Point3D vX = new Point3D(1.0, 0.0, 0.0);
@@ -32,9 +33,14 @@ public class Plan3D extends TRIObjetGenerateurAbstract {
         setMaxY(1);
     }
 
+    @Override
+    public Point3D calculerPoint3D(double u, double v) {
+        return p0.plus(vX.moins(p0).mult(u)
+                .plus(vY.moins(p0).mult(v)));
+    }
+
     public Point3D coordPoint3D(int x, int y) {
-        return p0.plus(vX.moins(p0).mult(1.0 * x / getMaxX()))
-                .plus(vY.moins(p0).mult(1.0 * y / getMaxY()));
+        return calculerPoint3D(1.*x/getMaxX(), 1.*y/getMaxY());
     }
 
     public String id() {
