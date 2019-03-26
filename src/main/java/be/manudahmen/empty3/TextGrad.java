@@ -11,6 +11,7 @@ public class TextGrad extends TextureMov {
     }
 
     public void iterate() {
+
         try {
             currentImg = current(0);
             nextImg = current(1);
