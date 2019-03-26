@@ -12,6 +12,7 @@
 
 package be.manudahmen.empty3.svgtexture;
 
+import be.manudahmen.empty3.EOFVideoException;
 import be.manudahmen.empty3.ITexture;
 
 import java.awt.*;
@@ -26,6 +27,11 @@ public class SVGTexture extends ITexture {
         // String parser = XMLResourceDescriptor.getXMLParserClassName();
         //SAXSVGDocumentFactory f = new SAXSVGDocumentFactory(parser);
         String uri = file.toURI().toString();
+
+    }
+
+    @Override
+    public void iterate() throws EOFVideoException {
 
     }
 

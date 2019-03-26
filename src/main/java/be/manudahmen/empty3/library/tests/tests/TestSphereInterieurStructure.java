@@ -7,7 +7,7 @@ package be.manudahmen.empty3.library.tests.tests;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.ECBufferedImage;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.TColor;
+import be.manudahmen.empty3.TextureImg;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
@@ -33,7 +33,7 @@ public class TestSphereInterieurStructure extends TestObjetSub {
             setResy(1000);
             TRISphere ts = new TRISphere(new Point3D(0, 0, 0), 100);
 
-            ts.texture(new TColor(new ECBufferedImage(ImageIO.read(getClass().getResource("Coucherdesoleil.jpg")))));
+            ts.texture(new TextureImg(new ECBufferedImage(ImageIO.read(getClass().getResource("Coucherdesoleil.jpg")))));
             ts.setMaxY(200);
             ts.setMaxY(200);
             scene().add(ts);

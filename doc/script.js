@@ -5,7 +5,7 @@ function show(type)
         var row = document.getElementById(key);
         if ((methods[key] & type) != 0) {
             row.style.display = '';
-            row.className = (count++ % 2) ? rowColor : altColor;
+            row.className = (count++ % 2) ? rowColor : alTextCol;
         }
         else
             row.style.display = 'none';

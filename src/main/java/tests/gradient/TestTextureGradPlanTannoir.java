@@ -7,32 +7,29 @@
  ***/
 
 
-package tests.videotexture;
+package tests.gradient;
 
-import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.TRI;
-import be.manudahmen.empty3.TextureMov;
+import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.Plan3D;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class TestVideoTexturePlanTannoir extends TestObjetSub {
+public class TestTextureGradPlanTannoir extends TestObjetSub {
     private String moviefilename;
     TRI tri = null;
-    TextureMov textureMov;
+    TextGrad textGrad;
 
-    private TestVideoTexturePlanTannoir(String arg) {
+    private TestTextureGradPlanTannoir(String arg) {
         moviefilename = arg;
     }
 
     public static void testing(String arg) {
 
-        TestVideoTexturePlanTannoir to;
+        TestTextureGradPlanTannoir to;
 
-        to = new TestVideoTexturePlanTannoir(arg);
+        to = new TestTextureGradPlanTannoir(arg);
         to.moviefilename = arg;
 
         to.setMaxFrames(25 * 60 * 120);
@@ -52,19 +49,19 @@ public class TestVideoTexturePlanTannoir extends TestObjetSub {
 
     @Override
     public void ginit() {
-        textureMov = new TextureMov("samples/mov/tannoir.mp4");
+        textGrad = new TextGrad("samples/mov/tannoir.mp4");
         Plan3D plan3d = new Plan3D();
         plan3d.pointOrigine(new Point3D(-100, -100, 0));
         plan3d.pointYExtremite(new Point3D(-100, 100, 0));
         plan3d.pointXExtremite(new Point3D(100, -100, 0));
-        plan3d.texture(textureMov);
+        plan3d.texture(textGrad);
         scene().cameraActive(new Camera(Point3D.Z.mult(200), Point3D.O0));
         scene().add(plan3d);
     }
 
     @Override
     public void testScene() throws Exception {
-        textureMov.nextFrame();
+        textGrad.nextFrame();
     }
 
     @Override

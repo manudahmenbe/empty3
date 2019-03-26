@@ -15,9 +15,10 @@ package be.manudahmen.empty3.core.tribase;
 import be.manudahmen.empty3.Barycentre;
 import be.manudahmen.empty3.BezierCubique2D;
 import be.manudahmen.empty3.Point3D;
+import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 
 @SuppressWarnings("serial")
-public class TRIBezier2D extends TRIObjetGenerateurAbstract {
+public class TRIBezier2D extends ParametricSurface {
 
     private BezierCubique2D bez;
     private Barycentre position;
@@ -26,6 +27,11 @@ public class TRIBezier2D extends TRIObjetGenerateurAbstract {
         this.bez = bez;
         setCirculaireX(false);
         setCirculaireY(false);
+    }
+
+    @Override
+    public Point3D calculerPoint3D(double u, double v) {
+        return bez.calculerPoint3D(u, v);
     }
 
     @Override

@@ -35,11 +35,6 @@ public class TextureImgTache extends TextureImg {
     }
 
     @Override
-    public int getColorAt(double x, double y) {
-        return calculerCouleur(x, y).getRGB();
-    }
-
-    @Override
     public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double x, double y) {
         return calculerCouleur(x, y);
     }

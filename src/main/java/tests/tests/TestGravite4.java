@@ -3,7 +3,7 @@ package tests.tests;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Representable;
-import be.manudahmen.empty3.TColor;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.core.physics.Bille;
 import be.manudahmen.empty3.core.physics.Force;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
@@ -77,7 +77,7 @@ public class TestGravite4 extends TestObjetSub {
             ((TRISphere) r).setMaxX(8);
             ((TRISphere) r).setMaxY(8);
 
-            r.texture(new TColor(billes[i].color));
+            r.texture(new TextureCol(billes[i].color));
 
             scene().add(r);
 

@@ -173,7 +173,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             firstRun = false;
         }
 
-        suivante();
+        next();
 
         currentScene.cameraActive().calculerMatrice();
 
@@ -685,13 +685,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         this.colorationActive = a;
     }
 
-    public void suivante() {
+    public void next() {
         if (texture() instanceof TextureMov) {
-            try {
                 ((TextureMov) texture()).nextFrame();
-            } catch (EOFilmException e) {
-                e.printStackTrace();
-            }
         }
         idImg++;
     }

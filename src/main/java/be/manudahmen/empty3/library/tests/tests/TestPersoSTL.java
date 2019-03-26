@@ -6,7 +6,7 @@ package be.manudahmen.empty3.library.tests.tests;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Scene;
-import be.manudahmen.empty3.TColor;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.core.export.STLExport;
 import be.manudahmen.empty3.core.tribase.TRICylindre;
 import be.manudahmen.empty3.core.tribase.TRIEllipsoide;
@@ -37,13 +37,13 @@ public class TestPersoSTL {
     public static void main(String[] args) {
         TRIEllipsoide ell = new TRIEllipsoide(new Point3D(0, 175, 0), 10, 30,
                 10);
-        ell.texture(new TColor(Color.PINK));
+        ell.texture(new TextureCol(Color.PINK));
         ell.setMaxX(20);
         ell.setMaxY(20);
         scene().add(ell);
 
         TRICylindre cyl = new TRICylindre(Point3D.Y.mult(100), 15, 10);
-        cyl.texture(new TColor(Color.PINK));
+        cyl.texture(new TextureCol(Color.PINK));
         cyl.setMaxX(20);
         cyl.setMaxY(20);
         scene().add(cyl);

@@ -73,7 +73,7 @@ public class TestGravite2 extends TestObjetSub {
             ((TRISphere) r).setMaxX(20);
             ((TRISphere) r).setMaxY(20);
 
-            r.texture(new TColor(billes[i].color));
+            r.texture(new TextureCol(billes[i].color));
 
             rc.add(r);
 

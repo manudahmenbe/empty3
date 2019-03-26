@@ -64,7 +64,7 @@ public class TestAnimSIB extends TestObjetSub {
             bc.add(xy[i]);
         }
 
-        bc.setColor(Color.BLACK);
+        bc.texture(new TextureCol(Color.BLACK));
 
         return bc;
     }
@@ -76,7 +76,7 @@ public class TestAnimSIB extends TestObjetSub {
 
             ts = new TRISphere(new Point3D(0, 0, 0), 100);
             ts.texture(
-                    new TColor(new ECBufferedImage(ImageIO.read(getClass().getResource("cracked-earth-texture.jpg")))));
+                    new TextureImg(new ECBufferedImage(ImageIO.read(getClass().getResource("cracked-earth-texture.jpg")))));
             scene().add(ts);
         } catch (IOException ex) {
             Logger.getLogger(TestAnimSIB.class.getName()).log(Level.SEVERE, null, ex);

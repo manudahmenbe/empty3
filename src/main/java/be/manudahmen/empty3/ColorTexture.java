@@ -40,6 +40,11 @@ public class ColorTexture extends ITexture {
         color = c;
     }
 
+    @Override
+    public void iterate() throws EOFVideoException {
+
+    }
+
     public int getColorAt(double x, double y) {
         return color.getRGB();
     }

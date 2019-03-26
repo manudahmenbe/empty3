@@ -6,10 +6,7 @@
 
 package be.manudahmen.empty3.library.tests.tests;
 
-import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.ECBufferedImage;
-import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.TColor;
+import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
@@ -34,28 +31,28 @@ public class TestSphere extends TestObjetSub {
         TRISphere s;
         s = new TRISphere(Point3D.X.mult(3), 2);
         try {
-            s.texture(new TColor(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("2456614033-blue-texture.jpg")))));
+            s.texture(new TextureImg(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("2456614033-blue-texture.jpg")))));
         } catch (IOException ex) {
             Logger.getLogger(TestSphere.class.getName()).log(Level.SEVERE, null, ex);
         }
         scene().add(s);
         s = new TRISphere(Point3D.X.mult(-3), 2);
         try {
-            s.texture(new TColor(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("2456614033-blue-texture.jpg")))));
+            s.texture(new TextureImg(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("2456614033-blue-texture.jpg")))));
         } catch (IOException ex) {
             Logger.getLogger(TestSphere.class.getName()).log(Level.SEVERE, null, ex);
         }
         scene().add(s);
         s = new TRISphere(Point3D.Y.mult(3), 2);
         try {
-            s.texture(new TColor(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("2456614033-blue-texture.jpg")))));
+            s.texture(new TextureImg(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("2456614033-blue-texture.jpg")))));
         } catch (IOException ex) {
             Logger.getLogger(TestSphere.class.getName()).log(Level.SEVERE, null, ex);
         }
         scene().add(s);
         s = new TRISphere(Point3D.Y.mult(-3), 2);
         try {
-            s.texture(new TColor(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("2456614033-blue-texture.jpg")))));
+            s.texture(new TextureImg(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("2456614033-blue-texture.jpg")))));
         } catch (IOException ex) {
             Logger.getLogger(TestSphere.class.getName()).log(Level.SEVERE, null, ex);
         }

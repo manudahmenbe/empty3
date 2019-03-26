@@ -18,7 +18,6 @@ import be.manudahmen.empty3.Polygon;
 import be.manudahmen.empty3.ZBuffer;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 import be.manudahmen.empty3.core.raytracer.RtRay;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
@@ -115,7 +114,7 @@ public class OctopusAlgorithm {
     public boolean isEqualOrLessThanOnePixel(ZBuffer zbuffer, Polygon polyhedron)
 
     {
-        throw new NotImplementedException();
+        return false;
     }
 
     public Point3D trace() {

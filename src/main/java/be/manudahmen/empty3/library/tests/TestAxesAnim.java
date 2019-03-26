@@ -2,7 +2,7 @@ package be.manudahmen.empty3.library.tests;
 
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.TColor;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.Plan3D;
 import be.manudahmen.empty3.library.tests.TestSphere.Trajectoires;
@@ -44,15 +44,15 @@ public class TestAxesAnim extends TestObjetSub {
         planX.pointOrigine(Point3D.O0);
         planX.pointXExtremite(Point3D.X);
         planX.pointYExtremite(Point3D.Y.mult(0.3));
-        planX.texture(new TColor(Color.RED));
+        planX.texture(new TextureCol(Color.RED));
         planY.pointOrigine(Point3D.O0);
         planY.pointXExtremite(Point3D.Y);
         planY.pointYExtremite(Point3D.Z.mult(0.3));
-        planY.texture(new TColor(Color.GREEN));
+        planY.texture(new TextureCol(Color.GREEN));
         planZ.pointOrigine(Point3D.O0);
         planZ.pointXExtremite(Point3D.Z);
         planZ.pointYExtremite(Point3D.X.mult(0.3));
-        planZ.texture(new TColor(Color.BLUE));
+        planZ.texture(new TextureCol(Color.BLUE));
         scene().add(planX);
         scene().add(planY);
         scene().add(planZ);

@@ -19,7 +19,7 @@
  * *
  */
 package be.manudahmen.empty3.core.export;
-
+/*
 import be.manudahmen.empty3.Scene;
 import com.sun.org.apache.xml.internal.utils.DOMBuilder;
 import org.jdom.Attribute;
@@ -34,7 +34,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/*
 public class Export3DXML {
 
     public DOMBuilder domBuilder;
@@ -65,3 +65,4 @@ public class Export3DXML {
         }
     }
 }
+*/

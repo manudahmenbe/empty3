@@ -23,9 +23,9 @@ package be.manudahmen.empty3;
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class EOFilmException extends Exception {
+public class EOFVideoException extends Exception {
 
-    public EOFilmException() {
+    public EOFVideoException() {
     }
 
 }

@@ -73,7 +73,7 @@ public class TestAnimationSphereInterieurBezierS extends TestObjetSub {
             TRISphere ts = new TRISphere(new Point3D(0, 0, 0), 100);
 
             ts.texture(
-                    new TColor(
+                    new TextureImg(
                             new ECBufferedImage(
                                     ImageIO.read(
                                             getClass().getResource("cracked-earth-texture.jpg")

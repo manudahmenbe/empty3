@@ -87,7 +87,7 @@ public class TestSS extends TestObjetSub {
             ((TRISphere) r).setMaxX(20);
             ((TRISphere) r).setMaxY(20);
 
-            r.texture(new TColor(f.getCourant()[i].color));
+            r.texture(new TextureCol(f.getCourant()[i].color));
 
             rc.add(r);
 

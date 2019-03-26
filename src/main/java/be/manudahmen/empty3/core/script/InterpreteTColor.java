@@ -18,7 +18,9 @@
 package be.manudahmen.empty3.core.script;
 
 import be.manudahmen.empty3.ECBufferedImage;
-import be.manudahmen.empty3.TColor;
+import be.manudahmen.empty3.ITexture;
+import be.manudahmen.empty3.TextureCol;
+import be.manudahmen.empty3.TextureImg;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -48,7 +50,7 @@ public class InterpreteTColor implements Interprete {
 
         success = false;
 
-        TColor tc = null;
+       ITexture tc = null;
 
         InterpretesBase ib;
         ib = new InterpretesBase();
@@ -65,7 +67,7 @@ public class InterpreteTColor implements Interprete {
 
             Color c = (Color) ic.interprete(text, pos);
 
-            tc = new TColor(c);
+            tc = new TextureCol(c);
 
             pos = ic.getPosition();
 
@@ -79,7 +81,7 @@ public class InterpreteTColor implements Interprete {
 
                 ECBufferedImage bi = new ECBufferedImage(ImageIO.read(f));
 
-                tc = new TColor(bi);
+                tc = new TextureImg(bi);
 
                 pos = inf.getPosition();
                 /*

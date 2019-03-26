@@ -2,7 +2,7 @@ package be.manudahmen.empty3.library.tests.position;
 
 import be.manudahmen.empty3.Barycentre;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.TColor;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
@@ -32,7 +32,7 @@ public class TestTRISphere extends TestObjetSub {
         barycentre.position = Point3D.Y.mult(5);
 
         s.position(barycentre);
-        s.texture(new TColor(Color.WHITE));
+        s.texture(new TextureCol(Color.WHITE));
         scene().add(s);
 
     }

@@ -25,13 +25,13 @@ package be.manudahmen.empty3;
  @Override
  public void genererEtRetourner(Scene sc) {
  scene(sc);
- suivante();
+ next();
 
  LR(0);
  draw();
  this.imageGauche = (image());
 
- suivante();
+ next();
 
  LR(1);
  draw();

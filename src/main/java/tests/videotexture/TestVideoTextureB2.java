@@ -36,7 +36,7 @@ class TestVideoTextureB2 extends TestObjetSub {
     }
 
     public static void main(String[] args) {
-        String arg = "F:\\Bibliothèque Portable\\Films\\Cinema anglais" + "\\" + "Sailor.Et.Lula.1990.FRENCH.BRRiP.XViD.AC3-HuSh.avi";
+        String arg = "samples/mov/tannoir.mp4";
         if (args.length > 0) {
             arg = args[0];
         }
@@ -47,16 +47,17 @@ class TestVideoTextureB2 extends TestObjetSub {
     @Override
     public void ginit() {
         textureMov = new TextureMov(moviefilename);
-        Point3D[][] controle = new Point3D[][]
+        Point3D[][] control = new Point3D[][]
                 {
                         {P.n(-100, -100, 0), P.n(-100, -33, 0), P.n(-100, 33, 0), P.n(-100, 100, 0)},
                         {P.n(-33, -100, 0), P.n(-33, -33, 0), P.n(33, 33, 0), P.n(100, 100, 0)},
                         {P.n(33, -100, 0), P.n(33, -33, 0), P.n(33, 33, 0), P.n(33, 100, 0)},
                         {P.n(100, -100, 0), P.n(100, -33, 0), P.n(100, 33, 0), P.n(100, 100, 0)}
                 };
-        TRIBezier2D b2 = new TRIBezier2D(new BezierCubique2D(controle));
-
+        TRIBezier2D b2 = new TRIBezier2D(new BezierCubique2D(control));
+        b2.texture(textureMov);
         scene().add(b2);
+        scene().cameraActive(new Camera(Point3D.Z.mult(200), Point3D.O0));
     }
 
     @Override

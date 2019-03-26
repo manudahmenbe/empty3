@@ -9,15 +9,11 @@
  */
 package tests.beziers;
 
-import be.manudahmen.empty3.EOFilmException;
-import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Point3D.P;
 import be.manudahmen.empty3.TextureMov;
 import be.manudahmen.empty3.core.nurbs.SurfaceParametricPolygonalBezier;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
-
-import java.awt.*;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>

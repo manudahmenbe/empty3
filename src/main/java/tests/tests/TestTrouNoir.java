@@ -69,7 +69,7 @@ public class TestTrouNoir extends TestObjetSub {
             ((TRISphere) r).setMaxX(5);
             ((TRISphere) r).setMaxY(5);
 
-            r.texture(new TColor(billes[i].color));
+            r.texture(new TextureCol(billes[i].color));
 
             rc.add(r);
         }

@@ -43,6 +43,7 @@ public abstract class ITexture extends MediaListenerAdapter {
     public int getColorMask() {
         return colorMask;
     }
+    public abstract void iterate() throws EOFVideoException;
 
     public void setColorMask(int colorMask) {
         this.colorMask = colorMask;

@@ -48,7 +48,7 @@ public class TestBezier2D extends TestObjetSub {
 		/*TRIBezier2D bez = new TRIBezier2D(bc2);
 
 		try {
-			bez.texture(new TColor(new ECBufferedImage(ImageIO.read(getClass()
+			bez.texture(new TextureCol(new ECBufferedImage(ImageIO.read(getClass()
 					.getResourceAsStream("2456614033-blue-texture.jpg")))));
 		} catch (IOException e) {
 			e.printStackTrace();

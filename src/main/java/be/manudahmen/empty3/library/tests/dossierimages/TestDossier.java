@@ -5,7 +5,8 @@ package be.manudahmen.empty3.library.tests.dossierimages;
 
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.TColor;
+import be.manudahmen.empty3.TextureCol;
+import be.manudahmen.empty3.TextureImg;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.Plan3D;
 
@@ -59,7 +60,7 @@ public class TestDossier extends TestObjetSub {
             plan3D.setMaxX(1);
             plan3D.setMaxY(1);
 
-            plan3D.texture(new TColor(dos.getImages().get(i)));
+            plan3D.texture(new TextureImg(dos.getImages().get(i)));
 
             plan3D.pointOrigine(
                     Point3D.O0.plus(Point3D.Z.mult(i / 4)
@@ -85,7 +86,7 @@ public class TestDossier extends TestObjetSub {
 
     @Override
     public void testScene() throws Exception {
-        setCouleurFond(new TColor(Color.white));
+        setCouleurFond(new TextureCol(Color.white));
         scene().cameraActive(new Camera(
                 //Deplace.deplace(1, getMaxFrames(), Point3D.Z.mult(-30), Point3D.Z.mult(30), frame, getMaxFrames()),
                 Point3D.O0,

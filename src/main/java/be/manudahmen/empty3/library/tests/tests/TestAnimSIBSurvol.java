@@ -66,7 +66,7 @@ public class TestAnimSIBSurvol extends TestObjetSub {
             bc.add(xy[i]);
         }
 
-        bc.setColor(Color.BLACK);
+        bc.texture(new TextureCol(Color.BLACK));
 
         return bc;
     }

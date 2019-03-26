@@ -74,7 +74,8 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
 
     private Throwable throwable;
     private Gimbals gimballs = new Gimbals();
-
+    private int movieNo = 1;
+    private int frameNo = 1;
     /**
      * Creates new form ShowTestResult
      */
@@ -171,6 +172,7 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
                         jPanel1.getGraphics().drawString(biic.getStr(), 10, 10);
                         jPanel1.getGraphics().drawString(" ? Pause ? " + testRef.isPause() + " ? Pause active ? " + testRef.isPauseActive(), 50, 10);
                         jLabelFrame.setText("f n°" + testRef.frame() + " / " + testRef.getMaxFrames());
+                        jTextField1.setText("Frame no" + (testRef.frame()+1));
                     }
                     //Graphics gg = jPanel4.getGraphics();
                     //gimballs.draw(gg, new Rectangle(jPanel4.getWidth()-30, jPanel4.getHeight()-30, jPanel4.getWidth()-1,jPanel4.getHeight()-1));
@@ -351,7 +353,7 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
         jSplitPane2.setRightComponent(jPanel3);
 
         jCheckBoxOGL.setText("Open GL");
-        jCheckBoxOGL.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/be/manudahmen/empty3/core/testing/RESULT_SUCCESS.jpg"))); // NOI18N
+        //jCheckBoxOGL.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/be/manudahmen/empty3/core/testing/RESULT_SUCCESS.jpg"))); // NOI18N
         jCheckBoxOGL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxOGLActionPerformed(evt);
@@ -359,7 +361,7 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
         });
 
         jCheckBoxModeles.setText("Modèles");
-        jCheckBoxModeles.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/be/manudahmen/empty3/core/testing/RESULT_SUCCESS.jpg"))); // NOI18N
+        //jCheckBoxModeles.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/be/manudahmen/empty3/core/testing/RESULT_SUCCESS.jpg"))); // NOI18N
         jCheckBoxModeles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxModelesActionPerformed(evt);
@@ -367,7 +369,7 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
         });
 
         jCheckBoxFilmRec.setText("Enregistrer film");
-        jCheckBoxFilmRec.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/be/manudahmen/empty3/core/testing/RESULT_SUCCESS.jpg"))); // NOI18N
+        //jCheckBoxFilmRec.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/be/manudahmen/empty3/core/testing/RESULT_SUCCESS.jpg"))); // NOI18N
         jCheckBoxFilmRec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxFilmRecActionPerformed(evt);
@@ -375,7 +377,7 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
         });
 
         jCheckBoxImagesRec.setText("Enregistrer images");
-        jCheckBoxImagesRec.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/be/manudahmen/empty3/core/testing/RESULT_SUCCESS.jpg"))); // NOI18N
+        //jCheckBoxImagesRec.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/be/manudahmen/empty3/core/testing/RESULT_SUCCESS.jpg"))); // NOI18N
         jCheckBoxImagesRec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxImagesRecActionPerformed(evt);
@@ -532,6 +534,7 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
 
     private void jButtonDemarrerNouveauFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDemarrerNouveauFilmActionPerformed
         testRef.startNewMovie();
+        jTextField2.setText("New movie" + ++movieNo);
     }//GEN-LAST:event_jButtonDemarrerNouveauFilmActionPerformed
 
     private void jSliderXPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jSliderXPropertyChange

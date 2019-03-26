@@ -66,7 +66,7 @@ public class TestSphereManuelDahmen extends TestObjetSub {
                             "samples/img/map2-modif.png"
                             //"samples/img/blue.jpg"
                     ))));
-            //imageTexture.setColorMask(ITexture.COLOR_MIROR_XY);
+            //imageTexture.seTextureColMask(ITexture.COLOR_MIROR_XY);
             triSphere.texture(imageTexture);
             //System.out.println(triSphere);
         } catch (IOException ex) {

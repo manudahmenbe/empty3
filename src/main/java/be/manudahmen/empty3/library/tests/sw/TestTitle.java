@@ -51,7 +51,7 @@ public class TestTitle extends TestObjetSub {
 
         }
 
-        textObjet.setTextColor(Color.WHITE);
+        textObjet.setTexTextureCol(Color.WHITE);
         textObjet.setText(text);
 
         scene().add(textObjet);

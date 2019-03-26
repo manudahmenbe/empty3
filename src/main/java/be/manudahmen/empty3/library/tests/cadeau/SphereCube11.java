@@ -46,7 +46,7 @@ public class SphereCube11 extends TestObjetSub {
 
         Cube c;
 
-        //c.texture(new TColor(Color.RED));
+        //c.texture(new TextureCol(Color.RED));
         c = new Cube(d / 10, Point3D.O0);
 
 
@@ -54,7 +54,7 @@ public class SphereCube11 extends TestObjetSub {
 
         s = new TRISphere(Point3D.X.mult(t0), d / 10);
 
-        s.texture(new TColor(Color.YELLOW));
+        s.texture(new TextureCol(Color.YELLOW));
 
         scene().add(c);
         scene().add(s);

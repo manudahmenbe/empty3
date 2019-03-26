@@ -45,7 +45,7 @@ public class SphereCube extends TestObjetSub {
 
         Cube c;
 
-        //c.texture(new TColor(Color.RED));
+        //c.texture(new TextureCol(Color.RED));
         c = new Cube(d / 10, Point3D.O0);
 
 

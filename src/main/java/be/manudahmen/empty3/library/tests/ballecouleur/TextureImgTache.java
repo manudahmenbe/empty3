@@ -9,12 +9,11 @@
 package be.manudahmen.empty3.library.tests.ballecouleur;
 
 import be.manudahmen.empty3.ECBufferedImage;
-import be.manudahmen.empty3.TextureImg;
 import be.manudahmen.empty3.Point2D;
+import be.manudahmen.empty3.TextureImg;
 
 import java.awt.*;
 import java.util.HashMap;
-import java.util.function.BiConsumer;
 
 /**
  *

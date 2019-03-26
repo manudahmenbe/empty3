@@ -215,7 +215,7 @@ public class Horloge extends JFrame {
                     this.getWidth(),
                     this.getHeight());
             time();
-            z.suivante();
+            z.next();
             z.couleurDeFond(new TextureCol(Color.WHITE));
             z.scene(sc);
             z.draw();

@@ -17,7 +17,7 @@ public class TextObjet extends Plan3D {
     private Point3D x2Vect;
     private Point3D y2Vect;
 
-    private Color textColor;
+    private Color texTextureCol;
 
 
     private ECBufferedImage prerenderedImg;
@@ -35,12 +35,12 @@ public class TextObjet extends Plan3D {
 
     }
 
-    public Color textColor() {
-        return textColor;
+    public Color texTextureCol() {
+        return texTextureCol;
     }
 
-    public void setTextColor(Color color) {
-        this.textColor = color;
+    public void setTexTextureCol(Color color) {
+        this.texTextureCol = color;
     }
 
     public void setText(String txt) {
@@ -49,7 +49,7 @@ public class TextObjet extends Plan3D {
 
         Graphics prerenderedImgGraphics = prerenderedImg.getGraphics();
 
-        prerenderedImgGraphics.setColor(textColor);
+        prerenderedImgGraphics.setColor(texTextureCol);
 
         prerenderedImgGraphics.drawString(txt, 0, 0);
 

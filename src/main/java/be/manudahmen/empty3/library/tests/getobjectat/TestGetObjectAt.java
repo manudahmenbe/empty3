@@ -13,8 +13,8 @@ package be.manudahmen.empty3.library.tests.getobjectat;
 
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.TColor;
 import be.manudahmen.empty3.TRI;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
@@ -31,7 +31,7 @@ public class TestGetObjectAt extends TestObjetSub {
     @Override
     public void testScene() throws Exception {
         scene().clear();
-        scene().add(new TRI(Point3D.O0, Point3D.X, Point3D.Y, new TColor(Color.BLUE)));
+        scene().add(new TRI(Point3D.O0, Point3D.X, Point3D.Y, new TextureCol(Color.BLUE)));
         scene().cameraActive(new Camera(Point3D.Z.mult(-1), Point3D.O0));
 
     }

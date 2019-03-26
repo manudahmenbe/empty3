@@ -40,7 +40,7 @@ public class Plan3D extends ParametricSurface {
     }
 
     public Point3D coordPoint3D(int x, int y) {
-        return calculerPoint3D(1.*x/getMaxX(), 1.*y/getMaxY());
+        return calculerPoint3D(1. * x / getMaxX(), 1. * y / getMaxY());
     }
 
     public String id() {
@@ -78,10 +78,10 @@ public class Plan3D extends ParametricSurface {
 
     @Override
     public String toString() {
-        return "Plan (\n\t" + p0.toString()
-                + "\n\t" + vX.toString()
-                + "\n\t" + vY.toString()
-                + "\n\t\"" + texture.toString()
+        return "Plan (\n\t" + p0
+                + "\n\t" + vX
+                + "\n\t" + vY
+                + "\n\t\"" + texture
                 + "\"\n)\n";
     }
 

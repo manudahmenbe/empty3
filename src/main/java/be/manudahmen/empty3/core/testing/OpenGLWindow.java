@@ -12,13 +12,10 @@
 
 package be.manudahmen.empty3.core.testing;
 
-import com.jogamp.opengl.swt.GLCanvas;
-
-import javax.swing.*;
-
 /**
  * @author Se7en
  */
+/*
 public class OpenGLWindow extends JFrame {
     private GLCanvas canvas;
 
@@ -27,3 +24,4 @@ public class OpenGLWindow extends JFrame {
         this.canvas = canvas;
     }
 }
+*/

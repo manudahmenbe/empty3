@@ -14,7 +14,7 @@ import tests.TestSphere.Trajectoires;
  */
 public class TestCircles extends TestObjet {
 
-    public static final int CIRCLES_COUNT = 1;
+    public static final int CIRCLES_COUNT = 100;
 
     private Circle[] circles;
 

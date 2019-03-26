@@ -2,7 +2,7 @@ package be.manudahmen.empty3.library.tests.tests;
 
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.TColor;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
@@ -45,7 +45,7 @@ public class TestSphereRot extends TestObjetSub {
                     sphereCoord(r[i], a[i], b[i])
                     , 10);
             spheres[i].texture(
-                    new TColor(
+                    new TextureCol(
                             new Color(1f, 0.5f, 1.0f * i / n)));
         }
         c = new Camera(Point3D.Z.mult(-100), Point3D.O0);

@@ -602,6 +602,7 @@ public abstract class TestObjet implements Test, Runnable {
 
     public void publishResult() {
         if (publish) {
+
             str = new ShowTestResult(ri);
             str.setImageContainer(biic);
             str.setTestObjet(this);
@@ -755,7 +756,7 @@ public abstract class TestObjet implements Test, Runnable {
                     }
                 }
 
-                z.suivante();
+                z.next();
                 z.scene(scene);
 
                 if ((generate & GENERATE_IMAGE) > 0) {

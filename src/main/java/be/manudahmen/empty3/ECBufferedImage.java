@@ -13,7 +13,6 @@
 package be.manudahmen.empty3;
 
 import be.manudahmen.empty3.gui.elements.PPMFileInputStream;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -47,7 +46,7 @@ public class ECBufferedImage extends BufferedImage {
     }
 
     public static ECBufferedImage ppm(byte[] bytes, String ppm) {
-        throw new NotImplementedException();
+        return null;
     }
 
     public static ECBufferedImage getFromFile(File url) throws IOException {

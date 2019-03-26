@@ -14,7 +14,7 @@ public class TestBalleClous111 extends TestObjetSub {
 
     public int MAXFRAMES = 2000;
     public int N = 2;
-    private TColor tc = new TColor(Color.red);
+    private TextureCol tc = new TextureCol(Color.red);
     private BalleClous2 ballec;
     private Point3D[] s;
     private Point3D[] v;
@@ -54,20 +54,20 @@ public class TestBalleClous111 extends TestObjetSub {
         for (int i = 0; i < N; i++) {
             s[i] = new Point3D(Point3D.O0);
 
-            s[i].texture(new TColor(Color.GREEN));
+            s[i].texture(new TextureCol(Color.GREEN));
 
             v[i] = new Point3D(Math.random() * (V / 2 - V), Math.random() * (V / 2 - V), Math.random() * (V / 2 - V));
 
         }
         tc =
-                new TColor(
+                new TextureCol(
                         Color.YELLOW);
 
 
         ballec = new BalleClous2(Point3D.O0, 1.0);
 
 
-        ballec.texture(new TColor(Color.WHITE));
+        ballec.texture(new TextureCol(Color.WHITE));
 
         scene().add(ballec);
 

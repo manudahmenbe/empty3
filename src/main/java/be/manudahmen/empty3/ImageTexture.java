@@ -47,6 +47,11 @@ public class ImageTexture extends ITexture {
     }
 
     @Override
+    public void iterate() throws EOFVideoException {
+        
+    }
+
+    @Override
     public int getColorAt(double x, double y) {
         Point trans = getCoord(x, y);
         return couleur(trans.x / image.getWidth(), trans.y / image.getHeight()).getRGB();

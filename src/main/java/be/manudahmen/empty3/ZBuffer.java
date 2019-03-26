@@ -180,7 +180,7 @@ public interface ZBuffer {
     /**
      * Passe une nouvelle image
      */
-    void suivante();
+    void next();
 
     /**
      * Teste le point p

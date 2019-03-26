@@ -27,7 +27,7 @@ public class GodAnal extends TestObjetSub {
 		bc.add(new Point3D(2, 4, 0));
 		bc.add(new Point3D(2, 6, 0));
 		bc.add(new Point3D(0, 7, 0));
-		bc.setColor(Color.RED);
+		bc.seTextureCol(Color.RED);
 		bcs.add(bc);
 
 		bc = new BezierCubique();
@@ -36,7 +36,7 @@ public class GodAnal extends TestObjetSub {
 		bc.add(new Point3D(0, 7, 0));
 		bc.add(new Point3D(4, 8, 0));
 		bc.add(new Point3D(0, 9, 0));
-		bc.setColor(Color.RED);
+		bc.seTextureCol(Color.RED);
 		
 		bcs.add(bc);
 

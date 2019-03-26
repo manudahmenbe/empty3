@@ -9,7 +9,7 @@
 
 package tests.dna;
 
-import be.manudahmen.empty3.TColor;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 
 import java.awt.*;
@@ -36,7 +36,7 @@ public class TestDH extends TestObjetSub {
     public void testScene() throws Exception {
         DoubleHelice1 doubleHelice1 = new DoubleHelice1(new double[]{20, 5, .2}, 2, new double[]{4, 8, 2}, 0);
 
-        doubleHelice1.texture(new TColor(Color.RED));
+        doubleHelice1.texture(new TextureCol(Color.RED));
 
         doubleHelice1.setMaxX(200);
         doubleHelice1.setMaxY(200);
@@ -45,7 +45,7 @@ public class TestDH extends TestObjetSub {
 
         /*doubleHelice1 = new DoubleHelice1(new double [] {8.8, 1.0, .2}, 2, new double[] {4, 8, 2}, 180);
 
-        doubleHelice1.texture(new TColor(Color.RED));
+        doubleHelice1.texture(new TextureCol(Color.RED));
 
         doubleHelice1.setMaxX(200);
         doubleHelice1.setMaxY(200);

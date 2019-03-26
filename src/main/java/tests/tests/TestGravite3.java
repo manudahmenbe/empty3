@@ -29,7 +29,7 @@ public class TestGravite3 extends TestObjetSub {
         ttn.publishResult(true);
         ttn.setFileExtension("jpg");
         try {
-            ttn.setCouleurFond(new TColor(new ECBufferedImage(ImageIO.read(new File("c:\\image.jpg")))));
+            ttn.setCouleurFond(new TextureImg(new ECBufferedImage(ImageIO.read(new File("c:\\image.jpg")))));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -71,7 +71,7 @@ public class TestGravite3 extends TestObjetSub {
         f.calculer();
 
         Polyhedron polyhedre = new Polyhedron();
-        polyhedre.texture(new TColor(Color.BLUE));
+        polyhedre.texture(new TextureCol(Color.BLUE));
         for (int i = 0; i < X * Y * Z; i++) {
             polyhedre.add(billes[i].position);
         }

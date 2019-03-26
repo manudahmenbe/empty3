@@ -47,6 +47,11 @@ public class TextureImg extends ITexture {
     }
 
     @Override
+    public void iterate() throws EOFVideoException {
+
+    }
+
+    @Override
     public int getColorAt(double rx, double ry) {
         Point trans = getCoord(rx, ry);
         return couleur(trans.x, trans.y);

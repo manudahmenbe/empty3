@@ -4,7 +4,7 @@
 package tests.repereAssocieAUneCourbeEX;
 
 import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.EOFilmException;
+import be.manudahmen.empty3.EOFVideoException;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TextureMov;
 import be.manudahmen.empty3.core.sanorm.CameraInPath;
@@ -37,7 +37,7 @@ public class TestCameraEnMouvementRandomTriangles extends TestObjet {
     }
 
     @Override
-    public void finit() throws EOFilmException {
+    public void finit() throws EOFVideoException {
         cam.setTemps01(frame / 25.0 / 8);
         if (!textureMov.nextFrame()) {
             this.STOP();

@@ -2,7 +2,7 @@ package be.manudahmen.empty3.library.tests.tests;
 
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.TColor;
+import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 
@@ -46,7 +46,7 @@ public class TestSpheres2 extends TestObjetSub {
         spheres = new TRISphere[N * N * N];
         for (int i = 0; i < N * N * N; i++) {
             spheres[i] = new TRISphere(Point3D.O0, 1.0);
-            spheres[i].texture(new TColor(new Color(
+            spheres[i].texture(new TextureCol(new Color(
                     1.0f * i / (N * N * N),
                     1.0f * i % 3 / (N),
                     (1.0f * i / N % 3) / N)));
