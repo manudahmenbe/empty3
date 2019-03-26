@@ -2,6 +2,56 @@
 * AU 18/12/2014. 
 
 
+21/03/2019
+----------
+Oui les anciens de l'école c'est toujours gentil d'avoir des intentions et des avis sur moi, quoique
+je crois m'être fait largement oublier. En tout cas ce n'est pas sympa de m'avoir insulté et pire.
+
+Des nouvelles. Je me suis remis à la programmation après quelques problèmes de santé mentale et d'autres
+choses dont je ne suis pas vraiment responsable pas plus que vous et moi. Et je ne donne pas de leçons
+ne cherchez pas à m'en donner.
+La réparation du ZBuffer qui était mal en point car je n'y voyais pas très clair. La classe ThichSurface que
+je voudrais être un début d'implémentation de surfaces bifaces avec des bords éventuellement, ce qui est évident 
+à la lecture du code, mais tout le monde n'a pas le temps de lire surtout les voleurs qui n'entendent que ce qui
+les intéresse. C'est tout pour la morale.
+Les tests fonctionnent à nouveau. J'ai appris récemment que Monsieur Nicolas Baudoin "s'amusait" à faire de faux 
+profils Facebook et observer les gens sur Internet en se faisant passer pour un médecin. Comme Pascal Knevels et 
+Cyril Beckers des anciens de la psychiatre fortement atteints par la maladie et rongés par la drogue. Cela ne 
+m'inquiète pas outre mesure comme de finir dans le caniveau. 
+
+J'ai lu des livres sur la folie appris l'informatique dans des écoles
+sur des sites internet comme tout ceux qui l'ont fait. Ce n'est pas important le monde est une merde géante. 
+Que suis-je? On m'a condamné mes lectures comme on fait en Inde ou en Arabie Saoudite. Pourtant c'est la Belgique
+fortemenent réprimandées pour son injustice superficielle et ses rats puants de la justice des avocats des docteurs
+toutes ces professions où la belle situation l'emporte largement sur l'intelligence et la moralité et la santé mentale
+que ce sont eux seuls à évaluer les pourceaux. L'Ordre des médecins? Je ne sais pas ce que c'est mais je voudrais les
+contacter. Bref cela mes problèmes qui ne sont pas uniques où il y collage de pages sur la gueule du lecteur. Pitoyable
+pour des adultes. Des identifications sur base de lecture, humour? Non sauvagerie grottesque et insolence meurtrière.
+
+Finalement cette condamnation grottesque m'a fait faire des bonds en avant sur la compréhension que j'avais de cette 
+société de bâtards dans laquelle mes parents ont essayés de me jeter comme un lapin sur le feu selon le rite dont
+j'ai entendu à la télé hier.
+
+TextMov, TextImg TextMov 3 classes que j'ai codées comme un bâtard et qui fonctionnent bien. Les noms sont explicites.
+
+On ne se la joue pas finaux non plus avec l'exportateur STL (encore un vernissage à la con où on a pas envie de parler
+mais de se ruer au bar) qui permet quand même d'ouvrir les fichiers exportés dans 3D Builder (il semble que ce ne soit 
+pas adéquat pour le Print 3D. TODO 1
+
+Comment se servir de ce framework? TODO TUTO 1
+
+Finir ma bière.
+
+
+Sinon il n'y a rien de nouveau depuis 2016.
+
+Les NURBS qui ont eu la côte, et qui sont assez faciles mais longues à implémenter. Je compte finaliser en moins d'un an
+pour ne pas me sentir pressé. D'ailleurs personne n'attend rien de moi tout le monde m'a dit dégage mais j'imagine qu'ils
+reviendront quand je serai riche moi non j'irai aux Caraïbes me former au tourisme....
+
+
+
+
 11/10/2016
 ----------
 Ajout d'un raytracer débutant...
