@@ -2,11 +2,11 @@ package be.manudahmen.empty3;
 
 import java.awt.image.BufferedImage;
 
-public class TextGrad extends TextureMov {
+public class TextureGrad extends TextureMov {
     private BufferedImage currentImg;
     private BufferedImage nextImg;
 
-    public TextGrad(String s) {
+    public TextureGrad(String s) {
         super(s);
     }
 

@@ -17,20 +17,13 @@ import be.manudahmen.empty3.core.tribase.Plan3D;
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class TestTextureGradPlanTannoir extends TestObjetSub {
-    private String moviefilename;
-    TRI tri = null;
-    TextGrad textGrad;
+    TextureGrad textGrad;
 
-    private TestTextureGradPlanTannoir(String arg) {
-        moviefilename = arg;
-    }
-
-    public static void testing(String arg) {
+    public static void testing() {
 
         TestTextureGradPlanTannoir to;
 
-        to = new TestTextureGradPlanTannoir(arg);
-        to.moviefilename = arg;
+        to = new TestTextureGradPlanTannoir();
 
         to.setMaxFrames(25 * 60 * 120);
         to.loop(true);
@@ -39,17 +32,12 @@ public class TestTextureGradPlanTannoir extends TestObjetSub {
     }
 
     public static void main(String[] args) {
-        String arg = "samples/mov/tannoir.mp4";
-        if (args.length > 0) {
-            arg = args[0];
-        }
-        testing(arg);
-
+        testing();
     }
 
     @Override
     public void ginit() {
-        textGrad = new TextGrad("samples/mov/tannoir.mp4");
+        textGrad = new TextureGrad("samples/mov/tannoir.mp4");
         Plan3D plan3d = new Plan3D();
         plan3d.pointOrigine(new Point3D(-100, -100, 0));
         plan3d.pointYExtremite(new Point3D(-100, 100, 0));
