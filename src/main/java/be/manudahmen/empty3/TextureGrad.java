@@ -10,17 +10,6 @@ public class TextureGrad extends TextureMov {
         super(s);
     }
 
-    public void iterate() {
-
-        try {
-            currentImg = current(0);
-            nextImg = current(1);
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-
-    }
-
     public int getColorAt(double u, double v) {
 
         currentImg = images.get(0);
@@ -30,10 +19,14 @@ public class TextureGrad extends TextureMov {
         int[] col1 = getRGB(currentImg, u, v);
         int[] colN = getRGB(nextImg, u, v);
         int[] col = new int[]{0, 0, 0, 0};
-        for (int i = 0; i < 4; i++) {
-            col[i] = (int) ((col1[i] - colN[i]) / 2. + 256.);
+        col[0] = (int) ((col1[0] - colN[0]) / 2. + 256.);
 
-        }
+        col[1] = (int) ((col1[1] - colN[1]) / 2. + 256.);
+
+        col[2] = (int) ((col1[2] - colN[2]) / 2. + 256.);
+
+        col[3] = (int) ((col1[3] - colN[3]) / 2. + 256.);
+
         return col[0] << 24 + col[1] << 16 + col[2] << 8 + col[2];
     }
 
@@ -49,7 +42,7 @@ public class TextureGrad extends TextureMov {
             return new int[]{a, r, g, b};
 
         } else
-            return new int[]{0xff, 0xff, 0xff, 0xff};
+            return new int[]{0, 0xff, 0xff, 0xff};
 
 
     }
