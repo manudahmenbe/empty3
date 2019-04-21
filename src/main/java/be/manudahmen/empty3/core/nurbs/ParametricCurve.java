@@ -50,6 +50,47 @@ public abstract class ParametricCurve extends Representable {
             ParametricCurve.setGlobals(new ParametricCurve.Globals());
         }
     }
+    public class Parameters
+    {
+
+        private boolean isGlobal;
+
+        public Parameters(double incrU)
+        {
+            this.setIncrU(incrU);
+        }
+
+        public Parameters(boolean isGlobal) {
+            setGlobal(isGlobal);
+        }
+        private double incrU;
+
+        public double getIncrU() {
+            return incrU;
+        }
+
+        public void setIncrU(double incrU) {
+            this.incrU = incrU;
+        }
+
+        public void setGlobal(boolean global) {
+            this.isGlobal = global;
+        }
+
+        public boolean isGlobal() {
+            return isGlobal;
+        }
+    }
+
+    public Parameters getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(Parameters parameters) {
+        this.parameters = parameters;
+    }
+
+    private Parameters parameters = new Parameters(true);
     public double incr = 0.001;
     protected double start;
     protected double end;

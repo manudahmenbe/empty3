@@ -59,6 +59,47 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
             ParametricSurface.setGlobals(new Globals());
         }
     }
+    public class Parameters
+    {
+
+        private boolean isGlobal;
+        private double incrV;
+
+        public Parameters(double incrU, double incrV) {
+            this.setIncrU(incrU);
+            this.setIncrV(incrV);
+        }
+
+        public Parameters(boolean isGlobal) {
+            setGlobal(isGlobal);
+        }
+        private double incrU;
+
+        public double getIncrU() {
+            return incrU;
+        }
+
+        public double getIncrV() {
+            return incrV;
+        }
+
+        public void setIncrU(double incrU) {
+            this.incrU = incrU;
+        }
+
+        public void setGlobal(boolean global) {
+            this.isGlobal = global;
+        }
+
+        public boolean isGlobal() {
+            return isGlobal;
+        }
+
+        public void setIncrV(double incrV) {
+            this.incrV = incrV;
+        }
+    }
+    private ParametricSurface.Parameters parameters = new ParametricSurface.Parameters(true);
     public double incr1 = 0.01;
     public double incr2 = 0.01;
     public double incrVitesse = 0.0001;
