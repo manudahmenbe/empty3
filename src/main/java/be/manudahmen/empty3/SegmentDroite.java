@@ -31,11 +31,7 @@ import java.awt.*;
  */
 public class SegmentDroite extends ParametricCurve {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1390105309325238894L;
-    public double SMALL_NUM = 0.00000001; // anything that avoids division
+    public double SMALL_NUM = Double.MIN_VALUE; // anything that avoids division
     private Point3D origine;
     private Point3D extremite;
     // overflow
@@ -46,11 +42,11 @@ public class SegmentDroite extends ParametricCurve {
         this.setExtremite(p2);
     }
 
-    public SegmentDroite(Point3D camera, Point3D camera2, ITexture texture) {
-        this(camera, camera2);
+    public SegmentDroite(Point3D origin, Point3D extrem, ITexture texture) {
+        this(origin, extrem);
         this.texture(texture);
-        camera.texture(texture);
-        camera2.texture(texture);
+        origin.texture(texture);
+        extrem.texture(texture);
     }
 
     public Point3D calculerPoint3D(double d) {

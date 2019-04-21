@@ -29,12 +29,9 @@ import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 
 import java.awt.*;
 
-public class TubulaireN2<T extends ParametricCurve>
-        extends ParametricSurface {
-    public static double TAN_FCT_INCR = 0.00005;
-    public static double NORM_FCT_INCR = 0.0005;
-
-    private int last_X = -1;
+public class TubulaireN2<T extends ParametricCurve> extends ParametricSurface {
+    public static double TAN_FCT_INCR = 0.000001;
+    public static double NORM_FCT_INCR = 0.000001;
 
     private T surve;
 
@@ -43,11 +40,13 @@ public class TubulaireN2<T extends ParametricCurve>
 
     private TRIObject tris = null;
 
-    public TubulaireN2(T surve) {
-        this.surve = surve;
-    }
+
 
     public TubulaireN2() {
+    }
+
+    public TubulaireN2(T surve) {
+        this.surve = surve;
     }
 
     public Point3D calculerNormale(double t) {
@@ -86,7 +85,7 @@ public class TubulaireN2<T extends ParametricCurve>
     }
 
     public void radius(double d) {
-        diam = d;
+        diam = d*2;
     }
 
     public double tMax() {
@@ -145,8 +144,8 @@ public class TubulaireN2<T extends ParametricCurve>
     public Point3D calculerPoint3D(double u, double v) {
         Point3D[] vectPerp = vectPerp(u);
         return surve.calculerPoint3D(u).plus(
-                vectPerp[1].mult(Math.cos(2 * Math.PI * v)).plus(
-                        vectPerp[2].mult(Math.sin(2 * Math.PI * v))));
+                vectPerp[1].mult(diam*Math.cos(2 * Math.PI * v)).plus(
+                        vectPerp[2].mult(diam*Math.sin(2 * Math.PI * v))));
     }
 
     @Override

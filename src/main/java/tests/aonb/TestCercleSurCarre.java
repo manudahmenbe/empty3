@@ -11,7 +11,7 @@ import java.awt.*;
 public class TestCercleSurCarre extends TestObjetSub {
     public void ginit()
     {
-        CercleSurCarre cercleSurCarre = new CercleSurCarre(null, 0);
+        CercleSurCarre cercleSurCarre = new CercleSurCarre();
 
         Carre carre = new Carre();
         carre.texture(new TextureCol(Color.BLUE));
@@ -23,6 +23,7 @@ public class TestCercleSurCarre extends TestObjetSub {
     public static void main(String[] args) {
         TestCercleSurCarre testCercleSurCarre = new TestCercleSurCarre();
         testCercleSurCarre.loop(false);
+        testCercleSurCarre.setMaxFrames(1);
         new Thread(testCercleSurCarre).start();
     }
 }

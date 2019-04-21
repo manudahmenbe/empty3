@@ -39,6 +39,8 @@ public class TRISphere extends ParametricSurface {
         this.radius = r;
         setCirculaireY(true);
         setCirculaireX(false);
+        setIncrU(0.01);
+        setIncrV(0.01);
     }
 
     @Override

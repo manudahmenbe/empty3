@@ -13,7 +13,7 @@ import java.awt.*;
  */
 public class TestGDXBSpline1 extends TestObjet {
     private static final double INCR_PRECISION = 0.00001;
-    TubulaireN2 t = new TubulaireN2<>();
+    TubulaireN2 t ;
     private gdx_BSplineCurve b;
 
     public static void main(String[] args) {
@@ -32,8 +32,8 @@ public class TestGDXBSpline1 extends TestObjet {
     @Override
     public void finit() {
 
-
         b = new gdx_BSplineCurve();
+        t = new TubulaireN2<>(b);
 
         b.incr = INCR_PRECISION;
 

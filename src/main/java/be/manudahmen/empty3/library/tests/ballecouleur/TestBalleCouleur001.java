@@ -145,14 +145,14 @@ public class TestBalleCouleur001 extends TestObjetSub {
 
             ballec.addPoint(new Point2D(s[j].getX(), s[j].getY()));
 
-            TubulaireN2<gdx_BSplineCurve> tubulaireN2;
-            tubulaireN2 = new TubulaireN2<gdx_BSplineCurve>();
-            tubulaireN2.diam((float) TUBE_RAYON);
-            tubulaireN2.texture(new TextureImg(new ECBufferedImage(ImageIO.read(new File("C:\\EmptyCanvas\\Images\\PHOTO-NU.jpg")))));
-
             gdx_BSplineCurve gdx_BSplineCurve = new gdx_BSplineCurve();
 
             gdx_BSplineCurve.instantiate(s, 5);
+
+            TubulaireN2<gdx_BSplineCurve> tubulaireN2;
+            tubulaireN2 = new TubulaireN2<gdx_BSplineCurve>(gdx_BSplineCurve);
+            tubulaireN2.diam((float) TUBE_RAYON);
+            tubulaireN2.texture(new TextureImg(new ECBufferedImage(ImageIO.read(new File("C:\\EmptyCanvas\\Images\\PHOTO-NU.jpg")))));
 
 
             tubulaireN2.curve(gdx_BSplineCurve);

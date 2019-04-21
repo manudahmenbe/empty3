@@ -5,7 +5,7 @@ import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.Circle;
 
 public class CercleSurCarre extends Circle {
-    public CercleSurCarre(Axe axis, double radius) {
+    public CercleSurCarre() {
         super(new Axe(Point3D.Z, Point3D.Z.mult(-1)), 1);
     }
 }

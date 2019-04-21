@@ -539,17 +539,29 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
 
     private void jSliderXPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jSliderXPropertyChange
         gimballs.changeValue(Gimbal.X, valuePC(jSliderX.getValue()));
-        jTextAreaMessage.setText(gimballs.toString());
+        try {
+            jTextAreaMessage.setText(testRef.scene().cameraActive().toString());
+        }
+        catch (NullPointerException ex)
+        {}
     }//GEN-LAST:event_jSliderXPropertyChange
 
     private void jSliderYPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jSliderYPropertyChange
         gimballs.changeValue(Gimbal.Y, valuePC(jSliderX.getValue()));
-        jTextAreaMessage.setText(gimballs.toString());
+        try {
+            jTextAreaMessage.setText(testRef.scene().cameraActive().toString());
+        }
+        catch (NullPointerException ex)
+        {}
     }//GEN-LAST:event_jSliderYPropertyChange
 
     private void jSliderZPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jSliderZPropertyChange
         gimballs.changeValue(Gimbal.Z, valuePC(jSliderX.getValue()));
-        jTextAreaMessage.setText(gimballs.toString());
+        try {
+            jTextAreaMessage.setText(testRef.scene().cameraActive().toString());
+        }
+        catch (NullPointerException ex)
+        {}
     }//GEN-LAST:event_jSliderZPropertyChange
 
     private void jSliderXYZPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jSliderXYZPropertyChange
@@ -627,3 +639,4 @@ public final class ShowTestResult extends javax.swing.JFrame implements Runnable
     }
 
 }
+

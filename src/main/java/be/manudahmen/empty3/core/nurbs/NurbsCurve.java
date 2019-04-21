@@ -47,7 +47,6 @@ public class NurbsCurve extends BSplineCurve {
         if (s != 0) {
             S = S.mult(1 / s);
         }
-
         return S;
     }
 
@@ -70,3 +69,4 @@ public class NurbsCurve extends BSplineCurve {
     }
 
 }
+

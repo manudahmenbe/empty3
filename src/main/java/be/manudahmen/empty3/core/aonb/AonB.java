@@ -107,20 +107,22 @@ public class AonB extends ParametricSurface {
                 p =  ((ParametricCurve)b).calculerPoint3D(
                         ((ParametricCurve)a).calculerPoint3D(u).getX()
                 );
+                p.texture(a.texture());
             }
             if (a instanceof ParametricCurve && b instanceof ParametricSurface) {
                 p = ((ParametricSurface)b).calculerPoint3D(
                         ((ParametricCurve)a).calculerPoint3D(u).get2D().getX(),
                         ((ParametricCurve)a).calculerPoint3D(u).get2D().getY()
                 );
+                p.texture(a.texture());
             }
             if (a instanceof ParametricSurface && b instanceof ParametricSurface) {
                 p = ((ParametricSurface)b).calculerPoint3D(
                         ((ParametricSurface)a).calculerPoint3D(u,v).get2D().getX(),
                         ((ParametricSurface)a).calculerPoint3D(u,v).get2D().getY()
                 );
+                p.texture(a.texture());//TODO
             }
-            p.texture(a.texture());
             if(down!=null)
             {
                 p = down.calculerPoint3D(u, v);

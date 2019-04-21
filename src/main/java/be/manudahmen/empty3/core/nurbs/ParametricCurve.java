@@ -29,7 +29,7 @@ import be.manudahmen.empty3.ZBuffer;
  */
 public abstract class ParametricCurve extends Representable {
 
-    public double incr = 0.00001;
+    public double incr = 0.001;
     protected double start;
     protected double end;
     protected boolean connected = true;
@@ -84,4 +84,7 @@ public abstract class ParametricCurve extends Representable {
     public void setConnected(boolean connected) {
         this.connected = connected;
     }
+
 }
+
+

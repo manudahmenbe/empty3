@@ -25,11 +25,12 @@ import be.manudahmen.empty3.Point3D;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <dathewolf@gmail.com>
  */
 public class BSplineCurve extends ParametricCurve {
-
+    protected int n = 2; //ORDER
     protected List<Double> knots = new ArrayList<Double>();
     protected List<Point3D> points = new ArrayList<Point3D>();
 
@@ -40,7 +41,8 @@ public class BSplineCurve extends ParametricCurve {
 
     protected double b(int i, int n, double t) {
         if (n == 0) {
-            return (t >= knots.get(0) ? 0 : (t <= knots.get(knots.size() - 1)) ? 1 : 0);
+            return (t < knots.get(0) ? knots.get(0) : (t <= knots.get(knots.size() - 1)) ? 1 :
+                    knots.get(knots.size() - 1));
         } else {
             return fOOO(t - knots.get(i), knots.get(i + n) - knots.get(i))
                     * b(i, n - 1, t)
@@ -53,9 +55,7 @@ public class BSplineCurve extends ParametricCurve {
 
     public Point3D calculerPoint3D(double t) {
         Point3D S = Point3D.O0;
-        double s = 0;
         int m = knots.size();
-        int n = points.size();
         for (int i = 0; i < m - n - 1; i++) {
             S = S.plus(points.get(i).mult(b(i, n, t)));
         }
@@ -68,10 +68,8 @@ public class BSplineCurve extends ParametricCurve {
     }
 
     protected double fOOO(double a, double b) {
-        if (Math.abs(b) <= Double.MIN_VALUE && Math.abs(a) <= Double.MIN_VALUE) {
-            return 0;
-        } else if (Math.abs(b) < Double.MIN_VALUE) {
-            return 0;
+        if (Double.isNaN(a) || Double.isNaN(b) || Double.isInfinite(b)) {
+            return 1;
         } else {
             return a / b;
         }
@@ -100,3 +98,4 @@ public class BSplineCurve extends ParametricCurve {
     }
 
 }
+

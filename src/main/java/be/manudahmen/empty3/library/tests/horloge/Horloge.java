@@ -20,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Horloge extends JFrame {
-    private final JLabel label;
     Configuration c = new Configuration();
     Color h;
     Color m;
@@ -41,7 +40,6 @@ public class Horloge extends JFrame {
         this.h = h;
         this.m = m;
         this.s = s;
-        label = new JLabel("Horloge");
 
         addComponentListener(new ComponentAdapter() {
             @Override
@@ -68,8 +66,6 @@ public class Horloge extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        setContentPane(label);
-
         setSize(1024, 768);
 
 
@@ -84,6 +80,7 @@ public class Horloge extends JFrame {
     }
 
     public void initTime() {
+
         double f = 2 * Math.PI;
 
         Date d = new Date();
@@ -222,8 +219,9 @@ public class Horloge extends JFrame {
 
             Image bi = z.image();
             try {
-                label.getGraphics().drawImage(bi, 0, 0, this.getWidth(), this.getHeight(), null);
-            } catch (Exception ex) {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
