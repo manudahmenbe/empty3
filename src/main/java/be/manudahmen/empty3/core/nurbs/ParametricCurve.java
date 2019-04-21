@@ -29,6 +29,27 @@ import be.manudahmen.empty3.ZBuffer;
  */
 public abstract class ParametricCurve extends Representable {
 
+    public class Globals
+    {
+        private double incrU;
+
+        public double getIncrU() {
+            return incrU;
+        }
+
+        public void setIncrU(double incrU) {
+            this.incrU = incrU;
+        }
+
+    }
+    private static ParametricCurve.Globals globals;
+    {
+        if(globals==null)
+
+        {
+            ParametricCurve.setGlobals(new ParametricCurve.Globals());
+        }
+    }
     public double incr = 0.001;
     protected double start;
     protected double end;
@@ -85,6 +106,9 @@ public abstract class ParametricCurve extends Representable {
         this.connected = connected;
     }
 
+    public static void setGlobals(Globals globals) {
+        ParametricCurve.globals = globals;
+    }
 }
 
 

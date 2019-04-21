@@ -30,7 +30,7 @@ import java.awt.*;
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
-    class Globals
+    public class Globals
     {
         private double incrU;
         private double incrV;
@@ -51,7 +51,14 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
             this.incrV = incrV;
         }
     }
-    private Globals globals = new Globals();
+    private static Globals globals;
+    {
+        if(globals==null)
+
+        {
+            ParametricSurface.setGlobals(new Globals());
+        }
+    }
     public double incr1 = 0.01;
     public double incr2 = 0.01;
     public double incrVitesse = 0.0001;
@@ -191,11 +198,11 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
         return polygon;
     }
 
-    public Globals getGlobals() {
+    public static Globals getGlobals() {
         return globals;
     }
 
-    public void setGlobals(Globals globals) {
-        this.globals = globals;
+    public static void setGlobals(Globals globals) {
+        ParametricSurface.globals = globals;
     }
 }
