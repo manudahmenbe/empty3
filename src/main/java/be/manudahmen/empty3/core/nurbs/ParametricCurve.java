@@ -28,58 +28,26 @@ import be.manudahmen.empty3.ZBuffer;
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public abstract class ParametricCurve extends Representable {
-
-    public class Globals
-    {
-        private double incrU;
-
-        public double getIncrU() {
-            return incrU;
-        }
-
-        public void setIncrU(double incrU) {
-            this.incrU = incrU;
-        }
-
-    }
     private static ParametricCurve.Globals globals;
-    {
+
+    static {
         if(globals==null)
 
         {
-            ParametricCurve.setGlobals(new ParametricCurve.Globals());
+            Globals globals1 = new Globals();
+            ParametricCurve.setGlobals(globals1);
+            globals1.setIncrU(0.0001);
         }
     }
-    public class Parameters
-    {
 
-        private boolean isGlobal;
+    public double incr = 0.001;
+    protected double start;
+    protected double end;
+    protected boolean connected = true;
+    private Parameters parameters = new Parameters(true);
 
-        public Parameters(double incrU)
-        {
-            this.setIncrU(incrU);
-        }
-
-        public Parameters(boolean isGlobal) {
-            setGlobal(isGlobal);
-        }
-        private double incrU;
-
-        public double getIncrU() {
-            return incrU;
-        }
-
-        public void setIncrU(double incrU) {
-            this.incrU = incrU;
-        }
-
-        public void setGlobal(boolean global) {
-            this.isGlobal = global;
-        }
-
-        public boolean isGlobal() {
-            return isGlobal;
-        }
+    public static void setGlobals(Globals globals) {
+        ParametricCurve.globals = globals;
     }
 
     public Parameters getParameters() {
@@ -90,11 +58,6 @@ public abstract class ParametricCurve extends Representable {
         this.parameters = parameters;
     }
 
-    private Parameters parameters = new Parameters(true);
-    public double incr = 0.001;
-    protected double start;
-    protected double end;
-    protected boolean connected = true;
     public abstract Point3D calculerPoint3D(double t);
 
     public abstract Point3D calculerVitesse3D(double t);
@@ -107,10 +70,15 @@ public abstract class ParametricCurve extends Representable {
         end = e;
     }
 
-
-    // TODO PRECISION!!!
     public double getIncr() {
-        return incr == 0 ? 0.01 : incr;
+        double incr = 0;
+        if (parameters.isGlobal()) {
+            incr = parameters.getIncrU();
+        } else {
+            incr = globals.getIncrU();
+        }
+        double incr0 = incr == 0 ? 0.01 : incr;
+        return incr0;
     }
 
     public double start() {
@@ -147,8 +115,47 @@ public abstract class ParametricCurve extends Representable {
         this.connected = connected;
     }
 
-    public static void setGlobals(Globals globals) {
-        ParametricCurve.globals = globals;
+    public static class Globals {
+        private double incrU;
+
+        public double getIncrU() {
+            return incrU;
+        }
+
+        public void setIncrU(double incrU) {
+            this.incrU = incrU;
+        }
+
+    }
+
+    public class Parameters {
+
+        private boolean isGlobal;
+        private double incrU;
+
+        public Parameters(double incrU) {
+            this.setIncrU(incrU);
+        }
+
+        public Parameters(boolean isGlobal) {
+            setGlobal(isGlobal);
+        }
+
+        public double getIncrU() {
+            return incrU;
+        }
+
+        public void setIncrU(double incrU) {
+            this.incrU = incrU;
+        }
+
+        public boolean isGlobal() {
+            return isGlobal;
+        }
+
+        public void setGlobal(boolean global) {
+            this.isGlobal = global;
+        }
     }
 }
 

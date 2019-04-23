@@ -2,6 +2,7 @@ package be.manudahmen.empty3.library.tests.ballecouleur;
 
 import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.gdximports.gdx_BSplineCurve;
+import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TubulaireN2;
 import be.manudahmen.empty3.library.tests.balleclou.BalleClous2;
@@ -42,6 +43,10 @@ public class TestBalleCouleur001 extends TestObjetSub {
 
     @Override
     public void ginit() {
+        ParametricSurface.getGlobals().setIncrU(0.1);
+        ParametricSurface.getGlobals().setIncrV(0.1);
+
+
         LumierePonctuelle lumierePonctuelle = new LumierePonctuelle(Point3D.X, Color.RED);
         lumierePonctuelle.setR0(1);
 

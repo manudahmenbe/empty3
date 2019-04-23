@@ -17,10 +17,10 @@
  */
 package be.manudahmen.empty3.core.tribase;
 
-import be.manudahmen.empty3.Matrix33;
+import be.manudahmen.empty3.Axe;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.Rotation;
-import be.manudahmen.empty3.core.nurbs.ParametricSurface;
+import be.manudahmen.empty3.core.Circle;
+import be.manudahmen.empty3.core.Sphere;
 
 /**
  * @author DAHMEN Manuel
@@ -28,7 +28,24 @@ import be.manudahmen.empty3.core.nurbs.ParametricSurface;
  *         dev
  * @date 22-mars-2012
  */
-public class TRISphere extends ParametricSurface {
+public class TRISphere extends Sphere {
+    public TRISphere(Point3D center, double radius) {
+        super(center, radius);
+    }
+
+    public Point3D getCentre() {
+        return circle.getCenter();
+    }
+
+    public void setCentre(Point3D centre) {
+        circle = new Circle(new Axe(centre.plus(Point3D.Y.mult(circle.getRadius())), centre.plus(Point3D.Y.mult(-circle.getRadius()))
+        ), circle.getRadius());
+    }
+
+    public void setRadius(double radius) {
+        circle.setRadius(radius);
+    }
+}/*ParametricSurface {
 
     private Point3D centre = new Point3D(0, 0, 0);
     private double radius = 1.0;
@@ -97,3 +114,4 @@ public class TRISphere extends ParametricSurface {
     }
 
 }
+*/

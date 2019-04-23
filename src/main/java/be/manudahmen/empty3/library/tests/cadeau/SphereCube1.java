@@ -74,7 +74,7 @@ public class SphereCube1 extends TestObjetSub {
 
         s.setCentre(Point3D.X.mult(TT * d));
 
-        cam.setEye(s.getCentre().mult(F));
+        cam.setEye(s.getCircle().getCenter().mult(F));
     }
 
     @Override

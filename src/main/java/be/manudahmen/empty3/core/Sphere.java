@@ -6,11 +6,17 @@ import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 
 
 public class Sphere extends ParametricSurface {
-    private Circle circle;
+    protected Circle circle;
 
     public Sphere(Axe axis, double radius) {
 
         circle = new Circle(axis, radius);
+    }
+
+    public Sphere(Point3D center, double radius) {
+
+        circle = new Circle(new Axe(center.plus(Point3D.Y.mult(radius)), center.plus(Point3D.Y.mult(-radius))
+        ), radius);
     }
 
     public Point3D calculerPoint3D(double u, double v) {

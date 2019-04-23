@@ -30,76 +30,19 @@ import java.awt.*;
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
-    public class Globals
-    {
-        private double incrU;
-        private double incrV;
-
-        public double getIncrU() {
-            return incrU;
-        }
-
-        public void setIncrU(double incrU) {
-            this.incrU = incrU;
-        }
-
-        public double getIncrV() {
-            return incrV;
-        }
-
-        public void setIncrV(double incrV) {
-            this.incrV = incrV;
-        }
-    }
     private static Globals globals;
-    {
+
+    static {
         if(globals==null)
 
         {
-            ParametricSurface.setGlobals(new Globals());
+            Globals globals1 = new Globals();
+            ParametricSurface.setGlobals(globals1);
+            globals1.setIncrU(0.001);
+            globals1.setIncrV(0.001);
         }
     }
-    public class Parameters
-    {
 
-        private boolean isGlobal;
-        private double incrV;
-
-        public Parameters(double incrU, double incrV) {
-            this.setIncrU(incrU);
-            this.setIncrV(incrV);
-        }
-
-        public Parameters(boolean isGlobal) {
-            setGlobal(isGlobal);
-        }
-        private double incrU;
-
-        public double getIncrU() {
-            return incrU;
-        }
-
-        public double getIncrV() {
-            return incrV;
-        }
-
-        public void setIncrU(double incrU) {
-            this.incrU = incrU;
-        }
-
-        public void setGlobal(boolean global) {
-            this.isGlobal = global;
-        }
-
-        public boolean isGlobal() {
-            return isGlobal;
-        }
-
-        public void setIncrV(double incrV) {
-            this.incrV = incrV;
-        }
-    }
-    private ParametricSurface.Parameters parameters = new ParametricSurface.Parameters(true);
     public double incr1 = 0.01;
     public double incr2 = 0.01;
     public double incrVitesse = 0.0001;
@@ -108,6 +51,45 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
     protected double end1 = 1, end2 = 1;
     protected double NFAST = 100;
     protected ITexture CFAST = new TextureCol(Color.GRAY);
+    private ParametricSurface.Parameters parameters = new ParametricSurface.Parameters(true);
+
+    public static Globals getGlobals() {
+        return globals;
+    }
+
+    public static void setGlobals(Globals globals) {
+        ParametricSurface.globals = globals;
+    }
+
+    public double getIncrU() {
+        double incr = 0;
+        if (parameters.isGlobal()) {
+            incr = parameters.getIncrU();
+        } else {
+            incr = globals.getIncrU();
+        }
+        double incr0 = incr == 0 ? 0.01 : incr;
+        return incr0;
+    }
+
+    public void setIncrU(double incr1) {
+        this.incr1 = incr1;
+    }
+
+    public double getIncrV() {
+        double incr = 0;
+        if (parameters.isGlobal()) {
+            incr = parameters.getIncrV();
+        } else {
+            incr = globals.getIncrV();
+        }
+        double incr0 = incr == 0 ? 0.01 : incr;
+        return incr0;
+    }
+
+    public void setIncrV(double incr2) {
+        this.incr2 = incr2;
+    }
 
     public abstract Point3D calculerPoint3D(double u, double v);
 
@@ -122,15 +104,16 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
         Point3D moins1 = calculerPoint3D(u, v + incrNormale).plus(calculerPoint3D(u, v));
         return moins.prodVect(moins1).mult(0.5 / incrNormale / incrNormale).norme1();
     }
+
     public Point3D calculerTangenteU(double u, double v) {
         Point3D moins = calculerPoint3D(u + incrVitesse, v).moins(calculerPoint3D(u, v));
         return moins.mult(1.0 / incrVitesse / incrVitesse).norme1();
     }
+
     public Point3D calculerTangenteV(double u, double v) {
         Point3D moins1 = calculerPoint3D(u, v + incrVitesse).moins(calculerPoint3D(u, v));
         return moins1.mult(1.0 / incrVitesse).norme1();
     }
-
 
     public double incr1() {
         return incr1;
@@ -180,22 +163,6 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
         return calculerPoint3D(1.0 * x / getMaxX(), 1.0 * y / getMaxY());
     }
 
-    public double getIncrU() {
-        return incr1;
-    }
-
-    public void setIncrU(double incr1) {
-        this.incr1 = incr1;
-    }
-
-    public double getIncrV() {
-        return incr2;
-    }
-
-    public void setIncrV(double incr2) {
-        this.incr2 = incr2;
-    }
-
     @Override
     public void drawStructureDrawFast(ZBuffer z) {
         System.out.println("Drawn structure ffaast START");
@@ -239,11 +206,64 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
         return polygon;
     }
 
-    public static Globals getGlobals() {
-        return globals;
+    public static class Globals {
+        private double incrU;
+        private double incrV;
+
+        public double getIncrU() {
+            return incrU;
+        }
+
+        public void setIncrU(double incrU) {
+            this.incrU = incrU;
+        }
+
+        public double getIncrV() {
+            return incrV;
+        }
+
+        public void setIncrV(double incrV) {
+            this.incrV = incrV;
+        }
     }
 
-    public static void setGlobals(Globals globals) {
-        ParametricSurface.globals = globals;
+    public class Parameters {
+
+        private boolean isGlobal;
+        private double incrV;
+        private double incrU;
+
+        public Parameters(double incrU, double incrV) {
+            this.setIncrU(incrU);
+            this.setIncrV(incrV);
+        }
+
+        public Parameters(boolean isGlobal) {
+            setGlobal(isGlobal);
+        }
+
+        public double getIncrU() {
+            return incrU;
+        }
+
+        public void setIncrU(double incrU) {
+            this.incrU = incrU;
+        }
+
+        public double getIncrV() {
+            return incrV;
+        }
+
+        public void setIncrV(double incrV) {
+            this.incrV = incrV;
+        }
+
+        public boolean isGlobal() {
+            return isGlobal;
+        }
+
+        public void setGlobal(boolean global) {
+            this.isGlobal = global;
+        }
     }
 }
