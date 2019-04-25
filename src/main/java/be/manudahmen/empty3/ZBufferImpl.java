@@ -223,31 +223,17 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 // System.out.println("Surface");
                 ThickSurface n = (ThickSurface) r;
                 // TODO Dessiner les bords
-                for (double i = n.getStartU(); i <= n.getEndU() - n.getIncrU(); i += n.getIncrU()) {
-                    for (double j = n.getStartU(); j <= n.getEndV() - n.getIncrV(); j += n.getIncrV()) {
-                        double u = i;
-                        double v = j;
 
-
-                        draw(new TRI(n.computeInt(u, v),
-                                n.computeInt(u + n.getIncrU(), v),
-                                n.computeInt(u + n.getIncrU(), v + n.getIncrV()),
-                                n.texture()), n);
-                        draw(new TRI(n.computeInt(u, v),
-                                n.computeInt(u, v + n.getIncrV()),
-                                n.computeInt(u + n.getIncrU(), v + n.getIncrV()),
-                                n.texture()), n);
-                        draw(new TRI(n.computeExt(u, v),
-                                n.computeExt(u + n.getIncrU(), v),
-                                n.computeExt(u + n.getIncrU(), v + n.getIncrV()),
-                                n.texture()), n);
-                        draw(new TRI(n.computeExt(u, v),
-                                n.computeExt(u, v + n.getIncrV()),
-                                n.computeExt(u + n.getIncrU(), v + n.getIncrV()),
-                                n.texture()), n);
-
+                for (double u = n.getStartU(); u <= n.getEndU(); u += n.getIncrU()) {
+                    //System.out.println("(u,v) = ("+u+","+")");
+                    for (double v = n.getStartU(); v <= n.getEndV(); v += n.getIncrV()) {
+                        Point3D p1, p2, p3, p4;
+                        p1 = n.calculerPoint3D(u, v);
+                        p2 = n.calculerPoint3D(u + n.getIncrU(), v);
+                        p3 = n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV());
+                        p4 = n.calculerPoint3D(u, v + n.getIncrV());
+                        tracerQuad(p1, p2, p3, p4, n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV());
                     }
-
                 }
             }
             // GENERATORS
@@ -583,9 +569,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         double itere = Math.max(Math.abs(x1.getX() - x2.getX()),
                 Math.abs(x1.getY() - x2.getY())) * 4 + 1;
         for (int i = 0; i < itere; i++) {
-            Point3D p = p1.mult(i / itere).plus(p2.mult(1 - i / itere));
+            Point3D p = p1.mult(p2.moins(p1).mult(i/itere));
             p.texture(t);
-            ime.testDeep(p, n, t.getColorAt(i, 0.5));
+            ime.testDeep(p, t);
         }
 
     }

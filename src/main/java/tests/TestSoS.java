@@ -1,7 +1,7 @@
 package tests;
 
 import be.manudahmen.empty3.*;
-import be.manudahmen.empty3.core.Sphere;
+import be.manudahmen.empty3.core.lighting.Colors;
 import be.manudahmen.empty3.core.nurbs.PcOnPs;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
@@ -14,7 +14,7 @@ import java.awt.*;
  */
 public class TestSoS extends TestObjetSub {
     private static final double RADIUS = 10.0;
-    private static final int NSEG = 20;
+    private static final int NSEG = 100;
     private Point3D[] pointsB = new Point3D[NSEG];
     private Point3D[] pointsA = new Point3D[NSEG];
     private RepresentableConteneur representableConteneur
@@ -29,7 +29,7 @@ public class TestSoS extends TestObjetSub {
         scene().clear();
         representableConteneur.clear();
         sphere = new TRISphere(sphereOrig, RADIUS);
-        representableConteneur.clear();
+        sphere.texture(new ColorTexture(Colors.TRANSPARENT));
         for (int s = 0; s < NSEG;
              s++) {
             pointsA[s] = Point3D.random(1).moins(new Point3D(0.5, 0.5, 0.5));
@@ -42,29 +42,10 @@ public class TestSoS extends TestObjetSub {
 
         }
         scene().add(representableConteneur);
-        scene().add(sphere);
-
-
-        sphereOrig = sphereOrig.plus(Point3D.random(RADIUS / 100));
-        sphereDest = sphereDest.plus(Point3D.random(RADIUS / 100));
-
-
-        sphere = new TRISphere(sphereOrig, RADIUS);
-        SegmentsOnSurface segmentsOnSurface = new SegmentsOnSurface
-                (
-                        sphere
-                        ,
-                        new SegmentDroite(Point3D.X, Point3D.Y)
-                );
-        sphere.texture(colorTextureSurface);
-        segmentsOnSurface.texture(colorTextureSurface);
-        representableConteneur.texture(textureCol);
-
-        scene().add(sphere);
-        scene().add(representableConteneur);
+        //scene().add(sphere);
 
         scene().cameraActive(
-                new Camera(sphereOrig.plus(sphereDest).mult(2.0), Point3D.O0));
+                new Camera(Point3D.Z.mult(RADIUS*1.3).mult(2.0), Point3D.O0));
     }
 
 

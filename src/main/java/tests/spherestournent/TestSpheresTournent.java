@@ -24,7 +24,7 @@ public class TestSpheresTournent extends TestObjetSub {
     }
 
     public void ginit() {
-        sps = new TRISphere[1];
+        sps = new TRISphere[4];
 
         int i = 0;
         for (i = 0; i < sps.length; i++) {
