@@ -50,8 +50,7 @@ public class SegmentDroite extends ParametricCurve {
     }
 
     public Point3D calculerPoint3D(double d) {
-        return rotation(origine).plus(rotation(extremite)
-                .moins(rotation(origine)).mult(d));
+        return origine.plus(extremite.moins(origine).mult(d));
     }
 
     /**

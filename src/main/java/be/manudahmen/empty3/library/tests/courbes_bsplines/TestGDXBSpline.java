@@ -33,7 +33,7 @@ public class TestGDXBSpline extends TestObjet {
 
         b = new gdx_BSplineCurve();
 
-        b.incr = INCR_NBR_OF_SEGMENTS;
+        b.getParameters().setIncrU(1/INCR_NBR_OF_SEGMENTS);
 
 
         b.instantiate(TestsBSpline.p2(frame()), 3);

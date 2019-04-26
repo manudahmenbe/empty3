@@ -40,11 +40,11 @@ public abstract class ParametricCurve extends Representable {
         }
     }
 
-    public double incr = 0.001;
-    protected double start;
-    protected double end;
+    protected double startU = 0;
+    protected double endU= 1;
     protected boolean connected = true;
     private Parameters parameters = new Parameters(true);
+    private double incrU = 0.0001;
 
     public static void setGlobals(Globals globals) {
         ParametricCurve.globals = globals;
@@ -62,31 +62,31 @@ public abstract class ParametricCurve extends Representable {
 
     public abstract Point3D calculerVitesse3D(double t);
 
-    public double end() {
-        return end;
+    public double endU() {
+        return endU;
     }
 
-    public void end(double e) {
-        end = e;
+    public void endU(double e) {
+        endU = e;
     }
 
-    public double getIncr() {
-        double incr = 0;
+    public double getIncrU() {
+        double incr = incrU;
         if (parameters.isGlobal()) {
             incr = parameters.getIncrU();
         } else {
             incr = globals.getIncrU();
         }
-        double incr0 = incr == 0 ? 0.01 : incr;
+        double incr0 = incr <= 0 ? incrU : incr;
         return incr0;
     }
 
     public double start() {
-        return start;
+        return startU;
     }
 
     public void start(double s) {
-        start = s;
+        startU = s;
     }
 
     @Override

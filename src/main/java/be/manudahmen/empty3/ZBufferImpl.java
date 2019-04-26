@@ -156,15 +156,15 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     public Point coordonneesPointEcranPerspective(Point3D x3d) {
 
-        if (x3d.getZ() > 0 && -angleX < Math.atan(x3d.getX() / x3d.getZ())
-                && Math.atan(x3d.getX() / x3d.getZ()) < angleX
-                && -angleY < Math.atan(x3d.getY() / x3d.getZ())
-                && Math.atan(x3d.getY() / x3d.getZ()) < angleY) {
+       // if (x3d.getZ() > 0 && -angleX < Math.atan(x3d.getX() / x3d.getZ())
+            //    && Math.atan(x3d.getX() / x3d.getZ()) < angleX
+              //  && -angleY < Math.atan(x3d.getY() / x3d.getZ())
+                //&& Math.atan(x3d.getY() / x3d.getZ()) < angleY) {
             double scale = (1.0 / (x3d.getZ()));
             return new Point((int) (x3d.getX() * scale * la + la / 2),
                     (int) (-x3d.getY() * scale * ha + ha / 2));
-        }
-        return null;
+        //}
+        //return null;
     }
 
     public void draw() {
@@ -450,7 +450,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             } else if (r instanceof ParametricCurve) {
                 // System.out.println("Curve");
                 ParametricCurve n = (ParametricCurve) r;
-                double incr = n.getIncr();
+                double incr = n.getIncrU();
                 for (double i = 0; i <= 1 - incr; i += incr) {
                     if (n.isConnected()) {
                         draw(new SegmentDroite(

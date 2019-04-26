@@ -75,7 +75,7 @@ public class TubulaireN2<T extends ParametricCurve> extends ParametricSurface {
 
 
     public void nbrAnneaux(int n) {
-        surve.incr = 1.0 / n;
+        surve.getParameters().setIncrU(1.0 / n);
         setMaxX(n);
     }
 

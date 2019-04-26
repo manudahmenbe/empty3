@@ -45,7 +45,7 @@ public class TestCircles extends TestObjet {
             circles[i] = new Circle(new Axe(Point3D.random(100), Point3D.random(100)),
                     100);
             circles[i].texture(new TextureCol(Colors.random()));
-            circles[i].incr = 0.01;
+            circles[i].getParameters().setIncrU(0.01);
             scene().add(circles[i]);
             System.out.println("Center: " + circles[i].getCenter());
         }
