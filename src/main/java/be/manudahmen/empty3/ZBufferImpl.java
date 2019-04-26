@@ -448,16 +448,15 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 p.generate(this);
                 p.dessine(this);
             } else if (r instanceof ParametricCurve) {
-                // System.out.println("Curve");
+                System.out.println("Curve");
                 ParametricCurve n = (ParametricCurve) r;
                 double incr = n.getIncrU();
-                for (double i = 0; i <= 1 - incr; i += incr) {
+                for (double i = n.start(); i <= n.endU(); i += n.getIncrU()) {
                     if (n.isConnected()) {
-                        draw(new SegmentDroite(
-                                n.calculerPoint3D(i), n.calculerPoint3D(i + incr),
-                                n.texture()), n);
+                        line(n.calculerPoint3D(i), n.calculerPoint3D(i + incr),
+                                n.texture());
                     } else {
-                        draw(n.calculerPoint3D(i), n);
+                        ime.testDeep(n.calculerPoint3D(i), n.texture);
                     }
                     // System.out
                     // .print("+"+n.calculerPoint3D(i).toString());
@@ -569,7 +568,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         double itere = Math.max(Math.abs(x1.getX() - x2.getX()),
                 Math.abs(x1.getY() - x2.getY())) * 4 + 1;
         for (int i = 0; i < itere; i++) {
-            Point3D p = p1.mult(p2.moins(p1).mult(i/itere));
+            Point3D p = p1.plus(p2.moins(p1).mult(i/itere));
             p.texture(t);
             ime.testDeep(p, t);
         }

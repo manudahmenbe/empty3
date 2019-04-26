@@ -71,14 +71,14 @@ public abstract class ParametricCurve extends Representable {
     }
 
     public double getIncrU() {
-        double incr = incrU;
+        double incr = 0;
         if (parameters.isGlobal()) {
             incr = parameters.getIncrU();
         } else {
             incr = globals.getIncrU();
         }
-        double incr0 = incr <= 0 ? incrU : incr;
-        return incr0;
+        ;
+        return incr <= incrU? incrU : incr;
     }
 
     public double start() {
@@ -116,14 +116,14 @@ public abstract class ParametricCurve extends Representable {
     }
 
     public static class Globals {
-        private double incrU;
+        private double incrU = 0;
 
         public double getIncrU() {
-            return incrU;
+            return Globals.this.incrU;
         }
 
         public void setIncrU(double incrU) {
-            this.incrU = incrU;
+            Globals.this.incrU = incrU;
         }
 
     }
@@ -131,10 +131,10 @@ public abstract class ParametricCurve extends Representable {
     public class Parameters {
 
         private boolean isGlobal;
-        private double incrU;
+        private double incrU = 0.0001;
 
         public Parameters(double incrU) {
-            this.setIncrU(incrU);
+            Parameters.this.setIncrU(incrU);
         }
 
         public Parameters(boolean isGlobal) {
@@ -142,19 +142,19 @@ public abstract class ParametricCurve extends Representable {
         }
 
         public double getIncrU() {
-            return incrU;
+            return Parameters.this.incrU;
         }
 
         public void setIncrU(double incrU) {
-            this.incrU = incrU;
+            Parameters.this.incrU = incrU;
         }
 
         public boolean isGlobal() {
-            return isGlobal;
+            return Parameters.this.isGlobal;
         }
 
         public void setGlobal(boolean global) {
-            this.isGlobal = global;
+            Parameters.this.isGlobal = global;
         }
     }
 }

@@ -14,7 +14,7 @@ import java.awt.*;
  */
 public class TestSoS extends TestObjetSub {
     private static final double RADIUS = 10.0;
-    private static final int NSEG = 10;
+    private static final int NSEG = 14;
     private Point3D pointsB;
     private Point3D pointsA;
     private RepresentableConteneur representableConteneur

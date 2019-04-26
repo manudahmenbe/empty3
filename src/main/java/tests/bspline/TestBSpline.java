@@ -47,7 +47,7 @@ public class TestBSpline extends TestObjetSub {
                 scene().add(gdx_bSplineCurve);
         System.out.println(gdx_bSplineCurve);
 
-        scene().cameraActive(new Camera(new Point3D(0, 0, -2),
+        scene().cameraActive(new Camera(new Point3D(0, 0, -4),
                 new Point3D(0, 0, 0)));
     }
 

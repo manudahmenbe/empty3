@@ -33,7 +33,7 @@ public class TestCircles extends TestObjet {
                 Trajectoires.sphere(
                         longpc,
                         0,
-                        200
+                        400
                 ), Point3D.O0));
     }
 
@@ -45,7 +45,7 @@ public class TestCircles extends TestObjet {
             circles[i] = new Circle(new Axe(Point3D.random(100), Point3D.random(100)),
                     100);
             circles[i].texture(new TextureCol(Colors.random()));
-            circles[i].getParameters().setIncrU(0.01);
+            //circles[i].getParameters().setIncrU(0.00001);
             scene().add(circles[i]);
             System.out.println("Center: " + circles[i].getCenter());
         }

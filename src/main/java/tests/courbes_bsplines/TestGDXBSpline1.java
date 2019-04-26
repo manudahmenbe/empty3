@@ -35,7 +35,7 @@ public class TestGDXBSpline1 extends TestObjet {
         b = new gdx_BSplineCurve();
         t = new TubulaireN2<>(b);
 
-        b.getParameters().setIncrU(INCR_PRECISION);
+        //b.getParameters().setIncrU(INCR_PRECISION);
 
 
         b.instantiate(TestsBSpline.p2(frame()), 6);
