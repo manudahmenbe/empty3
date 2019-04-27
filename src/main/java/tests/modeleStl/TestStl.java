@@ -11,7 +11,6 @@ import be.manudahmen.empty3.stl_loader.IncorrectFormatException;
 import be.manudahmen.empty3.stl_loader.ParsingErrorException;
 import be.manudahmen.empty3.stl_loader.StlFile;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 

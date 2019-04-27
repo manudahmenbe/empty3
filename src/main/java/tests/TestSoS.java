@@ -14,7 +14,8 @@ import java.awt.*;
  */
 public class TestSoS extends TestObjetSub {
     private static final double RADIUS = 10.0;
-    private static final int NSEG = 14;
+    private static final int NSEG = 12;
+    private static final int NSEG2 = 24;
     private Point3D pointsB;
     private Point3D pointsA;
     private RepresentableConteneur representableConteneur
@@ -40,6 +41,7 @@ public class TestSoS extends TestObjetSub {
         representableConteneur.clear();
         for (int s = 0; s < NSEG;
              s++) {
+
             pointsA = new Point3D(0, 1.0*s/NSEG, 0);
             pointsB = new Point3D(1, 1.0*s/NSEG, 0);
             SegmentDroite segmentDroite = new SegmentDroite(pointsA, pointsB);
@@ -48,18 +50,33 @@ public class TestSoS extends TestObjetSub {
             pointsB.texture(textureCol);
 
             PcOnPs pcOnPs = new PcOnPs(sphere, segmentDroite);
-//            pcOnPs.getParameters().setIncrU(0.0001);
+            pcOnPs.getParameters().setIncrU(0.0001);
+            representableConteneur.add(pcOnPs);
+
+        }
+        for (int s = 0; s < NSEG2;
+             s++) {
+
+            pointsA = new Point3D(1.0*s/NSEG2, 0, 0);
+            pointsB = new Point3D(1.0*s/NSEG2, 1, 0);
+            SegmentDroite segmentDroite = new SegmentDroite(pointsA, pointsB);
+            segmentDroite.texture(textureCol);
+            pointsA.texture(textureCol);
+            pointsB.texture(textureCol);
+
+            PcOnPs pcOnPs = new PcOnPs(sphere, segmentDroite);
+            pcOnPs.getParameters().setIncrU(0.0001);
             representableConteneur.add(pcOnPs);
 
         }
         scene().cameraActive(
-                new Camera(Trajectoires.sphere(0,
-                        0, RADIUS*2.3), Point3D.O0));
+                new Camera(Trajectoires.sphere(1.0*frame()/getMaxFrames(),
+                        0, RADIUS*3), Point3D.O0));
     }
 
     public static void main(String[] args) {
         TestSoS testSoS = new TestSoS();
-        testSoS.setMaxFrames(10);
+        testSoS.setMaxFrames(3500);
         new Thread(testSoS).start();
     }
 }

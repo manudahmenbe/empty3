@@ -125,7 +125,10 @@ public class AonB extends ParametricSurface {
             }
             if(down!=null)
             {
-                p = down.calculerPoint3D(u, v);
+                p = down.calculerPoint3D(
+                        ((ParametricSurface)a).calculerPoint3D(u,v).get2D().getX(),
+                        ((ParametricSurface)a).calculerPoint3D(u,v).get2D().getY()
+                );
             }
             return p;
         }
@@ -133,18 +136,6 @@ public class AonB extends ParametricSurface {
 
     }
 
-    /***
-     * TODO
-     * @param up
-     */
-    public void addUp(AonB up)
-    {
-        if((up.getB() instanceof ParametricSurface && a instanceof ParametricSurface)||
-            up.getB() instanceof ParametricCurve)
-        {
-            this.up = up;
-        }
-    }
 
     /***
      * TODO

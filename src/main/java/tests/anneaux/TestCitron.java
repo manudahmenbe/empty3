@@ -13,7 +13,7 @@ public class TestCitron extends TestObjetSub {
 
     public static final int CIRCLES_COUNT = 4;
     public double step = 10000.0;
-    private double DIM = 100;
+    private double DIM = 200;
     private Citron[] citrons;
 
     public static void main(String... args) {
