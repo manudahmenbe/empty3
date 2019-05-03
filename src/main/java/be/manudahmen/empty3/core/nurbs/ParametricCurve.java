@@ -132,6 +132,8 @@ public abstract class ParametricCurve extends Representable {
 
         private boolean isGlobal;
         private double incrU = 0.0001;
+        private double startU;
+        private double endU;
 
         public Parameters(double incrU) {
             Parameters.this.setIncrU(incrU);
@@ -142,7 +144,16 @@ public abstract class ParametricCurve extends Representable {
         }
 
         public double getIncrU() {
+
             return Parameters.this.incrU;
+        }
+        public double getStartU() {
+
+            return Parameters.this.startU;
+        }
+        public double getEndU() {
+
+            return Parameters.this.endU;
         }
 
         public void setIncrU(double incrU) {
@@ -155,6 +166,13 @@ public abstract class ParametricCurve extends Representable {
 
         public void setGlobal(boolean global) {
             Parameters.this.isGlobal = global;
+        }
+
+        public void setEndU(double endU) {
+            Parameters.this.endU = endU;
+        }
+        public void setStartU(double endU) {
+            Parameters.this.startU = endU;
         }
     }
 }

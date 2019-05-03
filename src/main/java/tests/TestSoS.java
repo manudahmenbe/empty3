@@ -74,6 +74,14 @@ public class TestSoS extends TestObjetSub {
                         0, RADIUS*3), Point3D.O0));
     }
 
+    public Sphere getSphere() {
+        return sphere;
+    }
+
+    public void setSphere(Sphere sphere) {
+        this.sphere = sphere;
+    }
+
     public static void main(String[] args) {
         TestSoS testSoS = new TestSoS();
         testSoS.setMaxFrames(3500);

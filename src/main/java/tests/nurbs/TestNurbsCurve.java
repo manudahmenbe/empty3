@@ -6,7 +6,7 @@
  author Manuel Dahmen <ibiiztera.it@gmail.com>
  ***/
 
-
+/*
 package tests.nurbs;
 
 import be.manudahmen.empty3.TextureCol;
@@ -19,9 +19,9 @@ import java.awt.*;
 import java.util.AbstractMap;
 import java.util.Arrays;
 
-/**
+*
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
- */
+
 public class TestNurbsCurve extends TestObjetSub {
     public static void main(String[] args) {
         System.err.println("Circle");
@@ -67,4 +67,4 @@ public class TestNurbsCurve extends TestObjetSub {
         scene().add(new SegmentDroite(Point3D.O0, Point3D.Z, new TextureCol(Color.BLUE)));
     }
 }
-
+*/

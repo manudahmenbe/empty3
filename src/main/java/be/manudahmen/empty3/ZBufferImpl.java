@@ -360,7 +360,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
                 }
             } else if (r instanceof Point3D) {
-                Point3D p = refObject == null ? ((Point3D) r) : refObject.rotation(((Point3D) r));
+                Point3D p = (Point3D) r;
                 ime.testDeep(p, r.texture());
             } else if (r instanceof SegmentDroite) {
                 SegmentDroite s = (SegmentDroite) r;
@@ -448,7 +448,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 p.generate(this);
                 p.dessine(this);
             } else if (r instanceof ParametricCurve) {
-                System.out.println("Curve");
+                //System.out.println("Curve");
                 ParametricCurve n = (ParametricCurve) r;
                 double incr = n.getIncrU();
                 for (double i = n.start(); i <= n.endU(); i += n.getIncrU()) {

@@ -39,6 +39,7 @@ public class Camera extends CameraBox {
     public Camera(Point3D camera, Point3D lookat) {
         this.eye = camera;
         this.lookat = lookat;
+        calculerMatrice();
     }
 
     public void calculerMatrice() {

@@ -675,7 +675,9 @@ public abstract class TestObjet implements Test, Runnable {
         throw new UnsupportedOperationException("Not implemented");
     }
     public void run() {
-
+        z = ZBufferFactory.instance(resx, resy, D3);
+        z.scene(scene);
+        z.next();
         timeStart = System.nanoTime();
         lastInfoEllapsedMillis = System.nanoTime();
         if ((generate & GENERATE_OPENGL) > 0) {
@@ -712,7 +714,6 @@ public abstract class TestObjet implements Test, Runnable {
         }
         ginit();
 
-        z = ZBufferFactory.instance(resx, resy, D3);
 
         /*if (scene().texture() != null) {
             z.backgroundTexture(scene().texture());
@@ -756,8 +757,6 @@ public abstract class TestObjet implements Test, Runnable {
                     }
                 }
 
-                z.next();
-                z.scene(scene);
 
                 if ((generate & GENERATE_IMAGE) > 0) {
                     try {
@@ -866,6 +865,8 @@ public abstract class TestObjet implements Test, Runnable {
             } catch (ArrayIndexOutOfBoundsException ex) {
                 ex.printStackTrace();
             }
+            z.next();
+
         }
 
         afterRender();
