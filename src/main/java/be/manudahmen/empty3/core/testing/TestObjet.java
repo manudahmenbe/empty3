@@ -111,6 +111,7 @@ public abstract class TestObjet implements Test, Runnable {
 
         init();
     }
+
     public TestObjet(ArrayList<TestInstance.Parameter> params) {
         init();
     }
@@ -397,10 +398,8 @@ public abstract class TestObjet implements Test, Runnable {
                     + File.separator + "empty3.config"));
             if (config.getProperty("folderoutput") != null) {
                 dir1 = new File(config.getProperty("folderoutput"));
-            }
-            else
-            {
-                dir1 = new File ("/"
+            } else {
+                dir1 = new File("/"
                         + File.separator + "EmptyCanvas");
             }
         } catch (IOException ex) {
@@ -668,12 +667,13 @@ public abstract class TestObjet implements Test, Runnable {
             ex.printStackTrace();
         }
     }
-    public boolean copyResources()
-    {
+
+    public boolean copyResources() {
         // TODO Parcourir les textures de la scène
         // TODO
         throw new UnsupportedOperationException("Not implemented");
     }
+
     public void run() {
         z = ZBufferFactory.instance(resx, resy, D3);
         z.scene(scene);
@@ -736,16 +736,21 @@ public abstract class TestObjet implements Test, Runnable {
                     }
                 }
                 pauseActive = false;
+                if (isometrique) {
+                    z.isometrique();
+                    z.isobox(noZoom);
+                } else {
+                    z.perspective();
+                }
+
 
                 try {
                     finit();
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     ex.printStackTrace();
                     reportException(ex);
                 }
-                if ((generate & GENERATE_OPENGL) > 0 && false) {
+                if ((generate & GENERATE_OPENGL) > 0) {
                     o.println("No OpenGL");
                 } else {
                     try {
@@ -759,79 +764,30 @@ public abstract class TestObjet implements Test, Runnable {
 
 
                 if ((generate & GENERATE_IMAGE) > 0) {
-                    try {
-                        if (isometrique) {
-                            z.isometrique();
-                            z.isobox(noZoom);
-                        } else {
-                            z.perspective();
+                    z.draw();
+                    afterRenderFrame();
+                    ri = z.image();
+                    if ((generate & GENERATE_MOVIE) > 0 && isAviOpen()) {
+
+                        try {
+
+                            aw.write(0, ri, 1);
+                            dataWriter.writeFrameData(frame(), "Writing movie frame");
+
+                        } catch (IOException e) {
+                            reportException(e);
+                            return;
                         }
+                    } else {
+                        o.println(
+                                "No file open for avi writing");
 
-                        if (structure && !D3()) {
-                            //z.dessinerStructure();
-
-                            ri = z.image();
-
-                            if (((generate & GENERATE_IMAGE) > 0) && !((generate & GENERATE_NO_IMAGE_FILE_WRITING) > 0)) {
-
-                                ecrireImage(ri, type, file);
-                                dataWriter.writeFrameData(frame(), file.getAbsolutePath());
-                            }
-                            if ((generate & GENERATE_MOVIE) > 0 && true) {
-                                try {
-                                    aw.write(0, ri, 1);
-                                } catch (IOException e) {
-                                    reportException(e);
-                                    return;
-                                }
-                            }
-                        } else if (D3() && z instanceof ZBuffer3D
-                                && scene().cameraActive() instanceof Camera3D) {
-
-                            ((ZBuffer3D) z).genererEtRetourner(scene());
-
-                            riG = ((ZBuffer3D) z).imageGauche();
-                            riD = ((ZBuffer3D) z).imageDroite();
-
-                            ecrireImage(riG, type, fileG);
-                            dataWriter.writeFrameData(frame(), fileG.getAbsolutePath());
-                            ecrireImage(riD, type, fileD);
-                            dataWriter.writeFrameData(frame(), fileD.getAbsolutePath());
-
-                        } else {
-
-                            z.draw();
-                            afterRenderFrame();
-                            ri = z.image();
-                            if ((generate & GENERATE_MOVIE) > 0 && isAviOpen()) {
-
-                                try {
-
-                                    aw.write(0, ri, 1);
-                                    dataWriter.writeFrameData(frame(), "Writing movie frame");
-
-                                } catch (IOException e) {
-                                    reportException(e);
-                                    return;
-                                }
-                            } else {
-                                o.println(
-                                        "No file open for avi writing");
-
-                            }
-                            ecrireImage(ri, type, file);
-                        }
-                    } catch (Exception ex) {
-                        o.println(ex.getLocalizedMessage());
-                        reportException(ex);
                     }
+                    ecrireImage(ri, type, file);
 
                     biic.setImage(ri != null ? ri : (frame % 2 == 0 ? riG : riD));
                     biic.setStr("" + frame);
                 }
-
-                afterRenderFrame();
-
                 if (isSaveBMood()) {
                     try {
                         File foutm = new File(this.dir.getAbsolutePath()

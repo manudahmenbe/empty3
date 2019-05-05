@@ -26,6 +26,7 @@ import be.manudahmen.empty3.core.HeightMapSurface;
 import be.manudahmen.empty3.core.extra.SimpleSphere;
 import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
+import be.manudahmen.empty3.core.nurbs.Point3DS;
 import be.manudahmen.empty3.core.nurbs.ThickSurface;
 import be.manudahmen.empty3.core.tribase.TRIObjetGenerateurAbstract;
 
@@ -172,8 +173,6 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             ime = new ImageMap(la, ha);
             firstRun = false;
         }
-
-        next();
 
         currentScene.cameraActive().calculerMatrice();
 
@@ -359,8 +358,12 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                             t.texture());
 
                 }
-            } else if (r instanceof Point3D) {
+            } else if (r instanceof Point3D ) {
                 Point3D p = (Point3D) r;
+                ime.testDeep(p, r.texture());
+            } else if (r instanceof Point3DS ) {
+                Point3D p = ((Point3DS) r).calculerPoint3D(0);
+                System.out.println(p);
                 ime.testDeep(p, r.texture());
             } else if (r instanceof SegmentDroite) {
                 SegmentDroite s = (SegmentDroite) r;
@@ -448,15 +451,14 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 p.generate(this);
                 p.dessine(this);
             } else if (r instanceof ParametricCurve) {
-                //System.out.println("Curve");
                 ParametricCurve n = (ParametricCurve) r;
                 double incr = n.getIncrU();
-                for (double i = n.start(); i <= n.endU(); i += n.getIncrU()) {
+                for (double i = n.start(); i <= n.endU(); i += incr) {
                     if (n.isConnected()) {
                         line(n.calculerPoint3D(i), n.calculerPoint3D(i + incr),
                                 n.texture());
                     } else {
-                        ime.testDeep(n.calculerPoint3D(i), n.texture);
+                        ime.testDeep(n.calculerPoint3D(i), n.texture.getColorAt(i, 0.5));
                     }
                     // System.out
                     // .print("+"+n.calculerPoint3D(i).toString());

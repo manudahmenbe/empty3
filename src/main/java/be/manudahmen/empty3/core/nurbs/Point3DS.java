@@ -11,10 +11,13 @@ public class Point3DS extends ParametricCurve {
         getParameters().setIncrU(1);
 
         getParameters().setEndU(0.1);
+
+        setConnected(false);
     }
     public Point3DS(Point3D s)
     {
         this.point = s;
+        this.texture(s.texture());
 
     }
 
