@@ -17,9 +17,22 @@
  */
 package be.manudahmen.empty3.core.texturing;
 
+import be.manudahmen.empty3.ITexture;
+
 /**
  * @author Manuel Dahmen <manuel.dahmen@gmail.com>
  */
-public abstract class TextureOp2D extends TextureOp {
+public abstract class TextureOp2D extends ITexture {
+    protected ITexture up;
+
+    public void setUpText(ITexture iTexture)
+    {
+        this.up = iTexture;
+    }
+    public int getColorAt(double u, double v)
+    {
+        return up.getColorAt(u, v);
+    }
+
 
 }
