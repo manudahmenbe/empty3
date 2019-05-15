@@ -39,33 +39,46 @@ public class Camera extends CameraBox {
     public Camera(Point3D camera, Point3D lookat) {
         this.eye = camera;
         this.lookat = lookat;
-        calculerMatrice();
+        calculerMatrice(null);
     }
 
-    public void calculerMatrice() {
+    public Camera(Point3D camera, Point3D lookat, Point3D up) {
+        this.eye = camera;
+        this.lookat = lookat;
+
+        calculerMatrice(up);
+    }
+
+    private Point3D calculerVerticaleParDefaut(Point3D moinsZ) {
+        Point3D z = moinsZ.mult(-1).norme1();
+        return Point3D.Y.prodVect(z).prodVect(Point3D.X).norme1();
+    }
+
+    public void calculerMatrice(Point3D verticale) {
         if (!imposerMatrice) {
-            Point3D verticale = Point3D.Y;
-            if (getLookat().moins(getEye()).prodVect(verticale).norme() < 0.01) {
-                verticale = Point3D.Z;
-            }
-            if (getLookat().moins(getEye()).prodVect(verticale).norme() < 0.01) {
-                verticale = Point3D.X;
-            }
+            if (verticale == null)
+                verticale = calculerVerticaleParDefaut(getLookat().moins(getEye()));
+
             Matrix33 m = new Matrix33();
 
-            Point3D v1 = getLookat().moins(eye).norme1();
+
+            // Z SORT DE L4ECRAN
+            Point3D z= getLookat().moins(eye).norme1().mult(-1);
             for (int j = 0; j < 3; j++) {
-                m.set(j, 2, v1.get(j));
+                m.set(j, 2, z.get(j));
             }
-            Point3D v2 = v1.prodVect(verticale).norme1().mult(-1);
+            // X HORIZONTALE VERS LA GAUCHE
+            Point3D v2 = z.prodVect(verticale/* Y */).norme1().mult(-1);
             for (int j = 0; j < 3; j++) {
                 m.set(j, 0, v2.get(j));
             }
-            Point3D v3 = v1.prodVect(v2).norme1();
+            // Y VERTICALE VERS LE BAS
+            Point3D v3 = verticale;
             for (int j = 0; j < 3; j++) {
                 m.set(j, 1, v3.get(j));
             }
             this.matrice = m;
+
         }
     }
 
@@ -130,7 +143,7 @@ public class Camera extends CameraBox {
 
         eye = position.calculer(eye);
         lookat = position.calculer(lookat);
-        calculerMatrice();
+        calculerMatrice(null);
     }
 
     @Override

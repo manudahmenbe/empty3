@@ -85,7 +85,7 @@ public class TestAxes extends TestObjetSub {
             ));
         }
 
-        camera.calculerMatrice();
+        camera.calculerMatrice(Point3D.Y);
         scene().cameraActive(camera);
     }
 

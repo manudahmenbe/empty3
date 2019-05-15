@@ -78,7 +78,7 @@ public class TestSphereManuelDahmen extends TestObjetSub {
     public void testScene() throws Exception {
 
         scene().cameraActive().setEye(Trajectoires.sphere(2.0 * frame() / getMaxFrames(),
-                0, distance));
+                0, distance, Matrix33.I));
 
     }
 

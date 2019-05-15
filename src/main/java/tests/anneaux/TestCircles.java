@@ -1,9 +1,6 @@
 package tests.anneaux;
 
-import be.manudahmen.empty3.Axe;
-import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.TextureCol;
-import be.manudahmen.empty3.Point3D;
+import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.Circle;
 import be.manudahmen.empty3.core.lighting.Colors;
 import be.manudahmen.empty3.core.testing.TestObjet;
@@ -33,7 +30,7 @@ public class TestCircles extends TestObjet {
                 Trajectoires.sphere(
                         longpc,
                         0,
-                        400
+                        400, Matrix33.I
                 ), Point3D.O0));
     }
 

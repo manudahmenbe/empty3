@@ -86,12 +86,12 @@ public class TestSphere extends TestObjetSub {
     @Override
     public void testScene() throws Exception {
         scene().cameraActive(new Camera(
-                Trajectoires.sphere(longpc(0), latpc(0), incrlong),
-                Trajectoires.sphere(longpc(0), latpc(0), incrlat)
+                Trajectoires.sphere(longpc(0), latpc(0), incrlong, Matrix33.I),
+                Trajectoires.sphere(longpc(0), latpc(0), incrlat, Matrix33.I)
 
         ));
         for (int i = 0; i < s.length; i++)
-            s[i].setCentre(Trajectoires.sphere(longpc(i + 1), latpc(i + 1), 1.0));
+            s[i].setCentre(Trajectoires.sphere(longpc(i + 1), latpc(i + 1), 1.0, Matrix33.I));
 
     }
 }

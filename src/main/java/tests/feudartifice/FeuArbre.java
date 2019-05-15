@@ -70,7 +70,7 @@ public class FeuArbre {
 
         public void addBranches(int n) {
             for (int i = 0; i < n; i++) {
-                Point3D sphere = Trajectoires.sphere(Math.random(), Math.random(), 4);
+                Point3D sphere = Trajectoires.sphere(Math.random(), Math.random(), 4, Matrix33.I);
                 Noeud noeud = new Noeud();
                 noeud.setLocation(getLocation().plus(sphere));
                 add(noeud);

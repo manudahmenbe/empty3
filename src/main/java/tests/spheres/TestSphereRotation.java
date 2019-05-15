@@ -12,10 +12,7 @@
 
 package tests.spheres;
 
-import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.TextureCol;
-import be.manudahmen.empty3.Cube;
-import be.manudahmen.empty3.Point3D;
+import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.TRISphere;
 import tests.TestSphere.Trajectoires;
@@ -58,7 +55,7 @@ public class TestSphereRotation extends TestObjetSub {
     @Override
     public void testScene() throws Exception {
         Point3D sphere = Trajectoires.sphere(1.0 * frame() / getMaxFrames(),
-                0, 5);
+                0, 5, Matrix33.I);
         scene().cameras().clear();
         scene().cameraActive(new Camera(sphere, Point3D.O0));
 

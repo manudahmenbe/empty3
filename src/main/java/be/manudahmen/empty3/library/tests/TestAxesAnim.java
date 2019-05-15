@@ -66,7 +66,7 @@ public class TestAxesAnim extends TestObjetSub {
                 pc,
                 Math.sqrt(getMaxFrames()) * pc,
                 1.0));
-        camera.calculerMatrice();
+        camera.calculerMatrice(null);
     }
 
     @Override

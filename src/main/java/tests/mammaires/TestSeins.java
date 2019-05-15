@@ -1,9 +1,6 @@
 package tests.mammaires;
 
-import be.manudahmen.empty3.Camera;
-import be.manudahmen.empty3.TextureCol;
-import be.manudahmen.empty3.Point2D;
-import be.manudahmen.empty3.Point3D;
+import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import tests.TestSphere.Trajectoires;
 
@@ -50,7 +47,7 @@ public class TestSeins extends TestObjetSub {
 
     private Point2D cercle() {
 
-        return Trajectoires.sphere(0.0 + 1.0 * frame / getMaxFrames(), 0, 1).get2D();
+        return Trajectoires.sphere(0.0 + 1.0 * frame / getMaxFrames(), 0, 1, Matrix33.I).get2D();
     }
 
     public void testScene() {

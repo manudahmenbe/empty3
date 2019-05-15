@@ -23,10 +23,10 @@ public class Sphere extends ParametricSurface {
         Circle c = circle;
         return c.getCenter().plus(
                 c.vectX.mult(
-                        Math.cos(2.0 * Math.PI * u) * Math.cos(2.0 * Math.PI * v)).plus(
+                        Math.cos(2.0 * Math.PI * u) * Math.cos(-Math.PI / 2 + Math.PI * v)).plus(
                         c.vectY.mult(
-                                Math.sin(2.0 * Math.PI * u) * Math.cos(2.0 * Math.PI * v))
-                                .plus(c.vectZ.mult(Math.sin(2 * Math.PI * v)))
+                                Math.sin(2.0 * Math.PI * u) * Math.cos(-Math.PI / 2 + Math.PI * v))
+                                .plus(c.vectZ.mult(Math.sin(-Math.PI / 2 + Math.PI * v)))
                 ).mult(c.radius));
     }
 

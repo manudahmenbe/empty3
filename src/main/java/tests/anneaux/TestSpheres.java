@@ -3,17 +3,17 @@ package tests.anneaux;
 
 import be.manudahmen.empty3.*;
 import be.manudahmen.empty3.core.Sphere;
+import be.manudahmen.empty3.core.lighting.Colors;
 import be.manudahmen.empty3.core.testing.TestObjet;
 import tests.TestSphere.Trajectoires;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
 public class TestSpheres extends TestObjet {
 
-    public static final int CIRCLES_COUNT = 1;
+    public static final int CIRCLES_COUNT = 20;
     public double step = 10000.0;
 
     public static void main(String... args) {
@@ -32,7 +32,7 @@ public class TestSpheres extends TestObjet {
     public void finit() {
         scene().cameraActive(new Camera(Trajectoires.sphere(
                 1. * frame() / getMaxFrames(), 0.0,
-                400.0), Point3D.O0));
+                400.0, Matrix33.I), Point3D.O0));
 
         //scene().lumieres().add(new LumierePointSimple(Color.BLUE, Point3D.O0, 10));
 
@@ -46,7 +46,7 @@ public class TestSpheres extends TestObjet {
             Axe axe = new Axe(Point3D.random(100), Point3D.random(100));
             spheres[i] = new Sphere(axe,
                     100);
-            spheres[i].texture(new TextureCol(Color.ORANGE));
+            spheres[i].texture(new ColorTexture(Colors.random()));
             spheres[i].setIncrU(.01);
             spheres[i].setIncrV(.01);
             try {

@@ -1,5 +1,6 @@
 package tests.TestSphere;
 
+import be.manudahmen.empty3.Matrix33;
 import be.manudahmen.empty3.Point3D;
 
 
@@ -16,11 +17,11 @@ import be.manudahmen.empty3.Point3D;
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class Trajectoires {
-    public static Point3D sphere(double longpc, double latpc, double radius) {
-        return new Point3D(
-                Math.cos(longpc * 2 * Math.PI) * Math.cos(Math.PI * latpc),
-                Math.cos(longpc * 2 * Math.PI) * Math.sin(Math.PI * latpc),
-                Math.sin(longpc * 2 * Math.PI)
+    public static Point3D sphere(double longpc, double latpc, double radius, Matrix33 init) {
+        return init.mult(new Point3D(
+                Math.cos(latpc * 2 * Math.PI) * Math.cos(Math.PI * longpc),
+                Math.cos(latpc * 2 * Math.PI) * Math.sin(Math.PI * longpc),
+                Math.sin(longpc * 2 * Math.PI))
 
         ).mult(radius);
 

@@ -1,6 +1,7 @@
 package tests;
 
 import be.manudahmen.empty3.Camera;
+import be.manudahmen.empty3.Matrix33;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
@@ -64,8 +65,8 @@ public class TestAxesAnim extends TestObjetSub {
         camera.setEye(Trajectoires.sphere(
                 pc,
                 Math.sqrt(getMaxFrames()) * pc,
-                1.0));
-        camera.calculerMatrice();
+                1.0, Matrix33.I));
+        camera.calculerMatrice(null);
     }
 
     @Override

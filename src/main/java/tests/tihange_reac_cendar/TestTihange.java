@@ -1,5 +1,6 @@
 package tests.tihange_reac_cendar;
 
+import be.manudahmen.empty3.Matrix33;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import tests.TestSphere.Trajectoires;
@@ -15,7 +16,7 @@ public class TestTihange extends TestObjetSub {
     public void finit() {
         scene().cameraActive(new be.manudahmen.empty3.Camera(
                 Trajectoires.sphere(Math.random(), Math.random()
-                        , 8),
+                        , 8, Matrix33.I),
                 new Point3D(0, 0, 1)));
         scene().add(new Tihange());
     }

@@ -157,15 +157,15 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     public Point coordonneesPointEcranPerspective(Point3D x3d) {
 
-       // if (x3d.getZ() > 0 && -angleX < Math.atan(x3d.getX() / x3d.getZ())
-            //    && Math.atan(x3d.getX() / x3d.getZ()) < angleX
-              //  && -angleY < Math.atan(x3d.getY() / x3d.getZ())
-                //&& Math.atan(x3d.getY() / x3d.getZ()) < angleY) {
+        if (x3d.getZ() > 0 && -angleX < Math.atan(x3d.getX() / x3d.getZ())
+                && Math.atan(x3d.getX() / x3d.getZ()) < angleX
+                && -angleY < Math.atan(x3d.getY() / x3d.getZ())
+                && Math.atan(x3d.getY() / x3d.getZ()) < angleY) {
             double scale = (1.0 / (x3d.getZ()));
             return new Point((int) (x3d.getX() * scale * la + la / 2),
                     (int) (-x3d.getY() * scale * ha + ha / 2));
-        //}
-        //return null;
+        }
+        return new Point(la / 2, ha / 2);
     }
 
     public void draw() {
@@ -173,8 +173,6 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             ime = new ImageMap(la, ha);
             firstRun = false;
         }
-
-        currentScene.cameraActive().calculerMatrice();
 
         if (type_perspective == PERSPECTIVE_ISOM) {
 

@@ -33,7 +33,7 @@ public class TestCitron extends TestObjetSub {
         for (int i = 0; i < citrons.length; i++) {
             citrons[i] = new Citron(axe,
                     Trajectoires.sphere(
-                            1.0 * frame() / getMaxFrames(), 0.0, DIM),
+                            1.0 * frame() / getMaxFrames(), 0.0, DIM, Matrix33.I),
                     DIM * 4);
             citrons[i].texture(new TextureCol(Color.ORANGE));
             citrons[i].setMaxX(20);
@@ -54,7 +54,7 @@ public class TestCitron extends TestObjetSub {
         for (int i = 0; i < CIRCLES_COUNT; i++) {
             Axe axe;
             Point3D sphere = Trajectoires.sphere(
-                    1.0 * frame() / getMaxFrames(), 0.0, DIM);
+                    1.0 * frame() / getMaxFrames(), 0.0, DIM, Matrix33.I);
             Point3D pB = sphere.mult(-1);
             axe = new Axe(sphere, pB);
             citrons[i].getCircle().setAxis(axe);
