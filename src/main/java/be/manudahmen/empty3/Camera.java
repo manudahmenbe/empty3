@@ -63,7 +63,7 @@ public class Camera extends CameraBox {
 
 
             // Z SORT DE L4ECRAN
-            Point3D z= getLookat().moins(eye).norme1().mult(-1);
+            Point3D z= getLookat().moins(getEye()).norme1().mult(-1);
             for (int j = 0; j < 3; j++) {
                 m.set(j, 2, z.get(j));
             }
@@ -73,7 +73,7 @@ public class Camera extends CameraBox {
                 m.set(j, 0, v2.get(j));
             }
             // Y VERTICALE VERS LE BAS
-            Point3D v3 = verticale;
+            Point3D v3 = verticale.norme1();
             for (int j = 0; j < 3; j++) {
                 m.set(j, 1, v3.get(j));
             }

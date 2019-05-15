@@ -10,7 +10,7 @@
  * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
 
-package be.manudahmen.empty3.core.sanorm;
+package be.manudahmen.empty3.core.nurbs;
 
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Matrix33;
@@ -19,23 +19,16 @@ import be.manudahmen.empty3.core.math.E3MathWaw;
 import be.manudahmen.empty3.core.nurbs.ParametricCurve;
 
 /**
- * @author Se7en
+ * @author Manuel Dahmen
  */
 public class CameraInPath extends Camera {
-    ParametricCurve courbe;
-    private double temps01;
+    private ParametricCurve courbe;
+    private double t;
 
     public CameraInPath(ParametricCurve maCourbe) {
         courbe = maCourbe;
     }
 
-    public double getTemps01() {
-        return temps01;
-    }
-
-    public void setTemps01(double temps01) {
-        this.temps01 = temps01;
-    }
 
     public ParametricCurve getCourbe() {
         return courbe;
@@ -45,47 +38,18 @@ public class CameraInPath extends Camera {
         this.courbe = maCourbe;
     }
 
-    @Override
-    public void calculerMatrice() {
-        if (!imposerMatrice) {
-
-
-            E3MathWaw e3 = new E3MathWaw();
-
-            Point3D[] calculRepere = e3.calculRepere(courbe, temps01);
-
-
-            eye = calculRepere[0];
-            Point3D v1;
-
-            lookat = v1 = calculRepere[1];
-            Point3D v2;
-
-            Point3D verticale = v2 = calculRepere[2];
-
-            Point3D v3 = calculRepere[3];
-
-            Matrix33 m = new Matrix33();
-
-            for (int j = 0; j < 3; j++) {
-                m.set(j, 2, v1.get(j));
-            }
-            for (int j = 0; j < 3; j++) {
-                m.set(j, 0, v2.get(j));
-            }
-            for (int j = 0; j < 3; j++) {
-                m.set(j, 1, v3.get(j));
-            }
-            this.matrice = m;
-        }
+    public void calculerMatrice(Point3D verticale) {
+        setEye(courbe.calculerPoint3D(t));
+        setLookat(courbe.calculerPoint3D(t * 1.001));
+        super.calculerMatrice(getEye().moins(getLookat()).prodVect(getEye().moins(courbe.calculerPoint3D(t*0.009))).norme1());
     }
 
     public double getT() {
-        return temps01;
+        return t;
     }
 
     public void setT(double t) {
-        temps01 = t;
+        this.t = t;
     }
 
 

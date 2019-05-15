@@ -280,14 +280,14 @@ public class Point3D extends Representable implements IMovable {
      * *
      * Multiplication
      *
-     * @param xDIFF facteur
+     * @param xFactor facteur
      * @return
      */
-    public Point3D mult(double xDIFF) {
+    public Point3D mult(double xFactor) {
         Point3D p = new Point3D(this);
-        p.setX(p.getX() * xDIFF);
-        p.setY(p.getY() * xDIFF);
-        p.setZ(p.getZ() * xDIFF);
+        p.setX(p.getX() * xFactor);
+        p.setY(p.getY() * xFactor);
+        p.setZ(p.getZ() * xFactor);
         return p;
     }
 
