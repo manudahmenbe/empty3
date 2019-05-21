@@ -12,14 +12,14 @@
 
 package be.manudahmen.empty3.core.tribase;
 
+import be.manudahmen.empty3.LineSegment;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.SegmentDroite;
 
 public class CheminDroite extends Chemin {
 
-    private SegmentDroite sd;
+    private LineSegment sd;
 
-    public CheminDroite(SegmentDroite sd) {
+    public CheminDroite(LineSegment sd) {
         this.sd = sd;
     }
 
