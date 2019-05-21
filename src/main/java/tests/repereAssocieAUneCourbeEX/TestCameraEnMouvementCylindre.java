@@ -6,7 +6,7 @@ package tests.repereAssocieAUneCourbeEX;
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.core.sanorm.CameraInPath;
+import be.manudahmen.empty3.core.nurbs.CameraInPath;
 import be.manudahmen.empty3.core.testing.TestObjet;
 import be.manudahmen.empty3.core.tribase.TRICylindre;
 

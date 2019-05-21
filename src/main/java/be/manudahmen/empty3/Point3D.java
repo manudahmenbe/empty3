@@ -418,8 +418,8 @@ public class Point3D extends Representable implements IMovable {
         if (r2 instanceof Point3D) {
             Point3D p2 = (Point3D) (r2);
             return ((x[0] == p2.get(0)) && (x[1] == p2.get(1)) && (x[2] == p2.get(2))) ? this : null;
-        } else if (r2 instanceof SegmentDroite) {
-            SegmentDroite sd = (SegmentDroite) r2;
+        } else if (r2 instanceof LineSegment) {
+            LineSegment sd = (LineSegment) r2;
 
         } else if (r2 instanceof TRI) {
             TRI tri = (TRI) r2;

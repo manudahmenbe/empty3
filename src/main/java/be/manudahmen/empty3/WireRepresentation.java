@@ -46,13 +46,13 @@ public class WireRepresentation extends RepresentableConteneur {
                  j < surface.getEndV()
                     ; j+=surface.getIncrV()) {
                     this.add(
-                            new SegmentDroite(
+                            new LineSegment(
                                     surface.calculerPoint3D(i,j),
                                     surface.calculerPoint3D(i,j +
                                     surface.getIncrV()),
                                     surface.calculerPoint3D(i,j).texture()));
                     this.add(
-                            new SegmentDroite(
+                            new LineSegment(
                                     surface.calculerPoint3D(i,j),
                                     surface.calculerPoint3D(i+surface.getIncrU(),j + 1),
                                     surface.calculerPoint3D(i,j).texture()));

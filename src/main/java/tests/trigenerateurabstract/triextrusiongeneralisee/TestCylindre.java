@@ -10,9 +10,9 @@
 package tests.trigenerateurabstract.triextrusiongeneralisee;
 
 import be.manudahmen.empty3.Camera;
+import be.manudahmen.empty3.LineSegment;
 import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.SegmentDroite;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.CheminDroite;
 import be.manudahmen.empty3.core.tribase.SurfaceCercle;
@@ -37,7 +37,7 @@ public class TestCylindre extends TestObjetSub {
     @Override
     public void ginit() {
         eg = new TRIExtrusionGeneralisee();
-        CheminDroite cd = new CheminDroite(new SegmentDroite(Point3D.X, Point3D.Y, new TextureCol(Color.WHITE)));
+        CheminDroite cd = new CheminDroite(new LineSegment(Point3D.X, Point3D.Y, new TextureCol(Color.WHITE)));
 
         eg.setChemin(cd);
 

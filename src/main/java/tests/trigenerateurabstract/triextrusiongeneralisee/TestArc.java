@@ -37,7 +37,7 @@ public class TestArc extends TestObjetSub {
     @Override
     public void ginit() {
         eg = new TRIExtrusionGeneralisee();
-        //CheminDroite cd = new CheminDroite(new SegmentDroite(Point3D.X, Point3D.Y, new TextureCol(Color.WHITE)));
+        //CheminDroite cd = new CheminDroite(new LineSegment(Point3D.X, Point3D.Y, new TextureCol(Color.WHITE)));
         BezierCubique bezierCubique = new BezierCubique();
         bezierCubique.add(Point3D.O0);
         bezierCubique.add(Point3D.X);
@@ -45,7 +45,7 @@ public class TestArc extends TestObjetSub {
         bezierCubique.add(Point3D.Y);
         CheminBezier cheminBezier = new CheminBezier(bezierCubique);
 
-        eg.setChemin(cheminBezier/*new CheminDroite(new SegmentDroite(Point3D.O0, Point3D.Y.mult(5)))*/);
+        eg.setChemin(cheminBezier/*new CheminDroite(new LineSegment(Point3D.O0, Point3D.Y.mult(5)))*/);
 
         eg.setSurface(new SurfaceCercle(2));
 

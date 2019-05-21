@@ -2,14 +2,14 @@ package be.manudahmen.empty3.library.tests.film_1;
 
 import be.manudahmen.empty3.Cube;
 import be.manudahmen.empty3.Matrix33;
-import be.manudahmen.empty3.SegmentDroite;
+import be.manudahmen.empty3.LineSegment;
 import be.manudahmen.empty3.core.testing.TestObjet;
 
 /**
  * @author Se7en
  */
 public class CubesQuiTombent extends TestObjet {
-    private Cube mouvement(SegmentDroite d, double pc, Matrix33 rot, double a, double b) {
+    private Cube mouvement(LineSegment d, double pc, Matrix33 rot, double a, double b) {
         return null;
     }
 

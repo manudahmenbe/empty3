@@ -12,7 +12,7 @@ package be.manudahmen.empty3.library.tests.nurbs;
 import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.RepresentableConteneur;
-import be.manudahmen.empty3.SegmentDroite;
+import be.manudahmen.empty3.LineSegment;
 
 import java.awt.*;
 
@@ -21,9 +21,9 @@ import java.awt.*;
  */
 class Axes extends RepresentableConteneur {
     public Axes(TextureCol a1, TextureCol a2, TextureCol a3) {
-        add(new SegmentDroite(Point3D.O0, Point3D.X, a1));
-        add(new SegmentDroite(Point3D.O0, Point3D.Y, a2));
-        add(new SegmentDroite(Point3D.O0, Point3D.Z, a3));
+        add(new LineSegment(Point3D.O0, Point3D.X, a1));
+        add(new LineSegment(Point3D.O0, Point3D.Y, a2));
+        add(new LineSegment(Point3D.O0, Point3D.Z, a3));
 
     }
 

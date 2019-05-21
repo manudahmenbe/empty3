@@ -78,10 +78,10 @@ public class POINT3D_RIO extends Point3D {
     }
 
     @Override
-    public Point3D mult(double xDIFF) {
-        setX(getX() * xDIFF);
-        setY(getY() * xDIFF);
-        setZ(getZ() * xDIFF);
+    public Point3D mult(double xFactor) {
+        setX(getX() * xFactor);
+        setY(getY() * xFactor);
+        setZ(getZ() * xFactor);
         return this;
     }
 

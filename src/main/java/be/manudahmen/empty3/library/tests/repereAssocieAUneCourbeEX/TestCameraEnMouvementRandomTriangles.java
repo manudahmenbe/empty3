@@ -7,7 +7,7 @@ import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.EOFVideoException;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.TextureMov;
-import be.manudahmen.empty3.core.sanorm.CameraInPath;
+import be.manudahmen.empty3.core.nurbs.CameraInPath;
 import be.manudahmen.empty3.core.testing.TestObjet;
 import be.manudahmen.empty3.core.tribase.TRIObjetGenerateurAbstract;
 
@@ -39,7 +39,7 @@ public class TestCameraEnMouvementRandomTriangles extends TestObjet {
 
     @Override
     public void finit() throws EOFVideoException {
-        cam.setTemps01(frame / 25.0 / 8);
+        cam.setT(frame / 25.0 / 8);
         if (!textureMov.nextFrame()) {
             this.STOP();
         }

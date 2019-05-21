@@ -49,7 +49,7 @@ public class FeuArbre {
             Noeud no = iterator.next();
             prof++;
             if (prof < PROF) {
-                rc.add(new SegmentDroite(n.getLocation(), no.getLocation(), color));
+                rc.add(new LineSegment(n.getLocation(), no.getLocation(), color));
                 generate(no, rc);
             }
             prof--;

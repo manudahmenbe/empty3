@@ -2,7 +2,7 @@ package tests.tests;
 
 import be.manudahmen.empty3.Camera;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.SegmentDroite;
+import be.manudahmen.empty3.LineSegment;
 import be.manudahmen.empty3.TextureCol;
 import be.manudahmen.empty3.core.testing.TestObjetSub;
 import be.manudahmen.empty3.core.tribase.CheminDroite;
@@ -24,7 +24,7 @@ public class TestTRIExtrusionGeneralisee extends TestObjetSub {
 
     public void testScene() {
         TRIExtrusionGeneralisee te = new TRIExtrusionGeneralisee();
-        te.chemin = new CheminDroite(new SegmentDroite(Point3D.Y.mult(-1), Point3D.Y.mult(1)));
+        te.chemin = new CheminDroite(new LineSegment(Point3D.Y.mult(-1), Point3D.Y.mult(1)));
         te.surface = new SurfaceCercle(1d);
         te.texture(new TextureCol(Color.red));
         te.setMaxX(20);

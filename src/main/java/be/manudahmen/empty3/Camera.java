@@ -54,31 +54,35 @@ public class Camera extends CameraBox {
         return Point3D.Y.prodVect(z).prodVect(Point3D.X).norme1();
     }
 
+    public void setMatrix(Point3D x, Point3D y, Point3D z) {
+        Matrix33 m = new Matrix33();
+
+        // Z SORT DE L4ECRAN
+        for (int j = 0; j < 3; j++) {
+            m.set(j, 2, z.get(j));
+        }
+        // X HORIZONTALE VERS LA GAUCHE
+        for (int j = 0; j < 3; j++) {
+            m.set(j, 0, x.get(j));
+        }
+        // Y VERTICALE VERS LE BAS
+        for (int j = 0; j < 3; j++) {
+            m.set(j, 1, y.get(j));
+        }
+        this.matrice = m;
+    }
+
     public void calculerMatrice(Point3D verticale) {
         if (!imposerMatrice) {
             if (verticale == null)
                 verticale = calculerVerticaleParDefaut(getLookat().moins(getEye()));
 
-            Matrix33 m = new Matrix33();
 
+            Point3D z = getLookat().moins(getEye()).norme1();
+            Point3D x = z.prodVect(verticale/* Y */).norme1();
+            Point3D y = verticale.norme1();
 
-            // Z SORT DE L4ECRAN
-            Point3D z= getLookat().moins(getEye()).norme1().mult(-1);
-            for (int j = 0; j < 3; j++) {
-                m.set(j, 2, z.get(j));
-            }
-            // X HORIZONTALE VERS LA GAUCHE
-            Point3D v2 = z.prodVect(verticale/* Y */).norme1().mult(-1);
-            for (int j = 0; j < 3; j++) {
-                m.set(j, 0, v2.get(j));
-            }
-            // Y VERTICALE VERS LE BAS
-            Point3D v3 = verticale.norme1();
-            for (int j = 0; j < 3; j++) {
-                m.set(j, 1, v3.get(j));
-            }
-            this.matrice = m;
-
+            setMatrix(x, y, z);
         }
     }
 

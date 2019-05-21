@@ -92,7 +92,7 @@ public class TestRotationsObjets extends TestObjetSub {
     protected Representable initObjet(int no) {
         switch (no) {
             case 0:
-                representable = new SegmentDroite(Point3D.Y.mult(-dim), Point3D.Y.mult(dim), new TextureCol(Color.BLACK));
+                representable = new LineSegment(Point3D.Y.mult(-dim), Point3D.Y.mult(dim), new TextureCol(Color.BLACK));
 
                 scene().add(representable);
 

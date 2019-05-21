@@ -120,7 +120,7 @@ public class DoubleHelice extends TestObjetSub {
             Color c = new Color((float) (1.0 * i / max), (float) (1.0 * i / max), (float) (1.0 * i / max));
 
             Point3D ppB = p(i, max);
-            ps.add(new SegmentDroite(ppA, ppB, new TextureCol(c)));
+            ps.add(new LineSegment(ppA, ppB, new TextureCol(c)));
 
             ppA = ppB;
         }

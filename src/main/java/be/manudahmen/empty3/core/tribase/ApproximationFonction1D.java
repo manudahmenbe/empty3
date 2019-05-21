@@ -49,7 +49,7 @@ public class ApproximationFonction1D implements Courbe {
         points.add(new Point3D(x, y, 0));
         if (type == TYPE_DROITE) {
             if (points.size() == 2) {
-                SegmentDroite sd = new SegmentDroite(points.get(0), points.get(1));
+                LineSegment sd = new LineSegment(points.get(0), points.get(1));
                 objets.add(sd);
                 r.put(points.get(0).get(0), sd);
                 points.clear();
@@ -77,8 +77,8 @@ public class ApproximationFonction1D implements Courbe {
         Representable r2 = objets.get(i);
         if (r2 instanceof BezierCubique) {
             return ((BezierCubique) r2).calculerPoint3D((t - t2) * longueurs.get(i));
-        } else if (r2 instanceof SegmentDroite) {
-            return ((SegmentDroite) r2).calculerPoint3D((t - t2) * longueurs.get(i));
+        } else if (r2 instanceof LineSegment) {
+            return ((LineSegment) r2).calculerPoint3D((t - t2) * longueurs.get(i));
         }
         return null;
     }
@@ -92,8 +92,8 @@ public class ApproximationFonction1D implements Courbe {
         Iterator<Representable> it = objets.iterator();
         while (it.hasNext()) {
             Representable r = it.next();
-            if (r instanceof SegmentDroite) {
-                SegmentDroite sd = (SegmentDroite) r;
+            if (r instanceof LineSegment) {
+                LineSegment sd = (LineSegment) r;
                 double d = Point3D.distance(sd.getExtremite(), sd.getOrigine());
                 slongueurs += d;
                 longueurs.add(d);

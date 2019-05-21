@@ -165,7 +165,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             return new Point((int) (x3d.getX() * scale * la + la / 2),
                     (int) (-x3d.getY() * scale * ha + ha / 2));
         }
-        return new Point(la / 2, ha / 2);
+        return null;
     }
 
     public void draw() {
@@ -346,11 +346,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             // OBJETS
             if (r instanceof TRIObject) {
                 TRIObject o = (TRIObject) r;
-                Iterator<TRI> ts = o.triangles().iterator();
-                while (ts.hasNext()) {
+                for (TRI t : o.triangles()) {
                     // System.out.println("Triangle suivant");
 
-                    TRI t = ts.next();
                     tracerTriangle(r.rotation(t.getSommet()[0]),
                             r.rotation(t.getSommet()[1]), r.rotation(t.getSommet()[2]),
                             t.texture());
@@ -363,8 +361,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 Point3D p = ((Point3DS) r).calculerPoint3D(0);
                 System.out.println(p);
                 ime.testDeep(p, r.texture());
-            } else if (r instanceof SegmentDroite) {
-                SegmentDroite s = (SegmentDroite) r;
+            } else if (r instanceof LineSegment) {
+                LineSegment s = (LineSegment) r;
                 Point3D pO = refObject == null ? s.getOrigine() : refObject.rotation(s.getOrigine());
                 Point3D pE = refObject == null ? s.getExtremite() : refObject.rotation(s.getExtremite());
                 line(pO, pE, s.texture());
@@ -749,12 +747,14 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         for (double a = 0; a < 1.0; a += iteres1) {
             Point3D p3d = pp1.plus(pp1.mult(-1).plus(pp2).mult(a));
             Point pp = coordonneesPoint2D(p3d);
-            double iteres2 = 1.0 / (Math.abs(pp.getX() - p3.getX()) + Math
-                    .abs(pp.getY() - p3.getY()));
-            for (double b = 0; b < 1.0; b += iteres2) {
-                Point3D p = p3d.plus(p3d.mult(-1).plus(pp3).mult(b));
-                // Point p22 = coordonneesPoint2D(p);
-                ime.testDeep(p, c.getRGB());
+            if(pp!=null) {
+                double iteres2 = 1.0 / (Math.abs(pp.getX() - p3.getX()) + Math
+                        .abs(pp.getY() - p3.getY()));
+                for (double b = 0; b < 1.0; b += iteres2) {
+                    Point3D p = p3d.plus(p3d.mult(-1).plus(pp3).mult(b));
+                    // Point p22 = coordonneesPoint2D(p);
+                    ime.testDeep(p, c.getRGB());
+                }
             }
         }
     }
@@ -767,10 +767,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         p3 = coordonneesPoint2D(pp3);
         p4 = coordonneesPoint2D(pp4);
 
-        TRI triBas = new TRI(pp1, pp2, pp3, texture);
-        if (p1 == null || p2 == null || p3 == null) {
+        if(p1==null||p2==null||p3==null||p4==null)
             return;
-        }
+        TRI triBas = new TRI(pp1, pp2, pp3, texture);
         Point3D normale = triBas.normale();
         double inter = 1.0 / (maxDistance(p1, p2, p3, p4) + 1) / 3;
         for (double a = 0; a < 1.0; a += inter) {
@@ -912,8 +911,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                     } else if (r instanceof Point3D) {
                         Point3D p = (Point3D) r;
                         test(p);
-                    } else if (r instanceof SegmentDroite) {
-                        SegmentDroite p = (SegmentDroite) r;
+                    } else if (r instanceof LineSegment) {
+                        LineSegment p = (LineSegment) r;
                         test(p.getOrigine());
                         test(p.getExtremite());
                     } else if (r instanceof TRI) {

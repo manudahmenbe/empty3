@@ -13,25 +13,25 @@
 package be.manudahmen.empty3.core.nurbs;
 
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.SegmentDroite;
+import be.manudahmen.empty3.LineSegment;
 
 /**
  * Created by manuel on 29-06-17.
  */
 public class ParametricLine extends ParametricCurve {
-    private final SegmentDroite segmentDroite;
+    private final LineSegment lineSegment;
 
-    public ParametricLine(SegmentDroite sd) {
-        this.segmentDroite = sd;
+    public ParametricLine(LineSegment sd) {
+        this.lineSegment = sd;
     }
 
     @Override
     public Point3D calculerPoint3D(double t) {
-        return segmentDroite.getOrigine().plus(segmentDroite.getExtremite().moins(segmentDroite.getOrigine().mult(t)));
+        return lineSegment.getOrigine().plus(lineSegment.getExtremite().moins(lineSegment.getOrigine().mult(t)));
     }
 
     @Override
     public Point3D calculerVitesse3D(double t) {
-        return segmentDroite.getOrigine().plus(segmentDroite.getExtremite().moins(segmentDroite.getOrigine())).norme1();
+        return lineSegment.getOrigine().plus(lineSegment.getExtremite().moins(lineSegment.getOrigine())).norme1();
     }
 }

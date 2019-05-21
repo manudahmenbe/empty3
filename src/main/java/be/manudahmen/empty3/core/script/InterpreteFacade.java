@@ -129,13 +129,13 @@ public class InterpreteFacade {
      * @return segment de droite
      * @throws InterpreteException
      */
-    public SegmentDroite intepreteSegmentDroite() throws InterpreteException {
+    public LineSegment intepreteSegmentDroite() throws InterpreteException {
 
         InterpreteSegment interpreteH = new InterpreteSegment();
         interpreteH.setRepertoire(repertoire);
-        SegmentDroite t = null;
+        LineSegment t = null;
         try {
-            t = (SegmentDroite) interpreteH.interprete(text, pos);
+            t = (LineSegment) interpreteH.interprete(text, pos);
             pos = interpreteH.getPosition();
         } catch (Exception e) {
             throw new InterpreteException(e);

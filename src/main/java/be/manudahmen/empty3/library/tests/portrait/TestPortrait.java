@@ -46,10 +46,10 @@ public class TestPortrait extends TestObjetSub {
 
         Camera c = new Camera(new Point3D(10, 10, 10), Point3D.O0);
 
-        scene().add(new SegmentDroite(Point3D.O0, Point3D.X.mult(10), new TextureCol(Color.RED)));
-        scene().add(new SegmentDroite(Point3D.O0, Point3D.X.mult(10), new TextureCol(Color.RED)));
-        scene().add(new SegmentDroite(Point3D.O0, Point3D.Y.mult(10), new TextureCol(Color.GREEN)));
-        scene().add(new SegmentDroite(Point3D.O0, Point3D.Z.mult(10), new TextureCol(Color.BLUE)));
+        scene().add(new LineSegment(Point3D.O0, Point3D.X.mult(10), new TextureCol(Color.RED)));
+        scene().add(new LineSegment(Point3D.O0, Point3D.X.mult(10), new TextureCol(Color.RED)));
+        scene().add(new LineSegment(Point3D.O0, Point3D.Y.mult(10), new TextureCol(Color.GREEN)));
+        scene().add(new LineSegment(Point3D.O0, Point3D.Z.mult(10), new TextureCol(Color.BLUE)));
         scene().add(new TRI(new Point3D(3.1, 3, -1), new Point3D(3.1, 1, -1), new Point3D(3.1, 3, 1), new TextureCol(Color.WHITE)));
 
         scene().add(c1);

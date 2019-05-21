@@ -372,7 +372,7 @@ public class Loader implements SceneLoader {
                 continue;
             }
             if ("droite".equals(id)) {
-                SegmentDroite p = null;
+                LineSegment p = null;
                 try {
                     p = interpreteH.intepreteSegmentDroite();
                     sc.add(p);

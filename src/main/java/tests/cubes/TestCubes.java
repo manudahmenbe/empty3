@@ -66,7 +66,7 @@ class Cube extends RepresentableConteneur {
             for (double j = -dim / 2; j < dim / 2 + pas; j += pas)
                 for (double k = -dim / 2; k < dim / 2 + pas; k += pas) {
                     if (1.0 * i + 1.0 * dim / pas < dim / 2 + pas) {
-                        cube.add(new SegmentDroite(
+                        cube.add(new LineSegment(
                                         new Point3D(1.0 * i, 1.0 * j, 1.0 * k),
                                         new Point3D(1.0 * i + 1.0 * dim / pas, 1.0 * j, 1.0 * k),
                                         new TextureCol(c)
@@ -74,14 +74,14 @@ class Cube extends RepresentableConteneur {
                         );
                     }
                     if (1.0 * j + 1.0 * dim / pas < dim / 2 + pas)
-                        cube.add(new SegmentDroite(
+                        cube.add(new LineSegment(
                                         new Point3D(1.0 * i, 1.0 * j, 1.0 * k),
                                         new Point3D(1.0 * i, 1.0 * j + 1.0 * dim / pas, 1.0 * k),
                                         new TextureCol(c)
                                 )
                         );
                     if (1.0 * k + 1.0 * dim / pas < dim / 2 + pas)
-                        cube.add(new SegmentDroite(
+                        cube.add(new LineSegment(
                                         new Point3D(1.0 * i, 1.0 * j, 1.0 * k),
                                         new Point3D(1.0 * i, 1.0 * j, 1.0 * k + 1.0 * dim / pas),
                                         new TextureCol(c)

@@ -62,6 +62,11 @@ public abstract class ParametricCurve extends Representable {
 
     public abstract Point3D calculerVitesse3D(double t);
 
+    public Point3D tangente(double t)
+    {
+        return calculerPoint3D(t+t*1.0001).moins(calculerPoint3D(t)).mult(1/0.0001);
+    }
+
     public double endU() {
         return endU;
     }

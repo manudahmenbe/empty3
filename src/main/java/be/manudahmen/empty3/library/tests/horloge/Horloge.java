@@ -31,9 +31,9 @@ public class Horloge extends JFrame {
     private TRISphere sH;
     private TRISphere sS;
     private TRISphere sM;
-    private SegmentDroite droite2;
-    private SegmentDroite droite0;
-    private SegmentDroite droite1;
+    private LineSegment droite2;
+    private LineSegment droite0;
+    private LineSegment droite1;
 
     public Horloge(Color h, Color m, Color s) {
         super("Horloge 3D");
@@ -150,27 +150,27 @@ public class Horloge extends JFrame {
         sc.add(sG3);
         sc.add(sG6);
         sc.add(sG9);
-        droite0 = new SegmentDroite(
+        droite0 = new LineSegment(
                 position(f * d.getHours() / 12).mult(60),
                 Point3D.O0, new TextureCol(Color.GREEN));
-        droite1 = new SegmentDroite(position(f * d.getHours() / 12).mult(60),
+        droite1 = new LineSegment(position(f * d.getHours() / 12).mult(60),
                 Point3D.O0, new TextureCol(Color.BLUE));
-        droite2 = new SegmentDroite(
+        droite2 = new LineSegment(
                 position(f * d.getHours() / 12).mult(60),
                 Point3D.O0, new TextureCol(Color.RED));
         sc.add(droite0);
         sc.add(droite1);
         sc.add(droite2);
 
-        TubulaireN2<SegmentDroite> segmentDroiteTubulaireN20 = new TubulaireN2<>();
+        TubulaireN2<LineSegment> segmentDroiteTubulaireN20 = new TubulaireN2<>();
         segmentDroiteTubulaireN20.curve(droite0);
         segmentDroiteTubulaireN20.diam(20);
         sc.add(segmentDroiteTubulaireN20);
-        TubulaireN2<SegmentDroite> segmentDroiteTubulaireN21 = new TubulaireN2<>();
+        TubulaireN2<LineSegment> segmentDroiteTubulaireN21 = new TubulaireN2<>();
         segmentDroiteTubulaireN21.curve(droite1);
         sc.add(segmentDroiteTubulaireN21);
         segmentDroiteTubulaireN20.diam(20);
-        TubulaireN2<SegmentDroite> segmentDroiteTubulaireN22 = new TubulaireN2<>();
+        TubulaireN2<LineSegment> segmentDroiteTubulaireN22 = new TubulaireN2<>();
         segmentDroiteTubulaireN22.curve(droite2);
         sc.add(segmentDroiteTubulaireN22);
         segmentDroiteTubulaireN20.diam(20);

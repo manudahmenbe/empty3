@@ -23,7 +23,7 @@ package be.manudahmen.empty3.core.script;
 import be.manudahmen.empty3.BezierCubique;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Representable;
-import be.manudahmen.empty3.SegmentDroite;
+import be.manudahmen.empty3.LineSegment;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -76,7 +76,7 @@ public class InterpreteFontes implements Interprete {
         ArrayList<Representable> objets;
 
         Character c;
-        SegmentDroite s;
+        LineSegment s;
         BezierCubique bc;
         Point3D p;
         boolean eof1 = false;
@@ -111,7 +111,7 @@ public class InterpreteFontes implements Interprete {
 
             if (eof1) {
                 try {
-                    s = (SegmentDroite) is.interprete(text, pos);
+                    s = (LineSegment) is.interprete(text, pos);
                     pos = is.getPosition();
                     objets.add(s);
                     eof1 = false;

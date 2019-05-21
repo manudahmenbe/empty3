@@ -178,7 +178,7 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
                 };
                 for (int i = 0; i < 3; i++) {
 
-                    SegmentDroite sd = new SegmentDroite(
+                    LineSegment sd = new LineSegment(
                             calculerPoint3D(uvincr[i][0], uvincr[i][1]),
                             calculerPoint3D(uvincr[(i + 1) % 3][0], uvincr[(i + 1) % 3][0]), CFAST);
                     if (sd.ISdrawStructureDrawFastIMPLEMENTED(z)) {

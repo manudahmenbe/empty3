@@ -29,7 +29,7 @@ import java.awt.*;
  *         <p>
  *         15 oct. 2011
  */
-public class SegmentDroite extends ParametricCurve {
+public class LineSegment extends ParametricCurve {
 
     public double SMALL_NUM = Double.MIN_VALUE; // anything that avoids division
     private Point3D origine;
@@ -37,12 +37,12 @@ public class SegmentDroite extends ParametricCurve {
     // overflow
 
     // prodScalaire product (3D) which allows vector operations in arguments
-    public SegmentDroite(Point3D p1, Point3D p2) {
+    public LineSegment(Point3D p1, Point3D p2) {
         this.setOrigine(p1);
         this.setExtremite(p2);
     }
 
-    public SegmentDroite(Point3D origin, Point3D extrem, ITexture texture) {
+    public LineSegment(Point3D origin, Point3D extrem, ITexture texture) {
         this(origin, extrem);
         this.texture(texture);
         origin.texture(texture);
@@ -89,7 +89,7 @@ public class SegmentDroite extends ParametricCurve {
     // 0 = disjoint (no intersect)
     // 1 = intersect in unique point I1
     // 2 = are in the same plane
-    private Representable intersect3D_RayTriangle(SegmentDroite R, TRI T) {
+    private Representable intersect3D_RayTriangle(LineSegment ray, TRI T) {
         Point3D u, v, n = null; // triangle vectors
         Point3D dir, w0, w; // ray vectors
         double r, a, b; // params to calc ray-plane intersect
@@ -103,8 +103,8 @@ public class SegmentDroite extends ParametricCurve {
         {
             return Infini.Default; // do not deal with this case
         }
-        dir = R.getOrigine().moins(R.getExtremite()); // ray direction vector
-        w0 = R.getOrigine().moins(T.getSommet()[0]);
+        dir = ray.getOrigine().moins(ray.getExtremite()); // ray direction vector
+        w0 = ray.getOrigine().moins(T.getSommet()[0]);
         a = -n.prodScalaire(w0);
         b = n.prodScalaire(dir);
         if (Math.abs(b) < SMALL_NUM) { // ray is parallel to triangle plane
@@ -123,7 +123,7 @@ public class SegmentDroite extends ParametricCurve {
             return Infini.Default; // => no intersect
         }        // for a segment, also test if (r > 1.0) => no intersect
 
-        I = R.getOrigine().plus(dir.mult(r)); // intersect point of ray and
+        I = ray.getOrigine().plus(dir.mult(r)); // intersect point of ray and
         // plane
 
         // is I inside T?

@@ -64,7 +64,7 @@ public class Intersection {
             Representable r = itererScene.next();
 
             if (r instanceof TRI) {
-                SegmentDroite sd = new SegmentDroite(ie.point, ie.point.plus(ie.direction.moins(ie.point).mult(10000000)));
+                LineSegment sd = new LineSegment(ie.point, ie.point.plus(ie.direction.moins(ie.point).mult(10000000)));
 
                 Representable i = sd.intersection((TRI) r);
 
@@ -140,7 +140,7 @@ class ItererScene implements Iterator {
             if (C instanceof Point3D) {
                 next = C;
                 hasnext = true;
-            } else if (C instanceof SegmentDroite) {
+            } else if (C instanceof LineSegment) {
                 next = C;
                 hasnext = true;
             } else if (C instanceof TRI) {

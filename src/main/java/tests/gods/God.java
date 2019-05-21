@@ -10,7 +10,7 @@ public class God extends RepresentableConteneur
 {
     public God(double radius, double length, ITexture texture)
     {
-        TubulaireN2<SegmentDroite> tubulaireN2 = new TubulaireN2<SegmentDroite>(new SegmentDroite(Point3D.O0, Point3D.X.mult(length)));
+        TubulaireN2<LineSegment> tubulaireN2 = new TubulaireN2<LineSegment>(new LineSegment(Point3D.O0, Point3D.X.mult(length)));
         tubulaireN2.radius(radius);
         Sphere sphere = new Sphere(new Axe(Point3D.Y.mult(radius), Point3D.Y.mult(-radius)), radius);
         Sphere sphere1 = new Sphere(new Axe(Point3D.X.mult(length).plus(Point3D.Y.mult(radius)), Point3D.X.mult(length).plus(Point3D.Y.mult(-radius))), radius);
