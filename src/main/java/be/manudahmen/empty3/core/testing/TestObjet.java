@@ -11,16 +11,20 @@ import be.manudahmen.empty3.core.RegisterOutput;
 import be.manudahmen.empty3.core.export.ObjExport;
 import be.manudahmen.empty3.core.export.STLExport;
 import be.manudahmen.empty3.core.script.ExtensionFichierIncorrecteException;
+import be.manudahmen.empty3.core.script.ImageIO2;
 import be.manudahmen.empty3.core.script.Loader;
 import be.manudahmen.empty3.core.script.VersionNonSupporteeException;
-import org.monte.media.Format;
-import org.monte.media.FormatKeys;
+import org.monte.media.*;
 import org.monte.media.FormatKeys.MediaType;
-import org.monte.media.VideoFormatKeys;
 import org.monte.media.avi.AVIWriter;
 import org.monte.media.math.Rational;
+import org.monte.media.mp3.MP3AudioInputStream;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
@@ -48,7 +52,7 @@ public abstract class TestObjet implements Test, Runnable {
     public static final int ON_MAX_FRAMES_STOP = 0;
     public static final int ON_MAX_FRAMES_CONTINUE = 1;
     protected Scene scene;
-    protected String description = "";
+    protected String description = "@ Manuel Dahmen \u2610";
     protected Camera c;
     protected int frame = 0;
     protected ArrayList<TestInstance.Parameter> dynParams;
@@ -69,8 +73,8 @@ public abstract class TestObjet implements Test, Runnable {
     private String filenameZIP = "tests";
     private String fileextZIP = "diapo";
     private File file = null;
-    private int resx = 1600;
-    private int resy = 1200;
+    private int resx = 1920;
+    private int resy = 1080;
     private File dir = null;
     private ECBufferedImage ri;
     private String filename = "frame";
@@ -106,6 +110,15 @@ public abstract class TestObjet implements Test, Runnable {
     private int onTextureEnds = ON_TEXTURE_ENDS_STOP;
     private int onMaxFrameEvent = ON_MAX_FRAMES_STOP;
     private ExportAnimationData dataWriter;
+    private File audioTrack;
+    private boolean isAudioDone;
+    private AudioInputStream audioIn;
+    private int audioTrackNo;
+    private int videoTrackNo;
+    private double fps = 25.0;
+    private Buffer buf;
+    private boolean isVBR;
+    private AudioFormat audioFormat;
 
     public TestObjet() {
 
@@ -179,17 +192,29 @@ public abstract class TestObjet implements Test, Runnable {
                     VideoFormatKeys.HeightKey, resy, VideoFormatKeys.DepthKey,
                     24);
 
-            track = aw.addTrack(format);
+            videoTrackNo = aw.addTrack(format);
             // new Format(properties));
+            // Determine audio format
+            audioIn = null;
 
+            if (audioTrack != null) {
+                if (audioTrack.getName().toLowerCase().endsWith(".mp3")) {
+                    audioIn = new MP3AudioInputStream(audioTrack);
+                } else {
+                    audioIn = AudioSystem.getAudioInputStream(audioTrack);
+                }
+                AudioFormat audioFormat = audioIn.getFormat();
+                audioTrackNo = aw.addTrack(AudioFormatKeys.fromAudioFormat(audioFormat));
+                int movieTime = 0;
+                int imgIndex = 0;
+                isAudioDone = false;
+                buf = new Buffer();
+            }
             aviOpen = true;
-
-        } catch (IOException e2) {
-            aviOpen = false;
-
-            e2.printStackTrace();
-            reportException(e2);
-            return;
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -674,6 +699,10 @@ public abstract class TestObjet implements Test, Runnable {
         throw new UnsupportedOperationException("Not implemented");
     }
 
+    public void addAudioFile(File audio) {
+        this.audioTrack = audio;
+    }
+
     public void run() {
         z = ZBufferFactory.instance(resx, resy, D3);
         z.scene(scene);
@@ -712,6 +741,8 @@ public abstract class TestObjet implements Test, Runnable {
             e1.printStackTrace();
             return;
         }
+
+
         ginit();
 
 
@@ -724,7 +755,44 @@ public abstract class TestObjet implements Test, Runnable {
         o.println("Generate (0 NOTHING  1 IMAGE  2 MODEL  4 OPENGL) {0}" + getGenerate());
 
         o.println("Starting movie  {0}" + runtimeInfoSucc());
+
+
         while ((nextFrame() || unterminable()) && !stop) {
+
+
+
+            byte [] audioBuffer = null;
+            // Advance audio to movie time + 1 second (audio must be ahead of video by 1 second)
+            while (audioTrack != null && !isAudioDone && aw.getDuration(audioTrackNo).doubleValue() < 1.0
+            *frame() / fps) {
+                // => variable bit rate: format can change at any time
+                audioFormat = audioIn.getFormat();
+                if (audioFormat == null) {
+                    break;
+                }
+                int asSize = audioFormat.getFrameSize();
+                int asDuration = (int) (audioFormat.getSampleRate() / audioFormat.getFrameRate());
+                if (audioBuffer==null||audioBuffer.length < asSize) {
+                    audioBuffer = new byte[asSize];
+                }
+                int len = 0;
+                try {
+                    len = audioIn.read(audioBuffer);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (len == -1) {
+                    isAudioDone = true;
+                } else {
+                    try {
+                        aw.writeSamples(audioTrackNo, len, audioBuffer, 0, len, true);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+
             try {
                 pauseActive = true;
                 while (isPause()) {
@@ -767,11 +835,14 @@ public abstract class TestObjet implements Test, Runnable {
                     z.draw();
                     afterRenderFrame();
                     ri = z.image();
+
+                    ri.getGraphics().drawString(description, 0, 0);
+
                     if ((generate & GENERATE_MOVIE) > 0 && isAviOpen()) {
 
                         try {
 
-                            aw.write(0, ri, 1);
+                            aw.write(videoTrackNo, ri, 1);
                             dataWriter.writeFrameData(frame(), "Writing movie frame");
 
                         } catch (IOException e) {

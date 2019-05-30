@@ -63,6 +63,7 @@ public class CameraInPath extends Camera {
 
     public void setT(double t) {
         eye = courbe.calculerPoint3D(t);
+        this.t = t;
     }
 
     @Override

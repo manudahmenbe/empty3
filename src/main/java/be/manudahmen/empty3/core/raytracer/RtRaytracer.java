@@ -16,8 +16,6 @@ import be.manudahmen.empty3.ECBufferedImage;
 import be.manudahmen.empty3.Point3D;
 import be.manudahmen.empty3.Representable;
 import be.manudahmen.empty3.core.nurbs.ParametricSurface;
-import be.manudahmen.empty3.core.raytracer.octopus.OctopusAlgorithm;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
@@ -29,8 +27,8 @@ public class RtRaytracer {
     public static double maxDistance = 999999.9f;            // La distance parcourue par le rayon avant de toucher la node
 
 
-    /* [ Coeur du raytracer. L'algo du raytracing se trouve dans cette fonction, dont le r�le est de calculer ] */
-/* [ la couleur finale du pixel courant, en lui passant le rayon primaire �mis.                           ] */
+    /* [ Coeur du raytracer. L'algo du raytracing se trouve dans cette fonction, dont le r?le est de calculer ] */
+/* [ la couleur finale du pixel courant, en lui passant le rayon primaire ?mis.                           ] */
     public static RtColor rayTrace(RtScene scene, RtRay ray, int depth) {
         RtColor finalColor = new RtColor(0.0f, 0.0f, 0.0f, 0.0f);    // La couleur finale (noire au debut ... couleur de fond)
         double tmpDistance = maxDistance + 1;                    // Une distance temporaire
@@ -43,7 +41,7 @@ public class RtRaytracer {
 
 
         // Eclairage
-        boolean lightBlocked;        // Booleen qui nous permet de dire si le rayon de lumi�re est bloqu� sur son chemin ou non
+        boolean lightBlocked;        // Booleen qui nous permet de dire si le rayon de lumi?re est bloqu? sur son chemin ou non
         Point3D lightVec;            // Le vecteur allant de la source lumineuse vers le point d'intersection
         double lightToObjDist;        // La distance entre la source lumineuse et le point d'intersection
         double lightToInterDist;    // La distance entre la source lumineuse et le point d'intersection de la node courante
@@ -56,8 +54,8 @@ public class RtRaytracer {
             currentNode = scene.getNode(i);
 
             if (currentNode.intersectsNode(ray, interInfo)) {
-                // On n'a pas besoin de comparer la longueur en elle meme (qui est la racine carr� de la somme des carr�s des coeeficients)
-                // En evitant la racine carr� on obtient la meme comparaison, mais en une op�ration de moins (sqrt est tr�s gourmand).
+                // On n'a pas besoin de comparer la longueur en elle meme (qui est la racine carr? de la somme des carr?s des coeeficients)
+                // En evitant la racine carr? on obtient la meme comparaison, mais en une op?ration de moins (sqrt est tr?s gourmand).
                 tmpDistance = interInfo.mIntersection.moins(ray.mVStart).norme();
 
                 if (tmpDistance < distance) {
@@ -116,10 +114,10 @@ public class RtRaytracer {
     }
 
 
-    /* [ Fonction de rendu. Parcoure tous les pixels de l'image, cr�e le rayon correpondant et lance le raytracing ] */
+    /* [ Fonction de rendu. Parcoure tous les pixels de l'image, cr?e le rayon correpondant et lance le raytracing ] */
 /* [ avec ce rayon. Enregistre le rendu final dans un fichier image.                                           ] */
     public static boolean Render(RtScene scene, int width, int height, String outputfilename) throws IOException {
-        RtRay currentRay = new RtRay();            // Le rayon primaire �mis courant (de l'oeil, � travers un pixel, vers la sc�ne).
+        RtRay currentRay = new RtRay();            // Le rayon primaire ?mis courant (de l'oeil, ? travers un pixel, vers la sc?ne).
         Point3D vDir;                // Le vecteur directeur (unitaire) du rayon.
         PrintWriter mOutputFileRAW;    // Le fichier image destination (format RAW : rvbrvbrvbrvb....).
         RtColor tmpColor;            // La couleur finale du pixel courant.
@@ -140,11 +138,11 @@ public class RtRaytracer {
         // On parcoure tous les pixels de l'image finale
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++) {
-                // [---Creation du rayon � emetrre---]
+                // [---Creation du rayon ? emetrre---]
                 // L'origine du rayon est la position de la camera
                 currentRay.mVStart = scene.getActiveCamera().getPosition();
 
-                // On calcule le veteur directeur gr�ce � une m�thode de la classe RtCamera
+                // On calcule le veteur directeur gr?ce ? une m?thode de la classe RtCamera
                 vDir = scene.getActiveCamera().calcDirVec(x, y, width, height);
                 Point3D vDirX1 = scene.getActiveCamera().calcDirVec(x + 1, y, width, height);
                 Point3D vDirX_1 = scene.getActiveCamera().calcDirVec(x - 1, y, width, height);
@@ -161,7 +159,7 @@ public class RtRaytracer {
                 currentRay.mVDirY1 = vDir;
                 currentRay.mVDirY_1 = vDir;
 
-                // On trace le rayon, et on recup�re la couleur finale du pixel
+                // On trace le rayon, et on recup?re la couleur finale du pixel
                 tmpColor = rayTrace(scene, currentRay, 0);
 
 
@@ -171,12 +169,6 @@ public class RtRaytracer {
                 for (Representable rep : scene.getRepresentables()) {
                     if (rep instanceof ParametricSurface) {
                         ParametricSurface surface = (ParametricSurface) rep;
-                        OctopusAlgorithm octopusAlgorithm = new OctopusAlgorithm(currentRay, 5, surface);
-                        Point3D point3D = octopusAlgorithm.trace();
-
-                        if (point3D != null && point3D.getZ() < zMin) {
-                            choisi = point3D;
-                        }
                     }
                 }
 

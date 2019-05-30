@@ -239,7 +239,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 ParametricSurface n = (ParametricSurface) r;
                 // TODO Dessiner les bords
                 for (double u = n.getStartU(); u <= n.getEndU(); u += n.getIncrU()) {
-                    System.out.println("(u,v) = ("+u+","+")");
+                    //System.out.println("(u,v) = ("+u+","+")");
                     for (double v = n.getStartU(); v <= n.getEndV(); v += n.getIncrV()) {
                 /*
                         draw(new TRI(n.calculerPoint3D(u, v),

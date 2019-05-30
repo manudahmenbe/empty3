@@ -66,6 +66,7 @@ public class TestCameraEnMouvement extends TestObjet {
     @Override
     public void testScene() throws Exception {
         textureMov.nextFrame();
+        cam.calculerMatrice(null);
     }
 
     public void afterRender() {

@@ -34,6 +34,7 @@ public class Camera extends CameraBox {
     public Camera() {
         this.eye = new Point3D(0, 0, -100);
         this.lookat = Point3D.O0;
+        matrice = Matrix33.I;
     }
 
     public Camera(Point3D camera, Point3D lookat) {
@@ -69,7 +70,7 @@ public class Camera extends CameraBox {
         for (int j = 0; j < 3; j++) {
             m.set(j, 1, y.get(j));
         }
-        this.matrice = m;
+        this.matrice = m.tild();
     }
 
     public void calculerMatrice(Point3D verticale) {

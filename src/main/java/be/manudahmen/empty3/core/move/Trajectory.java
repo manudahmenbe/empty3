@@ -10,16 +10,35 @@
  * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * *
+ * Global license : * Microsoft Public Licence
+ * <p>
+ * author Manuel Dahmen <manuel.dahmen@gmail.com>
+ * <p>
+ * *
  */
-package be.manudahmen.empty3.core.texturing;
+package be.manudahmen.empty3.core.move;
+
+import be.manudahmen.empty3.Point3D;
+
+import java.util.Collection;
 
 /**
  * @author Manuel Dahmen <manuel.dahmen@gmail.com>
  */
-public abstract class TextureOp1D extends TextureOp {
+public interface Trajectory {
 
+    int POINTS_INTERMEDIATE_LINE = 0;
+    int POINTS_INTERMEDIATE_BEZIER = 0;
+
+    boolean hasMorePoints();
+
+    Point3D getNextPointAndRemove();
+
+    Point3D[] getIntermediatePointsUntilNext();
+
+    void addPoints(Collection<Point3D> points);
+
+    void addPoints(Point3D[] points);
 }

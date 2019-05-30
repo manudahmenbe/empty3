@@ -184,6 +184,15 @@ public class Representable implements Serializable, Comparable {
                 "");
     }
 
+    public void become(Representable r){
+        if(this.getClass().equals(r.getClass()))
+        {
+            set(r);
+        }
+    }
+
+    private void set(Representable r) {
+    }
 
     /***
      *

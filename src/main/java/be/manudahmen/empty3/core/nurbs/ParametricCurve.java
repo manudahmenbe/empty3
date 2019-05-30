@@ -45,6 +45,7 @@ public abstract class ParametricCurve extends Representable {
     protected boolean connected = true;
     private Parameters parameters = new Parameters(true);
     private double incrU = 0.0001;
+    private double incrTAN = 0.0001;
 
     public static void setGlobals(Globals globals) {
         ParametricCurve.globals = globals;
@@ -60,11 +61,14 @@ public abstract class ParametricCurve extends Representable {
 
     public abstract Point3D calculerPoint3D(double t);
 
-    public abstract Point3D calculerVitesse3D(double t);
+    public Point3D calculerVitesse3D(double t)
+    {
+        return calculerPoint3D(t*(1+incrTAN)).moins(calculerPoint3D(t)).mult(incrTAN);
+    }
 
     public Point3D tangente(double t)
     {
-        return calculerPoint3D(t+t*1.0001).moins(calculerPoint3D(t)).mult(1/0.0001);
+        return calculerPoint3D(t*1.0001).moins(calculerPoint3D(t));
     }
 
     public double endU() {

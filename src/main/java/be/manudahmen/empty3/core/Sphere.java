@@ -7,9 +7,10 @@ import be.manudahmen.empty3.core.nurbs.ParametricSurface;
 
 public class Sphere extends ParametricSurface {
     protected Circle circle;
+    private Axe axe;
 
     public Sphere(Axe axis, double radius) {
-
+        this.axe = axis;
         circle = new Circle(axis, radius);
     }
 
@@ -36,5 +37,9 @@ public class Sphere extends ParametricSurface {
 
     public void setCircle(Circle circle) {
         this.circle = circle;
+    }
+
+    public Axe getAxe() {
+        return axe;
     }
 }

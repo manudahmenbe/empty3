@@ -10,27 +10,34 @@
  * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
 
-package be.manudahmen.empty3.core.raytracer.octopus;
+package be.manudahmen.empty3.core.move;
 
+import be.manudahmen.empty3.LineSegment;
 import be.manudahmen.empty3.Point3D;
-import be.manudahmen.empty3.Representable;
-import be.manudahmen.empty3.core.nurbs.ParametricCurve;
-import be.manudahmen.empty3.core.nurbs.ParametricSurface;
-import be.manudahmen.empty3.core.raytracer.RtRay;
 
-public class SolverImpl implements Solver {
-    @Override
-    public Point3D solve(RtRay ray, ParametricSurface rep) {
-        return null;
+/**
+ * Created by manuel on 29-06-17.
+ */
+public class LineTrajectory extends SimpleTrajectory {
+    protected Point3D a;
+    private Point3D b;
+    private double speed = 0.0;
+
+    LineTrajectory(LineSegment sd, double speed) {
+        a = sd.getOrigine();
+        b = sd.getExtremite();
+        this.speed = speed;
     }
 
-    @Override
-    public Point3D solve(RtRay ray, ParametricCurve rep) {
-        return null;
+    public void swapAB() {
+        Point3D w = a;
+        a = b;
+        b = w;
     }
 
-    @Override
-    public Point3D solve(RtRay ray, Representable rep) {
-        return null;
+    public Point3D calculerPoint3D(double timeEllapsedNano) {
+        Point3D point3D = a.plus(b.moins(a).mult(speed * timeEllapsedNano));
+        return point3D;
+
     }
 }

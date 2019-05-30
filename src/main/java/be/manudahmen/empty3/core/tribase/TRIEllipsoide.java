@@ -13,7 +13,7 @@ import be.manudahmen.empty3.core.nurbs.ParametricSurface;
  */
 public class TRIEllipsoide extends ParametricSurface {
 
-    private Point3D centre = new Point3D(0, 0, 0);
+    private Point3D centre = Point3D.O0;
     private double radiusx = 1.0;
     private double radiusy = 1.0;
     private double radiusz = 1.0;

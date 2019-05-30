@@ -62,18 +62,23 @@ public class Circle extends ParametricCurve {
 */
     private void calculerRepere1() {
         boolean success = false;
-        for (int i = 0; i < 3; i++) {
+        int i=0;
+        while (!success && i<3) {
             Point3D pRef = new Point3D(i == 1 ? 0 : 0, i == 1 ? 1 : 0, i == 2 ? 1 : 0);
 
             Point3D mult = vAxis.norme1().prodVect(axis.getCenter().moins(pRef).norme1());
-            if (mult.norme() > 0.6) {
+            if (mult.norme() > 0.8) {
                 vectX = mult.norme1();
                 vectZ = vAxis.norme1();
                 vectY = vectZ.prodVect(vectX).norme1();
                 success = true;
                 break;
             }
-
+            i++;
+        }
+        if(!success)
+        {
+            throw new NullPointerException("Cannot compute axis");
         }
     }
 
@@ -90,11 +95,6 @@ public class Circle extends ParametricCurve {
                 )
                         .mult(radius)
         );
-    }
-
-    @Override
-    public Point3D calculerVitesse3D(double t) {
-        return null;
     }
 
     public Axe getAxis() {
