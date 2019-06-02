@@ -9,17 +9,17 @@
 
     <name>Empty3</name>
 
-    <groupId>be.manudahmen</groupId>
-    <artifactId>empty3</artifactId>
-    <version>70</version>
+    <groupId>one.empty3</groupId>
+        <artifactId>empty3-library-3d</artifactId>
+    <version>73</version>
     <description>3D rendering engine. Plus modelling.</description>
     <packaging>jar</packaging>
 
     <distributionManagement>
         <repository>
-            <id>demoniakmachine.com</id>
-            <name>demoniakmachine.com</name>
-            <url>ftp://ftp.demoniakmachine.com/m2</url>
+            <id>if2</id>
+            <name>empty3.one</name>
+            <url>ftp://ftp.empty3.one/Downloads/maven</url>
         </repository>
     </distributionManagement>
 
@@ -42,8 +42,6 @@
             </resource>
         </resources>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-
-        <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
         <outputDirectory>${basedir}/target/classes</outputDirectory>
         <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
 

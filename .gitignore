@@ -62,4 +62,4 @@ $RECYCLE.BIN/
 *.msp
 /build/
 *.ini
-/.settings/
+/.settings/.idea/misc.xml
