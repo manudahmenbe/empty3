@@ -17,8 +17,8 @@
         properties -pre-compile: called before javac compilation -post-compile: called
         after javac compilation -pre-compile-single: called before javac compilation
         of single file -post-compile-single: called after javac compilation of single
-        file -pre-compile-test: called before javac compilation of JUnit tests -post-compile-test:
-        called after javac compilation of JUnit tests -pre-compile-test-single: called
+        file -pre-compile-test: called before javac compilation of JUtests2ests -post-compile-test:
+        called after javac compilation of JUtests2ests -pre-compile-test-single: called
         before javac compilation of single JUnit test -post-compile-test-single:
         called after javac compilation of single JUunit test -pre-jar: called before
         JAR building -post-jar: called after JAR building -post-clean: called after
