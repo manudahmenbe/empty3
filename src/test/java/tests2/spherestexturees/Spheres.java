@@ -1,93 +1,78 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tests2.spherestexturees;
 
-import one.empty3.library.Camera;
-import one.empty3.library.Point3D;
-import one.empty3.library.TextureCol;
+import one.empty3.library.*;
+import one.empty3.library.core.lighting.Colors;
 import one.empty3.library.core.testing.TestObjetSub;
-import one.empty3.library.core.tribase.TRISphere;
-
-import java.awt.*;
 
 /**
  * @author Manuel DAHMEN
  */
 public class Spheres extends TestObjetSub {
-    TRISphere[] s;
-    Point3D[] v;
-    int N;
-    double V;
-    double D = 1;
+    Point3D[] points;
+    Point3D[] speed;
+    int pointCount;
+    double maxSpeed;
+    double dimension;
 
-    public Spheres(int n, double v) {
-        N = n;
-        V = v;
+    public Spheres(int n, double v, double dim) {
+        pointCount = n;
+        maxSpeed = v;
+        dimension = dim;
     }
 
     public static void main(String[] args) {
-        Spheres s = new Spheres(100, 0.05);
-
-        s.loop(true);
-
-        s.run();
+        Spheres s = new Spheres(100000, 5, 100);
+        s.setMaxFrames(10000);
+        new Thread(s).start();
     }
 
     @Override
     public void ginit() {
-        s = new TRISphere[N];
-        v = new Point3D[N];
-        for (int i = 0; i < N; i++) {
-            s[i] = new TRISphere(Point3D.O0, 0.1);
+        RepresentableConteneur representableConteneur = new RepresentableConteneur();
+        points = new Point3D[pointCount];
+        speed = new Point3D[pointCount];
+        for (int i = 0; i < pointCount; i++) {
+            points[i] = Point3D.random2(dimension);
 
-            s[i].texture(new TextureCol(Color.WHITE));
+            points[i].texture(new TextureCol(Colors.random()));
+            points[i].setNormale(Point3D.Z);
+            representableConteneur.add(points[i]);
 
-            scene().add(s[i]);
-
-            v[i] = new Point3D(Math.random() * (V / 2 - V), Math.random() * (V / 2 - V), Math.random() * (V / 2 - V));
+            speed[i] = Point3D.random2(maxSpeed);
 
         }
+        Camera camera = new Camera(Point3D.Z.mult(-dimension * 2), Point3D.O0);
+        scene().add(representableConteneur);
+        scene().cameraActive(camera);
 
-
-        scene().cameraActive(new Camera(Point3D.Z.mult(-5), Point3D.O0));
+        System.out.println(representableConteneur);
     }
 
     public void bounce(int i) {
-        s[i].setCentre(s[i].getCentre().plus(v[i]));
-
-        float[] co = new float[3];
-
-        for (int j = 0; j < 3; j++) {
-            co[j] = (float) ((v[i].get(j) + V / 2) / V);
+        points[i] = points[i].plus(speed[i]);
+        if (points[i].getX() > dimension && speed[i].getX() > 0) {
+            speed[i].setX(-speed[i].getX());
         }
-
-        s[i].texture(new TextureCol(new Color(co[0], co[1], co[2])));
-
-        if (s[i].getCentre().getX() > D && v[i].getX() > 0) {
-            v[i].setX(-v[i].getX());
+        if (points[i].getX() < -dimension && speed[i].getX() < 0) {
+            speed[i].setX(-speed[i].getX());
         }
-        if (s[i].getCentre().getX() < -D && v[i].getX() < 0) {
-            v[i].setX(-v[i].getX());
+        if (points[i].getY() > dimension && speed[i].getY() > 0) {
+            speed[i].setY(-speed[i].getY());
         }
-        if (s[i].getCentre().getY() > D && v[i].getY() > 0) {
-            v[i].setY(-v[i].getY());
+        if (points[i].getY() < -dimension && speed[i].getY() < 0) {
+            speed[i].setY(-speed[i].getY());
         }
-        if (s[i].getCentre().getY() < -D && v[i].getY() < 0) {
-            v[i].setY(-v[i].getY());
+        if (points[i].getZ() > dimension && speed[i].getZ() > 0) {
+            speed[i].setZ(-speed[i].getZ());
         }
-        if (s[i].getCentre().getZ() > D && v[i].getZ() > 0) {
-            v[i].setZ(-v[i].getZ());
-        }
-        if (s[i].getCentre().getZ() < -D && v[i].getZ() < 0) {
-            v[i].setZ(-v[i].getZ());
+        if (points[i].getZ() < -dimension && speed[i].getZ() < 0) {
+            speed[i].setZ(-speed[i].getZ());
         }
     }
 
     @Override
-    public void testScene() throws Exception {
-        for (int i = 0; i < N; i++)
+    public void finit() throws Exception {
+        for (int i = 0; i < pointCount; i++)
             bounce(i);
     }
 

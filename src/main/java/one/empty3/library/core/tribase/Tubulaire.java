@@ -50,8 +50,8 @@ public class Tubulaire extends Representable implements TRIGenerable, TRIContene
 
     }
 
-    public boolean add(Point3D e) {
-        return points.add(e);
+    public void add(Point3D e) {
+        points.add(e);
     }
 
     public void addPoint(Point3D p) {

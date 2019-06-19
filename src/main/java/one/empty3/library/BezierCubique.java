@@ -32,11 +32,11 @@ public class BezierCubique extends Representable {
         }
     }
 
-    public boolean add(Point3D arg0) {
+    public void add(Point3D arg0) {
         if (size() < 4) {
-            return controls.add(arg0);
+            controls.add(arg0);
         }
-        return false;
+
     }
 
     private Point3D calculerPi1(int i, double t) {

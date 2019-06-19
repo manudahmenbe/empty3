@@ -72,10 +72,9 @@ public interface ZBuffer {
     /**
      * Ajoute un objet à l'image... (le dessine si tout est bien initialisé
      *
-     * @param r         Objet à ajouter
-     * @param refObject Objet de référence pour le déplacement et la rotation
+     * @param r         Objet à peindre
      */
-    void draw(Representable r, Representable refObject);
+    void draw(Representable r);
 
     /**
      * Distance à la caméra ???

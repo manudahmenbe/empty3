@@ -45,8 +45,8 @@ public class TubulaireN extends Representable implements TRIGenerable, TRIConten
         this.points = new ArrayList<Point3D>();
     }
 
-    public boolean add(Point3D e) {
-        return points.add(e);
+    public void add(Point3D e) {
+        points.add(e);
     }
 
     public void addPoint(Point3D p) {

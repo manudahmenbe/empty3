@@ -17,10 +17,10 @@
  */
 package one.empty3.library.core.tribase;
 
-import one.empty3.library.*;
-import one.empty3.library.*;
-import one.empty3.library.*;
-import one.empty3.library.*;
+import one.empty3.library.Axe;
+import one.empty3.library.Circle;
+import one.empty3.library.Point3D;
+import one.empty3.library.Sphere;
 
 /**
  * @author DAHMEN Manuel
@@ -38,8 +38,11 @@ public class TRISphere extends Sphere {
     }
 
     public void setCentre(Point3D centre) {
-        circle = new Circle(new Axe(centre.plus(Point3D.Y.mult(circle.getRadius())), centre.plus(Point3D.Y.mult(-circle.getRadius()))
-        ), circle.getRadius());
+        Axe axe2 = new Axe(getCircle().getAxis().getP1(), getCircle().getAxis().getP2());
+        Point3D center2 = axe2.getCenter();
+        axe2.getP1().changeTo(getCircle().getAxis().getP1().moins(center2).plus(centre));
+        axe2.getP2().changeTo(getCircle().getAxis().getP2().moins(center2).plus(centre));
+        circle = new Circle(axe2, circle.getRadius());
     }
 
     public void setRadius(double radius) {

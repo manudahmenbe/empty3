@@ -33,13 +33,13 @@ public class PObjet extends Representable {
         points.add(arg0, position == null ? arg1 : position.calculer(arg1));
     }
 
-    public boolean add(Point3D arg0) {
-        return points.add(position == null ? arg0 : position.calculer(arg0));
+    public Point3D get(int arg0) {
+        return calculerPoint(points.get(arg0));
     }
 
 
-    public Point3D get(int arg0) {
-        return calculerPoint(points.get(arg0));
+    public void add(Point3D arg0) {
+        points.add(position == null ? arg0 : position.calculer(arg0));
     }
 
     public ArrayList<Point3D> getPoints() {

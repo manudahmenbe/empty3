@@ -37,14 +37,14 @@ public class Camera extends CameraBox {
         matrice = Matrix33.I;
     }
 
-    public Camera(Point3D camera, Point3D lookat) {
-        this.eye = camera;
+    public Camera(Point3D eye, Point3D lookat) {
+        this.eye = eye;
         this.lookat = lookat;
         calculerMatrice(null);
     }
 
-    public Camera(Point3D camera, Point3D lookat, Point3D up) {
-        this.eye = camera;
+    public Camera(Point3D eye, Point3D lookat, Point3D up) {
+        this.eye = eye;
         this.lookat = lookat;
 
         calculerMatrice(up);

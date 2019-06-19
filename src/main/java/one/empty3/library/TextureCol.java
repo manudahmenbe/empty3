@@ -26,10 +26,11 @@ public class TextureCol extends ITexture {
     }
 
     public TextureCol(Color c) {
-        this();
         if (c != null) {
             color = c.getRGB();
         }
+        else
+            color = Color.TRANSLUCENT;
     }
 
     public TextureCol(int c) {
@@ -53,11 +54,9 @@ public class TextureCol extends ITexture {
     }
 
     public void timeNext() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void timeNext(long milli) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

@@ -41,7 +41,7 @@ public class TestThierryJaspart extends TestObjetSub {
         scene().cameraActive().setEye(Point3D.Z.mult(-20));
         try {
             texture = new TextureImg(ECBufferedImage.getFromFile(
-                    new File("samples/img/thierry-jaspart-catch-a-moustache-saint-gilles-bruxelles-clara-gnagna-vintage-comic-strip-wrestling-duck-pom-pom-girl.png")));
+                    new File("resources/img/2018-03-31 11.51.58.jpg")));
         } catch (IOException e) {
             e.printStackTrace();
         }

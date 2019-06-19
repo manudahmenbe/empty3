@@ -15,10 +15,6 @@
  */
 package one.empty3.library;
 
-import one.empty3.library.*;
-import one.empty3.library.*;
-import one.empty3.library.*;
-import one.empty3.library.*;
 import one.empty3.library.core.raytracer.RtIntersectInfo;
 import one.empty3.library.core.raytracer.RtMatiere;
 import one.empty3.library.core.raytracer.RtRay;
@@ -213,6 +209,8 @@ public class Representable implements Serializable, Comparable {
 
     public void draw(ZBufferImpl zBuffer) {
     }
+
+
 
     public class RotationInt extends Rotation {
 

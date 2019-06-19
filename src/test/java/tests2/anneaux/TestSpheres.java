@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class TestSpheres extends TestObjetSub {
 
-    public static final int CIRCLES_COUNT = 1;
+    public static final int CIRCLES_COUNT = 10;
     public double step = 10000.0;
 
     public static void main(String... args) {
@@ -51,7 +51,7 @@ public class TestSpheres extends TestObjetSub {
             try {
                 TextureImg imageTexture = new TextureImg(
                         new ECBufferedImage(
-                                ImageIO.read(new File("./textures/herbe.jpg"))));
+                                ImageIO.read(new File("./samples/img/herbe.jpg"))));
 
                 spheres[i].texture(imageTexture);
             } catch (IOException e) {

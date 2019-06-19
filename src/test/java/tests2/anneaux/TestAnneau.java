@@ -14,7 +14,7 @@ import java.util.List;
 public class TestAnneau extends TestObjet {
 
     private int N = 20;
-    List<Point3D> point3DS = new ArrayList<>();
+    List<Point3D> point3D = new ArrayList<>();
     private double latLat = 0.3;
     private CourbeParametriquePolynomialeBezier courbeParametriquePolynomialeBezier;
 
@@ -43,20 +43,22 @@ public class TestAnneau extends TestObjet {
         double lgt = 0;
         for (int i = 0; ; i++) {
             Point3D sphere = Trajectoires.sphere(lgt, Math.random() / latLat, 1);
-            point3DS.add(sphere);
+            point3D.add(sphere);
             lgt += Math.random() / N;
             if (lgt > 1) {
                 lgt = 1;
                 break;
             }
         }
-        Point3D[] ds = new Point3D[this.point3DS.size()];
-        courbeParametriquePolynomialeBezier = new CourbeParametriquePolynomialeBezier(this.point3DS.toArray(ds));
+        Point3D[] ds = new Point3D[this.point3D.size()];
+        courbeParametriquePolynomialeBezier = new CourbeParametriquePolynomialeBezier(this.point3D.toArray(ds));
         scene().add(courbeParametriquePolynomialeBezier);
 
         courbeParametriquePolynomialeBezier.texture(new TextureCol(Color.BLUE));
         courbeParametriquePolynomialeBezier.getParameters().setIncrU(0.0001);
-        camera(new Camera(Point3D.Z.mult(3), Point3D.O0));
+        Camera camera = new Camera(Point3D.O0, Point3D.Z.mult(2));
+        camera.calculerMatrice(Point3D.Y);
+        scene().cameraActive(camera);
     }
 
 

@@ -54,19 +54,19 @@ public class RepresentableConteneur extends Representable implements IMovable, I
 
     @Override
     public String toString() {
-        String s = "conteneur (\n\n";
+        StringBuilder sb = new StringBuilder("conteneur (\n\n");
 
         Iterator<Representable> rs = iterator();
 
         while (rs.hasNext()) {
             Representable next = rs.next();
 
-            s += next.toString();
+            sb.append(next.toString());
         }
 
-        s += "\n\n)\n\n";
+        sb.append("\n\n)\n\n");
 
-        return s;
+        return sb.toString();
     }
 
     @Override

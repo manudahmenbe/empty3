@@ -52,7 +52,7 @@ public class Polygon extends Representable implements TRIGenerable, IMovable, IS
         points.addAll(Arrays.asList(list));
     }
 
-    void add(Point3D point3D) {
+    public void add(Point3D point3D) {
         if (points == null) {
             points = new ArrayList<Point3D>();
         }

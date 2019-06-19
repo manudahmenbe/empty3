@@ -55,4 +55,8 @@ public class Axe {
     public Point3D getCenter() {
         return p1.plus(p2).mult(0.5);
     }
+
+    public Point3D getVector() {
+        return p2.moins(p1);
+    }
 }

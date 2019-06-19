@@ -32,8 +32,8 @@ public class BSpline extends Representable{
                 position == null ? point : position.calculer(point));
     }
 
-    public boolean add(Point3D arg0) {
-        return controls.add(arg0);
+    public void add(Point3D arg0) {
+        controls.add(arg0);
     }
 
     public Point3D boor(double t, int i, int r) {

@@ -56,7 +56,7 @@ public abstract class TestObjet implements Test, Runnable {
     public static final int ON_TEXTURE_ENDS_LOOP_TEXTURE = 1;
     public static final int ON_MAX_FRAMES_STOP = 0;
     public static final int ON_MAX_FRAMES_CONTINUE = 1;
-    protected Scene scene;
+    protected Scene scene = new Scene();
     protected String description = "@ Manuel Dahmen \u2610";
     protected Camera c;
     protected int frame = 0;
@@ -420,7 +420,6 @@ public abstract class TestObjet implements Test, Runnable {
 
         File dir1 = null;
 
-        scene = new Scene();
 
         Properties config = new Properties();
         try {
@@ -709,6 +708,10 @@ public abstract class TestObjet implements Test, Runnable {
     }
 
     public void run() {
+        if(!initialise)
+            init();
+
+
         z = ZBufferFactory.instance(resx, resy, D3);
         z.scene(scene);
         z.next();

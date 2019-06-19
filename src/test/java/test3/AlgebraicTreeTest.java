@@ -12,6 +12,9 @@
 
 package test3;
 
+import one.empty3.library.core.raytracer.tree.AlgebraicFormulaSyntaxException;
+import one.empty3.library.core.raytracer.tree.AlgebraicTree;
+import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

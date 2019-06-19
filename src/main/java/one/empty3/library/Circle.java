@@ -16,11 +16,9 @@ public class Circle extends ParametricCurve {
     protected Point3D vectX;
     protected Point3D vectY;
     protected Point3D vectZ;
-    protected final Point3D vAxis;
 
     public Circle(Axe axis, double radius) {
         this.axis = axis;
-        this.vAxis = axis.getP2().moins(axis.getP1()).norme1();
         this.radius = radius;
         calculerRepere1();
 
@@ -64,12 +62,12 @@ public class Circle extends ParametricCurve {
         while (!success && i<3) {
             Point3D pRef = new Point3D(i == 0 ? 1 : 0, i == 1 ? 1 : 0, i == 2 ? 1 : 0);
 
-            Point3D mult = vAxis.norme1().prodVect(axis.getCenter().moins(pRef).norme1());
-            double d = axis.getCenter().norme1().prodScalaire(pRef);
+            Point3D mult = axis.getVector().norme1().prodVect(axis.getVector().norme1().prodVect(pRef).norme1());
+            double d = mult.prodScalaire(pRef);
+            vectY = axis.getVector().norme1();
+            vectX = mult.norme1();
+            vectZ = vectX.prodVect(vectY);
             if (mult.norme() > 0.8 || d >0.8) {
-                vectX = mult.norme1();
-                vectZ = vAxis.norme1();
-                vectY = vectZ.prodVect(vectX).norme1();
                 success = true;
                 break;
             }
@@ -141,6 +139,6 @@ public class Circle extends ParametricCurve {
     }
 
     public Point3D getvAxis() {
-        return vAxis;
+        return axis.getVector();
     }
 }

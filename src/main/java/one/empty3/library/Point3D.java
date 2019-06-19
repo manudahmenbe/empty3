@@ -175,7 +175,7 @@ public class Point3D extends Representable implements IMovable {
     }
 
     public static Point3D random(double d) {
-        return new Point3D(Math.random()-0.5, Math.random()-0.5, Math.random()-0.5).norme(d*2);
+        return new Point3D(Math.random()-0.5, Math.random()-0.5, Math.random()-0.5).mult(d*2);
     }
 
     public static Point3D r(double d) {
@@ -445,9 +445,9 @@ public class Point3D extends Representable implements IMovable {
 
     }
 
-    public void changeTo(Point3D orig) {
+    public void changeTo(Point3D dst) {
         for (int i = 0; i < x.length; i++)
-            this.x[i] = orig.x[i];
+            this.x[i] = dst.x[i];
     }
 
 
