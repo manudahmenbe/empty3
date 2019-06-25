@@ -445,9 +445,10 @@ public class Point3D extends Representable implements IMovable {
 
     }
 
-    public void changeTo(Point3D dst) {
+    public Point3D changeTo(Point3D dst) {
         for (int i = 0; i < x.length; i++)
             this.x[i] = dst.x[i];
+        return this;
     }
 
 

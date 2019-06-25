@@ -17,6 +17,7 @@ import java.awt.Color;
 /**
  * @author Manuel Dahmen
  */
+//#TODO Repair
 public class TextureCol extends ITexture {
 
     private int color;

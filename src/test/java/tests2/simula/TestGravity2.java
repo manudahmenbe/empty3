@@ -65,7 +65,7 @@ public class TestGravity2 extends TestObjetSub {
         f.setDt(0.001);
         f.setG(1000.0);
 
-        f.configurer(billes);
+        //f.configurer(billes);
     }
 
     public void testScene() {

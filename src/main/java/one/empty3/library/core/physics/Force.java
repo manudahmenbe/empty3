@@ -12,17 +12,20 @@
 
 package one.empty3.library.core.physics;
 
-import one.empty3.library.*;
+import one.empty3.library.Point3D;
 
-public class Force implements IntForce {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Force {
     public double amortissement = 0;
     public double intensiteRepulsion = 0;
     private double distMinFusion;
     private boolean fusion;
-    private double G = 6.67E-11;
-    private Bille[] courant = null;
-    private Bille[] next = null;
-    private double dt = 10E10;
+    private double G = 10;
+    private ArrayList<Bille> courant = null;
+    private ArrayList<Bille> next = null;
+    private double dt = 1.0/25;
     private Point3D cm;
     private double cmd;
     private double distMax = 0.0;
@@ -30,21 +33,18 @@ public class Force implements IntForce {
     private double[] dMin;
     private double[] dMax;
 
-    @Override
-    public void configurer(Bille[] courant) {
+    public void configurer(ArrayList<Bille> courant) {
         this.courant = courant;
-        this.dMax = new double[courant.length];
-        this.dMin = new double[courant.length];
+        this.dMax = new double[courant.size()];
+        this.dMin = new double[courant.size()];
 
 
     }
 
-    @Override
     public Point3D centreMasse() {
         return cm;
     }
 
-    @Override
     public Point3D attractionRepulsion(Bille other, Bille p) {
         if (p != other) {
             double r = other.position.moins(p.position).norme();
@@ -68,7 +68,6 @@ public class Force implements IntForce {
         return Point3D.O0;
     }
 
-    @Override
     public Point3D frottement(Bille p) {
         Point3D fvp = p.vitesse.mult(p.amortissement * amortissement * -1);
 
@@ -76,14 +75,14 @@ public class Force implements IntForce {
     }
 
     private void delete1(int ind) {
-        Bille[] courantMinus1 = new Bille[courant.length - 1];
+        ArrayList<Bille> courantMinus1 = new ArrayList<Bille>(courant.size() - 1);
 
         int i = 0;
-        for (int a = 0; a < courant.length - 1; a++) {
+        for (int a = 0; a < courant.size()- 1; a++) {
 
             if (a == ind)
                 continue;
-            courantMinus1[a] = courant[i];
+            courantMinus1.set(a, courant.get(i));
             i++;
         }
 
@@ -97,69 +96,69 @@ public class Force implements IntForce {
     public double dMax(int ind) {
         return dMax[ind];
     }
-    @Override
+
     public Point3D force(int ind) {
         Point3D f = Point3D.O0;
         dMin[ind] = Double.MAX_VALUE;
         dMax[ind] = Double.MIN_VALUE;
-        for (int i = 0; i < courant.length; i++) {
-            if (courant[i] != courant[ind]) {
+        for (int i = 0; i < courant.size(); i++) {
+            if (courant.get(i) != courant.get(ind)) {
 
-                double dTmp = courant[ind].position.moins(courant[i].position).norme();
+                double dTmp = courant.get(ind).position.moins(courant.get(i).position).norme();
                 if (dTmp < dMin[ind])
                     dMin[ind] = dTmp;
                 if (dTmp > dMax[ind])
                     dMax[ind] = dTmp;
 
-                f = f.plus(attractionRepulsion(courant[i], courant[ind])).plus(frottement(courant[i]));
+                f = f.plus(attractionRepulsion(courant.get(i), courant.get(ind)).plus(frottement(courant.get(i))));
                 if (isFusion()) {
-                    courant[ind].masse += courant[i].masse;
-                    courant[ind].vitesse = courant[ind].vitesse.plus(courant[i].vitesse);
+                    courant.get(ind).masse += courant.get(i).masse;
+                    courant.get(ind).vitesse = courant.get(ind).vitesse.plus(courant.get(i).vitesse);
 
-                    courant[i] = courant[ind];
+                    courant.set(i, courant.get(ind));
 
                     delete1(ind);
                 }
             }
         }
-        f = f.plus(frottement(courant[ind]));
+        f = f.plus(frottement(courant.get(ind)));
 
         return f;
     }
 
-    @Override
+
     public Point3D acc(int ind) {
-        return force(ind).mult(1 / courant[ind].masse);
+        return force(ind).mult(1 / courant.get(ind).masse);
     }
 
-    @Override
+
     public Point3D vitesse(int ind) {
-        return (next[ind].vitesse = courant[ind].vitesse.plus(acc(ind).mult(dt)));
+        return (next.get(ind).vitesse = courant.get(ind).vitesse.plus(acc(ind).mult(dt)));
     }
 
-    @Override
-    public Point3D position(int ind) {
-        return (next[ind].position = courant[ind].position.plus(vitesse(ind).mult(dt)));
-    }
 
-    @Override
+
+    public void populateList(ArrayList<Bille> billes)
+    {
+        for(int i=0; i<courant.size(); i++)
+            billes.add(new Bille());
+    }
     public void calculer() {
         cm = Point3D.O0;
         cmd = 0.0;
 
 
-        next = new Bille[courant.length];
-
+        next = new ArrayList<Bille>(courant.size());
+        populateList(next);
         distMax = 0.0;
         distMin = Double.MAX_VALUE;
 
-        for (int i = 0; i < courant.length; i++) {
-            next[i] = new Bille(courant[i]);
+        for (int i = 0; i < courant.size(); i++) {
+            next.set(i, new Bille(courant.get(i)));
 
-            position(i);
-
-            cm = cm.plus(next[i].position.mult(next[i].masse));
-            cmd += next[i].masse;
+            next.get(i).setPosition(courant.get(i).position.changeTo(courant.get(i).position.plus(vitesse(i).mult(dt))));
+            cm = cm.plus(next.get(i).position.mult(next.get(i).masse));
+            cmd += next.get(i).masse;
 
         }
 
@@ -168,83 +167,82 @@ public class Force implements IntForce {
         courant = next;
     }
 
-    @Override
+
     public double getDistMax() {
         return distMax;
     }
 
-    @Override
+
     public void setDistMax(double distMax) {
         this.distMax = distMax;
     }
 
-    @Override
+
     public double getDistMin() {
         return distMin;
     }
 
-    @Override
+
     public void setDistMin(double distMin) {
         this.distMin = distMin;
     }
 
-    @Override
-    public Bille[] getCourant() {
+    public List<Bille> getCourant() {
         return courant;
     }
 
-    @Override
-    public void setCourant(Bille[] courant) {
+    public void setCourant(ArrayList<Bille> courant) {
         this.courant = courant;
     }
 
-    @Override
-    public Bille[] getNext() {
+
+    public List<Bille> getNext() {
         return next;
     }
 
-    @Override
-    public void setNext(Bille[] next) {
+
+    public void setNext(ArrayList<Bille> next) {
         this.next = next;
     }
 
-    @Override
+
     public double getDt() {
         return dt;
     }
 
-    @Override
+
     public void setDt(double dt) {
         this.dt = dt;
     }
 
-    @Override
+
     public double getG() {
         return G;
     }
 
-    @Override
+
     public void setG(double g) {
         G = g;
     }
 
-    @Override
+
     public double getDistMinFusion() {
         return distMinFusion;
     }
 
-    @Override
+
     public void setDistMinFusion(double distMinFusion) {
         this.distMinFusion = distMinFusion;
     }
 
-    @Override
+
     public boolean isFusion() {
         return fusion;
     }
 
-    @Override
+
     public void setFusion(boolean fusion) {
         this.fusion = fusion;
     }
+
 }

@@ -17,8 +17,6 @@
  */
 package one.empty3.library;
 
-import java.awt.*;
-
 public class BezierCubique2D extends Representable {
 
     public static final int DIM2 = 200;
@@ -93,15 +91,6 @@ public class BezierCubique2D extends Representable {
             ret *= i;
         }
         return ret;
-    }
-
-    public ITexture getColor() {
-        return texture();
-    }
-
-    public Color getColor(int resx, int resy, double dx, double dy) {
-
-        return color.getMaillageTexturedColor(resx, resy, dx, dy);
     }
 
     public Point3D[][] getControle() {

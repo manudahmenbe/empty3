@@ -28,6 +28,7 @@ import java.awt.Point;
  *         <p>
  *         15 oct. 2011
  */
+@Deprecated
 public abstract class TRIObjetGenerateurAbstract extends Representable implements TRIObjetGenerateur {
     // Overrides from TriObjetGenerateur
 

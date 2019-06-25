@@ -220,7 +220,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         /* OBJECTS */
         if (r instanceof Point3D) {
             Point3D p = (Point3D) r;
-            ime.testDeep(p, p.texture());
+            ime.testDeep(p);
         }
         if (r instanceof ThickSurface) {
             // System.out.println("Surface");
@@ -416,9 +416,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                                     r.rotation(b.calculerPoint3D((i - 1 < 0 ? 0
                                                     : i - 1) * 1d / i1,
                                             (j - 1 < 0 ? 0 : j - 1) * 1d
-                                                    / i2))}, new TextureCol(
-                            b.getColor(i1, i2, 1.0d * i / i1, 1.d
-                                    * j / i2))));
+                                                    / i2))}, b.texture()));
                 }
             }
         } else if (r instanceof PObjet) {
@@ -448,12 +446,12 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         } else if (r instanceof ParametricCurve) {
             ParametricCurve n = (ParametricCurve) r;
             double incr = n.getIncrU();
-            for (double i = n.start(); i <= n.endU(); i += incr) {
+            for (double u = n.start(); u <= n.endU(); u += incr) {
                 if (n.isConnected()) {
-                    line(n.calculerPoint3D(i), n.calculerPoint3D(i + incr),
-                            n.texture());
+                    line(n.calculerPoint3D(u), n.calculerPoint3D(u + incr),
+                            n.texture(), u, u+incr);
                 } else {
-                    ime.testDeep(n.calculerPoint3D(i), n.texture.getColorAt(i, 0.5));
+                    ime.testDeep(n.calculerPoint3D(u), n.texture().getColorAt(0.5,0.5));
                 }
                 // System.out
                 // .print("+"+n.calculerPoint3D(i).toString());
@@ -463,6 +461,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
 
     }
+
 
 
     public double distanceCamera(Point3D x3d) {
@@ -571,8 +570,22 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 Math.abs(x1.getY() - x2.getY())) * 4 + 1;
         for (int i = 0; i < itere; i++) {
             Point3D p = p1.plus(p2.moins(p1).mult(i / itere));
-            p.texture(t);
-            ime.testDeep(p, t);
+            ime.testDeep(p, t.getColorAt(0.5, 0));
+        }
+
+    }
+    private void line(Point3D p1, Point3D p2, ITexture t, double u, double v) {
+        Point x1 = coordonneesPoint2D(p1);
+        Point x2 = coordonneesPoint2D(p2);
+        if (x1 == null || x2 == null) {
+            return;
+        }
+        Point3D n = p1.moins(p2).norme1();
+        double itere = Math.max(Math.abs(x1.getX() - x2.getX()),
+                Math.abs(x1.getY() - x2.getY())) * 4 + 1;
+        for (int i = 0; i < itere; i++) {
+            Point3D p = p1.plus(p2.moins(p1).mult(i / itere));
+            ime.testDeep(p, t.getColorAt(u+i/itere, 0));
         }
 
     }

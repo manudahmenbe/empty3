@@ -1,4 +1,4 @@
-package tests.simula;
+/*package tests.simula;
 
 import one.empty3.library.*;
 import one.empty3.library.core.physics.Bille;
@@ -91,3 +91,4 @@ public class TestSimula extends TestObjetSub {
 
 }
 
+*/

@@ -2,7 +2,7 @@ package tests2.anneaux;
 
 
 import one.empty3.library.*;
-import one.empty3.library.core.move.Trajectoires;
+import one.empty3.library.core.nurbs.CameraInPath;
 import one.empty3.library.core.testing.TestObjetSub;
 
 import javax.imageio.ImageIO;
@@ -18,7 +18,7 @@ public class TestSpheres extends TestObjetSub {
     public static void main(String... args) {
         TestSpheres testSpheres = new TestSpheres();
         testSpheres.setResolution(800, 800);
-        testSpheres.setMaxFrames(3300);
+        testSpheres.setMaxFrames(24*30);
         new Thread(testSpheres).start();
     }
 
@@ -29,11 +29,17 @@ public class TestSpheres extends TestObjetSub {
 
     @Override
     public void finit() {
-        scene().cameraActive(new Camera(Trajectoires.sphere(
-                1. * frame() / getMaxFrames(), 0.0,
-                400.0), Point3D.O0));
+        CameraInPath camera = new CameraInPath(new Circle(
+                new Axe(Point3D.O0.plus(Point3D.X), Point3D.O0.moins(Point3D.X)), 400));
+        scene().add(camera);
+        scene().cameraActive(camera);double t = 1.0*frame()/(getMaxFrames());
+        camera.setT(t);
 
-        //scene().lumieres().add(new LumierePointSimple(Color.BLUE, Point3D.O0, 10));
+        Point3D z = Point3D.O0.moins(camera.getCourbe().calculerPoint3D(t)).norme1();
+        Point3D x = camera.getCourbe().tangente(t).norme1().mult(-1);
+        Point3D y = x.prodVect(z).norme1();
+        camera.setMatrix(x, y, z);
+
 
     }
 

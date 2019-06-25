@@ -9,7 +9,7 @@
  *
  * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
-
+/*
 package tests2.simula;
 
 import one.empty3.library.*;
@@ -53,7 +53,7 @@ public class TestBlackHole extends TestObjetSub {
                             /*
                             new Point3D(
                             (i - X / 2) / 1f, (j - Y / 2) / 1f,
-                            (k - Z / 2) / 1f).mult(Math.random()*1000);*/
+                            (k - Z / 2) / 1f).mult(Math.random()*1000);
                             Point3D.random(1000.0);
                     billes[k * Y * X + j * X + i].color = new Color(1.0f * i
                             / X, 1.0f * j / Y, 1.0f * k / Z);
@@ -101,3 +101,4 @@ public class TestBlackHole extends TestObjetSub {
     }
 
 }
+*/

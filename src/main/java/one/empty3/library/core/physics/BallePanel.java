@@ -9,7 +9,7 @@
  *
  * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
-
+/*
 package one.empty3.library.core.physics;
 
 import one.empty3.library.*;
@@ -21,9 +21,6 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 public class BallePanel extends DataPanel implements Runnable {
-    /**
-     *
-     */
     private static final long serialVersionUID = 4876595577262483236L;
     Bille[] positions;
     BufferedImage bi;
@@ -204,3 +201,4 @@ public class BallePanel extends DataPanel implements Runnable {
     }
 
 }
+*/

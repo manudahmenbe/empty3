@@ -2,6 +2,8 @@ package one.empty3.library.core.physics;
 
 import one.empty3.library.*;
 
+import java.util.List;
+
 /**
  * Created by manuel on 07-06-18.
  */
@@ -32,13 +34,13 @@ public interface IntForce {
 
     void setDistMin(double distMin);
 
-    Bille[] getCourant();
+    List<Bille> getCourant();
 
     void setCourant(Bille[] courant);
 
-    Bille[] getNext();
+    List<Bille> getNext();
 
-    void setNext(Bille[] next);
+    void setNext(List<Bille> next);
 
     double getDt();
 
