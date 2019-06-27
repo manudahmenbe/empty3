@@ -20,9 +20,9 @@
  */
 package one.empty3.library.core.nurbs;
 
-import one.empty3.library.*;
-import one.empty3.library.*;
-import one.empty3.library.*;
+import one.empty3.library.Point3D;
+import one.empty3.library.Representable;
+import one.empty3.library.ZBuffer;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
@@ -183,6 +183,12 @@ public abstract class ParametricCurve extends Representable {
         public void setStartU(double endU) {
             Parameters.this.startU = endU;
         }
+    }
+
+    public ParametricCurve morph(double incrU)
+    {
+        // TODO
+        return this;
     }
 }
 

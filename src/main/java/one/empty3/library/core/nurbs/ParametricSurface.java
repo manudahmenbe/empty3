@@ -262,4 +262,11 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
             this.isGlobal = global;
         }
     }
+    public ParametricSurface morph(double incr1,
+        double incr2)
+    {
+        // TODO
+        return this;
+    }
+
 }

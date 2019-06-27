@@ -214,6 +214,7 @@ public interface ZBuffer {
     void zoom(float z);
 
     public ITexture backgroundTexture();
+    public void backgroundTexture(ITexture iTexture);
 
     int largeur();
 

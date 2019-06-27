@@ -55,9 +55,9 @@ public abstract class Drawer {
         imageList.add(image);
         component.setIconImages(imageList);
 
-        
 
-        
+
+
     }
 
     /**

@@ -20,11 +20,15 @@ import java.util.Arrays;
 /**
  * *
  * <p>
- * Classe pour les Points à trois coordonnées de type double
+ * Classe pour les éléments à trois coordonnées de type double
+ * Points, Vecteur 3D et calcul
  *
  * @author Manuel Dahmen
  */
 public class Point3D extends Representable implements IMovable {
+    // TODO rename into Pixel3D? Tout doux.
+
+
     /**
      * *
      * axe X vector
@@ -64,9 +68,6 @@ public class Point3D extends Representable implements IMovable {
      * *
      * id
      */
-    private String id;
-    private Barycentre position;
-    private ParametricCurve curve;
 
     /**
      * *
@@ -200,13 +201,6 @@ public class Point3D extends Representable implements IMovable {
         return x;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = ID.GEN(this);
-    }
 
     public Point3D getNormale() {
         return normale;
@@ -449,17 +443,6 @@ public class Point3D extends Representable implements IMovable {
         for (int i = 0; i < x.length; i++)
             this.x[i] = dst.x[i];
         return this;
-    }
-
-
-    // TODO Implement and refactor other classes
-    public void stitchToCurve(ParametricCurve curve) {
-        this.curve = curve;
-        throw new UnsupportedOperationException("To implement");
-    }
-
-    public ParametricCurve getTrajectory() {
-        return curve;
     }
 
     public class P extends Point3D {
