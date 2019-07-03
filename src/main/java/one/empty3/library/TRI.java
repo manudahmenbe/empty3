@@ -28,7 +28,12 @@ public class TRI extends Representable implements IMovable, IScalable {
     private Barycentre position;
 
     public TRI() {
-        this(Point3D.O0, Point3D.O0, Point3D.O0, Color.BLACK);
+        super();
+        sommet = new Point3D[3];
+        sommet[0] = Point3D.O0;
+        sommet[1] = Point3D.O0;
+        sommet[2] = Point3D.O0;
+        getDeclaredArray1Points().put("sommet",sommet);
     }
 
     public TRI(Point3D coordPoint3D, Point3D coordPoint3D0, Point3D coordPoint3D1) {

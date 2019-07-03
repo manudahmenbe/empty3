@@ -1,7 +1,6 @@
 package one.empty3.library.core.animation;
 
 import one.empty3.library.*;
-import one.empty3.library.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +56,6 @@ public class Animation {
                 public void accept(AnimationTime animationTime) {
                     double t = (animationTime.getTimeCurrentInAnimation() + numberOfFrames * animationTime.getFps()) / duration;
 
-                    point.changeTo(point.getTrajectory().calculerPoint3D(t));
 
                 }
             });

@@ -59,10 +59,10 @@ public class ObjExport {
     }
 
     private static void traite(Polygon r, PrintWriter pw) {
-        for (int s = 0; s < r.getPoints().size(); s++) {
+        for (int s = 0; s < r.getPoints().length; s++) {
             write("v ", pw);
             for (int c = 0; c < 3; c++) {
-                double A = r.getPoints().get(s).get(c);
+                double A = r.getPoints()[s].get(c);
                 if (Double.isNaN(A)) {
                     A = 0;
                 }
@@ -72,7 +72,7 @@ public class ObjExport {
 
 
         }
-        int size = r.getPoints().size();
+        int size = r.getPoints().length;
         for (int t = 0; t < size; t++) {
             write("f " + (t % size) + " " +
                     ((t + 1) % size) + " " + size + "\n", pw);

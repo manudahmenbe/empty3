@@ -29,12 +29,14 @@ import one.empty3.library.*;
  */
 public class CourbeParametriquePolynomiale extends ParametricCurve {
 
-    protected final Point3D[] coefficients;
-    protected final int power;
+    protected Point3D[] coefficients;
+    protected int power;
 
     public CourbeParametriquePolynomiale(Point3D[] coefficients) {
         this.coefficients = coefficients;
         this.power = coefficients.length;
+        getDeclaredArray1Points().put(("coefficients"), coefficients);
+        getDeclaredDoubles().put(("power"), (double)power);
     }
 
     @Override
@@ -55,4 +57,15 @@ public class CourbeParametriquePolynomiale extends ParametricCurve {
         return sum;
     }
 
+    public Point3D[] getCoefficients() {
+        return coefficients;
+    }
+
+    public void setCoefficients(Point3D[] coefficients) {
+        this.coefficients = coefficients;
+    }
+
+    public int getPower() {
+        return power;
+    }
 }

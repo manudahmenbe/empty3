@@ -22,12 +22,12 @@
  */
 package one.empty3.library.core.nurbs;
 
-import one.empty3.library.*;
+import one.empty3.library.Point3D;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class SurfaceParametricPolygonalBezier extends ParametricSurface {
+public class SurfaceParametricPolygonalBezier extends ParametricSurface implements SurfaceElem{
 
     protected final Point3D[][] coefficients;
     protected int power1, power2;

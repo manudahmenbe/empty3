@@ -22,6 +22,7 @@ import one.empty3.library.core.raytracer.RtRay;
 import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Representable implements Serializable, Comparable {
     public static final ITexture orange_yellow = new TextureCol(new Color(255, 128, 0));
@@ -29,7 +30,7 @@ public class Representable implements Serializable, Comparable {
     public Rotation rotation = new Rotation();
     protected double NFAST = 100;
     protected RtMatiere materiau;
-    protected ITexture CFAST = new TextureCol(Color.GRAY);
+    protected ITexture CFAST = orange_yellow;
     protected Barycentre bc = new Barycentre();
     protected Representable parent;
     protected Scene scene;
@@ -40,6 +41,8 @@ public class Representable implements Serializable, Comparable {
     protected Render render = Render.getInstance(0,-1);
 
     public Representable() {
+        declaredTextures.put("point color", texture);
+        declaredTextures.put("draw fast texture", CFAST);
         texture = CFAST;
     }
 
@@ -224,4 +227,35 @@ public class Representable implements Serializable, Comparable {
         }
 
     }
+
+
+    HashMap<String, Double> declaredDoubles = new HashMap<>();
+    HashMap<String, Double[][]> declaredMatrix = new HashMap<>();
+    HashMap<String, Double[]> declaredArrays = new HashMap<>();
+    HashMap<String, Point3D> declaredPoints = new HashMap<>();
+    HashMap<String, ITexture> declaredTextures = new HashMap<>();
+    HashMap<String, Point3D[]> declaredArray1Points = new HashMap<>();
+    HashMap<String, Point3D[][]> declaredArray2Points = new HashMap<>();
+    HashMap<String, Representable> declaredRepresentables = new HashMap<>();
+    public HashMap<String, Double> getDeclaredDoubles()
+    {return declaredDoubles;}
+    public HashMap<String, Double[][]> getDeclaredMatrix()
+    {return declaredMatrix;}
+    public HashMap<String, Double[]> getDeclaredArrays()
+    {return declaredArrays;}
+    public HashMap<String, Point3D> getDeclaredPoints()
+    {return declaredPoints;}
+    public HashMap<String, ITexture> getDeclaredTextures()
+    {return declaredTextures;}
+    public HashMap<String, Point3D[]> getDeclaredArray1Points(){return declaredArray1Points;}
+    public HashMap<String, Point3D[][]> getDeclaredArray2Points(){return declaredArray2Points;}
+    public HashMap<String, Representable> getDeclaredRepresentables(){return declaredRepresentables;}
+    public ITexture getTexture() {
+        return texture;
+    }
+
+    public void setTexture(ITexture texture) {
+        this.texture = texture;
+    }
 }
+

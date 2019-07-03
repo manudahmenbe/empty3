@@ -32,7 +32,7 @@ public class MathExprParametricSurface extends ParametricSurface {
         algebraicTree = new AlgebraicTree[exprStringXyz.length];
         for (int i = 0; i < exprStringXyz.length; i++) {
             try {
-                algebraicTree[i] = new AlgebraicTree(exprStringXyz[i], null);
+                algebraicTree[i] = new AlgebraicTree(exprStringXyz[i]);
             } catch (AlgebraicFormulaSyntaxException e) {
                 e.printStackTrace();
             }
@@ -51,6 +51,8 @@ public class MathExprParametricSurface extends ParametricSurface {
             try {
                 p.set(i, (Double) algebraicTree[i].eval());
             } catch (TreeNodeEvalException e) {
+                e.printStackTrace();
+            } catch (AlgebraicFormulaSyntaxException e) {
                 e.printStackTrace();
             }
         }

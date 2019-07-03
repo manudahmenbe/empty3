@@ -12,10 +12,10 @@
 
 package one.empty3.library.core.raytracer.tree;
 
-import one.empty3.library.Matrix33;
 /**
  * Created by Manuel Dahmen on 15-12-16.
  */
+/*
 public class MatrixTreeNodeType extends TreeNode
 {
     private Matrix33 m;
@@ -30,7 +30,8 @@ public class MatrixTreeNodeType extends TreeNode
 
 
     @Override
-    public Object eval() {
+    public Double eval() {
         return m;
     }
 }
+*/

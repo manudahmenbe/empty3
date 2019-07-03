@@ -26,7 +26,7 @@ public class VectorTreeNodeType extends TreeNodeValue {
 
 
     @Override
-    public Object eval() {
-        return p;
+    public Double eval() {
+        return null;//TODO
     }
 }

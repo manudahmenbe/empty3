@@ -10,15 +10,23 @@ public class Sphere extends ParametricSurface {
     protected Circle circle;
     private Axe axe;
 
+    public Sphere()
+    {
+        super();
+        this.axe = new Axe(Point3D.Y, Point3D.Y.mult(-1));
+        circle = new Circle(axe, 10);
+    }
     public Sphere(Axe axis, double radius) {
+        this();
         this.axe = axis;
         circle = new Circle(axis, radius);
     }
 
     public Sphere(Point3D center, double radius) {
-
-        circle = new Circle(new Axe(center.plus(Point3D.Y.mult(radius)), center.plus(Point3D.Y.mult(-radius))
-        ), radius);
+        this();
+        axe = new Axe(center.plus(Point3D.Y.mult(radius)), center.plus(Point3D.Y.mult(-radius))
+        );
+        circle = new Circle(axe, radius);
     }
 
     public Point3D calculerPoint3D(double u, double v) {

@@ -18,6 +18,7 @@
 package one.empty3.library;
 
 import one.empty3.library.core.lighting.Infini;
+import one.empty3.library.core.nurbs.CurveElem;
 import one.empty3.library.core.nurbs.ParametricCurve;
 
 import java.awt.*;
@@ -29,7 +30,7 @@ import java.awt.*;
  *         <p>
  *         15 oct. 2011
  */
-public class LineSegment extends ParametricCurve {
+public class LineSegment extends ParametricCurve implements CurveElem {
 
     public double SMALL_NUM = Double.MIN_VALUE; // anything that avoids division
     private Point3D origine;
@@ -38,8 +39,11 @@ public class LineSegment extends ParametricCurve {
 
     // prodScalaire product (3D) which allows vector operations in arguments
     public LineSegment(Point3D p1, Point3D p2) {
+        super();
         this.setOrigine(p1);
         this.setExtremite(p2);
+        getDeclaredPoints().put("origine", origine);
+        getDeclaredPoints().put("extremite", extremite);
     }
 
     public LineSegment(Point3D origin, Point3D extrem, ITexture texture) {

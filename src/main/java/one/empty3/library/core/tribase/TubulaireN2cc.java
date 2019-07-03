@@ -35,8 +35,11 @@ public class TubulaireN2cc extends ParametricSurface {
     private Fct1D_1D diameterCurve;
 
     public TubulaireN2cc(ParametricCurve soulCurve, Fct1D_1D diameterCurve) {
+        super();
         this.soulCurve = soulCurve;
         this.diameterCurve = diameterCurve;
+        getDeclaredRepresentables().put("soul", soulCurve);
+        getDeclaredRepresentables().put("diameterCurve", soulCurve);
     }
 
     public Point3D calculerNormale(double t) {

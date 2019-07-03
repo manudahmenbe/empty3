@@ -17,22 +17,22 @@ package one.empty3.library.core.raytracer.tree;
  */
 public abstract class TreeNodeType {
     protected Object[] values;
-    protected int sign1; // 1=*
+    protected double sign1; // 1=*
     private TreeNodeType d;
     private TreeNodeType tnt;
     public TreeNodeType() {
     }
 
-    public TreeNodeType(int sign1) {
+    public TreeNodeType(double sign1) {
         super();
         this.sign1 = sign1;
     }
 
-    public int getSign1() {
+    public double getSign1() {
         return sign1;
     }
 
-    public abstract Object eval();
+    public abstract Double eval();
 
     public void setValues(Object[] values) {
         this.values = values;
@@ -50,7 +50,7 @@ public abstract class TreeNodeType {
         if (values != null) {
             int i = 0;
             for (Object o : values) {
-                s += this.values[i++].toString() + " (+) ";
+                s += (o!=null?o.toString():"") + " (+) ";
             }
         }
         return s;

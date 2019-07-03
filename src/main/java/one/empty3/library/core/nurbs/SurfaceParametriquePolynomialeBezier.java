@@ -27,7 +27,7 @@ import one.empty3.library.*;
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class SurfaceParametriquePolynomialeBezier extends ParametricSurface {
+public class SurfaceParametriquePolynomialeBezier extends ParametricSurface implements SurfaceElem{
 
     protected final Point3D[][] coefficients;
     protected int power1, power2;
@@ -36,6 +36,9 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface {
         this.coefficients = coefficients;
         power1 = coefficients.length;
         power2 = coefficients[0].length;
+        getDeclaredArray2Points().put("coefficients", coefficients);
+        getDeclaredDoubles().put("power1", (double) power1);
+        getDeclaredDoubles().put("power1", (double) power2);
     }
 
     public double B(int i, int n, double t) {

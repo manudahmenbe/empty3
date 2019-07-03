@@ -15,18 +15,15 @@ package one.empty3.library.core.raytracer.tree;
 /**
  * Created by Manuel Dahmen on 15-12-16.
  */
-public class DoubleTreeNodeType extends TreeNodeType
+public class DoubleTreeNodeType extends VariableTreeNodeType
 {
     public DoubleTreeNodeType() {
 
     }
-    public DoubleTreeNodeType(Double d) {
-        this.setValues(new Object[]{d});
-    }
 
     @Override
-    public Object eval() {
-        return values[0];
+    public Double eval() {
+        return (Double) values[1];
     }
 
 }

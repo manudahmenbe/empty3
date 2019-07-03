@@ -19,6 +19,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -61,10 +64,35 @@ public class AlgebraicTreeTest {
 
     }
 
+    private boolean testResultVariable(String expr, double expectedResult, Map map, boolean echo) {
+        AlgebraicTree algebraicTree = null;
+        try {
+            algebraicTree = new AlgebraicTree(expr);
+            algebraicTree.setParametersValues(map);
+            algebraicTree.construct();
+            if (echo) System.out.println(algebraicTree);
+            try {
+                Object result;
+                result = algebraicTree.eval();
+                if (echo) System.out.println("Result : " + result);
+                if (echo) System.out.println("Expected : " + expectedResult);
+                assertTrue((double) result == expectedResult);
+                return true;
+            } catch (TreeNodeEvalException e) {
+                e.printStackTrace();
+                assertFalse(false);
+            }
+        } catch (AlgebraicFormulaSyntaxException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     protected boolean testResult(String expr, double expectedResult, boolean echo) {
         AlgebraicTree algebraicTree = null;
         try {
-            algebraicTree = new AlgebraicTree(expr, null);
+            algebraicTree = new AlgebraicTree(expr);
+            algebraicTree.construct();
             if (echo) System.out.println(algebraicTree);
             try {
                 Object result;
@@ -132,6 +160,14 @@ public class AlgebraicTreeTest {
     public void testSimpleEquationAddSub2() {
 
         testResult("4*2/5", 4 * 2.0 / 5, false);
+    }
+    @Test
+    public void testVariable() {
+
+        HashMap<String, Double> vars = new HashMap<>();
+        vars.put("u", 4.0);
+        vars.put("v", 13.0);
+        testResultVariable("u+v", 4.0+13.0, vars, true);
     }
 
     @Test

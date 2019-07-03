@@ -23,12 +23,12 @@ public class EquationTreeNodeType extends TreeNodeType {
     public final String E1ELTE2 = "<=";
     public final String E1LTE2 = "<";
 
-    public EquationTreeNodeType(int sign1) {
+    public EquationTreeNodeType(double sign1) {
         super(sign1);
     }
 
     @Override
-    public Object eval() {
+    public Double eval() {
         return null;
     }
 }

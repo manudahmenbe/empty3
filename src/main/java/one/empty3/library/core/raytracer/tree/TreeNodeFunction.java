@@ -22,7 +22,7 @@ public class TreeNodeFunction extends TreeNodeValue {
     }
 
     @Override
-    public Object eval() {
+    public Double eval() {
         return null;
     }
 }

@@ -23,13 +23,13 @@ public class TreeNodeOperator extends TreeNodeValue
     }
 
     @Override
-    public Object eval() {
+    public Double eval() throws TreeNodeEvalException {
         final Object v1 = getChildren().get(0);
         final Object v2 = getChildren().get(1);
 
         if(v1 instanceof Double && v2 instanceof Double)
             return Math.exp(Math.log((Double) v1) * (Double) v2);
         else
-            return false;
+            throw new TreeNodeEvalException("Not valid");
     }
 }

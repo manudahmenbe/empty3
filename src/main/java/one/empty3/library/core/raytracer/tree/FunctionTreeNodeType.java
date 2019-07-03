@@ -30,7 +30,7 @@ public class FunctionTreeNodeType extends TreeNodeType {
     }
 
     @Override
-    public Object eval() {
+    public Double eval() {
         return null;
     }
 

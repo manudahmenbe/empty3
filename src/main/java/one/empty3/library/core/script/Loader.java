@@ -570,7 +570,7 @@ public class Loader implements SceneLoader {
                             null, ex);
                 }
                 continue;
-            }
+            }/*
             if ("polymap".equals(id)) {
                 try {
                     PolyMap pm = interpreteH.interpretePolyMapDef();
@@ -587,7 +587,7 @@ public class Loader implements SceneLoader {
                             null, ex);
                 }
                 continue;
-            }
+            }*/
             if ("cameras".equals(id)) {
                 ArrayList<Camera> cameras;
                 try {

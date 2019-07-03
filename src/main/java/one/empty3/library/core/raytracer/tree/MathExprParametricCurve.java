@@ -32,7 +32,8 @@ public class MathExprParametricCurve extends ParametricCurve {
         algebraicTree = new AlgebraicTree[exprStringXyz.length];
         for (int i = 0; i < exprStringXyz.length; i++) {
             try {
-                algebraicTree[i] = new AlgebraicTree(exprStringXyz[i], null);
+                algebraicTree[i] = new AlgebraicTree(exprStringXyz[i]);
+                algebraicTree[i].construct();
             } catch (AlgebraicFormulaSyntaxException e) {
                 e.printStackTrace();
             }
@@ -49,6 +50,8 @@ public class MathExprParametricCurve extends ParametricCurve {
             try {
                 p.set(i, (Double) algebraicTree[i].eval());
             } catch (TreeNodeEvalException e) {
+                e.printStackTrace();
+            } catch (AlgebraicFormulaSyntaxException e) {
                 e.printStackTrace();
             }
         }

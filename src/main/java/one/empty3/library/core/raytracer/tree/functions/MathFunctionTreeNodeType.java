@@ -12,6 +12,7 @@
 
 package one.empty3.library.core.raytracer.tree.functions;
 
+import one.empty3.library.core.raytracer.tree.AlgebraicFormulaSyntaxException;
 import one.empty3.library.core.raytracer.tree.FunctionTreeNodeType;
 import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
 
@@ -29,7 +30,7 @@ public class MathFunctionTreeNodeType extends FunctionTreeNodeType {
             method = Math.class.getMethod((function), double.class);
             try {
                 return (Double) method.invoke(Math.class, getAlgebraicTree().eval());
-            } catch (TreeNodeEvalException e) {
+            } catch (TreeNodeEvalException | AlgebraicFormulaSyntaxException e) {
                 e.printStackTrace();
             }
         } catch (NoSuchMethodException e) {

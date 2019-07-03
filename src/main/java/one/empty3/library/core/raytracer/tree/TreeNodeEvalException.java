@@ -15,5 +15,9 @@ package one.empty3.library.core.raytracer.tree;
 /**
  * Created by manuel on 17-12-16.
  */
-public class TreeNodeEvalException extends Throwable {
+public class TreeNodeEvalException extends Exception {
+    public TreeNodeEvalException(String s)
+    {
+        super(s);
+    }
 }

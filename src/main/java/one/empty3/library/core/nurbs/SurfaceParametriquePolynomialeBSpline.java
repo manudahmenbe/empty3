@@ -27,7 +27,7 @@ import one.empty3.library.*;
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class SurfaceParametriquePolynomialeBSpline extends ParametricSurface {
+public class SurfaceParametriquePolynomialeBSpline extends ParametricSurface implements SurfaceElem{
 
     private final Point3D[][] P;
     private final int uDegree, vDegree;

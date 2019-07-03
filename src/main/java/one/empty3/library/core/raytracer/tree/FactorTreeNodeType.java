@@ -16,14 +16,14 @@ package one.empty3.library.core.raytracer.tree;
  * Created by manuel on 16-12-16.
  */
 public class FactorTreeNodeType extends TreeNodeType {
-    private int sign1 = 1; // 1=*
+    private double sign1 = 1; // 1=*
 
-    public FactorTreeNodeType(int sign1) {
+    public FactorTreeNodeType(double sign1) {
         super(sign1);
     }
 
 
-    public Object eval() {
+    public Double eval() {
         return null;
     }
 

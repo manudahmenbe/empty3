@@ -12,12 +12,16 @@
 
 package one.empty3.library.core.raytracer.tree;
 
+import java.util.Map;
+
 /**
  * Created by manuel on 16-12-16.
  */
 public class VariableTreeNodeType extends TreeNodeType {
+    public VariableTreeNodeType() {
+    }
     @Override
-    public Object eval() {
-        return null;
+    public Double eval() {
+        return (Double) ((Map)values[1]).get(values[0]);
     }
 }

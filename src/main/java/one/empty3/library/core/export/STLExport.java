@@ -58,10 +58,10 @@ public class STLExport {
 
     private static void traite(Polygon r, PrintWriter pw) {
         Point3D isocentre = r.getIsocentre();
-        int count = r.getPoints().size();
+        int count = r.getPoints().length;
         for (int s = 0; s < count; s++) {
-            traite(new TRI(r.getPoints().get(s),
-                    r.getPoints().get((s + 1) % count),
+            traite(new TRI(r.getPoints()[s],
+                    r.getPoints()[(s + 1) % count],
                     isocentre), pw);
         }
     }

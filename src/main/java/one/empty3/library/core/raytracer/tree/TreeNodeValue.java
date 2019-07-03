@@ -22,10 +22,11 @@ public abstract  class TreeNodeValue  extends TreeNode
         super(parent, values, new VariableTreeNodeType());
     }
 
+
     public Object getValue() {
         return null;
     }
 
-    public abstract Object eval();
+    public abstract Double eval() throws TreeNodeEvalException;
 
 }

@@ -27,7 +27,14 @@ import java.util.Arrays;
  */
 public class Point3D extends Representable implements IMovable {
     // TODO rename into Pixel3D? Tout doux.
-
+    public Point3D()
+    {
+        super();
+        x = new double[3];
+        x[0] = 0;
+        x[1] = 0;
+        x[2] = 0;
+    }
 
     /**
      * *
@@ -73,12 +80,6 @@ public class Point3D extends Representable implements IMovable {
      * *
      * Constructeur Point Origine
      */
-    public Point3D() {
-        x = new double[3];
-        x[0] = 0;
-        x[1] = 0;
-        x[2] = 0;
-    }
     /**
      * *
      *

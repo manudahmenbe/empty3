@@ -17,7 +17,7 @@ package one.empty3.library.core.raytracer.tree;
  */
 public class IdentTreeNodeType extends TreeNodeType {
     @Override
-    public Object eval() {
+    public Double eval() {
 
         return null;
     }

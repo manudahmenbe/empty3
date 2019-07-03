@@ -21,15 +21,18 @@ import java.util.Map;
  */
 public class AlgebraicTree extends Tree {
 
+    private String formula ="0.0";
     Map<String, Double> parametersValues;
     private Tree t;
     private TreeNode root;
 
-    public AlgebraicTree(String formula, Map<TreeNodeParameter, Double> parameters) throws AlgebraicFormulaSyntaxException {
+    public AlgebraicTree(String formula) throws AlgebraicFormulaSyntaxException {
+        this.formula = formula;
+    }
+    public void construct() throws AlgebraicFormulaSyntaxException {
         root = new TreeNode(formula);
         add(root, formula);
     }
-
     public boolean add(TreeNode src, String subformula) throws AlgebraicFormulaSyntaxException {
 
         if (!(src != null && subformula != null && subformula.length() > 0))
@@ -41,8 +44,8 @@ public class AlgebraicTree extends Tree {
                         addFactors(src, subformula) ||
                         addExponent(src, subformula) ||
                         addSingleSign(src, subformula) ||
+                        addDouble(src, subformula) ||
                         addVariable(src, subformula) ||
-                        addConstant(src, subformula) ||
                         addFunction(src, subformula) ||
                         addBracedExpression(src, subformula)
 
@@ -73,30 +76,44 @@ public class AlgebraicTree extends Tree {
 
     private boolean addVariable(TreeNode src, String subformula) {
         if (Character.isLetter(subformula.charAt(0))) {
-            int i = 0;
+            int i = 1;
             while (i < subformula.length() && Character.isLetterOrDigit(i)) {
                 i++;
             }
-            if (i == subformula.length()) {
+            if (i == subformula.length() && i > 0) {
                 VariableTreeNodeType variableTreeNodeType = new VariableTreeNodeType();
-                variableTreeNodeType.setValues(new Object[]{});
-                src.getChildren().add(new TreeNode(src, new Object[]{subformula}, variableTreeNodeType));
+                variableTreeNodeType.setValues(new Object[]{subformula, parametersValues});
+                src.getChildren().add(new TreeNodeVariable(src, new Object[]{subformula, parametersValues}, variableTreeNodeType));
 
                 return true;
             }
-
         }
         return src.getChildren().size() > 0;
     }
 
-    private boolean addConstant(TreeNode src, String subformula) {
+
+    private boolean addDouble(TreeNode src, String subformula) {
         try {
             Double d = Double.parseDouble(subformula);
-            src.getChildren().add(new TreeNode(src, new Object[]{subformula}, new DoubleTreeNodeType(d)));
+            DoubleTreeNodeType doubleTreeNodeType = new DoubleTreeNodeType();
+            doubleTreeNodeType.setValues(new Object[]{subformula, d});
+            src.getChildren().add(new TreeNodeDouble(src, new Object[]{subformula, d}, doubleTreeNodeType));
+
             return true;
-        } catch (Exception e) {
-            return false;
+        } catch (NumberFormatException ex) {
+            return src.getChildren().size() > 0;
         }
+    }
+//
+//
+//    private boolean addConstant(TreeNode src, String subformula) {
+//        try {
+//            Double d = Double.parseDouble(subformula);
+//            src.getChildren().add(new TreeNode(src, new Object[]{subformula}, new DoubleTreeNodeType(d)));
+//            return true;
+//        } catch (Exception e) {
+//            return false;
+//        }
 /*
         if (Character.isDigit(subformula.charAt(0)) || subformula.charAt(0) == '-') {
             int i = 1;
@@ -113,12 +130,12 @@ public class AlgebraicTree extends Tree {
 
         }
         */
-        //return src.getChildren().size() > 0;
-    }
+    //return src.getChildren().size() > 0;
+    //}
 
     private boolean addSingleSign(TreeNode src, String subformula) {
         if (subformula.charAt(0) == '-') {
-            src.getChildren().add(new TreeNode(src, new Object[]{subformula.substring(1)}, new SignTreeNodeType(-1)));
+            src.getChildren().add(new TreeNode(src, new Object[]{subformula.substring(1)}, new SignTreeNodeType(-1.0)));
             return true;
         }
         return false;
@@ -137,8 +154,8 @@ public class AlgebraicTree extends Tree {
         int newFactorPos = 0;
         int oldFactorPos = 0;
         char newFactor = '*';
-        int newFactorSign = 1;
-        int oldFactorSign = 1;
+        double newFactorSign = 1;
+        double oldFactorSign = 1;
         while (i < values.length()) {
             if (values.charAt(i) == '(') {
                 count++;
@@ -210,8 +227,8 @@ public class AlgebraicTree extends Tree {
         int newFactorPos = 0;
         int oldFactorPos = 0;
         char newFactor = '+';
-        int newFactorSign = 1;
-        int oldFactorSign = 1;
+        double newFactorSign = 1;
+        double oldFactorSign = 1;
         while (i < values.length()) {
             if (values.charAt(i) == '(') {
                 count++;
@@ -366,8 +383,9 @@ public class AlgebraicTree extends Tree {
 
                 MathFunctionTreeNodeType mathFunctionTreeNodeType = new MathFunctionTreeNodeType();
 
-                AlgebraicTree algebraicTree = new AlgebraicTree(fParamString, null);
-
+                AlgebraicTree algebraicTree = new AlgebraicTree(fParamString);
+                algebraicTree.setParametersValues(parametersValues);
+                algebraicTree.construct();
                 mathFunctionTreeNodeType.setAlgebraicTree(algebraicTree);
 
                 TreeNode t2 = new TreeNode(t, new Object[]{fName}, mathFunctionTreeNodeType);
@@ -380,7 +398,7 @@ public class AlgebraicTree extends Tree {
                     throw new AlgebraicFormulaSyntaxException();
                 } else {
 */
-                    return true;
+                return true;
                 //              }
             }
 
@@ -439,7 +457,7 @@ public class AlgebraicTree extends Tree {
     }
 
 
-    public Object eval() throws TreeNodeEvalException {
+    public Double eval() throws TreeNodeEvalException, AlgebraicFormulaSyntaxException {
         return root.eval();
     }
 

@@ -93,7 +93,7 @@ public class InterpretePolygone implements Interprete {
         this.pos = pos;
 
         Polygon p = new Polygon();
-        p.setPoints(points);
+        p.setPoints(points.toArray(new Point3D[points.size()]));
         p.texture(c);
         return p;
     }

@@ -522,7 +522,6 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
             }
         }
-        System.out.print("+");
         this.bi = bi2;
         return bi2;
 

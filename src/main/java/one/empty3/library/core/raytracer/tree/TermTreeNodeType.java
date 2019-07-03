@@ -17,11 +17,11 @@ package one.empty3.library.core.raytracer.tree;
  */
 public class TermTreeNodeType extends TreeNodeType {
 
-    public TermTreeNodeType(int sign1) {
+    public TermTreeNodeType(double sign1) {
         super(sign1);
     }
 
-    public Object eval() {
+    public Double eval() {
         return null;
     }
 

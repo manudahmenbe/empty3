@@ -16,22 +16,22 @@ package one.empty3.library.core.raytracer.tree;
  * Created by manuel on 16-12-16.
  */
 public class SignTreeNodeType extends TreeNodeType {
-    private int sign = 1;
+    private double sign = 1;
 
-    public SignTreeNodeType(int i) {
+    public SignTreeNodeType(double i) {
         sign = i;
     }
 
-    public int getSign() {
+    public double getSign() {
         return sign;
     }
 
-    public void setSign(int sign) {
+    public void setSign(double sign) {
         this.sign = sign;
     }
 
     @Override
-    public Object eval() {
+    public Double eval() {
         return sign;
     }
 }

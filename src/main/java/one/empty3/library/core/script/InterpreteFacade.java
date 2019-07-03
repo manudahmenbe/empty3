@@ -586,7 +586,7 @@ public class InterpreteFacade {
         }
         return s;
     }
-
+/*
     public PolyMap interpretePolyMapDef() throws InterpreteException {
         InterpretePolyMapDef interpreteH;
         interpreteH = new InterpretePolyMapDef();
@@ -606,7 +606,7 @@ public class InterpreteFacade {
         }
         return pm;
     }
-
+*/
     public Barycentre interpretePosition() throws InterpreteException {
         InterpretePosition interpreteH = new InterpretePosition();
         interpreteH.setRepertoire(repertoire);

@@ -18,7 +18,7 @@ import one.empty3.library.*;
 /**
  * Created by manuel on 29-06-17.
  */
-public class ParametricLine extends ParametricCurve {
+public class ParametricLine extends ParametricCurve implements CurveElem{
     private final LineSegment lineSegment;
 
     public ParametricLine(LineSegment sd) {

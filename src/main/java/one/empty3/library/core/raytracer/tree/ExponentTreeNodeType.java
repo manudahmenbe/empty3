@@ -25,7 +25,7 @@ public class ExponentTreeNodeType extends TreeNodeType {
 
 
     @Override
-    public Object eval() {
+    public Double eval() {
         return Math.pow(sign1, sign2);
     }
 
