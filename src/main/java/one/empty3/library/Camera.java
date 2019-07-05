@@ -171,4 +171,11 @@ public class Camera extends CameraBox {
                 + "\n\t)";
     }
 
+    public Matrix33 getMatrice() {
+        return matrice;
+    }
+
+    public void setMatrice(Matrix33 matrice) {
+        this.matrice = matrice;
+    }
 }

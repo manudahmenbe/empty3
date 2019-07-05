@@ -15,22 +15,22 @@
  */
 package one.empty3.library;
 
+import one.empty3.library.core.lighting.Colors;
 import one.empty3.library.core.raytracer.RtIntersectInfo;
 import one.empty3.library.core.raytracer.RtMatiere;
 import one.empty3.library.core.raytracer.RtRay;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Representable implements Serializable, Comparable {
-    public static final ITexture orange_yellow = new TextureCol(new Color(255, 128, 0));
+    public static final ITexture DEFAULT_TEXTURE = new TextureCol(Colors.random());
     protected static ArrayList<Painter> classPainters = new ArrayList<Painter>();
     public Rotation rotation = new Rotation();
     protected double NFAST = 100;
     protected RtMatiere materiau;
-    protected ITexture CFAST = orange_yellow;
+    protected ITexture CFAST = DEFAULT_TEXTURE;
     protected Barycentre bc = new Barycentre();
     protected Representable parent;
     protected Scene scene;

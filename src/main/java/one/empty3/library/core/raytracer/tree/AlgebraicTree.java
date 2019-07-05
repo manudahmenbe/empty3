@@ -35,8 +35,8 @@ public class AlgebraicTree extends Tree {
     }
     public boolean add(TreeNode src, String subformula) throws AlgebraicFormulaSyntaxException {
 
-        if (!(src != null && subformula != null && subformula.length() > 0))
-            return false; //throw new AlgebraicFormulaSyntaxException("Chaine vide");
+        if (src == null || subformula == null || subformula.length() == 0)
+            return false;
 
         if (
                 addFormulaSeparator(src, subformula) ||
