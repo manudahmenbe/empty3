@@ -12,7 +12,7 @@
 package one.empty3.library;
 
 /**
- * @author Atelier
+ * @author Manuel Dahmen
  */
 public class Camera extends CameraBox {
 
