@@ -73,7 +73,7 @@ public class TreeNode {
         }  else
         if(cType instanceof VariableTreeNodeType)
         {
-            return cType.eval();
+            return cType.eval();//cType.eval();
         } else if (cType instanceof ExponentTreeNodeType) {
             return Math.pow((Double) getChildren().get(0).eval(), (Double) getChildren().get(1).eval());
         } else if (cType instanceof FactorTreeNodeType) {

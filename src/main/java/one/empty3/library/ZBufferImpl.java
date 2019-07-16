@@ -19,10 +19,12 @@ import one.empty3.library.core.nurbs.ParametricCurve;
 import one.empty3.library.core.nurbs.ParametricSurface;
 import one.empty3.library.core.nurbs.Point3DS;
 import one.empty3.library.core.nurbs.ThickSurface;
+import one.empty3.pointset.PCont;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Iterator;
+import java.util.function.Consumer;
 
 /**
  * * Classe de rendu graphique
@@ -402,13 +404,14 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                             b.texture()));
                 }
             }
-        } else if (r instanceof PObjet) {
-            PObjet b = (PObjet) r;
-            for (Point3D p : b.getPoints()) {
-                {
-                    ime.testDeep(r.rotation(p), p.texture());
+        } else if (r instanceof PCont) {
+            PCont b = (PCont) r;
+            b.getPoints().forEach(new Consumer() {
+                @Override
+                public void accept(Object o) {
+                    ime.testDeep((Point3D)o, ((Point3D)o).texture());
                 }
-            }
+            });
         } else if (r instanceof POConteneur) {
             POConteneur c = (POConteneur) r;
             for (Point3D p : c.iterable()) {

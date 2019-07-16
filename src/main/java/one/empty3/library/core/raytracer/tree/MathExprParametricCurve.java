@@ -46,7 +46,7 @@ public class MathExprParametricCurve extends ParametricCurve {
         HashMap<String, Double> stringDoubleHashMap = new HashMap<>();
         stringDoubleHashMap.put("t", t);
         for (int i = 0; i < algebraicTree.length; i++) {
-            algebraicTree[i].setParametersValues(stringDoubleHashMap);
+            algebraicTree[i].getParametersValues().putAll(stringDoubleHashMap);
             try {
                 p.set(i, (Double) algebraicTree[i].eval());
             } catch (TreeNodeEvalException e) {

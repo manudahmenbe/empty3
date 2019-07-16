@@ -1,3 +1,7 @@
+/****
+ * copyright 2011-2019 Manuel Dahmen
+ */
+
 package tests2;
 
 import one.empty3.library.Camera;
@@ -9,22 +13,6 @@ import one.empty3.library.core.tribase.Plan3D;
 
 import java.awt.*;
 
-/**
- * *
- * Global license :  *
- * Microsoft Public Licence
- * <p>
- * author Manuel Dahmen <ibiiztera.it@gmail.com>
- * <p>
- * Creation time 02-nov.-2014
- * <p>
- * *
- */
-
-/**
- *
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
- */
 public class TestAxes extends TestObjetSub {
 
     public static void main(String[] args) {
@@ -59,29 +47,29 @@ public class TestAxes extends TestObjetSub {
         camera.setEye(Point3D.Z.mult(-1));
         if (frame() == 0) {
             camera.imposerMatrice(new Matrix33(
-                    new double[]
+                    new Double[]
                             {
-                                    1, 0, 0,
-                                    0, 1, 0,
-                                    0, 0, 1
+                                    1d, 0d, 0d,
+                                    0d, 1d, 0d,
+                                    0d, 0d, 1d
                             }
             ));
         } else if (frame() == 1) {
             camera.imposerMatrice(new Matrix33(
-                    new double[]
+                    new Double[]
                             {
-                                    0, 0, 1,
-                                    1, 0, 0,
-                                    0, 1, 0
+                                    0d, 0d, 1d,
+                                    1d, 0d, 0d,
+                                    0d, 1d, 0d
                             }
             ));
         } else if (frame() == 2) {
             camera.imposerMatrice(new Matrix33(
-                    new double[]
+                    new Double[]
                             {
-                                    0, 1, 0,
-                                    0, 0, 1,
-                                    1, 0, 0
+                                    0d, 1d, 0d,
+                                    0d, 0d, 1d,
+                                    1d, 0d, 0d
                             }
             ));
         }

@@ -20,16 +20,18 @@
  */
 package one.empty3.library.core.nurbs;
 
-import one.empty3.library.*;
+import one.empty3.library.Point3D;
 import one.empty3.library.Polygon;
+import one.empty3.library.ZBuffer;
 import one.empty3.library.core.tribase.TRIObjetGenerateurAbstract;
-
-import java.awt.*;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
+
+
+
     private static Globals globals;
 
     static {
@@ -41,6 +43,9 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
             globals1.setIncrU(0.001);
             globals1.setIncrV(0.001);
         }
+
+
+
     }
 
     public double incr1 = 0.01;
@@ -50,7 +55,6 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
     protected double start1 = 0, start2 = 0;
     protected double end1 = 1, end2 = 1;
     protected double NFAST = 100;
-    protected ITexture CFAST = new TextureCol(Color.GRAY);
     private ParametricSurface.Parameters parameters = new ParametricSurface.Parameters(true);
 
     public static Globals getGlobals() {
@@ -267,6 +271,16 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
     {
         // TODO
         return this;
+
     }
 
+
+    {
+        getDeclaredDoubles().put("incr1/incr1", incr1);
+        getDeclaredDoubles().put("incr2/incr2", incr2);
+        getDeclaredDoubles().put("start1/start1", start1);
+        getDeclaredDoubles().put("start2/start2", start2);
+        getDeclaredDoubles().put("end1/end1", end1);
+        getDeclaredDoubles().put("end2/end2", end2);
+    }
 }

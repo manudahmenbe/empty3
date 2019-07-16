@@ -169,7 +169,7 @@ public class BallePanel extends DataPanel implements Runnable {
         init(20);
 
 
-        Force f = new Force();
+        Move f = new Move();
 
 
         f.configurer(positions);

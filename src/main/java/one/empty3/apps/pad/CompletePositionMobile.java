@@ -78,35 +78,35 @@ public class CompletePositionMobile extends SimplePositionMobile {
             Matrix33 matrix331 = calcRepere(getTerrain(), angles);
             Matrix33 matrix332 = matrix331.tild();
 
-            matrix33 = new Matrix33(new double[]{
+            matrix33 = new Matrix33(new Double[]{
                     Math.cos(angles.getZ() * 2 * Math.PI),
                     -Math.sin(angles.getZ() * 2 * Math.PI),
-                    0,
+                    0d,
                     Math.sin(angles.getZ() * 2 * Math.PI),
                     Math.cos(angles.getZ() * 2 * Math.PI),
-                    0,
-                    0,
-                    0,
-                    1
-            }).mult(new Matrix33(new double[]{
+                    0d,
+                    0d,
+                    0d,
+                    1d
+            }).mult(new Matrix33(new Double[]{
                     Math.cos(angles.getY() * 2 * Math.PI),
-                    0,
+                    0d,
                     Math.sin(angles.getY() * 2 * Math.PI),
-                    0,
-                    1,
-                    0,
+                    0d,
+                    1d,
+                    0d,
                     -Math.sin(angles.getY() * 2 * Math.PI),
-                    0,
+                    0d,
                     Math.cos(angles.getY() * 2 * Math.PI),
 
-            })).mult(new Matrix33(new double[]{
-                    1,
-                    0,
-                    0,
-                    0,
+            })).mult(new Matrix33(new Double[]{
+                    1d,
+                    0d,
+                    0d,
+                    0d,
                     Math.cos(angles.getX() * 2 * Math.PI),
                     -Math.sin(angles.getX() * 2 * Math.PI),
-                    0,
+                    0d,
                     Math.sin(angles.getX() * 2 * Math.PI),
                     Math.cos(angles.getX() * 2 * Math.PI),
 

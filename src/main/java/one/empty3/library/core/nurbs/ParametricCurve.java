@@ -190,6 +190,13 @@ public abstract class ParametricCurve extends Representable {
         // TODO
         return this;
     }
+
+
+    {
+        getDeclaredDoubles().put("incrU/incrU", incrU);
+        getDeclaredDoubles().put("startU/startU", startU);
+        getDeclaredDoubles().put("endV/endV", endU);
+    }
 }
 
 

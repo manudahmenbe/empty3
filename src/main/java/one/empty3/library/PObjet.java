@@ -22,7 +22,7 @@ import java.util.Iterator;
 
 public class PObjet extends Representable {
 
-    private ArrayList<Point3D> points;
+    protected ArrayList<Point3D> points;
     private Barycentre position;
 
     public PObjet() {

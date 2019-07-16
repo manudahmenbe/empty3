@@ -34,15 +34,14 @@ public class Representable implements Serializable, Comparable {
     protected Barycentre bc = new Barycentre();
     protected Representable parent;
     protected Scene scene;
-    protected ITexture texture;
+    protected ITexture texture = new TextureCol(Colors.random());
     private String id;
     private Painter painter = null;
     private int RENDERING_DEFAULT = 0;
     protected Render render = Render.getInstance(0,-1);
 
     public Representable() {
-        declaredTextures.put("point color", texture);
-        declaredTextures.put("draw fast texture", CFAST);
+        declaredTextures.put("CFAST/draw fast texture", CFAST);
         texture = CFAST;
     }
 
@@ -229,19 +228,19 @@ public class Representable implements Serializable, Comparable {
     }
 
 
-    HashMap<String, Double> declaredDoubles = new HashMap<>();
-    HashMap<String, Double[][]> declaredMatrix = new HashMap<>();
-    HashMap<String, Double[]> declaredArrays = new HashMap<>();
-    HashMap<String, Point3D> declaredPoints = new HashMap<>();
-    HashMap<String, ITexture> declaredTextures = new HashMap<>();
-    HashMap<String, Point3D[]> declaredArray1Points = new HashMap<>();
-    HashMap<String, Point3D[][]> declaredArray2Points = new HashMap<>();
-    HashMap<String, Representable> declaredRepresentables = new HashMap<>();
+    protected HashMap<String, Double> declaredDoubles = new HashMap<>();
+    protected HashMap<String, Double[][]> declaredMatrix = new HashMap<>();
+    protected HashMap<String, Double[]> declaredArrays = new HashMap<>();
+    protected HashMap<String, Point3D> declaredPoints = new HashMap<>();
+    protected HashMap<String, ITexture> declaredTextures = new HashMap<>();
+    protected HashMap<String, Point3D[]> declaredArray1Points = new HashMap<>();
+    protected HashMap<String, Point3D[][]> declaredArray2Points = new HashMap<>();
+    protected HashMap<String, Representable> declaredRepresentables = new HashMap<>();
     public HashMap<String, Double> getDeclaredDoubles()
     {return declaredDoubles;}
-    public HashMap<String, Double[][]> getDeclaredMatrix()
+    public HashMap<String, Double[][]> getDeclaredArrays2dDouble()
     {return declaredMatrix;}
-    public HashMap<String, Double[]> getDeclaredArrays()
+    public HashMap<String, Double[]> getDeclaredArray1dDouble()
     {return declaredArrays;}
     public HashMap<String, Point3D> getDeclaredPoints()
     {return declaredPoints;}

@@ -68,7 +68,7 @@ public class AlgebraicTreeTest {
         AlgebraicTree algebraicTree = null;
         try {
             algebraicTree = new AlgebraicTree(expr);
-            algebraicTree.setParametersValues(map);
+            algebraicTree.getParametersValues().putAll(map);
             algebraicTree.construct();
             if (echo)
                 System.out.println(algebraicTree);
@@ -167,6 +167,11 @@ public class AlgebraicTreeTest {
 
         testResult("4*2/5", 4 * 2.0 / 5, false);
     }
+    @Test
+    public void testZeroPlusZero() {
+
+        testResult("0+0", 0+0, false);
+    }
 
     @Test
     public void testVariable() {
@@ -175,6 +180,26 @@ public class AlgebraicTreeTest {
         vars.put("u", 4.0);
         vars.put("v", 13.0);
         testResultVariable("u+v", 4.0 + 13.0, vars, true);
+    }
+    @Test
+    public void testVariableZeroPlusZero() {
+
+        HashMap<String, Double> vars = new HashMap<>();
+        vars.put("R", 0.0);
+        vars.put("u", 0.0);
+        testResultVariable("R+u", 0, vars, false);
+    }
+    @Test
+    public void testVariableCircle() {
+
+        HashMap<String, Double> vars = new HashMap<>();
+        vars.put("x", 4.0);
+        vars.put("x", 4.0);
+        vars.put("y", 13.0);
+        vars.put("z", 13.0);
+        vars.put("R", 20.0);
+
+        testResultVariable("x*x+y*y+z*z-R*R", 4.0*4 + 13.0*13+13.0*13.0-20.0*20.0, vars, false);
     }
 
     @Test

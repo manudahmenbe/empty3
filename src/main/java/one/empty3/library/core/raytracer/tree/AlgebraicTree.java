@@ -14,6 +14,7 @@ package one.empty3.library.core.raytracer.tree;
 
 import one.empty3.library.core.raytracer.tree.functions.MathFunctionTreeNodeType;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -22,16 +23,23 @@ import java.util.Map;
 public class AlgebraicTree extends Tree {
 
     private String formula ="0.0";
-    Map<String, Double> parametersValues;
+    Map<String, Double> parametersValues = new HashMap<>();
     private Tree t;
     private TreeNode root;
 
     public AlgebraicTree(String formula) throws AlgebraicFormulaSyntaxException {
         this.formula = formula;
     }
-    public void construct() throws AlgebraicFormulaSyntaxException {
+
+    public AlgebraicTree(String fParamString, Map<String, Double> parametersValues) {
+        this.formula = formula;
+        this.parametersValues = parametersValues;
+    }
+
+    public AlgebraicTree construct() throws AlgebraicFormulaSyntaxException {
         root = new TreeNode(formula);
         add(root, formula);
+        return this;
     }
     public boolean add(TreeNode src, String subformula) throws AlgebraicFormulaSyntaxException {
 
@@ -383,8 +391,8 @@ public class AlgebraicTree extends Tree {
 
                 MathFunctionTreeNodeType mathFunctionTreeNodeType = new MathFunctionTreeNodeType();
 
-                AlgebraicTree algebraicTree = new AlgebraicTree(fParamString);
-                algebraicTree.setParametersValues(parametersValues);
+                AlgebraicTree algebraicTree = new AlgebraicTree(fParamString, parametersValues);
+                algebraicTree.getParametersValues().putAll(parametersValues);
                 algebraicTree.construct();
                 mathFunctionTreeNodeType.setAlgebraicTree(algebraicTree);
 
@@ -458,6 +466,7 @@ public class AlgebraicTree extends Tree {
 
 
     public Double eval() throws TreeNodeEvalException, AlgebraicFormulaSyntaxException {
+        System.out.println(parametersValues.size());
         return root.eval();
     }
 
@@ -467,7 +476,8 @@ public class AlgebraicTree extends Tree {
         return s;
     }
 
-    public void setParametersValues(Map<String, Double> parametersValues) {
-        this.parametersValues = parametersValues;
+
+    public Map<String, Double> getParametersValues() {
+        return parametersValues;
     }
 }

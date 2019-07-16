@@ -17,8 +17,6 @@
  */
 package one.empty3.library;
 
-import java.io.Serializable;
-
 /**
  * @author MANUEL DAHMEN
  *         <p>
@@ -26,7 +24,7 @@ import java.io.Serializable;
  *         <p>
  *         17 nov. 2011
  */
-public class Matrix33 implements Serializable {
+public class Matrix33 extends Representable{
 
     public static final Matrix33 XYZ;
     public static final Matrix33 YZX;
@@ -38,29 +36,33 @@ public class Matrix33 implements Serializable {
     private static final long serialVersionUID = 7007460681652570657L;
 
     static {
-        XYZ = new Matrix33(new double[]{1, 0, 0, 0, 1, 0, 0, 0, 1});
-        YZX = new Matrix33(new double[]{0, 1, 0, 0, 0, 1, 1, 0, 0});
-        ZXY = new Matrix33(new double[]{0, 0, 1, 1, 0, 0, 0, 1, 0});
-        I = new Matrix33(new double[]{1, 0, 0, 0, 1, 0, 0, 0, 1});
+        XYZ = new Matrix33(new Double[]{1d, 0d, 0d, 0d, 1d, 0d, 0d, 0d, 1d});
+        YZX = new Matrix33(new Double[]{0d, 1d, 0d, 0d, 0d, 1d, 1d, 0d, 0d});
+        ZXY = new Matrix33(new Double[]{0d, 0d, 1d, 1d, 0d, 0d, 0d, 1d, 0d});
+        I = new Matrix33(new Double[]{1d, 0d, 0d, 0d, 1d, 0d, 0d, 0d, 1d});
+
     }
 
-    private double[] d;
+    private Double[] d;
 
     public Matrix33(Matrix33 copy) {
-
         d = copy.d.clone();
+        getDeclaredArray1dDouble().put("d/3x3 matrix", d);
     }
 
     public Matrix33() {
-        d = new double[9];
+        d = new Double[9];
+        getDeclaredArray1dDouble().put("d/3x3 matrix", d);
+
     }
 
-    public Matrix33(double[] d) {
+    public Matrix33(Double[] d) {
         if (d.length != 9) {
             System.out.println("Erreur dans Matrix33 . 9 éléments requis");
             System.exit(-1);
         }
         this.d = d;
+        getDeclaredArray1dDouble().put("d/3x3 matrix", d);
     }
 
     public Matrix33(Point3D[] p) {
@@ -73,14 +75,15 @@ public class Matrix33 implements Serializable {
 
             }
         }
+        getDeclaredArray1dDouble().put("d/3x3 matrix", d);
     }
 
     public static Matrix33 rot(double a, double b) {
         return new Matrix33(
-                new double[]{
-                        Math.cos(a), Math.sin(b), 0,
-                        -Math.sin(a), Math.cos(b), 0,
-                        0, 0, 1
+                new Double[]{
+                        Math.cos(a), Math.sin(b), 0d,
+                        -Math.sin(a), Math.cos(b), 0d,
+                        0d, 0d, 1d
 
                 }
         );
@@ -88,31 +91,31 @@ public class Matrix33 implements Serializable {
 
     public static Matrix33 rotationX(double a) {
         return new Matrix33(
-                new double[]{1, 0, 0,
-                        Math.cos(a), -Math.sin(a), 0,
-                        Math.sin(a), Math.cos(a), 0}).tild();
+                new Double[]{1d, 0d, 0d,
+                        Math.cos(a), -Math.sin(a), 0d,
+                        Math.sin(a), Math.cos(a), 0d}).tild();
     }
 
     public static Matrix33 rotationY(double a) {
         return new Matrix33(
-                new double[]{Math.cos(a), 0, Math.sin(a),
-                        0, 1, 0
-                        - Math.sin(a), 0, Math.cos(a)}).tild();
+                new Double[]{Math.cos(a), 0d, Math.sin(a),
+                        0d, 1d, 0
+                        - Math.sin(a), 0d, Math.cos(a)}).tild();
     }
 
     public static Matrix33 rotationZ(double a) {
         return new Matrix33(
-                new double[]{Math.cos(a), -Math.sin(a), 0,
-                        Math.sin(a), Math.cos(a), 0,
-                        0, 0, 1}).tild();
+                new Double[]{Math.cos(a), -Math.sin(a), 0d,
+                        Math.sin(a), Math.cos(a), 0d,
+                        0d, 0d, 1d}).tild();
     }
 
     public double get(int i, int j) {
         return d[i * 3 + j];
     }
 
-    public double[][] getDoubleArray() {
-        double[][] d2 = new double[3][3];
+    public Double[][] getDoubleArray() {
+        Double[][] d2 = new Double[3][3];
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 d2[i][j] = get(i, j);
@@ -244,5 +247,9 @@ public class Matrix33 implements Serializable {
 
     public Matrix33 pourcents(Matrix33 m, double pc) {
         return mult(1 - pc).plus(m.mult(pc));
+    }
+
+    public Double[] getDoubles() {
+        return d;
     }
 }

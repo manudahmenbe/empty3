@@ -30,10 +30,12 @@ public class Point3D extends Representable implements IMovable {
     public Point3D()
     {
         super();
-        x = new double[3];
-        x[0] = 0;
-        x[1] = 0;
-        x[2] = 0;
+        getDeclaredTextures().put("texture/Color of Point", texture);
+        x = new Double[3];
+        x[0] = 0d;
+        x[1] = 0d;
+        x[2] = 0d;
+        getDeclaredArray1dDouble().put("x/cordinates", x);
     }
 
     /**
@@ -65,7 +67,7 @@ public class Point3D extends Representable implements IMovable {
      * *
      * Coordonnées (x,y,z) du point
      */
-    public double[] x;
+    public final Double[] x;
     /**
      * *
      * Pour le tracé de surface normale au point
@@ -88,7 +90,7 @@ public class Point3D extends Representable implements IMovable {
      * @param z0 z-coordonnée
      */
     public Point3D(double x0, double y0, double z0) {
-        x = new double[3];
+        this();
         x[0] = x0;
         x[1] = y0;
         x[2] = z0;
@@ -102,7 +104,7 @@ public class Point3D extends Representable implements IMovable {
      * @param z0 z-coordonnée
      */
     public Point3D(double x0, double y0, double z0, ITexture t) {
-        x = new double[3];
+        this();
         x[0] = x0;
         x[1] = y0;
         x[2] = z0;
@@ -116,7 +118,9 @@ public class Point3D extends Representable implements IMovable {
      * @param x0 coordonnées (3)
      */
     public Point3D(double[] x0, ITexture t) {
-        x = x0;
+        this();
+        for(int i=0; i<3; i++)
+            x[i] = x0[i];
         texture(t);
     }
 
@@ -126,7 +130,7 @@ public class Point3D extends Representable implements IMovable {
      * @param p0 point à copier
      */
     public Point3D(Point3D p0) {
-        x = new double[3];
+        this();
         x[0] = p0.getX();
         x[1] = p0.getY();
         x[2] = p0.getZ();
@@ -198,7 +202,7 @@ public class Point3D extends Representable implements IMovable {
         return x[i];
     }
 
-    public double[] getDoubleArray() {
+    public Double[] getDoubleArray() {
         return x;
     }
 

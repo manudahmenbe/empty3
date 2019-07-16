@@ -140,7 +140,7 @@ public class E3MathWaw {
         }
 
         public Point3D transform(Point3D p0Axe0) {
-            Matrix33 p = new Matrix33(new double[]{p0Axe0.get(0), 0, 0, 0, p0Axe0.get(1), 0, 0, 0, p0Axe0.get(2)});
+            Matrix33 p = new Matrix33(new Double[]{p0Axe0.get(0), 0d, 0d, 0d, p0Axe0.get(1), 0d, 0d, 0d, p0Axe0.get(2)});
 
             Matrix33 res = (m33T.mult(p)).mult(m33);
 

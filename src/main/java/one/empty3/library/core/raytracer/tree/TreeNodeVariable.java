@@ -26,6 +26,6 @@ public class TreeNodeVariable extends TreeNode {
 
     @Override
     public Double eval() {
-        return (Double)((Map)objects[0]).get(objects[1]);
+        return (Double)((Map)objects[1]).get(objects[0]);
     }
 }

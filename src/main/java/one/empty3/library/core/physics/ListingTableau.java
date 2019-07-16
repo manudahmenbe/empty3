@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ListingTableau {
-    private Force f;
+    private Move f;
 
     public static void main(String[] args) {
         OutputStream out = null;
@@ -33,7 +33,7 @@ public class ListingTableau {
             System.exit(1);
         }
 
-        Force f = new Force();
+        Move f = new Move();
 
 
         ArrayList billes = billeConfig();
@@ -97,11 +97,11 @@ public class ListingTableau {
         return billes;
     }
 
-    public Force getForce() {
+    public Move getForce() {
         return this.f;
     }
 
-    public void setForce(Force f) {
+    public void setForce(Move f) {
         this.f = f;
     }
 }*/

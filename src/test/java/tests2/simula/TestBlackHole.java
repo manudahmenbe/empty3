@@ -14,7 +14,7 @@ package tests2.simula;
 
 import one.empty3.library.*;
 import one.empty3.library.core.physics.Bille;
-import one.empty3.library.core.physics.Force;
+import one.empty3.library.core.physics.Move;
 import one.empty3.library.core.testing.TestObjetSub;
 import one.empty3.library.core.tribase.TRISphere;
 
@@ -25,7 +25,7 @@ public class TestBlackHole extends TestObjetSub {
     int Y = 10;
     int Z = 10;
     Bille[] billes = new Bille[X * Y * Z];
-    Force f = new Force();
+    Move f = new Move();
 
     public static void main(String[] args) {
 

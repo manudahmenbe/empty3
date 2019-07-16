@@ -27,32 +27,51 @@ public class Camera extends CameraBox {
     protected Point3D lookat;
 
     protected boolean imposerMatrice = false;
-    protected Matrix33 matrice;
+    protected Matrix33 matrice = Matrix33.I;
 
     private Barycentre position;
 
     public Camera() {
-        this.eye = new Point3D(0, 0, -100);
-        this.lookat = Point3D.O0;
-        matrice = Matrix33.I;
+        this(new Point3D(0, 0, -100),Point3D.O0, Point3D.Y);
     }
 
     public Camera(Point3D eye, Point3D lookat) {
-        this.eye = eye;
-        this.lookat = lookat;
-        calculerMatrice(null);
+        this(eye, lookat, null);
     }
 
     public Camera(Point3D eye, Point3D lookat, Point3D up) {
         this.eye = eye;
         this.lookat = lookat;
-
         calculerMatrice(up);
+
+        getDeclaredPoints().put("eye/eye", eye);
+        getDeclaredPoints().put("lookat/lookAt", lookat);
+        getDeclaredArray1dDouble().put("matrice/matrice", matrice.getDoubles());
     }
 
-    private Point3D calculerVerticaleParDefaut(Point3D moinsZ) {
-        Point3D z = moinsZ.mult(-1).norme1();
-        return Point3D.Y.prodVect(z).prodVect(Point3D.X).norme1();
+    protected void rotateMatrixXaxis(double angle)
+    {
+           matrice = Matrix33.rotationX(angle).mult(matrice);
+    }
+    protected void rotateMatrixYaxis(double angle)
+    {
+        matrice = Matrix33.rotationY(angle).mult(matrice);
+
+    }
+    protected void rotateMatrixZaxis(double angle)
+    {
+        matrice = Matrix33.rotationZ(angle).mult(matrice);
+
+    }
+
+
+    protected Point3D calculerVerticaleParDefaut(Point3D senseAxeCamera) {
+        Point3D z = senseAxeCamera.norme1();
+        return Point3D.Y.prodVect(z).prodVect(z).mult(-1).norme1();
+    }
+    protected Point3D calculerHorizontaParDefaut(Point3D senseAxeCamera) {
+        Point3D z = senseAxeCamera.norme1();
+        return z.prodVect(Point3D.X).prodVect(z).norme1();
     }
 
     public void setMatrix(Point3D x, Point3D y, Point3D z) {
@@ -177,5 +196,8 @@ public class Camera extends CameraBox {
 
     public void setMatrice(Matrix33 matrice) {
         this.matrice = matrice;
+    }
+
+    {
     }
 }

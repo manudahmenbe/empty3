@@ -25,9 +25,9 @@ public class Pieuvre extends RepresentableConteneur {
         matrix22 = new Matrix33[nbrBras];
         for (int i = 0; i < nbrBras; i++) {
             matrix22[i] = new Matrix33(
-                    new double[]{Math.sin(angle), Math.cos(angle), 0,
-                            -Math.cos(angle), Math.sin(angle), 0,
-                            0, 0, 1});
+                    new Double[]{Math.sin(angle), Math.cos(angle), 0d,
+                            -Math.cos(angle), Math.sin(angle), 0d,
+                            0d, 0d, 1d});
         }
 
     }

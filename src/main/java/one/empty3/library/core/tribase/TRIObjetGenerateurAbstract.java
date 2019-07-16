@@ -31,7 +31,6 @@ import java.awt.Point;
 @Deprecated
 public abstract class TRIObjetGenerateurAbstract extends Representable implements TRIObjetGenerateur {
     // Overrides from TriObjetGenerateur
-
     /**
      *
      */
@@ -41,6 +40,12 @@ public abstract class TRIObjetGenerateurAbstract extends Representable implement
     protected boolean cx = false;
     protected boolean cy = false;
 
+    {
+        getDeclaredDoubles().put("maxX/ MaxX cordinates iterations for drawing", (double)maxX);
+        getDeclaredDoubles().put("maxY/ MaxY cordinates iterations for drawing", (double)maxY);
+        getDeclaredDoubles().put("cx/ Circulaire X last iterations for drawing", (double)(cx?1:-1));
+        getDeclaredDoubles().put("cy/ Circulaire X last iterations for drawing", (double)(cy?1:-1));
+    }
     @Override
     public int getMaxX() {
         return maxX;
