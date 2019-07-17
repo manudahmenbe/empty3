@@ -13,7 +13,7 @@
 package test3;
 
 import one.empty3.library.core.raytracer.tree.AlgebraicFormulaSyntaxException;
-import one.empty3.library.core.raytracer.tree.AlgebraicTree;
+import one.empty3.library.core.raytracer.tree.AlgebricTree;
 import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
 import org.junit.After;
 import org.junit.Before;
@@ -65,16 +65,16 @@ public class AlgebraicTreeTest {
     }
 
     private boolean testResultVariable(String expr, double expectedResult, Map<String, Double> map, boolean echo) {
-        AlgebraicTree algebraicTree = null;
+        AlgebricTree algebricTree = null;
         try {
-            algebraicTree = new AlgebraicTree(expr);
-            algebraicTree.getParametersValues().putAll(map);
-            algebraicTree.construct();
+            algebricTree = new AlgebricTree(expr);
+            algebricTree.getParametersValues().putAll(map);
+            algebricTree.construct();
             if (echo)
-                System.out.println(algebraicTree);
+                System.out.println(algebricTree);
             try {
                 Object result;
-                result = algebraicTree.eval();
+                result = algebricTree.eval();
                 if (echo)
                     System.out.println("Result : " + result);
                 if (echo)
@@ -92,15 +92,15 @@ public class AlgebraicTreeTest {
     }
 
     protected boolean testResult(String expr, double expectedResult, boolean echo) {
-        AlgebraicTree algebraicTree = null;
+        AlgebricTree algebricTree = null;
         try {
-            algebraicTree = new AlgebraicTree(expr);
-            algebraicTree.construct();
+            algebricTree = new AlgebricTree(expr);
+            algebricTree.construct();
             if (echo)
-                System.out.println(algebraicTree);
+                System.out.println(algebricTree);
             try {
                 Object result;
-                result = algebraicTree.eval();
+                result = algebricTree.eval();
                 if (echo)
                     System.out.println("Result : " + result);
                 if (echo)

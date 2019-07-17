@@ -17,7 +17,7 @@
  */
 package one.empty3.library;
 
-public class Axe {
+public class Axe extends Representable{
 
     private Point3D p1;
     private Point3D p2;
@@ -26,6 +26,8 @@ public class Axe {
         super();
         this.p1 = p1;
         this.p2 = p2;
+        getDeclaredPoints().put("p1", p1);
+        getDeclaredPoints().put("p2", p2);
     }
 
     public Point3D getP1() {

@@ -25,8 +25,6 @@ public class TestThierryJaspart extends TestObjetSub {
 
     public TestThierryJaspart() {
         setMaxFrames(25 * 60 * 5);
-        setResx(1024);
-        setResy(480);
     }
 
 
@@ -38,7 +36,8 @@ public class TestThierryJaspart extends TestObjetSub {
     public void ginit() {
         s.texture(texture);
         scene().add(s);
-        scene().cameraActive().setEye(Point3D.Z.mult(-20));
+        scene().cameraActive().setEye(Point3D.Z.mult(-5));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-5), Point3D.O0));
         try {
             texture = new TextureImg(ECBufferedImage.getFromFile(
                     new File("resources/img/2018-03-31 11.51.58.jpg")));

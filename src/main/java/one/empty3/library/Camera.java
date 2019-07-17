@@ -100,7 +100,7 @@ public class Camera extends CameraBox {
 
             Point3D z = getLookat().moins(getEye()).norme1();
             Point3D x = z.prodVect(verticale/* Y */).norme1();
-            Point3D y = verticale.norme1();
+            Point3D y = verticale;
 
             setMatrix(x, y, z);
         }

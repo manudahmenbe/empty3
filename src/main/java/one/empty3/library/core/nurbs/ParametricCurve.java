@@ -124,6 +124,7 @@ public abstract class ParametricCurve extends Representable {
         this.connected = connected;
     }
 
+
     public static class Globals {
         private double incrU = 0;
 
@@ -196,6 +197,7 @@ public abstract class ParametricCurve extends Representable {
         getDeclaredDoubles().put("incrU/incrU", incrU);
         getDeclaredDoubles().put("startU/startU", startU);
         getDeclaredDoubles().put("endV/endV", endU);
+        getDeclaredBoolean().put("connected/dotted or lines", connected);
     }
 }
 

@@ -4,6 +4,7 @@ package test3;
  * Created by manue on ${date}
  */
 
+import one.empty3.library.Camera;
 import one.empty3.library.Point3D;
 import one.empty3.library.core.raytracer.tree.AlgebraicFormulaSyntaxException;
 import one.empty3.library.core.testing.TestObjetSub;
@@ -27,8 +28,9 @@ public class Oeu extends TestObjetSub{
     PCont<Gravity> point3DPCont = new PCont<Gravity>();
     Move move = new Move(point3DPCont);
     HashMap<String, Double> map;
+    private int pointCount;
 
-   public static void main(String [] args)
+    public static void main(String [] args)
    {
        Oeu oeu = new Oeu();
        new Thread(oeu).start();
@@ -37,24 +39,49 @@ public class Oeu extends TestObjetSub{
 
     {
         map = new HashMap();
+        move.setItereFrame(1);
         scene().add(point3DPCont);
-        for (int i = 0; i < 1000; i++) {
-
-            Gravity gravity = new Gravity(1.0, Point3D.O0);
-            gravity.become(Point3D.random(1.0));
-            point3DPCont.add(gravity);
-                try {
-                    move.initMoveSurface(new String [] {
-                            "x*x+y*y+z*z-R*R",
-                            "x*x+y*y+z*z-R*R",
-                            "x*x+y*y+z*z-R*R"}, map);
-                } catch (AlgebraicFormulaSyntaxException e) {
-                    e.printStackTrace();
-                }
+        try {
+            move.initMoveSurface("x*x+y*y+z*z-R*R", map);
+        } catch (AlgebraicFormulaSyntaxException e) {
+            e.printStackTrace();
         }
+        setPointCount(5);
+        for (int i = 0; i < pointCount; i++) {
+
+            Gravity gravity = new Gravity(Point3D.random(100), 10, Point3D.random(10.0));
+            point3DPCont.add(gravity);
+        }
+        scene().cameraActive(new Camera(Point3D.Z.mult(-10), Point3D.O0, Point3D.Y));
     }
    public void finit() {
-       for (int i = 0; i < 1000; i++)
-           move.computeMoveSurface(point3DPCont.get(i), "R", 0.1, 0.001);
+       for (int i = 0; i < move.getItereFrame(); i++) {
+           move.computeMoveSurface(point3DPCont.get(i));
+       }
+
    }
+
+    public Move getMove() {
+        return move;
+    }
+
+    public void setMove(Move move) {
+        this.move = move;
+    }
+
+    public HashMap<String, Double> getMap() {
+        return map;
+    }
+
+    public void setMap(HashMap<String, Double> map) {
+        this.map = map;
+    }
+
+    public int getPointCount() {
+        return pointCount;
+    }
+
+    public void setPointCount(int pointCount) {
+        this.pointCount = pointCount;
+    }
 }

@@ -409,7 +409,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             b.getPoints().forEach(new Consumer() {
                 @Override
                 public void accept(Object o) {
-                    ime.testDeep((Point3D)o, ((Point3D)o).texture());
+                    ime.testDeep((Point3D)o, ((Point3D)o).texture().getColorAt(0,0));
                 }
             });
         } else if (r instanceof POConteneur) {

@@ -29,7 +29,7 @@ public class MathFunctionTreeNodeType extends FunctionTreeNodeType {
             Method method;
             method = Math.class.getMethod((function), double.class);
             try {
-                return (Double) method.invoke(Math.class, getAlgebraicTree().eval());
+                return (Double) method.invoke(Math.class, getAlgebricTree().eval());
             } catch (TreeNodeEvalException | AlgebraicFormulaSyntaxException e) {
                 e.printStackTrace();
             }

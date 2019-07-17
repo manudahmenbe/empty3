@@ -1,8 +1,10 @@
 package one.empty3.pointset;
 
 import one.empty3.library.Point3D;
+import one.empty3.library.TextureCol;
+import one.empty3.library.core.lighting.Colors;
 import one.empty3.library.core.raytracer.tree.AlgebraicFormulaSyntaxException;
-import one.empty3.library.core.raytracer.tree.AlgebraicTree;
+import one.empty3.library.core.raytracer.tree.AlgebricTree;
 import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
 
 import java.util.HashMap;
@@ -13,10 +15,10 @@ import java.util.function.Consumer;
  */
 public class Move {
 
-
+    private int itereFrame = 10;
     private static final double G = 10;
     protected final PCont<Gravity> container;
-    private AlgebraicTree x[] = new AlgebraicTree[3];
+    private AlgebricTree x;
     private HashMap<Gravity, ComposanteForceSurface> composanteForceSurface;
     private ComposanteForceAttraction composanteForceAttraction;
     private HashMap<String, Double> map;
@@ -55,22 +57,28 @@ public class Move {
             }
         });
     }
-    public void initMoveSurface(String[] formula, HashMap<String, Double> map) throws AlgebraicFormulaSyntaxException {
-        for(int i=0; i<3; i++) {
-            this.x[i] = new AlgebraicTree(formula[i]).construct();
-        }
-        this.map = map;
+
+    public void initMoveSurface(String formula, HashMap<String, Double> map) throws AlgebraicFormulaSyntaxException {
+        x = new AlgebricTree(formula, map).construct();
     }
-    public void computeMoveSurface(Gravity t1, String param, Double value, double dv) {
+
+    public void computeMoveSurface(Gravity t1) {
         t1.clearTemp();
         try {
-            if(!composanteForceSurface.containsKey(t1))
-                    composanteForceSurface.put(t1, new ComposanteForceSurface(x[0],x[1],x[2],map));
-            t1.changeTo(composanteForceSurface.get(t1).diff2(
-                    new Point3D(
-                            t1.getX(),
-                            t1.getY(),
-                            t1.getZ()), param, value, dv));
+            if (!composanteForceSurface.containsKey(t1))
+                composanteForceSurface.put(t1, new ComposanteForceSurface(x, t1.dv));
+
+            int i=0;
+            while(i<itereFrame)
+                composanteForceSurface.get(t1).diff();
+
+            t1.changeTo(
+                    new Point3D(composanteForceSurface.get(t1).map2.get("x"),
+                            composanteForceSurface.get(t1).map2.get("y"),
+                            composanteForceSurface.get(t1).map2.get("z")
+                    )
+            );
+            t1.texture(new TextureCol(Colors.random()));
         } catch (TreeNodeEvalException e) {
             e.printStackTrace();
         } catch (AlgebraicFormulaSyntaxException e) {
@@ -79,12 +87,17 @@ public class Move {
     }
 
 
-
-    public void step(double dt)
-    {
+    public void step(double dt) {
 
     }
 
+    public int getItereFrame() {
+        return itereFrame;
+    }
+
+    public void setItereFrame(int itereFrame) {
+        this.itereFrame = itereFrame;
+    }
 
     public static double getG() {
         return G;

@@ -282,5 +282,6 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
         getDeclaredDoubles().put("start2/start2", start2);
         getDeclaredDoubles().put("end1/end1", end1);
         getDeclaredDoubles().put("end2/end2", end2);
+        getDeclaredDoubles().put("end2/end2", end2);
     }
 }

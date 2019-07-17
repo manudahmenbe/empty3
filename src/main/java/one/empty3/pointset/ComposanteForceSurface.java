@@ -1,8 +1,7 @@
 package one.empty3.pointset;
 
-import one.empty3.library.Point3D;
 import one.empty3.library.core.raytracer.tree.AlgebraicFormulaSyntaxException;
-import one.empty3.library.core.raytracer.tree.AlgebraicTree;
+import one.empty3.library.core.raytracer.tree.AlgebricTree;
 import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
 
 import java.util.HashMap;
@@ -18,77 +17,85 @@ import java.util.HashMap;
 public class ComposanteForceSurface {
 
 
-    private AlgebraicTree z;
-    private AlgebraicTree x;
-    private AlgebraicTree y;
-    private HashMap<String, Double> params;
+    private AlgebricTree x;
+    private HashMap<String, Double> map;
+    public HashMap<String, Double> map2 = new HashMap<>();
+    private int itereAxes;
 
-    public ComposanteForceSurface(AlgebraicTree x, AlgebraicTree y, AlgebraicTree z, HashMap<String, Double> params)
-    {
+    public ComposanteForceSurface(AlgebricTree x, double dv) {
+        setItereAxes(5);
         this.x = x;
-        this.y = y;
-        this.z = z;
-        x.getParametersValues().putAll(params);
-        y.getParametersValues().putAll(params);
-        z.getParametersValues().putAll(params);
-        this.params = params;
-        this.params.putAll(params);
-    }
-    
-    public Point3D evSurface(double xv, double yv, double zv) throws TreeNodeEvalException, AlgebraicFormulaSyntaxException {
-        params.put("x", xv);
-        params.put("y", yv);
-        params.put("z", zv);
-        Point3D point3D = new Point3D(x.eval(), y.eval(), z.eval());
-        return point3D;
-    }
-    public Point3D eqSurface() throws TreeNodeEvalException, AlgebraicFormulaSyntaxException {
-        return new Point3D(x.eval(), y.eval(), z.eval());
-    }
-    public void declareVar(String var, Double value)
-    {
-        x.getParametersValues().put(var, value);
-        y.getParametersValues().put(var, value);
-        z.getParametersValues().put(var, value);
+        declareVar("dv", dv);
+        declareVar("x", 1.0);
+        declareVar("y", 1.0);
+        declareVar("z", 1.0);
+        declareVar("R", 1.0);
     }
 
-    /***
-     *         // RESTE A VOIR LA CHARITE DU DV
-     * @param point3D
-     * @param param
-     * @param value
-     * @param dv
-     * @return
-     * @throws TreeNodeEvalException
-     * @throws AlgebraicFormulaSyntaxException
-     */
-    public Point3D diff2(Point3D point3D, String param, double value, double dv) throws TreeNodeEvalException, AlgebraicFormulaSyntaxException {
-        declareVar(param, value);
-        Point3D v = evSurface(point3D.getX(), point3D.getY(), point3D.getZ());
-        declareVar(param, value+dv);
-        Point3D v20 = evSurface(point3D.getX(), point3D.getY(), point3D.getZ());
-        declareVar(param, value+2*dv);
-        Point3D v21 = evSurface(point3D.getX(), point3D.getY(), point3D.getZ());
-        declareVar(param, value-dv);
-        Point3D v30 = evSurface(point3D.getX(), point3D.getY(), point3D.getZ());
-        declareVar(param, value-2*dv);
-        Point3D v31 = evSurface(point3D.getX(), point3D.getY(), point3D.getZ());
-        declareVar(param, value);
-        //....????
-        double norme2 = v20.moins(v21).norme();
-        double norme3 = v30.moins(v31).norme();
-        if(norme3==norme2)
-            return v;
-        else if(norme2>norme3)
-            return v30;
-        else if(norme2<norme3)
-            return v20;
-        else
-            return null;
-        //return v.plus(v2).plus(v3).mult(1/3.0);
+
+    public Double evSurface() throws TreeNodeEvalException, AlgebraicFormulaSyntaxException {
+        return x.eval();
     }
+
+    public void declareVar(String var, Double value) {
+        x.getParametersValues().put(var, value);
+    }
+    public double diff() throws TreeNodeEvalException, AlgebraicFormulaSyntaxException {
+        double max = Double.MAX_VALUE;
+        double curr = -1;
+        double aCurr = Double.MAX_VALUE;
+        double eval = -1;
+        boolean trouve = false;
+        for (int i = 0; i < itereAxes; i++) {
+            declareVar("x", getVar("x") + (Math.random()-0.5)*getVar("dv"));
+            declareVar("y", getVar("y") + (Math.random()-0.5)*getVar("dv"));
+            declareVar("z", getVar("z") + (Math.random()-0.5)*getVar("dv"));
+            declareVar("R", getVar("R") + (Math.random()-0.5)*getVar("dv"));
+
+            curr = Math.abs(evSurface());
+            if (curr < aCurr) {
+                aCurr = curr;
+                map2.put("x", getVar("x"));
+                map2.put("y", getVar("y"));
+                map2.put("z", getVar("z"));
+                map2.put("R", getVar("R"));
+                map2.put("dv", getVar("dv"));
+                 trouve = true;
+            }
+        }
+        if(trouve) {
+            // TODO Itérer selon un axe linéaire, exponotielle, puissance, log, etc.
+            // TODO Itérer selon l'axe p0+(p1-p0)*dv Réduire l'écart
+            declareVar("x", map2.get("x"));
+            declareVar("y", map2.get("y"));
+            declareVar("z", map2.get("z"));
+            declareVar("R", map2.get("R"));
+            declareVar("dv", map2.get("dv")/2);
+        }
+        else {
+            // TODO Itérer selon un axe linéaire, exponotielle, puissance, log, etc.
+            // TODO Itérer selon tous les axes (random) et itérer aussi selon trouvé
+            // TODO si l'écart est déjà réduit.
+            declareVar("dv", map2.get("dv") * 2);
+        }
+
+        return curr;
+    }
+
+    public double getVar(String var) {
+        return x.getParametersValues().get(var);
+    }
+
 
     public void reset() {
 
+    }
+
+    public int getItereAxes() {
+        return itereAxes;
+    }
+
+    public void setItereAxes(int itereAxes) {
+        this.itereAxes = itereAxes;
     }
 }

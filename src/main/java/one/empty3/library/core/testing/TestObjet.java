@@ -124,6 +124,7 @@ public abstract class TestObjet implements Test, Runnable {
     private Buffer buf;
     private boolean isVBR;
     private AudioFormat audioFormat;
+    private Resolution dimension;
 
     public TestObjet() {
 
@@ -454,6 +455,8 @@ public abstract class TestObjet implements Test, Runnable {
         directory.mkdirs();
 //        new File(directory.getAbsolutePath() + File.separator + "GAUCHE").mkdir();
 //        new File(directory.getAbsolutePath() + File.separator + "DROITE").mkdir();
+
+        setDimension(HD1080);
         initialise = true;
     }
 
@@ -1106,5 +1109,10 @@ public abstract class TestObjet implements Test, Runnable {
             e.printStackTrace();
         }
         throw new ClassNotFoundException("Impossible to initialize class");
+    }
+
+    public void setDimension(Resolution dimension) {
+        this.resx= dimension.x();
+        this.resy= dimension.y();
     }
 }

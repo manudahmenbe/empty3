@@ -21,6 +21,8 @@ import one.empty3.library.core.raytracer.RtMatiere;
 import one.empty3.library.core.raytracer.RtRay;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -38,11 +40,12 @@ public class Representable implements Serializable, Comparable {
     private String id;
     private Painter painter = null;
     private int RENDERING_DEFAULT = 0;
-    protected Render render = Render.getInstance(0,-1);
+    protected Render render = Render.getInstance(0, -1);
 
     public Representable() {
+        texture = new TextureCol(Colors.random());
         declaredTextures.put("CFAST/draw fast texture", CFAST);
-        texture = CFAST;
+        declaredTextures.put("texture/texture", texture);
     }
 
     public static void setPaintingActForClass(ZBuffer z, Scene s, PaintingAct pa) {
@@ -185,9 +188,8 @@ public class Representable implements Serializable, Comparable {
                 "");
     }
 
-    public void become(Representable r){
-        if(this.getClass().equals(r.getClass()))
-        {
+    public void become(Representable r) {
+        if (this.getClass().equals(r.getClass())) {
             set(r);
         }
     }
@@ -213,7 +215,6 @@ public class Representable implements Serializable, Comparable {
     }
 
 
-
     public class RotationInt extends Rotation {
 
         public RotationInt() {
@@ -236,25 +237,68 @@ public class Representable implements Serializable, Comparable {
     protected HashMap<String, Point3D[]> declaredArray1Points = new HashMap<>();
     protected HashMap<String, Point3D[][]> declaredArray2Points = new HashMap<>();
     protected HashMap<String, Representable> declaredRepresentables = new HashMap<>();
-    public HashMap<String, Double> getDeclaredDoubles()
-    {return declaredDoubles;}
-    public HashMap<String, Double[][]> getDeclaredArrays2dDouble()
-    {return declaredMatrix;}
-    public HashMap<String, Double[]> getDeclaredArray1dDouble()
-    {return declaredArrays;}
-    public HashMap<String, Point3D> getDeclaredPoints()
-    {return declaredPoints;}
-    public HashMap<String, ITexture> getDeclaredTextures()
-    {return declaredTextures;}
-    public HashMap<String, Point3D[]> getDeclaredArray1Points(){return declaredArray1Points;}
-    public HashMap<String, Point3D[][]> getDeclaredArray2Points(){return declaredArray2Points;}
-    public HashMap<String, Representable> getDeclaredRepresentables(){return declaredRepresentables;}
+    private HashMap<String, Boolean> declaredBoolean = new HashMap<>();
+
+    public HashMap<String, Double> getDeclaredDoubles() {
+        return declaredDoubles;
+    }
+
+    public HashMap<String, Double[][]> getDeclaredArrays2dDouble() {
+        return declaredMatrix;
+    }
+
+    public HashMap<String, Double[]> getDeclaredArray1dDouble() {
+        return declaredArrays;
+    }
+
+    public HashMap<String, Point3D> getDeclaredPoints() {
+        return declaredPoints;
+    }
+
+    public HashMap<String, ITexture> getDeclaredTextures() {
+        return declaredTextures;
+    }
+
+    public HashMap<String, Point3D[]> getDeclaredArray1Points() {
+        return declaredArray1Points;
+    }
+
+    public HashMap<String, Point3D[][]> getDeclaredArray2Points() {
+        return declaredArray2Points;
+    }
+
+    public HashMap<String, Representable> getDeclaredRepresentables() {
+        return declaredRepresentables;
+    }
+
+    public HashMap<String, Boolean> getDeclaredBoolean() {
+        return declaredBoolean;
+    }
+
     public ITexture getTexture() {
         return texture;
     }
 
     public void setTexture(ITexture texture) {
         this.texture = texture;
+    }
+
+    public Class getPropertyType(String propertyName) throws NoSuchMethodException {
+        Method propertySetter = null;
+        propertySetter = this.getClass().getDeclaredMethod("set" + propertyName.substring(0).toUpperCase() + propertyName.substring(1));
+        return propertySetter.getParameterTypes()[0];
+    }
+
+    public void setProperty(String propertyName, Object value) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Method propertySetter = null;
+        propertySetter = this.getClass().getDeclaredMethod("set" + propertyName.substring(0).toUpperCase() + propertyName.substring(1));
+        propertySetter.invoke(this, value);
+    }
+
+    public Object getProperty(String propertyName) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Method propertySetter = null;
+        propertySetter = this.getClass().getDeclaredMethod("get" + propertyName.substring(0).toUpperCase() + propertyName.substring(1));
+        return propertySetter.invoke(this);
     }
 }
 

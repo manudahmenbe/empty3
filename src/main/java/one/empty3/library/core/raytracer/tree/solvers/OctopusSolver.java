@@ -12,7 +12,7 @@
 
 package one.empty3.library.core.raytracer.tree.solvers;
 
-import one.empty3.library.core.raytracer.tree.AlgebraicTree;
+import one.empty3.library.core.raytracer.tree.AlgebricTree;
 import one.empty3.library.core.raytracer.tree.Constraint;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * Created by manuel on 30-12-16.
  */
 public class OctopusSolver extends Solver {
-    public OctopusSolver(ArrayList<AlgebraicTree> equations, ArrayList<Constraint> solution) {
+    public OctopusSolver(ArrayList<AlgebricTree> equations, ArrayList<Constraint> solution) {
         super(equations, solution);
     }
 

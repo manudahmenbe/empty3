@@ -22,7 +22,8 @@ public class Circle extends ParametricCurve {
         this.radius = radius;
         calculerRepere1();
 
-
+        getDeclaredRepresentables().put("axis/axe du cercle (perpendiculaire au plan)", axis);
+        getDeclaredDoubles().put("radius/rayon", radius);
     }
 
     /*

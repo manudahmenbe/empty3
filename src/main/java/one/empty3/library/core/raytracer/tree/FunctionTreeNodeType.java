@@ -16,17 +16,17 @@ package one.empty3.library.core.raytracer.tree;
  * Created by manuel on 16-12-16.
  */
 public class FunctionTreeNodeType extends TreeNodeType {
-    private AlgebraicTree algebraicTree;
+    private AlgebricTree algebricTree;
     private double exp1;
     private String fName;
     private double[] objects;
 
-    public AlgebraicTree getAlgebraicTree() {
-        return algebraicTree;
+    public AlgebricTree getAlgebricTree() {
+        return algebricTree;
     }
 
-    public void setAlgebraicTree(AlgebraicTree algebraicTree) {
-        this.algebraicTree = algebraicTree;
+    public void setAlgebricTree(AlgebricTree algebricTree) {
+        this.algebricTree = algebricTree;
     }
 
     @Override

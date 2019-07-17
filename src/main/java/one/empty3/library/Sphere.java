@@ -1,8 +1,5 @@
 package one.empty3.library;
 
-import one.empty3.library.*;
-import one.empty3.library.*;
-import one.empty3.library.*;
 import one.empty3.library.core.nurbs.ParametricSurface;
 
 
@@ -15,6 +12,9 @@ public class Sphere extends ParametricSurface {
         super();
         this.axe = new Axe(Point3D.Y, Point3D.Y.mult(-1));
         circle = new Circle(axe, 10);
+
+        getDeclaredRepresentables().put("axe/axe du cercle sustantatif", axe);
+        getDeclaredRepresentables().put("circle/circle", circle);
     }
     public Sphere(Axe axis, double radius) {
         this();

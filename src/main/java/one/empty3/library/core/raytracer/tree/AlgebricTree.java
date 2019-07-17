@@ -20,23 +20,23 @@ import java.util.Map;
 /**
  * Created by Manuel Dahmen on 15-12-16.
  */
-public class AlgebraicTree extends Tree {
+public class AlgebricTree extends Tree {
 
     private String formula ="0.0";
     Map<String, Double> parametersValues = new HashMap<>();
     private Tree t;
     private TreeNode root;
 
-    public AlgebraicTree(String formula) throws AlgebraicFormulaSyntaxException {
+    public AlgebricTree(String formula) throws AlgebraicFormulaSyntaxException {
         this.formula = formula;
     }
 
-    public AlgebraicTree(String fParamString, Map<String, Double> parametersValues) {
+    public AlgebricTree(String fParamString, Map<String, Double> parametersValues) {
         this.formula = formula;
         this.parametersValues = parametersValues;
     }
 
-    public AlgebraicTree construct() throws AlgebraicFormulaSyntaxException {
+    public AlgebricTree construct() throws AlgebraicFormulaSyntaxException {
         root = new TreeNode(formula);
         add(root, formula);
         return this;
@@ -391,10 +391,10 @@ public class AlgebraicTree extends Tree {
 
                 MathFunctionTreeNodeType mathFunctionTreeNodeType = new MathFunctionTreeNodeType();
 
-                AlgebraicTree algebraicTree = new AlgebraicTree(fParamString, parametersValues);
-                algebraicTree.getParametersValues().putAll(parametersValues);
-                algebraicTree.construct();
-                mathFunctionTreeNodeType.setAlgebraicTree(algebraicTree);
+                AlgebricTree algebricTree = new AlgebricTree(fParamString, parametersValues);
+                algebricTree.getParametersValues().putAll(parametersValues);
+                algebricTree.construct();
+                mathFunctionTreeNodeType.setAlgebricTree(algebricTree);
 
                 TreeNode t2 = new TreeNode(t, new Object[]{fName}, mathFunctionTreeNodeType);
 
@@ -466,7 +466,7 @@ public class AlgebraicTree extends Tree {
 
 
     public Double eval() throws TreeNodeEvalException, AlgebraicFormulaSyntaxException {
-        System.out.println(parametersValues.size());
+        //System.out.println(parametersValues.size());
         return root.eval();
     }
 

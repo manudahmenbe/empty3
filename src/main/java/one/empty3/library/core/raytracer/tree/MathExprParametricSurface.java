@@ -25,14 +25,14 @@ public class MathExprParametricSurface extends ParametricSurface {
      * a, b: parameters
      */
     private final String[] exprStringXyz;
-    AlgebraicTree[] algebraicTree;
+    AlgebricTree[] algebricTree;
 
     public MathExprParametricSurface(String[] exprStringXyz) {
         this.exprStringXyz = exprStringXyz;
-        algebraicTree = new AlgebraicTree[exprStringXyz.length];
+        algebricTree = new AlgebricTree[exprStringXyz.length];
         for (int i = 0; i < exprStringXyz.length; i++) {
             try {
-                algebraicTree[i] = new AlgebraicTree(exprStringXyz[i]);
+                algebricTree[i] = new AlgebricTree(exprStringXyz[i]);
             } catch (AlgebraicFormulaSyntaxException e) {
                 e.printStackTrace();
             }
@@ -46,10 +46,10 @@ public class MathExprParametricSurface extends ParametricSurface {
         HashMap<String, Double> stringDoubleHashMap = new HashMap<>();
         stringDoubleHashMap.put("a", u);
         stringDoubleHashMap.put("b", v);
-        for (int i = 0; i < algebraicTree.length; i++) {
-            algebraicTree[i].getParametersValues().putAll(stringDoubleHashMap);
+        for (int i = 0; i < algebricTree.length; i++) {
+            algebricTree[i].getParametersValues().putAll(stringDoubleHashMap);
             try {
-                p.set(i, (Double) algebraicTree[i].eval());
+                p.set(i, (Double) algebricTree[i].eval());
             } catch (TreeNodeEvalException e) {
                 e.printStackTrace();
             } catch (AlgebraicFormulaSyntaxException e) {

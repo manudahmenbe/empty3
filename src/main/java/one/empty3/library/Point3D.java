@@ -134,6 +134,7 @@ public class Point3D extends Representable implements IMovable {
         x[0] = p0.getX();
         x[1] = p0.getY();
         x[2] = p0.getZ();
+        texture(p0.texture());
     }
 
     public static Point3D n(double a, double b, double c) {
@@ -447,6 +448,7 @@ public class Point3D extends Representable implements IMovable {
     public Point3D changeTo(Point3D dst) {
         for (int i = 0; i < x.length; i++)
             this.x[i] = dst.x[i];
+        texture(dst.texture());
         return this;
     }
 
