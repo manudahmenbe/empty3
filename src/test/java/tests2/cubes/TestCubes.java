@@ -1,7 +1,7 @@
 /*
  * 2013 Manuel Dahmen
  */
-package tests.cubes;
+package tests2.cubes;
 
 import one.empty3.library.*;import one.empty3.library.core.testing.TestObjetSub;
 

@@ -6,9 +6,10 @@
  * <p>
  * *
  */
-package tests.ballecouleur;
+package tests2.ballecouleur;
 
-import one.empty3.library.*;import one.empty3.library.core.testing.TestObjetSub;
+import one.empty3.library.*;
+import one.empty3.library.core.testing.TestObjetSub;
 
 import java.awt.*;
 import java.util.HashMap;

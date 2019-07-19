@@ -2,7 +2,7 @@
  * ect 27-08-17 Copyright.
  */
 
-package tests.modeleStl;
+package tests2.modeleStl;
 
 import one.empty3.library.P;
 import one.empty3.library.Scene;

@@ -5,4 +5,4 @@
  * @author Se7en
  *
  */
-package tests.horloge;
+package tests2.horloge;

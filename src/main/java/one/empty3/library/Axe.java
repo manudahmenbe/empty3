@@ -26,8 +26,8 @@ public class Axe extends Representable{
         super();
         this.p1 = p1;
         this.p2 = p2;
-        getDeclaredPoints().put("p1", p1);
-        getDeclaredPoints().put("p2", p2);
+        getDeclaredPoints().put("p1/p1", p1);
+        getDeclaredPoints().put("p2/p1", p2);
     }
 
     public Point3D getP1() {

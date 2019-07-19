@@ -15,5 +15,5 @@
  *  objet.
  *
  */
-package tests.formats3d.shape3d;
+package tests2.formats3d.shape3d;
 

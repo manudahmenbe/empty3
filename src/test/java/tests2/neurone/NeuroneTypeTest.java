@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package tests.neurone;
+package tests2.neurone;
 
 /**
  * @author Se7en

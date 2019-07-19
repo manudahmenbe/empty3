@@ -5,4 +5,4 @@
  * @author Se7en
  *
  */
-package tests.tensionsuperf;
+package tests2.tensionsuperf;

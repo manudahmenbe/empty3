@@ -7,7 +7,7 @@
  ***/
 
 
-package tests.cadeau;
+package tests2.cadeau;
 
 import one.empty3.library.Camera;
 import one.empty3.library.Cube;

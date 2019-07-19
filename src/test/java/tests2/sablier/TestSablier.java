@@ -1,4 +1,4 @@
-package tests.sablier;
+package tests2.sablier;
 
 import one.empty3.library.Camera;
 import one.empty3.library.Point2D;

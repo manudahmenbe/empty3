@@ -7,7 +7,7 @@
  ***/
 
 
-package tests.beziers;
+package tests2.beziers;
 
 import one.empty3.library.*;
 import one.empty3.library.core.nurbs.SurfaceParametricPolygonalBezier;

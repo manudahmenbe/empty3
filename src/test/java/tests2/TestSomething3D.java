@@ -1,4 +1,4 @@
-package tests;
+package tests2;
 
 import one.empty3.library.Representable;
 import one.empty3.library.core.testing.TestObjet;

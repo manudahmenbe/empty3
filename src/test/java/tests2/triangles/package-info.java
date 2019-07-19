@@ -5,4 +5,4 @@
  * @author Manuel
  *
  */
-package tests.triangles;
+package tests2.triangles;

@@ -1,4 +1,4 @@
-package tests;
+package tests2;
 
 import one.empty3.library.Camera;
 import one.empty3.library.Point3D;

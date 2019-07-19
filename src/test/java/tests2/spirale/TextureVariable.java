@@ -7,7 +7,7 @@
  ***/
 
 
-package tests.spirale;
+package tests2.spirale;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>

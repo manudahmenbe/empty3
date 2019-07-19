@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tests.library;
+package tests2.library;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>

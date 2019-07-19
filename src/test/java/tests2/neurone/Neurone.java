@@ -1,4 +1,4 @@
-package tests.neurone;
+package tests2.neurone;
 
 /**
  * @author Se7en

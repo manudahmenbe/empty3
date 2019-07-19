@@ -1,4 +1,4 @@
-package tests.trihole;
+package tests2.trihole;
 
 import one.empty3.library.Camera;
 import one.empty3.library.LumierePonctuelle;

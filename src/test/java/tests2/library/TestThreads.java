@@ -7,7 +7,7 @@
  ***/
 
 
-package tests.library;
+package tests2.library;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>

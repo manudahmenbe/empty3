@@ -1,4 +1,4 @@
-package tests.trees;
+package tests2.trees;
 
 public class Tree {
 }

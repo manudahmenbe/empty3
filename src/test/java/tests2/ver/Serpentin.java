@@ -1,4 +1,4 @@
-package tests.ver;
+package tests2.ver;
 
 import one.empty3.library.*;
 import one.empty3.library.core.testing.TestObjetSub;

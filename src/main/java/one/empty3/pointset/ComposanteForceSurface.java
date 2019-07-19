@@ -1,4 +1,23 @@
 package one.empty3.pointset;
+/***
+
+ Empty3
+ Copyright (C) 2010-2019  Manuel DAHMEN
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
 
 import one.empty3.library.core.raytracer.tree.AlgebraicFormulaSyntaxException;
 import one.empty3.library.core.raytracer.tree.AlgebricTree;
@@ -23,7 +42,7 @@ public class ComposanteForceSurface {
     private int itereAxes;
 
     public ComposanteForceSurface(AlgebricTree x, double dv) {
-        setItereAxes(5);
+        setItereAxes(1);
         this.x = x;
         declareVar("dv", dv);
         declareVar("x", 1.0);
@@ -71,12 +90,14 @@ public class ComposanteForceSurface {
             declareVar("z", map2.get("z"));
             declareVar("R", map2.get("R"));
             declareVar("dv", map2.get("dv")/2);
+            map2.put("dv", getVar("dv"));
         }
         else {
             // TODO Itérer selon un axe linéaire, exponotielle, puissance, log, etc.
             // TODO Itérer selon tous les axes (random) et itérer aussi selon trouvé
             // TODO si l'écart est déjà réduit.
             declareVar("dv", map2.get("dv") * 2);
+            map2.put("dv", getVar("dv"));
         }
 
         return curr;

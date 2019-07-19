@@ -7,7 +7,7 @@
  ***/
 
 
-package tests.cadeau;
+package tests2.cadeau;
 
 import one.empty3.library.Cube;
 import one.empty3.library.Point3D;

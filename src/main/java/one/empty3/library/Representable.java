@@ -285,19 +285,19 @@ public class Representable implements Serializable, Comparable {
 
     public Class getPropertyType(String propertyName) throws NoSuchMethodException {
         Method propertySetter = null;
-        propertySetter = this.getClass().getDeclaredMethod("set" + propertyName.substring(0).toUpperCase() + propertyName.substring(1));
+        propertySetter = this.getClass().getDeclaredMethod("set" + (""+propertyName.charAt(0)).toUpperCase() + propertyName.substring(1));
         return propertySetter.getParameterTypes()[0];
     }
 
     public void setProperty(String propertyName, Object value) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
-        propertySetter = this.getClass().getDeclaredMethod("set" + propertyName.substring(0).toUpperCase() + propertyName.substring(1));
+        propertySetter = this.getClass().getDeclaredMethod("set" + (""+propertyName.charAt(0)).toUpperCase() + propertyName.substring(1));
         propertySetter.invoke(this, value);
     }
 
     public Object getProperty(String propertyName) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
-        propertySetter = this.getClass().getDeclaredMethod("get" + propertyName.substring(0).toUpperCase() + propertyName.substring(1));
+        propertySetter = this.getClass().getDeclaredMethod("get" + (""+propertyName.charAt(0)).toUpperCase() + propertyName.substring(1));
         return propertySetter.invoke(this);
     }
 }

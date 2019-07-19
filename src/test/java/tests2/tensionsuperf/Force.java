@@ -1,4 +1,4 @@
-package tests.tensionsuperf;
+package tests2.tensionsuperf;
 
 public class Force {
 

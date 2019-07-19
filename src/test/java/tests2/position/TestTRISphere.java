@@ -1,4 +1,4 @@
-package tests.position;
+package tests2.position;
 
 import one.empty3.library.Barycentre;
 import one.empty3.library.Point3D;
