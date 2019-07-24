@@ -59,4 +59,10 @@ public class PolyLine extends ParametricCurve {
         sb.append("\r\n)\r\n");
         return sb.toString();
     }
+
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredArray1Points().put("points/Points de la ligne brisée", points);
+    }
 }

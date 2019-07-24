@@ -143,6 +143,7 @@ public class Circle extends ParametricCurve {
 
     @Override
     public void declareProperties() {
+        calculerRepere1();
         super.declareProperties();
         getDeclaredRepresentables().put("axis/axe du cercle (perpendiculaire au plan)", axis);
         getDeclaredDoubles().put("radius/rayon", radius);
