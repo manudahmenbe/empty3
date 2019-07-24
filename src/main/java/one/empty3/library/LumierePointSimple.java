@@ -17,7 +17,7 @@ import java.awt.*;
 /**
  * @author Atelier
  */
-public class LumierePointSimple implements LumierePoint {
+public class LumierePointSimple extends LumierePoint {
 
     public static final Lumiere PARDEFAUT = new LumierePointSimple(Color.WHITE,
             Point3D.O0, 2.0);

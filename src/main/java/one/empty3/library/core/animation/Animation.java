@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class Animation {
+public class Animation extends Representable{
     protected List<Point3D> points = new ArrayList<>();
     protected List<AnimationTime> time = new ArrayList<>();
 

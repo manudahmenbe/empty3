@@ -21,6 +21,7 @@ package test3;
 
 import one.empty3.library.Camera;
 import one.empty3.library.Point3D;
+import one.empty3.library.Sphere;
 import one.empty3.library.core.raytracer.tree.AlgebraicFormulaSyntaxException;
 import one.empty3.library.core.testing.TestObjetSub;
 import one.empty3.pointset.Gravity;
@@ -61,10 +62,11 @@ public class Oeu extends TestObjetSub{
         } catch (AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
         }
-        setPointCount(10000);
+        setPointCount(10);
         for (int i = 0; i < pointCount; i++) {
 
             Gravity gravity = new Gravity(Point3D.random(100), 10, Point3D.random(10.0));
+            scene().add(new Sphere(gravity, 2));
             point3DPCont.add(gravity);
         }
         scene().cameraActive(new Camera(Point3D.Z.mult(-10), Point3D.O0, Point3D.Y));

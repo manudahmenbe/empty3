@@ -25,6 +25,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Representable implements Serializable, Comparable {
     public static final ITexture DEFAULT_TEXTURE = new TextureCol(Colors.random());
@@ -238,7 +239,11 @@ public class Representable implements Serializable, Comparable {
     protected HashMap<String, Point3D[][]> declaredArray2Points = new HashMap<>();
     protected HashMap<String, Representable> declaredRepresentables = new HashMap<>();
     private HashMap<String, Boolean> declaredBoolean = new HashMap<>();
+    private HashMap<String,List> declaredLists = new HashMap<>();
 
+    public HashMap<String, List> getDeclaredLists() {
+        return declaredLists;
+    }
     public HashMap<String, Double> getDeclaredDoubles() {
         return declaredDoubles;
     }
@@ -299,6 +304,16 @@ public class Representable implements Serializable, Comparable {
         Method propertySetter = null;
         propertySetter = this.getClass().getDeclaredMethod("get" + (""+propertyName.charAt(0)).toUpperCase() + propertyName.substring(1));
         return propertySetter.invoke(this);
+    }
+
+    public String toString()
+    {
+        return "Representable()";
+    }
+
+    public void declareProperties()
+    {
+
     }
 }
 

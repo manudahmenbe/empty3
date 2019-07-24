@@ -30,12 +30,12 @@ public class Point3D extends Representable implements IMovable {
     public Point3D()
     {
         super();
-        getDeclaredTextures().put("texture/Color of Point", texture);
         x = new Double[3];
         x[0] = 0d;
         x[1] = 0d;
         x[2] = 0d;
         getDeclaredArray1dDouble().put("x/cordinates", x);
+        getDeclaredTextures().put("texture/Color of Point", texture);
     }
 
     /**
@@ -67,7 +67,7 @@ public class Point3D extends Representable implements IMovable {
      * *
      * Coordonnées (x,y,z) du point
      */
-    public final Double[] x;
+    public Double[] x;
     /**
      * *
      * Pour le tracé de surface normale au point
@@ -376,7 +376,7 @@ public class Point3D extends Representable implements IMovable {
 
     @Override
     public String toString() {
-        return "( " + x[0] + " , " + x[1] + " , " + x[2] + " ) ";
+        return "( " + (double)(x[0]) + " , " + (double)(x[1]) + " , " + (double)(x[2]) + " ) ";
     }
 
     private Point3D norme(double d) {

@@ -29,13 +29,26 @@ import one.empty3.library.*;
  */
 public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolynomiale {
 
+    public CourbeParametriquePolynomialeBezier()
+    {
+
+        super();
+        declareProperties();
+    }
     public CourbeParametriquePolynomialeBezier(Point3D[] coefficients) {
-        super(coefficients);
+        this.coefficients = coefficients;
+        power = coefficients.length;
+        declareProperties();
     }
 
     public double B(int i, int n, double t) {
         return factorielle(n) / factorielle(i) / factorielle(n - i)
                 * Math.pow(t, i) * Math.pow(1 - t, n - i);
+    }
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+
     }
 
     @Override

@@ -25,11 +25,10 @@ import java.util.List;
 
 public class Scene extends Representable implements Serializable {
 
-    public static final String VERSION = "36";
+    public static final String VERSION = "2019.1";
     /**
      *
      */
-    private static final long serialVersionUID = 704663993754304044L;
     public String author;
     public String date;
     public String description;
@@ -51,6 +50,7 @@ public class Scene extends Representable implements Serializable {
     private Representable dernierAjout;
 
     public Scene() {
+        super();
     }
 
     public boolean add(Representable add) {
@@ -330,5 +330,11 @@ public class Scene extends Representable implements Serializable {
         return moves;
     }
 
-
+    @Override
+    public void declareProperties() {
+        getDeclaredLists().put("objets/Objets à peindre",objets);
+        getDeclaredLists().put("animations/Animation (pas implémenté maintenant jamais",animations);
+    getDeclaredLists().put("cameras/Caméras de la scène. cameraActive caméra en cours",cameras);
+        getDeclaredLists().put("lumieres/Lumières additionnelles",lumieres);
+    }
 }

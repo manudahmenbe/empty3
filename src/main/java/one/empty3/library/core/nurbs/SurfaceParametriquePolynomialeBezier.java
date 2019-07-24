@@ -29,16 +29,36 @@ import one.empty3.library.*;
  */
 public class SurfaceParametriquePolynomialeBezier extends ParametricSurface implements SurfaceElem{
 
-    protected final Point3D[][] coefficients;
+    protected Point3D[][] coefficients;
     protected int power1, power2;
 
-    public SurfaceParametriquePolynomialeBezier(Point3D[][] coefficients) {
+    public SurfaceParametriquePolynomialeBezier(Point3D[][] coefficients)
+    {
+        this();
         this.coefficients = coefficients;
         power1 = coefficients.length;
         power2 = coefficients[0].length;
-        getDeclaredArray2Points().put("coefficients", coefficients);
-        getDeclaredDoubles().put("power1", (double) power1);
-        getDeclaredDoubles().put("power1", (double) power2);
+        getDeclaredArray2Points().put("coefficients/coefficients du polygone de Bezier", coefficients);
+        getDeclaredDoubles().put("power1/puissance par defaut #dim1", (double) power1);
+        getDeclaredDoubles().put("power2/puissance par defaut #dim1", (double) power2);
+    }
+    public SurfaceParametriquePolynomialeBezier()
+    {
+        this.coefficients = new Point3D[][]
+                {
+
+                        {Point3D.P.n(2., -2, 0), Point3D.P.n(2, -1, 0), Point3D.P.n(2, 0, 0), Point3D.P.n(2, 1, 0), Point3D.P.n(2, 2, 0)},
+                        {Point3D.P.n(1, -2, 0), Point3D.P.n(1, -1, 0), Point3D.P.n(1, 0, 0), Point3D.P.n(1, 1, 0), Point3D.P.n(1, 2, 0)},
+                        {Point3D.P.n(0, -2, 0), Point3D.P.n(0, -1, 0), Point3D.P.n(0, 0, 0), Point3D.P.n(0, 1, 0), Point3D.P.n(0, 2, 0)},
+                        {Point3D.P.n(-1, -2, 0), Point3D.P.n(-1, -1, 0), Point3D.P.n(-1, 0, 0), Point3D.P.n(-1, 1, 0), Point3D.P.n(-1, 2, 0)},
+                        {Point3D.P.n(-2, -2, 0), Point3D.P.n(-2, -1, 0), Point3D.P.n(-2, 0, 0), Point3D.P.n(-2, 1, 0), Point3D.P.n(-2, 2, 0)}
+
+                };
+        power1 = coefficients.length;
+        power2 = coefficients[0].length;
+        getDeclaredArray2Points().put("coefficients/coefficients du polygone de Bezier", coefficients);
+        getDeclaredDoubles().put("power1/puissance par defaut #dim1", (double) power1);
+        getDeclaredDoubles().put("power2/puissance par defaut #dim1", (double) power2);
     }
 
     public double B(int i, int n, double t) {

@@ -32,16 +32,20 @@ public class Polygon extends Representable implements SurfaceElem {
 
     public Polygon() {
         super();
-        getDeclaredArray1Points().put("points", points);
+        points = new Point3D[4];
+        for (Point3D p : points) {
+            p = new Point3D();
+        }
+        getDeclaredArray1Points().put("points/point 0 à N du Polygone", points);
     }
 
     public Polygon(Color c) {
         this();
-        texture(new TextureCol(c));
     }
 
     public Polygon(ITexture c) {
-        this();texture(c);
+        this();
+        texture(c);
     }
 
     public Polygon(Point3D[] list, Color c) {
@@ -55,22 +59,21 @@ public class Polygon extends Representable implements SurfaceElem {
     }
 
     public void add(Point3D point3D) {
-        int newLength ;
-        if(points==null)
-            points = new Point3D[] {point3D};
-        else{
+        int newLength;
+        if (points == null)
+            points = new Point3D[]{point3D};
+        else {
             newLength = points.length + 1;
             Point3D[] tmp = points;
             points = new Point3D[newLength];
             for (int i = 0; i < tmp.length; i++)
                 points[i] = tmp[i];
-            points[newLength-1] = point3D;
+            points[newLength - 1] = point3D;
         }
     }
 
 
-
-    public Point3D [] getPoints() {
+    public Point3D[] getPoints() {
         return points;
     }
 
@@ -82,10 +85,10 @@ public class Polygon extends Representable implements SurfaceElem {
     @Override
     public String toString() {
         String t = "poly (\n\t(";
-        for(Point3D p : points) {
-                t += "\n\t\t" + p.toString();
+        for (Point3D p : points) {
+            t += "\n\t\t" + (p==null?"null":p.toString());
         }
-        t += "\n\t)\n\t" + texture.toString() + "\n)\n\n";
+        t += "\n\t)\n\t" + (texture == null ? "" : texture.toString()) + "\n)\n\n";
         return t;
     }
 
@@ -108,9 +111,9 @@ public class Polygon extends Representable implements SurfaceElem {
     public Point3D getIsocentre() {
         Point3D p = Point3D.O0;
 
-        for(Point3D p0 : points) {
-                p = p.plus(p0);
-            }
+        for (Point3D p0 : points) {
+            p = p.plus(p0);
+        }
         return p.mult(1. / points.length);
     }
 }

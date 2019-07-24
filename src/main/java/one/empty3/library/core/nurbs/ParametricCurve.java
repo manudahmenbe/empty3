@@ -27,8 +27,9 @@ import one.empty3.library.ZBuffer;
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public abstract class ParametricCurve extends Representable {
+public class ParametricCurve extends Representable {
     private static ParametricCurve.Globals globals;
+
 
     static {
         if(globals==null)
@@ -38,6 +39,10 @@ public abstract class ParametricCurve extends Representable {
             ParametricCurve.setGlobals(globals1);
             globals1.setIncrU(0.0001);
         }
+    }
+    public ParametricCurve()
+    {
+        super();
     }
 
     protected double startU = 0;
@@ -59,7 +64,10 @@ public abstract class ParametricCurve extends Representable {
         this.parameters = parameters;
     }
 
-    public abstract Point3D calculerPoint3D(double t);
+    public Point3D calculerPoint3D(double t)
+    {
+        throw new UnsupportedOperationException("To implements. Subclasses");
+    }
 
     public Point3D calculerVitesse3D(double t)
     {

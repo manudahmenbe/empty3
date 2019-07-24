@@ -15,7 +15,7 @@ package one.empty3.library;
 /**
  * @author Atelier
  */
-public interface Lumiere {
+public abstract class Lumiere  extends Representable{
 
-    public int getCouleur(int base, Point3D p, Point3D n);
+    public abstract int getCouleur(int base, Point3D p, Point3D n);
 }

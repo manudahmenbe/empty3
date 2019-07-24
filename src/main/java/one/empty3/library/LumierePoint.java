@@ -3,6 +3,6 @@ package one.empty3.library;
 /**
  * Created by manue on 30-05-19.
  */
-public interface LumierePoint extends Lumiere
+public abstract class LumierePoint extends Lumiere
 {
 }

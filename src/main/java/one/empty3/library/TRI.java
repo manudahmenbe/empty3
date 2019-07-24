@@ -33,7 +33,7 @@ public class TRI extends Representable implements IMovable, IScalable {
         sommet[0] = Point3D.O0;
         sommet[1] = Point3D.O0;
         sommet[2] = Point3D.O0;
-        getDeclaredArray1Points().put("sommet",sommet);
+        getDeclaredArray1Points().put("sommet/points sommets du triangle",sommet);
     }
 
     public TRI(Point3D coordPoint3D, Point3D coordPoint3D0, Point3D coordPoint3D1) {
@@ -42,6 +42,7 @@ public class TRI extends Representable implements IMovable, IScalable {
 
     public TRI(Point3D point3d, Point3D point3d2, Point3D point3d3,
                Color red) {
+        this();
         sommet = new Point3D[3];
         sommet[0] = point3d;
         sommet[1] = point3d2;
@@ -51,6 +52,7 @@ public class TRI extends Representable implements IMovable, IScalable {
 
     public TRI(Point3D point3d, Point3D point3d2, Point3D point3d3,
                ITexture red) {
+        this();
         sommet = new Point3D[3];
         sommet[0] = point3d;
         sommet[1] = point3d2;
