@@ -56,7 +56,7 @@ public class TestAnneau extends TestObjet {
 
         courbeParametriquePolynomialeBezier.texture(new TextureCol(Color.BLUE));
         courbeParametriquePolynomialeBezier.getParameters().setIncrU(0.0001);
-        Camera camera = new Camera(Point3D.O0, Point3D.Z.mult(2));
+        Camera camera = new Camera(Point3D.O0, Point3D.Z.mult(2d));
         camera.calculerMatrice(Point3D.Y);
         scene().cameraActive(camera);
     }

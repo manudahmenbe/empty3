@@ -55,11 +55,11 @@ public class RtMatiere {/*! \class CMaterial
         this(name, specular, diffuse, ambient, selfillum, 0, 0, 0, 0, true);
     }
 
-    public RtMatiere(String name, RtColor specular, RtColor diffuse, RtColor ambient, RtColor selfillum, float transmittivity, float reflectivity) {
+    public RtMatiere(String name, RtColor specular, RtColor diffuse, RtColor ambient, RtColor selfillum, double transmittivity, double reflectivity) {
         this(name, specular, diffuse, ambient, selfillum, transmittivity, reflectivity, 0, 0, true);
     }
 
-    public RtMatiere(String name, RtColor specular, RtColor diffuse, RtColor ambient, RtColor selfillum, float transmittivity, float reflectivity, float shininess, float shinestrength, boolean permanent) {
+    public RtMatiere(String name, RtColor specular, RtColor diffuse, RtColor ambient, RtColor selfillum, double transmittivity, double reflectivity, double shininess, double shinestrength, boolean permanent) {
         mName = name;
         mSpecularColor = specular;
         mDiffuseColor = diffuse;

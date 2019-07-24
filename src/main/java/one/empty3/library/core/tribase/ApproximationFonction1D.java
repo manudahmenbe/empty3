@@ -46,7 +46,7 @@ public class ApproximationFonction1D implements Courbe {
     }
 
     public void add(int type, double x, double y) {
-        points.add(new Point3D(x, y, 0));
+        points.add(new Point3D(x, y, 0d));
         if (type == TYPE_DROITE) {
             if (points.size() == 2) {
                 LineSegment sd = new LineSegment(points.get(0), points.get(1));

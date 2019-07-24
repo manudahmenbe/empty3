@@ -18,8 +18,8 @@ import java.io.File;
  */
 public class TestDossier extends TestObjetSub {
 
-    private int[][] coordCube = new int[][]{{-1, -1, -1, 1}, {-1, 1, 1, 1}, {1, 1, 1, -1}, {1, -1, -1, -1}};
-    private int[][] coordCube2 = new int[][]{{-1, -1, -1, 1}, {-1, 1, 1, 1}, {1, 1, 1, -1}, {1, -1, -1, -1}};
+    private Double[][] coordCube = new Double[][]{{-1d, -1d, -1d, 1d}, {-1d, 1d, 1d, 1d}, {1d, 1d, 1d, -1d}, {1d, -1d, -1d, -1d}};
+    private Double[][] coordCube2 = new Double[][]{{-1d, -1d, -1d, 1d}, {-1d, 1d, 1d, 1d}, {1d, 1d, 1d, -1d}, {1d, -1d, -1d, -1d}};
     private Dossier dos = new Dossier();
 
     public static void main(String[] args) {
@@ -63,11 +63,11 @@ public class TestDossier extends TestObjetSub {
             plan3D.texture(new TextureImg(dos.getImages().get(i)));
 
             plan3D.pointOrigine(
-                    Point3D.O0.plus(Point3D.Z.mult(i / 4)
+                    Point3D.O0.plus(Point3D.Z.mult(i / 4d)
                             .plus(Point3D.X.mult(coordCube[(i % 4)][0]))
                             .plus(Point3D.Y.mult(coordCube[(i % 4)][1]))));
             plan3D.pointXExtremite(
-                    Point3D.O0.plus(Point3D.Z.mult(i / 4)
+                    Point3D.O0.plus(Point3D.Z.mult(i / 4d)
                             .plus(Point3D.X.mult(coordCube[(i % 4)][2]))
                             .plus(Point3D.Y.mult(coordCube[(i % 4)][3]))));
 
@@ -90,7 +90,7 @@ public class TestDossier extends TestObjetSub {
         scene().cameraActive(new Camera(
                 //Deplace.deplace(1, getMaxFrames(), Point3D.Z.mult(-30), Point3D.Z.mult(30), frame, getMaxFrames()),
                 Point3D.O0,
-                Point3D.Z.mult(20)
+                Point3D.Z.mult(20d)
         ));
     }
 

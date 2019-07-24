@@ -27,7 +27,7 @@ public class CollineModele1 extends Representable implements TRIGenerable {
 
     public CollineModele1(int numTRIS) {
 
-        Point3D p0 = new Point3D(0, 0, 0);
+        Point3D p0 = new Point3D(0d, 0d, 0d);
         Color c0 = new Color(128, 0, 255);
 
         for (int i = 0; i < numTRIS; i++) {

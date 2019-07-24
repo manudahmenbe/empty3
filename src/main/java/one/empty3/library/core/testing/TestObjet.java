@@ -417,7 +417,7 @@ public abstract class TestObjet implements Test, Runnable {
         if (initialise) {
             return;
         }
-        c = new Camera(new Point3D(0, 0, -10), Point3D.O0);
+        c = new Camera(new Point3D(0d, 0d, -10d), Point3D.O0);
 
         File dir1 = null;
 

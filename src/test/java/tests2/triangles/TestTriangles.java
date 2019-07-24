@@ -39,7 +39,7 @@ public class TestTriangles extends TestObjetSub {
 
         scene().add(si);
 
-        scene().cameraActive(new Camera(new Point3D(0, 0, 2), new Point3D(0, 0, 0)));
+        scene().cameraActive(new Camera(new Point3D(0d, 0d, 2d), new Point3D(0d, 0d, 0d)));
     }
 
 }

@@ -59,7 +59,7 @@ public class TestBezierTextImage extends TestObjetSub {
             Logger.getLogger(TestBezierTextImage.class.getName()).log(Level.SEVERE, null, ex);
         }
         scene().add(s);
-        scene().cameraActive().setEye(Point3D.Z.mult(-1));
+        scene().cameraActive().setEye(Point3D.Z.mult(-1d));
 
     }
 

@@ -13,8 +13,8 @@ import java.io.InputStream;
  */
 public class TestTitle extends TestObjetSub {
     String text;
-    TextObjet textObjet = new TextObjet(new Point3D(1000, 1000, 1000), new Point3D(-2000, 0, 0), new Point3D(0, -2000 * Math.tan(angle()), -2000 * Math.sin(angle())));
-    Camera c = new Camera(new Point3D(0, 0, -1000), new Point3D(0, 0, 1000));
+    TextObjet textObjet = new TextObjet(new Point3D(1000d, 1000d, 1000d), new Point3D(-2000d, 0d, 0d), new Point3D(0d, -2000d * Math.tan(angle()), -2000d * Math.sin(angle())));
+    Camera c = new Camera(new Point3D(0d, 0d, -1000d), new Point3D(0d, 0d, 1000d));
 
     public static void main(String[] args) {
         TestTitle ts = new TestTitle();
@@ -60,7 +60,7 @@ public class TestTitle extends TestObjetSub {
     @Override
     public void finit() {
         textObjet.deplace(new Point3D(
-                0, 10 * Math.tan(angle()), 20 * Math.sin(angle())));
+                0d, 10d * Math.tan(angle()), 20d * Math.sin(angle())));
     }
 
     @Override

@@ -34,7 +34,7 @@ public class SolPlan extends Terrain {
 
             @Override
             public Point3D calculerPoint3D(double u, double v) {
-                return new Point3D(u - 0.5, 0, v - 0.5);
+                return new Point3D(u - 0.5, 0d, v - 0.5);
             }
 
             @Override

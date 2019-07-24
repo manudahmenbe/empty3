@@ -35,14 +35,14 @@ public class SurfaceBezier extends TestObjetSub {
         for (int i = -4; i <= 4; i++) {
             int n = 0;
             for (int j = -4; j <= 4; j++) {
-                p[m][n] = new Point3D(i, j, 0);
+                p[m][n] = new Point3D((double) i, (double) j, 0d);
                 n++;
             }
             m++;
         }
         SurfaceParametricPolygonalBezier surfaceParametricPolygonalBezier = new SurfaceParametricPolygonalBezier(p);
         boolean add = scene().add(surfaceParametricPolygonalBezier);
-        scene().cameraActive(new Camera(Point3D.Z.mult(-10), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-10d), Point3D.O0));
 
     }
 

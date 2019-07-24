@@ -47,7 +47,7 @@ public class Pieuvre extends RepresentableConteneur {
 
         @Override
         public Point3D calculerPoint3D(double u, double v) {
-            Point3D point3D = new Point3D(u * t * Math.sin(2 * Math.PI), Math.cos(2 * Math.PI * v), 0);
+            Point3D point3D = new Point3D(u * t * Math.sin(2 * Math.PI), Math.cos(2 * Math.PI * v), 0d);
 
             angle = 1.0 * noBras / nbrBras;
             return matrix22[noBras].mult(point3D);

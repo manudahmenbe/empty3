@@ -49,7 +49,7 @@ public class TestBezierN extends TestObjet {
 
         scene().add(b);
 
-        scene.cameraActive().setEye(Point3D.Z.mult(-(2 * frame() + 2)));
+        scene.cameraActive().setEye(Point3D.Z.mult(-(2d * frame() + 2d)));
 
     }
 

@@ -103,7 +103,7 @@ public class Scene1 extends TestObjet {
         scene().add(s2);
 */
         for (int i = 0; i < NUMBRE; i++) {
-            s1 = new TRISphere(Point3D.X.mult(1000), 100);
+            s1 = new TRISphere(Point3D.X.mult(1000d), 100d);
             s1.texture(new TextureCol(Color.BLACK));
             spheres.add(s1);
             scene().add(s1);

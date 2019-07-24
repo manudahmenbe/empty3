@@ -47,7 +47,7 @@ public class Axe extends Representable{
     }
 
     public Point3D getVectAxe() {
-        return p2.plus(p1.mult(-1));
+        return p2.plus(p1.mult(-1d));
     }
 
     public Point3D rotation(double angle, Point3D point) {

@@ -44,17 +44,17 @@ public class TestNurbs1 extends TestObjetSub {
         NurbsSurface n = new NurbsSurface();
         n.setMaillage(new Point3D[][]{
                 {
-                        new Point3D(0, 1, 2),
-                        new Point3D(2, 3, 0),
-                        new Point3D(4, 4, -2)},
+                        new Point3D(0d, 1d, 2d),
+                        new Point3D(2d, 3d, 0d),
+                        new Point3D(4d, 4d, -2d)},
                 {
-                        new Point3D(3, 2, 5),
-                        new Point3D(8, 4, 4),
-                        new Point3D(5, 4, 4)},
+                        new Point3D(3d, 2d, 5d),
+                        new Point3D(8d, 4d, 4d),
+                        new Point3D(5d, 4d, 4d)},
                 {
-                        new Point3D(1, 2, 1),
-                        new Point3D(4, 7, 4),
-                        new Point3D(5, 7, 5)}
+                        new Point3D(1d, 2d, 1d),
+                        new Point3D(4d, 7d, 4d),
+                        new Point3D(5d, 7d, 5d)}
         }, new double[][]{
                 {1, 1, 1},
                 {1, 1, 1},
@@ -85,7 +85,7 @@ public class TestNurbs1 extends TestObjetSub {
         //Axes axes = new Axes();
 
         //scene().add(axes);
-        scene().cameraActive(new Camera(Point3D.Z.mult(-10), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-10d), Point3D.O0));
     }
 
     @Override

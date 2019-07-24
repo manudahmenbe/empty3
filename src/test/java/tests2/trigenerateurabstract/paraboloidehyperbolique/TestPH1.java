@@ -58,7 +58,7 @@ public class TestPH1 extends TestObjet {
 
     @Override
     public void testScene() throws Exception {
-        scene().cameraActive(new Camera(Point3D.Z.mult(4).mult(new Point3D(1.0 * frame() / getMaxFrames() * 2 * Math.PI, 0, 0)), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(4d).mult(new Point3D(1.0 * frame() / getMaxFrames() * 2 * Math.PI, 0d, 0d)), Point3D.O0));
         scene().lumieres().add(new LumierePointSimple(Color.WHITE, Point3D.X.plus(Point3D.Y), 1));
     }
 

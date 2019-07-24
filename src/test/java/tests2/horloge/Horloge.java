@@ -89,19 +89,19 @@ public class Horloge extends JFrame {
 
         s0 = new TRISphere(Point3D.O0, 10);
         sH = new TRISphere(position(f * d.getHours() / 12)
-                .mult(80), 12);
+                .mult(80d), 12);
         sM = new TRISphere(position(f * d.getMinutes() / 60)
-                .mult(80), 8);
+                .mult(80d), 8);
         sS = new TRISphere(position(f * d.getSeconds() / 60)
-                .mult(80), 6);
+                .mult(80d), 6);
         TRISphere sG0 = new TRISphere(position(f * 0.0 / 12)
-                .mult(80), 10);
+                .mult(80d), 10);
         TRISphere sG3 = new TRISphere(position(f * 3.0 / 12)
-                .mult(80), 10);
+                .mult(80d), 10);
         TRISphere sG6 = new TRISphere(position(f * 6.0 / 12)
-                .mult(80), 10);
+                .mult(80d), 10);
         TRISphere sG9 = new TRISphere(position(f * 9.0 / 12)
-                .mult(80), 10);
+                .mult(80d), 10);
         sG0.texture(new TextureCol(Color.GREEN));
         sG3.texture(new TextureCol(Color.GREEN));
         sG6.texture(new TextureCol(Color.GREEN));
@@ -138,7 +138,7 @@ public class Horloge extends JFrame {
 
         for (int i = 0; i < 12; i++) {
             TRISphere sGm = new TRISphere(position(f * i / 12)
-                    .mult(80), 6);
+                    .mult(80d), 6);
             sGm.texture(new TextureCol(Color.BLUE));
             sc.add(sGm);
         }
@@ -151,12 +151,12 @@ public class Horloge extends JFrame {
         sc.add(sG6);
         sc.add(sG9);
         droite0 = new LineSegment(
-                position(f * d.getHours() / 12).mult(60),
+                position(f * d.getHours() / 12).mult(60d),
                 Point3D.O0, new TextureCol(Color.GREEN));
-        droite1 = new LineSegment(position(f * d.getHours() / 12).mult(60),
+        droite1 = new LineSegment(position(f * d.getHours() / 12).mult(60d),
                 Point3D.O0, new TextureCol(Color.BLUE));
         droite2 = new LineSegment(
-                position(f * d.getHours() / 12).mult(60),
+                position(f * d.getHours() / 12).mult(60d),
                 Point3D.O0, new TextureCol(Color.RED));
         sc.add(droite0);
         sc.add(droite1);
@@ -175,19 +175,19 @@ public class Horloge extends JFrame {
         sc.add(segmentDroiteTubulaireN22);
         segmentDroiteTubulaireN20.diam(20);
 
-        sc.cameraActive(new Camera(Point3D.Z.mult(-200), Point3D.O0));
+        sc.cameraActive(new Camera(Point3D.Z.mult(-200d), Point3D.O0));
     }
 
     public void time() {
         double f = 2 * Math.PI;
         Date d = new Date();
 
-        sH.setCentre(position(f * d.getHours() / 12).mult(60));
-        sM.setCentre(position(f * d.getMinutes() / 60).mult(80));
-        sS.setCentre(position(f * d.getSeconds() / 60).mult(100));
-        droite0.setOrigine(position(f * d.getHours() / 12).mult(60));
-        droite1.setOrigine(position(f * d.getMinutes() / 60).mult(80));
-        droite2.setOrigine(position(f * d.getSeconds() / 60).mult(100));
+        sH.setCentre(position(f * d.getHours() / 12).mult(60d));
+        sM.setCentre(position(f * d.getMinutes() / 60).mult(80d));
+        sS.setCentre(position(f * d.getSeconds() / 60).mult(100d));
+        droite0.setOrigine(position(f * d.getHours() / 12).mult(60d));
+        droite1.setOrigine(position(f * d.getMinutes() / 60).mult(80d));
+        droite2.setOrigine(position(f * d.getSeconds() / 60).mult(100d));
     }
 
     public Point3D position(double angle) {
@@ -196,7 +196,7 @@ public class Horloge extends JFrame {
                 = new Point3D(
                 -Math.sin(angle),
                 Math.cos(angle),
-                0
+                0d
         );
 
         return p0;

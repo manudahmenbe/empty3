@@ -44,7 +44,7 @@ public class TestAxes extends TestObjetSub {
         scene().add(planY);
         scene().add(planZ);
         Camera camera = new Camera();
-        camera.setEye(Point3D.Z.mult(-1));
+        camera.setEye(Point3D.Z.mult(-1d));
         if (frame() == 0) {
             camera.imposerMatrice(new Matrix33(
                     new Double[]

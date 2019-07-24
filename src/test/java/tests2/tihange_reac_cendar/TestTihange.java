@@ -17,7 +17,7 @@ public class TestTihange extends TestObjetSub {
         scene().cameraActive(new Camera(
                 Trajectoires.sphere(Math.random(), Math.random()
                         , 8),
-                new Point3D(0, 0, 1)));
+                new Point3D(0d, 0d, 1d)));
         scene().add(new tests2.tihange_reac_cendar.Tihange());
     }
 

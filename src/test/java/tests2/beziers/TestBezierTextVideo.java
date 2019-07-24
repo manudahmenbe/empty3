@@ -59,7 +59,7 @@ public class TestBezierTextVideo extends TestObjetSub {
         textureMov = new TextureMov("C:\\Emptycanvas\\textures\\Il embrasse sur la bouche.mp4");
         s.texture(textureMov);
         scene().add(s);
-        scene().cameraActive().setEye(Point3D.Z.mult(-6));
+        scene().cameraActive().setEye(Point3D.Z.mult(-6d));
     }
 
     @Override

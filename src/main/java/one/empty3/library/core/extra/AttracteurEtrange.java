@@ -34,7 +34,7 @@ public final class AttracteurEtrange extends Representable implements POConteneu
         this.D = D;
 
         po = new PObjet();
-        Point3D actuel = new Point3D(1, 2, 3);
+        Point3D actuel = new Point3D(1d, 2d, 3d);
         Point3D precedent;
         int i = 0;
         while (i < NOMBRE_POINTS) {

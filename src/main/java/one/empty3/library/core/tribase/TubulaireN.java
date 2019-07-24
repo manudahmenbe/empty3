@@ -185,9 +185,9 @@ public class TubulaireN extends Representable implements TRIGenerable, TRIConten
         Point3D p = calculerPoint(t);
         Point3D tangente = calculerTangente(t);
 
-        Point3D ref1 = new Point3D(0, 0, 1);
-        Point3D ref2 = new Point3D(1, 0, 0);
-        Point3D ref3 = new Point3D(0, 1, 0);
+        Point3D ref1 = new Point3D(0d, 0d, 1d);
+        Point3D ref2 = new Point3D(1d, 0d, 0d);
+        Point3D ref3 = new Point3D(0d, 1d, 0d);
 
         tangente = tangente.norme1();
 

@@ -118,7 +118,7 @@ public class TestNurbsComplexe1 extends TestObjetSub {
         scene().add(n);
         System.out.println(n);
 
-        scene().cameraActive(new Camera(Point3D.Z.mult(-30), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-30d), Point3D.O0));
     }
 
     @Override

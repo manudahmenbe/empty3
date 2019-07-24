@@ -10,8 +10,8 @@ import one.empty3.library.core.testing.TestObjetSub;
  */
 public class TestCircles extends TestObjetSub {
 
-    public static final int CIRCLES_COUNT = 100;
-    private static final int MAX_SIZE = 100;
+    public static final double CIRCLES_COUNT = 100;
+    private static final double MAX_SIZE = 100;
     private static int INCR_MAX;
 
     private Circle[] circles;
@@ -46,7 +46,7 @@ public class TestCircles extends TestObjetSub {
     @Override
     public void ginit() {
         scene().clear();
-        circles = new Circle[CIRCLES_COUNT];
+        circles = new Circle[(int) CIRCLES_COUNT];
         for (int i = 0; i < circles.length; i++) {
             circles[i] = new Circle(new Axe(Point3D.random(MAX_SIZE), Point3D.random(MAX_SIZE)),
                     MAX_SIZE);

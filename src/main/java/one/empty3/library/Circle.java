@@ -22,8 +22,6 @@ public class Circle extends ParametricCurve {
         this.radius = radius;
         calculerRepere1();
 
-        getDeclaredRepresentables().put("axis/axe du cercle (perpendiculaire au plan)", axis);
-        getDeclaredDoubles().put("radius/rayon", radius);
     }
 
     /*
@@ -61,7 +59,7 @@ public class Circle extends ParametricCurve {
         boolean success = false;
         int i=0;
         while (!success && i<3) {
-            Point3D pRef = new Point3D(i == 0 ? 1 : 0, i == 1 ? 1 : 0, i == 2 ? 1 : 0);
+            Point3D pRef = new Point3D(i == 0 ? 1d : 0d, i == 1 ? 1d : 0d, i == 2 ? 1d : 0d);
 
             Point3D mult = axis.getVector().norme1().prodVect(axis.getVector().norme1().prodVect(pRef).norme1());
             double d = mult.prodScalaire(pRef);
@@ -141,5 +139,12 @@ public class Circle extends ParametricCurve {
 
     public Point3D getvAxis() {
         return axis.getVector();
+    }
+
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredRepresentables().put("axis/axe du cercle (perpendiculaire au plan)", axis);
+        getDeclaredDoubles().put("radius/rayon", radius);
     }
 }

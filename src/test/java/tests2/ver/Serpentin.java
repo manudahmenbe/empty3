@@ -75,7 +75,7 @@ public class Serpentin extends TestObjetSub {
     }
 
     public Point3D rand(double limitMinus, double limitPlus) {
-        double[] d = new double[3];
+        Double[] d = new Double[3];
         for (int i = 0; i < 3; i++) {
             d[i] = (limitPlus - limitMinus) * Math.random() + limitMinus;
         }

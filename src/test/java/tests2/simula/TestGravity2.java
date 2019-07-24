@@ -50,8 +50,8 @@ public class TestGravity2 extends TestObjetSub {
                             (i - X / 2.), (j - Y / 2.),
                             (k - Z / 2.)).mult(Math.random() * vOriginal);
                     billes[k * Y * X + j * X + i].vitesse = new Point3D(
-                            (i - X / 2) / 1f, (j - Y / 2) / 1f,
-                            (k - Z / 2) / 1f);
+                            (i - X / 2) / 1d, (j - Y / 2) / 1d,
+                            (k - Z / 2) / 1d);
                     billes[k * Y * X + j * X + i].color = Colors.random();
                     billes[k * Y * X + j * X + i].masse = 1;
                     billes[k * Y * X + j * X + i].attraction = 100;
@@ -95,7 +95,7 @@ public class TestGravity2 extends TestObjetSub {
         }
 
         Camera camera = new Camera(f.centreMasse().plus(
-                new Point3D(0, 0, -f.getDistMax() / 4)), f.centreMasse());
+                new Point3D(0d, 0d, -f.getDistMax() / 4d)), f.centreMasse());
 
         System.out.println(rc.getListRepresentable().size());
 

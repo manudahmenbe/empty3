@@ -159,7 +159,7 @@ public class Spirale extends Representable implements TRIGenerable {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     for (int k = 0; k < 3; k++) {
-                        arr[i * 9 + j * 3 + k] = new Point3D(i - 1, j - 1, k - 1);
+                        arr[i * 9 + j * 3 + k] = new Point3D(i - 1d, j - 1d, k - 1d);
                         Point3D pNew = old.plus(arr[i * 9 + j * 3 + k].mult(deltaP3D));
                         double n = Math.abs(sphere[current].equationResult(pNew));
                         if (n < value) {

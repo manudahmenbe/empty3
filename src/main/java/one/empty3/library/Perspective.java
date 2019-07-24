@@ -34,7 +34,7 @@ public class Perspective {
 
     java.awt.Point coordonneeEcran(Point3D p) {
         if (type == P_CUBIQUE_ISOMETRIQUE) {
-            return new java.awt.Point((int) p.getX(), (int) p.getY());
+            return new java.awt.Point((int) (double) p.getX(), (int) (double) p.getY());
         } else if (type == P_CUBIQUE_LINEAIRE) {
             if (p.getZ() == 0) {
                 return new java.awt.Point(0, 0);

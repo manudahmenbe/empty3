@@ -25,14 +25,14 @@ import com.badlogic.gdx.math.Vector3;
  */
 public class Conv {
     public static Vector3 conv(Vector3 out, Point3D in) {
-        out.set(new float[]{(float) in.get(0), (float) in.get(1), (float) in.get(2)});
+        out.set(new float[]{(float) (double) in.get(0), (float) (double) in.get(1), (float) (double) in.get(2)});
         return out;
     }
 
     public static Point3D conv(Point3D out, Vector3 in) {
-        out.set(0, in.x);
-        out.set(1, in.y);
-        out.set(2, in.z);
+        out.set(0, (double) in.x);
+        out.set(1, (double) in.y);
+        out.set(2, (double) in.z);
         return out;
     }
 }

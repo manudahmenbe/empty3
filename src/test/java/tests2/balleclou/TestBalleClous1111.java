@@ -74,7 +74,7 @@ public class TestBalleClous1111 extends TestObjetSub {
         ) {
 
 
-            ballec = new BalleClous2(Point3D.random2(5), 1);
+            ballec = new BalleClous2(Point3D.random2(5d), 1);
 
             balles[i] = ballec;
             ballec.texture(new TextureCol(Colors.random()));
@@ -86,8 +86,8 @@ public class TestBalleClous1111 extends TestObjetSub {
 
         }
         Camera camera;
-        camera = new Camera(new Point3D(-1600, 0, 0),
-                new Point3D(0, 0, 0));
+        camera = new Camera(new Point3D(-1600d, 0d, 0d),
+                new Point3D(0d, 0d, 0d));
 
         scene().cameraActive(camera);
     }

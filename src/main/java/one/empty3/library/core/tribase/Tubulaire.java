@@ -116,9 +116,9 @@ public class Tubulaire extends Representable implements TRIGenerable, TRIContene
                 for (int i = 3; i < tour1.size() - 1; i++) {
                     TRI t1 = new TRI(tour0.get(i), tour1.get(i), tour1.get(i + 1), couleur);
                     TRI t2 = new TRI(tour0.get(i), tour0.get(i + 1), tour1.get(i + 1), couleur);
-                    t1.setCouleur(CouleurOutils.couleurFactio(couleur, Color.white, t1, new Point3D(0, 0, 1), false));
-                    t2.setCouleur(CouleurOutils.couleurFactio(couleur, Color.white, t1, new Point3D(0, 0, 1), false));
-                    t1.setCouleur(CouleurOutils.couleurFactio(couleur, Color.white, t1, new Point3D(0, 0, 1), false));
+                    t1.setCouleur(CouleurOutils.couleurFactio(couleur, Color.white, t1, new Point3D(0d, 0d, 1d), false));
+                    t2.setCouleur(CouleurOutils.couleurFactio(couleur, Color.white, t1, new Point3D(0d, 0d, 1d), false));
+                    t1.setCouleur(CouleurOutils.couleurFactio(couleur, Color.white, t1, new Point3D(0d, 0d, 1d), false));
                     t1.setCouleur(couleur);
                     t2.setCouleur(couleur);
                     tris.add(t1);
@@ -205,9 +205,9 @@ public class Tubulaire extends Representable implements TRIGenerable, TRIContene
         Point3D p = calculerPoint(t);
         Point3D tangente = calculerTangente(t);
 
-        Point3D ref1 = new Point3D(0, 0, 1);
-        Point3D ref2 = new Point3D(1, 0, 0);
-        Point3D ref3 = new Point3D(0, 1, 0);
+        Point3D ref1 = new Point3D(0d, 0d, 1d);
+        Point3D ref2 = new Point3D(1d, 0d, 0d);
+        Point3D ref3 = new Point3D(0d, 1d, 0d);
 
         tangente = tangente.norme1();
 

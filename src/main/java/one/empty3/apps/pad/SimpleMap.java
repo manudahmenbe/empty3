@@ -54,7 +54,7 @@ public class SimpleMap extends Map
 
     public SimpleMap() {
         polygons = new ArrayList<Polygon>();
-        camera = new Camera(new Point3D(0.5,1,0.5), new Point3D(0.5,0,0.5));
+        camera = new Camera(new Point3D(0.5d, 1d, 0.5), new Point3D(0.5, 0d, 0.5));
     }
 
     public Camera camera() {

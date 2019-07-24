@@ -59,7 +59,7 @@ public class TestCameraEnMouvementCylindre extends TestObjet {
 
         scene().add(e);
 
-        scene().cameraActive(new Camera(new Point3D(30, 0, -30), new Point3D(0, 0, 0)));
+        scene().cameraActive(new Camera(new Point3D(30d, 0d, -30d), new Point3D(0d, 0d, 0d)));
 
         scene().cameraActive(cam);
 

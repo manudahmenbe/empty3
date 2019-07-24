@@ -40,7 +40,7 @@ public class PointWire extends Representable implements IFct1D3D {
             bc.add(base.get(i).plus(base.get(i + 1)).mult(0.5));
             bc.add(base.get(i + 1));
             bc.add(base.get(i + 1));
-            bc.add(base.get(i + 1).plus(base.get(i + 2)).mult(0.5));
+            bc.add(base.get(i + 1).plus(base.get(i + 2)).mult(0.1));
 
             beziers.add(bc);
 
@@ -57,7 +57,7 @@ public class PointWire extends Representable implements IFct1D3D {
     }
 
     public Point3D normale(double t) {
-        return tangente(t + 0.00001).plus(tangente(t).mult(-1));
+        return tangente(t + 0.00001).plus(tangente(t).mult(-1d));
     }
 
     public Representable place(MODObjet aThis) {
@@ -84,7 +84,7 @@ public class PointWire extends Representable implements IFct1D3D {
                 .get((int) (0.0001 + t))
                 .calculerPoint3D((0.0000001 + t) - (int) (0.0001 + t))
                 .plus(beziers.get((int) t).calculerPoint3D(t - (int) t)
-                        .mult(-1));
+                        .mult(-1d));
     }
 
     public TextureCol texture() {

@@ -93,7 +93,7 @@ public abstract class Chemin extends ParametricCurve {
         } else if (i == max) {
             n = normale(i - 2);
         } else {
-            n = tangent(i).prodVect(Point3D.r(1));
+            n = tangent(i).prodVect(Point3D.r(1d));
         }
         if (n.norme() == 0 || Double.isNaN(n.norme()))
             return Point3D.Z;

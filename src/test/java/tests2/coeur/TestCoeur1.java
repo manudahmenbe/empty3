@@ -51,7 +51,7 @@ public class TestCoeur1 extends TestObjet {
 
         scene().add(coeur);
 
-        scene().cameraActive(new Camera(Point3D.Z.mult(-10), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-10d), Point3D.O0));
 
     }
 

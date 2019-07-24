@@ -38,20 +38,17 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
         this.coefficients = coefficients;
         power1 = coefficients.length;
         power2 = coefficients[0].length;
-        getDeclaredArray2Points().put("coefficients/coefficients du polygone de Bezier", coefficients);
-        getDeclaredDoubles().put("power1/puissance par defaut #dim1", (double) power1);
-        getDeclaredDoubles().put("power2/puissance par defaut #dim1", (double) power2);
     }
     public SurfaceParametriquePolynomialeBezier()
     {
         this.coefficients = new Point3D[][]
                 {
 
-                        {Point3D.P.n(2., -2, 0), Point3D.P.n(2, -1, 0), Point3D.P.n(2, 0, 0), Point3D.P.n(2, 1, 0), Point3D.P.n(2, 2, 0)},
-                        {Point3D.P.n(1, -2, 0), Point3D.P.n(1, -1, 0), Point3D.P.n(1, 0, 0), Point3D.P.n(1, 1, 0), Point3D.P.n(1, 2, 0)},
-                        {Point3D.P.n(0, -2, 0), Point3D.P.n(0, -1, 0), Point3D.P.n(0, 0, 0), Point3D.P.n(0, 1, 0), Point3D.P.n(0, 2, 0)},
-                        {Point3D.P.n(-1, -2, 0), Point3D.P.n(-1, -1, 0), Point3D.P.n(-1, 0, 0), Point3D.P.n(-1, 1, 0), Point3D.P.n(-1, 2, 0)},
-                        {Point3D.P.n(-2, -2, 0), Point3D.P.n(-2, -1, 0), Point3D.P.n(-2, 0, 0), Point3D.P.n(-2, 1, 0), Point3D.P.n(-2, 2, 0)}
+                        {Point3D.P.n(2., -2d, 0d), Point3D.P.n(2, -1, 0), Point3D.P.n(2, 0, 0), Point3D.P.n(2, 1, 0), Point3D.P.n(2, 2, 0)},
+                        {Point3D.P.n(1d, -2d, 0d), Point3D.P.n(1d, -1d, 0d), Point3D.P.n(1, 0, 0), Point3D.P.n(1, 1, 0), Point3D.P.n(1, 2, 0)},
+                        {Point3D.P.n(0d, -2d, 0d), Point3D.P.n(0d, -1d, 0d), Point3D.P.n(0, 0, 0), Point3D.P.n(0, 1, 0), Point3D.P.n(0, 2, 0)},
+                        {Point3D.P.n(-1d, -2d, 0d), Point3D.P.n(-1d, -1d, 0d), Point3D.P.n(-1, 0, 0), Point3D.P.n(-1, 1, 0), Point3D.P.n(-1, 2, 0)},
+                        {Point3D.P.n(-2d, -2d, 0d), Point3D.P.n(-2d, -1d, 0d), Point3D.P.n(-2, 0, 0), Point3D.P.n(-2, 1, 0), Point3D.P.n(-2, 2, 0)}
 
                 };
         power1 = coefficients.length;
@@ -94,4 +91,12 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
         return coefficients;
     }
 
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredArray2Points().put("coefficients/coefficients du polygone de Bezier", coefficients);
+        getDeclaredDoubles().put("power1/puissance par defaut #dim1", (double) power1);
+        getDeclaredDoubles().put("power2/puissance par defaut #dim1", (double) power2);
+
+    }
 }

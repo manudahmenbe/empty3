@@ -44,7 +44,7 @@ public class TestsBSpline {
         Point3D[] p = new Point3D[N];
         for (int i = 0; i < N; i++) {
             p[i] = new Point3D(1.0 * i * Math.cos((i / 6) * (Math.PI * 2.0) * ((double) i) / N),
-                    1.0 * i * Math.sin((i / 6) * (Math.PI * 2.0) * ((double) i) / N), 0);
+                    1.0 * i * Math.sin((i / 6) * (Math.PI * 2.0) * ((double) i) / N), 0d);
             p[i].texture(new TextureCol(Color.WHITE));
         }
         return p;
@@ -54,7 +54,7 @@ public class TestsBSpline {
         Point3D[] p = new Point3D[N];
         for (int i = 0; i < N; i++) {
             p[i] = new Point3D(1.0 * i * Math.cos((i / 6.0) * (Math.PI * 2.0) * ((double) i) / N),
-                    1.0 * i * Math.sin((i / 6.0) * (Math.PI * 2.0) * ((double) i) / N), 0);
+                    1.0 * i * Math.sin((i / 6.0) * (Math.PI * 2.0) * ((double) i) / N), 0d);
             p[i].texture(new TextureCol(Color.WHITE));
         }
         return p;

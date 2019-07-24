@@ -26,9 +26,9 @@ public class BorromeanRings extends ParametricCurve {
 
     Point3D fct1(double t) {
         assert b > a;
-        Point3D p1 = new Point3D(a * Math.cos(t), b * Math.sin(t), 0);
+        Point3D p1 = new Point3D(a * Math.cos(t), b * Math.sin(t), 0d);
         Point3D p2 = new Point3D(0 * Math.cos(t), a * Math.cos(t), b * Math.sin((t)));
-        Point3D p3 = new Point3D(b * Math.sin(t), 0, a * Math.cos(t));
+        Point3D p3 = new Point3D(b * Math.sin(t), 0d, a * Math.cos(t));
 
         return p1;
     }

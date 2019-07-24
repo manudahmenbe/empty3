@@ -23,33 +23,33 @@ public class TestRayTracerMain extends RtRaytracer {
 
         // Notre camera
         RtTargetCamera myCamera = null;
-        Point3D myCameraPos = new Point3D(0.0f, 0.0f, -5.0f);    // Position de la camera
-        Point3D myCameraLookAt = new Point3D(0.0f, 0.0f, 10.0f);    // Position du point regard�
-        Point3D myCameraUpVec = new Point3D(0.0f, 1.0f, 0.0f);    // Vecteur haut de la cam�ra
+        Point3D myCameraPos = new Point3D(0.0d, 0.0d, -5.0d);    // Position de la camera
+        Point3D myCameraLookAt = new Point3D(0.0d, 0.0d, 10.0d);    // Position du point regard�
+        Point3D myCameraUpVec = new Point3D(0.0d, 1.0d, 0.0d);    // Vecteur haut de la cam�ra
 
         // Une sphere
         RtSphere mySphere = null;
-        Point3D mySpherePos = new Point3D(0.0f, 0.0f, 9.0f);        // Position de la sphere
+        Point3D mySpherePos = new Point3D(0.0d, 0.0d, 9.0d);        // Position de la sphere
         double mySphereRadius = 4f;                // Rayon de la sphere
 
         // Un plan
         RtPlane myPlane = null;
-        Point3D myPlanePos = new Point3D(0.0f, 0.0f, 5.0f);
-        Point3D myPlaneNormal = new Point3D(0.0f, 0.0f, 1.0f);
+        Point3D myPlanePos = new Point3D(0.0d, 0.0d, 5.0d);
+        Point3D myPlaneNormal = new Point3D(0.0d, 0.0d, 1.0d);
 
         // Une premiere lumiere (rouge)
         RtPointLight myLight;
-        Point3D myLightPos = new Point3D(10.0f, 5.0f, 6.0f);
-        RtColor myLightDiffuseColor = new RtColor(1.0f, 1.0f, 0.5f);
-        RtColor myLightSpecularColor = new RtColor(1.0f, 1.0f, 0.5f);
-        RtColor myLightColor = new RtColor(1.0f, 1.0f, 0.0f);
+        Point3D myLightPos = new Point3D(10.0d, 5.0d, 6.0d);
+        RtColor myLightDiffuseColor = new RtColor(1.0d, 1.0d, 0.5d);
+        RtColor myLightSpecularColor = new RtColor(1.0d, 1.0d, 0.5d);
+        RtColor myLightColor = new RtColor(1.0d, 1.0d, 0.0d);
 
         // Une deuxieme lumiere (bleue)
         RtPointLight myLight1;
-        Point3D myLight1Pos = new Point3D(-10.0f, 5.0f, 6.0f);
-        RtColor myLight1DiffuseColor = new RtColor(0.7f, 0.7f, 0.7f);
-        RtColor myLight1SpecularColor = new RtColor(0.7f, 0.7f, 0.7f);
-        RtColor myLight1Color = new RtColor(1.0f, 1.0f, 1.0f);
+        Point3D myLight1Pos = new Point3D(-10.0d, 5.0d, 6.0d);
+        RtColor myLight1DiffuseColor = new RtColor(0.7f, 0.7f, 0.7d);
+        RtColor myLight1SpecularColor = new RtColor(0.7f, 0.7d, 0.7d);
+        RtColor myLight1Color = new RtColor(1.0d, 1.0d, 1.0d);
 
         // Deux materiaux
         RtMatiere myMaterial;
@@ -63,8 +63,8 @@ public class TestRayTracerMain extends RtRaytracer {
         myLight1 = new RtPointLight(myLight1Pos, myLight1DiffuseColor, myLight1SpecularColor, myLight1Color);
         //myLight.setIntensite(100);
         //myLight1.setIntensite(100);
-        myMaterial = new RtMatiere("myMaterial", new RtColor(1.0f, 0.0f, 0.0f), new RtColor(1.0f, 0.0f, 0.0f), new RtColor(1.0f, 0.0f, 0.0f), new RtColor(1.0f, 0.0f, 0.0f), 1.0f, 1.0f);
-        myMaterial1 = new RtMatiere("myMaterial1", new RtColor(0.0f, 1.0f, 1.0f), new RtColor(0.7f, 1.0f, 0.7f), new RtColor(0.0f, 1.0f, 1.0f), new RtColor(1.0f, 1.0f, 1.0f), 1.0f, 1.0f);
+        myMaterial = new RtMatiere("myMaterial", new RtColor(1.0d, 0.0d, 0.0d), new RtColor(1.0d, 0.0d, 0.0d), new RtColor(1.0d, 0.0d, 0.0d), new RtColor(1.0d, 0.0d, 0.0d), 1.0d, 1.0d);
+        myMaterial1 = new RtMatiere("myMaterial1", new RtColor(0.0d, 1.0d, 1.0d), new RtColor(0.7d, 1.0d, 0.7d), new RtColor(0.0d, 1.0d, 1.0d), new RtColor(1.0d, 1.0d, 1.0d), 1.0d, 1.0d);
 
         // On assigne les materiaux a nos objets
         mySphere.setMaterial(myMaterial);

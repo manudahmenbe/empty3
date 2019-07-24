@@ -97,7 +97,7 @@ public class Tihange extends RepresentableConteneur {
                 double largeur = v * 9;
                 double coordLarge = 2 * Math.PI * u;
                 return new Point3D(Math.cos(coordLarge) * largeur,
-                        largeur * Math.sin(coordLarge), -1);
+                        largeur * Math.sin(coordLarge), -1d);
             }
         };
         // Paroi extérieure bas horizontale

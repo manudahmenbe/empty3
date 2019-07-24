@@ -25,11 +25,11 @@ public class TestTRISphere extends TestObjetSub {
 
     @Override
     public void testScene() throws Exception {
-        scene().cameraActive().eye().setZ(-10);
+        scene().cameraActive().eye().setZ(-10d);
 
         TRISphere s = new TRISphere(Point3D.O0, 1);
         Barycentre barycentre = new Barycentre();
-        barycentre.position = Point3D.Y.mult(5);
+        barycentre.position = Point3D.Y.mult(5d);
 
         s.position(barycentre);
         s.texture(new TextureCol(Color.WHITE));

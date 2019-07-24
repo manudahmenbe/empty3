@@ -33,11 +33,11 @@ public class E3Example extends EcDrawer {
             if(chairModel!=null) {
                 s.add(chairModel);
                 s.cameraActive(new Camera
-                        (Point3D.Z.mult(100), Point3D.Z.mult(0)));
+                        (Point3D.Z.mult(100d), Point3D.Z.mult(0d)));
                 System.out.println("ok");
             }
             else return;
-            Camera camera = new Camera(new Point3D(Point3D.Z.mult(100)),
+            Camera camera = new Camera(new Point3D(Point3D.Z.mult(100d)),
                     Point3D.O0);
             camera.calculerMatrice(Point3D.Y);
             s.cameraActive(camera);

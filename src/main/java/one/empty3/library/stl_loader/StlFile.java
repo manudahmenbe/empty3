@@ -485,9 +485,9 @@ public class StlFile {
 
         // Read the Normal
         normArray[index] = new Point3D();
-        normArray[index].setX(in.getFloat());
-        normArray[index].setY(in.getFloat());
-        normArray[index].setZ(in.getFloat());
+        normArray[index].setX(in.getDouble());
+        normArray[index].setY(in.getDouble());
+        normArray[index].setZ(in.getDouble());
 
         if (DEBUG == 1) {
             System.out.println("Normal: X=" + normArray[index].getX() + " Y=" + normArray[index].getY() + " Z=" + normArray[index].getZ());
@@ -495,9 +495,9 @@ public class StlFile {
 
         // Read vertex1
         coordArray[index * 3] = new Point3D();
-        coordArray[index * 3].setX(in.getFloat());
-        coordArray[index * 3].setY(in.getFloat());
-        coordArray[index * 3].setZ(in.getFloat());
+        coordArray[index * 3].setX(in.getDouble());
+        coordArray[index * 3].setY(in.getDouble());
+        coordArray[index * 3].setZ(in.getDouble());
 
         if (DEBUG == 1) {
             System.out.println("Vertex 1: X=" + coordArray[index * 3].getX() + " Y=" + coordArray[index * 3].getY() + " Z=" + coordArray[index * 3].getZ());
@@ -505,9 +505,9 @@ public class StlFile {
 
         // Read vertex2
         coordArray[index * 3 + 1] = new Point3D();
-        coordArray[index * 3 + 1].setX(in.getFloat());
-        coordArray[index * 3 + 1].setY(in.getFloat());
-        coordArray[index * 3 + 1].setZ(in.getFloat());
+        coordArray[index * 3 + 1].setX(in.getDouble());
+        coordArray[index * 3 + 1].setY(in.getDouble());
+        coordArray[index * 3 + 1].setZ(in.getDouble());
 
         if (DEBUG == 1) {
             System.out.println("Vertex 2: X=" + coordArray[index * 3 + 1].getX() + " Y=" + coordArray[index * 3 + 1].getY() + " Z=" + coordArray[index * 3 + 1].getZ());
@@ -515,9 +515,9 @@ public class StlFile {
 
         // Read vertex3
         coordArray[index * 3 + 2] = new Point3D();
-        coordArray[index * 3 + 2].setX(in.getFloat());
-        coordArray[index * 3 + 2].setY(in.getFloat());
-        coordArray[index * 3 + 2].setZ(in.getFloat());
+        coordArray[index * 3 + 2].setX(in.getDouble());
+        coordArray[index * 3 + 2].setY(in.getDouble());
+        coordArray[index * 3 + 2].setZ(in.getDouble());
 
         if (DEBUG == 1) {
             System.out.println("Vertex 3: X=" + coordArray[index * 3 + 2].getX() + " Y=" + coordArray[index * 3 + 2].getY() + " Z=" + coordArray[index * 3 + 2].getZ());
@@ -620,7 +620,7 @@ public class StlFile {
             System.err.println("Format Error:expecting 'normal' on line " + parser.lineno());
         } else {
             if (parser.getNumber()) {
-                v.setX((float) parser.nval);
+                v.setX(parser.nval);
 
                 if (DEBUG == 1) {
                     System.out.println("Normal:");
@@ -628,13 +628,13 @@ public class StlFile {
                 }
 
                 if (parser.getNumber()) {
-                    v.setY((float) parser.nval);
+                    v.setY(parser.nval);
                     if (DEBUG == 1) {
                         System.out.print("Y=" + v.getY() + " ");
                     }
 
                     if (parser.getNumber()) {
-                        v.setZ((float) parser.nval);
+                        v.setZ(parser.nval);
                         if (DEBUG == 1) {
                             System.out.println("Z=" + v.getZ());
                         }
@@ -699,7 +699,7 @@ public class StlFile {
             System.err.println("Format Error:expecting 'vertex' on line " + parser.lineno());
         } else {
             if (parser.getNumber()) {
-                p.setX((float) parser.nval);
+                p.setX(parser.nval);
 
                 if (DEBUG == 1) {
                     System.out.println("Vertex:");
@@ -707,13 +707,13 @@ public class StlFile {
                 }
 
                 if (parser.getNumber()) {
-                    p.setY((float) parser.nval);
+                    p.setY(parser.nval);
                     if (DEBUG == 1) {
                         System.out.print("Y=" + p.getY() + " ");
                     }
 
                     if (parser.getNumber()) {
-                        p.setZ((float) parser.nval);
+                        p.setZ(parser.nval);
                         if (DEBUG == 1) {
                             System.out.println("Z=" + p.getZ());
                         }

@@ -24,8 +24,8 @@ public class TestCitron extends TestObjetSub {
     @Override
     public void ginit() {
         Axe axe;
-        Point3D pA = Point3D.random(50);
-        Point3D pB = pA.mult(-1);
+        Point3D pA = Point3D.random(50d);
+        Point3D pB = pA.mult(-1d);
         axe = new Axe(pA, pB);
         scene().clear();
         citrons = new Citron[CIRCLES_COUNT];
@@ -54,7 +54,7 @@ public class TestCitron extends TestObjetSub {
             Axe axe;
             Point3D sphere = Trajectoires.sphere(
                     1.0 * frame() / getMaxFrames(), 0.0, DIM);
-            Point3D pB = sphere.mult(-1);
+            Point3D pB = sphere.mult(-1d);
             axe = new Axe(sphere, pB);
             citrons[i].getCircle().setAxis(axe);
         }

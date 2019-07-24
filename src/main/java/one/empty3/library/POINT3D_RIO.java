@@ -21,10 +21,10 @@ package one.empty3.library;
  */
 public class POINT3D_RIO extends Point3D {
 
-    public static final Point3D X = new Point3D(1, 0, 0);
-    public static final Point3D Y = new Point3D(0, 1, 0);
-    public static final Point3D Z = new Point3D(0, 0, 1);
-    public static final Point3D O0 = new Point3D(0, 0, 0);
+    public static final Point3D X = new Point3D(1d, 0d, 0d);
+    public static final Point3D Y = new Point3D(0d, 1d, 0d);
+    public static final Point3D Z = new Point3D(0d, 0d, 1d);
+    public static final Point3D O0 = new Point3D(0d, 0d, 0d);
     /**
      *
      */
@@ -77,7 +77,6 @@ public class POINT3D_RIO extends Point3D {
         return p.plus(translation);
     }
 
-    @Override
     public Point3D mult(double xFactor) {
         setX(getX() * xFactor);
         setY(getY() * xFactor);
@@ -85,7 +84,6 @@ public class POINT3D_RIO extends Point3D {
         return this;
     }
 
-    @Override
     public Point3D plus(double i) {
         setX(getX() + i);
         setY(getY() + i);

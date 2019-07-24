@@ -50,7 +50,7 @@ public class TestCoeur extends TestObjetSub {
         coeur.setMaxY(200);
 
 
-        scene().cameraActive(new Camera(Point3D.Z.mult(-5), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-5d), Point3D.O0));
 
         scene().add(coeur);
 

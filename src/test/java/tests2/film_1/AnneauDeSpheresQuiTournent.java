@@ -79,7 +79,7 @@ public class AnneauDeSpheresQuiTournent extends TestObjet {
          scene().add(s2);
          */
         for (int i = 0; i < NOMBRE; i++) {
-            s1 = new TRISphere(Point3D.X.mult(1000), 100);
+            s1 = new TRISphere(Point3D.X.mult(1000d), 100d);
             s1.texture(new TextureCol(
                     Colors.random()));
             spheres.add(s1);

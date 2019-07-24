@@ -28,12 +28,12 @@ public class TestSpheresTournent extends TestObjetSub {
 
         int i = 0;
         for (i = 0; i < sps.length; i++) {
-            sps[i] = new TRISphere(Point3D.X.mult(i), 1);
+            sps[i] = new TRISphere(Point3D.X.mult(1d), 1d);
 
             sps[i].texture(new TextureCol(Color.blue));
         }
 
-        camera(new Camera(Point3D.Z.mult(-sps.length), Point3D.O0));
+        camera(new Camera(Point3D.Z.mult((double) -sps.length), Point3D.O0));
     }
 
     public void testScene() {

@@ -16,7 +16,7 @@ import one.empty3.library.*;
 
 public class TRICylindre extends TRIObjetGenerateurAbstract {
 
-    private Point3D centre = new Point3D(0, 0, 0);
+    private Point3D centre = new Point3D(0d, 0d, 0d);
     private double hauteur = 1.0;
     private double radius = 1.0;
     private boolean sectionA = true;

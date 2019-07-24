@@ -113,7 +113,7 @@ public class Bonus extends RepresentableConteneur {
         double u, v;
         u = r.nextDouble();
         v = r.nextDouble();
-        return new Point3D(u, v, 0);
+        return new Point3D(u, v, 0d);
     }
 
     public boolean removeBonus(Representable r2) {

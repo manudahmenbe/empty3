@@ -108,7 +108,7 @@ public class Point2D {
     }
 
     public Point3D get3D() {
-        return new Point3D(x, y, 0);
+        return new Point3D(x, y, 0d);
     }
 
     public double get(int axe) {

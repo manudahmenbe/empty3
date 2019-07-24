@@ -44,8 +44,8 @@ public class TestCubes extends TestObjetSub {
         scene().cameras().clear();
 
         scene().cameraActive(new Camera(
-                new Point3D(0, 0, z(-250, 250, 0, getMaxFrames())),
-                new Point3D(0, 0, 1000000)
+                new Point3D(0d, 0d, z(-250d, 250d, 0, getMaxFrames())),
+                new Point3D(0d, 0d, 1000000d)
         ));
     }
 

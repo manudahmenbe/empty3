@@ -44,7 +44,7 @@ public class TestEllipsoide extends TestObjetSub {
 
         scene().add(e);
 
-        scene().cameraActive(new Camera(Point3D.Z.mult(-10), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-10d), Point3D.O0));
 
     }
 }

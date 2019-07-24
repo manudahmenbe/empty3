@@ -53,12 +53,12 @@ public class TestNurbsSimple extends TestObjetSub {
         NurbsSurface n = new NurbsSurface();
         n.setMaillage(new Point3D[][]{
                         {
-                                new Point3D(-1, -1, 0),
-                                new Point3D(-1, 1, 0)
+                                new Point3D(-1d, -1d, 0d),
+                                new Point3D(-1d, 1d, 0d)
                         },
                         {
-                                new Point3D(1, -1, 0),
-                                new Point3D(1, 1, 0)}
+                                new Point3D(1d, -1d, 0d),
+                                new Point3D(1d, 1d, 0d)}
                 },
                 new double[][]{
                         {1, 1},
@@ -87,7 +87,7 @@ public class TestNurbsSimple extends TestObjetSub {
         scene().add(n);
         System.out.println(n);
 
-        scene().cameraActive(new Camera(Point3D.Z.mult(-2), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-2d), Point3D.O0));
     }
 
     @Override

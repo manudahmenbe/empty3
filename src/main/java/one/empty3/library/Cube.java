@@ -28,7 +28,7 @@ public class Cube extends Representable implements TRIGenerable, IMovable {
     private double mlc = 1.0;
     private Point3D position = new Point3D(0.0, 0.0, 0.0);
     private TRIObject ts = new TRIObject();
-    private static double[][][] coordCube = new double[][][]{
+    private static Double[][][] coordCube = new Double[][][]{
             {
                     {1.0, -1.0, -1.0},
                     {1.0, 1.0, -1.0},
@@ -154,7 +154,7 @@ public class Cube extends Representable implements TRIGenerable, IMovable {
         generate();
     }
 
-    public static double [][][] getData()
+    public static Double[][][] getData()
     {
         return coordCube;
     }

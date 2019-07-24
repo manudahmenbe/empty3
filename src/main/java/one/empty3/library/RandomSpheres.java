@@ -28,7 +28,7 @@ public class RandomSpheres extends Animation {
     private Point3D[] ran;
     private Point3D[] next;
     private int n = 10;
-    private float t = 0;
+    private double t = 0;
     private Random r = new Random();
 
     public RandomSpheres(Scene s) {
@@ -56,7 +56,7 @@ public class RandomSpheres extends Animation {
             }
         }
         for (int i = 0; i < n; i++) {
-            SimpleSphere ss = new SimpleSphere(ran[i].mult(1 - t).plus(next[i].mult(t)), i, Color.white);
+            SimpleSphere ss = new SimpleSphere(ran[i].mult((double) 1 - t).plus(next[i].mult((double) t)), i, Color.white);
             s.add(ss);
         }
         scene = s;

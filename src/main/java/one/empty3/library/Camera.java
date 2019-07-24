@@ -32,7 +32,7 @@ public class Camera extends CameraBox {
     private Barycentre position;
 
     public Camera() {
-        this(new Point3D(0, 0, -100),Point3D.O0, Point3D.Y);
+        this(new Point3D(0d, 0d, -100d), Point3D.O0, Point3D.Y);
     }
 
     public Camera(Point3D eye, Point3D lookat) {
@@ -44,9 +44,6 @@ public class Camera extends CameraBox {
         this.lookat = lookat;
         calculerMatrice(up);
 
-        getDeclaredPoints().put("eye/eye", eye);
-        getDeclaredPoints().put("lookat/lookAt", lookat);
-        getDeclaredArray1dDouble().put("matrice/matrice", matrice.getDoubles());
     }
 
     protected void rotateMatrixXaxis(double angle)
@@ -67,7 +64,7 @@ public class Camera extends CameraBox {
 
     protected Point3D calculerVerticaleParDefaut(Point3D senseAxeCamera) {
         Point3D z = senseAxeCamera.norme1();
-        return Point3D.Y.prodVect(z).prodVect(z).mult(-1).norme1();
+        return Point3D.Y.prodVect(z).prodVect(z).mult(-1d).norme1();
     }
     protected Point3D calculerHorizontaParDefaut(Point3D senseAxeCamera) {
         Point3D z = senseAxeCamera.norme1();
@@ -199,5 +196,14 @@ public class Camera extends CameraBox {
     }
 
     {
+    }
+
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredPoints().put("eye/eye", eye);
+        getDeclaredPoints().put("lookat/lookAt", lookat);
+        getDeclaredArray1dDouble().put("matrice/matrice", matrice.getDoubles());
+
     }
 }

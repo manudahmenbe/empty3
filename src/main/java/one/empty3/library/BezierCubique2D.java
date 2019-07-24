@@ -24,7 +24,6 @@ public class BezierCubique2D extends Representable {
     /**
      *
      */
-    private static final long serialVersionUID = -1535398440465433319L;
     private final int ordreU = 4;
     private final int ordreV = 4;
     private final int ordre = 4;
@@ -61,7 +60,7 @@ public class BezierCubique2D extends Representable {
     @SuppressWarnings("unused")
     private Point3D bernstein(double u, double v) {
         int n = ordre;
-        Point3D p = new Point3D(0, 0, 0);
+        Point3D p = new Point3D(0d, 0d, 0d);
         for (int i = 0; i < ordre; i++) {
             for (int j = 0; j < ordre; j++) {
                 p = p.plus(controle[i][j].mult(b(u, n, i) * b(v, n, j)));

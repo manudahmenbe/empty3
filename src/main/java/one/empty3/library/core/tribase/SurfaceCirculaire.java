@@ -27,7 +27,7 @@ public class SurfaceCirculaire extends Surface {
         return new Point3D(
                 Math.cos(2 * Math.PI * t),
                 Math.sin(2 * Math.PI * t),
-                0)
+                0d)
                 .mult(radius);
 
     }

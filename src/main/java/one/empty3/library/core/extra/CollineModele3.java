@@ -36,7 +36,7 @@ public class CollineModele3 extends Representable implements TRIGenerable {
         int altMax = 10;
         int pMax = 100;
 
-        Point3D p0 = position == null ? new Point3D(0, 0, 0) : position.calculer(new Point3D(0, 0, 0));
+        Point3D p0 = position == null ? new Point3D(0d, 0d, 0d) : position.calculer(new Point3D(0d, 0d, 0d));
         Color c0 = new Color(128, 0, 255);
 
         Point3D[][] pA = new Point3D[altMax][pMax];
@@ -48,11 +48,11 @@ public class CollineModele3 extends Representable implements TRIGenerable {
                 Point3D[] p = new Point3D[3];
 
                 p[0] = p0.plus(new Point3D(aleatoireSigne(alt),
-                        aleatoireSigne(alt), 0));
+                        aleatoireSigne(alt), 0d));
                 p[1] = p[0].plus(new Point3D(aleatoireSigne(alt),
-                        aleatoireSigne(alt), 0));
+                        aleatoireSigne(alt), 0d));
                 p[2] = p[1].plus(new Point3D(aleatoireSigne(alt),
-                        aleatoireSigne(alt), 0));
+                        aleatoireSigne(alt), 0d));
 
                 p0 = p[2];
 
@@ -77,7 +77,7 @@ public class CollineModele3 extends Representable implements TRIGenerable {
             // pA[alt][pMax/2].plus(new Point3D(0,-1,0)),
             // pA[alt][pMax-1].plus(new Point3D(0,-1,0)), c0);
             // tris.add(t);
-            p0 = p0.plus(new Point3D(0, 0, -10));
+            p0 = p0.plus(new Point3D(0d, 0d, -10d));
         }
     }
 

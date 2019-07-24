@@ -117,7 +117,7 @@ public class TRI extends Representable implements IMovable, IScalable {
     }
 
     public Point3D getCentre() {
-        return getSommet()[0].plus(getSommet()[1]).plus(getSommet()[2].mult(1 / 3));
+        return getSommet()[0].plus(getSommet()[1]).plus(getSommet()[2].mult(1 / 3d));
     }
 
     public int intersects(TRI tri2) {

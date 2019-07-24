@@ -20,7 +20,7 @@ import java.util.Arrays;
 /**
  * *
  * <p>
- * Classe pour les éléments à trois coordonnées de type double
+ * Classe pour les éléments à trois coordonnées de type Double
  * Points, Vecteur 3D et calcul
  *
  * @author Manuel Dahmen
@@ -40,22 +40,22 @@ public class Point3D extends Representable implements IMovable {
      * *
      * axe X vector
      */
-    public static final Point3D X = new Point3D(1, 0, 0);
+    public static final Point3D X = new Point3D(1d, 0d, 0d);
     /**
      * *
      * axe Y vector
      */
-    public static final Point3D Y = new Point3D(0, 1, 0);
+    public static final Point3D Y = new Point3D(0d, 1d, 0d);
     /**
      * *
      * axe Z vector
      */
-    public static final Point3D Z = new Point3D(0, 0, 1);
+    public static final Point3D Z = new Point3D(0d, 0d, 1d);
     /**
      * *
      * O0 origin
      */
-    public static final Point3D O0 = new Point3D(0, 0, 0);
+    public static final Point3D O0 = new Point3D(0d, 0d, 0d);
     /**
      * *
      * Point "Infinite" limite pour Z-Buffer
@@ -87,7 +87,7 @@ public class Point3D extends Representable implements IMovable {
      * @param y0 y-coordonnée
      * @param z0 z-coordonnée
      */
-    public Point3D(double x0, double y0, double z0) {
+    public Point3D(Double x0, Double y0, Double z0) {
         this();
         x[0] = x0;
         x[1] = y0;
@@ -101,7 +101,7 @@ public class Point3D extends Representable implements IMovable {
      * @param y0 y-coordonnée
      * @param z0 z-coordonnée
      */
-    public Point3D(double x0, double y0, double z0, ITexture t) {
+    public Point3D(Double x0, Double y0, Double z0, ITexture t) {
         this();
         x[0] = x0;
         x[1] = y0;
@@ -115,7 +115,7 @@ public class Point3D extends Representable implements IMovable {
      *
      * @param x0 coordonnées (3)
      */
-    public Point3D(double[] x0, ITexture t) {
+    public Point3D(Double[] x0, ITexture t) {
         this();
         for (int i = 0; i < 3; i++)
             x[i] = x0[i];
@@ -135,7 +135,7 @@ public class Point3D extends Representable implements IMovable {
         texture(p0.texture());
     }
 
-    public static Point3D n(double a, double b, double c) {
+    public static Point3D n(Double a, Double b, Double c) {
         return new Point3D(a, b, c);
     }
 
@@ -147,7 +147,7 @@ public class Point3D extends Representable implements IMovable {
      * @param p2 Point2
      * @return
      */
-    public static double distance(Point3D p1, Point3D p2) {
+    public static Double distance(Point3D p1, Point3D p2) {
         return Math.sqrt((p1.getX() - p2.getX()) * (p1.getX() - p2.getX())
                 + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY())
                 + (p1.getZ() - p2.getZ()) * (p1.getZ() - p2.getZ()));
@@ -176,18 +176,18 @@ public class Point3D extends Representable implements IMovable {
      */
     public static Point3D vecteur(Point3D pa, Point3D pb) {
 
-        return pb.plus(pa.mult(-1));
+        return pb.plus(pa.mult(-1d));
     }
 
-    public static Point3D random(double d) {
+    public static Point3D random(Double d) {
         return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
 
-    public static Point3D r(double d) {
+    public static Point3D r(Double d) {
         return random(d);
     }
 
-    public static Point3D random2(double d) {
+    public static Point3D random2(Double d) {
 
         return new Point3D(((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d));
     }
@@ -197,7 +197,7 @@ public class Point3D extends Representable implements IMovable {
         return new Point3D(x[0], x[1], x[2]);
     }
 
-    public double get(int i) {
+    public Double get(int i) {
         return x[i];
     }
 
@@ -214,43 +214,43 @@ public class Point3D extends Representable implements IMovable {
         this.normale = normale;
     }
 
-    public double getX() {
+    public Double getX() {
         return x[0];
     }
 
-    public void setX(double x0) {
+    public void setX(Double x0) {
         x[0] = x0;
         declareProperties();
 
     }
 
-    public double getY() {
+    public Double getY() {
         return x[1];
     }
 
-    public void setY(double x0) {
+    public void setY(Double x0) {
         x[1] = x0;
         declareProperties();
 
     }
 
-    public double getZ() {
+    public Double getZ() {
         return x[2];
     }
 
-    public void setZ(double x0) {
+    public void setZ(Double x0) {
         x[2] = x0;
         declareProperties();
 
     }
 
     @Deprecated
-    public Point3D homothetie(Point3D c, double d) {
+    public Point3D homothetie(Point3D c, Double d) {
         return new Point3D(this).moins(c).mult(d).plus(c);
     }
 
     @Deprecated
-    public Point3D homothetie(Point3D c, double d, Point3D p) {
+    public Point3D homothetie(Point3D c, Double d, Point3D p) {
         return new Point3D(p).moins(c).mult(d).plus(c);
     }
 
@@ -287,7 +287,7 @@ public class Point3D extends Representable implements IMovable {
      * @param xFactor facteur
      * @return
      */
-    public Point3D mult(double xFactor) {
+    public Point3D mult(Double xFactor) {
         Point3D p = new Point3D(this);
         p.setX(p.getX() * xFactor);
         p.setY(p.getY() * xFactor);
@@ -305,7 +305,7 @@ public class Point3D extends Representable implements IMovable {
      *
      * @return
      */
-    public double norme() {
+    public Double norme() {
         return Math.sqrt((getX()) * (getX()) + (getY()) * (getY()) + (getZ())
                 * (getZ()));
     }
@@ -327,7 +327,7 @@ public class Point3D extends Representable implements IMovable {
      * @param i
      * @return
      */
-    public Point3D plus(double i) {
+    public Point3D plus(Double i) {
         Point3D p = new Point3D(this);
         p.setX(p.getX() + i);
         p.setY(p.getY() + i);
@@ -350,7 +350,7 @@ public class Point3D extends Representable implements IMovable {
      * @param p2
      * @return
      */
-    public double prodScalaire(Point3D p2) {
+    public Double prodScalaire(Point3D p2) {
         return x[0] * p2.getX() + x[1] * p2.getY() + x[2] * p2.getZ();
     }
 
@@ -367,7 +367,7 @@ public class Point3D extends Representable implements IMovable {
                 * getX());
     }
 
-    public void set(int i, double d) {
+    public void set(int i, Double d) {
         x[i] = d;
         declareProperties();
 
@@ -382,10 +382,10 @@ public class Point3D extends Representable implements IMovable {
 
     @Override
     public String toString() {
-        return "( " + (double) (x[0]) + " , " + (double) (x[1]) + " , " + (double) (x[2]) + " ) ";
+        return "( " + (Double) (x[0]) + " , " + (Double) (x[1]) + " , " + (Double) (x[2]) + " ) ";
     }
 
-    private Point3D norme(double d) {
+    private Point3D norme(Double d) {
         return this.norme1().mult(d);
     }
 
@@ -406,7 +406,7 @@ public class Point3D extends Representable implements IMovable {
     }
 
     public void normalize() {
-        double n = norme();
+        Double n = norme();
         for (int i = 0; i < x.length; i++)
             set(i, get(i) / n);
     }
@@ -415,7 +415,7 @@ public class Point3D extends Representable implements IMovable {
         return get2D();
     }
 
-    public double NormeCarree() {
+    public Double NormeCarree() {
         return x[0] * x[0] + x[1] * x[1] + x[2] + x[2];
     }
 
@@ -458,6 +458,10 @@ public class Point3D extends Representable implements IMovable {
         return this;
     }
 
+    public static Point3D n(double i, double i1, double i2) {
+        return new Point3D(i, i1, i2);
+    }
+
     public class P extends Point3D {
     }
 
@@ -481,7 +485,7 @@ public class Point3D extends Representable implements IMovable {
         getDeclaredArray1dDouble().put("x/cordinates", x);
         getDeclaredDoubles().put("x/cordinates x", x[0]);
         getDeclaredDoubles().put("y/cordinates y", x[1]);
-        getDeclaredDoubles().put("y/cordinates z", x[2]);
+        getDeclaredDoubles().put("z/cordinates z", x[2]);
         getDeclaredTextures().put("texture/Color of Point", texture);
     }
 

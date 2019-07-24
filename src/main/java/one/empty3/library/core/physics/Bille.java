@@ -21,7 +21,7 @@ public class Bille implements IPoint {
     public Color color;
     public String nom;
     public Point3D position;
-    public Point3D vitesse = new Point3D(0, 0, 0);
+    public Point3D vitesse = new Point3D(0d, 0d, 0d);
     public double attraction;
     public double repulsion;
     public double masse = 1;

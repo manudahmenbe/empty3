@@ -12,7 +12,7 @@ public class TestPieuvre extends TestObjetSub {
         this.pieuvre = new Pieuvre(10,
                 Color.YELLOW);
         scene().add(pieuvre);
-        scene().cameraActive(new Camera(Point3D.Z.mult(2), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(2d), Point3D.O0));
     }
 
     private double time() {

@@ -81,24 +81,24 @@ public class PlansVideo extends TestObjetSub {
         p2 = new Plan3D();
         p2.texture(tc2);
         p2.pointOrigine(Point3D.O0);
-        p2.pointXExtremite(Point3D.X.mult(-1));
+        p2.pointXExtremite(Point3D.X.mult(-1d));
         p2.pointYExtremite(Point3D.Y);
 
         p3 = new Plan3D();
         p3.texture(tc3);
         p3.pointOrigine(Point3D.O0);
         p3.pointXExtremite(Point3D.X);
-        p3.pointYExtremite(Point3D.Y.mult(-1));
+        p3.pointYExtremite(Point3D.Y.mult(-1d));
 
         p4 = new Plan3D();
         p4.texture(tc4);
         p4.pointOrigine(Point3D.O0);
-        p4.pointXExtremite(Point3D.X.mult(-1));
-        p4.pointYExtremite(Point3D.Y.mult(-1));
+        p4.pointXExtremite(Point3D.X.mult(-1d));
+        p4.pointYExtremite(Point3D.Y.mult(-1d));
 
         scene().cameraActive(
                 new Camera(
-                        new Point3D(0, 0, -2),
+                        new Point3D(0d, 0d, -2d),
                         Point3D.O0
                 )
         );

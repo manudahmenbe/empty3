@@ -65,7 +65,7 @@ public class Intersection {
             Representable r = itererScene.next();
 
             if (r instanceof TRI) {
-                LineSegment sd = new LineSegment(ie.point, ie.point.plus(ie.direction.moins(ie.point).mult(10000000)));
+                LineSegment sd = new LineSegment(ie.point, ie.point.plus(ie.direction.moins(ie.point).mult(10000000d)));
 
                 Representable i = sd.intersection((TRI) r);
 

@@ -50,7 +50,7 @@ public class TestCParamBSpline extends TestObjet {
         b.texture(new TextureCol(Color.WHITE));
         scene().add(b);
 
-        scene.cameraActive().setEye(Point3D.Z.mult(-2 * frame() - 2));
+        scene.cameraActive().setEye(Point3D.Z.mult(-2d * frame() - 2));
 
     }
 

@@ -31,14 +31,14 @@ public class RtPointLight extends RtLight {
 
     @Override
     public RtColor getLightAt(Point3D normal, Point3D intersectionPoint, RtMatiere material) {
-        float angle;
+        double angle;
         RtColor finalColor;
 
         lightVector = intersectionPoint.moins(getPosition());
 
         Point3D lightVector2 = lightVector.norme1();
 
-        angle = (float) normal.prodScalaire(lightVector2.mult(1 / Math.sqrt(lightVector.norme())));
+        angle = normal.prodScalaire(lightVector2.mult(1 / Math.sqrt(lightVector.norme())));
 
         //if (angle <= 0)
         //  finalColor = new RtColor(0.0f, 0.0f, 0.0f);

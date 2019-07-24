@@ -29,28 +29,28 @@ public class TestPortrait extends TestObjetSub {
     @Override
     public void testScene() throws Exception {
 
-        Cube c1 = new Cube(2.0, new Point3D(0, 0, 0), new TextureCol(Color.RED));
+        Cube c1 = new Cube(2.0, new Point3D(0d, 0d, 0d), new TextureCol(Color.RED));
 
-        Cube c2 = new Cube(1.5, new Point3D(1, 1, 0), new TextureCol(Color.YELLOW));
+        Cube c2 = new Cube(1.5, new Point3D(1d, 1d, 0d), new TextureCol(Color.YELLOW));
 
-        Cube cy1 = new Cube(0.5, new Point3D(2.1, 0, 0), new TextureCol(Color.GREEN));
-        Cube cy2 = new Cube(0.5, new Point3D(2.1, 1, 1), new TextureCol(Color.GREEN));
+        Cube cy1 = new Cube(0.5, new Point3D(2.1, 0d, 0d), new TextureCol(Color.GREEN));
+        Cube cy2 = new Cube(0.5, new Point3D(2.1, 1d, 1d), new TextureCol(Color.GREEN));
 
-        Cube c3 = new Cube(1, new Point3D(2, 2, 0), new TextureCol(Color.WHITE));
+        Cube c3 = new Cube(1, new Point3D(2d, 2d, 0d), new TextureCol(Color.WHITE));
 
-        TRISphere ts = new TRISphere(new Point3D(0, 6, -5), 4);
+        TRISphere ts = new TRISphere(new Point3D(0d, 6d, -5d), 4d);
 
         ts.texture(new TextureCol(Color.WHITE));
 
         scene().add(ts);
 
-        Camera c = new Camera(new Point3D(10, 10, 10), Point3D.O0);
+        Camera c = new Camera(new Point3D(10d, 10d, 10d), Point3D.O0);
 
-        scene().add(new LineSegment(Point3D.O0, Point3D.X.mult(10), new TextureCol(Color.RED)));
-        scene().add(new LineSegment(Point3D.O0, Point3D.X.mult(10), new TextureCol(Color.RED)));
-        scene().add(new LineSegment(Point3D.O0, Point3D.Y.mult(10), new TextureCol(Color.GREEN)));
-        scene().add(new LineSegment(Point3D.O0, Point3D.Z.mult(10), new TextureCol(Color.BLUE)));
-        scene().add(new TRI(new Point3D(3.1, 3, -1), new Point3D(3.1, 1, -1), new Point3D(3.1, 3, 1), new TextureCol(Color.WHITE)));
+        scene().add(new LineSegment(Point3D.O0, Point3D.X.mult(10d), new TextureCol(Color.RED)));
+        scene().add(new LineSegment(Point3D.O0, Point3D.X.mult(10d), new TextureCol(Color.RED)));
+        scene().add(new LineSegment(Point3D.O0, Point3D.Y.mult(10d), new TextureCol(Color.GREEN)));
+        scene().add(new LineSegment(Point3D.O0, Point3D.Z.mult(10d), new TextureCol(Color.BLUE)));
+        scene().add(new TRI(new Point3D(3.1, 3d, -1d), new Point3D(3.1, 1d, -1d), new Point3D(3.1, 3d, 1d), new TextureCol(Color.WHITE)));
 
         scene().add(c1);
         scene().add(c2);
@@ -60,10 +60,10 @@ public class TestPortrait extends TestObjetSub {
         scene().cameraActive(c);
         scene().lumieres()
                 .add(
-                        new LumierePonctuelle(new Point3D(5, 20, 5), Color.MAGENTA));
+                        new LumierePonctuelle(new Point3D(5d, 20d, 5d), Color.MAGENTA));
         scene().lumieres()
                 .add(
-                        new LumierePonctuelle(new Point3D(20, 0, 0), Color.CYAN));
+                        new LumierePonctuelle(new Point3D(20d, 0d, 0d), Color.CYAN));
     }
 
     @Override

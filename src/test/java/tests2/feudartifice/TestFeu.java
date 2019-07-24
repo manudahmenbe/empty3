@@ -44,7 +44,7 @@ public class TestFeu extends TestObjetSub {
     @Override
     public void testScene() throws Exception {
 
-        scene().cameraActive(new Camera(Point3D.Z.mult(-100 + frame / 2.0), Point3D.Z.mult(200)));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-100d + frame / 2.0), Point3D.Z.mult(200d)));
 
 
     }

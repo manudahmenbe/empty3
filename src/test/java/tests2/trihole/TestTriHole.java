@@ -39,7 +39,7 @@ public class TestTriHole extends TestObjetSub {
 
         scene().add(th);
 
-        scene().cameraActive(new Camera(Point3D.Z.mult(-2), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-2d), Point3D.O0));
         LumierePonctuelle lumierePonctuelle = new LumierePonctuelle(Point3D.O0, Color.YELLOW);
         lumierePonctuelle.setR0(1);
 

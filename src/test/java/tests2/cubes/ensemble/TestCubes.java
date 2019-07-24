@@ -96,8 +96,8 @@ public class TestCubes extends TestObjetSub {
         scene().cameras().clear();
 
         scene().cameraActive(new Camera(
-                new Point3D(0, 0, -D * 2),
-                new Point3D(0, 0, 1000)
+                new Point3D(0d, 0d, -D * 2),
+                new Point3D(0d, 0d, 1000d)
         ));
     }
 

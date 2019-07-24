@@ -52,7 +52,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     protected ImageMap ime;
     protected int ha;
     protected int la;
-    private Point3D INFINI = new Point3D(0, 0, INFINI_PROF);
+    private Point3D INFINI = new Point3D(0d, 0d, INFINI_PROF);
     private Camera cameraC = new Camera();
     // PARAMETRES
     private float zoom = 1.05f;
@@ -65,10 +65,10 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     private Point3D[][] Scordinate;
     private int[] Scolor;
     private long[][] Simeid;
-    private float[][] Simeprof;
+    private double[][] Simeprof;
     private Scene currentScene;
     private Box2D box;
-    private Point3D activeLight = new Point3D(-10, 0, 100);
+    private Point3D activeLight = new Point3D(-10d, 0d, 100d);
     private int displayType = DISPLAY_ALL;
 
     public ZBufferImpl() {
@@ -755,12 +755,12 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
         double iteres1 = 1.0 / (Math.abs(p1.getX() - p2.getX()) + Math.abs(p1.getY() - p2.getY()));
         for (double a = 0; a < 1.0; a += iteres1) {
-            Point3D p3d = pp1.plus(pp1.mult(-1).plus(pp2).mult(a));
+            Point3D p3d = pp1.plus(pp1.mult(-1d).plus(pp2).mult(a));
             Point pp = coordonneesPoint2D(p3d);
             if (pp != null) {
                 double iteres2 = 1.0 / (Math.abs(pp.getX() - p3.getX()) + Math.abs(pp.getY() - p3.getY()));
                 for (double b = 0; b < 1.0; b += iteres2) {
-                    Point3D p = p3d.plus(p3d.mult(-1).plus(pp3).mult(b));
+                    Point3D p = p3d.plus(p3d.mult(-1d).plus(pp3).mult(b));
                     // Point p22 = coordonneesPoint2D(p);
                     ime.testDeep(p, c.getRGB());
                 }
@@ -782,10 +782,10 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         Point3D normale = triBas.normale();
         double inter = 1.0 / (maxDistance(p1, p2, p3, p4) + 1) / 3;
         for (double a = 0; a < 1.0; a += inter) {
-            Point3D pElevation1 = pp1.plus(pp1.mult(-1).plus(pp2).mult(a));
-            Point3D pElevation2 = pp4.plus(pp4.mult(-1).plus(pp3).mult(a));
+            Point3D pElevation1 = pp1.plus(pp1.mult(-1d).plus(pp2).mult(a));
+            Point3D pElevation2 = pp4.plus(pp4.mult(-1d).plus(pp3).mult(a));
             for (double b = 0; b < 1.0; b += inter) {
-                Point3D pFinal = (pElevation1.plus(pElevation1.mult(-1).plus(pElevation2).mult(b)));
+                Point3D pFinal = (pElevation1.plus(pElevation1.mult(-1d).plus(pElevation2).mult(b)));
                 pFinal.setNormale(normale);
                 pFinal.texture(texture);
                 if (n != null)
@@ -809,10 +809,10 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
         double iteres1 = 1.0 / (maxDistance(p1, p2, p3) + 1) / 3;
         for (double a = 0; a < 1.0; a += iteres1) {
-            Point3D p3d = pp1.plus(pp1.mult(-1).plus(pp2).mult(a));
+            Point3D p3d = pp1.plus(pp1.mult(-1d).plus(pp2).mult(a));
             double iteres2 = 1.0 / maxDistance(p1, p2, p3) / 3;
             for (double b = 0; b < 1.0; b += iteres2) {
-                Point3D p = p3d.plus(p3d.mult(-1).plus(pp3).mult(b));
+                Point3D p = p3d.plus(p3d.mult(-1d).plus(pp3).mult(b));
                 p.setNormale(n);
                 ime.testDeep(p, c.getColorAt(a, b));
             }
@@ -1202,11 +1202,11 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             Scordinate = new Point3D[la][ha];
             Scolor = new int[la * ha];
             Simeid = new long[la][ha];
-            Simeprof = new float[la][ha];
+            Simeprof = new double[la][ha];
 
             for (int i = 0; i < la; i++) {
                 for (int j = 0; j < ha; j++) {
-                    Simeprof[i][j] = (float) INFINI.getZ();
+                    Simeprof[i][j] = INFINI.getZ();
                     Simeid[i][j] = idImg;
                     Scolor[j * la + i] = COULEUR_FOND_INT(i, j);
 

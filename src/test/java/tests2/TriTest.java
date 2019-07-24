@@ -62,7 +62,7 @@ public class TriTest extends TestObjetSub {
 
     @Override
     public void testScene() throws Exception {
-        scene().cameraActive(new Camera(Point3D.Z.mult(-100 + 100 * ((float) frame) / getMaxFrames()), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-100d + 100 * ((float) frame) / getMaxFrames()), Point3D.O0));
 
     }
 

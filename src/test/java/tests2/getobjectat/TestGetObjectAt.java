@@ -32,7 +32,7 @@ public class TestGetObjectAt extends TestObjetSub {
     public void testScene() throws Exception {
         scene().clear();
         scene().add(new TRI(Point3D.O0, Point3D.X, Point3D.Y, new TextureCol(Color.BLUE)));
-        scene().cameraActive(new Camera(Point3D.Z.mult(-1), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-1d), Point3D.O0));
 
     }
 

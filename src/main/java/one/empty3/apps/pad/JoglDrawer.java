@@ -126,8 +126,8 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         Point3D p1 = getTerrain().p3(segd.getOrigine());
         Point3D p2 = getTerrain().p3(segd.getExtremite());
         color(gl, new Color(segd.texture().getColorAt(0.5, 0.5)));
-        gl.glVertex3f((float) p1.get(0), (float) p1.get(1), (float) p1.get(2));
-        gl.glVertex3f((float) p2.get(0), (float) p2.get(1), (float) p2.get(2));
+        gl.glVertex3f((float) (double) p1.get(0), (float) (double) p1.get(1), (float) (double) p1.get(2));
+        gl.glVertex3f((float) (double) p2.get(0), (float) (double) p2.get(1), (float) (double) p2.get(2));
         gl.glEnd();
         //System.out.print("SD");
         // System.out.println("L");
@@ -143,9 +143,9 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         color(gl, new Color(tri.texture().getColorAt(0.5, 0.5)));
         for (Point3D sommet : tri.getSommet()) {
             Point3D p = getTerrain().p3(sommet);
-            gl.glVertex3f((float) p.get(0),
-                    (float) p.get(1),
-                    (float) p.get(2));
+            gl.glVertex3f((float) (double) p.get(0),
+                    (float) (double) p.get(1),
+                    (float) (double) p.get(2));
         }
         gl.glEnd();
     }
@@ -156,9 +156,9 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         color(gl, new Color(tri.texture().getColorAt(0.5, 0.5)));
         for (Point3D sommet : tri.getSommet()) {
             Point3D p = sommet;
-            gl.glVertex3f((float) p.get(0),
-                    (float) p.get(1),
-                    (float) p.get(2));
+            gl.glVertex3f((float) (double) p.get(0),
+                    (float) (double) p.get(1),
+                    (float) (double) p.get(2));
         }
         if (!guard)
             gl.glEnd();
@@ -499,14 +499,14 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         gl.glBegin(GL2.GL_TRIANGLES);
         for (double i = 0; i <= 1; i += INCR_AA) {
             for (double j = 0; j <= 1; j += INCR_AA) {
-                final double[][][] faces = Cube.getData();
+                final Double[][][] faces = Cube.getData();
                 TRI[] tris = new TRI[12];
                 //tris[12] = new TRI(new Point3D(0, 1, 0), new Point3D(1, 1, 0), new Point3D(0, 0, 0));
                 //tris[13] = new TRI(new Point3D(1, 0, 0), new Point3D(1, 1, 0), new Point3D(0, 0, 0));
 
                 int index = 0;
                 int a = 0;
-                for (double[][] triRaw : faces) {
+                for (Double[][] triRaw : faces) {
 
 
                     tris[index] = new TRI();

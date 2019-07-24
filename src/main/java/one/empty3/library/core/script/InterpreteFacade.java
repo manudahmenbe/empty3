@@ -718,7 +718,7 @@ public class InterpreteFacade {
     public TRIEllipsoide interpreteTRIEllipsoide() throws InterpreteException {
         InterpreteTRIEllipsoide interpreteH = new InterpreteTRIEllipsoide();
         interpreteH.setRepertoire(repertoire);
-        TRIEllipsoide e = new TRIEllipsoide(new Point3D(0, 0, 0), 1, 2, 3);
+        TRIEllipsoide e = new TRIEllipsoide(new Point3D(0d, 0d, 0d), 1d, 2d, 3d);
         try {
             e = (TRIEllipsoide) interpreteH.interprete(text, pos);
             pos = interpreteH.getPosition();
@@ -737,7 +737,7 @@ public class InterpreteFacade {
     public TRISphere interpreteTRISphere() throws InterpreteException {
         InterpreteTRISphere interpreteH = new InterpreteTRISphere();
         interpreteH.setRepertoire(repertoire);
-        TRISphere s = new TRISphere(new Point3D(0, 0, 0), 1.0);
+        TRISphere s = new TRISphere(new Point3D(0d, 0d, 0d), 1.0);
         try {
             s = (TRISphere) interpreteH.interprete(text, pos);
             pos = interpreteH.getPosition();

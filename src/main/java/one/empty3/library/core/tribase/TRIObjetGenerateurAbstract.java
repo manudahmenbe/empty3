@@ -189,7 +189,7 @@ public abstract class TRIObjetGenerateurAbstract extends Representable implement
      * @param z
      */
     public void draw(ZBuffer z) {
-        Point3D INFINI = new Point3D(0, 0, 10000, new TextureCol(Color.BLUE));
+        Point3D INFINI = new Point3D(0d, 0d, 10000d, new TextureCol(Color.BLUE));
         TRI[] tris = new TRI[2];
         tris[0] = new TRI(INFINI, INFINI, INFINI);
         tris[1] = new TRI(INFINI, INFINI, INFINI);

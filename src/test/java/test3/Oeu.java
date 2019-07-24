@@ -65,11 +65,11 @@ public class Oeu extends TestObjetSub{
         setPointCount(10);
         for (int i = 0; i < pointCount; i++) {
 
-            Gravity gravity = new Gravity(Point3D.random(100), 10, Point3D.random(10.0));
+            Gravity gravity = new Gravity(Point3D.random(100d), 10d, Point3D.random(10.0));
             scene().add(new Sphere(gravity, 2));
             point3DPCont.add(gravity);
         }
-        scene().cameraActive(new Camera(Point3D.Z.mult(-10), Point3D.O0, Point3D.Y));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-10d), Point3D.O0, Point3D.Y));
     }
    public void finit() {
        for (int i = 0; i < pointCount; i++) {

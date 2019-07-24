@@ -30,13 +30,13 @@ public class TestSpheres extends TestObjetSub {
     @Override
     public void finit() {
         CameraInPath camera = new CameraInPath(new Circle(
-                new Axe(Point3D.O0.plus(Point3D.X), Point3D.O0.moins(Point3D.X)), 400));
+                new Axe(Point3D.O0.plus(Point3D.X), Point3D.O0.moins(Point3D.X)), 400d));
         scene().add(camera);
         scene().cameraActive(camera);double t = 1.0*frame()/(getMaxFrames());
         camera.setT(t);
 
         Point3D z = Point3D.O0.moins(camera.getCourbe().calculerPoint3D(t)).norme1();
-        Point3D x = camera.getCourbe().tangente(t).norme1().mult(-1);
+        Point3D x = camera.getCourbe().tangente(t).norme1().mult(-1d);
         Point3D y = x.prodVect(z).norme1();
         camera.setMatrix(x, y, z);
 
@@ -48,7 +48,7 @@ public class TestSpheres extends TestObjetSub {
         scene().clear();
         Sphere[] spheres = new Sphere[TestSpheres.CIRCLES_COUNT];
         for (int i = 0; i < spheres.length; i++) {
-            Axe axe = new Axe(Point3D.random(100), Point3D.random(100));
+            Axe axe = new Axe(Point3D.random(100d), Point3D.random(100d));
             spheres[i] = new Sphere(axe,
                     100);
             spheres[i].texture(new TextureCol(Color.ORANGE));

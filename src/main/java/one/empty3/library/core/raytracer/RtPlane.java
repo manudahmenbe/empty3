@@ -35,7 +35,7 @@ public class RtPlane extends RtObject {
         double t;
         double dv;
 
-        dv = (float) mNormal.prodScalaire(ray.mVDir);
+        dv = (double) mNormal.prodScalaire(ray.mVDir);
 
         if (dv == 0)
             return false;
@@ -49,10 +49,10 @@ public class RtPlane extends RtObject {
             intersectInfo.mIntersection = ray.mVStart.plus(ray.mVDir.mult(t));
 
             if (dv < 0)
-                intersectInfo.mNormal = mNormal.mult(-1);
+                intersectInfo.mNormal = mNormal.mult(-1d);
 
             else
-                intersectInfo.mNormal = mNormal.mult(-1);
+                intersectInfo.mNormal = mNormal.mult(-1d);
 
             intersectInfo.mNode = getNode();
             intersectInfo.mMaterial = getMaterial();
