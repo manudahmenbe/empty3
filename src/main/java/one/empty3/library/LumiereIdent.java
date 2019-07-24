@@ -12,7 +12,7 @@
 
 package one.empty3.library;
 
-public class LumiereIdent implements Lumiere {
+public class LumiereIdent extends Lumiere {
 
     @Override
     public int getCouleur(int base1, Point3D p, Point3D n) {

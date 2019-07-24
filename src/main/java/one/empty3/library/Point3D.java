@@ -27,15 +27,13 @@ import java.util.Arrays;
  */
 public class Point3D extends Representable implements IMovable {
     // TODO rename into Pixel3D? Tout doux.
-    public Point3D()
-    {
+    public Point3D() {
         super();
         x = new Double[3];
         x[0] = 0d;
         x[1] = 0d;
         x[2] = 0d;
-        getDeclaredArray1dDouble().put("x/cordinates", x);
-        getDeclaredTextures().put("texture/Color of Point", texture);
+        declareProperties();
     }
 
     /**
@@ -119,7 +117,7 @@ public class Point3D extends Representable implements IMovable {
      */
     public Point3D(double[] x0, ITexture t) {
         this();
-        for(int i=0; i<3; i++)
+        for (int i = 0; i < 3; i++)
             x[i] = x0[i];
         texture(t);
     }
@@ -182,7 +180,7 @@ public class Point3D extends Representable implements IMovable {
     }
 
     public static Point3D random(double d) {
-        return new Point3D(Math.random()-0.5, Math.random()-0.5, Math.random()-0.5).mult(d*2);
+        return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
 
     public static Point3D r(double d) {
@@ -222,6 +220,8 @@ public class Point3D extends Representable implements IMovable {
 
     public void setX(double x0) {
         x[0] = x0;
+        declareProperties();
+
     }
 
     public double getY() {
@@ -230,6 +230,8 @@ public class Point3D extends Representable implements IMovable {
 
     public void setY(double x0) {
         x[1] = x0;
+        declareProperties();
+
     }
 
     public double getZ() {
@@ -238,6 +240,8 @@ public class Point3D extends Representable implements IMovable {
 
     public void setZ(double x0) {
         x[2] = x0;
+        declareProperties();
+
     }
 
     @Deprecated
@@ -365,6 +369,8 @@ public class Point3D extends Representable implements IMovable {
 
     public void set(int i, double d) {
         x[i] = d;
+        declareProperties();
+
     }
 
     public String toLongString() {
@@ -376,7 +382,7 @@ public class Point3D extends Representable implements IMovable {
 
     @Override
     public String toString() {
-        return "( " + (double)(x[0]) + " , " + (double)(x[1]) + " , " + (double)(x[2]) + " ) ";
+        return "( " + (double) (x[0]) + " , " + (double) (x[1]) + " , " + (double) (x[2]) + " ) ";
     }
 
     private Point3D norme(double d) {
@@ -469,4 +475,14 @@ public class Point3D extends Representable implements IMovable {
     public int hashCode() {
         return Arrays.hashCode(x);
     }
+
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredArray1dDouble().put("x/cordinates", x);
+        getDeclaredDoubles().put("x/cordinates x", x[0]);
+        getDeclaredDoubles().put("y/cordinates y", x[1]);
+        getDeclaredDoubles().put("y/cordinates z", x[2]);
+        getDeclaredTextures().put("texture/Color of Point", texture);
+    }
+
 }

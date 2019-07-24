@@ -33,14 +33,15 @@ public class Polygon extends Representable implements SurfaceElem {
     public Polygon() {
         super();
         points = new Point3D[4];
-        for (Point3D p : points) {
-            p = new Point3D();
+        for (int i=0; i<4; i++) {
+            points[i] = new Point3D();
         }
-        getDeclaredArray1Points().put("points/point 0 à N du Polygone", points);
+        declareProperties();
     }
 
     public Polygon(Color c) {
         this();
+        texture(new TextureCol(c));
     }
 
     public Polygon(ITexture c) {
@@ -70,6 +71,7 @@ public class Polygon extends Representable implements SurfaceElem {
                 points[i] = tmp[i];
             points[newLength - 1] = point3D;
         }
+        declareProperties();
     }
 
 
@@ -79,6 +81,7 @@ public class Polygon extends Representable implements SurfaceElem {
 
     public void setPoints(Point3D[] points) {
         this.points = points;
+        declareProperties();
     }
 
 
@@ -115,5 +118,12 @@ public class Polygon extends Representable implements SurfaceElem {
             p = p.plus(p0);
         }
         return p.mult(1. / points.length);
+    }
+
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredArray1Points().put("points/point 0 à N du Polygone", points);
+
     }
 }

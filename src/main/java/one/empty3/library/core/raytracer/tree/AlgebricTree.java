@@ -476,6 +476,9 @@ public class AlgebricTree extends Tree {
         return s;
     }
 
+    public void setParametersValues(Map<String, Double> parametersValues) {
+        this.parametersValues = parametersValues;
+    }
 
     public Map<String, Double> getParametersValues() {
         return parametersValues;

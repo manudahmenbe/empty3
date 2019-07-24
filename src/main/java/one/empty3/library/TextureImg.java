@@ -18,10 +18,14 @@
 package one.empty3.library;
 
 import org.monte.media.avi.AVIReader;
+import sun.misc.BASE64Encoder;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 
 
 /**
@@ -152,5 +156,26 @@ public class TextureImg extends ITexture {
             return c;
         }
     }
+    public String toString() {
+        String imageString = null;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
+        try {
+            ImageIO.write(image, "jpg", bos);
+            byte[] imageBytes = bos.toByteArray();
+
+            BASE64Encoder encoder = new BASE64Encoder();
+            imageString = encoder.encode(imageBytes);
+
+            bos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String t  = "textureImg( filename:"+getFilename()+"\n\tdata : "+imageString+")";
+        return t;
+    }
+
+    public String getFilename() {
+        return getNomFichier();
+    }
 }

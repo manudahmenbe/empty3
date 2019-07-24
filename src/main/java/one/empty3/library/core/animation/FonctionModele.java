@@ -20,13 +20,23 @@
  */
 package one.empty3.library.core.animation;
 
-import one.empty3.library.*;
+import one.empty3.library.Representable;
+
+import java.lang.reflect.InvocationTargetException;
 
 public abstract class FonctionModele<R> extends Fonction {
 
     public abstract R fonctionModele(double time);
 
-    public final void inject(Representable r, R value, Object... keys) {
-        r.setProperty(value, keys);
+    public final void inject(Representable r, String property,Object value) {
+        try {
+            r.setProperty(property, value);
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
     }
 }

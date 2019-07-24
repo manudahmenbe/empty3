@@ -25,7 +25,7 @@ import java.awt.*;
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public final class LumierePonctuellePeriodique implements Lumiere {
+public final class LumierePonctuellePeriodique extends Lumiere {
 
     private Color couleurLumiere = Color.RED;
     private Point3D position;

@@ -45,8 +45,6 @@ public class Representable implements Serializable, Comparable {
 
     public Representable() {
         texture = new TextureCol(Colors.random());
-        declaredTextures.put("CFAST/draw fast texture", CFAST);
-        declaredTextures.put("texture/texture", texture);
     }
 
     public static void setPaintingActForClass(ZBuffer z, Scene s, PaintingAct pa) {
@@ -105,19 +103,6 @@ public class Representable implements Serializable, Comparable {
 
     }
 
-    public void setProperty(Object value, Object... keys) {
-        if (value != null) {
-            if (value instanceof Barycentre) {
-
-                this.position((Barycentre) value);
-
-            } else if (value instanceof ITexture) {
-
-                this.texture((ITexture) value);
-
-            }
-        }
-    }
 
     public boolean supporteTexture() {
         return false;
@@ -238,8 +223,9 @@ public class Representable implements Serializable, Comparable {
     protected HashMap<String, Point3D[]> declaredArray1Points = new HashMap<>();
     protected HashMap<String, Point3D[][]> declaredArray2Points = new HashMap<>();
     protected HashMap<String, Representable> declaredRepresentables = new HashMap<>();
-    private HashMap<String, Boolean> declaredBoolean = new HashMap<>();
-    private HashMap<String,List> declaredLists = new HashMap<>();
+    protected HashMap<String, Boolean> declaredBoolean = new HashMap<>();
+    protected HashMap<String,List> declaredLists = new HashMap<>();
+    protected HashMap<String,String> declaredString = new HashMap<>();
 
     public HashMap<String, List> getDeclaredLists() {
         return declaredLists;
@@ -279,6 +265,9 @@ public class Representable implements Serializable, Comparable {
     public HashMap<String, Boolean> getDeclaredBoolean() {
         return declaredBoolean;
     }
+    public HashMap<String, String> getDeclaredString() {
+        return declaredString;
+    }
 
     public ITexture getTexture() {
         return texture;
@@ -289,20 +278,21 @@ public class Representable implements Serializable, Comparable {
     }
 
     public Class getPropertyType(String propertyName) throws NoSuchMethodException {
-        Method propertySetter = null;
-        propertySetter = this.getClass().getDeclaredMethod("set" + (""+propertyName.charAt(0)).toUpperCase() + propertyName.substring(1));
-        return propertySetter.getParameterTypes()[0];
+            Method propertyGetter = null;
+            propertyGetter = this.getClass().getMethod("get" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.length() >1 ? propertyName.substring(1) : ""));
+            return propertyGetter.getReturnType();
     }
 
     public void setProperty(String propertyName, Object value) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
-        propertySetter = this.getClass().getDeclaredMethod("set" + (""+propertyName.charAt(0)).toUpperCase() + propertyName.substring(1));
+        propertySetter = this.getClass().getMethod("set" + (""+propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)!=null?propertyName.substring(1):""), value.getClass());
         propertySetter.invoke(this, value);
+        System.out.println("RType : " + this.getClass().getName()+" Property: "+ propertyName+" New Value set "+value);
     }
 
     public Object getProperty(String propertyName) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
-        propertySetter = this.getClass().getDeclaredMethod("get" + (""+propertyName.charAt(0)).toUpperCase() + propertyName.substring(1));
+        propertySetter = this.getClass().getMethod("get" + (""+propertyName.charAt(0)).toUpperCase() + propertyName.substring(1));
         return propertySetter.invoke(this);
     }
 
@@ -311,8 +301,24 @@ public class Representable implements Serializable, Comparable {
         return "Representable()";
     }
 
+
+
     public void declareProperties()
     {
+        declaredDoubles = new HashMap<>();
+        declaredMatrix = new HashMap<>();
+        declaredArrays = new HashMap<>();
+        declaredPoints = new HashMap<>();
+        declaredTextures = new HashMap<>();
+        declaredArray1Points = new HashMap<>();
+        declaredArray2Points = new HashMap<>();
+        declaredRepresentables = new HashMap<>();
+        declaredBoolean = new HashMap<>();
+        declaredLists = new HashMap<>();
+        declaredString = new HashMap<>();
+
+        declaredTextures.put("CFAST/draw fast texture", CFAST);
+        declaredTextures.put("texture/texture", texture);
 
     }
 }

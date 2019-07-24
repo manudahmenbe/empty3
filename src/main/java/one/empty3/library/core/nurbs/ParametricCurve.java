@@ -200,8 +200,9 @@ public class ParametricCurve extends Representable {
         return this;
     }
 
-
-    {
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
         getDeclaredDoubles().put("incrU/incrU", incrU);
         getDeclaredDoubles().put("startU/startU", startU);
         getDeclaredDoubles().put("endV/endV", endU);

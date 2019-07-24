@@ -51,6 +51,8 @@ public class Scene extends Representable implements Serializable {
 
     public Scene() {
         super();
+        super.declareProperties();
+        declareProperties();
     }
 
     public boolean add(Representable add) {
