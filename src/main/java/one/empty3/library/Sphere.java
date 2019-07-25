@@ -10,8 +10,9 @@ public class Sphere extends ParametricSurface {
     public Sphere()
     {
         super();
-        this.axe = new Axe(Point3D.Y, Point3D.Y.mult(-1d));
-        circle = new Circle(axe, 10);
+        this.axe = new Axe();
+        circle = new Circle();
+
 
     }
     public Sphere(Axe axis, double radius) {

@@ -22,12 +22,17 @@ public class Axe extends Representable{
     private Point3D p1;
     private Point3D p2;
 
-    public Axe(Point3D p1, Point3D p2) {
+
+    public Axe()
+    {
         super();
+        p1 = Point3D.Y;
+        p2 = Point3D.Y.mult(-1d);
+    }
+
+    public Axe(Point3D p1, Point3D p2) {
         this.p1 = p1;
         this.p2 = p2;
-        getDeclaredPoints().put("p1/p1", p1);
-        getDeclaredPoints().put("p2/p1", p2);
     }
 
     public Point3D getP1() {
@@ -60,5 +65,13 @@ public class Axe extends Representable{
 
     public Point3D getVector() {
         return p2.moins(p1);
+    }
+
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredPoints().put("p1/p1", p1);
+        getDeclaredPoints().put("p2/p1", p2);
+
     }
 }

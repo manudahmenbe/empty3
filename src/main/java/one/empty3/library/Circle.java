@@ -12,10 +12,17 @@ import one.empty3.library.core.nurbs.ParametricCurve;
 public class Circle extends ParametricCurve {
     protected Axe axis;
     //public Point3D center;
-    protected double radius;
+    protected Double radius;
     protected Point3D vectX;
     protected Point3D vectY;
     protected Point3D vectZ;
+
+    public Circle()
+    {
+        axis = new Axe();
+        radius = 10.0;
+        calculerRepere1();
+    }
 
     public Circle(Axe axis, double radius) {
         this.axis = axis;
@@ -105,11 +112,11 @@ public class Circle extends ParametricCurve {
         return axis.getCenter();
     }
 
-    public double getRadius() {
+    public Double getRadius() {
         return radius;
     }
 
-    public void setRadius(double radius) {
+    public void setRadius(Double radius) {
         this.radius = radius;
     }
 
@@ -143,8 +150,8 @@ public class Circle extends ParametricCurve {
 
     @Override
     public void declareProperties() {
-        calculerRepere1();
         super.declareProperties();
+        calculerRepere1();
         getDeclaredRepresentables().put("axis/axe du cercle (perpendiculaire au plan)", axis);
         getDeclaredDoubles().put("radius/rayon", radius);
     }
