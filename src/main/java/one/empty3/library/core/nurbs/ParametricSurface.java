@@ -48,8 +48,8 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
 
     }
 
-    public double incr1 = 0.01;
-    public double incr2 = 0.01;
+    public double incr1 = 0.1;
+    public double incr2 = 0.1;
     public double incrVitesse = 0.0001;
     public double incrNormale = 0.000001;
     protected double start1 = 0, start2 = 0;
@@ -229,7 +229,7 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
 
     public class Parameters {
 
-        private boolean isGlobal;
+        private boolean isGlobal = true;
         private double incrV;
         private double incrU;
 
