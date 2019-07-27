@@ -12,36 +12,11 @@
 
 package one.empty3.library.core.raytracer.tree.functions;
 
-import one.empty3.library.core.raytracer.tree.AlgebraicFormulaSyntaxException;
 import one.empty3.library.core.raytracer.tree.FunctionTreeNodeType;
-import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * Created by manuel on 24-01-17.
  */
 public class MathFunctionTreeNodeType extends FunctionTreeNodeType {
-    public Double compute(String function) {
-        try {
-            System.out.println(function);
-            Method method;
-            method = Math.class.getMethod((function), double.class);
-            try {
-                return (Double) method.invoke(Math.class, getAlgebricTree().eval());
-            } catch (TreeNodeEvalException | AlgebraicFormulaSyntaxException e) {
-                e.printStackTrace();
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
 
 }

@@ -8,7 +8,7 @@ import one.empty3.library.*;
 public class Point3DS extends ParametricCurve {
     private final Point3D point;
     {
-        getParameters().setIncrU(1);
+        getParameters().setIncrU(1.0);
 
         getParameters().setEndU(0.1);
 

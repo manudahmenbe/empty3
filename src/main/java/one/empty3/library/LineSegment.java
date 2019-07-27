@@ -42,9 +42,7 @@ public class LineSegment extends ParametricCurve implements CurveElem {
         super();
         this.setOrigine(new Point3D());
         this.setExtremite(new Point3D());
-        getDeclaredPoints().put("origine/point origine", origine);
-        getDeclaredPoints().put("extremite/point extremite", extremite);
-    }
+     }
 
     // prodScalaire product (3D) which allows vector operations in arguments
     public LineSegment(Point3D p1, Point3D p2) {
@@ -209,4 +207,11 @@ public class LineSegment extends ParametricCurve implements CurveElem {
         return getExtremite().moins(getOrigine()).norme1();
     }
 
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredPoints().put("origine/point origine", origine);
+        getDeclaredPoints().put("extremite/point extremite", extremite);
+
+    }
 }

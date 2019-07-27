@@ -53,9 +53,6 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
                 };
         power1 = coefficients.length;
         power2 = coefficients[0].length;
-        getDeclaredArray2Points().put("coefficients/coefficients du polygone de Bezier", coefficients);
-        getDeclaredDoubles().put("power1/puissance par defaut #dim1", (double) power1);
-        getDeclaredDoubles().put("power2/puissance par defaut #dim1", (double) power2);
     }
 
     public double B(int i, int n, double t) {
@@ -95,8 +92,8 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
     public void declareProperties() {
         super.declareProperties();
         getDeclaredArray2Points().put("coefficients/coefficients du polygone de Bezier", coefficients);
-        getDeclaredDoubles().put("power1/puissance par defaut #dim1", (double) power1);
-        getDeclaredDoubles().put("power2/puissance par defaut #dim1", (double) power2);
+        getDeclaredInteger().put("power1/puissance par defaut #dim1", power1);
+        getDeclaredInteger().put("power2/puissance par defaut #dim1", power2);
 
     }
 }

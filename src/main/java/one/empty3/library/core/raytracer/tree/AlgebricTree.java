@@ -112,34 +112,6 @@ public class AlgebricTree extends Tree {
             return src.getChildren().size() > 0;
         }
     }
-//
-//
-//    private boolean addConstant(TreeNode src, String subformula) {
-//        try {
-//            Double d = Double.parseDouble(subformula);
-//            src.getChildren().add(new TreeNode(src, new Object[]{subformula}, new DoubleTreeNodeType(d)));
-//            return true;
-//        } catch (Exception e) {
-//            return false;
-//        }
-/*
-        if (Character.isDigit(subformula.charAt(0)) || subformula.charAt(0) == '-') {
-            int i = 1;
-            while (i < subformula.length() && (Character.isDigit(i) || Character.toUpperCase(subformula.charAt(i)) == 'E'
-                    || subformula.charAt(i) == '-'
-                    || subformula.charAt(i) == '.')) {
-                i++;
-            }
-            if (i == subformula.length()) {
-                src.getChildren().add(new TreeNode(src, new Object[]{subformula}, new DoubleTreeNodeType(Double.parseDouble(subformula))));
-
-                return true;
-            }
-
-        }
-        */
-    //return src.getChildren().size() > 0;
-    //}
 
     private boolean addSingleSign(TreeNode src, String subformula) {
         if (subformula.charAt(0) == '-') {
@@ -169,7 +141,8 @@ public class AlgebricTree extends Tree {
                 count++;
             } else if (values.charAt(i) == ')') {
                 count--;
-            } else if (values.charAt(i) == '*' && /*9(i < values.length() - 1 || values.charAt(i + 1) != '*') &&*/ count == 0) {
+            }
+            if (values.charAt(i) == '*' && /*9(i < values.length() - 1 || values.charAt(i + 1) != '*') &&*/ count == 0) {
                 newFactor = '*';
                 newFactorPos = i;
                 isNewFactor = true;
@@ -391,23 +364,11 @@ public class AlgebricTree extends Tree {
 
                 MathFunctionTreeNodeType mathFunctionTreeNodeType = new MathFunctionTreeNodeType();
 
-                AlgebricTree algebricTree = new AlgebricTree(fParamString, parametersValues);
-                algebricTree.getParametersValues().putAll(parametersValues);
-                algebricTree.construct();
-                mathFunctionTreeNodeType.setAlgebricTree(algebricTree);
-
                 TreeNode t2 = new TreeNode(t, new Object[]{fName}, mathFunctionTreeNodeType);
-
+                add(t2, fParamString);
 
                 t.getChildren().add(t2);
 
-/*                if (!add(t2, fName)) // (add () parameters)
-                {
-                    throw new AlgebraicFormulaSyntaxException();
-                } else {
-*/
-                return true;
-                //              }
             }
 
 

@@ -274,8 +274,9 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
 
     }
 
-
-    {
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
         getDeclaredDoubles().put("incr1/incr1", incr1);
         getDeclaredDoubles().put("incr2/incr2", incr2);
         getDeclaredDoubles().put("start1/start1", start1);
@@ -283,5 +284,85 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
         getDeclaredDoubles().put("end1/end1", end1);
         getDeclaredDoubles().put("end2/end2", end2);
         getDeclaredDoubles().put("end2/end2", end2);
+    }
+
+    public double getIncr1() {
+        return incr1;
+    }
+
+    public void setIncr1(double incr1) {
+        this.incr1 = incr1;
+    }
+
+    public double getIncr2() {
+        return incr2;
+    }
+
+    public void setIncr2(double incr2) {
+        this.incr2 = incr2;
+    }
+
+    public double getIncrVitesse() {
+        return incrVitesse;
+    }
+
+    public void setIncrVitesse(double incrVitesse) {
+        this.incrVitesse = incrVitesse;
+    }
+
+    public double getIncrNormale() {
+        return incrNormale;
+    }
+
+    public void setIncrNormale(double incrNormale) {
+        this.incrNormale = incrNormale;
+    }
+
+    public double getStart1() {
+        return start1;
+    }
+
+    public void setStart1(double start1) {
+        this.start1 = start1;
+    }
+
+    public double getStart2() {
+        return start2;
+    }
+
+    public void setStart2(double start2) {
+        this.start2 = start2;
+    }
+
+    public double getEnd1() {
+        return end1;
+    }
+
+    public void setEnd1(double end1) {
+        this.end1 = end1;
+    }
+
+    public double getEnd2() {
+        return end2;
+    }
+
+    public void setEnd2(double end2) {
+        this.end2 = end2;
+    }
+
+    public double getNFAST() {
+        return NFAST;
+    }
+
+    public void setNFAST(double NFAST) {
+        this.NFAST = NFAST;
+    }
+
+    public Parameters getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(Parameters parameters) {
+        this.parameters = parameters;
     }
 }

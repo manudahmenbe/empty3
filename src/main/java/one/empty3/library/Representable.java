@@ -226,6 +226,7 @@ public class Representable implements Serializable, Comparable {
     protected HashMap<String, Boolean> declaredBoolean = new HashMap<>();
     protected HashMap<String,List> declaredLists = new HashMap<>();
     protected HashMap<String,String> declaredString = new HashMap<>();
+    protected HashMap<String, Integer> declaredInteger = new HashMap<>();
 
     public HashMap<String, List> getDeclaredLists() {
         return declaredLists;
@@ -260,6 +261,10 @@ public class Representable implements Serializable, Comparable {
 
     public HashMap<String, Representable> getDeclaredRepresentables() {
         return declaredRepresentables;
+    }
+
+    public HashMap<String, Integer> getDeclaredInteger() {
+        return declaredInteger;
     }
 
     public HashMap<String, Boolean> getDeclaredBoolean() {
@@ -305,6 +310,7 @@ public class Representable implements Serializable, Comparable {
 
     public void declareProperties()
     {
+        
         declaredDoubles = new HashMap<>();
         declaredMatrix = new HashMap<>();
         declaredArrays = new HashMap<>();
@@ -320,6 +326,14 @@ public class Representable implements Serializable, Comparable {
         declaredTextures.put("CFAST/draw fast texture", CFAST);
         declaredTextures.put("texture/texture", texture);
 
+    }
+    
+    public ITexture getCFAST() {
+        return CFAST;
+    }
+    
+    public void setCFAST(ITexture CFAST) {
+        this.CFAST = CFAST;
     }
 }
 

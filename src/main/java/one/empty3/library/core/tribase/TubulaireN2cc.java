@@ -23,6 +23,7 @@
 package one.empty3.library.core.tribase;
 
 import one.empty3.library.Point3D;
+import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
 import one.empty3.library.core.nurbs.Fct1D_1D;
 import one.empty3.library.core.nurbs.ParametricCurve;
 import one.empty3.library.core.nurbs.ParametricSurface;
@@ -32,28 +33,24 @@ public class TubulaireN2cc extends ParametricSurface {
     public double NORM_FCT_INCR = 0.000001;
 
     private ParametricCurve soulCurve;
-    private Fct1D_1D diameterCurve;
+    private Fct1D_1D diameterFunction;
 
     public TubulaireN2cc()
     {
         super();
-        Point3DC point3DC1 = new Point3DC();
-        Point3DC point3DC2 = new Point3DC();
-        soulCurve = point3DC1;
-        diameterCurve = new Fct1D_1D() {
+        soulCurve = new CourbeParametriquePolynomialeBezier();
+        diameterFunction = new Fct1D_1D() {
             @Override
             public double result(double input) {
                 return input;
             }
         };
-        getDeclaredRepresentables().put("soul/ame de la courbe", point3DC1);
-        getDeclaredRepresentables().put("diameterCurve/ fonction de la longueur du diamètre", point3DC2);
     }
 
     public TubulaireN2cc(ParametricCurve soulCurve, Fct1D_1D diameterCurve) {
         this();
         this.soulCurve = soulCurve;
-        this.diameterCurve = diameterCurve;
+        this.diameterFunction = diameterCurve;
     }
 
     public Point3D calculerNormale(double t) {
@@ -76,7 +73,7 @@ public class TubulaireN2cc extends ParametricSurface {
     public String toString() {
         String s = "tubulaireN2cc (\n\t("
                 + soulCurve.toString();
-        s += "\n\n)\n\t" + diameterCurve + "\n\t" + texture().toString() + "\n)\n";
+        s += "\n\n)\n\t" + diameterFunction.toString() + "\n\t" + texture().toString() + "\n)\n";
         return s;
     }
 
@@ -120,8 +117,8 @@ public class TubulaireN2cc extends ParametricSurface {
     public Point3D calculerPoint3D(double u, double v) {
         Point3D[] vectPerp = vectPerp(u);
         return soulCurve.calculerPoint3D(u).plus(
-                vectPerp[1].mult(diameterCurve.result(u)*Math.cos(2 * Math.PI * v)).plus(
-                        vectPerp[2].mult(diameterCurve.result(u)*Math.sin(2 * Math.PI * v))));
+                vectPerp[1].mult(diameterFunction.result(u)*Math.cos(2 * Math.PI * v)).plus(
+                        vectPerp[2].mult(diameterFunction.result(u)*Math.sin(2 * Math.PI * v))));
     }
 
     @Override
@@ -129,4 +126,11 @@ public class TubulaireN2cc extends ParametricSurface {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredRepresentables().put("soulCurve/ame de la courbe", soulCurve);
+        getDeclaredRepresentables().put("diameterFunction/ fonction de la longueur du diamètre", diameterFunction);
+
+    }
 }

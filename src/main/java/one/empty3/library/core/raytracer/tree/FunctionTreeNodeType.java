@@ -12,10 +12,13 @@
 
 package one.empty3.library.core.raytracer.tree;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 /**
  * Created by manuel on 16-12-16.
  */
-public class FunctionTreeNodeType extends TreeNodeType {
+public abstract class FunctionTreeNodeType extends TreeNodeType {
     private AlgebricTree algebricTree;
     private double exp1;
     private String fName;
@@ -55,4 +58,23 @@ public class FunctionTreeNodeType extends TreeNodeType {
         return objects;
     }
 
+    public Double compute(String fName, TreeNode treeNode) {
+        try {
+            Method method;
+            method = Math.class.getMethod(fName, double.class);
+            try {
+                return (Double) method.invoke(Math.class, treeNode.eval());
+            } catch (TreeNodeEvalException | AlgebraicFormulaSyntaxException e) {
+                e.printStackTrace();
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

@@ -51,9 +51,9 @@ public class Scene extends Representable implements Serializable {
 
     public Scene() {
         super();
-        super.declareProperties();
-        declareProperties();
     }
+
+
 
     public boolean add(Representable add) {
 
@@ -334,9 +334,118 @@ public class Scene extends Representable implements Serializable {
 
     @Override
     public void declareProperties() {
+        super.declareProperties();
         getDeclaredLists().put("objets/Objets à peindre",objets);
         getDeclaredLists().put("animations/Animation (pas implémenté maintenant jamais",animations);
-    getDeclaredLists().put("cameras/Caméras de la scène. cameraActive caméra en cours",cameras);
+        getDeclaredLists().put("cameras/Caméras de la scène. cameraActive caméra en cours",cameras);
         getDeclaredLists().put("lumieres/Lumières additionnelles",lumieres);
+    }
+
+    public static String getVERSION() {
+        return VERSION;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Camera getCameraActive() {
+        return cameraActive;
+    }
+
+    public void setCameraActive(Camera cameraActive) {
+        this.cameraActive = cameraActive;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public ArrayList<Representable> getObjets() {
+        return objets;
+    }
+
+    public void setObjets(ArrayList<Representable> objets) {
+        this.objets = objets;
+    }
+
+    public ArrayList<Animation> getAnimations() {
+        return animations;
+    }
+
+    public void setAnimations(ArrayList<Animation> animations) {
+        this.animations = animations;
+    }
+
+    public ArrayList<Camera> getCameras() {
+        return cameras;
+    }
+
+    public void setCameras(ArrayList<Camera> cameras) {
+        this.cameras = cameras;
+    }
+
+    public ArrayList<ITexture> getColors() {
+        return colors;
+    }
+
+    public void setColors(ArrayList<ITexture> colors) {
+        this.colors = colors;
+    }
+
+    public ArrayList<Lumiere> getLumieres() {
+        return lumieres;
+    }
+
+    public void setLumieres(ArrayList<Lumiere> lumieres) {
+        this.lumieres = lumieres;
+    }
+
+    public void setGt(GTime gt) {
+        this.gt = gt;
+    }
+
+    public Lumiere getLumiereActive() {
+        return lumiereActive;
+    }
+
+    public void setLumiereActive(Lumiere lumiereActive) {
+        this.lumiereActive = lumiereActive;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    public void setMoves(List<Move> moves) {
+        this.moves = moves;
+    }
+
+    public void setDernierAjout(Representable dernierAjout) {
+        this.dernierAjout = dernierAjout;
     }
 }

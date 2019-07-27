@@ -18,10 +18,6 @@ import one.empty3.library.core.raytracer.tree.FunctionTreeNodeType;
  * Created by manuel on 24-01-17.
  */
 public class CosineFunctionTreeNodeType extends FunctionTreeNodeType {
-    @Override
-    public Double compute() {
-        return Math.cos(getValue()[0]);
-    }
 
 
 }

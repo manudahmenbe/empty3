@@ -14,23 +14,27 @@ import one.empty3.library.core.nurbs.ParametricSurface;
 public class TRIEllipsoide extends ParametricSurface {
 
     private Point3D centre = Point3D.O0;
-    private double radiusx = 1.0;
-    private double radiusy = 1.0;
-    private double radiusz = 1.0;
+    private Double radiusx = 1.0;
+    private Double radiusy = 1.0;
+    private Double radiusz = 1.0;
 
-    public TRIEllipsoide(Point3D c, double rx, double ry, double rz) {
-        this.centre = c;
-        this.radiusx = rx;
-        this.radiusy = ry;
-        this.radiusz = rz;
+    public TRIEllipsoide() {
         setCirculaireY(true);
         setCirculaireX(false);
     }
 
+    public TRIEllipsoide(Point3D c, Double rx, Double ry, Double rz) {
+        this();
+        this.centre = c;
+        this.radiusx = rx;
+        this.radiusy = ry;
+        this.radiusz = rz;
+    }
+
     @Override
     public Point3D calculerPoint3D(double u, double v) {
-        double b = 1.0 * u * Math.PI - Math.PI / 2;
-        double a = 1.0 * v * 2 * Math.PI;
+        Double b = 1.0 * u * Math.PI - Math.PI / 2;
+        Double a = 1.0 * v * 2 * Math.PI;
 
         Point3D centre = this.centre;
 
@@ -42,10 +46,6 @@ public class TRIEllipsoide extends ParametricSurface {
         return p;
     }
 
-    @Override
-    public Point3D calculerVitesse3D(double u, double v) {
-        return new Point3D();
-    }
 
 
     public Point3D getCentre() {
@@ -78,4 +78,37 @@ public class TRIEllipsoide extends ParametricSurface {
                 + texture.toString() + "\n)\n";
     }
 
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredPoints().put("centre/centre", centre);
+        getDeclaredDoubles().put("radiusx/radiusx", radiusx);
+        getDeclaredDoubles().put("radiusy/radiusy", radiusy);
+        getDeclaredDoubles().put("radiusz/radiusz", radiusz);
+
+    }
+
+    public Double getRadiusx() {
+        return radiusx;
+    }
+
+    public void setRadiusx(Double radiusx) {
+        this.radiusx = radiusx;
+    }
+
+    public Double getRadiusy() {
+        return radiusy;
+    }
+
+    public void setRadiusy(Double radiusy) {
+        this.radiusy = radiusy;
+    }
+
+    public Double getRadiusz() {
+        return radiusz;
+    }
+
+    public void setRadiusz(Double radiusz) {
+        this.radiusz = radiusz;
+    }
 }

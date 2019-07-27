@@ -45,12 +45,12 @@ public class ParametricCurve extends Representable {
         super();
     }
 
-    protected double startU = 0;
-    protected double endU= 1;
+    protected Double startU = 0.0;
+    protected Double endU= 1.0;
     protected boolean connected = true;
     private Parameters parameters = new Parameters(true);
-    private double incrU = 0.0001;
-    private double incrTAN = 0.0001;
+    private Double incrU = 0.0001;
+    private Double incrTAN = 0.0001;
 
     public static void setGlobals(Globals globals) {
         ParametricCurve.globals = globals;
@@ -74,21 +74,21 @@ public class ParametricCurve extends Representable {
         return calculerPoint3D(t*(1+incrTAN)).moins(calculerPoint3D(t)).mult(incrTAN);
     }
 
-    public Point3D tangente(double t)
+    public Point3D tangente(Double t)
     {
         return calculerPoint3D(t*1.0001).moins(calculerPoint3D(t));
     }
 
-    public double endU() {
+    public Double endU() {
         return endU;
     }
 
-    public void endU(double e) {
+    public void endU(Double e) {
         endU = e;
     }
 
-    public double getIncrU() {
-        double incr = 0;
+    public Double getIncrU() {
+        Double incr = 1.0;
         if (parameters.isGlobal()) {
             incr = parameters.getIncrU();
         } else {
@@ -98,11 +98,11 @@ public class ParametricCurve extends Representable {
         return incr <= incrU? incrU : incr;
     }
 
-    public double start() {
+    public Double start() {
         return startU;
     }
 
-    public void start(double s) {
+    public void start(Double s) {
         startU = s;
     }
 
@@ -134,13 +134,13 @@ public class ParametricCurve extends Representable {
 
 
     public static class Globals {
-        private double incrU = 0;
+        private Double incrU = 0.0;
 
-        public double getIncrU() {
+        public Double getIncrU() {
             return Globals.this.incrU;
         }
 
-        public void setIncrU(double incrU) {
+        public void setIncrU(Double incrU) {
             Globals.this.incrU = incrU;
         }
 
@@ -149,11 +149,11 @@ public class ParametricCurve extends Representable {
     public class Parameters {
 
         private boolean isGlobal;
-        private double incrU = 0.0001;
-        private double startU;
-        private double endU;
+        private Double incrU = 0.0001;
+        private Double startU;
+        private Double endU;
 
-        public Parameters(double incrU) {
+        public Parameters(Double incrU) {
             Parameters.this.setIncrU(incrU);
         }
 
@@ -161,20 +161,20 @@ public class ParametricCurve extends Representable {
             setGlobal(isGlobal);
         }
 
-        public double getIncrU() {
+        public Double getIncrU() {
 
             return Parameters.this.incrU;
         }
-        public double getStartU() {
+        public Double getStartU() {
 
             return Parameters.this.startU;
         }
-        public double getEndU() {
+        public Double getEndU() {
 
             return Parameters.this.endU;
         }
 
-        public void setIncrU(double incrU) {
+        public void setIncrU(Double incrU) {
             Parameters.this.incrU = incrU;
         }
 
@@ -186,15 +186,15 @@ public class ParametricCurve extends Representable {
             Parameters.this.isGlobal = global;
         }
 
-        public void setEndU(double endU) {
+        public void setEndU(Double endU) {
             Parameters.this.endU = endU;
         }
-        public void setStartU(double endU) {
+        public void setStartU(Double endU) {
             Parameters.this.startU = endU;
         }
     }
 
-    public ParametricCurve morph(double incrU)
+    public ParametricCurve morph(Double incrU)
     {
         // TODO
         return this;
@@ -205,9 +205,42 @@ public class ParametricCurve extends Representable {
         super.declareProperties();
         getDeclaredDoubles().put("incrU/incrU", incrU);
         getDeclaredDoubles().put("startU/startU", startU);
-        getDeclaredDoubles().put("endV/endV", endU);
+        getDeclaredDoubles().put("endU/endU", endU);
         getDeclaredBoolean().put("connected/dotted or lines", connected);
     }
+
+    public static Globals getGlobals() {
+        return globals;
+    }
+
+    public Double getStartU() {
+        return startU;
+    }
+
+    public void setStartU(Double startU) {
+        this.startU = startU;
+    }
+
+    public Double getEndU() {
+        return endU;
+    }
+
+    public void setEndU(Double endU) {
+        this.endU = endU;
+    }
+
+    public void setIncrU(Double incrU) {
+        this.incrU = incrU;
+    }
+
+    public Double getIncrTAN() {
+        return incrTAN;
+    }
+
+    public void setIncrTAN(Double incrTAN) {
+        this.incrTAN = incrTAN;
+    }
+
 }
 
 

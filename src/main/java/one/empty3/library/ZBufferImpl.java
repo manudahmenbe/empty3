@@ -668,7 +668,10 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     }
 
     public void scene(Scene s) {
+
         this.currentScene = s;
+        this.texture(s.texture());
+
     }
 
     public void setAngles(double angleXRad, double angleYRad) {

@@ -54,7 +54,7 @@ public class Sphere extends ParametricSurface {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredRepresentables().put("axe/axe du cercle sustantatif", axe);
+        getDeclaredRepresentables().put("axe/axe du cercle sustantif", axe);
         getDeclaredRepresentables().put("circle/circle", circle);
 
     }

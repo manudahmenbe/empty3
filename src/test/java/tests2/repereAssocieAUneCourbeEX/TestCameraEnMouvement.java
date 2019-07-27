@@ -45,11 +45,11 @@ public class TestCameraEnMouvement extends TestObjet {
 
     @Override
     public void ginit() {
-        CourbeChoisie cc = new CourbeChoisie(21, 11, 11, 8);
+        CourbeChoisie cc = new CourbeChoisie(21.0, 11.0, 11.0, 8.0);
 
         cam = new CameraInPath(cc);
 
-        e = new TRIEllipsoide(Point3D.O0, 20, 10, 10);
+        e = new TRIEllipsoide(Point3D.O0, 20.0, 10.0, 10.0);
         textureMov = new TextureMov("../../../Videos/animal2.mp4");
         textureMov.setTransparent(Color.BLACK);
         e.texture(textureMov);

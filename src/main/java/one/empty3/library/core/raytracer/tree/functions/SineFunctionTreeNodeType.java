@@ -18,9 +18,5 @@ import one.empty3.library.core.raytracer.tree.FunctionTreeNodeType;
  * Created by manuel on 24-01-17.
  */
 public class SineFunctionTreeNodeType extends FunctionTreeNodeType {
-    @Override
-    public Double compute() {
-        return Math.sin(getValue()[0]);
-    }
 
 }

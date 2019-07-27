@@ -47,7 +47,7 @@ public class DrawPerCountryActionSphere implements Action {
         d.texture(new ColorTexture(colors.get(countryCode)));
         PcOnPs pcOnPs = new PcOnPs(testEarth.getSphere(), d);
         pcOnPs.texture(new ColorTexture(colors.get(countryCode)));
-        pcOnPs.getParameters().setIncrU(1);
+        pcOnPs.getParameters().setIncrU(1.0);
         pcOnPs.getParameters().setEndU(0.1);
         pcOnPs.setConnected(false);
         testEarth.getZ().draw(pcOnPs);

@@ -76,7 +76,7 @@ public class AlgebraicTreeTest {
         AlgebricTree algebricTree = null;
         try {
             algebricTree = new AlgebricTree(expr);
-            algebricTree.getParametersValues().putAll(map);
+            algebricTree.setParametersValues(map);
             algebricTree.construct();
             if (echo)
                 System.out.println(algebricTree);
@@ -218,6 +218,24 @@ public class AlgebraicTreeTest {
     @Test
     public void testSimpleFunction() {
         testResult("sin(3.14)*4", Math.sin(3.14) * 4, false);
+    }
+    @Test
+    public void testSimpleFunction1() {
+        double u = 10;
+        HashMap<String, Double> vars = new HashMap<>();
+        vars.put("u", u);
+
+
+        testResultVariable("10*cos(10*u)", 10*Math.cos(10*u), vars, true);
+    }
+    @Test
+    public void testSimpleFunction2() {
+        double u = 10;
+        HashMap<String, Double> vars = new HashMap<>();
+        vars.put("u", u);
+
+
+        testResultVariable("cos(5*u)*10", Math.cos(5*u)*10, vars, true);
     }
 
     @Test
