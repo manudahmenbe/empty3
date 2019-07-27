@@ -30,7 +30,7 @@ import one.empty3.library.*;
 public class SurfaceParametriquePolynomialeBezier extends ParametricSurface implements SurfaceElem{
 
     protected Point3D[][] coefficients;
-    protected int power1, power2;
+    protected Integer power1, power2;
 
     public SurfaceParametriquePolynomialeBezier(Point3D[][] coefficients)
     {
@@ -93,7 +93,27 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
         super.declareProperties();
         getDeclaredArray2Points().put("coefficients/coefficients du polygone de Bezier", coefficients);
         getDeclaredInteger().put("power1/puissance par defaut #dim1", power1);
-        getDeclaredInteger().put("power2/puissance par defaut #dim1", power2);
+        getDeclaredInteger().put("power2/puissance par defaut #dim2", power2);
 
+    }
+
+    public void setCoefficients(Point3D[][] coefficients) {
+        this.coefficients = coefficients;
+    }
+
+    public Integer getPower1() {
+        return power1;
+    }
+
+    public void setPower1(Integer power1) {
+        this.power1 = power1;
+    }
+
+    public Integer getPower2() {
+        return power2;
+    }
+
+    public void setPower2(Integer power2) {
+        this.power2 = power2;
     }
 }
