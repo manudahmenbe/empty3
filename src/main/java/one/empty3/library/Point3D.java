@@ -33,7 +33,6 @@ public class Point3D extends Representable implements IMovable {
         x[0] = 0d;
         x[1] = 0d;
         x[2] = 0d;
-        declareProperties();
     }
 
     /**
@@ -220,7 +219,6 @@ public class Point3D extends Representable implements IMovable {
 
     public void setX(Double x0) {
         x[0] = x0;
-        declareProperties();
 
     }
 
@@ -230,7 +228,6 @@ public class Point3D extends Representable implements IMovable {
 
     public void setY(Double x0) {
         x[1] = x0;
-        declareProperties();
 
     }
 
@@ -240,7 +237,6 @@ public class Point3D extends Representable implements IMovable {
 
     public void setZ(Double x0) {
         x[2] = x0;
-        declareProperties();
 
     }
 
@@ -482,11 +478,13 @@ public class Point3D extends Representable implements IMovable {
 
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredArray1dDouble().put("x/cordinates", x);
         getDeclaredDoubles().put("x/cordinates x", x[0]);
         getDeclaredDoubles().put("y/cordinates y", x[1]);
         getDeclaredDoubles().put("z/cordinates z", x[2]);
-        getDeclaredTextures().put("texture/Color of Point", texture);
     }
 
+    @Override
+    public Point3D rotate(Point3D p0, Representable ref) {
+        return p0;
+    }
 }

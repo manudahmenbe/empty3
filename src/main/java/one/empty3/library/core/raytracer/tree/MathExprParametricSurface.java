@@ -59,8 +59,4 @@ public class MathExprParametricSurface extends ParametricSurface {
         return p;
     }
 
-    @Override
-    public Point3D calculerVitesse3D(double u, double v) {
-        throw new UnsupportedOperationException("pas encore implanté");
-    }
 }

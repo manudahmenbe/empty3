@@ -33,10 +33,10 @@ public class ParaboloideHyperbolique extends ParametricSurface {
     private double h;
 
     {
-        start1 = -1;
-        start2 = -1;
-        end1 = 1;
-        end2 = 1;
+        setStartU(-1.0);
+        setStartV(-1.0);
+        setEndU (1.0);
+        setEndV (1.0);
     }
 
     public ParaboloideHyperbolique(double a, double b, double h) {
@@ -48,11 +48,6 @@ public class ParaboloideHyperbolique extends ParametricSurface {
     @Override
     public Point3D calculerPoint3D(double u, double v) {
         return new Point3D(a / 2 * (u + v), b / 2 * (u - v), h * u * v);
-    }
-
-    @Override
-    public Point3D calculerVitesse3D(double u, double v) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

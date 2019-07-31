@@ -17,23 +17,23 @@ import java.awt.*;
  */
 public class TestsBSpline {
     public static double[] u(int N) {
-        double[] u = new double[5 * N + 2];
+        double[] u = new double[N];
         int cpt = 0;
         int cpt0 = cpt;
-        for (int i = cpt0; i < 2 * N + 1 + cpt0; i++) {
-            u[i] = 0;
+        for (int i = cpt0; i < N/3 + cpt0; i++) {
+            u[i] = 1.0;
 
             cpt++;
         }
         cpt0 = cpt;
-        for (int i = cpt0; i < N + cpt0; i++) {
+        for (int i = N/3; i < 2*N/3; i++) {
             u[i] = 1.0 * i / N;
 
             cpt++;
         }
         cpt0 = cpt;
-        for (int i = cpt0; i < 2 * N + 1 + cpt0; i++) {
-            u[i] = 1.0 * i / N;
+        for (int i = 2*N/3; i < N; i++) {
+            u[i] = 1.0;
 
             cpt++;
         }

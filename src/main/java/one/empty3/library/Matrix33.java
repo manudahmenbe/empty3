@@ -47,12 +47,10 @@ public class Matrix33 extends Representable{
 
     public Matrix33(Matrix33 copy) {
         d = copy.d.clone();
-        getDeclaredArray1dDouble().put("d/3x3 matrix", d);
     }
 
     public Matrix33() {
         d = new Double[9];
-        getDeclaredArray1dDouble().put("d/3x3 matrix", d);
 
     }
 
@@ -62,7 +60,6 @@ public class Matrix33 extends Representable{
             System.exit(-1);
         }
         this.d = d;
-        getDeclaredArray1dDouble().put("d/3x3 matrix", d);
     }
 
     public Matrix33(Point3D[] p) {
@@ -75,7 +72,6 @@ public class Matrix33 extends Representable{
 
             }
         }
-        getDeclaredArray1dDouble().put("d/3x3 matrix", d);
     }
 
     public static Matrix33 rot(double a, double b) {
@@ -251,5 +247,12 @@ public class Matrix33 extends Representable{
 
     public Double[] getDoubles() {
         return d;
+    }
+
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredArray1dDouble().put("d/3x3 matrix", d);
+
     }
 }

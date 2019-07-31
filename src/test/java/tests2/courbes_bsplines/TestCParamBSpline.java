@@ -8,29 +8,33 @@ package tests2.courbes_bsplines;
 
 import one.empty3.library.Point3D;
 import one.empty3.library.TextureCol;
+import one.empty3.library.core.nurbs.BSpline;
 import one.empty3.library.core.nurbs.CourbeParametriqueBSpline;
 import one.empty3.library.core.testing.TestObjet;
 
 import java.awt.*;
 
 /**
- * Test BAD UGLY COMME TA MERE
+ * Test
  *
  * @author Manuel Dahmen <manuel.dahmen@gmail.com>
  */
-public class TestCParamBSpline extends TestObjet {
-    private CourbeParametriqueBSpline b;
+public class
+TestCParamBSpline extends TestObjet {
+    private BSpline b;
 
     public static void main(String[] args) {
         TestCParamBSpline ts = new TestCParamBSpline();
+
+        ts.publishResult(true);
 
         ts.setGenerate(GENERATE_IMAGE | GENERATE_MOVIE);
 
         ts.unterminable(false);
 
-        ts.loop(true);
+        ts.loop(false);
 
-        ts.setMaxFrames(200);
+        ts.setMaxFrames(1);
 
         new Thread(ts).start();
 
@@ -45,12 +49,17 @@ public class TestCParamBSpline extends TestObjet {
     public void finit() {
         scene().clear();
 
-        b = new CourbeParametriqueBSpline(TestsBSpline.u(frame() + 1), TestsBSpline.p(frame()), 5);
-
+        b = new CourbeParametriqueBSpline();
+        /*
+        double[] u = TestsBSpline.u(frame() + 1);
+        Point3D[] p = TestsBSpline.p(frame()+1);
+        for(int i=0; i<u.length; i++)
+        b.add(u[i], p[i]);
+*/
         b.texture(new TextureCol(Color.WHITE));
         scene().add(b);
 
-        scene.cameraActive().setEye(Point3D.Z.mult(-2d * frame() - 2));
+        scene.cameraActive().setEye(Point3D.Z.mult(-50.0));
 
     }
 

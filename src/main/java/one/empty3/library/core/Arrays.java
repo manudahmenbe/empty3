@@ -1,8 +1,6 @@
 package one.empty3.library.core;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import one.empty3.library.Representable;
-
 /**
  * Created by manue on 24-07-19.
  */
@@ -34,7 +32,7 @@ public class Arrays<T>
     }
     
     
-    public  Representable[][] insert(Class clazz, Representable[][] array, int pos1, int pos2, int dim) throws InvalidArgumentException {
+    public  Representable[][] insert(Class clazz, Representable[][] array, int pos1, int pos2, int dim)  {
         Representable[][] copy = null;
         if(dim==DIM_0)
         {
@@ -45,7 +43,7 @@ public class Arrays<T>
             copy = new Representable[array.length][array[0].length+1];
         }
         else
-            throw new InvalidArgumentException(new String [] {"Arguments:" + dim});
+        {}
         for(int i=0; i<array.length; i++)
         {
             for(int j=0; j<array[i].length; j++)
@@ -61,7 +59,7 @@ public class Arrays<T>
 
         return copy;
     }
-    public  Double[][] insert(Class clazz, Double[][] array, int pos1, int pos2, int dim) throws InvalidArgumentException {
+    public  Double[][] insert(Class clazz, Double[][] array, int pos1, int pos2, int dim)  {
         Double[][] copy = null;
         if(dim==DIM_0)
         {
@@ -72,7 +70,7 @@ public class Arrays<T>
             copy = new Double[array.length][array[0].length+1];
         }
         else
-            throw new InvalidArgumentException(new String [] {"Arguments:" + dim});
+        {}
         for(int i=0; i<array.length; i++)
         {
             for(int j=0; j<array[i].length; j++)

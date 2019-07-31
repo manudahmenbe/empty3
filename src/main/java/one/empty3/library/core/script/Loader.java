@@ -16,6 +16,7 @@ import one.empty3.library.core.extra.AttracteurEtrange;
 import one.empty3.library.core.extra.SimpleSphere;
 import one.empty3.library.core.extra.SimpleSphereAvecTexture;
 import one.empty3.library.core.extra.Tourbillon;
+import one.empty3.library.core.nurbs.BSpline;
 import one.empty3.library.core.nurbs.NurbsSurface;
 import one.empty3.library.core.tribase.Plan3D;
 import one.empty3.library.core.tribase.TRIEllipsoide;

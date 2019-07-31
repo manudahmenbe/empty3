@@ -18,6 +18,7 @@ package one.empty3.library.core.script;
 import one.empty3.library.*;
 import one.empty3.library.Polygon;
 import one.empty3.library.core.extra.*;
+import one.empty3.library.core.nurbs.BSpline;
 import one.empty3.library.core.nurbs.NurbsSurface;
 import one.empty3.library.core.tribase.Plan3D;
 import one.empty3.library.core.tribase.TRIEllipsoide;

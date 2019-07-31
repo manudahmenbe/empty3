@@ -18,7 +18,7 @@
 package one.empty3.library.core.script;
 
 import one.empty3.library.*;
-import one.empty3.library.*;
+import one.empty3.library.core.nurbs.BSpline;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -67,9 +67,15 @@ public class InterpreteBSpline implements Interprete {
         boolean ok = true;
         while (ok) {
             InterpretePoint3D ifa = new InterpretePoint3D();
+            InterpreteDouble ida = new InterpreteDouble();
             try {
-                b.add((Point3D) ifa.interprete(text, pos));
-                if (ifa.getPosition() > pos) {
+                Double d = (Double) ida.interprete(text, pos);
+                pos = ida.getPosition();
+                Point3D p = (Point3D) ifa.interprete(text, pos);
+                pos = ifa.getPosition();
+
+                b.add(d, p);
+                if(ifa.getPosition() > pos) {
                     pos = ifa.getPosition();
                     numPoints++;
                 }

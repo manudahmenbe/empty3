@@ -34,7 +34,7 @@ public class Polygon extends Representable implements SurfaceElem {
         super();
         points = new Point3D[4];
         for (int i=0; i<4; i++) {
-            points[i] = new Point3D();
+            points[i] = Point3D.random(10.0);
         }
         declareProperties();
     }

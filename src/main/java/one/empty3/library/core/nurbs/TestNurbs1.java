@@ -71,10 +71,10 @@ public class TestNurbs1 extends TestObjetSub {
 
         n.texture(new TextureCol(Color.WHITE));
 
-        n.setStartU(0);
-        n.setStartV(0);
-        n.setEndU(1);
-        n.setEndV(1);
+        n.setStartU(0.0);
+        n.setStartV(0.0);
+        n.setEndU(1.0);
+        n.setEndV(1.0);
         n.setIncrU(0.01);
         n.setIncrV(0.01);
 

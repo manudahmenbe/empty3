@@ -16,12 +16,20 @@ package one.empty3.library;
  * Created by Win on 26-01-16.
  */
 public class Rotation {
-    protected Matrix33 rot = Matrix33.I;
-    protected Point3D centreRot = Point3D.O0;
-
+    protected Matrix33 rot;
+    protected Point3D centreRot;
+    protected boolean unmodified = true;
     public Rotation() {
+        if (isUnmodified())
+        {
+            rot  = Matrix33.I;
+            centreRot = Point3D.O0;
+        }
     }
-
+    private boolean isUnmodified()
+    {
+        return unmodified;
+    }
     public Rotation(Matrix33 rot, Point3D centreRot) {
         this.rot = rot;
         this.centreRot = centreRot;

@@ -28,9 +28,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Representable implements Serializable, Comparable {
+    public static Point3D SCALE1 = new Point3D(1d, 1d,1d);
     public static final ITexture DEFAULT_TEXTURE = new TextureCol(Colors.random());
     protected static ArrayList<Painter> classPainters = new ArrayList<Painter>();
-    public Rotation rotation = new Rotation();
+    public Rotation rotation ;
     protected double NFAST = 100;
     protected RtMatiere materiau;
     protected ITexture CFAST = DEFAULT_TEXTURE;
@@ -42,8 +43,9 @@ public class Representable implements Serializable, Comparable {
     private Painter painter = null;
     private int RENDERING_DEFAULT = 0;
     protected Render render = Render.getInstance(0, -1);
-
+    protected Point3D scale = SCALE1;
     public Representable() {
+        rotation = new Rotation();
         texture = new TextureCol(Colors.random());
     }
 
@@ -57,12 +59,11 @@ public class Representable implements Serializable, Comparable {
         return classPainters;
     }
 
-    public Point3D rotation(Point3D p) {
-        return getRotation().rotation(p);
-    }
-
     public Rotation getRotation() {
         return rotation;
+    }
+    public Point3D rotate(Point3D p0, Representable ref) {
+        return ref.getRotation().rotation(p0);
     }
 
     public void setRotation(Rotation r) {
@@ -334,6 +335,14 @@ public class Representable implements Serializable, Comparable {
     
     public void setCFAST(ITexture CFAST) {
         this.CFAST = CFAST;
+    }
+
+    public Point3D getScale() {
+        return scale;
+    }
+
+    public void setScale(Point3D scale) {
+        this.scale = scale;
     }
 }
 

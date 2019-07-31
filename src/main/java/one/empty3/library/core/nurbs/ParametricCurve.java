@@ -49,7 +49,7 @@ public class ParametricCurve extends Representable {
     protected Double endU= 1.0;
     protected boolean connected = true;
     private Parameters parameters = new Parameters(true);
-    private Double incrU = 0.0001;
+    private Double incrU = 0.01;
     private Double incrTAN = 0.0001;
 
     public static void setGlobals(Globals globals) {

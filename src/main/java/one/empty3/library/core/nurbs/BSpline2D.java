@@ -15,7 +15,9 @@
  Vous êtes libre de :
 
  */
-package one.empty3.library;
+package one.empty3.library.core.nurbs;
+
+import one.empty3.library.Representable;
 
 @Deprecated
 public class BSpline2D extends Representable {

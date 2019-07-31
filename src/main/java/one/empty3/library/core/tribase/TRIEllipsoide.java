@@ -1,8 +1,6 @@
 package one.empty3.library.core.tribase;
 
-import one.empty3.library.MODObjet;
 import one.empty3.library.Point3D;
-import one.empty3.library.Representable;
 import one.empty3.library.core.nurbs.ParametricSurface;
 
 /**
@@ -39,10 +37,9 @@ public class TRIEllipsoide extends ParametricSurface {
         Point3D centre = this.centre;
 
         Point3D p
-                = rotation(
+                =
                 new Point3D(centre.getX() + radiusx * Math.sin(a) * Math.sin(b), centre.getY() + radiusy * Math.sin(a) * Math.cos(b),
-                        centre.getZ() + radiusz * Math.cos(a))
-        );
+                        centre.getZ() + radiusz * Math.cos(a));
         return p;
     }
 
@@ -56,17 +53,6 @@ public class TRIEllipsoide extends ParametricSurface {
         this.centre = centre;
     }
 
-    public String id() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public Representable place(MODObjet aThis) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void setId(String id) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
     public String toString() {

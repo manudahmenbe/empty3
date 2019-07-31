@@ -64,7 +64,7 @@ public class LineSegment extends ParametricCurve implements CurveElem {
      * @return the extremite
      */
     public Point3D getExtremite() {
-        return rotation(extremite);
+        return extremite;
     }
 
     /**
@@ -78,7 +78,7 @@ public class LineSegment extends ParametricCurve implements CurveElem {
      * @return the origine
      */
     public Point3D getOrigine() {
-        return rotation(origine);
+        return origine;
     }
 
     /**

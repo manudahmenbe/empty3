@@ -58,8 +58,8 @@ public abstract class Terrain extends RepresentableConteneur {
 
     public Point3D calcNormale(double u, double v)
     {
-        Point3D v1 = ps.calculerPoint3D(u+ps.incr1, v).moins(ps.calculerPoint3D(u, v));
-        Point3D v2 = ps.calculerPoint3D(u, v+ps.incr2).moins(ps.calculerPoint3D(u, v));
+        Point3D v1 = ps.calculerPoint3D(u+ps.getIncrU(), v).moins(ps.calculerPoint3D(u, v));
+        Point3D v2 = ps.calculerPoint3D(u, v+ps.getIncrV()).moins(ps.calculerPoint3D(u, v));
         return v1.prodVect(v2);
     }
     /***

@@ -71,10 +71,6 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
         return sum;
     }
 
-    @Override
-    public Point3D calculerVitesse3D(double u, double v) {
-        throw new UnsupportedOperationException("pas encore implanté");
-    }
 
     protected double factorielle(int n) {
         double sum = 1;
@@ -115,5 +111,20 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
 
     public void setPower2(Integer power2) {
         this.power2 = power2;
+    }
+
+    @Override
+    public String toString() {
+        String s = "bezier2(";
+
+        for(int i=0; i<coefficients.length; i++) {
+            s+="\n(\n";
+            for (int j = 0; j < coefficients[i].length; j++) {
+                s += coefficients[i][j].toString();
+            }
+            s+="\n)\n";
+        }
+        s+=")";
+        return s;
     }
 }
