@@ -420,8 +420,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             for (double u = n.start(); u <= n.endU(); u += incr) {
                 if (n.isConnected() && displayType != DISPLAY_POINTS) {
                     line(
-                            rotate(n.calculerPoint3D(u), r),
-                            rotate(n.calculerPoint3D(u + incr), r),
+                            n.calculerPoint3D(u),
+                            n.calculerPoint3D(u + incr),
                             n.texture(), u, u + incr, n);
                 } else {
                     ime.testDeep(rotate(n.calculerPoint3D(u), r)
@@ -545,7 +545,6 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     }
 
-    @Deprecated
     private void line(Point3D p1, Point3D p2, ITexture t, double u, double u1, ParametricCurve curve) {
         Point x1 = coordonneesPoint2D(p1);
         Point x2 = coordonneesPoint2D(p2);
@@ -557,7 +556,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         for (int i = 0; i < itere; i++) {
             Point3D p = p1.plus(p2.moins(p1).mult(i / itere));
             if (curve != null)
-                p = curve.calculerPoint3D(u + i / itere * (u1 - u));
+                p = rotate(curve.calculerPoint3D(u + i / itere * (u1 - u)), n);
             ime.testDeep(p, t.getColorAt(u, 0));
         }
 
@@ -784,7 +783,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 pFinal.setNormale(normale);
                 pFinal.texture(texture);
                 if (n != null)
-                    pFinal = n.calculerPoint3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b);
+                    pFinal = rotate(n.calculerPoint3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
                 ime.testDeep(pFinal, texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b));
             }
         }

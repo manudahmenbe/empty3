@@ -50,7 +50,7 @@ public class BSpline extends ParametricCurve {
         controls.add(point);
         T.clear();
 
-        T.add(0.0);
+        //T.add(0.0);
         int size = (controls.size() + degree * 2 + 1);
         double incr = 1.0/size;
         for (double i = incr; i < incr*size; i += incr) {
@@ -67,9 +67,9 @@ public class BSpline extends ParametricCurve {
             else
                 return 0.0;
         }
-        return avoidNaN((t - get(i)) * avoidNaN(boor(t, i, d - 1), 1.0), get(i + d) - t)
+        return avoidNaN((t - get(i)), get(i + d) - t)*avoidNaN(boor(t, i, d - 1), 1.0)
                 +
-                avoidNaN((get(i + d + 1) - t) * avoidNaN(boor(t, i + 1, d - 1), 1.0), get(i + d + 1) - get(i + 1));
+                avoidNaN((get(i + d + 1) - t) , get(i + d + 1) - get(i + 1))* avoidNaN(boor(t, i + 1, d - 1), 1.0);
     }
 
     private double avoidNaN(double a, double b) {
@@ -97,10 +97,10 @@ public class BSpline extends ParametricCurve {
 
     public double get(int i) {
         if (i < 0) {
-            return -0.1;
+            return 0.0;
         }
         if (i >= T.size()) {
-            return 1.1;
+            return 0.0;
         }
         return T.get(i);
     }

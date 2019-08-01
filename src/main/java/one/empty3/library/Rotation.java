@@ -26,19 +26,21 @@ public class Rotation {
             centreRot = Point3D.O0;
         }
     }
-    private boolean isUnmodified()
-    {
-        return unmodified;
-    }
     public Rotation(Matrix33 rot, Point3D centreRot) {
         this.rot = rot;
         this.centreRot = centreRot;
     }
 
-    public Point3D rotation(Point3D p) {
+    public boolean isUnmodified() {
+        return unmodified;
+    }
 
-        return rot.mult(p.moins(centreRot)).plus(centreRot);
-        //return rot.mult(p.moins(centreRot)).plus(centreRot);
+    public void setUnmodified(boolean unmodified) {
+        this.unmodified = unmodified;
+    }
+
+    public Point3D rotation(Point3D p ) {
+        return p.plus(centreRot).plus(rot.mult(p));
     }
 
     public Point3D rotationAxe(Point3D p, int axe, double angle) {
