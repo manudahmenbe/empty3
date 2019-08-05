@@ -40,11 +40,13 @@ public abstract class TRIObjetGenerateurAbstract extends Representable implement
     protected boolean cx = false;
     protected boolean cy = false;
 
-    {
-        getDeclaredDoubles().put("maxX/ MaxX cordinates iterations for drawing", (double)maxX);
-        getDeclaredDoubles().put("maxY/ MaxY cordinates iterations for drawing", (double)maxY);
-        getDeclaredDoubles().put("cx/ Circulaire X last iterations for drawing", (double)(cx?1:-1));
-        getDeclaredDoubles().put("cy/ Circulaire X last iterations for drawing", (double)(cy?1:-1));
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredInteger().put("maxX/ MaxX cordinates iterations for drawing - disable", maxX);
+        getDeclaredInteger().put("maxY/ MaxY cordinates iterations for drawing - disable", maxY);
+        getDeclaredBoolean().put("cx/ Circulaire X last iterations for drawing - disable", cx);
+        getDeclaredBoolean().put("cy/ Circulaire X last iterations for drawing - disable", cy);
     }
     @Override
     public int getMaxX() {

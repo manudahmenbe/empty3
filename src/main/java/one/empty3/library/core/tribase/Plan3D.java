@@ -85,4 +85,11 @@ public class Plan3D extends ParametricSurface {
                 + "\"\n)\n";
     }
 
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredPoints().put("p0", p0);
+        getDeclaredPoints().put("vX", vY);
+        getDeclaredPoints().put("vY", vY);
+    }
 }

@@ -40,7 +40,7 @@ public class Rotation {
     }
 
     public Point3D rotation(Point3D p ) {
-        return p.plus(centreRot).plus(rot.mult(p));
+        return p.plus(centreRot).plus(rot.mult(p.scale()));
     }
 
     public Point3D rotationAxe(Point3D p, int axe, double angle) {

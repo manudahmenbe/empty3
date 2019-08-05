@@ -199,6 +199,9 @@ public class Point3D extends Representable implements IMovable {
     public Double get(int i) {
         return x[i];
     }
+    public Point3D scale() {
+         return new Point3D (get(0)*scale.get(1),get(1)*scale.get(1),get(2)*scale.get(2));
+    }
 
     public Double[] getDoubleArray() {
         return x;

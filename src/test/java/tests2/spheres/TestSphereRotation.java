@@ -12,21 +12,19 @@
 
 package tests2.spheres;
 
-import one.empty3.library.Camera;
-import one.empty3.library.Cube;
-import one.empty3.library.Point3D;
-import one.empty3.library.TextureCol;
+import one.empty3.library.*;
+import one.empty3.library.core.lighting.Colors;
 import one.empty3.library.core.move.Trajectoires;
 import one.empty3.library.core.testing.TestObjetSub;
-import one.empty3.library.core.tribase.TRISphere;
 
-import java.awt.*;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class TestSphereRotation extends TestObjetSub {
-    TRISphere ts;
+    Sphere ts;
+    private static int N = 10;
+    private Sphere[] spheres;
 
     public static void main(String[] args) {
         TestSphereRotation tsr = new TestSphereRotation();
@@ -42,23 +40,24 @@ public class TestSphereRotation extends TestObjetSub {
 
     @Override
     public void ginit() {
-        ts = new TRISphere(Point3D.O0, 1);
-        ts.setMaxX(400);
-        ts.setMaxY(400);
-        Cube c = new Cube(0.7, Point3D.O0);
+        spheres = new Sphere[N];
+        for (int i = 0; i < spheres.length; i++) {
+            spheres[i] = new Sphere(Point3D.O0.plus(Point3D.random(1.0)), 10);
+            Cube c = new Cube(0.7, spheres[i].getCircle().getCenter());
 
-        ts.texture(new TextureCol(Color.RED));
-        c.texture(new TextureCol(Color.BLUE));
+            spheres[i].texture(new TextureCol(Colors.random()));
+            c.texture(new TextureCol(Colors.random()));
 
 
-        scene().add(ts);
-        scene().add(c);
+            scene().add(spheres[i]);
+            scene().add(c);
+        }
     }
 
     @Override
     public void testScene() throws Exception {
         Point3D sphere = Trajectoires.sphere(1.0 * frame() / getMaxFrames(),
-                0, 5);
+                0.0, 50);
         scene().cameras().clear();
         scene().cameraActive(new Camera(sphere, Point3D.O0));
 

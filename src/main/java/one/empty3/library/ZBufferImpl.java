@@ -545,7 +545,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     }
 
-    private void line(Point3D p1, Point3D p2, ITexture t, double u, double u1, ParametricCurve curve) {
+    public void line(Point3D p1, Point3D p2, ITexture t, double u, double u1, ParametricCurve curve) {
         Point x1 = coordonneesPoint2D(p1);
         Point x2 = coordonneesPoint2D(p2);
         if (x1 == null || x2 == null) {
@@ -562,7 +562,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     }
 
-    private void line(Point3D p1, Point3D p2, ITexture texture, double u, double v, double u1, double v1,
+    public void line(Point3D p1, Point3D p2, ITexture texture, double u, double v, double u1, double v1,
                       ParametricSurface surface) {
         // TODO Check
         Point x1 = coordonneesPoint2D(p1);
