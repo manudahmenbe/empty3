@@ -42,7 +42,7 @@ public class TestSphereRotation extends TestObjetSub {
     public void ginit() {
         spheres = new Sphere[N];
         for (int i = 0; i < spheres.length; i++) {
-            spheres[i] = new Sphere(Point3D.O0.plus(Point3D.random(1.0)), 10);
+            spheres[i] = new Sphere(Point3D.O0.plus(Point3D.random(1.0)), 10.0);
             Cube c = new Cube(0.7, spheres[i].getCircle().getCenter());
 
             spheres[i].texture(new TextureCol(Colors.random()));
@@ -57,7 +57,7 @@ public class TestSphereRotation extends TestObjetSub {
     @Override
     public void testScene() throws Exception {
         Point3D sphere = Trajectoires.sphere(1.0 * frame() / getMaxFrames(),
-                0.0, 50);
+                0.0, 100.0);
         scene().cameras().clear();
         scene().cameraActive(new Camera(sphere, Point3D.O0));
 
