@@ -33,7 +33,6 @@ public class Scene extends Representable implements Serializable {
     public String date;
     public String description;
     public Camera cameraActive;
-    private String id;
     private ArrayList<Representable> objets = new ArrayList<Representable>();
     private ArrayList<Animation> animations = new ArrayList<Animation>();
     private ArrayList<Camera> cameras = new ArrayList<Camera>();
@@ -377,13 +376,6 @@ public class Scene extends Representable implements Serializable {
         this.cameraActive = cameraActive;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public ArrayList<Representable> getObjets() {
         return objets;

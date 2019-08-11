@@ -20,15 +20,8 @@
  */
 package one.empty3.library.core.animation;
 
-import one.empty3.library.*;
-import org.monte.media.Movie;
-
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.net.URL;
-
 public class SimpleAnimationSuiteDiapo extends Animation {
-
+/*
     public SimpleAnimationSuiteDiapo(Scene s, ECDim dim) {
         super(s, dim);
     }
@@ -45,5 +38,5 @@ public class SimpleAnimationSuiteDiapo extends Animation {
         private BufferedImage image;
         private Movie movie;
     }
-
+-**/
 }

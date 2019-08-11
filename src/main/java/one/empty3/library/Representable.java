@@ -327,7 +327,27 @@ public class Representable implements Serializable, Comparable {
         declaredTextures.put("texture/texture", texture);
 
     }
-    
+
+
+    public HashMap<String, Object> declarations(){
+        HashMap<String, Object> declarations = new HashMap<>();
+        declarations.putAll(getDeclaredString());
+        declarations.putAll(getDeclaredArray1dDouble());
+        declarations.putAll(getDeclaredArray1Points());
+        declarations.putAll(getDeclaredArrays2dDouble());
+        declarations.putAll(getDeclaredArray2Points());
+        declarations.putAll(getDeclaredBoolean());
+        declarations.putAll(getDeclaredDoubles());
+        declarations.putAll(getDeclaredInteger());
+        declarations.putAll(getDeclaredLists());
+        declarations.putAll(getDeclaredPoints());
+        declarations.putAll(getDeclaredRepresentables());
+        declarations.putAll(getDeclaredTextures());
+
+        return declarations;
+    }
+
+
     public ITexture getCFAST() {
         return CFAST;
     }

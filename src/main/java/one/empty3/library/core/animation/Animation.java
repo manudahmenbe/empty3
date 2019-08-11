@@ -1,13 +1,9 @@
 package one.empty3.library.core.animation;
 
-import one.empty3.library.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
+import one.empty3.library.Representable;
 
 public class Animation extends Representable{
-    protected List<Point3D> points = new ArrayList<>();
+/*    protected List<Point3D> points = new ArrayList<>();
     protected List<AnimationTime> time = new ArrayList<>();
 
     protected ECDim resolution;
@@ -103,5 +99,5 @@ public class Animation extends Representable{
         this.duration = duration;
     }
 
-
+*/
 }

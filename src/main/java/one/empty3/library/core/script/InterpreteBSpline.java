@@ -17,10 +17,9 @@
  */
 package one.empty3.library.core.script;
 
-import one.empty3.library.*;
+import one.empty3.library.Point3D;
 import one.empty3.library.core.nurbs.BSpline;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class InterpreteBSpline implements Interprete {
@@ -51,30 +50,16 @@ public class InterpreteBSpline implements Interprete {
         ib.read(text, pos);
         pos = ib.getPosition();
 
-        /*InterpreteString is = new InterpreteString();
-         String type = (String) is.interprete(text, pos);
-         if(!type.equals("bspline"))
-         {
-         throw new InterpreteException();
-         }
-         pos = is.getPosition();		
-         */
-        InterpreteCouleur pc = new InterpreteCouleur();
-        Color c = (Color) pc.interprete(text, pos);
-        b.setColor(c);
-        pos = pc.getPosition();
 
+        ArrayList<Double> T = new ArrayList<>();
         boolean ok = true;
         while (ok) {
             InterpretePoint3D ifa = new InterpretePoint3D();
-            InterpreteDouble ida = new InterpreteDouble();
             try {
-                Double d = (Double) ida.interprete(text, pos);
-                pos = ida.getPosition();
                 Point3D p = (Point3D) ifa.interprete(text, pos);
                 pos = ifa.getPosition();
 
-                b.add(d, p);
+               b.add(p);
                 if(ifa.getPosition() > pos) {
                     pos = ifa.getPosition();
                     numPoints++;
@@ -82,12 +67,37 @@ public class InterpreteBSpline implements Interprete {
             } catch (Exception ex) {
                 ok = false;
             }
-
         }
-        System.out.println(numPoints);
         pattern = new ArrayList<Integer>();
         pattern.add(ib.BLANK);
         pattern.add(ib.RIGHTPARENTHESIS);
+        pattern.add(ib.BLANK);
+        pattern.add(ib.LEFTPARENTHESIS);
+        pattern.add(ib.BLANK);
+        ib.compile(pattern);
+        ib.read(text, pos);
+        pos = ib.getPosition();
+
+
+        ok = true;
+        while (ok) {
+            try {
+            InterpreteDouble ida = new InterpreteDouble();
+            Double d = (Double) ida.interprete(text, pos);
+            pos = ida.getPosition();
+            b.getT().add(d);
+        } catch (Exception ex) {
+            ok = false;
+        }
+        }
+
+
+        pattern = new ArrayList<Integer>();
+        pattern.add(ib.BLANK);
+        pattern.add(ib.RIGHTPARENTHESIS);
+        pattern.add(ib.BLANK);
+        pattern.add(ib.RIGHTPARENTHESIS);
+        pattern.add(ib.BLANK);
         ib.compile(pattern);
         ib.read(text, pos);
         this.pos = ib.getPosition();

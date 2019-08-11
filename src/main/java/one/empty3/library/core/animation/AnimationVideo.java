@@ -20,13 +20,13 @@
  */
 package one.empty3.library.core.animation;
 
-import one.empty3.library.*;
-import one.empty3.library.*;
+import one.empty3.library.ECDim;
+import one.empty3.library.Scene;
 
 public class AnimationVideo extends Animation {
 
     public AnimationVideo(Scene s, ECDim dim) {
-        super(s, dim);
+        //super(s, dim);
     }
 
 }

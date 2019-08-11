@@ -13,21 +13,28 @@ package one.empty3.library.core.nurbs;
 
 import one.empty3.library.Point3D;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * @author Manuel Dahmen
+ *
+ * BSpline
+ *
+ * n = number of controls points controls.size()
+ * m = number of knots
+ * degree = degree of the curve
+ * n+1=m-d
+ *
+ * example=http://www.cgeo.ulg.ac.be/CAO/CAD_04.pdf
+ *
  */
 
 public class BSpline extends ParametricCurve {
 
     private ArrayList<Point3D> controls = new ArrayList<Point3D>();
     private ArrayList<Double> T = new ArrayList<>();
-    private int degree = 1;
-    private Color color;
-
+    private int degree = 3;
     public BSpline() {
 
         add(new Point3D(20.0, 10d, 0d));
@@ -35,41 +42,45 @@ public class BSpline extends ParametricCurve {
         add(new Point3D(10.0, 20d, 0d));
         add(new Point3D(10d, 10d, 0d));
         add(new Point3D(20d, 10d, 0d));
+
+        add1();
     }
 
     public void add1()
 
     {
         T.clear();
-        for (int i = 0; i < controls.size(); i++)
-            T.add(1.0);
+        int endI = controls.size() + 1 + 2 * degree;
+        for (int i = 0; i < endI; i++)
+            if(i<degree)
+            {
+                T.add(0.0);
+            } else if(i>=endI-degree)
+            {
+                T.add(1.0);
+            }
+            else
+            {
+                T.add(1.0*i/(controls.size()));
+            }
+
 
     }
 
     public void add(Point3D point) {
         controls.add(point);
-        T.clear();
-
-        //T.add(0.0);
-        int size = (controls.size() + degree * 2 + 1);
-        double incr = 1.0/size;
-        for (double i = incr; i < incr*size; i += incr) {
-            for (int j = 0; j < 1; j++)
-                T.add(i);
-        }
-        T.add(0.0);
-    }
+ }
 
     public double boor(double t, int i, int d) {
         if (d <= 0) {
             if (i >= 0 && i < T.size())
-                return t < get(i + 1) && t > get(i) ? 1.0 : 0.0;
+                return/* t < get(i + 1) && */t > get(i) ? 1.0 : 0.0;
             else
                 return 0.0;
         }
-        return avoidNaN((t - get(i)), get(i + d) - t)*avoidNaN(boor(t, i, d - 1), 1.0)
+        return avoidNaN((t - get(i))*boor(t, i, d - 1), get(i + d) - t)
                 +
-                avoidNaN((get(i + d + 1) - t) , get(i + d + 1) - get(i + 1))* avoidNaN(boor(t, i + 1, d - 1), 1.0);
+                avoidNaN((get(i + d + 1) - t)* boor(t, i + 1, d - 1), get(i + d + 1) - get(i + 1));
     }
 
     private double avoidNaN(double a, double b) {
@@ -80,8 +91,8 @@ public class BSpline extends ParametricCurve {
 
     public Point3D calculerPoint3D(double t) {
         Point3D p = Point3D.O0;
+        double boor = 0d;
         for (int i = 0; i < controls.size(); i++) {
-            double boor = 0d;
             for (int j = 0; j < T.size(); j++)
 
             {
@@ -91,8 +102,8 @@ public class BSpline extends ParametricCurve {
 
             p = p.plus(controls.get(i).mult(boor));
         }
-        System.out.println("p = " + p.toString() + "\tt = " + t);
-        return p;
+        //System.out.println("p = " + p.toString() + "\tt = " + t);
+        return p;//.mult(1/boor);
     }
 
     public double get(int i) {
@@ -105,19 +116,12 @@ public class BSpline extends ParametricCurve {
         return T.get(i);
     }
 
-    public Color getColor() {
-        return color;
-    }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public int getDegree() {
+    public Integer getDegree() {
         return controls.size();
     }
 
-    public void setDegree(int degree) {
+    public void setDegree(Integer degree) {
         this.degree = degree;
     }
 
@@ -140,9 +144,18 @@ public class BSpline extends ParametricCurve {
     public String toString() {
         String s = "bspline \n(\n\n";
         Iterator<Point3D> ps = iterator();
+        s+="\n controls (";
         while (ps.hasNext()) {
             s += "\n" + ps.next().toString() + "\n";
         }
+        Iterator<Double> iterator = T.iterator();
+
+        s+="\n) knots (";
+        while (iterator.hasNext()) {
+            s += "\n" + iterator.next().toString() + "\n";
+        }
+        s+="\n) \n)";
+
         return s;
     }
 
@@ -167,6 +180,7 @@ public class BSpline extends ParametricCurve {
         super.declareProperties();
         getDeclaredLists().put("controls/Points de contrôle", controls);
         getDeclaredLists().put("T/poids des points de contrôle", T);
+        getDeclaredInteger().put("degree/Degree of curve", degree);
     }
 
     public void add(Double d, Point3D p) {

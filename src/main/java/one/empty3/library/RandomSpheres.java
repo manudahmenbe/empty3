@@ -32,7 +32,7 @@ public class RandomSpheres extends Animation {
     private Random r = new Random();
 
     public RandomSpheres(Scene s) {
-        super(s, new ECDim(1000, 1000));
+        //super(s, new ECDim(1000, 1000));
         n = 10;
         ran = new Point3D[n];
         next = new Point3D[n];

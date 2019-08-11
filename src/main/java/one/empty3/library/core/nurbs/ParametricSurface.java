@@ -54,7 +54,6 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
     private Double incrNormale = 0.000001;
     private Double startU = 0.0, startV = 0.0;
     private Double endU = 1.0, endV = 1.0;
-    private Double NFAST = 100.0;
     private ParametricSurface.Parameters parameters = new ParametricSurface.Parameters(true);
 
     public static Globals getGlobals() {
