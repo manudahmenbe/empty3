@@ -21,7 +21,6 @@ import org.monte.media.avi.AVIReader;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -39,12 +38,14 @@ public class TextureImg extends ITexture {
 
     private String nomFichier = "image.png";
 
-    private Scene scene;
     private AVIReader reader;
     private int track = 0;
     private File avifile = null;
     private int transparent = Color.TRANSLUCENT;
 
+    public TextureImg() {
+
+    }
     public TextureImg(ECBufferedImage bi) {
         this.image = bi;
     }
@@ -86,7 +87,7 @@ public class TextureImg extends ITexture {
     }
 
 
-    public BufferedImage getImage() {
+    public ECBufferedImage getImage() {
         return image;
     }
 
@@ -110,9 +111,6 @@ public class TextureImg extends ITexture {
         this.nomFichier = nomFichier;
     }
 
-    void scene(Scene scene) {
-        this.scene = scene;
-    }
 
     public void setTransparent(Color tr) {
         this.transparent = tr.getRGB();

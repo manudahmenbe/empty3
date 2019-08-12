@@ -29,7 +29,7 @@ public class Point3D extends Representable implements IMovable {
     // TODO rename into Pixel3D? Tout doux.
     public Point3D() {
         super();
-        x = new Double[3];
+        x = new double[3];
         x[0] = 0d;
         x[1] = 0d;
         x[2] = 0d;
@@ -64,7 +64,7 @@ public class Point3D extends Representable implements IMovable {
      * *
      * Coordonnées (x,y,z) du point
      */
-    public Double[] x;
+    public double[] x;
     /**
      * *
      * Pour le tracé de surface normale au point
@@ -203,7 +203,7 @@ public class Point3D extends Representable implements IMovable {
          return new Point3D (get(0)*scale.get(1),get(1)*scale.get(1),get(2)*scale.get(2));
     }
 
-    public Double[] getDoubleArray() {
+    public double[] getDoubleArray() {
         return x;
     }
 

@@ -72,7 +72,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     private Scene currentScene;
     private Box2D box;
     private Point3D activeLight = new Point3D(-10d, 0d, 100d);
-    private int displayType = DISPLAY_ALL;
+    private int displayType = SURFACE_DISPLAY_TEXT_QUADS;
 
     public ZBufferImpl() {
         this(Resolution.HD1080RESOLUTION);

@@ -60,15 +60,7 @@
                 <version>2.0</version>
                 <configuration>
                     <archive>
-                        <manifest>
-                            <mainClass>info.emptycanvas.library.gui.NEWMain</mainClass>
-                            <packageName>info.emptycanvas.library.gui</packageName>
-                            <addClasspath>true</addClasspath>
-                        </manifest>
-                        <manifestEntries>
-                            <mode>development</mode>
-                            <url>${pom.url}</url>
-                        </manifestEntries>
+                        <manifestFile>META-INF/MANIFEST.MF</manifestFile>
                     </archive>
                 </configuration>
             </plugin>

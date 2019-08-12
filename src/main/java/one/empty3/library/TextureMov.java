@@ -17,7 +17,6 @@ import com.xuggle.mediatool.IMediaReader;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -38,14 +37,23 @@ public class TextureMov extends ITexture {
     private int current;
     private int CAPACITY;
 
+    public File getFile() {
+        return file;
+    }
 
-    public TextureMov(URL vid) {
-        this(vid.toExternalForm());
+    public void setFile(File file) {
+        this.file = file;
+        init(file.getAbsolutePath());
+    }
 
+    public TextureMov() {
     }
 
     public TextureMov(String filename) {
-
+        init(filename);
+    }
+    public void init(String filename)
+    {
         this.file = new File(filename);
 
 
