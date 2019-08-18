@@ -36,7 +36,7 @@ public class TextureImg extends ITexture {
 
     private String nom = "texture";
 
-    private String nomFichier = "image.png";
+    private String file = "image.png";
 
     private AVIReader reader;
     private int track = 0;
@@ -103,12 +103,12 @@ public class TextureImg extends ITexture {
         this.nom = nom;
     }
 
-    public String getNomFichier() {
-        return nomFichier;
+    public String getFile() {
+        return file;
     }
 
-    public void setNomFichier(String nomFichier) {
-        this.nomFichier = nomFichier;
+    public void setFile(String file) {
+        this.file = file;
     }
 
 
@@ -169,11 +169,8 @@ public class TextureImg extends ITexture {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String t  = "textureImg( filename:"+getFilename()+"\n\tdata : { "+imageString+" } \n)";
+        String t  = "textureImg( filename:"+getFile()+"\n\tdata : { "+imageString+" } \n)";
         return t;
     }
 
-    public String getFilename() {
-        return getNomFichier();
-    }
 }

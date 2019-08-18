@@ -38,6 +38,7 @@ public class WriteManifest {
             else {
                 new File("META-INF").mkdir();
             }
+            //File launch = new File("LAUNCH.BAT");
             FileOutputStream fileOutputStream = new FileOutputStream(manifest);
             PrintWriter pw = new PrintWriter(fileOutputStream);
             pw.println("Manifest-Version: 1.0");
