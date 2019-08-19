@@ -42,7 +42,7 @@ class Vaisseau {
     private final double mlc;
 
     {
-        bundle = ResourceBundle.getBundle("one.empty3.apps.pad"); // NOI18N
+        bundle = ResourceBundle.getBundle("one.empty3.apps.pad.Bundle"); // NOI18N
         mlc = Double.parseDouble(bundle.getString("persoCube.mlc"));
     }
     private final PositionUpdate gm;
