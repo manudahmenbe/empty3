@@ -25,11 +25,12 @@ import one.empty3.library.Point2D;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public abstract class Drawer {
 
 
-    protected ToggleMenu toggleMenu;
+    protected ToggleMenu toggleMenu =new ToggleMenu();
     protected Plotter3D plotter3D;
     private Class level;
 
@@ -55,8 +56,9 @@ public abstract class Drawer {
         imageList.add(image);
         component.setIconImages(imageList);
 
-
-
+        toggleMenu.setDisplaySky(false);
+        toggleMenu.setDisplayGround(false);
+        toggleMenu.setDisplayGroundGrid(true);
 
     }
 
@@ -81,6 +83,7 @@ public abstract class Drawer {
 
     public void setLevel(Class level) {
         this.level = level;
+        Logger.getAnonymousLogger().info("Level: " + level.getCanonicalName());
     }
 
 }

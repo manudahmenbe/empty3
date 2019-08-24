@@ -201,13 +201,13 @@ public class AlgebraicTreeTest {
     public void testVariableCircle() {
 
         HashMap<String, Double> vars = new HashMap<>();
-        vars.put("x", 4.0);
-        vars.put("x", 4.0);
+        vars.put("coordArr", 4.0);
+        vars.put("coordArr", 4.0);
         vars.put("y", 13.0);
         vars.put("z", 13.0);
         vars.put("R", 20.0);
 
-        testResultVariable("x*x+y*y+z*z-R*R", 4.0*4 + 13.0*13+13.0*13.0-20.0*20.0, vars, false);
+        testResultVariable("coordArr*coordArr+y*y+z*z-R*R", 4.0*4 + 13.0*13+13.0*13.0-20.0*20.0, vars, false);
     }
 
     @Test

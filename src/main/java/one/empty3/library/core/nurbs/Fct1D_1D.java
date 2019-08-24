@@ -42,7 +42,7 @@ public abstract class Fct1D_1D extends ParametricCurve {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredRepresentables().put("F_I/Fonction ident (x)", new I());
+        getDeclaredRepresentables().put("F_I/Fonction ident (coordArr)", new I());
         getDeclaredRepresentables().put("F_Const/Fonction constante", new Fx(0.0));
     }
 }

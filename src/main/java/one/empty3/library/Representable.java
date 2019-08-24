@@ -31,14 +31,14 @@ public class Representable implements Serializable, Comparable {
     public static Point3D SCALE1 = new Point3D(1d, 1d,1d);
     public static final ITexture DEFAULT_TEXTURE = new TextureCol(Colors.random());
     protected static ArrayList<Painter> classPainters = new ArrayList<Painter>();
-    public Rotation rotation ;
+    public Rotation rotation  = new Rotation();
     protected double NFAST = 100;
     protected RtMatiere materiau;
     protected ITexture CFAST = DEFAULT_TEXTURE;
     protected Barycentre bc = new Barycentre();
     protected Representable parent;
     protected Scene scene;
-    protected ITexture texture = new TextureCol(Colors.random());
+    protected ITexture texture;
     private String id;
     private Painter painter = null;
     private int RENDERING_DEFAULT = 0;
@@ -117,9 +117,6 @@ public class Representable implements Serializable, Comparable {
         this.texture = tc;
     }
 
-    public Representable strictCopyOf() throws CloneNotSupportedException {
-        return (Representable) this.clone();
-    }
 
     /***
      * DOn't call ZBuffer dessiine methods here: it would loop.
@@ -290,6 +287,7 @@ public class Representable implements Serializable, Comparable {
 
     public void setProperty(String propertyName, Object value) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
+
         propertySetter = this.getClass().getMethod("set" + (""+propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), value.getClass());
         propertySetter.invoke(this, value);
         System.out.println("RType : " + this.getClass().getName()+" Property: "+ propertyName+" New Value set "+getProperty(propertyName));
@@ -323,8 +321,7 @@ public class Representable implements Serializable, Comparable {
         declaredLists = new HashMap<>();
         declaredString = new HashMap<>();
 
-        declaredTextures.put("CFAST/draw fast texture", CFAST);
-        declaredTextures.put("texture/texture", texture);
+        getDeclaredTextures().put("texture/texture", texture);
 
     }
 

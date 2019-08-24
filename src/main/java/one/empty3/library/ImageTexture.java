@@ -132,12 +132,12 @@ public class ImageTexture extends ITexture {
 
 
     /**
-     * Quadrilatère numQuadX = 1, numQuadY = 1, x, y 3----2 ^2y |\ | | 4 |
+     * Quadrilatère numQuadX = 1, numQuadY = 1, coordArr, y 3----2 ^2y |\ | | 4 |
      * 0--\-1 1 -> 2x
      *
-     * @param numQuadX nombre de maillage en x
+     * @param numQuadX nombre de maillage en coordArr
      * @param numQuadY nombre de maillage en y
-     * @param x        valeur de x
+     * @param x        valeur de coordArr
      * @param y        valeur de y
      * @return
      */
@@ -164,7 +164,7 @@ public class ImageTexture extends ITexture {
     }
 
     /**
-     * +|--r11->/-----| y^r12^ 0/1 ^r12^ -|-----/<-r11--|+x
+     * +|--r11->/-----| y^r12^ 0/1 ^r12^ -|-----/<-r11--|+coordArr
      *
      * @param numQuadX
      * @param numQuadY

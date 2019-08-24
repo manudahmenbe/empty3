@@ -70,7 +70,7 @@ public class InterpreteTour implements Interprete {
         ib.read(text, pos);
         pos = ib.getPosition();
         InterpreteFunction ifct = new InterpreteFunction();
-        ifct.addVars("x");
+        ifct.addVars("coordArr");
         ifct.addVars("a");
         objects.add(ifct.interprete(text, pos));
         pos = ifct.getPosition();

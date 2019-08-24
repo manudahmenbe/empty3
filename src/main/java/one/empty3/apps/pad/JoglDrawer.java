@@ -659,7 +659,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     @Override
     public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width,
                         int height) {
-        System.out.println("reshape() called: x = " + x + ", y = " + y
+        System.out.println("reshape() called: coordArr = " + x + ", y = " + y
                 + ", width = " + width + ", height = " + height);
         final GL2 gl = gLDrawable.getGL().getGL2();
 
@@ -721,8 +721,8 @@ public class JoglDrawer extends Drawer implements GLEventListener {
          double norm_y = double(window_y)/double(window_height/2);
          int window_x = mouse_x - window_width/2;
          double norm_x = double(window_x)/double(window_width/2);
-         float y = near_height * norm_y; float x = near_height * aspect * norm_x;
-         float ray_pnt[4] = {0.f, 0.f, 0.f, 1.f}; float ray_vec[4] = {x, y, -near_distance, 0.f};
+         float y = near_height * norm_y; float coordArr = near_height * aspect * norm_x;
+         float ray_pnt[4] = {0.f, 0.f, 0.f, 1.f}; float ray_vec[4] = {coordArr, y, -near_distance, 0.f};
 
          GLuint buffer[BUF_SIZE]; glSelectBuffer (BUF_SIZE, buffer);
          GLint hits; glRenderMode(GL_SELECT);
@@ -850,7 +850,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         IntBuffer selectBuffer = Buffers.newDirectIntBuffer(BUFSIZE);
         int hits;
         int viewport[] = new int[4];
-        // int x, y;
+        // int coordArr, y;
 
         gl.glGetIntegerv(GL.GL_VIEWPORT, viewport, 0);
 

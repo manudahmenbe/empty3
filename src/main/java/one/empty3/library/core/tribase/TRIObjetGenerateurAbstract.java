@@ -94,10 +94,10 @@ public abstract class TRIObjetGenerateurAbstract extends Representable implement
     /**
      * *
      *
-     * @param numX num�ro de valeur de x par rapport � maxX
+     * @param numX num�ro de valeur de coordArr par rapport � maxX
      * @param numY num�ro de valeur de y par rapport � maxY
-     * @param tris TRI[1] = ((x,y),(x+1,y),(x+1,y+1)) TRI[2] =
-     *             ((x,y),(x,y+1),(x+1,y+1))
+     * @param tris TRI[1] = ((coordArr,y),(coordArr+1,y),(coordArr+1,y+1)) TRI[2] =
+     *             ((coordArr,y),(coordArr,y+1),(coordArr+1,y+1))
      */
     public void getTris(int numX, int numY, TRI[] tris) {
         int nextX = numX + 1;

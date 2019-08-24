@@ -58,12 +58,12 @@ public class ColorTexture extends ITexture {
     }
 
     /**
-     * Quadrilatère numQuadX = 1, numQuadY = 1, x, y 3----2 ^2y |\ | | 4 |
+     * Quadrilatère numQuadX = 1, numQuadY = 1, coordArr, y 3----2 ^2y |\ | | 4 |
      * 0--\-1 1 -> 2x
      *
-     * @param numQuadX nombre de maillage en x
+     * @param numQuadX nombre de maillage en coordArr
      * @param numQuadY nombre de maillage en y
-     * @param x        valeur de x
+     * @param x        valeur de coordArr
      * @param y        valeur de y
      * @return
      */

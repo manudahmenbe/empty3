@@ -46,10 +46,12 @@ public class Matrix33 extends Representable{
     private Double[] d;
 
     public Matrix33(Matrix33 copy) {
+        super();
         d = copy.d.clone();
     }
 
     public Matrix33() {
+        super();
         d = new Double[9];
 
     }
@@ -57,7 +59,7 @@ public class Matrix33 extends Representable{
     public Matrix33(Double[] d) {
         if (d.length != 9) {
             System.out.println("Erreur dans Matrix33 . 9 éléments requis");
-            System.exit(-1);
+            throw new IndexOutOfBoundsException("Matrix33 9 "+d.length);
         }
         this.d = d;
     }

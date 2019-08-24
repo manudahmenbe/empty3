@@ -94,7 +94,7 @@ public class Move {
             }
 
             t1.changeTo(
-                    new Point3D(composanteForceSurface.get(t1).map2.get("x"),
+                    new Point3D(composanteForceSurface.get(t1).map2.get("coordArr"),
                             composanteForceSurface.get(t1).map2.get("y"),
                             composanteForceSurface.get(t1).map2.get("z")
                     )

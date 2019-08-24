@@ -36,12 +36,10 @@ public class CourbeParametriquePolynomiale extends ParametricCurve {
         super();
         this.coefficients = coefficients;
         this.power = coefficients.length;
-        declareProperties();
     }
 
     public CourbeParametriquePolynomiale() {
         super();
-        declareProperties();
     }
     public void declareProperties() {
         getDeclaredArray1Points().put(("coefficients/coefficients de la courbe"), coefficients);

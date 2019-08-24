@@ -44,16 +44,16 @@ package one.empty3.library;
 //     * *
 //     * Add point
 //     *
-//     * @param x height
+//     * @param coordArr height
 //     * @param p point to add
 //     */
-//    public void addPoint(int x, Point3D p) {
-//        if (x >= 0) {
+//    public void addPoint(int coordArr, Point3D p) {
+//        if (coordArr >= 0) {
 //
-//            if (x == polys.size()) {
+//            if (coordArr == polys.size()) {
 //            }
 //
-//            polys.get(x).getPoints().add(p);
+//            polys.get(coordArr).getPoints().add(p);
 //
 //        }
 //    }
@@ -87,15 +87,15 @@ package one.empty3.library;
 //
 //    /**
 //     * *
-//     * Gets points on a (x,y) matrix;
+//     * Gets points on a (coordArr,y) matrix;
 //     *
-//     * @param x width x>=0 && x<polys.size() @para
+//     * @param coordArr width coordArr>=0 && coordArr<polys.size() @para
 //     *          m y height y>=0 && y< each poly.size() in polys @return
 //     */
-//    public Point3D getPoint(int x, int y) {
+//    public Point3D getPoint(int coordArr, int y) {
 //
-//        return x < size && y < polys.size()
-//                ? polys.get(x).getPoints().get(y)
+//        return coordArr < size && y < polys.size()
+//                ? polys.get(coordArr).getPoints().get(y)
 //                : null;
 //
 //    }

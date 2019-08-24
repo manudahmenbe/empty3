@@ -58,7 +58,7 @@ public class Oeu extends TestObjetSub{
         move.setItereFrame(100);
         scene().add(point3DPCont);
         try {
-            move.initMoveSurface("x*x+y*y+z*z-R*R", map);
+            move.initMoveSurface("coordArr*coordArr+y*y+z*z-R*R", map);
         } catch (AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
         }

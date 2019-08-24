@@ -1005,7 +1005,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             double ratioBox = (maxx - minx) / (maxy - miny);
             double minx2 = minx, miny2 = miny, maxx2 = maxx, maxy2 = maxy;
             if (ratioEcran > ratioBox) {
-                // Ajouter des points en x
+                // Ajouter des points en coordArr
                 minx2 = minx - (1 / ratioBox * ratioEcran / 2) * (maxx - minx);
                 maxx2 = maxx + (1 / ratioBox * ratioEcran / 2) * (maxx - minx);
             } else if (ratioEcran < ratioBox) {
@@ -1177,7 +1177,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
 
         /*
-         * private boolean checkCoordinates(int x, int y) { if (x >= 0 & x < la & y >= 0
+         * private boolean checkCoordinates(int coordArr, int y) { if (coordArr >= 0 & coordArr < la & y >= 0
          * & y < ha) { return true; } return false; }
          */
         public void setIME(int x, int y) {
@@ -1197,7 +1197,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             int y = (int) ce.getY();
             if (x >= 0 & x < la & y >= 0 & y < ha
                     && (deep < ime.getElementProf(x, y) /*
-                                                         * || ime.getElementID(x, y) != idImg
+                                                         * || ime.getElementID(coordArr, y) != idImg
                                                          */) /* && (((cc>>24)&0xff) == 0) */) {
                 if (scene().lumiereActive() != null) {
                     cc = scene().lumiereTotaleCouleur(c, x3d, x3d.getNormale());

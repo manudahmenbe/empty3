@@ -82,7 +82,7 @@ public abstract class ITexture extends MediaListenerAdapter {
     }
 
     /***
-     * Retourne color at point (x*textresx, y*textresy)
+     * Retourne color at point (coordArr*textresx, y*textresy)
      *
      * @param x 0..1
      * @param y 0..1

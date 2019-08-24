@@ -31,7 +31,7 @@ public class AVIInfo {
             System.out.println("Durée: " + reader.getDuration());
             System.out.println("Format de fichier: " + reader.getFileFormat().toString());
             System.out.println("Nombre de piste: " + reader.getTrackCount());
-            System.out.println("Nombre de piste: " + reader.getVideoDimension().getHeight() + "x" + reader.getVideoDimension().getHeight());
+            System.out.println("Nombre de piste: " + reader.getVideoDimension().getHeight() + "coordArr" + reader.getVideoDimension().getHeight());
             for (int t = 0; t < reader.getTrackCount(); t++) {
                 System.out.println("Track " + t);
                 System.out.println("Durée: " + reader.getDuration(t));

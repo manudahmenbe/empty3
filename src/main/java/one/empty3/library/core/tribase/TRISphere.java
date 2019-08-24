@@ -85,8 +85,8 @@ public class TRISphere extends Sphere {
     }
 
     @Override
-    public Point3D coordPoint3D(int x, int y) {
-        double a = 1.0 * x / getMaxX() * 2 * Math.PI - Math.PI;
+    public Point3D coordPoint3D(int coordArr, int y) {
+        double a = 1.0 * coordArr / getMaxX() * 2 * Math.PI - Math.PI;
         double b = 1.0 * y / getMaxY() * 2 * Math.PI - Math.PI;
 
         return calculerPoint3D(a, b);

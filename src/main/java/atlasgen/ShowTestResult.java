@@ -400,7 +400,7 @@ public final class ShowTestResult extends JFrame implements Runnable {
 
         jTableEquations.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
-                        {"x", "u"},
+                        {"coordArr", "u"},
                         {"y", "v"},
                         {"z", "0"},
                         {null, null}

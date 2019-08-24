@@ -45,7 +45,7 @@ public class ComposanteForceSurface {
         setItereAxes(1);
         this.x = x;
         declareVar("dv", dv);
-        declareVar("x", 1.0);
+        declareVar("coordArr", 1.0);
         declareVar("y", 1.0);
         declareVar("z", 1.0);
         declareVar("R", 1.0);
@@ -66,7 +66,7 @@ public class ComposanteForceSurface {
         double eval = -1;
         boolean trouve = false;
         for (int i = 0; i < itereAxes; i++) {
-            declareVar("x", getVar("x") + (Math.random()-0.5)*getVar("dv"));
+            declareVar("coordArr", getVar("coordArr") + (Math.random()-0.5)*getVar("dv"));
             declareVar("y", getVar("y") + (Math.random()-0.5)*getVar("dv"));
             declareVar("z", getVar("z") + (Math.random()-0.5)*getVar("dv"));
             declareVar("R", getVar("R") + (Math.random()-0.5)*getVar("dv"));
@@ -74,7 +74,7 @@ public class ComposanteForceSurface {
             curr = Math.abs(evSurface());
             if (curr < aCurr) {
                 aCurr = curr;
-                map2.put("x", getVar("x"));
+                map2.put("coordArr", getVar("coordArr"));
                 map2.put("y", getVar("y"));
                 map2.put("z", getVar("z"));
                 map2.put("R", getVar("R"));
@@ -85,7 +85,7 @@ public class ComposanteForceSurface {
         if(trouve) {
             // TODO Itérer selon un axe linéaire, exponotielle, puissance, log, etc.
             // TODO Itérer selon l'axe p0+(p1-p0)*dv Réduire l'écart
-            declareVar("x", map2.get("x"));
+            declareVar("coordArr", map2.get("coordArr"));
             declareVar("y", map2.get("y"));
             declareVar("z", map2.get("z"));
             declareVar("R", map2.get("R"));

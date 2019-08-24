@@ -249,7 +249,6 @@ public class PanelGraphics extends JDialog {
     private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
 
-        Class loadClass = levelMenu.loadClass();
         DarkFortressGUI df;
         if (jRadioButtonECGraph.isSelected()) {
 
@@ -257,6 +256,11 @@ public class PanelGraphics extends JDialog {
         } else {
             df = new DarkFortressGUI(JoglDrawer.class);
         }
+
+        levelMenu.setIndex(jComboBoxTerrain.getSelectedIndex());
+
+        Class loadClass = levelMenu.loadClass();
+
         if(loadClass==null)
             throw new NullPointerException("classForSol == null");
         Player byName = null;

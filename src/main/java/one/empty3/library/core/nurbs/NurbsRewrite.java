@@ -33,7 +33,7 @@ public class NurbsRewrite {
      nplusc   = constant -- npts + c -- maximum number of knot values
      t        = parameter value
      temp[]   = temporary array
-     x[]      = knot vector
+     coordArr[]      = knot vector
      */
 
     public static void basis(int c, double t, int npts, int[] x, double[] n) {
@@ -46,7 +46,7 @@ public class NurbsRewrite {
 
         /*		printf("knot vector is \n");
          for (i = 1; i <= nplusc; i++){
-         printf(" %d %d \n", i,x[i]);
+         printf(" %d %d \n", i,coordArr[i]);
          }
          printf("t is %f \n", t);
          */
@@ -95,9 +95,9 @@ public class NurbsRewrite {
 	
      c            = order of the basis function
      n            = the number of defining polygon vertices
-     nplus2       = index of x() for the first occurence of the maximum knot vector value
+     nplus2       = index of coordArr() for the first occurence of the maximum knot vector value
      nplusc       = maximum value of the knot vector -- $n + c$
-     x()          = array containing the knot vector
+     coordArr()          = array containing the knot vector
      */
 
     public static void knot(int n, int c, int[] x) {
@@ -128,12 +128,12 @@ public class NurbsRewrite {
      Book reference: Chapter 7, Section 7.1, Alg. p. 308
 
      b[]         = array containing the polygon net points
-     b[1] = x-component
+     b[1] = coordArr-component
      b[2] = y-component
      b[3] = z-component
      b[4] = h-component
      Note: Bi,j = b[] has dimensions of n*m*3 with j varying fastest
-     The polygon net is n x m
+     The polygon net is n coordArr m
      k           = order in the u direction
      l           = order in the w direction
      mbasis[]    = array containing the nonrational basis functions for one value of w (see Eq. (3.2))
@@ -143,12 +143,12 @@ public class NurbsRewrite {
      p1          = number of parametric lines in the u direction
      p2          = number of parametric lines in the w direction
      q[]         = array containing the resulting surface
-     q[1] = x-component
+     q[1] = coordArr-component
      q[2] = y-component
      q[3] = z-component
      for a fixed value of u the next m elements contain
      the values for the curve q[u[sub i],w] q has dimensions
-     of p1*p2*3. The display surface is p1 x p2
+     of p1*p2*3. The display surface is p1 coordArr p2
      */
 
     public static void rbspsurf(
@@ -259,12 +259,12 @@ public class NurbsRewrite {
      Book reference: Chapter 7, Section 7.1, Alg. p.309
 	
      b[]         = array containing the polygon net points
-     b[1] = x-component
+     b[1] = coordArr-component
      b[2] = y-component
      b[3] = z-component
      b[4] = homogeneous coordinate weighting factor        
-     Note: Bi,j = b[] has dimensions of n*m x 4 with j varying fastest
-     The polygon net is n x m
+     Note: Bi,j = b[] has dimensions of n*m coordArr 4 with j varying fastest
+     The polygon net is n coordArr m
      mbasis[,]  = array containing the nonrational basis functions for one value of w
      mpts       = the number of polygon vertices in w direction
      nbasis[,]  = array containing the nonrational basis functions for one value of u
@@ -346,7 +346,7 @@ public class NurbsRewrite {
         /*
          This is a standard test control polygon from Ex. 6.1, p. 184
          Comment out to use file input <filename>.rnp. Data is in the
-         form x=b[1], y=b[2], z=b[3], h=b[4], etc. All h are 1.0.
+         form coordArr=b[1], y=b[2], z=b[3], h=b[4], etc. All h are 1.0.
          Thus, this is a nonrational B-spline surface and the results
          should be the same as for tbsurf.c
          */

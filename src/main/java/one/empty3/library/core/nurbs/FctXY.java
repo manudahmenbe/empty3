@@ -48,6 +48,6 @@ public class FctXY extends Fct1D_1D {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredString().put("formulaX/f(x)", formulaX);
+        getDeclaredString().put("formulaX/fonction Y=f(x)", formulaX);
     }
 }

@@ -88,7 +88,7 @@ public interface ZBuffer {
 
     /**
      * *
-     * Instancie un zbuffer. Si l'instance demandée (x, y) existe déjà, elle est
+     * Instancie un zbuffer. Si l'instance demandée (coordArr, y) existe déjà, elle est
      * retournée.
      *
      * @param x largeur (resx)
@@ -151,7 +151,7 @@ public interface ZBuffer {
      * *
      * Résolution X
      *
-     * @return résolution x
+     * @return résolution coordArr
      */
     int resX();
 

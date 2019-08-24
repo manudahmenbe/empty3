@@ -18,8 +18,6 @@
 
 package one.empty3.apps.pad;
 
-import one.empty3.apps.pad.menu.ToggleMenu;
-
 import javax.swing.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,9 +72,6 @@ public final class DarkFortressGUI extends JFrame {
                 drawer = new EcDrawer(this);
             }
 
-
-            ToggleMenu toggleMenu = new ToggleMenu();
-            drawer.setToggleMenu(toggleMenu);
 
             drawer.setLogic(mover);
             drawer.setPlotter3D(plotter3D);

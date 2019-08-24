@@ -1,14 +1,3 @@
-/*
- * Copyright (c) 2017. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
- * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
- * Les parties tierces peuvent être soumises à d'autres licenses.
- * Montemedia : Creative Commons
- * ECT : Tests à valeur artistique ou technique.
- * La partie RayTacer a été honteusement copiée sur le Net. Puis traduite en Java et améliorée.
- * Java est une marque de la société Oracle.
- *
- * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
- */
 
 package one.empty3.library.core.raytracer.tree;
 
@@ -50,7 +39,7 @@ public class AlgebricTree extends Tree {
                 addFormulaSeparator(src, subformula) ||
                         addTerms(src, subformula) ||
                         addFactors(src, subformula) ||
-                        addExponent(src, subformula) ||
+                        addPower(src, subformula) ||
                         addSingleSign(src, subformula) ||
                         addDouble(src, subformula) ||
                         addVariable(src, subformula) ||
@@ -122,6 +111,73 @@ public class AlgebricTree extends Tree {
 
     }
 
+    public boolean addPower(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
+        int countTerms = 0;
+
+        TreeNode t2;
+        int i = 0;
+        boolean firstTermFound = false;
+        boolean isNewFactor = false;
+        int count = 0;
+        int newFactorPos = 0;
+        int oldFactorPos = 0;
+        char newFactor = '*';
+        double newFactorSign = 1;
+        double oldFactorSign = 1;
+        while (i < values.length()) {
+            if (values.charAt(i) == '(') {
+                count++;
+            } else if (values.charAt(i) == ')') {
+                count--;
+            }
+            if (values.charAt(i) == '^' && /*9(i < values.length() - 1 || values.charAt(i + 1) != '*') &&*/ count == 0) {
+                newFactor = '^';
+                newFactorPos = i;
+                isNewFactor = true;
+                firstTermFound = true;
+                newFactorSign = 1;
+            } else if (i == values.length() - 1 && count == 0 && firstTermFound) {
+                isNewFactor = true;
+                newFactorPos = i + 1;
+                /*if (values.charAt(oldFactorPos - 1) == '/') {
+                    newFactorSign = -1;
+                    newFactor = '/';//??
+                } else if (values.charAt(oldFactorPos - 1) == '*') {
+                    newFactorSign = 1;
+                    newFactor = '*';//??
+                } else throw new AlgebraicFormulaSyntaxException("Ni + ni -");
+            */
+            }
+
+
+            if (isNewFactor) {
+                countTerms++;
+                String subsubstring = values.substring(oldFactorPos, newFactorPos);
+
+
+                if (subsubstring.length() > 0) {
+                    t2 = new TreeNode(t, new Object[]{subsubstring}, new PowerTreeNodeType(oldFactorSign));
+                    t.getChildren().add(t2);
+                    if (!add(t2, subsubstring)) {
+                        return false;
+                    }
+                }
+
+
+                isNewFactor = false;
+                count = 0;
+                newFactorPos = i + 1;
+                oldFactorPos = i + 1;
+                newFactor = 0;
+                oldFactorSign = newFactorSign;
+            }
+
+            i++;
+
+
+        }
+        return t.getChildren().size() > 0 && countTerms > 0;
+    }
 
     public boolean addFactors(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
         int countTerms = 0;
@@ -275,63 +331,6 @@ public class AlgebricTree extends Tree {
         return t.getChildren().size() > 0 && countTerms > 0;
     }
 
-    /***
-     * signMMantisseSignEExponent
-     *
-     * @param t
-     * @param values
-     */
-    public boolean addExponent(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
-        int i = 0;
-        boolean isNewFactor = false;
-        int count = 0;
-        int newFactorPos = 0;
-        int oldFactorPos = 0;
-        char newFactor = 0;
-        while (i < values.length()) {
-            if (values.charAt(i) == '(') {
-                count++;
-            } else if (values.charAt(i) == ')') {
-                count--;
-            } else if (values.charAt(i) == '*' && (i < values.length() - 1 && values.charAt(i + 1) != '*') && count == 0) {
-                newFactor = '^';
-                newFactorPos = i;
-                isNewFactor = true;
-            }
-
-
-            if (isNewFactor) {
-                isNewFactor = false;
-                char op = newFactor;
-
-                String subsubstring = values.substring(oldFactorPos, newFactorPos - 1);
-                String substring2 = values.substring(newFactorPos + 1);
-                TreeNode t2 = new TreeNode(t, new Object[]{subsubstring, substring2}, new ExponentTreeNodeType(1.0, 1.0));
-
-
-                t.getChildren().add(t2);
-
-                add(t, substring2);
-
-                if (!add(t, subsubstring)) {
-                    throw new AlgebraicFormulaSyntaxException();
-                }
-
-                isNewFactor = false;
-                count = 0;
-                newFactorPos = i + 2;
-                oldFactorPos = i + 2;
-                newFactor = 0;
-
-            }
-
-            i++;
-
-
-        }
-
-        return t.getChildren().size() > 0;
-    }
 
     public boolean addFunction(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
         int i = 1;

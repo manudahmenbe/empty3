@@ -66,11 +66,11 @@
 //        ArrayList<Point3D> interprete = (ArrayList<Point3D>) ilp.interprete(text, pos);
 //        pos = ilp.getPosition();
 //
-//        for (int x = 0; x < width; x++) {
+//        for (int coordArr = 0; coordArr < width; coordArr++) {
 //
 //            for (int y = 0; y < height; y++) {
 //
-//                pm.addPoint(y, interprete.get(x + y * width));
+//                pm.addPoint(y, interprete.get(coordArr + y * width));
 //
 //            }
 //

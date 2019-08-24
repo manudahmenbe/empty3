@@ -146,7 +146,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
         Point3D direction2D = getVecDir2D().mult(-positionIncrement2);
         accera += timeNano;
         Point3D p2 = positionMobile.getPositionSol().plus(direction2D.mult((double) timeNano));
-        System.out.println("acc:" + p2.toString());
+        //System.out.println("acc:" + p2.toString());
         if (isPositionOk(p2, true)) {
             positionMobile.setPositionSol(p2);
         }

@@ -39,17 +39,17 @@ public class AnalyseurEquationJep {
 
     public static void main(String[] args) {
 
-        AnalyseurEquationJep anlayseurEquationJep = new AnalyseurEquationJep("a*x+b*b");
+        AnalyseurEquationJep anlayseurEquationJep = new AnalyseurEquationJep("a*coordArr+b*b");
 
         anlayseurEquationJep.setContant("a", 1);
         anlayseurEquationJep.setContant("b", 2);
 
 
-        anlayseurEquationJep.setContant("x", 3);
+        anlayseurEquationJep.setContant("coordArr", 3);
         System.out.println("Result: " + anlayseurEquationJep.value() + "( expected: 7");
-        anlayseurEquationJep.setContant("x", 4);
+        anlayseurEquationJep.setContant("coordArr", 4);
         System.out.println("Result: " + anlayseurEquationJep.value() + "(expected= 8");
-        anlayseurEquationJep.setContant("x", 5);
+        anlayseurEquationJep.setContant("coordArr", 5);
         System.out.println("Result: " + anlayseurEquationJep.value() + "(expected= 9");
 
 

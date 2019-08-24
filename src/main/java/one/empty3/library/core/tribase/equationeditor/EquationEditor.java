@@ -109,7 +109,7 @@ public class EquationEditor extends javax.swing.JDialog {
 
         jTableEquationDefinition.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
-                        {"x", null},
+                        {"coordArr", null},
                         {"y", null},
                         {"z", null},
                         {"umin", null},

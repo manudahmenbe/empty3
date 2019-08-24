@@ -115,7 +115,7 @@ public class FunctionSurface extends ParametricSurface {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredString().put("x/function (x = f(u,v))", x);
+        getDeclaredString().put("coordArr/function (coordArr = f(u,v))", x);
         getDeclaredString().put("y/function (y = f(u,v))", y);
         getDeclaredString().put("z/function (z = f(u,v))", z);
     }

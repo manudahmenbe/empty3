@@ -106,7 +106,21 @@ public class TreeNode {
                 TreeNode treeNode = getChildren().get(i);
                 double op1 = treeNode.type.getSign1();
                 sum += op1 * (Double) treeNode.eval();
-                }
+            }
+
+
+            return sum;
+        } else if (cType instanceof FactorTreeNodeType) {
+            if (getChildren().size() == 1) {
+                return getChildren().get(0).eval();
+            }
+
+            double sum = getChildren().get(0).eval();
+            for (int i = 1; i < getChildren().size(); i++) {
+                TreeNode treeNode = getChildren().get(i);
+                double op1 = treeNode.type.getSign1();
+                sum = Math.pow(sum, op1 * treeNode.eval());
+            }
 
 
             return sum;

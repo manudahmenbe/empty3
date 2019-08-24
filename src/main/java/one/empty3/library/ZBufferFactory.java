@@ -35,7 +35,7 @@ public class ZBufferFactory {
         la = x;
         ha = y;
         if (D3) {
-            // insta = new ZBuffer3DImpl(x, y);
+            // insta = new ZBuffer3DImpl(coordArr, y);
         } else {
             insta = new ZBufferImpl(x, y);
         }

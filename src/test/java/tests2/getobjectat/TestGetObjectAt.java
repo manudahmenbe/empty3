@@ -22,7 +22,7 @@ import java.awt.*;
 /**
  * Future: this should be.manudahmen.empty3.tests2.be very low level: like :
  * Representable.setSelectionZoneId(long szid);
- * ZBuffer.getSelectionZoneId(int x, int y);
+ * ZBuffer.getSelectionZoneId(int coordArr, int y);
  *
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */

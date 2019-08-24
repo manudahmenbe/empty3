@@ -93,13 +93,7 @@ public class BSpline extends ParametricCurve {
         Point3D p = Point3D.O0;
         double boor = 0d;
         for (int i = 0; i < controls.size(); i++) {
-            for (int j = 0; j < T.size(); j++)
-
-            {
-                if(j==i)
-                     boor += boor(t, j, degree);
-            }
-
+            boor += boor(t, i, degree);
             p = p.plus(controls.get(i).mult(boor));
         }
         //System.out.println("p = " + p.toString() + "\tt = " + t);

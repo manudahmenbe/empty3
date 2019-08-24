@@ -23,9 +23,9 @@ public class Main2 extends JFrame {
         super("Application 2D/3D");
         JTextArea jTextArea = new JTextArea("# Variables: \n" +
                 "# t : temps en secondes d'animation dans la vidéo\n" +
-                "# xRes : résolution de la vidéo en x\n" +
+                "# xRes : résolution de la vidéo en coordArr\n" +
                 "# yRes : résolution de la vidéo en y\n" +
-                "# x, y : coordonnées du point en (x, y)\n" +
+                "# coordArr, y : coordonnées du point en (coordArr, y)\n" +
                 "# tMax : fin de la vidéo en secondes\n");
         //jTextArea.setCursor(new Cursor(jTextArea.getLineCount()));
         JRootPane jRootPane = new JRootPane();

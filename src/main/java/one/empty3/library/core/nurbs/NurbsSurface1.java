@@ -44,7 +44,7 @@ public class NurbsSurface1 extends TRIObjetGenerateurAbstract {
      * c_pnts[][3]:
      * <p>
      * Tableau de points de contrôle Définition : k = degree of basis function N
-     * = number of knots, degree -2 wi = weights Ci = control points (x, y, z) *
+     * = number of knots, degree -2 wi = weights Ci = control points (coordArr, y, z) *
      * wi Bi,k = basis functions Par cette équation, le nombre de points de
      * contrôle est égal à N+1.
      */
