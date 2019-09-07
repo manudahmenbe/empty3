@@ -29,8 +29,12 @@ public class CameraBox extends Representable {
     private double angleY = Math.PI * 2 / 360 * 60;
     private int type = PERSPECTIVE_POINTDEFUITE;
 
-    public double angleX() {
+    public Double getAngleX() {
         return angleX;
+    }
+
+    public void setAngleX(Double angleX) {
+        this.angleX = angleX;
     }
 
     public void angleXr(double angleX, double ratioXY) {
@@ -43,11 +47,15 @@ public class CameraBox extends Representable {
         this.angleY = angleY;
     }
 
-    public double angleY() {
+    public Double getAngleY() {
         return angleY;
     }
 
-    public void angleYr(double angleY, double ratioXY) {
+    public void setAngleY(Double angleY) {
+        this.angleY = angleY;
+    }
+
+    public void setAngleYr(double angleY, double ratioXY) {
         this.angleY = angleY;
         this.angleX = angleY * ratioXY;
     }
@@ -66,5 +74,13 @@ public class CameraBox extends Representable {
 
     public void viserObjet(Representable r) {
         throw new UnsupportedOperationException("Non supportée");
+    }
+
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredDoubles().put("angleX/angle horizontal caméra", getAngleX());
+        getDeclaredDoubles().put("angleY/angle vertical caméra", getAngleY());
+
     }
 }

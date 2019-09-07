@@ -141,10 +141,6 @@ public class Camera extends CameraBox {
         this.matrice = mat;
     }
 
-    @Deprecated
-    public Point3D pointFocal() {
-        return null;
-    }
 
     /**
      * @return Position elements

@@ -7,7 +7,6 @@ import one.empty3.library.*;import one.empty3.library.core.testing.TestObjetSub;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -93,8 +92,7 @@ class Cube extends RepresentableConteneur {
         return;
     }
 
-    @Override
-    public List<Representable> getListRepresentable() {
+    public ArrayList<Representable> getListRepresentable() {
         return cube;
     }
 
