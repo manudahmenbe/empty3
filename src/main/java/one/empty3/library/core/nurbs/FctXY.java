@@ -13,7 +13,16 @@ public class FctXY extends Fct1D_1D {
 
     public FctXY()
     {
-        setFormulaX("0.0");
+        formulaX = "10.0";
+
+        try {
+            treeX = new AlgebricTree(formulaX);
+            treeX.construct();
+            treeX.getParametersValues().put("x", 10.0);
+        } catch (AlgebraicFormulaSyntaxException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void setFormulaX(String formulaX)
@@ -49,5 +58,10 @@ public class FctXY extends Fct1D_1D {
     public void declareProperties() {
         super.declareProperties();
         getDeclaredString().put("formulaX/fonction Y=f(x)", formulaX);
+    }
+
+    @Override
+    public String toString() {
+        return "fctXY( \""+formulaX+"\" )\n";
     }
 }

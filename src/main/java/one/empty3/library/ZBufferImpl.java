@@ -457,9 +457,18 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 }
             }
 
+        }else if(r instanceof Polygon) {
+            Polygon p = (Polygon) r;
+            Point3D[] points = p.getPoints();
+            int length= points.length;
+            for (int i = 0; i < length; i++)
+            {
+                line(rotate(points[(i%length)], p) , rotate(points[(i+1)%length], p), p.texture);
+            }
         }
 
     }
+
 
 
     private void tracerLines(Point3D p1, Point3D p2, Point3D p3, Point3D p4, ITexture texture, double u, double v,

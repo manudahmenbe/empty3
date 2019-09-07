@@ -155,4 +155,9 @@ public class Circle extends ParametricCurve {
         getDeclaredRepresentables().put("axis/axe du cercle (perpendiculaire au plan)", axis);
         getDeclaredDoubles().put("radius/rayon", radius);
     }
+
+    @Override
+    public String toString() {
+        return "circle (\n"+axis.toString()+"\n";
+    }
 }

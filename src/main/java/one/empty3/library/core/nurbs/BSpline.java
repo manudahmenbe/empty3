@@ -74,7 +74,7 @@ public class BSpline extends ParametricCurve {
     public double boor(double t, int i, int d) {
         if (d <= 0) {
             if (i >= 0 && i < T.size())
-                return/* t < get(i + 1) && */t > get(i) ? 1.0 : 0.0;
+                return t < get(i + 1) && t > get(i) ? 1.0 : 0.0;
             else
                 return 0.0;
         }
@@ -92,7 +92,7 @@ public class BSpline extends ParametricCurve {
     public Point3D calculerPoint3D(double t) {
         Point3D p = Point3D.O0;
         double boor = 0d;
-        for (int i = 0; i < controls.size(); i++) {
+        for (int i = 0; i < controls.size()-degree; i++) {
             boor += boor(t, i, degree);
             p = p.plus(controls.get(i).mult(boor));
         }

@@ -77,4 +77,12 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
     {
         super.declareProperties();
     }
+
+    @Override
+    public String toString() {
+        String s = "bezier(";
+        for(int i=0; i<coefficients.length; i++)
+            s+="\n"+coefficients[i].toString()+"\n";
+        return s+")\n";
+    }
 }

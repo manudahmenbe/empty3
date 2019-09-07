@@ -27,7 +27,6 @@ public class Polygon extends Representable implements SurfaceElem {
     /**
      *
      */
-    private static final long serialVersionUID = -852637190575721116L;
     private Point3D[] points = new Point3D[4];
 
     public Polygon() {
@@ -126,4 +125,6 @@ public class Polygon extends Representable implements SurfaceElem {
         getDeclaredArray1Points().put("points/point 0 à N du Polygone", points);
 
     }
+
+
 }

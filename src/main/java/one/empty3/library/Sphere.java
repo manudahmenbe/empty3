@@ -58,4 +58,9 @@ public class Sphere extends ParametricSurface {
         getDeclaredRepresentables().put("circle/circle", circle);
 
     }
+
+    @Override
+    public String toString() {
+        return "sphere (\n\t"+circle.toString()+"\n\t"+texture.toString()+"\n)\t";
+    }
 }

@@ -29,8 +29,8 @@ import one.empty3.library.*;
  */
 public class CourbeParametriquePolynomiale extends ParametricCurve {
 
-    public Point3D[] coefficients= new Point3D[] {Point3D.O0, Point3D.X};
-    public int power = 2;
+    public Point3D[] coefficients;
+    public int power;
 
     public CourbeParametriquePolynomiale(Point3D[] coefficients) {
         super();
@@ -40,6 +40,8 @@ public class CourbeParametriquePolynomiale extends ParametricCurve {
 
     public CourbeParametriquePolynomiale() {
         super();
+        coefficients= new Point3D[] {new Point3D(Point3D.O0), new Point3D(Point3D.X)};
+        power = 2;
     }
     public void declareProperties() {
         getDeclaredArray1Points().put(("coefficients/coefficients de la courbe"), coefficients);

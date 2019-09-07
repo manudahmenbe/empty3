@@ -25,7 +25,6 @@ import java.awt.*;
 public class TRI extends Representable implements IMovable, IScalable {
 
     private Point3D[] sommet;
-    private Barycentre position;
 
     public TRI() {
         super();
@@ -33,7 +32,6 @@ public class TRI extends Representable implements IMovable, IScalable {
         sommet[0] = Point3D.O0;
         sommet[1] = Point3D.O0;
         sommet[2] = Point3D.O0;
-        getDeclaredArray1Points().put("sommet/points sommets du triangle",sommet);
     }
 
     public TRI(Point3D coordPoint3D, Point3D coordPoint3D0, Point3D coordPoint3D1) {
@@ -87,14 +85,6 @@ public class TRI extends Representable implements IMovable, IScalable {
         return sommet[1].moins(sommet[0]).prodVect(sommet[2].moins(sommet[0]));
     }
 
-    @Override
-    public void position(Barycentre p) {
-        this.position = p;
-
-        sommet[0] = position == null ? sommet[0] : position.calculer(sommet[0]);
-        sommet[1] = position == null ? sommet[1] : position.calculer(sommet[1]);
-        sommet[2] = position == null ? sommet[2] : position.calculer(sommet[2]);
-    }
 
     public void setCouleur(Color couleur) {
         this.texture(new TextureCol(couleur));
@@ -160,5 +150,12 @@ public class TRI extends Representable implements IMovable, IScalable {
         center = center.mult(1.0 / sommet.length);
 
         scale(center, scale);
+    }
+
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredArray1Points().put("sommet/points sommets du triangle",sommet);
+
     }
 }

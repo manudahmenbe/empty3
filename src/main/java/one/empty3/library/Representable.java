@@ -63,7 +63,10 @@ public class Representable implements Serializable, Comparable {
         return rotation;
     }
     public Point3D rotate(Point3D p0, Representable ref) {
-        return ref.getRotation().rotation(p0);
+        if(ref!=null)
+            return ref.getRotation().rotation(p0);
+        else
+            return p0;
     }
 
     public void setRotation(Rotation r) {

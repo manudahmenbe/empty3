@@ -314,4 +314,9 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
     public void setParameters(Parameters parameters) {
         this.parameters = parameters;
     }
+
+    @Override
+    public String toString() {
+        return "ParametricSurface()\n";
+    }
 }

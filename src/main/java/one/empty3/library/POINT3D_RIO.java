@@ -55,26 +55,11 @@ public class POINT3D_RIO extends Point3D {
     }
 
     @Override
-    public Point3D modificateurs(MODRotation r, MODTranslation t, MODHomothetie h) {
-        return this;
-    }
-
-    @Override
     public Point3D moins(Point3D p) {
         setX(getX() - p.getX());
         setY(getY() - p.getY());
         setZ(getZ() - p.getZ());
         return this;
-    }
-
-    @Override
-    public Point3D movePoint(Point3D translation) {
-        return this.plus(translation);
-    }
-
-    @Override
-    public Point3D movePoint(Point3D translation, Point3D p) {
-        return p.plus(translation);
     }
 
     public Point3D mult(double xFactor) {

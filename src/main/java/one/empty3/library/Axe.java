@@ -74,4 +74,9 @@ public class Axe extends Representable{
         getDeclaredPoints().put("p2/p1", p2);
 
     }
+
+    @Override
+    public String toString() {
+        return "axis (\np1"+getP1()+"\n"+getP2()+"\n)\n";
+    }
 }

@@ -7,7 +7,7 @@ import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
 
 import java.util.HashMap;
 
-public class FunctionSurface extends ParametricSurface {
+public class FunctionCurve extends ParametricCurve {
     private String x = "0";
     private String y = "0";
     private String z = "0";
@@ -17,13 +17,13 @@ public class FunctionSurface extends ParametricSurface {
     final HashMap<String, Double> hashMap = new HashMap<>(2);
     private boolean drawable;
 
-    public FunctionSurface() throws AlgebraicFormulaSyntaxException {
+    public FunctionCurve() throws AlgebraicFormulaSyntaxException {
         super();
 
         recomputeTrees();
     }
 
-    FunctionSurface(String xEqFuv, String yEqFuv, String zEqFuv) throws AlgebraicFormulaSyntaxException {
+    FunctionCurve(String xEqFuv, String yEqFuv, String zEqFuv) throws AlgebraicFormulaSyntaxException {
         this();
         hashMap.put("u", 0d);
         hashMap.put("v", 0d);
@@ -47,14 +47,6 @@ public class FunctionSurface extends ParametricSurface {
         setDrawable(true);
     }
 
-    public String getX() {
-        return x;
-    }
-
-    public void setX(String x) {
-        this.x = x;
-        recomputeTrees();
-    }
 
     private void recomputeTrees() {
         try {
@@ -75,6 +67,15 @@ public class FunctionSurface extends ParametricSurface {
         }
     }
 
+    public String getX() {
+        return x;
+    }
+
+    public void setX(String x) {
+        this.x = x;
+        recomputeTrees();
+    }
+
     public String getY() {
         return y;
     }
@@ -93,10 +94,9 @@ public class FunctionSurface extends ParametricSurface {
         recomputeTrees();
     }
 
-    public Point3D calculerPoint3D(double u, double v) {
+    public Point3D calculerPoint3D(double u) {
         try {
             hashMap.put("u", u);
-            hashMap.put("v", v);
             double evalX = treeX.eval();
             double evalY = treeY.eval();
             double evalZ = treeZ.eval();
@@ -115,9 +115,9 @@ public class FunctionSurface extends ParametricSurface {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredString().put("x/function (x = f(u,v))", x);
-        getDeclaredString().put("y/function (y = f(u,v))", y);
-        getDeclaredString().put("z/function (z = f(u,v))", z);
+        getDeclaredString().put("x/function [x = f(u)]", x);
+        getDeclaredString().put("y/function (y = f(u)]", y);
+        getDeclaredString().put("z/function (z = f(u)]", z);
     }
 
 }

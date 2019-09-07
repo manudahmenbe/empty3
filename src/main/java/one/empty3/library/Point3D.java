@@ -152,31 +152,7 @@ public class Point3D extends Representable implements IMovable {
                 + (p1.getZ() - p2.getZ()) * (p1.getZ() - p2.getZ()));
     }
 
-    /**
-     * *
-     * Rotation dans un système d'axe positionné puis retour dans le système
-     * d'axes d'origine
-     *
-     * @param axes    Matrice 3x3
-     * @param origine Point d'origine du système d'axes
-     * @param p       Point à déplacers
-     * @return Point déplacé
-     */
-    public static Point3D rotation(Matrix33 axes, Point3D origine, Point3D p) {
-        Point3D ret = axes.mult(p.moins(origine)).plus(origine);
-        ret.texture(p.texture());
-        return ret;
-    }
 
-    /**
-     * @param pa Point origine
-     * @param pb Point extrémité
-     * @return Vecteur résultant pb-pa
-     */
-    public static Point3D vecteur(Point3D pa, Point3D pb) {
-
-        return pb.plus(pa.mult(-1d));
-    }
 
     public static Point3D random(Double d) {
         return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
@@ -463,10 +439,6 @@ public class Point3D extends Representable implements IMovable {
         getDeclaredDoubles().put("z/cordinates z", coordArr[2]);
     }
 
-    @Override
-    public Point3D rotate(Point3D p0, Representable ref) {
-        return p0;
-    }
 
     public Double[] getCoordArr() {
         return coordArr;

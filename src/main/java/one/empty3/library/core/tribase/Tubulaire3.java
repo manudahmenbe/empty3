@@ -46,11 +46,12 @@ public class Tubulaire3 extends ParametricSurface {
     }
 
     public Point3D calculerNormale(double t) {
-        return calculerTangente(t + NORM_FCT_INCR).moins(calculerTangente(t));
+        return calculerTangente(t + NORM_FCT_INCR).moins(calculerTangente(t)).mult(1.0/NORM_FCT_INCR);
     }
 
     public Point3D calculerTangente(double t) {
-        return soulCurve.calculerPoint3D(t + TAN_FCT_INCR).moins(soulCurve.calculerPoint3D(t));
+        return soulCurve.calculerPoint3D(t + TAN_FCT_INCR).moins(soulCurve.calculerPoint3D(t)).
+                mult(1.0/TAN_FCT_INCR);
     }
 
     public void nbrAnneaux(int n) {
@@ -63,7 +64,7 @@ public class Tubulaire3 extends ParametricSurface {
 
     @Override
     public String toString() {
-        String s = "tubulaireN2cc (\n\t("
+        String s = "tubulaire3 (\n\t("
                 + soulCurve.toString();
         s += "\n\n)\n\t" + diameterFunction.toString() + "\n\t" + texture().toString() + "\n)\n";
         return s;
@@ -71,38 +72,50 @@ public class Tubulaire3 extends ParametricSurface {
 
 
     private Point3D[] vectPerp(double t) {
-        Point3D[] vecteurs = new Point3D[3];
+        Point3D[][] vecteurs = new Point3D[3][3];
 
-        Point3D p = soulCurve.calculerPoint3D(t);
+        for(int i=0;i<3;i++)
+            for(int j=0;j<3;j++)
+                vecteurs[i][j] = Point3D.O0;
+
         Point3D tangente = calculerTangente(t);
 
-        Point3D ref1 = new Point3D(0d, 0d, 1d);
-        Point3D ref2 = new Point3D(1d, 0d, 0d);
-        Point3D ref3 = new Point3D(0d, 1d, 0d);
+
+        Point3D[] refs = new Point3D[3];
+
+        refs[0]= new Point3D(0d, 0d, 1d);
+        refs[1] = new Point3D(1d, 0d, 0d);
+        refs[2] = new Point3D(0d, 1d, 0d);
 
         tangente = tangente.norme1();
+        Point3D normal = calculerNormale(t);
 
-        if (tangente != null) {
-            Point3D px = calculerNormale(t);///tangente.prodVect(ref1);
+        double [] mins =new double [3];
 
-            if (px.norme() == 0) {
-                px = tangente.prodVect(ref2);
-            }
-            if (px.norme() == 0) {
-                px = tangente.prodVect(ref3);
-            }
+        for(int i=0; i<3; i++)
+        {
 
-            Point3D py = px.prodVect(tangente);
+            Point3D px = tangente.prodVect(normal).norme1();
 
-            px = px.norme1();
-            py = py.norme1();
+            Point3D py = px.prodVect(tangente).norme1();
 
-            vecteurs[0] = tangente;
-            vecteurs[1] = px;
-            vecteurs[2] = py;
+            vecteurs[i][0] = tangente;
+            vecteurs[i][1] = px;
+            vecteurs[i][2] = py;
 
+            mins[i] = vecteurs[i][0].
+                    prodVect(vecteurs[i][1])
+            .norme()+
+                    vecteurs[i][0]
+                            .prodVect(vecteurs[i][2])
+                            .norme();
         }
-        return vecteurs;
+
+        int j = 0;
+        for(int i=0 ; i<3; i++)
+            if(mins[i]>mins[(i+1)%3])
+                j = i;
+        return vecteurs[j];
     }
 
     @Override
@@ -111,11 +124,6 @@ public class Tubulaire3 extends ParametricSurface {
         return soulCurve.calculerPoint3D(u).plus(
                 vectPerp[1].mult(diameterFunction.result(u)*Math.cos(2 * Math.PI * v)).plus(
                         vectPerp[2].mult(diameterFunction.result(u)*Math.sin(2 * Math.PI * v))));
-    }
-
-    @Override
-    public Point3D calculerVitesse3D(double u, double v) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

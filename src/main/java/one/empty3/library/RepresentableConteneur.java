@@ -23,7 +23,7 @@ import java.util.*;
  */
 public class RepresentableConteneur extends Representable implements IMovable, IScalable {
 
-    private Collection<Representable> re = Collections.synchronizedCollection(new ArrayList<Representable>());
+    private ArrayList<Representable> re = new ArrayList<Representable>();
 
     public RepresentableConteneur() {
     }
@@ -40,9 +40,6 @@ public class RepresentableConteneur extends Representable implements IMovable, I
         re.clear();
     }
 
-    public synchronized Collection<Representable> getListRepresentable() {
-        return re;
-    }
 
     public Iterator<Representable> iterator() {
         return re.iterator();
@@ -123,5 +120,19 @@ public class RepresentableConteneur extends Representable implements IMovable, I
                 ((IScalable) next).scale(scale);
             }
         }
+    }
+
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredLists().put("listRepresentable", getListRepresentable());
+    }
+
+    public ArrayList<Representable> getListRepresentable() {
+        return re;
+    }
+
+    public void setListRepresentable(ArrayList<Representable> re) {
+        this.re = re;
     }
 }
