@@ -58,10 +58,10 @@ public class STLExport {
 
     private static void traite(Polygon r, PrintWriter pw) {
         Point3D isocentre = r.getIsocentre();
-        int count = r.getPoints().length;
+        int count = r.getPoints().getData1d().size();
         for (int s = 0; s < count; s++) {
-            traite(new TRI(r.getPoints()[s],
-                    r.getPoints()[(s + 1) % count],
+            traite(new TRI(r.getPoints().getElem(s),
+                    r.getPoints().getElem((s + 1) % count),
                     isocentre), pw);
         }
     }
@@ -127,7 +127,7 @@ public class STLExport {
         for (int s = 0; s < 3; s++) {
             write("vertex ", pw);
             for (int c = 0; c < 3; c++) {
-                double A = r.getSommet()[s].get(c);
+                double A = r.getSommet().getElem(s).get(c);
                 if (Double.isNaN(A)) {
                     A = 0;
                 }

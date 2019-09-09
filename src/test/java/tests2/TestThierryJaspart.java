@@ -14,11 +14,11 @@ import java.io.IOException;
 
 public class TestThierryJaspart extends TestObjetSub {
     private final Point3D[][] coeff = new Point3D[][]{
-            {Point3D.P.n(2., -2, 0), Point3D.P.n(2, -1, 0), Point3D.P.n(2, 0, 0), Point3D.P.n(2, 1, 0), Point3D.P.n(2, 2, 0)},
-            {Point3D.P.n(1, -2, 0), Point3D.P.n(1, -1, 0), Point3D.P.n(1, 0, 0), Point3D.P.n(1, 1, 0), Point3D.P.n(1, 2, 0)},
-            {Point3D.P.n(0, -2, 0), Point3D.P.n(0, -1, 0), Point3D.P.n(0, 0, 0), Point3D.P.n(0, 1, 0), Point3D.P.n(0, 2, 0)},
-            {Point3D.P.n(-1, -2, 0), Point3D.P.n(-1, -1, 0), Point3D.P.n(-1, 0, 0), Point3D.P.n(-1, 1, 0), Point3D.P.n(-1, 2, 0)},
-            {Point3D.P.n(-2, -2, 0), Point3D.P.n(-2, -1, 0), Point3D.P.n(-2, 0, 0), Point3D.P.n(-2, 1, 0), Point3D.P.n(-2, 2, 0)}
+            {Point3D.n(2., -2, 0), Point3D.n(2, -1, 0), Point3D.n(2, 0, 0), Point3D.n(2, 1, 0), Point3D.n(2, 2, 0)},
+            {Point3D.n(1, -2, 0), Point3D.n(1, -1, 0), Point3D.n(1, 0, 0), Point3D.n(1, 1, 0), Point3D.n(1, 2, 0)},
+            {Point3D.n(0, -2, 0), Point3D.n(0, -1, 0), Point3D.n(0, 0, 0), Point3D.n(0, 1, 0), Point3D.n(0, 2, 0)},
+            {Point3D.n(-1, -2, 0), Point3D.n(-1, -1, 0), Point3D.n(-1, 0, 0), Point3D.n(-1, 1, 0), Point3D.n(-1, 2, 0)},
+            {Point3D.n(-2, -2, 0), Point3D.n(-2, -1, 0), Point3D.n(-2, 0, 0), Point3D.n(-2, 1, 0), Point3D.n(-2, 2, 0)}
     };
     ITexture texture;
     private SurfaceParametricPolygonalBezier s = new SurfaceParametricPolygonalBezier(coeff);
@@ -52,11 +52,11 @@ public class TestThierryJaspart extends TestObjetSub {
 
     @Override
     public void testScene() {
-        for (int i = 0; i < s.getCoefficients().length; i++)
-            for (int j = 0; j < s.getCoefficients()[i].length; j++) {
+        for (int i = 0; i < s.getCoefficients().getData2d().size(); i++)
+            for (int j = 0; j < s.getCoefficients().getData2d().get(i).size(); j++) {
                 Point3D point3D = Point3D.random2(0.1);
                 for (int k = 0; k < 3; k++)
-                    s.getCoefficients()[i][j].set(k, s.getCoefficients()[i][j].get(k) + point3D.get(k));
+                    s.getCoefficients().getElem(i,j).set(k, s.getCoefficients().getElem(i,j).get(k)+point3D.get(k));
             }
     }
 

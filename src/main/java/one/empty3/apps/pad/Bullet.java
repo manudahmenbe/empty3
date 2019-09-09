@@ -55,7 +55,7 @@ public class Bullet extends Representable implements MoveeObject {
         StlFile stlFile = new StlFile();
         try {
             Scene load = stlFile.load(bundleString);
-            this.setShape(load.get(0));
+            this.setShape(load.getObjets().getElem(0));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IncorrectFormatException e) {

@@ -48,7 +48,7 @@ public class TestNurbsSimple extends TestObjetSub {
 
     @Override
     public void testScene() throws Exception {
-        scene().clear();
+        scene().getObjets().getData1d().clear();
 
         NurbsSurface n = new NurbsSurface();
         n.setMaillage(new Point3D[][]{

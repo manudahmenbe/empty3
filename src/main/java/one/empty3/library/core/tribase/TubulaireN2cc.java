@@ -129,8 +129,6 @@ public class TubulaireN2cc extends ParametricSurface {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredRepresentables().put("soulCurve/ame de la courbe", soulCurve);
-        getDeclaredRepresentables().put("diameterFunction/ fonction de la longueur du diamètre", diameterFunction);
-
+  throw new UnsupportedOperationException("Tubulaire N2 CC unsupported");
     }
 }

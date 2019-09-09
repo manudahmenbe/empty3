@@ -32,12 +32,12 @@ public class Scene extends Representable implements Serializable {
     public String author;
     public String date;
     public String description;
-    public Camera cameraActive;
-    private ArrayList<Representable> objets = new ArrayList<Representable>();
-    private ArrayList<Animation> animations = new ArrayList<Animation>();
-    private ArrayList<Camera> cameras = new ArrayList<Camera>();
-    private ArrayList<ITexture> colors = new ArrayList<ITexture>();
-    private ArrayList<Lumiere> lumieres = new ArrayList<Lumiere>();
+    public StructureMatrix<Camera> cameraActive =new StructureMatrix<>(new Camera());
+    private StructureMatrix<Representable> objets = new StructureMatrix<>(1);
+    private StructureMatrix<Animation> animations = new StructureMatrix<>(1);
+    private StructureMatrix<Camera> cameras = new StructureMatrix<>(1);
+    private StructureMatrix<ITexture> colors = new StructureMatrix<>(1);
+    private StructureMatrix<Lumiere> lumieres = new StructureMatrix<>(1);
     private SceneCadre cadre = new SceneCadre();
     private GTime gt = new GTime();
     private Lumiere lumiereActive;
@@ -60,7 +60,9 @@ public class Scene extends Representable implements Serializable {
 
         add.scene(this);
 
-        return objets.add(add);
+        objets.add(1, add);
+
+        return true;
 
     }
 
@@ -73,7 +75,9 @@ public class Scene extends Representable implements Serializable {
 
         add.setPainter(new Painter(zBuffer, this));
 
-        return objets.add(add);
+        objets.add(1, add);
+
+        return true;
 
     }
 
@@ -95,40 +99,29 @@ public class Scene extends Representable implements Serializable {
 
     @Deprecated
     public void camera(Camera c) {
-        cameraActive = c;
+        cameraActive.setElem(c);
     }
 
     public Camera cameraActive() {
         if (cameraActive != null) {
-            return cameraActive;
-        } else if (cameras.size() > 0) {
-            return cameras.get(0);
+            return cameraActive.getElem();
+        } else if (cameras.data1d.size() > 0) {
+            return cameras.getElem(0);
         }
         return Camera.PARDEFAULT;
     }
 
     public void cameraActive(Camera c) {
-        this.cameraActive = c;
-        if (!cameras.contains(c)) {
-            cameras.add(c);
+        this.cameraActive.setElem(c);
+        if (!cameras.getData1d().contains(c)) {
+            cameras.add(1, c);
         }
     }
 
-    public ArrayList<Camera> cameras() {
-        return this.cameras;
+    public List<Camera> cameras() {
+        return this.cameras.getData1d();
     }
 
-    public void cameras(ArrayList<Camera> cs) {
-        this.cameras = cs;
-    }
-
-    public void clear() {
-        objets.clear();
-        animations.clear();
-        cameras.clear();
-        colors.clear();
-        lumieres.clear();
-    }
 
     protected int colorAdd(int[] cs) {
         float[] compArray = new float[4];
@@ -159,10 +152,6 @@ public class Scene extends Representable implements Serializable {
         dernierAjout = null;
     }
 
-    public Representable get(int index) {
-        return objets.get(index);
-    }
-
     public SceneCadre getCadre() {
         return cadre;
     }
@@ -188,7 +177,7 @@ public class Scene extends Representable implements Serializable {
     }
 
     public Iterator<Representable> iterator() {
-        return objets.iterator();
+        return objets.getData1d().iterator();
     }
 
     public Object[] liste() {
@@ -207,22 +196,18 @@ public class Scene extends Representable implements Serializable {
     public Lumiere lumiereActive() {
         if (lumiereActive != null) {
             return lumiereActive;
-        } else if (lumieres.size() > 0) {
-            return lumieres.get(0);
+        } else if (lumieres.getData1d().size() > 0) {
+            return lumieres.getData1d(). get(0);
         }
         return LumierePointSimple.PARDEFAUT;
     }
 
     public ArrayList<Lumiere> lumieres() {
-        return lumieres;
-    }
-
-    public void lumieres(ArrayList<Lumiere> lumieres) {
-        this.lumieres = lumieres;
+        return (ArrayList<Lumiere>) lumieres.getData1d();
     }
 
     public int lumiereTotaleCouleur(int c, Point3D p, Point3D n) {
-        if (lumieres.isEmpty()) {
+        if (lumieres.getData1d().isEmpty()) {
             return c;
         }
 
@@ -230,8 +215,8 @@ public class Scene extends Representable implements Serializable {
 
         int cpt = 0;
 
-        for (int i = 0; i < lumieres.size(); i++) {
-            Lumiere l = lumieres.get(i);
+        for (int i = 0; i < lumieres.getData1d().size(); i++) {
+            Lumiere l = lumieres.getElem(i);
 
             int cP = l.getCouleur(c, p, n);
 
@@ -264,11 +249,11 @@ public class Scene extends Representable implements Serializable {
     }
 
     public boolean remove(Representable rem) {
-        return objets.remove(rem);
+        return objets.getData1d().remove(rem);
     }
 
     public int size() {
-        return objets.size();
+        return objets.getData1d().size();
     }
 
     @Override
@@ -278,11 +263,12 @@ public class Scene extends Representable implements Serializable {
 
     @Override
     public void texture(ITexture c) {
-        colors.add(c);
+        colors.getData1d().add(c);
     }
 
     public ArrayList<ITexture> textures() {
-        return colors;
+        return (ArrayList<ITexture>) colors.getData1d()
+                ;
     }
 
     @Override
@@ -299,10 +285,10 @@ public class Scene extends Representable implements Serializable {
             }
         }
         str += "cameras (\n\t";
-        if (cameras.isEmpty()) {
+        if (cameras.getData1d().isEmpty()) {
             str += "\n\t" + cameraActive().toString() + "\n";
         }
-        Iterator<Camera> itC = cameras.iterator();
+        Iterator<Camera> itC = cameras.getData1d().iterator();
         while (itC.hasNext()) {
             str += "\n\t" + itC.next().toString() + "\n";
         }
@@ -334,10 +320,11 @@ public class Scene extends Representable implements Serializable {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredLists().put("objets/Objets à peindre",objets);
-        getDeclaredLists().put("animations/Animation (pas implémenté maintenant jamais",animations);
-        getDeclaredLists().put("cameras/Caméras de la scène. cameraActive caméra en cours",cameras);
-        getDeclaredLists().put("lumieres/Lumières additionnelles",lumieres);
+        getDeclaredDataStructure().put("objets/Objets à peindre",objets);
+        getDeclaredDataStructure().put("animations/Animation (pas implémenté maintenant jamais",animations);
+        getDeclaredDataStructure().put("cameras/Caméras de la scène. cameraActive caméra en cours",cameras);
+        getDeclaredDataStructure().put("lumieres/Lumières additionnelles",lumieres);
+        getDeclaredDataStructure().put("cameraActive/cameraActive", this.cameraActive);
     }
 
     public static String getVERSION() {
@@ -369,51 +356,51 @@ public class Scene extends Representable implements Serializable {
     }
 
     public Camera getCameraActive() {
-        return cameraActive;
+        return cameraActive.getElem();
     }
 
     public void setCameraActive(Camera cameraActive) {
-        this.cameraActive = cameraActive;
+        this.cameraActive.setElem(cameraActive);
     }
 
 
-    public ArrayList<Representable> getObjets() {
+    public StructureMatrix<Representable> getObjets() {
         return objets;
     }
 
-    public void setObjets(ArrayList<Representable> objets) {
+    public void setObjets(StructureMatrix<Representable> objets) {
         this.objets = objets;
     }
 
-    public ArrayList<Animation> getAnimations() {
+    public StructureMatrix<Animation> getAnimations() {
         return animations;
     }
 
-    public void setAnimations(ArrayList<Animation> animations) {
+    public void setAnimations(StructureMatrix<Animation> animations) {
         this.animations = animations;
     }
 
-    public ArrayList<Camera> getCameras() {
+    public StructureMatrix<Camera> getCameras() {
         return cameras;
     }
 
-    public void setCameras(ArrayList<Camera> cameras) {
+    public void setCameras(StructureMatrix<Camera> cameras) {
         this.cameras = cameras;
     }
 
-    public ArrayList<ITexture> getColors() {
+    public StructureMatrix<ITexture> getColors() {
         return colors;
     }
 
-    public void setColors(ArrayList<ITexture> colors) {
+    public void setColors(StructureMatrix<ITexture> colors) {
         this.colors = colors;
     }
 
-    public ArrayList<Lumiere> getLumieres() {
+    public StructureMatrix<Lumiere> getLumieres() {
         return lumieres;
     }
 
-    public void setLumieres(ArrayList<Lumiere> lumieres) {
+    public void setLumieres(StructureMatrix<Lumiere> lumieres) {
         this.lumieres = lumieres;
     }
 
@@ -439,5 +426,21 @@ public class Scene extends Representable implements Serializable {
 
     public void setDernierAjout(Representable dernierAjout) {
         this.dernierAjout = dernierAjout;
+    }
+
+    public void setLumieres(ArrayList<Lumiere> lumieres) {
+        this.lumieres = new StructureMatrix<>(lumieres);
+    }
+
+    public void setCameras(ArrayList<Camera> cameras) {
+        this.cameras= new StructureMatrix<>(cameras);
+
+    }
+
+    public void clear() {
+        scene.clear();    }
+
+    public Representable get(int i) {
+        return getObjets().getElem(i);
     }
 }

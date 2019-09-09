@@ -22,37 +22,40 @@
  */
 package one.empty3.library.core.nurbs;
 
-import one.empty3.library.*;
+import one.empty3.library.Point3D;
+import one.empty3.library.StructureMatrix;
+
+import java.util.List;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class CourbeParametriquePolynomiale extends ParametricCurve {
 
-    public Point3D[] coefficients;
-    public int power;
+    protected StructureMatrix<Point3D> coefficients;
+    public StructureMatrix<Integer> power = new StructureMatrix<>(0);
 
     public CourbeParametriquePolynomiale(Point3D[] coefficients) {
         super();
-        this.coefficients = coefficients;
-        this.power = coefficients.length;
+        this.coefficients = new StructureMatrix<>(coefficients);
+        this.power.setElem(coefficients.length);
     }
 
     public CourbeParametriquePolynomiale() {
         super();
-        coefficients= new Point3D[] {new Point3D(Point3D.O0), new Point3D(Point3D.X)};
-        power = 2;
+        coefficients =  new StructureMatrix<>(new Point3D[] {new Point3D(Point3D.O0), new Point3D(Point3D.X)});
+        power.setElem( 2);
     }
     public void declareProperties() {
-        getDeclaredArray1Points().put(("coefficients/coefficients de la courbe"), coefficients);
-        getDeclaredDoubles().put(("power/puissance du polynone"), (double) power);
+        getDeclaredDataStructure().put(("coefficients/points de contrôle"), coefficients);
+        getDeclaredDataStructure().put(("power/puissance du polynone"), power);
     }
 
     @Override
     public Point3D calculerPoint3D(double t) {
         Point3D sum = Point3D.O0;
-        for (int i = 0; i < coefficients.length; i++) {
-            sum = sum.plus(coefficients[i].mult(Math.pow(t, i)));
+        for (int i = 0; i < coefficients.getData1d().size(); i++) {
+            sum = sum.plus(coefficients.getElem(i).mult(Math.pow(t, i)));
         }
         return sum;
     }
@@ -60,21 +63,21 @@ public class CourbeParametriquePolynomiale extends ParametricCurve {
     @Override
     public Point3D calculerVitesse3D(double t) {
         Point3D sum = Point3D.O0;
-        for (int i = 0; i < coefficients.length - 1; i++) {
-            sum = sum.plus(coefficients[i].mult(Math.pow(t, i - 1) * i));
+        for (int i = 0; i < coefficients.getData1d().size() - 1; i++) {
+            sum = sum.plus(coefficients.getElem(i).mult(Math.pow(t, i - 1) * i));
         }
         return sum;
     }
 
-    public Point3D[] getCoefficients() {
-        return coefficients;
+    public List<Point3D> getCoefficients() {
+        return coefficients.getData1d();
     }
 
-    public void setCoefficients(Point3D[] coefficients) {
-        this.coefficients = coefficients;
+    public void setCoefficients(List<Point3D> coefficients) {
+        this.coefficients = new StructureMatrix<>(coefficients);
     }
 
     public int getPower() {
-        return power;
+        return power.getElem();
     }
 }

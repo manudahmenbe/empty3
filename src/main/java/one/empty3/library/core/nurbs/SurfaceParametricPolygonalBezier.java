@@ -23,19 +23,20 @@
 package one.empty3.library.core.nurbs;
 
 import one.empty3.library.Point3D;
+import one.empty3.library.StructureMatrix;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class SurfaceParametricPolygonalBezier extends ParametricSurface implements SurfaceElem{
 
-    protected final Point3D[][] coefficients;
-    protected Integer power1, power2;
+    protected final StructureMatrix<Point3D> coefficients;
+    protected StructureMatrix<Integer> power1 = new StructureMatrix<>(0), power2 = new StructureMatrix<>(0);
 
     public SurfaceParametricPolygonalBezier(Point3D[][] coefficients) {
-        this.coefficients = coefficients;
-        power1 = coefficients.length;
-        power2 = coefficients[0].length;
+        this.coefficients = new StructureMatrix<>(coefficients);
+        power1.setElem(coefficients.length);
+        power2.setElem(coefficients[0].length);
     }
 
     public double B(int i, int n, double t) {
@@ -46,9 +47,9 @@ public class SurfaceParametricPolygonalBezier extends ParametricSurface implemen
     @Override
     public Point3D calculerPoint3D(double u, double v) {
         Point3D sum = Point3D.O0;
-        for (int i = 0; i < power1; i++) {
-            for (int j = 0; j < power2; j++) {
-                sum = sum.plus(coefficients[i][j].mult(B(i, power1 - 1, u) * B(j, power2 - 1, v)));
+        for (int i = 0; i < power1.getElem(); i++) {
+            for (int j = 0; j < power2.getElem(); j++) {
+                sum = sum.plus(coefficients.getElem(i,j).mult(B(i, power1.getElem() - 1, u) * B(j, power2.getElem() - 1, v)));
             }
         }
         return sum;
@@ -67,31 +68,31 @@ public class SurfaceParametricPolygonalBezier extends ParametricSurface implemen
         return sum;
     }
 
-    public Point3D[][] getCoefficients() {
+    public StructureMatrix<Point3D> getCoefficients() {
         return coefficients;
     }
 
     public Integer getPower1() {
-        return power1;
+        return power1.getElem();
     }
 
     public void setPower1(Integer power1) {
-        this.power1 = power1;
+        this.power1 .setElem( power1);
     }
 
     public Integer getPower2() {
-        return power2;
+        return power2.getElem();
     }
 
     public void setPower2(Integer power2) {
-        this.power2 = power2;
+        this.power2.setElem( power2);
     }
 
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredInteger().put("power1/degré en ligne", power1);
-        getDeclaredInteger().put("power2/degré en colomnne", power1);
-        getDeclaredArray2Points().put("coefficients", coefficients);
+        getDeclaredDataStructure().put("power1/degré en ligne", power1);
+        getDeclaredDataStructure().put("power2/degré en colomnne", power1);
+        getDeclaredDataStructure().put("coefficients", coefficients);
     }
 }

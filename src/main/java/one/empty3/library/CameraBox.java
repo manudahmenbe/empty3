@@ -25,39 +25,45 @@ public class CameraBox extends Representable {
 
     public static final int PERSPECTIVE_ISOMETRIQUE = 1;
     public static final int PERSPECTIVE_POINTDEFUITE = 1;
-    private double angleX = Math.PI * 2 / 360 * 60;
-    private double angleY = Math.PI * 2 / 360 * 60;
+    private StructureMatrix<Double> angleX = new StructureMatrix<>(0);
+    private StructureMatrix<Double> angleY = new StructureMatrix<>(0);
     private int type = PERSPECTIVE_POINTDEFUITE;
 
+    public CameraBox() {
+
+        angleX.setElem(Math.PI *2/360*60);
+        angleY.setElem(Math.PI *2/360*60);
+    }
+
     public Double getAngleX() {
-        return angleX;
+        return angleX.getElem();
     }
 
     public void setAngleX(Double angleX) {
-        this.angleX = angleX;
+        this.angleX.setElem(angleX);
     }
 
     public void angleXr(double angleX, double ratioXY) {
-        this.angleX = angleX;
-        this.angleY = angleX / ratioXY;
+        this.angleX.setElem(angleX);
+        this.angleY.setElem(angleX / ratioXY);
     }
 
     public void angleXY(double angleX, double angleY) {
-        this.angleX = angleX;
-        this.angleY = angleY;
+        this.angleX.setElem(angleX);
+        this.angleY .setElem(angleY);
     }
 
     public Double getAngleY() {
-        return angleY;
+        return angleY.getElem();
     }
 
     public void setAngleY(Double angleY) {
-        this.angleY = angleY;
+        this.angleY.setElem(angleY);
     }
 
     public void setAngleYr(double angleY, double ratioXY) {
-        this.angleY = angleY;
-        this.angleX = angleY * ratioXY;
+        this.angleY .setElem( angleY);
+        this.angleX .setElem( angleY * ratioXY);
     }
 
     public void perspectiveIsometrique() {
@@ -79,8 +85,8 @@ public class CameraBox extends Representable {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredDoubles().put("angleX/angle horizontal caméra", getAngleX());
-        getDeclaredDoubles().put("angleY/angle vertical caméra", getAngleY());
+        getDeclaredDataStructure().put("angleX/angle horizontal caméra", angleX);
+        getDeclaredDataStructure().put("angleY/angle vertical caméra", angleY);
 
     }
 }

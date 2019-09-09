@@ -71,7 +71,7 @@ public class TestSoS extends TestObjetSub {
 
         if ((frame() % (360)) == 1) {
 
-            scene().clear();
+            scene().getObjets().data1d.clear();
 
             heightMapSurfaceSphere = new HeightMapSurfaceSphere(new Axe(sphereOrig.moins(Point3D.X),
                     sphereOrig.plus(Point3D.X)), RADIUS);

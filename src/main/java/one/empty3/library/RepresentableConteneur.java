@@ -23,30 +23,27 @@ import java.util.*;
  */
 public class RepresentableConteneur extends Representable implements IMovable, IScalable {
 
-    private ArrayList<Representable> re = new ArrayList<Representable>();
+    private StructureMatrix<Representable> re = new StructureMatrix<>(1);
 
     public RepresentableConteneur() {
     }
 
-    public RepresentableConteneur(Representable[] r) {
-        re.addAll(Arrays.asList(r));
-    }
 
     public synchronized void add(Representable r) {
-        re.add(r);
+        re.add(1, r);
     }
 
     public synchronized void clear() {
-        re.clear();
+        re.getData1d().clear();
     }
 
 
     public Iterator<Representable> iterator() {
-        return re.iterator();
+        return re.getData1d().iterator();
     }
 
     public synchronized void remove(Representable r2) {
-        re.remove(r2);
+        re.getData1d().remove(r2);
     }
 
     @Override
@@ -125,14 +122,11 @@ public class RepresentableConteneur extends Representable implements IMovable, I
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredLists().put("listRepresentable", getListRepresentable());
+        getDeclaredDataStructure().put("listRepresentable", re);
     }
 
     public ArrayList<Representable> getListRepresentable() {
-        return re;
+        return (ArrayList<Representable>) re.getData1d();
     }
 
-    public void setListRepresentable(ArrayList<Representable> re) {
-        this.re = re;
-    }
 }

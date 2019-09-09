@@ -20,7 +20,8 @@ import one.empty3.pointset.PCont;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Iterator;
+import java.util.*;
+import java.util.List;
 import java.util.function.Consumer;
 
 /**
@@ -250,19 +251,19 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             switch (displayType) {
                 case SURFACE_DISPLAY_LINES:
                     for (int i = 0; i < 3; i++)
-                        line(rotate(tri.getSommet()[i], r),
-                                rotate(tri.getSommet()[(i + 1) % 3], r)
+                        line(rotate(tri.getSommet().getElem(i), r),
+                                rotate(tri.getSommet().getElem((i + 1) % 3), r)
                                 , tri.texture);
                     break;
                 case SURFACE_DISPLAY_POINTS:
                     for (int i = 0; i < 3; i++)
-                        ime.testDeep(rotate(tri.getSommet()[i], r)
+                        ime.testDeep(rotate(tri.getSommet().getElem(i), r)
                                 , tri.texture);
                     break;
                     default:
-                        tracerTriangle(rotate(tri.getSommet()[0], r),
-                                rotate(tri.getSommet()[1], r),
-                                rotate(tri.getSommet()[2], r)
+                        tracerTriangle(rotate(tri.getSommet().getElem(0), r),
+                                rotate(tri.getSommet().getElem(1), r),
+                                rotate(tri.getSommet().getElem(2), r)
                                 , tri.texture());
                         break;
 
@@ -379,7 +380,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         // OBJETS
         if (r instanceof TRIObject) {
             TRIObject o = (TRIObject) r;
-            for (TRI t : o.triangles()) {
+            for (TRI t : o.getTriangles()) {
                 // System.out.println("Triangle suivant");
 
                 draw(t);
@@ -444,7 +445,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
         } else if (r instanceof ParametricCurve) {
             ParametricCurve n = (ParametricCurve) r;
-            double incr = n.getIncrU();
+            double incr = n.getIncrU().getData0d();
             for (double u = n.start(); u <= n.endU(); u += incr) {
                 if (n.isConnected() && displayType != SURFACE_DISPLAY_POINTS) {
                     line(
@@ -459,11 +460,11 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
         }else if(r instanceof Polygon) {
             Polygon p = (Polygon) r;
-            Point3D[] points = p.getPoints();
-            int length= points.length;
+            List<Point3D> points = p.getPoints().getData1d();
+            int length= points.size();
             for (int i = 0; i < length; i++)
             {
-                line(rotate(points[(i%length)], p) , rotate(points[(i+1)%length], p), p.texture);
+                line(rotate(points.get((i%length)), p) , rotate(points.get((i+1)%length), p), p.texture);
             }
         }
 
@@ -482,7 +483,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     public double distanceCamera(Point3D x3d) {
         switch (type_perspective) {
             case PERSPECTIVE_ISOM:
-                return x3d.getZ() - scene().cameraActive.eye.getZ();
+                return x3d.getZ() - scene().cameraActive.eye.getElem().getZ();
             case PERSPECTIVE_OEIL:
                 return x3d.moins(scene().cameraActive().eye()).norme();
             default:
@@ -953,10 +954,10 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                     // OBJETS
                     if (r instanceof TRIObject) {
                         TRIObject o = (TRIObject) r;
-                        Iterator<TRI> ts = o.triangles().iterator();
+                        Iterator<TRI> ts = o.iterator();
                         while (ts.hasNext()) {
                             TRI t = ts.next();
-                            for (Point3D p : t.getSommet()) {
+                            for (Point3D p : t.getSommet().getData1d()) {
                                 test(p);
                             }
                         }
@@ -969,9 +970,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                         test(p.getExtremite());
                     } else if (r instanceof TRI) {
                         TRI t = (TRI) r;
-                        test(t.getSommet()[0]);
-                        test(t.getSommet()[1]);
-                        test(t.getSommet()[2]);
+                        test(t.getSommet().getElem(0));
+                        test(t.getSommet().getElem(1));
+                        test(t.getSommet().getElem(2));
                     } else if (r instanceof BSpline) {
                         BSpline b = (BSpline) r;
                         Iterator<Point3D> ts = b.iterator();

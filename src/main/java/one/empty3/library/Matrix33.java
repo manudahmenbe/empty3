@@ -17,6 +17,8 @@
  */
 package one.empty3.library;
 
+import java.util.List;
+
 /**
  * @author MANUEL DAHMEN
  *         <p>
@@ -43,16 +45,16 @@ public class Matrix33 extends Representable{
 
     }
 
-    private Double[] d;
+    private StructureMatrix<Double> d;
 
     public Matrix33(Matrix33 copy) {
         super();
-        d = copy.d.clone();
+        d = new StructureMatrix<>(copy.getDoubleArray());
     }
 
     public Matrix33() {
         super();
-        d = new Double[9];
+        d = new StructureMatrix<>(1, new int[]{9});
 
     }
 
@@ -61,7 +63,7 @@ public class Matrix33 extends Representable{
             System.out.println("Erreur dans Matrix33 . 9 éléments requis");
             throw new IndexOutOfBoundsException("Matrix33 9 "+d.length);
         }
-        this.d = d;
+        this.d = new StructureMatrix<>(d);
     }
 
     public Matrix33(Point3D[] p) {
@@ -70,8 +72,7 @@ public class Matrix33 extends Representable{
 
             for (int j = 0; j < 3; j++) {
 
-                d[j * 3 + i] = p[i].get(j);
-
+                d.setElem(p[i].get(j), j * 3 + i);
             }
         }
     }
@@ -109,7 +110,7 @@ public class Matrix33 extends Representable{
     }
 
     public double get(int i, int j) {
-        return d[i * 3 + j];
+        return d.getElem(i * 3 + j);
     }
 
     public Double[][] getDoubleArray() {
@@ -147,8 +148,9 @@ public class Matrix33 extends Representable{
     public Matrix33 mult(double f) {
         Matrix33 mres = new Matrix33(this);
 
-        for (int i = 0; i < d.length; i++) {
-            mres.d[i] *= f;
+        for (int i = 0; i < d.getData1d().size(); i++) {
+            Double value = mres.d.getElem(i);
+            mres.d.setElem(value*f, i);
         }
         return mres;
     }
@@ -156,8 +158,9 @@ public class Matrix33 extends Representable{
     public Matrix33 plus(Matrix33 m) {
         Matrix33 mres = new Matrix33(this);
 
-        for (int i = 0; i < d.length; i++) {
-            mres.d[i] += m.d[i];
+        for (int i = 0; i < d.getData1d().size(); i++) {
+            double value = mres.d.getElem(i);
+            mres.d.setElem(d.getElem(i)+value);
         }
         return mres;
     }
@@ -165,8 +168,9 @@ public class Matrix33 extends Representable{
     public Matrix33 moins(Matrix33 m) {
         Matrix33 mres = new Matrix33(this);
 
-        for (int i = 0; i < d.length; i++) {
-            mres.d[i] -= d[i];
+        for (int i = 0; i < d.getData1d().size(); i++) {
+            double value = mres.d.getElem(i);
+            mres.d.setElem(d.getElem(i)-value);
         }
         return mres;
     }
@@ -184,7 +188,7 @@ public class Matrix33 extends Representable{
     }
 
     public void set(int i, int j, double d0) {
-        d[i * 3 + j] = d0;
+        d.setElem(d0, i * 3 + j);
     }
 
     public void set(int i, Point3D p) {
@@ -207,8 +211,8 @@ public class Matrix33 extends Representable{
     public String toString() {
         String str = "m (\n";
 
-        for (int i = 0; i < d.length; i++) {
-            str += (i % 3 == 0 ? "\n\t" : " ") + d[i];
+        for (int i = 0; i < d.getData1d().size(); i++) {
+            str += (i % 3 == 0 ? "\n\t" : " ") + d.getElem(i);
         }
 
         str += "\n)\n";
@@ -247,14 +251,14 @@ public class Matrix33 extends Representable{
         return mult(1 - pc).plus(m.mult(pc));
     }
 
-    public Double[] getDoubles() {
-        return d;
+    public List<Double> getDoubles() {
+        return d.getData1d();
     }
 
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredArray1dDouble().put("d/3x3 matrix", d);
+        getDeclaredDataStructure().put("d/3x3 matrix", d);
 
     }
 }

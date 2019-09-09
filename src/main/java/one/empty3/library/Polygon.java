@@ -27,13 +27,12 @@ public class Polygon extends Representable implements SurfaceElem {
     /**
      *
      */
-    private Point3D[] points = new Point3D[4];
+    private StructureMatrix<Point3D> points = new StructureMatrix<>(1);
 
     public Polygon() {
         super();
-        points = new Point3D[4];
         for (int i=0; i<4; i++) {
-            points[i] = Point3D.random(10.0);
+            points.add(1, Point3D.random(10.0));
         }
         declareProperties();
     }
@@ -55,31 +54,31 @@ public class Polygon extends Representable implements SurfaceElem {
     public Polygon(Point3D[] list, ITexture c) {
         this();
         this.texture = c;
-        points = list;
+        points = new StructureMatrix<>(list);
     }
 
     public void add(Point3D point3D) {
         int newLength;
         if (points == null)
-            points = new Point3D[]{point3D};
+            points.add(1, point3D);
         else {
-            newLength = points.length + 1;
-            Point3D[] tmp = points;
-            points = new Point3D[newLength];
-            for (int i = 0; i < tmp.length; i++)
-                points[i] = tmp[i];
-            points[newLength - 1] = point3D;
+            newLength = points.getData1d().size() + 1;
+            java.util.List<Point3D> tmp = points.getData1d();
+            points = new StructureMatrix<>(1);
+            for (int i = 0; i < tmp.size(); i++)
+                points.setElem(tmp.get(i), i);
+            points.setElem(point3D, newLength - 1);
         }
         declareProperties();
     }
 
 
-    public Point3D[] getPoints() {
+    public StructureMatrix<Point3D> getPoints() {
         return points;
     }
 
     public void setPoints(Point3D[] points) {
-        this.points = points;
+        this.points = new StructureMatrix<>(points);
         declareProperties();
     }
 
@@ -87,7 +86,7 @@ public class Polygon extends Representable implements SurfaceElem {
     @Override
     public String toString() {
         String t = "poly (\n\t(";
-        for (Point3D p : points) {
+        for (Point3D p : points.getData1d()) {
             t += "\n\t\t" + (p==null?"null":p.toString());
         }
         t += "\n\t)\n\t" + (texture == null ? "" : texture.toString()) + "\n)\n\n";
@@ -113,16 +112,16 @@ public class Polygon extends Representable implements SurfaceElem {
     public Point3D getIsocentre() {
         Point3D p = Point3D.O0;
 
-        for (Point3D p0 : points) {
+        for (Point3D p0 : points.getData1d()) {
             p = p.plus(p0);
         }
-        return p.mult(1. / points.length);
+        return p.mult(1. / points.getData1d().size());
     }
 
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredArray1Points().put("points/point 0 à N du Polygone", points);
+        getDeclaredDataStructure().put("points/point 0 à N du Polygone", points);
 
     }
 

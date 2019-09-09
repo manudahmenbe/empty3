@@ -594,7 +594,7 @@ public class Loader implements SceneLoader {
                 try {
                     // TODO ADD POSITION INNIER
                     cameras = interpreteH.interpreteCameraCollection();
-                    sc.cameras(cameras);
+                    sc.setCameras(cameras);
 
                     failed = false;
                 } catch (InterpreteException ex) {
@@ -609,7 +609,7 @@ public class Loader implements SceneLoader {
                 try {
                     // TODO ADD POSITION INNIER
                     lumieres = interpreteH.interpreteLumiereCollection();
-                    sc.lumieres(lumieres);
+                    sc.setLumieres(lumieres);
 
                     failed = false;
                 } catch (InterpreteException ex) {

@@ -27,7 +27,6 @@ public class Camera3D extends Camera {
         cGauche = new Camera(camera, lookAt);
         cDroite = new Camera(camera, lookAt);
 
-        store();
     }
 
     public double angle3D() {
@@ -38,24 +37,22 @@ public class Camera3D extends Camera {
         this.angle3D = angle3D;
     }
     public void calculerMatrice() {
-        restore();
         /*
          Point3D offsetGauche = cGauche.camera.prodVect(Point3D.Y).norme1()
          .mult(d * Math.atan(angle3D));
          Point3D offsetDroite = cDroite.camera.prodVect(Point3D.Y).norme1()
          .mult(-d * Math.atan(angle3D));
          */
-        cGauche.eye = cGauche.eye
-                .plus(Point3D.X.mult(-dist3D / 2));
-        cDroite.eye = cDroite.eye
-                .plus(Point3D.X.mult(dist3D / 2));
+        cGauche.eye.setElem(cGauche.eye.getElem()
+                .plus(Point3D.X.mult(-dist3D / 2)));
+        cDroite.eye.setElem(cDroite.eye.getElem()
+                .plus(Point3D.X.mult(dist3D / 2)));
 
         calculerNouveauPoint();
 
         cGauche.calculerMatrice(null);
         cDroite.calculerMatrice(null);
 
-        store();
     }
 
     protected void calculerNouveauPoint() {
@@ -93,23 +90,5 @@ public class Camera3D extends Camera {
         return null;
     }
 
-    public Barycentre position() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    private void restore() {
-        cGauche.eye = this.ccg;
-        cDroite.eye = this.ccd;
-
-    }
-
-    private void store() {
-        this.ccg = cGauche.eye;
-        this.ccd = cDroite.eye;
-
-    }
-
-    public TextureCol texture() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

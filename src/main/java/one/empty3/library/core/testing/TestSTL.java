@@ -27,7 +27,7 @@ public class TestSTL {
         }
 
         public String getFilename() {
-            return scene.get(0).getClass().getName() + "-" + version + ".STL";
+            return scene.getObjets().getElem(0).getClass().getName() + "-" + version + ".STL";
         }
     }
 

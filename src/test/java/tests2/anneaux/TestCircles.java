@@ -45,7 +45,7 @@ public class TestCircles extends TestObjetSub {
 
     @Override
     public void ginit() {
-        scene().clear();
+        scene().getObjets().getData1d().clear();
         circles = new Circle[(int) CIRCLES_COUNT];
         for (int i = 0; i < circles.length; i++) {
             circles[i] = new Circle(new Axe(Point3D.random(MAX_SIZE), Point3D.random(MAX_SIZE)),

@@ -1,6 +1,7 @@
 package one.empty3.library.core.nurbs;
 
 import one.empty3.library.Point3D;
+import one.empty3.library.StructureMatrix;
 import one.empty3.library.core.raytracer.tree.AlgebraicFormulaSyntaxException;
 import one.empty3.library.core.raytracer.tree.AlgebricTree;
 import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
@@ -8,9 +9,9 @@ import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
 import java.util.HashMap;
 
 public class FunctionCurve extends ParametricCurve {
-    private String x = "0";
-    private String y = "0";
-    private String z = "0";
+    private StructureMatrix<String> x = new StructureMatrix<>(0);
+    private StructureMatrix<String> y = new StructureMatrix<>(0);
+    private StructureMatrix<String> z = new StructureMatrix<>(0);
     private AlgebricTree treeX;
     private AlgebricTree treeY;
     private AlgebricTree treeZ;
@@ -19,7 +20,9 @@ public class FunctionCurve extends ParametricCurve {
 
     public FunctionCurve() throws AlgebraicFormulaSyntaxException {
         super();
-
+        x.setElem("0.0");
+        y.setElem("0.0");
+        z.setElem("0.0");
         recomputeTrees();
     }
 
@@ -28,9 +31,9 @@ public class FunctionCurve extends ParametricCurve {
         hashMap.put("u", 0d);
         hashMap.put("v", 0d);
 
-        this.x = xEqFuv;
-        this.y = yEqFuv;
-        this.z = zEqFuv;
+        this.x.setElem(xEqFuv);
+        this.y.setElem(yEqFuv);
+        this.z.setElem(zEqFuv);
 
 
 
@@ -50,13 +53,13 @@ public class FunctionCurve extends ParametricCurve {
 
     private void recomputeTrees() {
         try {
-            treeX = new AlgebricTree(x);
+            treeX = new AlgebricTree(x.getElem());
             treeX.setParametersValues(hashMap);
             treeX.construct();
-            treeY = new AlgebricTree(y);
+            treeY = new AlgebricTree(y.getElem());
             treeY.setParametersValues(hashMap);
             treeY.construct();
-            treeZ = new AlgebricTree(z);
+            treeZ = new AlgebricTree(z.getElem());
             treeZ.setParametersValues(hashMap);
             treeZ.construct();
             setDrawable(true);
@@ -68,29 +71,29 @@ public class FunctionCurve extends ParametricCurve {
     }
 
     public String getX() {
-        return x;
+        return x.getElem();
     }
 
     public void setX(String x) {
-        this.x = x;
+        this.x.setElem(x);
         recomputeTrees();
     }
 
     public String getY() {
-        return y;
+        return y.getElem();
     }
 
     public void setY(String y) {
-        this.y = y;
+        this.y.setElem(y);
         recomputeTrees();
     }
 
     public String getZ() {
-        return z;
+        return z.getElem();
     }
 
     public void setZ(String z) {
-        this.z = z;
+        this.z.setElem(z);
         recomputeTrees();
     }
 
@@ -115,9 +118,9 @@ public class FunctionCurve extends ParametricCurve {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredString().put("x/function [x = f(u)]", x);
-        getDeclaredString().put("y/function (y = f(u)]", y);
-        getDeclaredString().put("z/function (z = f(u)]", z);
+        getDeclaredDataStructure().put("x/function [x = f(u)]", x);
+        getDeclaredDataStructure().put("y/function (y = f(u)]", y);
+        getDeclaredDataStructure().put("z/function (z = f(u)]", z);
     }
 
 }

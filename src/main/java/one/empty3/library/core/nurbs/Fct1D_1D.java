@@ -17,7 +17,6 @@ public abstract class Fct1D_1D extends ParametricCurve {
             return input;
         }
     }
-
     public class Fx extends Fct1D_1D {
 
         private final double x;
@@ -31,8 +30,14 @@ public abstract class Fct1D_1D extends ParametricCurve {
             return x;
         }
     }
-
-    public abstract double result(double input);
+/*
+    StructureMatrix<Fct1D_1D> predifinedFunctions = new StructureMatrix<>(1);
+    {
+        predifinedFunctions.add(1, new I());
+        predifinedFunctions.add(1, new Fx(0.0));
+    }
+*/
+public abstract double result(double input);
 
     @Override
     public Point3D calculerPoint3D(double t) {
@@ -42,7 +47,5 @@ public abstract class Fct1D_1D extends ParametricCurve {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredRepresentables().put("F_I/Fonction ident (coordArr)", new I());
-        getDeclaredRepresentables().put("F_Const/Fonction constante", new Fx(0.0));
     }
 }

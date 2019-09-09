@@ -93,7 +93,7 @@ public class TestNurbsComplexeMy extends TestObjetSub {
 
     @Override
     public void testScene() throws Exception {
-        scene().clear();
+        scene().getObjets().getData1d().clear();
 
         updateValues(pp);
         NurbsSurface n = new NurbsSurface();

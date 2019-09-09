@@ -141,7 +141,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     public void draw(TRI tri, GLU glu, GL2 gl) {
         gl.glBegin(GL2.GL_TRIANGLES);
         color(gl, new Color(tri.texture().getColorAt(0.5, 0.5)));
-        for (Point3D sommet : tri.getSommet()) {
+        for (Point3D sommet : tri.getSommet().getData1d()) {
             Point3D p = getTerrain().p3(sommet);
             gl.glVertex3f((float) (double) p.get(0),
                     (float) (double) p.get(1),
@@ -154,7 +154,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         if (!guard)
             gl.glBegin(GL2.GL_TRIANGLES);
         color(gl, new Color(tri.texture().getColorAt(0.5, 0.5)));
-        for (Point3D sommet : tri.getSommet()) {
+        for (Point3D sommet : tri.getSommet().getData1d()) {
             Point3D p = sommet;
             gl.glVertex3f((float) (double) p.get(0),
                     (float) (double) p.get(1),
@@ -533,33 +533,33 @@ public class JoglDrawer extends Drawer implements GLEventListener {
                     */
                     Point3D[] point3D = new Point3D[6];
                     for (int p : new int[]{0, 1, 2}) {
-                        Point3D[] p3 = t.getSommet();
+                        StructureMatrix<Point3D> p3 = t.getSommet();
 
                         for (int coord = 0; coord < 3; coord++) {
                             switch (coord) {
                                 case 0:
-                                    point3D[0] = new Point3D(p3[0].get(coord), (i), (j));
-                                    point3D[1] = new Point3D(p3[0].get(coord), (i + INCR_AA), (j));
-                                    point3D[2] = new Point3D(p3[0].get(coord), (i + INCR_AA), (j + INCR_AA));
-                                    point3D[3] = new Point3D(p3[0].get(coord), (i), (j));
-                                    point3D[4] = new Point3D(p3[0].get(coord), (i), (j + INCR_AA));
-                                    point3D[5] = new Point3D(p3[0].get(coord), (i + INCR_AA), (j + INCR_AA));
+                                    point3D[0] = new Point3D(p3.getElem(0).get(coord), (i), (j));
+                                    point3D[1] = new Point3D(p3.getElem(0).get(coord), (i + INCR_AA), (j));
+                                    point3D[2] = new Point3D(p3.getElem(0).get(coord), (i + INCR_AA), (j + INCR_AA));
+                                    point3D[3] = new Point3D(p3.getElem(0).get(coord), (i), (j));
+                                    point3D[4] = new Point3D(p3.getElem(0).get(coord), (i), (j + INCR_AA));
+                                    point3D[5] = new Point3D(p3.getElem(0).get(coord), (i + INCR_AA), (j + INCR_AA));
                                     break;
                                 case 1:
-                                    point3D[0] = new Point3D((i) * 2, p3[0].get(coord), (j) * 2);
-                                    point3D[1] = new Point3D((i + INCR_AA) * 2, p3[0].get(coord), (j) * 2);
-                                    point3D[2] = new Point3D((i + INCR_AA) * 2, p3[0].get(coord), (j + INCR_AA) * 2);
-                                    point3D[3] = new Point3D((i) * 2, p3[0].get(coord), (j) * 2);
-                                    point3D[4] = new Point3D((i) * 2, p3[0].get(coord), (j + INCR_AA) * 2);
-                                    point3D[5] = new Point3D((i + INCR_AA) * 2, p3[0].get(coord), (j + INCR_AA) * 2);
+                                    point3D[0] = new Point3D((i) * 2, p3.getElem(0).get(coord), (j) * 2);
+                                    point3D[1] = new Point3D((i + INCR_AA) * 2, p3.getElem(0).get(coord), (j) * 2);
+                                    point3D[2] = new Point3D((i + INCR_AA) * 2, p3.getElem(0).get(coord), (j + INCR_AA) * 2);
+                                    point3D[3] = new Point3D((i) * 2, p3.getElem(0).get(coord), (j) * 2);
+                                    point3D[4] = new Point3D((i) * 2, p3.getElem(0).get(coord), (j + INCR_AA) * 2);
+                                    point3D[5] = new Point3D((i + INCR_AA) * 2, p3.getElem(0).get(coord), (j + INCR_AA) * 2);
                                     break;
                                 case 2:
-                                    point3D[0] = new Point3D((i) * 2, (j) * 2, p3[0].get(coord));
-                                    point3D[1] = new Point3D((i + INCR_AA) * 2, (j) * 2, p3[0].get(coord));
-                                    point3D[2] = new Point3D((i + INCR_AA) * 2, (j + INCR_AA) * 2, p3[0].get(coord));
-                                    point3D[3] = new Point3D((i) * 2, (j) * 2, p3[0].get(coord));
-                                    point3D[4] = new Point3D((i) * 2, (j + INCR_AA) * 2, p3[0].get(coord));
-                                    point3D[5] = new Point3D((i + INCR_AA) * 2, (j + INCR_AA) * 2, p3[0].get(coord));
+                                    point3D[0] = new Point3D((i) * 2, (j) * 2, p3.getElem(0).get(coord));
+                                    point3D[1] = new Point3D((i + INCR_AA) * 2, (j) * 2, p3.getElem(0).get(coord));
+                                    point3D[2] = new Point3D((i + INCR_AA) * 2, (j + INCR_AA) * 2, p3.getElem(0).get(coord));
+                                    point3D[3] = new Point3D((i) * 2, (j) * 2, p3.getElem(0).get(coord));
+                                    point3D[4] = new Point3D((i) * 2, (j + INCR_AA) * 2, p3.getElem(0).get(coord));
+                                    point3D[5] = new Point3D((i + INCR_AA) * 2, (j + INCR_AA) * 2, p3.getElem(0).get(coord));
                                     break;
                             }
                             nbrTriReduce++;
@@ -567,7 +567,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
                             TRI toDraw = new TRI();
                             for (int g = 0; g < 3; g++) {
-                                toDraw.getSommet()[g] = getTerrain().p3(point3D[g]);
+                                toDraw.getSommet().setElem(getTerrain().p3(point3D[g]), g);
                             }
                             toDraw.texture(new ColorTexture(Plasma.color(i + a, j + a, time())));
 
@@ -575,7 +575,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
                             toDraw = new TRI();
                             for (int g = 0; g < 3; g++) {
-                                toDraw.getSommet()[g] = getTerrain().p3(point3D[g+3]);
+                                toDraw.getSommet().setElem(getTerrain().p3(point3D[g+3]), g);
                             }
                             toDraw.texture(new ColorTexture(Plasma.color(i + a, j + a, time())));
 
@@ -596,7 +596,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     }
 
     private boolean isClose(double maxDistance, TRI toDraw) {
-        return Point3D.distance(getTerrain().p3(toDraw.getSommet()[0]), mover.calcCposition()) < maxDistance;
+        return Point3D.distance(getTerrain().p3(toDraw.getSommet().getElem(0)), mover.calcCposition()) < maxDistance;
     }
 
 
@@ -606,7 +606,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
     private void draw(ParametricCurve courbeParametriquePolynomiale, GLU glu, GL2 gl) {
         double d0 = courbeParametriquePolynomiale.start();
-        for (double d = courbeParametriquePolynomiale.start(); d < courbeParametriquePolynomiale.endU(); d += courbeParametriquePolynomiale.getIncrU()) {
+        for (double d = courbeParametriquePolynomiale.start(); d < courbeParametriquePolynomiale.endU(); d += courbeParametriquePolynomiale.getIncrU().getElem()) {
             draw(new LineSegment(courbeParametriquePolynomiale.calculerPoint3D(d0), courbeParametriquePolynomiale.calculerPoint3D(d)), glu, gl);
             d0 = d;
         }

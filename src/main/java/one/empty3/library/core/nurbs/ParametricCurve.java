@@ -22,6 +22,7 @@ package one.empty3.library.core.nurbs;
 
 import one.empty3.library.Point3D;
 import one.empty3.library.Representable;
+import one.empty3.library.StructureMatrix;
 import one.empty3.library.ZBuffer;
 
 /**
@@ -39,17 +40,22 @@ public class ParametricCurve extends Representable {
             ParametricCurve.setGlobals(globals1);
             globals1.setIncrU(0.0001);
         }
+
     }
     public ParametricCurve()
     {
         super();
+        startU.setElem(0.0);
+        endU.setElem(0.0);
+        incrU.setElem(0.01);
+        connected.setElem(true);
     }
 
-    protected Double startU = 0.0;
-    protected Double endU= 1.0;
-    protected boolean connected = true;
+    protected StructureMatrix<Double> startU = new StructureMatrix<>(0);
+    protected StructureMatrix<Double>  endU= new StructureMatrix<>(0);
+    protected StructureMatrix<Boolean> connected = new StructureMatrix<>(0);
     private Parameters parameters = new Parameters(true);
-    private Double incrU = 0.01;
+    private StructureMatrix<Double> incrU = new StructureMatrix<>(0);
     private Double incrTAN = 0.0001;
 
     public static void setGlobals(Globals globals) {
@@ -80,30 +86,31 @@ public class ParametricCurve extends Representable {
     }
 
     public Double endU() {
-        return endU;
+        return endU.getElem();
     }
 
     public void endU(Double e) {
-        endU = e;
+        endU.setElem(e);
     }
 
-    public Double getIncrU() {
+    public StructureMatrix<Double> getIncrU() {
         Double incr = 1.0;
         if (parameters.isGlobal()) {
             incr = parameters.getIncrU();
         } else {
             incr = globals.getIncrU();
         }
-        ;
-        return incr <= incrU? incrU : incr;
+        StructureMatrix<Double> doubleStructureMatrix = new StructureMatrix<>(0);
+        doubleStructureMatrix.setElem(incr <= incrU.getElem()? incrU.getElem() : incr);
+        return doubleStructureMatrix;
     }
 
     public Double start() {
-        return startU;
+        return startU.getElem();
     }
 
     public void start(Double s) {
-        startU = s;
+        startU.setElem(s);
     }
 
     @Override
@@ -125,11 +132,11 @@ public class ParametricCurve extends Representable {
     }
 
     public boolean isConnected() {
-        return connected;
+        return connected.getElem();
     }
 
     public void setConnected(boolean connected) {
-        this.connected = connected;
+        this.connected.setElem(connected);
     }
 
 
@@ -203,10 +210,10 @@ public class ParametricCurve extends Representable {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredDoubles().put("incrU/incrU", incrU);
-        getDeclaredDoubles().put("startU/startU", startU);
-        getDeclaredDoubles().put("endU/endU", endU);
-        getDeclaredBoolean().put("connected/dotted or lines", connected);
+        getDeclaredDataStructure().put("incrU/incrU", incrU);
+        getDeclaredDataStructure().put("startU/startU", startU);
+        getDeclaredDataStructure().put("endU/endU", endU);
+        getDeclaredDataStructure().put("connected/dotted or lines", connected);
     }
 
     public static Globals getGlobals() {
@@ -214,23 +221,23 @@ public class ParametricCurve extends Representable {
     }
 
     public Double getStartU() {
-        return startU;
+        return startU.getElem();
     }
 
     public void setStartU(Double startU) {
-        this.startU = startU;
+        this.startU.setElem(startU);
     }
 
     public Double getEndU() {
-        return endU;
+        return endU.getElem();
     }
 
     public void setEndU(Double endU) {
-        this.endU = endU;
+        this.endU.setElem(endU);
     }
 
     public void setIncrU(Double incrU) {
-        this.incrU = incrU;
+        this.incrU.setElem(incrU);
     }
 
     public Double getIncrTAN() {

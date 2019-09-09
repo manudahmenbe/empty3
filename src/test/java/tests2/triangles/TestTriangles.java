@@ -29,7 +29,7 @@ public class TestTriangles extends TestObjetSub {
 
     @Override
     public void ginit()  {
-        scene().clear();
+        scene().getObjets().getData1d().clear();
 
 
         si = new SiPiKi3D(frame());

@@ -22,7 +22,7 @@ public class Citron extends ParametricSurface {
                                 Math.sin(2.0 * Math.PI * u) * Math.cos(2.0 * Math.PI * v))
                                 .
                                         plus(c.vectZ.mult((v - 0.5) / 2 * Math.sin(2 * Math.PI * v)))
-                ).mult(c.radius));
+                ).mult(c.radius.getElem()));
     }
 
     public Circle getCircle() {

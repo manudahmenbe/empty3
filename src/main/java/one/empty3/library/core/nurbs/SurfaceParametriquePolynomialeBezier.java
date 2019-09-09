@@ -22,26 +22,31 @@
  */
 package one.empty3.library.core.nurbs;
 
-import one.empty3.library.*;
+import one.empty3.library.Point3D;
+import one.empty3.library.StructureMatrix;
+
+import java.util.List;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class SurfaceParametriquePolynomialeBezier extends ParametricSurface implements SurfaceElem{
 
-    protected Point3D[][] coefficients;
-    protected Integer power1, power2;
+    protected StructureMatrix<Point3D> coefficients;
+    protected StructureMatrix<Integer> power1 =new StructureMatrix<>(0);
+    protected StructureMatrix<Integer> power2=new StructureMatrix<>(0);;
+
 
     public SurfaceParametriquePolynomialeBezier(Point3D[][] coefficients)
     {
         this();
-        this.coefficients = coefficients;
-        power1 = coefficients.length;
-        power2 = coefficients[0].length;
+        this.coefficients = new StructureMatrix<>(coefficients);
+        power1.setElem(coefficients.length);
+        power2.setElem(coefficients[0].length);
     }
     public SurfaceParametriquePolynomialeBezier()
     {
-        this.coefficients = new Point3D[][]
+        this.coefficients = new StructureMatrix<>(new Point3D[][]
                 {
 
                         {Point3D.P.n(2., -2d, 0d), Point3D.P.n(2, -1, 0), Point3D.P.n(2, 0, 0), Point3D.P.n(2, 1, 0), Point3D.P.n(2, 2, 0)},
@@ -50,9 +55,9 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
                         {Point3D.P.n(-1d, -2d, 0d), Point3D.P.n(-1d, -1d, 0d), Point3D.P.n(-1, 0, 0), Point3D.P.n(-1, 1, 0), Point3D.P.n(-1, 2, 0)},
                         {Point3D.P.n(-2d, -2d, 0d), Point3D.P.n(-2d, -1d, 0d), Point3D.P.n(-2, 0, 0), Point3D.P.n(-2, 1, 0), Point3D.P.n(-2, 2, 0)}
 
-                };
-        power1 = coefficients.length;
-        power2 = coefficients[0].length;
+                });
+        power1.setElem(coefficients.getData2d().size());
+        power2.setElem(coefficients.getData2d().get(0).size());
     }
 
     public double B(int i, int n, double t) {
@@ -63,9 +68,9 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
     @Override
     public Point3D calculerPoint3D(double u, double v) {
         Point3D sum = Point3D.O0;
-        for (int i = 0; i < power1; i++) {
-            for (int j = 0; j < power2; j++) {
-                sum = sum.plus(coefficients[i][j].mult(B(i, power1 - 1, u) * B(j, power2 - 1, v)));
+        for (int i = 0; i < power1.getElem(); i++) {
+            for (int j = 0; j < power2.getElem(); j++) {
+                sum = sum.plus(coefficients.getElem(i,j).mult(B(i, power1.getElem() - 1, u) * B(j, power2.getElem() - 1, v)));
             }
         }
         return sum;
@@ -80,47 +85,47 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
         return sum;
     }
 
-    public Point3D[][] getCoefficients() {
-        return coefficients;
+    public List<List<Point3D>> getCoefficients() {
+        return coefficients.getData2d();
     }
 
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredArray2Points().put("coefficients/coefficients du polygone de Bezier", coefficients);
-        getDeclaredInteger().put("power1/puissance par defaut #dim1", power1);
-        getDeclaredInteger().put("power2/puissance par defaut #dim2", power2);
+        getDeclaredDataStructure().put("coefficients/points de contrôle", coefficients);
+        getDeclaredDataStructure().put("power1/puissance par defaut #dim1", power1);
+        getDeclaredDataStructure().put("power2/puissance par defaut #dim2", power2);
 
     }
 
-    public void setCoefficients(Point3D[][] coefficients) {
-        this.coefficients = coefficients;
+    public void setCoefficients(List<List<Point3D>> coefficients) {
+        this.coefficients = new StructureMatrix(coefficients);
     }
 
     public Integer getPower1() {
-        return power1;
+        return power1.getElem();
     }
 
     public void setPower1(Integer power1) {
-        this.power1 = power1;
+        this.power1 = new StructureMatrix<>(power1);
     }
 
     public Integer getPower2() {
-        return power2;
+        return power2.getElem();
     }
 
     public void setPower2(Integer power2) {
-        this.power2 = power2;
+        this.power2 = new StructureMatrix<>(power2);
     }
 
     @Override
     public String toString() {
         String s = "bezier2(";
 
-        for(int i=0; i<coefficients.length; i++) {
+        for(int i=0; i<coefficients.getData2d().size(); i++) {
             s+="\n(\n";
-            for (int j = 0; j < coefficients[i].length; j++) {
-                s += coefficients[i][j].toString();
+            for (int j = 0; j < coefficients.getData2d().get(i).size(); j++) {
+                s += coefficients.getElem(i,j).toString();
             }
             s+="\n)\n";
         }

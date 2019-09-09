@@ -324,7 +324,7 @@ public class E3Model extends RepresentableConteneur{
             if(quad instanceof TRI)
             {
                 if (quad instanceof TRI) {
-                    ((TRI) quad).getSommet()[w] = point3D;
+                    ((TRI) quad).getSommet().setElem(point3D, w);
 
                 }
             }

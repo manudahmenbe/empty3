@@ -1,5 +1,6 @@
 package one.empty3.library.core.nurbs;
 
+import one.empty3.library.StructureMatrix;
 import one.empty3.library.core.raytracer.tree.AlgebraicFormulaSyntaxException;
 import one.empty3.library.core.raytracer.tree.AlgebricTree;
 import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
@@ -8,15 +9,15 @@ import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
  * Created by manue on 28-05-19.
  */
 public class FctXY extends Fct1D_1D {
-    private String formulaX;
+    private StructureMatrix<String> formulaX = new StructureMatrix<>(0);
     private AlgebricTree treeX;
 
     public FctXY()
     {
-        formulaX = "10.0";
+        formulaX.setElem("10.0");
 
         try {
-            treeX = new AlgebricTree(formulaX);
+            treeX = new AlgebricTree(formulaX.getElem());
             treeX.construct();
             treeX.getParametersValues().put("x", 10.0);
         } catch (AlgebraicFormulaSyntaxException e) {
@@ -27,7 +28,8 @@ public class FctXY extends Fct1D_1D {
 
     public void setFormulaX(String formulaX)
     {
-        this.formulaX  = formulaX;
+        this.formulaX.setElem(formulaX);
+
         try {
             treeX = new AlgebricTree(formulaX);
             treeX.getParametersValues().put("x", 0.0);
@@ -38,7 +40,7 @@ public class FctXY extends Fct1D_1D {
     }
 
     public String getFormulaX() {
-        return formulaX;
+        return formulaX.getElem();
     }
 
     public double result(double input)
@@ -57,7 +59,7 @@ public class FctXY extends Fct1D_1D {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredString().put("formulaX/fonction Y=f(x)", formulaX);
+        getDeclaredDataStructure().put("formulaX/fonction Y=f(x)", formulaX);
     }
 
     @Override

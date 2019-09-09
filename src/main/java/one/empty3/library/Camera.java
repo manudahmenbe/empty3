@@ -23,11 +23,11 @@ public class Camera extends CameraBox {
 
     public static Camera PARDEFAULT = new Camera();
 
-    protected Point3D eye;
-    protected Point3D lookat;
+    protected StructureMatrix<Point3D> eye = new StructureMatrix<>(new Point3D(0d, 0d, -100d));
+    protected StructureMatrix<Point3D> lookat = new StructureMatrix<>(Point3D.O0);
 
-    protected boolean imposerMatrice = false;
-    protected Matrix33 matrice = Matrix33.I;
+    protected StructureMatrix<Boolean> imposerMatrice = new StructureMatrix<>(0);
+    protected StructureMatrix<Matrix33> matrice = new StructureMatrix<>(Matrix33.I);
 
     private Barycentre position;
 
@@ -40,24 +40,25 @@ public class Camera extends CameraBox {
     }
 
     public Camera(Point3D eye, Point3D lookat, Point3D up) {
-        this.eye = eye;
-        this.lookat = lookat;
+        imposerMatrice.setElem(false);
+        this.eye.setElem(eye);
+        this.lookat.setElem(lookat);
         calculerMatrice(up);
 
     }
 
     protected void rotateMatrixXaxis(double angle)
     {
-           matrice = Matrix33.rotationX(angle).mult(matrice);
+           matrice.setElem(Matrix33.rotationX(angle).mult(matrice.getElem()));
     }
     protected void rotateMatrixYaxis(double angle)
     {
-        matrice = Matrix33.rotationY(angle).mult(matrice);
+        matrice.setElem(Matrix33.rotationY(angle).mult(matrice.getElem()));
 
     }
     protected void rotateMatrixZaxis(double angle)
     {
-        matrice = Matrix33.rotationZ(angle).mult(matrice);
+        matrice.setElem(Matrix33.rotationZ(angle).mult(matrice.getElem()));
 
     }
 
@@ -86,11 +87,11 @@ public class Camera extends CameraBox {
         for (int j = 0; j < 3; j++) {
             m.set(j, 1, y.get(j));
         }
-        this.matrice = m.tild();
+        this.matrice .setElem(m.tild());
     }
 
     public void calculerMatrice(Point3D verticale) {
-        if (!imposerMatrice) {
+        if (!imposerMatrice.getElem()) {
             if (verticale == null)
                 verticale = calculerVerticaleParDefaut(getLookat().moins(getEye()));
 
@@ -104,7 +105,7 @@ public class Camera extends CameraBox {
     }
 
     public Point3D calculerPointDansRepere(Point3D p) {
-        Point3D p2 = matrice.mult(p.moins(getEye()));
+        Point3D p2 = matrice.getElem().mult(p.moins(getEye()));
         p2.texture(p.texture());
         return p2;
     }
@@ -117,28 +118,28 @@ public class Camera extends CameraBox {
     }
 
     public Point3D getEye() {
-        return calculerPoint(eye);
+        return calculerPoint(eye.getElem());
     }
 
     public void setEye(Point3D eye) {
-        this.eye = eye;
+        this.eye.setElem(eye);
     }
 
     public Point3D getLookat() {
-        return calculerPoint(lookat);
+        return calculerPoint(lookat.getElem());
     }
 
     public void setLookat(Point3D lookat) {
-        this.lookat = lookat;
+        this.lookat.setElem(lookat);
     }
 
     public void imposerMatrice(boolean im) {
-        this.imposerMatrice = im;
+        this.imposerMatrice.setElem(im);
     }
 
     public void imposerMatrice(Matrix33 mat) {
-        this.imposerMatrice = true;
-        this.matrice = mat;
+        this.imposerMatrice.setElem(true);
+        this.matrice.setElem(mat);
     }
 
 
@@ -149,7 +150,7 @@ public class Camera extends CameraBox {
     public Barycentre position() {
         Barycentre position1 = new Barycentre();
         position1.position = getEye();
-        position1.rotation = matrice;
+        position1.rotation = matrice.getElem();
         position.agrandissement = 1.0; // Pas encore défini;
         return position1;
     }
@@ -158,8 +159,8 @@ public class Camera extends CameraBox {
     public void position(Barycentre p) {
         this.position = p;
 
-        eye = position.calculer(eye);
-        lookat = position.calculer(lookat);
+        eye.setElem(position.calculer(eye.getElem()));
+        lookat.setElem(position.calculer(lookat.getElem()));
         calculerMatrice(null);
     }
 
@@ -184,11 +185,11 @@ public class Camera extends CameraBox {
     }
 
     public Matrix33 getMatrice() {
-        return matrice;
+        return matrice.getElem();
     }
 
     public void setMatrice(Matrix33 matrice) {
-        this.matrice = matrice;
+        this.matrice.setElem(matrice);
     }
 
     {
@@ -197,9 +198,9 @@ public class Camera extends CameraBox {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredPoints().put("eye/eye", eye);
-        getDeclaredPoints().put("lookat/lookAt", lookat);
-        getDeclaredArray1dDouble().put("matrice/matrice", matrice.getDoubles());
+        getDeclaredDataStructure().put("eye/eye", eye);
+        getDeclaredDataStructure().put("lookat/lookAt", lookat);
+        getDeclaredDataStructure().put("matrice/matrice", matrice);
 
     }
 }

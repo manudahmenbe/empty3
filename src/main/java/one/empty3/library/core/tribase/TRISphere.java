@@ -17,10 +17,7 @@
  */
 package one.empty3.library.core.tribase;
 
-import one.empty3.library.Axe;
-import one.empty3.library.Circle;
-import one.empty3.library.Point3D;
-import one.empty3.library.Sphere;
+import one.empty3.library.*;
 
 /**
  * @author DAHMEN Manuel
@@ -34,7 +31,7 @@ public class TRISphere extends Sphere {
     }
 
     public Point3D getCentre() {
-        return circle.getCenter();
+        return circle.getElem().getCenter();
     }
 
     public void setCentre(Point3D centre) {
@@ -42,11 +39,12 @@ public class TRISphere extends Sphere {
         Point3D center2 = axe2.getCenter();
         axe2.getP1().changeTo(getCircle().getAxis().getP1().moins(center2).plus(centre));
         axe2.getP2().changeTo(getCircle().getAxis().getP2().moins(center2).plus(centre));
-        circle = new Circle(axe2, circle.getRadius());
+        circle = new StructureMatrix<>(0);
+        circle.setElem(new Circle(axe2, circle.getElem().getRadius()));
     }
 
     public void setRadius(double radius) {
-        circle.setRadius(radius);
+        circle.getElem().setRadius(radius);
     }
 }/*ParametricSurface {
 

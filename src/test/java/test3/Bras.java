@@ -71,7 +71,7 @@ public class Bras extends TestObjetSub {
             bille.setPosition(start);
             allPoints.add(bille);
             for (int j = 0; j < nbrChunck; j++) {
-                lastPoint = polyLine.getPoints()[polyLine.getPoints().length - 1];
+                lastPoint = polyLine.getPoints().get(polyLine.getPoints().size()- 1);
                 lastPoint = lastPoint.plus(Point3D.random(longueur));
                 polyLine.add(lastPoint);
                 bille = new Bille();
@@ -97,8 +97,8 @@ public class Bras extends TestObjetSub {
             Representable r = representableIterator.next();
             if (r instanceof PolyLine) {
                 PolyLine pl = (PolyLine) r;
-                for (int i = 0; i < pl.getPoints().length; i++)
-                    pl.getPoints()[i] = pl.getPoints()[i].plus(Point3D.random(speed));
+                for (int i = 0; i < pl.getPoints().size(); i++)
+                    pl.getPoints().set(i, pl.getPoints().get(i).plus(Point3D.random(speed)));
             }
         }
     }

@@ -23,6 +23,7 @@ package one.empty3.library.core.nurbs;
 import one.empty3.library.Camera;
 import one.empty3.library.Matrix33;
 import one.empty3.library.Point3D;
+import one.empty3.library.StructureMatrix;
 
 /**
  * @author Manuel Dahmen
@@ -40,31 +41,27 @@ public class CameraInPath extends Camera {
         this.angleB = angleBRad;
     }
 
-    private ParametricCurve courbe;
+    private StructureMatrix<ParametricCurve> courbe = new StructureMatrix<>(0);
     private double t;
 
     public CameraInPath(ParametricCurve maCourbe) {
-        this.courbe = maCourbe;
-        getDeclaredPoints().put("eye/eye", eye);
-        getDeclaredPoints().put("lookat/lookAt", lookat);
-        getDeclaredArray1dDouble().put("matrice/matrice", matrice.getDoubles());
-        getDeclaredRepresentables().put("courbe/courbe", maCourbe);
+        this.courbe.setElem(maCourbe);
     }
 
     public ParametricCurve getCourbe() {
-        return courbe;
+        return courbe.getElem();
     }
 
     public void setCourbe(ParametricCurve maCourbe) {
-        this.courbe = maCourbe;
+        this.courbe.setElem(maCourbe);
     }
 
 
     public void calculerMatriceT(Point3D verticale) {
-        setEye(courbe.calculerPoint3D(t));
-        setLookat(courbe.calculerPoint3D(t + t * 1.001));
+        setEye(courbe.getElem().calculerPoint3D(t));
+        setLookat(courbe.getElem().calculerPoint3D(t + t * 1.001));
         Point3D dt1 = getLookat().moins(getEye()).norme1();
-        Point3D dt2 = getEye().moins(courbe.calculerPoint3D(t - t * 0.001)).norme1();
+        Point3D dt2 = getEye().moins(courbe.getElem().calculerPoint3D(t - t * 0.001)).norme1();
         Point3D n = dt2.moins(dt1).norme1();
         super.calculerMatrice(verticale == null ? n : verticale);
     }
@@ -81,5 +78,16 @@ public class CameraInPath extends Camera {
     @Override
     public Point3D calculerPointDansRepere(Point3D p) {
         return Matrix33.rot(angleA, angleB).mult(super.calculerPointDansRepere(p));
+    }
+
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredDataStructure().put("courbe", courbe);
+
+    }
+
+    public void setCourbe(StructureMatrix<ParametricCurve> courbe) {
+        this.courbe = courbe;
     }
 }

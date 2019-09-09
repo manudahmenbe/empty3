@@ -59,10 +59,10 @@ public class ObjExport {
     }
 
     private static void traite(Polygon r, PrintWriter pw) {
-        for (int s = 0; s < r.getPoints().length; s++) {
+        for (int s = 0; s < r.getPoints().getData1d().size(); s++) {
             write("v ", pw);
             for (int c = 0; c < 3; c++) {
-                double A = r.getPoints()[s].get(c);
+                double A = r.getPoints().getData1d().get(s).get(c);
                 if (Double.isNaN(A)) {
                     A = 0;
                 }
@@ -72,7 +72,7 @@ public class ObjExport {
 
 
         }
-        int size = r.getPoints().length;
+        int size = r.getPoints().getData1d().size();
         for (int t = 0; t < size; t++) {
             write("f " + (t % size) + " " +
                     ((t + 1) % size) + " " + size + "\n", pw);
@@ -133,12 +133,12 @@ public class ObjExport {
 
     private static void traite(TRI r, PrintWriter pw) {
         for (int i = 0; i < 3; i++) {
-            traite(r.getSommet()[i], pw);
+            traite(r.getSommet().getElem(i), pw);
         }
         for (int s = 0; s < 3; s++) {
             write("f ", pw);
             for (int c = 0; c < 3; c++) {
-                double A = r.getSommet()[s].get(c);
+                double A = r.getSommet().getElem(s).get(c);
                 if (Double.isNaN(A)) {
                     A = 0;
                 }

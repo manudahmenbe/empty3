@@ -85,7 +85,7 @@ public class InterpreteBSpline implements Interprete {
             InterpreteDouble ida = new InterpreteDouble();
             Double d = (Double) ida.interprete(text, pos);
             pos = ida.getPosition();
-            b.getT().add(d);
+            b.getT().add(1, d);
         } catch (Exception ex) {
             ok = false;
         }

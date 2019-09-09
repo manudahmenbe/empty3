@@ -33,8 +33,8 @@ import java.awt.*;
 public class LineSegment extends ParametricCurve implements CurveElem {
 
     public double SMALL_NUM = Double.MIN_VALUE; // anything that avoids division
-    private Point3D origine;
-    private Point3D extremite;
+    private StructureMatrix<Point3D> origine = new StructureMatrix<>(0);
+    private StructureMatrix<Point3D> extremite = new StructureMatrix<>(0);
     // overflow
 
     public LineSegment()
@@ -57,35 +57,35 @@ public class LineSegment extends ParametricCurve implements CurveElem {
     }
 
     public Point3D calculerPoint3D(double d) {
-        return origine.plus(extremite.moins(origine).mult(d));
+        return origine.getElem().plus(extremite.getElem().moins(origine.getElem()).mult(d));
     }
 
     /**
      * @return the extremite
      */
     public Point3D getExtremite() {
-        return extremite;
+        return extremite.getElem();
     }
 
     /**
      * @param extremite the extremite to set
      */
     public void setExtremite(Point3D extremite) {
-        this.extremite = extremite;
+        this.extremite.setElem(extremite);
     }
 
     /**
      * @return the origine
      */
     public Point3D getOrigine() {
-        return origine;
+        return origine.getElem();
     }
 
     /**
      * @param origine the origine to set
      */
     public void setOrigine(Point3D origine) {
-        this.origine = origine;
+        this.origine.setElem(origine);
     }
 
     // intersect3D_RayTriangle(): find the 3D intersection of a ray with a
@@ -103,15 +103,15 @@ public class LineSegment extends ParametricCurve implements CurveElem {
 
         Point3D I;
         // get triangle edge vectors and plane normal
-        u = T.getSommet()[1].moins(T.getSommet()[0]);
-        v = T.getSommet()[2].moins(T.getSommet()[0]);
+        u = T.getSommet().getElem(1).moins(T.getSommet().getElem(0));
+        v = T.getSommet().getElem(2).moins(T.getSommet().getElem(0));
         n = u.prodVect(v);
         if (n.equals(Point3D.O0)) // triangle is degenerate
         {
             return Infini.Default; // do not deal with this case
         }
         dir = ray.getOrigine().moins(ray.getExtremite()); // ray direction vector
-        w0 = ray.getOrigine().moins(T.getSommet()[0]);
+        w0 = ray.getOrigine().moins(T.getSommet().getElem(0));
         a = -n.prodScalaire(w0);
         b = n.prodScalaire(dir);
         if (Math.abs(b) < SMALL_NUM) { // ray is parallel to triangle plane
@@ -138,7 +138,7 @@ public class LineSegment extends ParametricCurve implements CurveElem {
         uu = u.prodScalaire(u);
         uv = u.prodScalaire(v);
         vv = v.prodScalaire(v);
-        w = I.moins(T.getSommet()[0]);
+        w = I.moins(T.getSommet().getElem(0));
         wu = w.prodScalaire(u);
         wv = w.prodScalaire(v);
         D = uv * uv - uu * vv;
@@ -210,8 +210,8 @@ public class LineSegment extends ParametricCurve implements CurveElem {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredPoints().put("origine/point origine", origine);
-        getDeclaredPoints().put("extremite/point extremite", extremite);
+        getDeclaredDataStructure().put("origine/point origine", origine);
+        getDeclaredDataStructure().put("extremite/point extremite", extremite);
 
     }
 }

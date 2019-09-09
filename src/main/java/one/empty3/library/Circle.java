@@ -10,23 +10,23 @@ import one.empty3.library.core.nurbs.ParametricCurve;
 
 
 public class Circle extends ParametricCurve {
-    protected Axe axis;
+    protected StructureMatrix<Axe> axis =new StructureMatrix(0);
     //public Point3D center;
-    protected Double radius;
+    protected StructureMatrix<Double>radius = new StructureMatrix<>(0);
     protected Point3D vectX;
     protected Point3D vectY;
     protected Point3D vectZ;
 
     public Circle()
     {
-        axis = new Axe();
-        radius = 10.0;
+        axis.setElem(new Axe());
+        radius.setElem(10.0);
         calculerRepere1();
     }
 
     public Circle(Axe axis, double radius) {
-        this.axis = axis;
-        this.radius = radius;
+        this.axis.setElem( axis);
+        this.radius.setElem(radius);
         calculerRepere1();
 
     }
@@ -68,9 +68,9 @@ public class Circle extends ParametricCurve {
         while (!success && i<3) {
             Point3D pRef = new Point3D(i == 0 ? 1d : 0d, i == 1 ? 1d : 0d, i == 2 ? 1d : 0d);
 
-            Point3D mult = axis.getVector().norme1().prodVect(axis.getVector().norme1().prodVect(pRef).norme1());
+            Point3D mult = axis.getElem().getVector().norme1().prodVect(axis.getElem().getVector().norme1().prodVect(pRef).norme1());
             double d = mult.prodScalaire(pRef);
-            vectY = axis.getVector().norme1();
+            vectY = axis.getElem().getVector().norme1();
             vectX = mult.norme1();
             vectZ = vectX.prodVect(vectY);
             if (mult.norme() > 0.8 || d >0.8) {
@@ -96,28 +96,28 @@ public class Circle extends ParametricCurve {
                                         vectY.mult(
                                                 Math.sin(2.0 * Math.PI * t)))
                 )
-                        .mult(radius)
+                        .mult(radius.getElem())
         );
     }
 
     public Axe getAxis() {
-        return axis;
+        return axis.getElem();
     }
 
     public void setAxis(Axe axis) {
-        this.axis = axis;
+        this.axis.setElem(axis);
     }
 
     public Point3D getCenter() {
-        return axis.getCenter();
+        return axis.getElem().getCenter();
     }
 
     public Double getRadius() {
-        return radius;
+        return radius.getElem();
     }
 
     public void setRadius(Double radius) {
-        this.radius = radius;
+        this.radius.setElem(radius);
     }
 
     public Point3D getVectX() {
@@ -145,15 +145,15 @@ public class Circle extends ParametricCurve {
     }
 
     public Point3D getvAxis() {
-        return axis.getVector();
+        return axis.getElem().getVector();
     }
 
     @Override
     public void declareProperties() {
         super.declareProperties();
         calculerRepere1();
-        getDeclaredRepresentables().put("axis/axe du cercle (perpendiculaire au plan)", axis);
-        getDeclaredDoubles().put("radius/rayon", radius);
+        getDeclaredDataStructure().put("axis/axe du cercle (perpendiculaire au plan)", axis);
+        getDeclaredDataStructure().put("radius/rayon", radius);
     }
 
     @Override

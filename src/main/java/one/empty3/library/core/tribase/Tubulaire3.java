@@ -23,26 +23,27 @@
 package one.empty3.library.core.tribase;
 
 import one.empty3.library.Point3D;
+import one.empty3.library.StructureMatrix;
 import one.empty3.library.core.nurbs.*;
 
 public class Tubulaire3 extends ParametricSurface {
     public  double TAN_FCT_INCR = 0.000001;
     public double NORM_FCT_INCR = 0.000001;
 
-    private CourbeParametriquePolynomialeBezier soulCurve;
-    private FctXY diameterFunction;
+    private StructureMatrix<CourbeParametriquePolynomialeBezier> soulCurve = new StructureMatrix<>();
+    private StructureMatrix<FctXY> diameterFunction = new StructureMatrix<>();
 
     public Tubulaire3()
     {
         super();
-        soulCurve = new CourbeParametriquePolynomialeBezier();
-        diameterFunction = new FctXY();
+        soulCurve.setElem(new CourbeParametriquePolynomialeBezier());
+        diameterFunction.setElem(new FctXY());
     }
 
     public Tubulaire3(CourbeParametriquePolynomialeBezier soulCurve, FctXY diameterCurve) {
         this();
-        this.soulCurve = soulCurve;
-        this.diameterFunction = diameterCurve;
+        this.soulCurve.setElem(soulCurve);
+        this.diameterFunction.setElem(diameterCurve);
     }
 
     public Point3D calculerNormale(double t) {
@@ -50,7 +51,7 @@ public class Tubulaire3 extends ParametricSurface {
     }
 
     public Point3D calculerTangente(double t) {
-        return soulCurve.calculerPoint3D(t + TAN_FCT_INCR).moins(soulCurve.calculerPoint3D(t)).
+        return soulCurve.getElem().calculerPoint3D(t + TAN_FCT_INCR).moins(soulCurve.getElem().calculerPoint3D(t)).
                 mult(1.0/TAN_FCT_INCR);
     }
 
@@ -121,32 +122,32 @@ public class Tubulaire3 extends ParametricSurface {
     @Override
     public Point3D calculerPoint3D(double u, double v) {
         Point3D[] vectPerp = vectPerp(u);
-        return soulCurve.calculerPoint3D(u).plus(
-                vectPerp[1].mult(diameterFunction.result(u)*Math.cos(2 * Math.PI * v)).plus(
-                        vectPerp[2].mult(diameterFunction.result(u)*Math.sin(2 * Math.PI * v))));
+        return soulCurve.getElem().calculerPoint3D(u).plus(
+                vectPerp[1].mult(diameterFunction.getElem().result(u)*Math.cos(2 * Math.PI * v)).plus(
+                        vectPerp[2].mult(diameterFunction.getElem().result(u)*Math.sin(2 * Math.PI * v))));
     }
 
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredRepresentables().put("soulCurve/ame de la courbe", soulCurve);
-        getDeclaredRepresentables().put("diameterFunction/ fonction de la longueur du diamètre", diameterFunction);
+        getDeclaredDataStructure().put("soulCurve/ame de la courbe", soulCurve);
+        getDeclaredDataStructure().put("diameterFunction/ fonction de la longueur du diamètre", diameterFunction);
 
     }
 
     public CourbeParametriquePolynomialeBezier getSoulCurve() {
-        return soulCurve;
+        return soulCurve.getElem();
     }
 
     public void setSoulCurve(CourbeParametriquePolynomialeBezier soulCurve) {
-        this.soulCurve = soulCurve;
+        this.soulCurve.setElem(soulCurve);
     }
 
     public FctXY getDiameterFunction() {
-        return diameterFunction;
+        return diameterFunction.getElem();
     }
 
     public void setDiameterFunction(FctXY diameterFunction) {
-        this.diameterFunction = diameterFunction;
+        this.diameterFunction.setElem(diameterFunction);
     }
 }

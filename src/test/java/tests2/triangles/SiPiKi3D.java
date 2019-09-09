@@ -46,9 +46,9 @@ public class SiPiKi3D extends RepresentableConteneur {
             for (int j = 0; j < t[0].size(); j++) {
                 TRI tt = t[0].get(j);
                 for (int k = 0; k < 3; k++) {
-                    Point3D p0 = tt.getSommet()[k];
-                    Point3D p1 = tt.getSommet()[(3 + k - 1) % 3].plus(tt.getSommet()[k]).mult(0.5);
-                    Point3D p2 = tt.getSommet()[(3 + k + 1) % 3].plus(tt.getSommet()[k]).mult(0.5);
+                    Point3D p0 = tt.getSommet().getElem(k);
+                    Point3D p1 = tt.getSommet().getElem((3 + k - 1) % 3).plus(tt.getSommet().getElem(k)).mult(0.5);
+                    Point3D p2 = tt.getSommet().getElem((3 + k + 1) % 3).plus(tt.getSommet().getElem(k)).mult(0.5);
                     t[1].add(new TRI(p0, p1, p2, tt.texture()));
                 }
             }

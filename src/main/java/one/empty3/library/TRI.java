@@ -22,16 +22,15 @@ import one.empty3.library.core.raytracer.RtRay;
 
 import java.awt.*;
 
-public class TRI extends Representable implements IMovable, IScalable {
+public class TRI extends Representable {
 
-    private Point3D[] sommet;
+    private StructureMatrix<Point3D> sommet= new StructureMatrix<>(1);
 
     public TRI() {
         super();
-        sommet = new Point3D[3];
-        sommet[0] = Point3D.O0;
-        sommet[1] = Point3D.O0;
-        sommet[2] = Point3D.O0;
+        sommet.add(1, Point3D.O0);
+        sommet.add(1, Point3D.O0);
+        sommet.add(1, Point3D.O0);
     }
 
     public TRI(Point3D coordPoint3D, Point3D coordPoint3D0, Point3D coordPoint3D1) {
@@ -40,21 +39,17 @@ public class TRI extends Representable implements IMovable, IScalable {
 
     public TRI(Point3D point3d, Point3D point3d2, Point3D point3d3,
                Color red) {
-        this();
-        sommet = new Point3D[3];
-        sommet[0] = point3d;
-        sommet[1] = point3d2;
-        sommet[2] = point3d3;
+        sommet.add(1,point3d);
+        sommet.add(1,point3d2);
+        sommet.add(1,point3d3);
         this.texture(new TextureCol(red));
     }
 
     public TRI(Point3D point3d, Point3D point3d2, Point3D point3d3,
                ITexture red) {
-        this();
-        sommet = new Point3D[3];
-        sommet[0] = point3d;
-        sommet[1] = point3d2;
-        sommet[2] = point3d3;
+        sommet.add(1,point3d);
+        sommet.add(1,point3d2);
+        sommet.add(1,point3d3);
         this.texture = red;
     }
 
@@ -66,23 +61,17 @@ public class TRI extends Representable implements IMovable, IScalable {
         this(s[0], s[1], s[2], c);
     }
 
-    public Object clone() {
-        TRI tri = new TRI();
-        tri.texture(texture());
-        tri.setSommet(sommet.clone());
-        return tri;
-    }
 
-    public Point3D[] getSommet() {
+    public StructureMatrix<Point3D> getSommet() {
         return sommet;
     }
 
     public void setSommet(Point3D[] sommet) {
-        this.sommet = sommet;
+        this.sommet = new StructureMatrix<>(sommet);
     }
 
     public Point3D normale() {
-        return sommet[1].moins(sommet[0]).prodVect(sommet[2].moins(sommet[0]));
+        return sommet.getElem(2).moins(sommet.getElem(0)).prodVect(sommet.getElem(1).moins(sommet.getElem(0)));
     }
 
 
@@ -95,7 +84,7 @@ public class TRI extends Representable implements IMovable, IScalable {
     public String toString() {
         String t = "tri (";
         for (int i = 0; i < 3; i++) {
-            t += "\n\t\t(" + sommet[i].getX() + ", " + sommet[i].getY() + ", " + sommet[i].getZ() + "), ";
+            t += "\n\t\t(" + sommet.getElem(0).getX() + ", " + sommet.getElem(1).getY() + ", " + sommet.getElem(2).getZ() + "), ";
         }
         return t + "\n\t\t(" + texture.toString() + ")\n\t)\n";
     }
@@ -107,55 +96,20 @@ public class TRI extends Representable implements IMovable, IScalable {
     }
 
     public Point3D getCentre() {
-        return getSommet()[0].plus(getSommet()[1]).plus(getSommet()[2].mult(1 / 3d));
+        return getSommet().getElem(0).plus(getSommet().getElem(1)).plus(getSommet().getElem(2).mult(1 / 3d));
     }
 
     public int intersects(TRI tri2) {
 
 
-        return TRI_Collide.tr_tri_intersect3D(getCentre(), getSommet()[0], getSommet()[1],
-                tri2.getCentre(), tri2.getSommet()[0], tri2.getSommet()[1]);
-    }
-
-    @Override
-    public void moveAdd(Point3D add) {
-        for (int i = 0; i < sommet.length; i++)
-            sommet[i].moveAdd(add);
-    }
-
-    @Override
-    public void moveTo(Point3D to) {
-        for (int i = 0; i < sommet.length; i++)
-            sommet[i].moveTo(to);
-
-    }
-
-    @Override
-    public void scale(Point3D center, double scale) {
-        for (int i = 0; i < sommet.length; i++) {
-            Point3D newPos = sommet[i].moins(center).mult(scale);
-            sommet[i] = newPos;
-
-        }
-
-
-    }
-
-    @Override
-    public void scale(double scale) {
-        Point3D center = Point3D.O0;
-        for (int i = 0; i < sommet.length; i++) {
-            center = center.plus(sommet[i]);
-        }
-        center = center.mult(1.0 / sommet.length);
-
-        scale(center, scale);
+        return TRI_Collide.tr_tri_intersect3D(getCentre(), getSommet().getElem(0), getSommet().getElem(1),
+                tri2.getCentre(), tri2.getSommet().getElem(0), tri2.getSommet().getElem(1));
     }
 
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredArray1Points().put("sommet/points sommets du triangle",sommet);
+        getDeclaredDataStructure().put("sommet/points sommets du triangle",sommet);
 
     }
 }

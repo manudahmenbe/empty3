@@ -22,7 +22,7 @@ package one.empty3.library.core.nurbs;
 
 import one.empty3.library.Point3D;
 import one.empty3.library.Polygon;
-import one.empty3.library.ZBuffer;
+import one.empty3.library.StructureMatrix;
 import one.empty3.library.core.tribase.TRIObjetGenerateurAbstract;
 
 /**
@@ -48,12 +48,14 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
 
     }
 
-    private Double incrU = 0.1;
-    private Double incrV = 0.1;
-    private Double incrVitesse = 0.0001;
-    private Double incrNormale = 0.000001;
-    private Double startU = 0.0, startV = 0.0;
-    private Double endU = 1.0, endV = 1.0;
+    private StructureMatrix<Double> incrU = new StructureMatrix<>(0);
+    private StructureMatrix<Double> incrV = new StructureMatrix<>(0);
+    private StructureMatrix<Double> incrVitesse = new StructureMatrix<>(0);
+    private StructureMatrix<Double> incrNormale = new StructureMatrix<>(0);
+    private StructureMatrix<Double> startU = new StructureMatrix<>(0);
+    private StructureMatrix<Double> endU = new StructureMatrix<>(0);
+    private StructureMatrix<Double> startV = new StructureMatrix<>(0);
+    private StructureMatrix<Double> endV = new StructureMatrix<>(0);
     private ParametricSurface.Parameters parameters = new ParametricSurface.Parameters(true);
 
     public static Globals getGlobals() {
@@ -65,7 +67,7 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
     }
 
     public Double getIncrU() {
-       return incrU;
+       return incrU.getElem();
     }
 
     public void setIncrU(Double incr1) {
@@ -74,7 +76,7 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
         } else {
             globals.setIncrU(incr1);
         }
-        this.incrU = incr1;
+        this.incrU.setElem(incr1);
     }
     public void setIncrV(Double incr2) {
         if (parameters.isGlobal()) {
@@ -82,11 +84,11 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
         } else {
             globals.setIncrV(incr2);
         }
-        this.incrV = incr2;
+        this.incrV .setElem(incr2);
     }
 
     public Double getIncrV() {
-        return incrV;
+        return incrV.getElem();
     }
 
 
@@ -96,65 +98,65 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
     }
 
     public Point3D calculerVitesse3D(double u, double v) {
-        Point3D moins = calculerPoint3D(u + incrVitesse, v).moins(calculerPoint3D(u, v));
-        Point3D moins1 = calculerPoint3D(u, v + incrVitesse).moins(calculerPoint3D(u, v));
-        return moins.plus(moins1).mult(0.5 / incrVitesse / incrVitesse).norme1();
+        Point3D moins = calculerPoint3D(u + incrVitesse.getElem(), v).moins(calculerPoint3D(u, v));
+        Point3D moins1 = calculerPoint3D(u, v + incrVitesse.getElem()).moins(calculerPoint3D(u, v));
+        return moins.plus(moins1).mult(0.5 / incrVitesse.getElem() / incrVitesse.getElem()).norme1();
     }
 
     public Point3D calculerNormale3D(double u, double v) {
-        Point3D moins = calculerPoint3D(u + incrNormale, v).plus(calculerPoint3D(u, v));
-        Point3D moins1 = calculerPoint3D(u, v + incrNormale).plus(calculerPoint3D(u, v));
-        return moins.prodVect(moins1).mult(0.5 / incrNormale / incrNormale).norme1();
+        Point3D moins = calculerPoint3D(u + incrNormale.getElem(), v).plus(calculerPoint3D(u, v));
+        Point3D moins1 = calculerPoint3D(u, v + incrNormale.getElem()).plus(calculerPoint3D(u, v));
+        return moins.prodVect(moins1).mult(0.5 / incrNormale.getElem() / incrNormale.getElem()).norme1();
     }
 
     public Point3D calculerTangenteU(double u, double v) {
-        Point3D moins = calculerPoint3D(u + incrVitesse, v).moins(calculerPoint3D(u, v));
-        return moins.mult(1.0 / incrVitesse / incrVitesse).norme1();
+        Point3D moins = calculerPoint3D(u + incrVitesse.getElem(), v).moins(calculerPoint3D(u, v));
+        return moins.mult(1.0 / incrVitesse.getElem() / incrVitesse.getElem()).norme1();
     }
 
     public Point3D calculerTangenteV(double u, double v) {
-        Point3D moins1 = calculerPoint3D(u, v + incrVitesse).moins(calculerPoint3D(u, v));
-        return moins1.mult(1.0 / incrVitesse).norme1();
+        Point3D moins1 = calculerPoint3D(u, v + incrVitesse.getElem()).moins(calculerPoint3D(u, v));
+        return moins1.mult(1.0 / incrVitesse.getElem()).norme1();
     }
 
     public Double incr1() {
-        return incrU;
+        return incrU.getElem();
     }
 
     public Double incr2() {
-        return incrU;
+        return incrV.getElem();
     }
 
     public Double getStartU() {
-        return startU;
+        return startU.getElem();
     }
 
     public void setStartU(Double s1) {
-        this.startU = s1;
+        this.startU.setElem(  s1);
     }
 
     public Double getStartV() {
-        return startV;
+        return startV.getElem();
     }
 
     public void setStartV(Double s2) {
-        this.startV = s2;
+        this.startV .setElem(  s2);
     }
 
     public Double getEndU() {
-        return endU;
+        return endU.getElem();
     }
 
     public void setEndU(Double e1) {
-        this.endU = e1;
+        this.endU .setElem(  e1);
     }
 
     public Double getEndV() {
-        return endV;
+        return endV.getElem();
     }
 
     public void setEndV(Double e2) {
-        this.endV = e2;
+        this.endV.setElem( e2);
     }
 
     public Point3D velocity(Double u1, Double v1, Double u2, Double v2) {
@@ -163,29 +165,6 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
 
     public Point3D coordPoint3D(int x, int y) {
         return calculerPoint3D(1.0 * x / getMaxX(), 1.0 * y / getMaxY());
-    }
-
-    @Override
-    public void drawStructureDrawFast(ZBuffer z) {
-        System.out.println("Drawn structure ffaast START");
-        Double incrU = 1.0 / NFAST;
-        Double incrV = 1.0 / NFAST;
-        for (Double u = startU; u < endU; u += incrU) {
-            for (Double v = startU; v < endU; v += incrV) {
-                Double[][] uvincr = new Double[][]{
-                        {u, v},
-                        {u + incrU, v},
-                        {u + incrU, v + incrV},
-                        {u, v + incrV}
-                };
-                for (int i = 0; i < 3; i++) {
-
-                    z.line(calculerPoint3D(uvincr[i][0], uvincr[i][1]),
-                            calculerPoint3D(uvincr[(i + 1) % 3][0], uvincr[(i + 1) % 3][0]), CFAST);
-                }
-            }
-        }
-        System.out.println("Drawn structure ffaast END");
     }
 
     public Polygon getElementSurface(Double u, Double incrU, Double v, Double incrV) {
@@ -264,47 +243,25 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
             this.isGlobal = global;
         }
     }
-    public ParametricSurface morph(Double incr1,
-        Double incr2)
+    public ParametricSurface ()
     {
-        // TODO
-        return this;
-
+        startU.setElem(0.0);
+        startV.setElem(0.0);
+        incrU.setElem(0.1);
+        incrV.setElem(0.1);
+        endU.setElem(1.0);
+        endV.setElem(1.0);
     }
 
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredDoubles().put("startU/startU", startU);
-        getDeclaredDoubles().put("startV/startV", startV);
-        getDeclaredDoubles().put("incrU/incrU", incrU);
-        getDeclaredDoubles().put("incrV/incrV", incrV);
-        getDeclaredDoubles().put("endU/endU", endU);
-        getDeclaredDoubles().put("endV/endV", endV);
-    }
-
-    public Double getIncrVitesse() {
-        return incrVitesse;
-    }
-
-    public void setIncrVitesse(Double incrVitesse) {
-        this.incrVitesse = incrVitesse;
-    }
-
-    public Double getIncrNormale() {
-        return incrNormale;
-    }
-
-    public void setIncrNormale(Double incrNormale) {
-        this.incrNormale = incrNormale;
-    }
-
-
-    public Double getNFAST() {
-        return NFAST;
-    }
-    public void setNFAST(Double NFAST) {
-        this.NFAST = NFAST;
+        getDeclaredDataStructure().put("startU/startU", startU);
+        getDeclaredDataStructure().put("startV/startV", startV);
+        getDeclaredDataStructure().put("incrU/incrU", incrU);
+        getDeclaredDataStructure().put("incrV/incrV", incrV);
+        getDeclaredDataStructure().put("endU/endU", endU);
+        getDeclaredDataStructure().put("endV/endV", endV);
     }
 
     public Parameters getParameters() {

@@ -25,7 +25,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Representable implements Serializable, Comparable {
     public static Point3D SCALE1 = new Point3D(1d, 1d,1d);
@@ -215,63 +214,9 @@ public class Representable implements Serializable, Comparable {
     }
 
 
-    protected HashMap<String, Double> declaredDoubles = new HashMap<>();
-    protected HashMap<String, Double[][]> declaredMatrix = new HashMap<>();
-    protected HashMap<String, Double[]> declaredArrays = new HashMap<>();
-    protected HashMap<String, Point3D> declaredPoints = new HashMap<>();
-    protected HashMap<String, ITexture> declaredTextures = new HashMap<>();
-    protected HashMap<String, Point3D[]> declaredArray1Points = new HashMap<>();
-    protected HashMap<String, Point3D[][]> declaredArray2Points = new HashMap<>();
-    protected HashMap<String, Representable> declaredRepresentables = new HashMap<>();
-    protected HashMap<String, Boolean> declaredBoolean = new HashMap<>();
-    protected HashMap<String,List> declaredLists = new HashMap<>();
-    protected HashMap<String,String> declaredString = new HashMap<>();
-    protected HashMap<String, Integer> declaredInteger = new HashMap<>();
-
-    public HashMap<String, List> getDeclaredLists() {
-        return declaredLists;
-    }
-    public HashMap<String, Double> getDeclaredDoubles() {
-        return declaredDoubles;
-    }
-
-    public HashMap<String, Double[][]> getDeclaredArrays2dDouble() {
-        return declaredMatrix;
-    }
-
-    public HashMap<String, Double[]> getDeclaredArray1dDouble() {
-        return declaredArrays;
-    }
-
-    public HashMap<String, Point3D> getDeclaredPoints() {
-        return declaredPoints;
-    }
-
-    public HashMap<String, ITexture> getDeclaredTextures() {
-        return declaredTextures;
-    }
-
-    public HashMap<String, Point3D[]> getDeclaredArray1Points() {
-        return declaredArray1Points;
-    }
-
-    public HashMap<String, Point3D[][]> getDeclaredArray2Points() {
-        return declaredArray2Points;
-    }
-
-    public HashMap<String, Representable> getDeclaredRepresentables() {
-        return declaredRepresentables;
-    }
-
-    public HashMap<String, Integer> getDeclaredInteger() {
-        return declaredInteger;
-    }
-
-    public HashMap<String, Boolean> getDeclaredBoolean() {
-        return declaredBoolean;
-    }
-    public HashMap<String, String> getDeclaredString() {
-        return declaredString;
+    private HashMap<String,StructureMatrix> declaredDataStructure = new HashMap<>();
+    public HashMap<String, StructureMatrix> getDeclaredDataStructure() {
+        return declaredDataStructure;
     }
 
     public ITexture getTexture() {
@@ -312,38 +257,13 @@ public class Representable implements Serializable, Comparable {
     public void declareProperties()
     {
         
-        declaredDoubles = new HashMap<>();
-        declaredMatrix = new HashMap<>();
-        declaredArrays = new HashMap<>();
-        declaredPoints = new HashMap<>();
-        declaredTextures = new HashMap<>();
-        declaredArray1Points = new HashMap<>();
-        declaredArray2Points = new HashMap<>();
-        declaredRepresentables = new HashMap<>();
-        declaredBoolean = new HashMap<>();
-        declaredLists = new HashMap<>();
-        declaredString = new HashMap<>();
-
-        getDeclaredTextures().put("texture/texture", texture);
 
     }
 
 
     public HashMap<String, Object> declarations(){
         HashMap<String, Object> declarations = new HashMap<>();
-        declarations.putAll(getDeclaredString());
-        declarations.putAll(getDeclaredArray1dDouble());
-        declarations.putAll(getDeclaredArray1Points());
-        declarations.putAll(getDeclaredArrays2dDouble());
-        declarations.putAll(getDeclaredArray2Points());
-        declarations.putAll(getDeclaredBoolean());
-        declarations.putAll(getDeclaredDoubles());
-        declarations.putAll(getDeclaredInteger());
-        declarations.putAll(getDeclaredLists());
-        declarations.putAll(getDeclaredPoints());
-        declarations.putAll(getDeclaredRepresentables());
-        declarations.putAll(getDeclaredTextures());
-
+        declarations.putAll(getDeclaredDataStructure());
         return declarations;
     }
 

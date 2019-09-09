@@ -81,7 +81,7 @@ public class Polyhedron extends Representable implements TRIConteneur {
             @Override
             public void accept(TRI tri) {
                 for (int i = 0; i < 3; i++)
-                    points2.add(tri.getSommet()[i]);
+                    points2.add(tri.getSommet().getElem(i));
             }
         });
 

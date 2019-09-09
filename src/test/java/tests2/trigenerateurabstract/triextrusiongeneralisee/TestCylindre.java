@@ -55,7 +55,7 @@ public class TestCylindre extends TestObjetSub {
 
     @Override
     public void testScene() throws Exception {
-        scene().clear();
+        scene().getObjets().data1d.clear();
         scene().add(eg);
         scene().cameraActive(new Camera(Point3D.Z.mult(-10d), Point3D.O0));
 

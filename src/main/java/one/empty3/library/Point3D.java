@@ -15,7 +15,7 @@ import one.empty3.library.core.nurbs.ParametricCurve;
 import one.empty3.library.core.nurbs.ParametricSurface;
 
 import java.awt.*;
-import java.util.Arrays;
+import java.util.List;
 
 /**
  * *
@@ -29,10 +29,10 @@ public class Point3D extends Representable implements IMovable {
     // TODO rename into Pixel3D? Tout doux.
     public Point3D() {
         super();
-        coordArr = new Double[3];
-        coordArr[0] = 0d;
-        coordArr[1] = 0d;
-        coordArr[2] = 0d;
+        coordArr = new StructureMatrix<Double>(1, new int[]{3});
+        coordArr.setElem(0d, 0);
+        coordArr.setElem(0d, 1);
+        coordArr.setElem(0d, 2);
     }
 
     /**
@@ -64,7 +64,7 @@ public class Point3D extends Representable implements IMovable {
      * *
      * Coordonnées (coordArr,y,z) du point
      */
-    public Double[] coordArr;
+    public StructureMatrix<Double> coordArr;
     /**
      * *
      * Pour le tracé de surface normale au point
@@ -88,9 +88,7 @@ public class Point3D extends Representable implements IMovable {
      */
     public Point3D(Double x0, Double y0, Double z0) {
         this();
-        coordArr[0] = x0;
-        coordArr[1] = y0;
-        coordArr[2] = z0;
+        coordArr = new StructureMatrix<Double>(new Double[] {x0, y0, z0});
     }
 
     /**
@@ -102,9 +100,7 @@ public class Point3D extends Representable implements IMovable {
      */
     public Point3D(Double x0, Double y0, Double z0, ITexture t) {
         this();
-        coordArr[0] = x0;
-        coordArr[1] = y0;
-        coordArr[2] = z0;
+        coordArr = new StructureMatrix<Double>(new Double[] {x0, y0, z0});
         texture(t);
     }
 
@@ -116,8 +112,7 @@ public class Point3D extends Representable implements IMovable {
      */
     public Point3D(Double[] x0, ITexture t) {
         this();
-        for (int i = 0; i < 3; i++)
-            coordArr[i] = x0[i];
+        coordArr = new StructureMatrix<Double>(x0);
         texture(t);
     }
 
@@ -128,10 +123,13 @@ public class Point3D extends Representable implements IMovable {
      */
     public Point3D(Point3D p0) {
         this();
-        coordArr[0] = p0.getX();
-        coordArr[1] = p0.getY();
-        coordArr[2] = p0.getZ();
+        for(int i=0; i<3; i++)
+            coordArr.setElem(p0.get(i), i);
         texture(p0.texture());
+    }
+
+    public Point3D(StructureMatrix<Double> coordArr) {
+        Point3D p = new Point3D(coordArr.getElem(0), coordArr.getElem(1), coordArr.getElem(2));
     }
 
     public static Point3D n(Double a, Double b, Double c) {
@@ -169,20 +167,20 @@ public class Point3D extends Representable implements IMovable {
 
     @Override
     public Object clone() {
-        return new Point3D(coordArr[0], coordArr[1], coordArr[2]);
+        return new Point3D(coordArr);
     }
 
     public Double get(int i) {
         if(i>=0 && i<3)
-            return coordArr[i];
+            return coordArr.getElem(i);
         return Double.NaN;
     }
     public Point3D scale() {
          return new Point3D (get(0)*scale.get(1),get(1)*scale.get(1),get(2)*scale.get(2));
     }
 
-    public Double[] getDoubleArray() {
-        return coordArr;
+    public List<Double> getDoubleArray() {
+        return coordArr.getData1d();
     }
 
 
@@ -194,32 +192,31 @@ public class Point3D extends Representable implements IMovable {
         this.normale = normale;
     }
 
-    public Double getX() {
-        return coordArr[0];
-    }
-
-    public void setX(Double x0) {
-        coordArr[0] = x0;
-
-    }
-
     public Double getY() {
-        return coordArr[1];
+        return coordArr.getElem(1);
     }
 
     public void setY(Double x0) {
-        coordArr[1] = x0;
+        coordArr.setElem(x0, 1);
 
     }
-
     public Double getZ() {
-        return coordArr[2];
+        return coordArr.getElem(2);
     }
 
     public void setZ(Double x0) {
-        coordArr[2] = x0;
+        coordArr.setElem(x0, 2);
 
     }
+    public Double getX() {
+        return coordArr.getElem(0);
+    }
+
+    public void setX(Double x0) {
+        coordArr.setElem(x0, 0);
+
+    }
+
 
 
 
@@ -302,7 +299,7 @@ public class Point3D extends Representable implements IMovable {
      * @return
      */
     public Double prodScalaire(Point3D p2) {
-        return coordArr[0] * p2.getX() + coordArr[1] * p2.getY() + coordArr[2] * p2.getZ();
+        return coordArr.getElem(0) * p2.getX() + coordArr.getElem(1) * p2.getY() + coordArr.getElem(2) * p2.getZ();
     }
 
     /**
@@ -319,21 +316,20 @@ public class Point3D extends Representable implements IMovable {
     }
 
     public void set(int i, Double d) {
-        coordArr[i] = d;
-        declareProperties();
+        coordArr.setElem(d, i);
 
     }
 
     public String toLongString() {
         //Color c = texture.toString();
-        return "p ( \n\t(" + coordArr[0] + " , " + coordArr[1] + " , " + coordArr[2] + " )\n\t("
+        return "p ( \n\t(" + coordArr.getElem(0) + " , " + coordArr.getElem(1)+ " , " + coordArr.getElem(2)+ " )\n\t("
                 + texture.toString()
                 + ")\n)\n";
     }
 
     @Override
     public String toString() {
-        return "( " + (Double) (coordArr[0]) + " , " + (Double) (coordArr[1]) + " , " + (Double) (coordArr[2]) + " ) ";
+        return "( " + (Double) (coordArr.getElem(0)) + " , " + (Double) (coordArr.getElem(1)) + " , " + (Double) (coordArr.getElem(2)) + " ) ";
     }
 
     private Point3D norme(Double d) {
@@ -353,12 +349,12 @@ public class Point3D extends Representable implements IMovable {
     }
 
     public Point2D get2D() {
-        return new Point2D(coordArr[0], coordArr[1]);
+        return new Point2D(coordArr.getElem(0), coordArr.getElem(1));
     }
 
     public void normalize() {
         Double n = norme();
-        for (int i = 0; i < coordArr.length; i++)
+        for (int i = 0; i < coordArr.getData1d().size(); i++)
             set(i, get(i) / n);
     }
 
@@ -367,14 +363,14 @@ public class Point3D extends Representable implements IMovable {
     }
 
     public Double NormeCarree() {
-        return coordArr[0] * coordArr[0] + coordArr[1] * coordArr[1] + coordArr[2] + coordArr[2];
+        return coordArr.getElem(0)* coordArr.getElem(0)+ coordArr.getElem(1)* coordArr.getElem(1)+ coordArr.getElem(2)* coordArr.getElem(2);
     }
 
     @Override
     public Representable intersects(Representable r2) {
         if (r2 instanceof Point3D) {
             Point3D p2 = (Point3D) (r2);
-            return ((coordArr[0] == p2.get(0)) && (coordArr[1] == p2.get(1)) && (coordArr[2] == p2.get(2))) ? this : null;
+            return ((coordArr.getElem(0) == p2.get(0)) && (coordArr.getElem(1) == p2.get(1)) && (coordArr.getElem(2) == p2.get(2))) ? this : null;
         } else if (r2 instanceof LineSegment) {
             LineSegment sd = (LineSegment) r2;
 
@@ -403,8 +399,8 @@ public class Point3D extends Representable implements IMovable {
     }
 
     public Point3D changeTo(Point3D dst) {
-        for (int i = 0; i < coordArr.length; i++)
-            this.coordArr[i] = dst.coordArr[i];
+        for (int i = 0; i < coordArr.getData1d().size(); i++)
+            this.coordArr.setElem(dst.coordArr.getElem(i), i);
         texture(dst.texture());
         return this;
     }
@@ -423,28 +419,29 @@ public class Point3D extends Representable implements IMovable {
 
         Point3D point3D = (Point3D) o;
 
-        return Arrays.equals(coordArr, point3D.coordArr);
+        if(point3D.coordArr.data1d.size()!=3)
+            return false;
+        if(this.coordArr.data1d.size()!=3)
+            return false;
+        for(int i=0; i<3; i++)
+            if(!coordArr.getElem(i).equals(point3D.get(i)))
+                return false;
+
+        return true;
     }
 
-    @Override
-    public int hashCode() {
-        return Arrays.hashCode(coordArr);
-    }
 
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredArray1dDouble().put("coordArr/tableau", coordArr);
-        getDeclaredDoubles().put("x/cordinates coordArr", coordArr[0]);
-        getDeclaredDoubles().put("y/cordinates y", coordArr[1]);
-        getDeclaredDoubles().put("z/cordinates z", coordArr[2]);
+        getDeclaredDataStructure().put("coordArr/coordonnées", coordArr);
     }
 
 
-    public Double[] getCoordArr() {
-        return coordArr;
+    public List<Double> getCoordArr() {
+        return coordArr.getData1d();
     }
 
-    public void setCoordArr(Double[] coordArr) {
-        this.coordArr = coordArr;
+    public void setCoordArr(List<Double> coordArr) {
+        this.coordArr = new StructureMatrix<Double>(coordArr);
     }
 }
