@@ -88,15 +88,30 @@ public class StructureMatrix<T>  {
 
     public void setElem(T value)
     {
+        dim = 0;
         this.data0d = value;
     }
     public void setElem(T elem, int i)
     {
-        data1d.set(i, elem);
+        dim = 1;
+        if (i < getData1d().size()) {
+            getData1d().set(i, elem);
+        }
+        for (int j = this.getData1d().size(); j <= i; j++) {
+            data1d.add(elem);
+        }
     }
     public void setElem(T elem, int i, int j)
     {
-        data2d.get(i).set(j, elem);
+
+        dim = 2;
+        for (int k = this.getData1d().size(); k <= i; k++) {
+            data2d.add(k, new ArrayList<>());
+            for (int l = this.getData1d().size(); l <= j; l++) {
+                data2d.get(i).set(j, elem);
+            }
+            data2d.get(i).set(j, elem);
+        }
     }
 
     public T getElem(int [] indices)

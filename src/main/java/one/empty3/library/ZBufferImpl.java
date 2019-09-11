@@ -483,9 +483,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     public double distanceCamera(Point3D x3d) {
         switch (type_perspective) {
             case PERSPECTIVE_ISOM:
-                return x3d.getZ() - scene().cameraActive.eye.getElem().getZ();
+                return x3d.getZ() - scene().cameraActive().eye.getElem().getZ();
             case PERSPECTIVE_OEIL:
-                return x3d.moins(scene().cameraActive().eye()).norme();
+                return x3d.moins(scene().cameraActive().eye.getElem()).norme();
             default:
                 throw new UnsupportedOperationException("Type de perspective non reconnu");
         }

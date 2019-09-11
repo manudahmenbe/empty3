@@ -32,7 +32,7 @@ public class Scene extends Representable implements Serializable {
     public String author;
     public String date;
     public String description;
-    public StructureMatrix<Camera> cameraActive =new StructureMatrix<>(new Camera());
+    public StructureMatrix<Camera> cameraActive = new StructureMatrix<>(0);
     private StructureMatrix<Representable> objets = new StructureMatrix<>(1);
     private StructureMatrix<Animation> animations = new StructureMatrix<>(1);
     private StructureMatrix<Camera> cameras = new StructureMatrix<>(1);
@@ -45,11 +45,17 @@ public class Scene extends Representable implements Serializable {
     private Time time;
     private List<Move> moves;
 
+    {
+
+    }
     // FOR LOADER
     private Representable dernierAjout;
 
     public Scene() {
+
         super();
+
+        cameraActive.setElem(new Camera());
     }
 
 

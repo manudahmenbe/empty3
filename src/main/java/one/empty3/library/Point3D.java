@@ -29,7 +29,7 @@ public class Point3D extends Representable implements IMovable {
     // TODO rename into Pixel3D? Tout doux.
     public Point3D() {
         super();
-        coordArr = new StructureMatrix<Double>(1, new int[]{3});
+        coordArr = new StructureMatrix<Double>(1);
         coordArr.setElem(0d, 0);
         coordArr.setElem(0d, 1);
         coordArr.setElem(0d, 2);
@@ -87,7 +87,6 @@ public class Point3D extends Representable implements IMovable {
      * @param z0 z-coordonnée
      */
     public Point3D(Double x0, Double y0, Double z0) {
-        this();
         coordArr = new StructureMatrix<Double>(new Double[] {x0, y0, z0});
     }
 
@@ -99,8 +98,7 @@ public class Point3D extends Representable implements IMovable {
      * @param z0 z-coordonnée
      */
     public Point3D(Double x0, Double y0, Double z0, ITexture t) {
-        this();
-        coordArr = new StructureMatrix<Double>(new Double[] {x0, y0, z0});
+        coordArr = new StructureMatrix<Double>(new Double[]{x0, y0, z0});
         texture(t);
     }
 

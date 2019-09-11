@@ -23,8 +23,8 @@ public class Camera extends CameraBox {
 
     public static Camera PARDEFAULT = new Camera();
 
-    protected StructureMatrix<Point3D> eye = new StructureMatrix<>(new Point3D(0d, 0d, -100d));
-    protected StructureMatrix<Point3D> lookat = new StructureMatrix<>(Point3D.O0);
+    protected StructureMatrix<Point3D> eye = new StructureMatrix<>(0);
+    protected StructureMatrix<Point3D> lookat = new StructureMatrix<>(0);
 
     protected StructureMatrix<Boolean> imposerMatrice = new StructureMatrix<>(0);
     protected StructureMatrix<Matrix33> matrice = new StructureMatrix<>(Matrix33.I);
