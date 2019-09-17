@@ -22,8 +22,6 @@ package one.empty3.library;
 
 import com.xuggle.mediatool.MediaListenerAdapter;
 
-import java.awt.*;
-
 /**
  * @author manu
  */
@@ -90,15 +88,6 @@ public abstract class ITexture extends MediaListenerAdapter {
      */
     public abstract int getColorAt(double x, double y);
 
-    /***
-     * @param numQuadX
-     * @param numQuadY
-     * @param u
-     * @param v
-     * @return
-     */
-    public abstract Color getMaillageTexturedColor(int numQuadX, int numQuadY, double u,
-                                                   double v);
 
     public abstract void timeNext();
 

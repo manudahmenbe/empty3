@@ -16,7 +16,6 @@ package one.empty3.library.svgtexture;
 import one.empty3.library.EOFVideoException;
 import one.empty3.library.ITexture;
 
-import java.awt.*;
 import java.io.File;
 
 /**
@@ -41,10 +40,6 @@ public class SVGTexture extends ITexture {
         return 0;
     }
 
-    @Override
-    public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double u, double v) {
-        return null;
-    }
 
 
     @Override

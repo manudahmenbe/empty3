@@ -169,8 +169,8 @@ public class TRIObjetGenerateurAbstract extends Representable implements TRIObje
                     sommet.get(1).moins(sommet.get(0)).mult(ratioX)).plus(
                     sommet.get(2).moins(sommet.get(1)).mult(ratioY));
             if (texture() == null) texture = new TextureCol(new Color(255, 128, 0));
-            ret.texture(new TextureCol(texture.getMaillageTexturedColor(numX, numY,
-                    ((numX + ratioX) / maxX.data0d), ((numY + ratioY) / maxY.data0d))));
+            ret.texture(new TextureCol(texture.getColorAt(
+                    (numX+(numX + ratioX) / maxX.data0d), (numY+(numY + ratioY) / maxY.data0d))));
 
             ret.setNormale((tris[0].getSommet().getElem(1).moins(tris[0].getSommet().getElem(0))).prodVect((tris[0]
                     .getSommet().getElem(2).moins(tris[0].getSommet().getElem(0)))));
@@ -182,8 +182,8 @@ public class TRIObjetGenerateurAbstract extends Representable implements TRIObje
             Point3D ret = sommet.get(1).plus(
                     sommet.get(0).moins(sommet.get(1)).mult(ratioY)).plus(
                     sommet.get(2).moins(sommet.get(0)).mult(ratioX));
-            ret.texture(new TextureCol(texture.getMaillageTexturedColor(numX, numY,
-                    ((numX + ratioX) / maxX.data0d), ((numY + ratioY) / maxY.data0d))));
+            ret.texture(new TextureCol(texture.getColorAt(
+                    (numX+(numX + ratioX) / maxX.data0d), (numY+(numY + ratioY) / maxY.data0d))));
 
             ret.setNormale((tris[1].getSommet().getElem(1).moins(tris[1].getSommet().getElem(0)).prodVect((tris[1]
                     .getSommet().getElem(2).moins(tris[1].getSommet().getElem(0))))));

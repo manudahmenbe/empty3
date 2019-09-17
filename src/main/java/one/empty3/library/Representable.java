@@ -218,6 +218,10 @@ public class Representable implements Serializable, Comparable {
     public HashMap<String, StructureMatrix> getDeclaredDataStructure() {
         return declaredDataStructure;
     }
+    private HashMap<String,StructureMatrix> declaredLists = new HashMap<>();
+    public HashMap<String, StructureMatrix> getDeclaredLists() {
+        return declaredLists;
+    }
 
     public ITexture getTexture() {
         return texture;

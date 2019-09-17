@@ -107,10 +107,6 @@ public class TextureMov extends ITexture {
 
     }
 
-    @Override
-    public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double u, double v) {
-        return null;
-    }
 
     @Override
     public void timeNext() {

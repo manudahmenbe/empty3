@@ -25,28 +25,30 @@ package one.empty3.library.core.nurbs;
 import one.empty3.library.Point3D;
 import one.empty3.library.StructureMatrix;
 
-import java.util.List;
-
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class CourbeParametriquePolynomiale extends ParametricCurve {
 
     protected StructureMatrix<Point3D> coefficients;
-    public StructureMatrix<Integer> power = new StructureMatrix<>(0);
+    protected StructureMatrix<Integer> power = new StructureMatrix<>(0);
 
     public CourbeParametriquePolynomiale(Point3D[] coefficients) {
         super();
-        this.coefficients = new StructureMatrix<>(coefficients);
+        this.coefficients = new StructureMatrix<Point3D>(coefficients);
         this.power.setElem(coefficients.length);
     }
 
     public CourbeParametriquePolynomiale() {
         super();
-        coefficients =  new StructureMatrix<>(new Point3D[] {new Point3D(Point3D.O0), new Point3D(Point3D.X)});
+        coefficients =  new StructureMatrix<>(1);
+        coefficients.setElem(new Point3D(0d,0d,0d), 0);
+        coefficients.setElem(new Point3D(100.0,0.0,0.0), 1);
         power.setElem( 2);
     }
     public void declareProperties() {
+        super.declareProperties();
+        power.setElem(coefficients.getData1d().size());
         getDeclaredDataStructure().put(("coefficients/points de contrôle"), coefficients);
         getDeclaredDataStructure().put(("power/puissance du polynone"), power);
     }
@@ -69,15 +71,18 @@ public class CourbeParametriquePolynomiale extends ParametricCurve {
         return sum;
     }
 
-    public List<Point3D> getCoefficients() {
-        return coefficients.getData1d();
+    public StructureMatrix<Point3D> getCoefficients() {
+        return coefficients;
     }
 
-    public void setCoefficients(List<Point3D> coefficients) {
-        this.coefficients = new StructureMatrix<>(coefficients);
+    public void setCoefficients(StructureMatrix<Point3D> coefficients) {
+        this.coefficients = coefficients;
     }
 
-    public int getPower() {
-        return power.getElem();
+    public Integer getPower() {
+        return getCoefficients().getData1d().size();
+    }
+    public void setPower(Integer pow) {
+        power.setElem(pow);
     }
 }

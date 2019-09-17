@@ -1,7 +1,5 @@
 package one.empty3.library;
 
-import java.awt.*;
-
 /**
  * Created by manue on 28-05-19.
  */
@@ -13,10 +11,6 @@ public abstract class TextureOp2D extends ITexture {
 
     }
 
-    @Override
-    public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double u, double v) {
-        return null;
-    }
 
     @Override
     public void timeNext() {

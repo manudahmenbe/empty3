@@ -25,8 +25,6 @@ package one.empty3.library.core.nurbs;
 import one.empty3.library.Point3D;
 import one.empty3.library.StructureMatrix;
 
-import java.util.List;
-
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
@@ -85,8 +83,8 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
         return sum;
     }
 
-    public List<List<Point3D>> getCoefficients() {
-        return coefficients.getData2d();
+    public StructureMatrix<Point3D> getCoefficients() {
+        return coefficients;
     }
 
     @Override
@@ -98,7 +96,7 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
 
     }
 
-    public void setCoefficients(List<List<Point3D>> coefficients) {
+    public void setCoefficients(StructureMatrix<Point3D> coefficients) {
         this.coefficients = new StructureMatrix(coefficients);
     }
 

@@ -25,8 +25,6 @@ package one.empty3.library.core.nurbs;
 import one.empty3.library.Point3D;
 import one.empty3.library.StructureMatrix;
 
-import java.util.List;
-
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
@@ -51,11 +49,13 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
     @Override
     public Point3D calculerPoint3D(double t) {
         Point3D sum = Point3D.O0;
-        int N = coefficients.getData1d().size();
-        for (int i = 0; i < coefficients.getData1d().size(); i++) {
+        int N = getPower();
+        //double bSum = 0.0;
+        for (int i = 0; i < N; i++) {
+            //bSum += B(i, N, t);
             sum = sum.plus(coefficients.getElem(i).mult(B(i, N - 1, t)));
         }
-        return sum;
+        return sum;//.mult(1/bSum);
     }
 
     @Override
@@ -71,11 +71,6 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
         return sum;
     }
 
-    public List<Point3D> getCoefficients() {
-        return coefficients.getData1d();
-    }
-
-
     public void declareProperties()
     {
         super.declareProperties();
@@ -87,5 +82,13 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
         for(int i=0; i<coefficients.getData1d().size(); i++)
             s+="\n"+coefficients.getElem(i).toString()+"\n";
         return s+")\n";
+    }
+
+
+    public Integer getPower() {
+        return getCoefficients().getData1d().size();
+    }
+    public void setPower(Integer pow) {
+        power.setElem(pow);
     }
 }

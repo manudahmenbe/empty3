@@ -435,11 +435,11 @@ public class Point3D extends Representable implements IMovable {
     }
 
 
-    public List<Double> getCoordArr() {
-        return coordArr.getData1d();
+    public StructureMatrix<Double> getCoordArr() {
+        return coordArr;
     }
 
-    public void setCoordArr(List<Double> coordArr) {
-        this.coordArr = new StructureMatrix<Double>(coordArr);
+    public void setCoordArr(StructureMatrix<Double> coordArr) {
+        this.coordArr = coordArr;
     }
 }
