@@ -22,7 +22,7 @@ public class StructureMatrixTest {
 
     @Test
     public void setElem() throws Exception {
-        StructureMatrix<Double> tab1 = new StructureMatrix<>(1, new int[]{3});
+        StructureMatrix<Double> tab1 = new StructureMatrix<>(1, Double.class);
         tab1.setElem(0.0, 0);
         tab1.setElem(1.0, 1);
         tab1.setElem(2.0, 2);
@@ -94,7 +94,8 @@ public class StructureMatrixTest {
                 {Point3D.n(-1, -2, 0), Point3D.n(-1, -1, 0), Point3D.n(-1, 0, 0), Point3D.n(-1, 1, 0), Point3D.n(-1, 2, 0)},
                 {Point3D.n(-2, -2, 0), Point3D.n(-2, -1, 0), Point3D.n(-2, 0, 0), Point3D.n(-2, 1, 0), Point3D.n(-2, 2, 0)}
         };
-        StructureMatrix<Point3D> matrix = new StructureMatrix<>(coeff);
+        StructureMatrix<Point3D> matrix = new StructureMatrix<>(2, Point3D.class);
+        matrix.setAll(coeff);
         for(int i=0; i<coeff.length; i++)
             for(int j=0; j<coeff[i].length; j++)
                 assertTrue(coeff[i][j].equals(matrix.getElem(i,j)));

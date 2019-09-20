@@ -9,17 +9,17 @@ import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
  * Created by manue on 28-05-19.
  */
 public class FctXY extends Fct1D_1D {
-    private StructureMatrix<String> formulaX = new StructureMatrix<>(0);
+    private StructureMatrix<String> formulaX = new StructureMatrix<>(0, String.class);
     private AlgebricTree treeX;
 
     public FctXY()
     {
-        formulaX.setElem("10.0");
 
+        formulaX.setElem("10.0");
         try {
             treeX = new AlgebricTree(formulaX.getElem());
-            treeX.construct();
             treeX.getParametersValues().put("x", 10.0);
+            treeX.construct();
         } catch (AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
         }

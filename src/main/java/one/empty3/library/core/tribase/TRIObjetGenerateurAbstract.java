@@ -37,10 +37,10 @@ public class TRIObjetGenerateurAbstract extends Representable implements TRIObje
 
 
     private static final long serialVersionUID = 1L;
-    protected StructureMatrix<Integer> maxX = new StructureMatrix<>(0);
-    protected StructureMatrix<Integer> maxY = new StructureMatrix<>(0);
-    protected StructureMatrix<Boolean> cx = new StructureMatrix<>(0);
-    protected StructureMatrix<Boolean> cy = new StructureMatrix<>(0);
+    protected StructureMatrix<Integer> maxX = new StructureMatrix<>(0, Integer.class);
+    protected StructureMatrix<Integer> maxY = new StructureMatrix<>(0, Integer.class);
+    protected StructureMatrix<Boolean> cx = new StructureMatrix<>(0, Boolean.class);
+    protected StructureMatrix<Boolean> cy = new StructureMatrix<>(0, Boolean.class);
     public TRIObjetGenerateurAbstract()
     {
         maxX.setElem(30);

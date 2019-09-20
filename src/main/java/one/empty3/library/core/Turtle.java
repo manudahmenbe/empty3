@@ -10,9 +10,9 @@ import one.empty3.library.core.nurbs.ParametricCurve;
  * Created by manue on 07-09-19.
  */
 public class Turtle extends ParametricCurve {
-    private StructureMatrix<Representable> matrixAndPoint = new StructureMatrix<>(1);
-    private StructureMatrix<Matrix33> actualOrientation = new StructureMatrix<>(0);
-    private StructureMatrix<Point3D> actualPosition = new StructureMatrix<>(0);
+    private StructureMatrix<Representable> matrixAndPoint = new StructureMatrix<>(1, Representable.class);
+    private StructureMatrix<Matrix33> actualOrientation = new StructureMatrix<>(0, Matrix33.class);
+    private StructureMatrix<Point3D> actualPosition = new StructureMatrix<>(0, Point3D.class);
 
     private Matrix33 rX(double angle)
     {

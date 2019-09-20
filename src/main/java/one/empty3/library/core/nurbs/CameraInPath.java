@@ -41,7 +41,7 @@ public class CameraInPath extends Camera {
         this.angleB = angleBRad;
     }
 
-    private StructureMatrix<ParametricCurve> courbe = new StructureMatrix<>(0);
+    private StructureMatrix<ParametricCurve> courbe = new StructureMatrix<>(0, ParametricCurve.class);
     private double t;
 
     public CameraInPath(ParametricCurve maCourbe) {

@@ -30,21 +30,23 @@ import one.empty3.library.StructureMatrix;
  */
 public class SurfaceParametriquePolynomialeBezier extends ParametricSurface implements SurfaceElem{
 
-    protected StructureMatrix<Point3D> coefficients;
-    protected StructureMatrix<Integer> power1 =new StructureMatrix<>(0);
-    protected StructureMatrix<Integer> power2=new StructureMatrix<>(0);;
+    protected StructureMatrix<Point3D> coefficients = new StructureMatrix<>(2, Point3D.class);;
+    protected StructureMatrix<Integer> power1 =new StructureMatrix<>(0, Integer.class);
+    protected StructureMatrix<Integer> power2=new StructureMatrix<>(0, Integer.class);;
 
 
     public SurfaceParametriquePolynomialeBezier(Point3D[][] coefficients)
     {
         this();
-        this.coefficients = new StructureMatrix<>(coefficients);
+        this.coefficients.setAll(coefficients);
         power1.setElem(coefficients.length);
         power2.setElem(coefficients[0].length);
     }
     public SurfaceParametriquePolynomialeBezier()
     {
-        this.coefficients = new StructureMatrix<>(new Point3D[][]
+        this.coefficients = new StructureMatrix<>(2, Point3D.class);
+        this.coefficients.setAll(
+        new Point3D[][]
                 {
 
                         {Point3D.P.n(2., -2d, 0d), Point3D.P.n(2, -1, 0), Point3D.P.n(2, 0, 0), Point3D.P.n(2, 1, 0), Point3D.P.n(2, 2, 0)},
@@ -97,7 +99,7 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
     }
 
     public void setCoefficients(StructureMatrix<Point3D> coefficients) {
-        this.coefficients = new StructureMatrix(coefficients);
+        this.coefficients = coefficients;
     }
 
     public Integer getPower1() {
@@ -105,7 +107,7 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
     }
 
     public void setPower1(Integer power1) {
-        this.power1 = new StructureMatrix<>(power1);
+        this.power1 = new StructureMatrix<>(power1, Integer.class);
     }
 
     public Integer getPower2() {
@@ -113,7 +115,7 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
     }
 
     public void setPower2(Integer power2) {
-        this.power2 = new StructureMatrix<>(power2);
+        this.power2 = new StructureMatrix<>(power2, Integer.class);
     }
 
     @Override

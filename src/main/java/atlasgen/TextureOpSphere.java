@@ -4,8 +4,6 @@ import one.empty3.library.EOFVideoException;
 import one.empty3.library.ITexture;
 import one.empty3.library.TextureOp2D;
 
-import java.awt.*;
-
 /**
  * Created by manue on 10-05-19.
  */
@@ -17,11 +15,6 @@ public class TextureOpSphere extends TextureOp2D {
     @Override
     public void iterate() throws EOFVideoException {
 
-    }
-
-    @Override
-    public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double u, double v) {
-        return null;
     }
 
     @Override

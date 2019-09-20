@@ -21,9 +21,9 @@ import one.empty3.library.core.nurbs.ParametricSurface;
 
 public class Plan3D extends ParametricSurface {
 
-    private StructureMatrix<Point3D> p0 = new StructureMatrix<>(0);
-    private StructureMatrix<Point3D> vX = new StructureMatrix<>(0);
-    private StructureMatrix<Point3D> vY = new StructureMatrix<>(0);
+    private StructureMatrix<Point3D> p0 = new StructureMatrix<>(0, Point3D.class);
+    private StructureMatrix<Point3D> vX = new StructureMatrix<>(0, Point3D.class);
+    private StructureMatrix<Point3D> vY = new StructureMatrix<>(0, Point3D.class);
 
     public Plan3D() {
         p0.setElem(new Point3D(0.0, 0.0, 0.0));

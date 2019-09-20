@@ -26,10 +26,9 @@ import java.util.List;
  * @author Manuel Dahmen
  */
 public class Point3D extends Representable implements IMovable {
-    // TODO rename into Pixel3D? Tout doux.
     public Point3D() {
         super();
-        coordArr = new StructureMatrix<Double>(1);
+        coordArr = new StructureMatrix<Double>(1, Double.class);
         coordArr.setElem(0d, 0);
         coordArr.setElem(0d, 1);
         coordArr.setElem(0d, 2);
@@ -87,7 +86,10 @@ public class Point3D extends Representable implements IMovable {
      * @param z0 z-coordonnée
      */
     public Point3D(Double x0, Double y0, Double z0) {
-        coordArr = new StructureMatrix<Double>(new Double[] {x0, y0, z0});
+        this();
+        coordArr.setElem(x0, 0);
+        coordArr.setElem(y0, 1);
+        coordArr.setElem(z0, 2);
     }
 
     /**
@@ -98,7 +100,7 @@ public class Point3D extends Representable implements IMovable {
      * @param z0 z-coordonnée
      */
     public Point3D(Double x0, Double y0, Double z0, ITexture t) {
-        coordArr = new StructureMatrix<Double>(new Double[]{x0, y0, z0});
+        this(x0, y0, z0);
         texture(t);
     }
 
@@ -109,9 +111,7 @@ public class Point3D extends Representable implements IMovable {
      * @param x0 coordonnées (3)
      */
     public Point3D(Double[] x0, ITexture t) {
-        this();
-        coordArr = new StructureMatrix<Double>(x0);
-        texture(t);
+        this(x0[0], x0[1], x0[2], t);
     }
 
     /***
@@ -120,10 +120,7 @@ public class Point3D extends Representable implements IMovable {
      * @param p0 point à copier
      */
     public Point3D(Point3D p0) {
-        this();
-        for(int i=0; i<3; i++)
-            coordArr.setElem(p0.get(i), i);
-        texture(p0.texture());
+        this(p0.get(0), p0.get(1), p0.get(2), p0.texture);
     }
 
     public Point3D(StructureMatrix<Double> coordArr) {

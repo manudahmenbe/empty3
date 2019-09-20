@@ -32,12 +32,12 @@ public class Scene extends Representable implements Serializable {
     public String author;
     public String date;
     public String description;
-    public StructureMatrix<Camera> cameraActive = new StructureMatrix<>(0);
-    private StructureMatrix<Representable> objets = new StructureMatrix<>(1);
-    private StructureMatrix<Animation> animations = new StructureMatrix<>(1);
-    private StructureMatrix<Camera> cameras = new StructureMatrix<>(1);
-    private StructureMatrix<ITexture> colors = new StructureMatrix<>(1);
-    private StructureMatrix<Lumiere> lumieres = new StructureMatrix<>(1);
+    public StructureMatrix<Camera> cameraActive = new StructureMatrix<>(0, Camera.class);
+    private StructureMatrix<Representable> objets = new StructureMatrix<>(1, Representable.class);
+    private StructureMatrix<Animation> animations = new StructureMatrix<>(1, Animation.class);
+    private StructureMatrix<Camera> cameras = new StructureMatrix<>(1, Camera.class);
+    private StructureMatrix<ITexture> colors = new StructureMatrix<>(1, ITexture.class);
+    private StructureMatrix<Lumiere> lumieres = new StructureMatrix<>(1, Lumiere.class);
     private SceneCadre cadre = new SceneCadre();
     private GTime gt = new GTime();
     private Lumiere lumiereActive;
@@ -54,8 +54,9 @@ public class Scene extends Representable implements Serializable {
     public Scene() {
 
         super();
-
-        cameraActive.setElem(new Camera());
+        Camera camera = new Camera();
+        cameras.setElem(camera, 0);
+        cameraActive.setElem(camera);
     }
 
 
@@ -435,11 +436,11 @@ public class Scene extends Representable implements Serializable {
     }
 
     public void setLumieres(ArrayList<Lumiere> lumieres) {
-        this.lumieres = new StructureMatrix<>(lumieres);
+        this.lumieres.setAll(lumieres);
     }
 
     public void setCameras(ArrayList<Camera> cameras) {
-        this.cameras= new StructureMatrix<>(cameras);
+        this.cameras.setAll(cameras);
 
     }
 

@@ -4,8 +4,8 @@ import one.empty3.library.core.nurbs.ParametricSurface;
 
 
 public class Sphere extends ParametricSurface {
-    protected StructureMatrix<Circle> circle = new StructureMatrix<>(0);
-    private StructureMatrix<Axe> axe = new StructureMatrix<>(0);
+    protected StructureMatrix<Circle> circle = new StructureMatrix<>(0, Circle.class);
+    private StructureMatrix<Axe> axe = new StructureMatrix<>(0, Axe.class);
 
     public Sphere()
     {

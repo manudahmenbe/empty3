@@ -9,9 +9,9 @@ import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
 import java.util.HashMap;
 
 public class FunctionCurve extends ParametricCurve {
-    private StructureMatrix<String> x = new StructureMatrix<>(0);
-    private StructureMatrix<String> y = new StructureMatrix<>(0);
-    private StructureMatrix<String> z = new StructureMatrix<>(0);
+    private StructureMatrix<String> x = new StructureMatrix<>(0, String.class);
+    private StructureMatrix<String> y = new StructureMatrix<>(0, String.class);
+    private StructureMatrix<String> z = new StructureMatrix<>(0, String.class);
     private AlgebricTree treeX;
     private AlgebricTree treeY;
     private AlgebricTree treeZ;

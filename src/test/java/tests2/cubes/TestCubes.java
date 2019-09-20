@@ -19,9 +19,6 @@ public class TestCubes extends TestObjetSub {
 
         tc.loop(true);
 
-
-        tc.setResx(640);
-        tc.setResy(480);
         tc.setMaxFrames(25 * 60);
 
         new Thread(tc).start();
@@ -44,8 +41,9 @@ public class TestCubes extends TestObjetSub {
 
         scene().cameraActive(new Camera(
                 new Point3D(0d, 0d, z(-250d, 250d, 0, getMaxFrames())),
-                new Point3D(0d, 0d, 1000000d)
+                new Point3D(0d, 0d, 1000d)
         ));
+        scene().cameraActive().calculerMatrice(Point3D.Y);
     }
 
     @Override

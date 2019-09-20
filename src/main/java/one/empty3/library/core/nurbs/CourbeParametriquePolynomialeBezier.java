@@ -36,7 +36,8 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
         super();
     }
     public CourbeParametriquePolynomialeBezier(Point3D[] coefficients) {
-        this.coefficients = new StructureMatrix<>(coefficients);
+        this.coefficients = new StructureMatrix<>(1, Point3D.class);
+        this.coefficients.setAll(coefficients);
         power.setElem(coefficients.length);
     }
 
@@ -85,10 +86,4 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
     }
 
 
-    public Integer getPower() {
-        return getCoefficients().getData1d().size();
-    }
-    public void setPower(Integer pow) {
-        power.setElem(pow);
-    }
 }

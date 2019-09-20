@@ -10,8 +10,8 @@
 package tests2.TestSphere;
 
 import one.empty3.library.*;
+import one.empty3.library.core.move.Trajectoires;
 import one.empty3.library.core.testing.TestObjetSub;
-import one.empty3.library.core.tribase.TRISphere;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -25,13 +25,13 @@ import java.util.logging.Logger;
  */
 public class TestSphere extends TestObjetSub {
     public int size = 10;
-    public double taille = 0.2;
+    public double taille = 1.0;
     public double incrlong = 0.001;
     public double incrlat = 0.001;
     private double[] longpc;
     private double[] latpc;
     private double[][] incrpc;
-    private TRISphere[] s;
+    private Sphere[] s;
 
     public static void main(String[] args) {
         TestSphere ts = new TestSphere();
@@ -59,12 +59,12 @@ public class TestSphere extends TestObjetSub {
             incrpc[i][1] = Math.random() * 0.1;
         }
 
-        s = new TRISphere[size - 1];
+        s = new Sphere[size - 1];
 
         for (int i = 0; i < s.length; i++) {
-            s[i] = new TRISphere(Point3D.O0, taille);
+            s[i] = new Sphere(Point3D.O0, taille);
             try {
-                s[i].texture(new TextureImg(new ECBufferedImage(ImageIO.read(new File("C:\\Users\\Se7en\\Pictures\\manu2.jpg")))));
+                s[i].texture(new TextureImg(new ECBufferedImage(ImageIO.read(new File("resources/img/2iu2h2w0.bmp")))));
             } catch (IOException ex) {
                 s[i].texture(new TextureCol(Color.PINK));
                 Logger.getLogger(TestSphere.class.getName()).log(Level.SEVERE, null, ex);
@@ -86,12 +86,16 @@ public class TestSphere extends TestObjetSub {
     @Override
     public void testScene() throws Exception {
         scene().cameraActive(new Camera(
-                Trajectoires.sphere(longpc(0), latpc(0), incrlong),
-                Trajectoires.sphere(longpc(0), latpc(0), incrlat)
+                Trajectoires.sphere(longpc(0), latpc(0), 0.5),
+                Trajectoires.sphere(longpc(0), latpc(0), 0.5)
 
         ));
-        for (int i = 0; i < s.length; i++)
-            s[i].setCentre(Trajectoires.sphere(longpc(i + 1), latpc(i + 1), 1.0));
-
+        scene().cameraActive().calculerMatrice(Point3D.Y);
+        for (int i = 0; i < s.length; i++) {
+            Point3D pA = s[i].getCircle().getAxis().getP1();
+            Point3D pB = Trajectoires.sphere(longpc(i + 1), latpc(i + 1), size);
+            s[i].getCircle().setAxis(new Axe(pA, pB));
+            s[i].getCircle().calculerRepere1();
+        }
     }
 }

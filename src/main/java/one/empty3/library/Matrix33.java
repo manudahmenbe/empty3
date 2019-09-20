@@ -45,16 +45,17 @@ public class Matrix33 extends Representable{
 
     }
 
-    private StructureMatrix<Double> d;
+    private StructureMatrix<Double> d = new StructureMatrix<>(1, Double.class);
 
     public Matrix33(Matrix33 copy) {
-        super();
-        d = new StructureMatrix<>(copy.getDoubleArray());
+        this();
+        d.setAll(copy.getDoubleArray());
     }
 
     public Matrix33() {
         super();
-        d = new StructureMatrix<>(1, new int[]{9});
+        d = new StructureMatrix<>(1, Double.class);
+        d.setAll(new Double[9]);
 
     }
 
@@ -63,7 +64,7 @@ public class Matrix33 extends Representable{
             System.out.println("Erreur dans Matrix33 . 9 éléments requis");
             throw new IndexOutOfBoundsException("Matrix33 9 "+d.length);
         }
-        this.d = new StructureMatrix<>(d);
+        this.d.setAll(d);
     }
 
     public Matrix33(Point3D[] p) {

@@ -27,7 +27,7 @@ public class Polygon extends Representable implements SurfaceElem {
     /**
      *
      */
-    private StructureMatrix<Point3D> points = new StructureMatrix<>(1);
+    private StructureMatrix<Point3D> points = new StructureMatrix<>(1, Point3D.class);
 
     public Polygon() {
         super();
@@ -54,7 +54,7 @@ public class Polygon extends Representable implements SurfaceElem {
     public Polygon(Point3D[] list, ITexture c) {
         this();
         this.texture = c;
-        points = new StructureMatrix<>(list);
+        points.setAll(list);
     }
 
     public void add(Point3D point3D) {
@@ -64,7 +64,7 @@ public class Polygon extends Representable implements SurfaceElem {
         else {
             newLength = points.getData1d().size() + 1;
             java.util.List<Point3D> tmp = points.getData1d();
-            points = new StructureMatrix<>(1);
+            points = new StructureMatrix<>(1, Point3D.class);
             for (int i = 0; i < tmp.size(); i++)
                 points.setElem(tmp.get(i), i);
             points.setElem(point3D, newLength - 1);
@@ -78,7 +78,7 @@ public class Polygon extends Representable implements SurfaceElem {
     }
 
     public void setPoints(Point3D[] points) {
-        this.points = new StructureMatrix<>(points);
+        this.points.setAll(points);
         declareProperties();
     }
 

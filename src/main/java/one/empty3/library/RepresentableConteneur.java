@@ -23,7 +23,7 @@ import java.util.*;
  */
 public class RepresentableConteneur extends Representable implements IMovable, IScalable {
 
-    private StructureMatrix<Representable> re = new StructureMatrix<>(1);
+    private StructureMatrix<Representable> re = new StructureMatrix(1, Representable.class);
 
     public RepresentableConteneur() {
     }

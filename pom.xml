@@ -19,7 +19,7 @@
         <repository>
             <id>if2</id>
             <name>empty3.one</name>
-            <url>ftp://ftp.empty3.one/</url>
+            <url>ftp://ftp.empty3.one/downloads/.m2</url>
         </repository>
     </distributionManagement>
 

@@ -12,8 +12,8 @@ import one.empty3.library.core.nurbs.ParametricSurface;
  */
 public class TRIEllipsoide extends ParametricSurface {
 
-    private StructureMatrix<Point3D> centre = new StructureMatrix<>(0);
-    private StructureMatrix<Double> radius = new StructureMatrix<>(1);
+    private StructureMatrix<Point3D> centre = new StructureMatrix<>(0, Point3D.class);
+    private StructureMatrix<Double> radius = new StructureMatrix<>(1, Double.class);
 
     public TRIEllipsoide() {
         centre.setElem(Point3D.O0);

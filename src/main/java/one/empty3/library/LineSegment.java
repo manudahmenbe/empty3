@@ -33,8 +33,8 @@ import java.awt.*;
 public class LineSegment extends ParametricCurve implements CurveElem {
 
     public double SMALL_NUM = Double.MIN_VALUE; // anything that avoids division
-    private StructureMatrix<Point3D> origine = new StructureMatrix<>(0);
-    private StructureMatrix<Point3D> extremite = new StructureMatrix<>(0);
+    private StructureMatrix<Point3D> origine = new StructureMatrix<>(0, Point3D.class);
+    private StructureMatrix<Point3D> extremite = new StructureMatrix<>(0, Point3D.class);
     // overflow
 
     public LineSegment()

@@ -19,8 +19,8 @@ package one.empty3.library;
 
 public class Axe extends Representable{
 
-    private StructureMatrix<Point3D> p1 =  new StructureMatrix<>(0);
-    private StructureMatrix<Point3D> p2 =  new StructureMatrix<>(0);
+    private StructureMatrix<Point3D> p1 =  new StructureMatrix<>(0, Point3D.class);
+    private StructureMatrix<Point3D> p2 =  new StructureMatrix<>(0, Point3D.class);
 
 
     public Axe()

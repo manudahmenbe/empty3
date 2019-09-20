@@ -23,7 +23,6 @@ package one.empty3.library.core.nurbs;
 import one.empty3.library.Point3D;
 import one.empty3.library.Representable;
 import one.empty3.library.StructureMatrix;
-import one.empty3.library.ZBuffer;
 
 /**
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
@@ -46,16 +45,16 @@ public class ParametricCurve extends Representable {
     {
         super();
         startU.setElem(0.0);
-        endU.setElem(0.0);
+        endU.setElem(1.0);
         incrU.setElem(0.01);
-        connected.setElem(true);
+        connected.setElem(Boolean.TRUE);
     }
 
-    protected StructureMatrix<Double> startU = new StructureMatrix<>(0);
-    protected StructureMatrix<Double>  endU= new StructureMatrix<>(0);
-    protected StructureMatrix<Boolean> connected = new StructureMatrix<>(0);
+    protected StructureMatrix<Double> startU = new StructureMatrix<>(0, Double.class);
+    protected StructureMatrix<Double>  endU= new StructureMatrix<>(0, Double.class);
+    protected StructureMatrix<Boolean> connected = new StructureMatrix<>(0, Boolean.class);
     private Parameters parameters = new Parameters(true);
-    private StructureMatrix<Double> incrU = new StructureMatrix<>(0);
+    private StructureMatrix<Double> incrU = new StructureMatrix<>(0, Double.class);
     private Double incrTAN = 0.0001;
 
     public static void setGlobals(Globals globals) {
@@ -100,7 +99,7 @@ public class ParametricCurve extends Representable {
         } else {
             incr = globals.getIncrU();
         }
-        StructureMatrix<Double> doubleStructureMatrix = new StructureMatrix<>(0);
+        StructureMatrix<Double> doubleStructureMatrix = new StructureMatrix<>(0, Double.class);
         doubleStructureMatrix.setElem(incr <= incrU.getElem()? incrU.getElem() : incr);
         return doubleStructureMatrix;
     }
@@ -113,32 +112,18 @@ public class ParametricCurve extends Representable {
         startU.setElem(s);
     }
 
-    @Override
-    public boolean ISdrawStructureDrawFastIMPLEMENTED(ZBuffer z) {
-        return true;
-    }
 
-    @Override
-    public void drawStructureDrawFast(ZBuffer z) {
-        for (int i = 0; i < 100; i++) {
-            Point3D d = calculerPoint3D(0.0 + 1.0 * i / NFAST);
-            d.texture(CFAST);
-            if (d.ISdrawStructureDrawFastIMPLEMENTED(z)) {
-                d.drawStructureDrawFast(z);
-
-            } else
-                ;
-        }
-    }
-
-    public boolean isConnected() {
+    public Boolean isConnected() {
         return connected.getElem();
     }
 
-    public void setConnected(boolean connected) {
-        this.connected.setElem(connected);
+    public void setConnected(Boolean connected) {
+        this.connected.setElem(Boolean.valueOf(connected));
     }
 
+    public Boolean getConnected() {
+        return this.connected.getElem();
+    }
 
     public static class Globals {
         private Double incrU = 0.0;

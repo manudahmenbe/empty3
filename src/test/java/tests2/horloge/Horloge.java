@@ -7,14 +7,12 @@ import one.empty3.library.*;
 import one.empty3.library.core.tribase.TRISphere;
 import one.empty3.library.core.tribase.TubulaireN2;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,10 +25,10 @@ public class Horloge extends JFrame {
     Dimension res;
     Scene sc;
     private boolean montre = true;
-    private TRISphere s0;
-    private TRISphere sH;
-    private TRISphere sS;
-    private TRISphere sM;
+    private Sphere s0;
+    private Sphere sH;
+    private Sphere sS;
+    private Sphere sM;
     private LineSegment droite2;
     private LineSegment droite0;
     private LineSegment droite1;
@@ -87,20 +85,20 @@ public class Horloge extends JFrame {
 
         sc = new Scene();
 
-        s0 = new TRISphere(Point3D.O0, 10);
-        sH = new TRISphere(position(f * d.getHours() / 12)
+        s0 = new Sphere(Point3D.O0, 10);
+        sH = new Sphere(position(f * d.getHours() / 12)
                 .mult(80d), 12);
-        sM = new TRISphere(position(f * d.getMinutes() / 60)
+        sM = new Sphere(position(f * d.getMinutes() / 60)
                 .mult(80d), 8);
-        sS = new TRISphere(position(f * d.getSeconds() / 60)
+        sS = new Sphere(position(f * d.getSeconds() / 60)
                 .mult(80d), 6);
-        TRISphere sG0 = new TRISphere(position(f * 0.0 / 12)
+        Sphere sG0 = new Sphere(position(f * 0.0 / 12)
                 .mult(80d), 10);
-        TRISphere sG3 = new TRISphere(position(f * 3.0 / 12)
+        Sphere sG3 = new Sphere(position(f * 3.0 / 12)
                 .mult(80d), 10);
-        TRISphere sG6 = new TRISphere(position(f * 6.0 / 12)
+        Sphere sG6 = new Sphere(position(f * 6.0 / 12)
                 .mult(80d), 10);
-        TRISphere sG9 = new TRISphere(position(f * 9.0 / 12)
+        Sphere sG9 = new Sphere(position(f * 9.0 / 12)
                 .mult(80d), 10);
         sG0.texture(new TextureCol(Color.GREEN));
         sG3.texture(new TextureCol(Color.GREEN));
@@ -110,31 +108,10 @@ public class Horloge extends JFrame {
         sH.texture(new TextureCol(Color.MAGENTA));
         sM.texture(new TextureCol(Color.BLUE));
         sS.texture(new TextureCol(Color.RED));
-        try {
-            s0.texture(
-                    new TextureImg(
-                            new ECBufferedImage(
-                                    ImageIO.read(new File("c:\\Emptycanvas\\textures\\troisbandes.jpg")))));
-            sH.texture(
-                    new TextureImg(
-                            new ECBufferedImage(
-                                    ImageIO.read(new File("c:\\Emptycanvas\\textures\\moi1.jpg")))));
-            sM.texture(
-                    new TextureImg(
-                            new ECBufferedImage(
-                                    ImageIO.read(new File("c:\\Emptycanvas\\textures\\be.manudahmen.empty3.tests2.spheres.jpg")))));
-            sS.texture(
-                    new TextureImg(
-                            new ECBufferedImage(
-                                    ImageIO.read(new File("c:\\Emptycanvas\\textures\\paillettes.jpg")))));
-
-        } catch (Exception ex) {
-            s0.texture(new TextureCol(Color.RED));
-            sH.texture(new TextureCol(Color.GREEN));
-            sM.texture(new TextureCol(Color.BLUE));
-            sS.texture(new TextureCol(Color.YELLOW));
-            Logger.getLogger(Horloge.class.getName()).log(Level.SEVERE, "Fichiers textures absents", ex);
-        }
+        s0.texture(new TextureCol(Color.RED));
+        sH.texture(new TextureCol(Color.GREEN));
+        sM.texture(new TextureCol(Color.BLUE));
+        sS.texture(new TextureCol(Color.YELLOW));
 
         for (int i = 0; i < 12; i++) {
             TRISphere sGm = new TRISphere(position(f * i / 12)
@@ -176,15 +153,16 @@ public class Horloge extends JFrame {
         segmentDroiteTubulaireN20.diam(20);
 
         sc.cameraActive(new Camera(Point3D.Z.mult(-200d), Point3D.O0));
+        sc.cameraActive().calculerMatrice(Point3D.Y);
     }
 
     public void time() {
         double f = 2 * Math.PI;
         Date d = new Date();
 
-        sH.setCentre(position(f * d.getHours() / 12).mult(60d));
-        sM.setCentre(position(f * d.getMinutes() / 60).mult(80d));
-        sS.setCentre(position(f * d.getSeconds() / 60).mult(100d));
+        sH.getCircle().getAxis().setP1(position(f * d.getHours() / 12).mult(60d));
+        sM.getCircle().getAxis().setP1(position(f * d.getMinutes() / 60).mult(80d));
+        sS.getCircle().getAxis().setP1(position(f * d.getSeconds() / 60).mult(100d));
         droite0.setOrigine(position(f * d.getHours() / 12).mult(60d));
         droite1.setOrigine(position(f * d.getMinutes() / 60).mult(80d));
         droite2.setOrigine(position(f * d.getSeconds() / 60).mult(100d));
@@ -215,8 +193,12 @@ public class Horloge extends JFrame {
             z.next();
             z.couleurDeFond(new TextureCol(Color.WHITE));
             z.scene(sc);
-            z.draw();
 
+            ((ZBufferImpl) z).setDisplayType(ZBufferImpl.SURFACE_DISPLAY_COL_TRI);
+
+
+            z.draw();
+            Logger.getAnonymousLogger().log(Level.INFO, "Rendered");
             Image bi = z.image();
             try {
                 Thread.sleep(200);

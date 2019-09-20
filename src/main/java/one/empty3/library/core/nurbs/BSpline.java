@@ -33,9 +33,9 @@ import java.util.Iterator;
 
 public class BSpline extends ParametricCurve {
 
-    private StructureMatrix<Point3D> controls = new StructureMatrix<>(1);
-    private StructureMatrix<Double> T = new StructureMatrix<>(1);
-    private StructureMatrix<Integer> degree = new StructureMatrix<>(0);
+    private StructureMatrix<Point3D> controls = new StructureMatrix<>(1, Point3D.class);
+    private StructureMatrix<Double> T = new StructureMatrix<>(1, Double.class);
+    private StructureMatrix<Integer> degree = new StructureMatrix<>(0, Integer.class);
     public BSpline() {
 
         degree.setElem(3);
@@ -160,15 +160,15 @@ public class BSpline extends ParametricCurve {
     }
 
     public void setControls(ArrayList<Point3D> controls) {
-        this.controls = new StructureMatrix<>(controls);
-    }
+        this.controls.setAll(controls);}
 
     public StructureMatrix<Double> getT() {
         return T;
     }
 
     public void setT(ArrayList<Double> t) {
-        T = new StructureMatrix<>(t);
+
+        T.setAll(t);
     }
 
     @Override

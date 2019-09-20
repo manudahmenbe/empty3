@@ -23,12 +23,16 @@ public class Camera extends CameraBox {
 
     public static Camera PARDEFAULT = new Camera();
 
-    protected StructureMatrix<Point3D> eye = new StructureMatrix<>(0);
-    protected StructureMatrix<Point3D> lookat = new StructureMatrix<>(0);
+    protected StructureMatrix<Point3D> eye = new StructureMatrix<>(0, Point3D.class);
+    protected StructureMatrix<Point3D> lookat = new StructureMatrix<>(0, Point3D.class);
 
-    protected StructureMatrix<Boolean> imposerMatrice = new StructureMatrix<>(0);
-    protected StructureMatrix<Matrix33> matrice = new StructureMatrix<>(Matrix33.I);
+    protected StructureMatrix<Boolean> imposerMatrice = new StructureMatrix<>(0, Point3D.class);
+    protected StructureMatrix<Matrix33> matrice = new StructureMatrix<>(0, Matrix33.class);
 
+    {
+
+    matrice.setElem(Matrix33.I);
+}
     private Barycentre position;
 
     public Camera() {

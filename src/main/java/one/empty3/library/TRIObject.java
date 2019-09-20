@@ -22,7 +22,7 @@ import java.util.Iterator;
 
 public class TRIObject extends Representable {
 
-    private StructureMatrix<TRI> triangles = new StructureMatrix<>(1);
+    private StructureMatrix<TRI> triangles = new StructureMatrix<>(1, TRI.class);
     private Barycentre position;
 
     public TRIObject() {

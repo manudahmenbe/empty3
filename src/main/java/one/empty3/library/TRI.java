@@ -24,7 +24,7 @@ import java.awt.*;
 
 public class TRI extends Representable {
 
-    private StructureMatrix<Point3D> sommet= new StructureMatrix<>(1);
+    private StructureMatrix<Point3D> sommet= new StructureMatrix<>(1, Point3D.class);
 
     public TRI() {
         super();
@@ -67,7 +67,7 @@ public class TRI extends Representable {
     }
 
     public void setSommet(Point3D[] sommet) {
-        this.sommet = new StructureMatrix<>(sommet);
+        this.sommet.setAll(sommet);
     }
 
     public Point3D normale() {

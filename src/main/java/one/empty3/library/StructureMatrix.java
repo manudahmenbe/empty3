@@ -1,25 +1,37 @@
 package one.empty3.library;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.zip.ZipFile;
 
 /**
  * Created by manue on 07-09-19.
  */
-public class StructureMatrix<T>  {
+public class StructureMatrix<T>  implements XmlRepresentable{
     private static final int INSERT_ROW = 0;
     private static final int INSERT_COL = 1;
     private int dim;
     public T data0d;
     public List<T> data1d;
     public List<List<T>> data2d;
+    private Class<?> classType;
+    private StructureMatrix<Point3D> all;
 
     public StructureMatrix()
     {
         dim = -1;
+
+    }
+    public void setClassType(Class T)
+    {
+        classType = T;
     }
 
+    /*
+    @Deprecated
     public StructureMatrix(int dim, int [] sizes)
     {
         this.dim = dim;
@@ -47,11 +59,13 @@ public class StructureMatrix<T>  {
             }
         }
     }
+    @Deprecated
     public StructureMatrix(T array)
     {
         dim=0;
         data0d = array;
     }
+    @Deprecated
     public StructureMatrix(T[] array)
     {
         dim=1;
@@ -59,6 +73,7 @@ public class StructureMatrix<T>  {
         for(int i= 0; i<array.length; i++)
             data1d.add(array[i]);
     }
+    @Deprecated
     public StructureMatrix(T[][] array)
     {
         dim=2;
@@ -71,6 +86,7 @@ public class StructureMatrix<T>  {
 
     }
 
+    @Deprecated
     public StructureMatrix(List<T> coordArr) {
         dim = 1;
         data1d = new ArrayList<>();
@@ -78,6 +94,7 @@ public class StructureMatrix<T>  {
             data1d.add(coordArr.get(i));
     }
 
+    @Deprecated
     public StructureMatrix(int dim) {
         this.dim = dim;
         if(dim==1)
@@ -85,14 +102,25 @@ public class StructureMatrix<T>  {
         if(dim==2)
             data2d = new ArrayList<List<T>>();
     }
+*/
+    public StructureMatrix(int dim, Class classType) {
+        this.dim = dim;
+        if(dim==1)
+            data1d = new ArrayList<T>();
+        if(dim==2)
+            data2d = new ArrayList<List<T>>();
+        this.classType = classType;
+    }
 
     public void setElem(T value)
     {
         dim = 0;
         this.data0d = value;
+        this.classType = value.getClass();
     }
     public void setElem(T elem, int i)
     {
+        this.classType = elem.getClass();
         dim = 1;
         if (i < getData1d().size()) {
             getData1d().set(i, elem);
@@ -104,14 +132,16 @@ public class StructureMatrix<T>  {
     public void setElem(T elem, int i, int j)
     {
 
-        dim = 2;
-        for (int k = this.getData1d().size(); k <= i; k++) {
-            data2d.add(k, new ArrayList<>());
-            for (int l = this.getData1d().size(); l <= j; l++) {
-                data2d.get(i).set(j, elem);
-            }
-            data2d.get(i).set(j, elem);
+        this.classType= elem.getClass();
+        if(data2d==null)
+            data2d = new ArrayList<>();
+        while(data2d.size()<=i) {
+            data2d.add(new ArrayList<>());
         }
+        while(data2d.get(i).size()<=j) {
+            data2d.get(i).add(elem);
+        }
+        data2d.get(i).set(j, elem);
     }
 
     public T getElem(int [] indices)
@@ -209,6 +239,13 @@ public class StructureMatrix<T>  {
             }
         }
     }
+    public void delete(int pos) {
+        if(this.dim == 1) {
+            this.data1d.remove(pos);
+        }
+
+    }
+
     public void insert(int i, T value)
     {
         if(dim==1)
@@ -235,7 +272,6 @@ public class StructureMatrix<T>  {
     {
         if(this.dim==2)
         {
-            int ind1 = data2d.size();
             data2d.add(new ArrayList<T>());
         }
     }
@@ -313,5 +349,125 @@ public class StructureMatrix<T>  {
 
         }
         return s.toString();
+    }
+
+
+    @Override
+    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder) {
+        stringBuilder.append("<StructureMatrix dim=\"" + dim + "\" class=\"" + this.getClass().getName() + "\" typeClass=\"" + getClassType() + "\"");
+        StructureMatrix is = this;
+        switch (dim) {
+            case 0:
+                stringBuilder.append("<Data dim=\"0\">");
+                parent.xmlRepresentation(zipFile, parent, stringBuilder, data0d);
+                stringBuilder.append("</Data>");
+                break;
+            case 1:
+                stringBuilder.append("<Data dim=\"1\">");
+                int[] i1 = new int[]{0, 0};
+                data1d.forEach(new Consumer<T>() {
+                    @Override
+                    public void accept(T t) {
+                        stringBuilder.append("<Cell l=\"" + i1[0] + "\"c=\"" + i1[1] + "\">");
+                        parent.xmlRepresentation(zipFile, parent, stringBuilder, ((ArrayList) data1d) + "} )");
+                        stringBuilder.append("</Cell>");
+                        i1[1]++;
+                    }
+                });
+                stringBuilder.append("</Data>");
+                break;
+            case 2:
+                stringBuilder.append("<Data dim=\"2\">");
+                int[] i2 = new int[]{0, 0};
+                data2d.forEach(new Consumer<List<T>>() {
+                    @Override
+                    public void accept(List<T> ts) {
+                        stringBuilder.append("<Line l=\"" + i2[0] + "\">");
+
+                        ts.forEach(new Consumer<T>() {
+                            @Override
+                            public void accept(T t) {
+                                stringBuilder.append("<Cell l=\"" + i2[0] + "\"c=\"" + i2[1] + "\">");
+                                parent.xmlRepresentation(zipFile, parent, stringBuilder, data2d.get(i2[0]).get(i2[1]) + "} )");
+                                i2[1]++;
+                                stringBuilder.append("</Cell>");
+                            }
+                        });
+
+                        stringBuilder.append("</Line>");
+                        i2[0]++;
+                    }
+                });
+                stringBuilder.append("</Data");
+                break;
+
+
+        }
+    }
+
+    @Override
+    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, Double o) {
+        parent.xmlRepresentation(zipFile, this, stringBuilder, o);
+    }
+
+    @Override
+    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, Integer o) {
+        parent.xmlRepresentation(zipFile, this, stringBuilder, o);
+
+    }
+
+    @Override
+    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, String o) {
+        parent.xmlRepresentation(zipFile, this, stringBuilder, o);
+
+    }
+
+    @Override
+    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, File o) {
+        parent.xmlRepresentation(zipFile, this, stringBuilder, o);
+
+    }
+
+    @Override
+    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, ArrayList o) {
+        parent.xmlRepresentation(zipFile, this, stringBuilder, o);
+
+    }
+
+    @Override
+    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, Object o) {
+        parent.xmlRepresentation(zipFile, this, stringBuilder, o);
+
+    }
+
+    public Class getClassType() {
+        return classType;
+    }
+
+    public void setAll(T[] all) {
+        data1d = new ArrayList<>();
+        switch (dim)
+        {
+            case 1:
+                data1d = Arrays.asList((T[]) all);
+
+        }
+    }
+    public void setAll(T[][] all) {
+        data2d = new ArrayList<List<T>>();
+        switch (dim)
+        {
+            case 2:
+                for(int i = 0; i<all.length; i++) {
+                    for(int j=0; j<all[0].length; j++)
+                    setElem(all[i][j], i, j);
+                }
+
+        }
+    }
+
+    public void setAll(ArrayList<T> all) {
+        dim = 1;
+        this.data1d = all;
     }
 }

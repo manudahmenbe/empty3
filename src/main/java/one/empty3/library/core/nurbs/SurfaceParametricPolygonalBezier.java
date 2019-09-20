@@ -31,10 +31,11 @@ import one.empty3.library.StructureMatrix;
 public class SurfaceParametricPolygonalBezier extends ParametricSurface implements SurfaceElem{
 
     protected final StructureMatrix<Point3D> coefficients;
-    protected StructureMatrix<Integer> power1 = new StructureMatrix<>(0), power2 = new StructureMatrix<>(0);
+    protected StructureMatrix<Integer> power1 = new StructureMatrix<>(0, Integer.class), power2 = new StructureMatrix<>(0, Integer.class);
 
     public SurfaceParametricPolygonalBezier(Point3D[][] coefficients) {
-        this.coefficients = new StructureMatrix<>(coefficients);
+        this.coefficients = new StructureMatrix<>(2, Integer.class);
+        this.coefficients.setAll(coefficients);
         power1.setElem(coefficients.length);
         power2.setElem(coefficients[0].length);
     }

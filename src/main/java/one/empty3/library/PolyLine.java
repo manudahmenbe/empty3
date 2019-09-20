@@ -8,7 +8,7 @@ import java.util.List;
  * Created by manue on 20-06-19.
  */
 public class PolyLine extends ParametricCurve {
-    StructureMatrix<Point3D> points = new StructureMatrix<>(1);
+    StructureMatrix<Point3D> points = new StructureMatrix<>(1, Point3D.class);
 
     public PolyLine() {
         super();
@@ -23,7 +23,7 @@ public class PolyLine extends ParametricCurve {
 
     public void setPoints(Point3D[] points) {
 
-        this.points = new StructureMatrix<>(points);
+        this.points.setAll(points);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class PolyLine extends ParametricCurve {
     public void add(Point3D point3D) {
         int newLength;
         if (points == null)
-            points = new StructureMatrix<>(1);
+            points = new StructureMatrix<>(1, Point3D.class);
         else {
             newLength = points.getData1d().size()+ 1;
             List<Point3D> tmp = points.getData1d();
