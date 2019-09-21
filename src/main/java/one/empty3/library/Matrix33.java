@@ -26,18 +26,16 @@ import java.util.List;
  *         <p>
  *         17 nov. 2011
  */
-public class Matrix33 extends Representable{
+public class Matrix33 extends  Representable {
 
     public static final Matrix33 XYZ;
     public static final Matrix33 YZX;
     public static final Matrix33 ZXY;
     public static final Matrix33 I;
-    /**
-     *
-     */
-    private static final long serialVersionUID = 7007460681652570657L;
+    public static final Matrix33 O;
 
     static {
+        O = new Matrix33(new Double[]{0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d, 0d});
         XYZ = new Matrix33(new Double[]{1d, 0d, 0d, 0d, 1d, 0d, 0d, 0d, 1d});
         YZX = new Matrix33(new Double[]{0d, 1d, 0d, 0d, 0d, 1d, 1d, 0d, 0d});
         ZXY = new Matrix33(new Double[]{0d, 0d, 1d, 1d, 0d, 0d, 0d, 1d, 0d});
@@ -49,13 +47,12 @@ public class Matrix33 extends Representable{
 
     public Matrix33(Matrix33 copy) {
         this();
-        d.setAll(copy.getDoubleArray());
+        d.setAll(copy.getDoubleArray1e());
     }
 
     public Matrix33() {
-        super();
         d = new StructureMatrix<>(1, Double.class);
-        d.setAll(new Double[9]);
+        d.setAll(new Double[] { 0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0});
 
     }
 
@@ -114,6 +111,12 @@ public class Matrix33 extends Representable{
         return d.getElem(i * 3 + j);
     }
 
+    public Double[] getDoubleArray1e() {
+        Double [] d2 = new Double [9];
+        for(int i=0;i<9; i++)
+            d2[i] = d.getElem(i);
+        return d2;
+    }
     public Double[][] getDoubleArray() {
         Double[][] d2 = new Double[3][3];
         for (int i = 0; i < 3; i++) {
@@ -178,14 +181,17 @@ public class Matrix33 extends Representable{
 
     public Point3D rotation(Point3D p) {
         Point3D pa = new Point3D();
-        for (int i = 0; i < 3; i++) {
-            double d0 = 0;
-            for (int j = 0; j < 3; j++) {
-                d0 += this.get(i, j) * p.get(j);
+        if(p!=null) {
+            for (int i = 0; i < 3; i++) {
+                double d0 = 0;
+                for (int j = 0; j < 3; j++) {
+                    d0 += this.get(i, j) * p.get(j);
+                }
+                pa.set(i, d0);
             }
-            pa.set(i, d0);
+            return pa;
         }
-        return pa;
+        else return Point3D.O0;
     }
 
     public void set(int i, int j, double d0) {

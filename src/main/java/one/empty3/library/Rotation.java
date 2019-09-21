@@ -22,8 +22,8 @@ public class Rotation {
     public Rotation() {
         if (isUnmodified())
         {
-            rot  = Matrix33.I;
-            centreRot = Point3D.O0;
+            rot  = new Matrix33(Matrix33.I);
+            centreRot = new Point3D(Point3D.O0);
         }
     }
     public Rotation(Matrix33 rot, Point3D centreRot) {
@@ -40,7 +40,14 @@ public class Rotation {
     }
 
     public Point3D rotation(Point3D p ) {
-        return p.plus(centreRot).plus(rot.mult(p.scale()));
+        if(rot==null)
+            rot = new Matrix33(Matrix33.I);
+        if(centreRot==null)
+            centreRot = p;
+        if(p!=null) {
+            return p.plus(centreRot).plus(rot.mult(p.scale()));
+        }
+        else return p;
     }
 
     public Point3D rotationAxe(Point3D p, int axe, double angle) {

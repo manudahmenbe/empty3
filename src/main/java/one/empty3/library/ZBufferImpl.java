@@ -462,9 +462,18 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             Polygon p = (Polygon) r;
             List<Point3D> points = p.getPoints().getData1d();
             int length= points.size();
+            Point3D centre = Point3D.O0;
+            for(int i=0; i<points.size(); i++)
+                centre=centre.plus(points.get(i));
+            centre = centre.mult(1.0/points.size());
             for (int i = 0; i < length; i++)
             {
-                line(rotate(points.get((i%length)), p) , rotate(points.get((i+1)%length), p), p.texture);
+                if(getDisplayType()<=SURFACE_DISPLAY_COL_TRI) {
+                    draw(new TRI(points.get(i), points.get((i + 1) % points.size()), centre, p.texture()));
+                }
+                else {
+                    line(rotate(points.get((i % length)), p), rotate(points.get((i + 1) % length), p), p.texture);
+                }
             }
         }
 

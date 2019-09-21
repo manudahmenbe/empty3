@@ -171,6 +171,10 @@ public class Point3D extends Representable implements IMovable {
         return Double.NaN;
     }
     public Point3D scale() {
+        if(scale==null)
+        {
+            return Point3D.n(1.,1.,1.);
+        }
          return new Point3D (get(0)*scale.get(1),get(1)*scale.get(1),get(2)*scale.get(2));
     }
 

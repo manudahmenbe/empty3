@@ -125,6 +125,10 @@ public class Camera extends CameraBox {
         return calculerPoint(eye.getElem());
     }
 
+    private Point3D calculerPoint(Point3D elem) {
+        return elem;
+    }
+
     public void setEye(Point3D eye) {
         this.eye.setElem(eye);
     }
@@ -147,26 +151,6 @@ public class Camera extends CameraBox {
     }
 
 
-    /**
-     * @return Position elements
-     */
-    @Override
-    public Barycentre position() {
-        Barycentre position1 = new Barycentre();
-        position1.position = getEye();
-        position1.rotation = matrice.getElem();
-        position.agrandissement = 1.0; // Pas encore défini;
-        return position1;
-    }
-
-    @Override
-    public void position(Barycentre p) {
-        this.position = p;
-
-        eye.setElem(position.calculer(eye.getElem()));
-        lookat.setElem(position.calculer(lookat.getElem()));
-        calculerMatrice(null);
-    }
 
     @Override
     public boolean supporteTexture() {

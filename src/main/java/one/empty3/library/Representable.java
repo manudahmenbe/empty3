@@ -20,23 +20,24 @@ import one.empty3.library.core.raytracer.RtIntersectInfo;
 import one.empty3.library.core.raytracer.RtMatiere;
 import one.empty3.library.core.raytracer.RtRay;
 
-import java.io.File;
-import java.io.Serializable;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.zip.ZipFile;
+import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
-public class Representable implements Serializable, Comparable, XmlRepresentable{
-    public static Point3D SCALE1 = new Point3D(1d, 1d,1d);
+public class Representable implements Serializable, Comparable, XmlRepresentable {
+    public static Point3D SCALE1 ;
     public static final ITexture DEFAULT_TEXTURE = new TextureCol(Colors.random());
     protected static ArrayList<Painter> classPainters = new ArrayList<Painter>();
-    public Rotation rotation  = new Rotation();
+    public Rotation rotation;
     protected double NFAST = 100;
     protected RtMatiere materiau;
     protected ITexture CFAST = DEFAULT_TEXTURE;
-    protected Barycentre bc = new Barycentre();
+   // protected Barycentre bc = new Barycentre();
     protected Representable parent;
     protected Scene scene;
     protected ITexture texture;
@@ -44,9 +45,14 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     private Painter painter = null;
     private int RENDERING_DEFAULT = 0;
     protected Render render = Render.getInstance(0, -1);
-    protected Point3D scale = SCALE1;
+    protected Point3D scale;
+
     public Representable() {
-        rotation = new Rotation();
+        if(!(this instanceof Matrix33 || this instanceof Point3D|| this instanceof StructureMatrix)) {
+            rotation = new Rotation();
+            scale = new Point3D(1d, 1d, 1d);
+
+        }
         texture = new TextureCol(Colors.random());
     }
 
@@ -63,8 +69,9 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     public Rotation getRotation() {
         return rotation;
     }
+
     public Point3D rotate(Point3D p0, Representable ref) {
-        if(ref!=null)
+        if (ref != null)
             return ref.getRotation().rotation(p0);
         else
             return p0;
@@ -72,11 +79,6 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
 
     public void setRotation(Rotation r) {
         this.rotation = r;
-    }
-
-    public Point3D calculerPoint(Point3D p) {
-        return bc.calculer(p);
-
     }
 
     public String id() {
@@ -91,13 +93,6 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
         this.parent = parent;
     }
 
-    public Barycentre position() {
-        return bc;
-    }
-
-    public void position(Barycentre p) {
-        bc = p;
-    }
 
     public void replace(String moo) {
         throw new UnsupportedOperationException("Operation non supportee");
@@ -216,11 +211,14 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     }
 
 
-    private HashMap<String,StructureMatrix> declaredDataStructure = new HashMap<>();
+    private HashMap<String, StructureMatrix> declaredDataStructure = new HashMap<>();
+
     public HashMap<String, StructureMatrix> getDeclaredDataStructure() {
         return declaredDataStructure;
     }
-    private HashMap<String,StructureMatrix> declaredLists = new HashMap<>();
+
+    private HashMap<String, StructureMatrix> declaredLists = new HashMap<>();
+
     public HashMap<String, StructureMatrix> getDeclaredLists() {
         return declaredLists;
     }
@@ -234,42 +232,44 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     }
 
     public Class getPropertyType(String propertyName) throws NoSuchMethodException {
-            Method propertyGetter = null;
-            propertyGetter = this.getClass().getMethod("get" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.length() >1 ? propertyName.substring(1) : ""));
-            return propertyGetter.getReturnType();
+        Method propertyGetter = null;
+        propertyGetter = this.getClass().getMethod("get" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.length() > 1 ? propertyName.substring(1) : ""));
+        return propertyGetter.getReturnType();
     }
 
     public void setProperty(String propertyName, Object value) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
 
-        propertySetter = this.getClass().getMethod("set" + (""+propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), value.getClass());
+        propertySetter = this.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), value.getClass());
         propertySetter.invoke(this, value);
-        System.out.println("RType : " + this.getClass().getName()+" Property: "+ propertyName+" New Value set "+getProperty(propertyName));
+        System.out.println("RType : " + this.getClass().getName() + " Property: " + propertyName + " New Value set " + getProperty(propertyName));
     }
 
     public Object getProperty(String propertyName) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
-        propertySetter = this.getClass().getMethod("get" + (""+propertyName.charAt(0)).toUpperCase() + propertyName.substring(1));
+        propertySetter = this.getClass().getMethod("get" + ("" + propertyName.charAt(0)).toUpperCase() + propertyName.substring(1));
         return propertySetter.invoke(this);
     }
 
-    public String toString()
-    {
+    public String toString() {
         return "Representable()";
     }
 
 
+    public void declareProperties() {
 
-    public void declareProperties()
-    {
-        
 
     }
 
 
-    public HashMap<String, Object> declarations(){
-        HashMap<String, Object> declarations = new HashMap<>();
-        declarations.putAll(getDeclaredDataStructure());
+    public HashMap<String, StructureMatrix> declarations() {
+        HashMap<String, StructureMatrix> declarations = new HashMap<>();
+        getDeclaredDataStructure().forEach(new BiConsumer<String, StructureMatrix>() {
+            @Override
+            public void accept(String s, StructureMatrix structureMatrix) {
+                declarations.put(s, structureMatrix);
+            }
+        });
         return declarations;
     }
 
@@ -277,7 +277,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     public ITexture getCFAST() {
         return CFAST;
     }
-    
+
     public void setCFAST(ITexture CFAST) {
         this.CFAST = CFAST;
     }
@@ -291,69 +291,153 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     }
 
 
-
-    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, Double o)
-    {
-
+    @Override
+    public void xmlRepresentation(String filesPath, XmlRepresentable parent, StringBuilder stringBuilder, Double o) {
+        stringBuilder.append("<Double class=\""+o.getClass()+"\">" + o + "</Double>");
     }
-    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, Integer o)
-    {
 
+    public void xmlRepresentation(String filesPath, XmlRepresentable parent, StringBuilder stringBuilder, Boolean o) {
+        stringBuilder.append("<Boolean class=\""+o.getClass()+"\">" + o + "</Boolean>");
     }
-    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, String o)
-    {
 
+    @Override
+    public void xmlRepresentation(String filesPath, XmlRepresentable parent, StringBuilder stringBuilder, Integer o) {
+        stringBuilder.append("<Integer class=\"" + o.getClass() + "\">" + o + "</Integer>");
     }
-    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, File o)
-    {
 
+    @Override
+    public void xmlRepresentation(String filesPath, XmlRepresentable parent, StringBuilder stringBuilder, String o) {
+        stringBuilder.append("<String class=\"" + o.getClass() + "\"> <![CDATA[ " + o + " ]]> </String>");
     }
-    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, ArrayList o)
-    {
+
+    @Override
+    public void xmlRepresentation(String filesPath, XmlRepresentable parent, StringBuilder stringBuilder, File o) {
+        stringBuilder.append("<String filename=\""+o.getName()+"\"class=\"" + o.getClass() + "\"> <![CDATA[ " + o.getName() + " ]]> </String>");
+        try {
+            FileInputStream fileInputStream = new FileInputStream(o);
+            File copy = new File(filesPath + "/" + o.getName());
+            copy.createNewFile();
+            FileOutputStream fileOutputStream = new FileOutputStream(copy);
+            int read = -1;
+            byte[] bytes = new byte[4096];
+            while (read != 0) {
+
+                read = fileInputStream.read(bytes);
+                fileOutputStream.write(bytes, 0, read);
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
-    public void xmlRepresentation(ZipFile ZipFile, XmlRepresentable parent, StringBuilder stringBuilder, Object o) {
+    public void xmlRepresentation(String filesPath, XmlRepresentable parent, StringBuilder stringBuilder, ArrayList o) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 
+    @Override
+    public void xmlRepresentation(String filesPath, XmlRepresentable parent, StringBuilder stringBuilder, Object o) {
+        if (o instanceof StructureMatrix) {
+            xmlRepresentation(filesPath, parent, stringBuilder, (StructureMatrix) o);
+        } else if(o instanceof Representable){
+            xmlRepresentation(filesPath, parent, stringBuilder, ((Representable) o));
+        } else{
+            switch (o.getClass().getName()) {
+                case "java.lang.Boolean":
+                    xmlRepresentation(filesPath, parent, stringBuilder, ((Boolean) o));
+                    break;
+                case "java.lang.Double":
+                    xmlRepresentation(filesPath, parent, stringBuilder, ((Double) o));
+                    break;
+                case "java.lang.Integer":
+                    xmlRepresentation(filesPath, parent, stringBuilder, ((Integer) o));
+                    break;
+                case "java.lang.String":
+                    xmlRepresentation(filesPath, parent, stringBuilder, ((String) o));
+                    break;
+                case "java.util.ArrayList":
+                    xmlRepresentation(filesPath, parent, stringBuilder, ((ArrayList) o));
+                    break;
+                case "java.io.File":
+                    xmlRepresentation(filesPath, parent, stringBuilder, ((File) o));
+                    break;
+            }
+
+        }
     }
 
 
-    @Override
-    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder)
-    {
-        if(parent instanceof Representable) {
-            Representable is = (Representable) this;
-            stringBuilder.append("<Representable class=\"" + this.getClass().getName() + "\">\n");
-            declarations().forEach((s, o) -> {
-                if(o instanceof StructureMatrix) {
-                    stringBuilder.append("<DataStructure name=s>\n");
-                    ((StructureMatrix) o ).xmlRepresentation(zipFile, is, stringBuilder);
-                    stringBuilder.append("</DataStructure>\n");
-                }else {
-                    switch(o.getClass().getName())
-                    {
-                        case "java.lang.Double":
-                            xmlRepresentation(zipFile, parent, stringBuilder, ((Double)o));
-                            break;
-                        case "java.lang.Integer":
-                            xmlRepresentation(zipFile, parent, stringBuilder, ((Integer)o));
-                            break;
-                        case "java.lang.String":
-                            xmlRepresentation(zipFile, parent, stringBuilder, ((String)o));
-                            break;
-                        case "java.util.ArrayList":
-                            xmlRepresentation(zipFile, parent, stringBuilder, ((ArrayList)o));
-                            break;
-                        case "java.io.File":
-                            xmlRepresentation(zipFile, parent, stringBuilder, ((File)o));
-                            break;
-                    }
-
-                }
+    public void xmlRepresentation(String filesPath, XmlRepresentable parent, StringBuilder stringBuilder, Representable is) {
+            stringBuilder.append("<Representable class=\"" + is.getClass().getName() + "\">\n");
+            is.declareProperties();
+            is.declarations().forEach((s, o) -> {
+                xmlRepresentation(filesPath, is, stringBuilder, s, o);
             });
             stringBuilder.append("</Representable>\n");
+    }
+
+    @Override
+    public void xmlRepresentation(String filesPath, XmlRepresentable parent, StringBuilder stringBuilder) {
+    }
+
+    @Override
+    public void xmlRepresentation(String filesPath, XmlRepresentable parent, StringBuilder stringBuilder, String name , StructureMatrix is) {
+        stringBuilder.append("<StructureMatrix name=\""+name+"\" dim=\"" + is.getDim() + "\" class=\"" + is.getClass().getName() + "\" typeClass=\"" + is.getClassType() + "\">");
+        is.declareProperties();
+
+        switch (is.getDim()) {
+            case 0:
+                stringBuilder.append("<Data dim=\"0\">");
+                xmlRepresentation(filesPath, parent, stringBuilder, is.data0d);
+                stringBuilder.append("</Data>");
+                break;
+            case 1:
+                stringBuilder.append("<Data dim=\"1\">");
+                int[] i1 = new int[]{0, 0};
+                is.data1d.forEach(new Consumer() {
+                    @Override
+                    public void accept(Object o) {
+                        stringBuilder.append("<Cell l=\"" + i1[0] + "\"c=\"" + i1[1] + "\">");
+                        xmlRepresentation(filesPath, is, stringBuilder, o);
+                        stringBuilder.append("</Cell>");
+                        i1[1]++;
+
+                    }
+
+                });
+                stringBuilder.append("</Data>");
+                break;
+            case 2:
+                stringBuilder.append("<Data dim=\"2\">");
+                int[] i2 = new int[]{0, 0};
+                is.data2d.forEach(new Consumer<List>() {
+                    @Override
+                    public void accept(List ts) {
+                        stringBuilder.append("<Line l=\"" + i2[0] + "\">");
+
+                        ts.forEach(new Consumer() {
+                            @Override
+                            public void accept(Object o) {
+                                stringBuilder.append("<Cell l=\"" + i2[0] + "\"c=\"" + i2[1] + "\">");
+                                xmlRepresentation(filesPath, is, stringBuilder, o);
+                                i2[1]++;
+                                stringBuilder.append("</Cell>");
+                            }
+                        });
+
+                        stringBuilder.append("</Line>");
+                        i2[0]++;
+                    }
+                });
+                stringBuilder.append("</Data");
+                break;
+
+
         }
     }
 }
+
 

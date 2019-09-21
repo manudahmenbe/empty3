@@ -1,16 +1,14 @@
 package one.empty3.library;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.zip.ZipFile;
 
 /**
  * Created by manue on 07-09-19.
  */
-public class StructureMatrix<T>  implements XmlRepresentable{
+public class StructureMatrix<T>  extends Representable {
     private static final int INSERT_ROW = 0;
     private static final int INSERT_COL = 1;
     private int dim;
@@ -352,93 +350,6 @@ public class StructureMatrix<T>  implements XmlRepresentable{
     }
 
 
-    @Override
-    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder) {
-        stringBuilder.append("<StructureMatrix dim=\"" + dim + "\" class=\"" + this.getClass().getName() + "\" typeClass=\"" + getClassType() + "\"");
-        StructureMatrix is = this;
-        switch (dim) {
-            case 0:
-                stringBuilder.append("<Data dim=\"0\">");
-                parent.xmlRepresentation(zipFile, parent, stringBuilder, data0d);
-                stringBuilder.append("</Data>");
-                break;
-            case 1:
-                stringBuilder.append("<Data dim=\"1\">");
-                int[] i1 = new int[]{0, 0};
-                data1d.forEach(new Consumer<T>() {
-                    @Override
-                    public void accept(T t) {
-                        stringBuilder.append("<Cell l=\"" + i1[0] + "\"c=\"" + i1[1] + "\">");
-                        parent.xmlRepresentation(zipFile, parent, stringBuilder, ((ArrayList) data1d) + "} )");
-                        stringBuilder.append("</Cell>");
-                        i1[1]++;
-                    }
-                });
-                stringBuilder.append("</Data>");
-                break;
-            case 2:
-                stringBuilder.append("<Data dim=\"2\">");
-                int[] i2 = new int[]{0, 0};
-                data2d.forEach(new Consumer<List<T>>() {
-                    @Override
-                    public void accept(List<T> ts) {
-                        stringBuilder.append("<Line l=\"" + i2[0] + "\">");
-
-                        ts.forEach(new Consumer<T>() {
-                            @Override
-                            public void accept(T t) {
-                                stringBuilder.append("<Cell l=\"" + i2[0] + "\"c=\"" + i2[1] + "\">");
-                                parent.xmlRepresentation(zipFile, parent, stringBuilder, data2d.get(i2[0]).get(i2[1]) + "} )");
-                                i2[1]++;
-                                stringBuilder.append("</Cell>");
-                            }
-                        });
-
-                        stringBuilder.append("</Line>");
-                        i2[0]++;
-                    }
-                });
-                stringBuilder.append("</Data");
-                break;
-
-
-        }
-    }
-
-    @Override
-    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, Double o) {
-        parent.xmlRepresentation(zipFile, this, stringBuilder, o);
-    }
-
-    @Override
-    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, Integer o) {
-        parent.xmlRepresentation(zipFile, this, stringBuilder, o);
-
-    }
-
-    @Override
-    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, String o) {
-        parent.xmlRepresentation(zipFile, this, stringBuilder, o);
-
-    }
-
-    @Override
-    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, File o) {
-        parent.xmlRepresentation(zipFile, this, stringBuilder, o);
-
-    }
-
-    @Override
-    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, ArrayList o) {
-        parent.xmlRepresentation(zipFile, this, stringBuilder, o);
-
-    }
-
-    @Override
-    public void xmlRepresentation(ZipFile zipFile, XmlRepresentable parent, StringBuilder stringBuilder, Object o) {
-        parent.xmlRepresentation(zipFile, this, stringBuilder, o);
-
-    }
 
     public Class getClassType() {
         return classType;
