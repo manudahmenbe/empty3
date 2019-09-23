@@ -700,23 +700,6 @@ public class Loader implements SceneLoader {
                 }
                 continue;
             }
-            if ("position".equals(id)) {
-                try {
-                    interpreteH.interpreteBlank();
-                    Barycentre poso = interpreteH.interpretePosition();
-                    interpreteH.interpreteBlank();
-                    if (latest != null) {
-                        latest.position(poso);
-                    }
-                    failed = false;
-
-                } catch (InterpreteException ex) {
-                    failed = true;
-                    Logger.getLogger(Loader.class.getName()).log(Level.SEVERE,
-                            null, ex);
-                }
-                continue;
-            }
             if ("tri".equals(id)) {
                 try {
                     TRI poso = interpreteH.interpreteTriangle();

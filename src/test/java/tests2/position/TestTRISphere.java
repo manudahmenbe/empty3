@@ -31,7 +31,6 @@ public class TestTRISphere extends TestObjetSub {
         Barycentre barycentre = new Barycentre();
         barycentre.position = Point3D.Y.mult(5d);
 
-        s.position(barycentre);
         s.texture(new TextureCol(Color.WHITE));
         scene().add(s);
 

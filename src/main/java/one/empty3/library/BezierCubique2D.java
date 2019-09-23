@@ -98,7 +98,7 @@ public class BezierCubique2D extends Representable {
     }
 
     public Point3D getControle(int l, int c) {
-        return calculerPoint(controle[l][c]);
+        return controle[l][c];
     }
 
     public String getId() {
@@ -107,12 +107,6 @@ public class BezierCubique2D extends Representable {
 
     public int getOrdre() {
         return ordre;
-    }
-
-    @Override
-    public void position(Barycentre p) {
-        this.position = p;
-
     }
 
     public void setControle(int l, int c, Point3D p) {

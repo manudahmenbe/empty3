@@ -114,11 +114,7 @@ public class TRIExtrusionGeneralisee extends TRIObjetGenerateurAbstract {
  */
         pO = Op.plus(T.mult(surface.getPoint(isurface).getZ()).plus(NX.mult(surface.getPoint(isurface).getX()))).plus(
                 NY.mult(surface.getPoint(isurface).getY()));
-        if (this.bc == null) {
-            bc = new Barycentre();
-        }
-        //System.out.println("Maxx maxy" + getMaxX()+" "+getMaxY());
-        return bc.calculer(pO);
+        return pO;
 
     }
 }

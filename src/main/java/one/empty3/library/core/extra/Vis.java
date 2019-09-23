@@ -45,12 +45,6 @@ public class Vis extends Representable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void position(Barycentre p) {
-        this.position = p;
-
-    }
-
     public void setId(String id) {
         this.id = id;
     }

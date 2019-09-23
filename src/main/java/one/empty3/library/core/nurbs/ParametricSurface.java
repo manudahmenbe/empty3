@@ -34,6 +34,17 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
 
     private static Globals globals;
 
+
+    private StructureMatrix<Double> incrU = new StructureMatrix<>(0, Double.class);
+    private StructureMatrix<Double> incrV = new StructureMatrix<>(0, Double.class);
+    private StructureMatrix<Double> incrVitesse = new StructureMatrix<>(0, Double.class);
+    private StructureMatrix<Double> incrNormale = new StructureMatrix<>(0, Double.class);
+    private StructureMatrix<Double> startU = new StructureMatrix<>(0, Double.class);
+    private StructureMatrix<Double> endU = new StructureMatrix<>(0, Double.class);
+    private StructureMatrix<Double> startV = new StructureMatrix<>(0, Double.class);
+    private StructureMatrix<Double> endV = new StructureMatrix<>(0, Double.class);
+    private ParametricSurface.Parameters parameters = new ParametricSurface.Parameters(true);
+
     static {
         if(globals==null)
 
@@ -48,15 +59,7 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
 
     }
 
-    private StructureMatrix<Double> incrU = new StructureMatrix<>(0, Double.class);
-    private StructureMatrix<Double> incrV = new StructureMatrix<>(0, Double.class);
-    private StructureMatrix<Double> incrVitesse = new StructureMatrix<>(0, Double.class);
-    private StructureMatrix<Double> incrNormale = new StructureMatrix<>(0, Double.class);
-    private StructureMatrix<Double> startU = new StructureMatrix<>(0, Double.class);
-    private StructureMatrix<Double> endU = new StructureMatrix<>(0, Double.class);
-    private StructureMatrix<Double> startV = new StructureMatrix<>(0, Double.class);
-    private StructureMatrix<Double> endV = new StructureMatrix<>(0, Double.class);
-    private ParametricSurface.Parameters parameters = new ParametricSurface.Parameters(true);
+
 
     public static Globals getGlobals() {
         return globals;
@@ -183,6 +186,10 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
         return polygon;
     }
 
+    public int getNormale3D(double v, double v1) {
+        return 0;
+    }
+
     public static class Globals {
         private Double incrU;
         private Double incrV;
@@ -251,6 +258,9 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
         incrV.setElem(0.1);
         endU.setElem(1.0);
         endV.setElem(1.0);
+        incrVitesse.setElem(0.0001);
+        incrNormale.setElem(0.000001);
+
     }
 
     @Override

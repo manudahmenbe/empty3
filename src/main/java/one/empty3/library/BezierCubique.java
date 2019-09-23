@@ -56,7 +56,7 @@ public class BezierCubique extends Representable {
     }
 
     public Point3D get(int arg0) {
-        return calculerPoint(controls.get(arg0));
+        return controls.get(arg0);
     }
 
     public Color getColor() {

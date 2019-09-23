@@ -250,10 +250,6 @@ public class Scene extends Representable implements Serializable {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public void position(Barycentre p) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     public boolean remove(Representable rem) {
         return objets.getData1d().remove(rem);

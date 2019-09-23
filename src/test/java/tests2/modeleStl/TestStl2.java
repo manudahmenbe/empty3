@@ -24,7 +24,7 @@ public class TestStl2 extends TestObjetSub {
         StlFile file = new StlFile();
         Scene load = new Scene();
         try {
-            File file1 = new File("target/classes/be/manudahmen/empty3/one.empty3.library/tests2/modeleStl/Skull-ascii.stl");
+            File file1 = new File("samples/stl/another_nude_girl-ascii.stl");
             load = file.load(file1.getAbsolutePath());
         } catch (IncorrectFormatException | IOException | ParsingErrorException e) {
             e.printStackTrace();

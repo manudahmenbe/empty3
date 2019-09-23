@@ -180,10 +180,6 @@ public class LineSegment extends ParametricCurve implements CurveElem {
         // Templates.
     }
 
-    @Override
-    public void position(Barycentre p) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
     public boolean supporteTexture() {

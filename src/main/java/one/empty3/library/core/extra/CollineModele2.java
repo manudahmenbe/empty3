@@ -98,11 +98,6 @@ public class CollineModele2 extends Representable implements TRIGenerable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void position(Barycentre p) {
-        this.position = p;
-
-    }
 
     @Override
     public boolean supporteTexture() {

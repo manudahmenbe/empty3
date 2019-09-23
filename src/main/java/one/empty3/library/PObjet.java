@@ -34,7 +34,7 @@ public class PObjet extends Representable {
     }
 
     public Point3D get(int arg0) {
-        return calculerPoint(points.get(arg0));
+        return points.get(arg0);
     }
 
 

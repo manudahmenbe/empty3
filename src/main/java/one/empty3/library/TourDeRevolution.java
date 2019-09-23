@@ -122,10 +122,5 @@ public class TourDeRevolution extends Representable {
 
     }
 
-    @Override
-    public void position(Barycentre p) {
-        this.position = p;
-
-    }
 
 }

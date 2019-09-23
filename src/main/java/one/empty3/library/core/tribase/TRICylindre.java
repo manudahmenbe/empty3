@@ -55,20 +55,11 @@ public class TRICylindre extends TRIObjetGenerateurAbstract {
         }
 
         Point3D base = this.centre;
-
-        if (bc != null) {
-            base = centre.plus(bc.position);
-        } else {
-            bc = new Barycentre();
-        }
-        if (bc.rotation == null) {
-            bc.rotation = Matrix33.I;
-        }
-        Point3D p = base.plus(bc.rotation.mult(new Point3D(
+        Point3D p = base.plus(new Point3D(
                 Math.cos(b) * radius,
                 Math.sin(b) * radius,
                 hauteur * a
-        )));
+        ));
         return p;
     }
 

@@ -852,7 +852,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                     }
                 }
                 if (displayType <= SURFACE_DISPLAY_TEXT_QUADS)
-                    ime.testDeep(pFinal, texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b));
+                    ime.testDeep(pFinal, n.calculerNormale3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b));
                 else
                 {
                     ime.testDeep(pFinal, col);

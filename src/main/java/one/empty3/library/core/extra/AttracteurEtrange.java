@@ -59,10 +59,6 @@ public final class AttracteurEtrange extends Representable implements POConteneu
         return po.iterable();
     }
 
-    @Override
-    public void position(Barycentre p) {
-        this.position = p;
-    }
 
     @Override
     public String toString() {

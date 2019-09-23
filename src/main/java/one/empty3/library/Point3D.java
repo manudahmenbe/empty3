@@ -298,7 +298,11 @@ public class Point3D extends Representable implements IMovable {
      * @return
      */
     public Double prodScalaire(Point3D p2) {
-        return coordArr.getElem(0) * p2.getX() + coordArr.getElem(1) * p2.getY() + coordArr.getElem(2) * p2.getZ();
+        if(p2!=null) {
+            return coordArr.getElem(0) * p2.getX() + coordArr.getElem(1) * p2.getY() + coordArr.getElem(2) * p2.getZ();
+        }
+        else
+            throw new NullPointerException("Exception prodScalre p2==null");
     }
 
     /**

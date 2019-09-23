@@ -18,14 +18,14 @@ package one.empty3.library.core.extra;
 import one.empty3.library.HeightMapSurface;
 import one.empty3.library.Point2D;
 import one.empty3.library.Point3D;
-import one.empty3.library.core.tribase.TRISphere;
+import one.empty3.library.Sphere;
 
 import java.util.ArrayList;
 
 /**
  * @author Se7en
  */
-public class BalleClous extends TRISphere implements HeightMapSurface{
+public class BalleClous extends Sphere implements HeightMapSurface{
 
     private ArrayList<Point2D> points = new ArrayList<Point2D>();
     private double d;
@@ -38,23 +38,6 @@ public class BalleClous extends TRISphere implements HeightMapSurface{
         this.points.add(p);
     }
 
-    @Override
-    public Point3D coordPoint3D(int x, int y) {
-        Point3D p = super.coordPoint3D(x, y);
-
-        Point2D p0 = new Point2D(1.0 * x / getMaxX(), 1.0 * y / getMaxY());
-
-        double mult = 1.0;
-
-        for (int i = 0; i < points.size(); i++) {
-
-            mult += 1 / (d + dmindist(p0, points.get(i)));
-
-        }
-
-        return p.mult(mult / points.size());
-
-    }
 
     public double dmindist(Point2D p0, Point2D p1) {
 
@@ -89,7 +72,6 @@ public class BalleClous extends TRISphere implements HeightMapSurface{
         return super.calculerPoint3D(u, v);
     }
 
-    @Override
     public double height(double u, double v) {
         Point2D p0 = new Point2D(u, v);
 

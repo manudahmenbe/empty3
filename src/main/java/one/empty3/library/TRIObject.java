@@ -61,10 +61,6 @@ public class TRIObject extends Representable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void position(Barycentre p) {
-        this.position = p;
-    }
 
     public Point3D rotation(Point3D p0, double a, double b) {
         Point3D p1 = new Point3D();

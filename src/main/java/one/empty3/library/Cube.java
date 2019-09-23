@@ -79,12 +79,10 @@ public class Cube extends Representable implements TRIGenerable, IMovable {
 
     public Cube(double mlc, Point3D position) {
         this.mlc = mlc;
-        this.bc.position = position;
-    }
+        }
 
     public Cube(double mlc, Point3D position, ITexture t) {
         this.mlc = mlc;
-        this.bc.position = position;
         texture(t);
     }
 
@@ -93,9 +91,9 @@ public class Cube extends Representable implements TRIGenerable, IMovable {
 
         for (int i = 0; i < 12; i++) {
             TRI t = new TRI(
-                    new Point3D(coordCube[i][0], texture()).mult(mlc).plus(bc.position),
-                    new Point3D(coordCube[i][1], texture()).mult(mlc).plus(bc.position),
-                    new Point3D(coordCube[i][2], texture()).mult(mlc).plus(bc.position),
+                    new Point3D(coordCube[i][0], texture()).mult(mlc),
+                    new Point3D(coordCube[i][1], texture()).mult(mlc),
+                    new Point3D(coordCube[i][2], texture()).mult(mlc),
                     texture());
 
             ts.add(t);
@@ -109,7 +107,7 @@ public class Cube extends Representable implements TRIGenerable, IMovable {
     }
 
     public double getMlc() {
-        return mlc * bc.agrandissement;
+        return mlc;
     }
 
     public void setMlc(double mlc) {

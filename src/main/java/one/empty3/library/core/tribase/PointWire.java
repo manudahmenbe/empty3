@@ -68,11 +68,6 @@ public class PointWire extends Representable implements IFct1D3D {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void position(Barycentre p) {
-        // TODO Auto-generated method stub
-
-    }
 
     @Override
     public boolean supporteTexture() {

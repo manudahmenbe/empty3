@@ -133,7 +133,6 @@ public class TestBalleClous111 extends TestObjetSub {
 
             ballec.addPoint(new Point2D(s[j].getX(), s[j].getY()));
 
-            ballec.setRotation(new Rotation(ballec.position().rotation.mult(matrix1(totalA, totalB)), ballec.position().position));
         }
 
 

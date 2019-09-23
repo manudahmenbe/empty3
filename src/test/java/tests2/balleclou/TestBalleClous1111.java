@@ -13,7 +13,7 @@ public class TestBalleClous1111 extends TestObjetSub {
 
     public int MAXFRAMES = 2000;
 
-    public int N = 3;
+    public int N = 1;
     private ITexture tc = new TextureCol(Color.red);
     private BalleClous2 ballec;
     private Point3D[][] s;
@@ -21,7 +21,7 @@ public class TestBalleClous1111 extends TestObjetSub {
     private double V = 0.03;
     private double D = 1;
     private TextureMov textureMov;
-    private BalleClous2[] balles = new BalleClous2[N];
+    private BalleClous2[] balles = new BalleClous2[1];
     private int nBalles = 5;
 
     public static void main(String[] args) {
@@ -74,7 +74,7 @@ public class TestBalleClous1111 extends TestObjetSub {
         ) {
 
 
-            ballec = new BalleClous2(Point3D.random2(5d), 1);
+            ballec = new BalleClous2(Point3D.O0, 1);
 
             balles[i] = ballec;
             ballec.texture(new TextureCol(Colors.random()));
@@ -86,7 +86,7 @@ public class TestBalleClous1111 extends TestObjetSub {
 
         }
         Camera camera;
-        camera = new Camera(new Point3D(-1600d, 0d, 0d),
+        camera = new Camera(new Point3D(-5d, 0d, 0d),
                 new Point3D(0d, 0d, 0d));
 
         scene().cameraActive(camera);
@@ -149,22 +149,9 @@ public class TestBalleClous1111 extends TestObjetSub {
 
                 ballec.addPoint(new Point2D(s[b][j].getX(), s[b][j].getY()));
 
-
-                ballec.position().rotation = ballec.position().rotation.mult(matrix1(totalA, totalB));
             }
 
         }
     }
 
-    private Matrix33 matrix1(double a, double b) {
-        return Matrix33.rot(a, b);
-    }
-
-    @Override
-    public void finit() {
-      /*  if (!textureMov.nextFrame()) {
-            this.STOP();
-        }
-    */
-    }
 }

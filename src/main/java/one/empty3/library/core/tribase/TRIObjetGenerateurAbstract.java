@@ -125,14 +125,14 @@ public class TRIObjetGenerateurAbstract extends Representable implements TRIObje
             tris[t] = new TRI();
             if (t == 0) {
                 tris[t].setSommet(new Point3D[]{
-                        position().calculer(coordPoint3D(numX, numY)),
-                        position().calculer(coordPoint3D(nextX, numY)),
-                        position().calculer(coordPoint3D(nextX, nextY))});
+                        coordPoint3D(numX, numY),
+                        coordPoint3D(nextX, numY),
+                        coordPoint3D(nextX, nextY)});
             } else {
                 tris[t].setSommet(new Point3D[]{
-                        position().calculer(coordPoint3D(numX, nextY)),
-                        position().calculer(coordPoint3D(numX, numY)),
-                        position().calculer(coordPoint3D(nextX, nextY))});
+                        coordPoint3D(numX, nextY),
+                        coordPoint3D(numX, numY),
+                        coordPoint3D(nextX, nextY)});
             }
 
             tris[t].
