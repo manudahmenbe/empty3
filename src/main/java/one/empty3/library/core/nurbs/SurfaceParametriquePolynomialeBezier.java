@@ -17,7 +17,7 @@
  * *
  * Global license : * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * author Manuel Dahmen <manuel.dahmen@gmx.com>
  * <p>
  * Creation time 17-sept.-2014
  * <p>
@@ -29,7 +29,7 @@ import one.empty3.library.Point3D;
 import one.empty3.library.StructureMatrix;
 
 /**
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class SurfaceParametriquePolynomialeBezier extends ParametricSurface implements SurfaceElem{
 

@@ -17,7 +17,7 @@
  * *
  * Global license : * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * author Manuel Dahmen <manuel.dahmen@gmx.com>
  * <p>
  * *
  */
@@ -26,7 +26,7 @@ package one.empty3.library.core.lighting;
 import one.empty3.library.*;
 
 /**
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class Infini extends Representable {
 

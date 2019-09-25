@@ -17,7 +17,7 @@
  * *
  * Global license : * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * author Manuel Dahmen <manuel.dahmen@gmx.com>
  * <p>
  * *
  */
@@ -32,7 +32,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class Intersection {
 

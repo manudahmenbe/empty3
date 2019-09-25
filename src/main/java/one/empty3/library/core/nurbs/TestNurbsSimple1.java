@@ -17,7 +17,7 @@
  * *
  * Global license : * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * author Manuel Dahmen <manuel.dahmen@gmx.com>
  * <p>
  * *
  */
@@ -31,7 +31,7 @@ import one.empty3.library.core.testing.TestObjetSub;
 import java.awt.*;
 
 /**
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class TestNurbsSimple1 extends TestObjetSub {
 

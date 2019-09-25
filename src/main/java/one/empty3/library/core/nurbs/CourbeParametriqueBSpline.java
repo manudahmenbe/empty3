@@ -17,7 +17,7 @@
  * *
  * Global license : * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * author Manuel Dahmen <manuel.dahmen@gmx.com>
  * <p>
  * Creation time 19-sept.-2014
  * BAD UGLY COMME TA MERE
@@ -26,7 +26,7 @@
 package one.empty3.library.core.nurbs;
 
 /**
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class CourbeParametriqueBSpline extends BSpline {
 

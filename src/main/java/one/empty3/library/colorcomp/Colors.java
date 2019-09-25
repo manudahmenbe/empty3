@@ -17,7 +17,7 @@
  * *
  * Global license : * CC Attribution
  * <p>
- * author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * author Manuel Dahmen <manuel.dahmen@gmx.com>
  * <p>
  * *
  */
@@ -26,7 +26,7 @@ package one.empty3.library.colorcomp;
 import java.awt.*;
 
 /**
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public abstract class Colors {
 
