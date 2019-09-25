@@ -51,7 +51,7 @@ public class TestBalleClous extends TestObjetSub {
         } catch (IOException ex) {
             Logger.getLogger(TestBalleClous1.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ballec = new BalleClous(Point3D.O0, 50);
+        ballec = new BalleClous(Point3D.O0, 1.0);
 
 
         int m, n;

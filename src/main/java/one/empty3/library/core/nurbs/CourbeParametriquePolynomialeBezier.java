@@ -1,13 +1,16 @@
 /*
- * Copyright (c) 2016. Tous les fichiers dans ce programme sont soumis à la License Publique Générale GNU créée par la Free Softxware Association, Boston.
- * La plupart des licenses de parties tièrces sont compatibles avec la license principale.
- * Les parties tierces peuvent être soumises à d'autres licenses.
- * Montemedia : Creative Commons
- * ECT : Tests à valeur artistique ou technique.
- * La partie RayTacer a été honteusement copiée sur le Net. Puis traduite en Java et améliorée.
- * Java est une marque de la société Oracle.
+ * This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
  *
- * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *
+ *     You should have received a copy of the GNU General Public License
+ *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
 /**
@@ -26,7 +29,7 @@ import one.empty3.library.Point3D;
 import one.empty3.library.StructureMatrix;
 
 /**
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolynomiale {
 
@@ -54,9 +57,9 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
         //double bSum = 0.0;
         for (int i = 0; i < N; i++) {
             //bSum += B(i, N, t);
-            sum = sum.plus(coefficients.getElem(i).mult(B(i, N - 1, t)));
+            sum = sum.plus(coefficients.getElem(i).mult(B(i, N - 1, t)).mult(1.0));
         }
-        return sum;//.mult(1/bSum);
+        return sum;
     }
 
     @Override
@@ -84,6 +87,5 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
             s+="\n"+coefficients.getElem(i).toString()+"\n";
         return s+")\n";
     }
-
 
 }
