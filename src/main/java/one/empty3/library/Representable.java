@@ -1,4 +1,21 @@
 /*
+ *  This file is part of Empty3.
+ *
+ *     Empty3 is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     Empty3 is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *
+ *     You should have received a copy of the GNU General Public License
+ *     along with Empty3.  If not, see <https://www.gnu.org/licenses/>. 2
+ */
+
+/*
  * This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
  *     the Free Software Foundation, either version 3 of the License, or
@@ -51,7 +68,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     protected Point3D scale;
 
     public Representable() {
-        if (!(this instanceof Matrix33 || this instanceof Point3D || this instanceof StructureMatrix)) {
+        if (!(this instanceof Matrix33 || this instanceof Point3D)) {
             rotation = new Rotation();
             scale = new Point3D(1d, 1d, 1d);
 
@@ -262,7 +279,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
 
 
     public void declareProperties() {
-
+        getDeclaredDataStructure().clear();
 
     }
 
@@ -390,9 +407,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
 
     @Override
     public void xmlRepresentation(String filesPath, XmlRepresentable parent, StringBuilder stringBuilder, String name, StructureMatrix is) {
-        stringBuilder.append("<StructureMatrix name=\"" + name + "\" dim=\"" + is.getDim() + "\" class=\"" + is.getClass().getName() + "\" typeClass=\"" + is.getClassType() + "\">");
-        is.declareProperties();
-
+        stringBuilder.append("<StructureMatrix name=\"" + name + "\" dim=\"" + is.getDim() + "\" class=\"" + is.getClass().getName() + "\" typeClass=\"" + is.getClassType().getName() + "\">");
         switch (is.getDim()) {
             case 0:
                 stringBuilder.append("<Data dim=\"0\">");
@@ -423,7 +438,6 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
                 is.data2d.forEach(new Consumer<List>() {
                     @Override
                     public void accept(List ts) {
-                        stringBuilder.append("<Line l=\"" + i2[0] + "\">");
 
                         ts.forEach(new Consumer() {
                             @Override
@@ -435,17 +449,17 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
                             }
                         });
 
-                        stringBuilder.append("</Line>");
                         i2[0]++;
                     }
                 });
-                stringBuilder.append("</Data");
+                stringBuilder.append("</Data>");
                 break;
 
 
         }
         stringBuilder.append("</StructureMatrix>");
     }
+
 }
 
 
