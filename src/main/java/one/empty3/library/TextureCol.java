@@ -40,29 +40,29 @@ import java.awt.Color;
 //#TODO Repair
 public class TextureCol extends ITexture {
 
-    private int color;
+    private StructureMatrix<Integer> color = new StructureMatrix<>(0, Integer.class);
 
     public TextureCol() {
-        color = Color.BLACK.getRGB();
+        color.setElem(Color.BLACK.getRGB());
     }
 
     public TextureCol(Color c) {
         if (c != null) {
-            color = c.getRGB();
+            color.setElem(c.getRGB());
         }
         else
-            color = Color.TRANSLUCENT;
+            color.setElem(Color.TRANSLUCENT);
     }
 
     public TextureCol(int c) {
-        color = c;
+        color.setElem(c);
     }
     public int color() {
-        return color;
+        return color.getElem();
     }
 
     public void color(Color c) {
-        color = c.getRGB();
+        color.setElem(c.getRGB());
     }
 
     @Override
@@ -71,13 +71,18 @@ public class TextureCol extends ITexture {
     }
 
     public int getColorAt(double x, double y) {
-        return color;
+        return color.getElem();
     }
 
     public void timeNext() {
     }
 
     public void timeNext(long milli) {
+    }
+
+    @Override
+    public StructureMatrix getDeclaredProperty(String name) {
+        return color;
     }
 
     /**
@@ -92,11 +97,11 @@ public class TextureCol extends ITexture {
      */
     public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double x,
                                           double y) {
-        return new Color(color);
+        return new Color(color.getElem());
     }
 
     public String toString() {
-        long c = this.color;
+        long c = this.color.getElem();
         return "texture ( red:" + ((c&0x000000FF)>>0)+ "; green:" +
                 ((c&0x0000FF00)>>8)+ "; blue:" + ((c&0x00FF0000)>>16) +
                 "; alpha:" + ((c&0xFF000000)>>24) + ")\n";

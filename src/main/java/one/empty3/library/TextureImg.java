@@ -52,7 +52,7 @@ import java.util.Base64;
  */
 public class TextureImg extends ITexture {
 
-    private ECBufferedImage image;
+    private StructureMatrix<ECBufferedImage> image = new StructureMatrix<>(0, ECBufferedImage.class);
 
     private String nom = "texture";
 
@@ -67,7 +67,7 @@ public class TextureImg extends ITexture {
 
     }
     public TextureImg(ECBufferedImage bi) {
-        this.image = bi;
+        this.image.setElem(bi);
     }
 
     @Override
@@ -82,24 +82,24 @@ public class TextureImg extends ITexture {
     }
 
     protected int couleur(double rx, double ry) {
-        int x = (int) (rx * image.getWidth());
-        int y = (int) (ry * image.getHeight());
+        int x = (int) (rx * image.getElem().getWidth());
+        int y = (int) (ry * image.getElem().getHeight());
         if (x < 0) {
             x = 0;
         }
         if (y < 0) {
             y = 0;
         }
-        if (x >= image.getWidth()) {
-            x = image.getWidth() - 1;
+        if (x >= image.getElem().getWidth()) {
+            x = image.getElem().getWidth() - 1;
         }
-        if (y >= image.getHeight()) {
-            y = image.getHeight() - 1;
+        if (y >= image.getElem().getHeight()) {
+            y = image.getElem().getHeight() - 1;
         }
 
 
         int c = image != null ? image
-                .getRGB(x, y)
+                .getElem().getRGB(x, y)
                 :
                 transparent;
 
@@ -108,11 +108,11 @@ public class TextureImg extends ITexture {
 
 
     public ECBufferedImage getImage() {
-        return image;
+        return image.getElem();
     }
 
     public void setImage(ECBufferedImage image) {
-        this.image = image;
+        this.image.setElem(image);
     }
 
     public String getNom() {
@@ -142,44 +142,18 @@ public class TextureImg extends ITexture {
     public void timeNext(long milli) {
     }
 
-
-    /**
-     * Quadrilatère numQuadX = 1, numQuadY = 1, coordArr, y 3----2 ^2y |\ | | 4 |
-     * 0--\-1 1 -> 2x
-     *
-     * @param numQuadX nombre de maillage en coordArr
-     * @param numQuadY nombre de maillage en y
-     * @param x        valeur de coordArr
-     * @param y        valeur de y
-     * @return
-     */
-    public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double x,
-                                          double y) {
-        Point2D p = getCoord(x, y);
-
-        int xi = ((int) (1d * image.getWidth() * p.x));
-        int yi = ((int) (1d * image.getHeight() * p.y));
-
-
-        if (xi >= image.getWidth()) {
-            xi = image.getWidth() - 1;
-        }
-        if (yi >= image.getHeight()) {
-            yi = image.getHeight() - 1;
-        }
-        Color c = new Color(image.getRGB(xi, yi));
-        if (c.equals(transparent)) {
-            return new Color(transparent);
-        } else {
-            return c;
-        }
+    @Override
+    public StructureMatrix getDeclaredProperty(String name) {
+        return image;
     }
+
+
     public String toString() {
         String imageString = null;
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
         try {
-            ImageIO.write(image, "jpg", bos);
+            ImageIO.write(image.getElem(), "jpg", bos);
             byte[] imageBytes = bos.toByteArray();
     
             Base64.Encoder encoder =Base64.getEncoder();

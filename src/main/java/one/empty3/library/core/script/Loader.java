@@ -44,7 +44,6 @@ import one.empty3.library.core.tribase.TRISphere;
 import one.empty3.library.core.tribase.Tubulaire;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -610,7 +609,7 @@ public class Loader implements SceneLoader {
                 continue;
             }*/
             if ("cameras".equals(id)) {
-                ArrayList<Camera> cameras;
+                StructureMatrix<Camera> cameras;
                 try {
                     // TODO ADD POSITION INNIER
                     cameras = interpreteH.interpreteCameraCollection();
@@ -625,7 +624,7 @@ public class Loader implements SceneLoader {
                 continue;
             }
             if ("lumieres".equals(id)) {
-                ArrayList<Lumiere> lumieres;
+                StructureMatrix<Lumiere> lumieres;
                 try {
                     // TODO ADD POSITION INNIER
                     lumieres = interpreteH.interpreteLumiereCollection();

@@ -48,6 +48,7 @@ public class Camera extends CameraBox {
 
     protected StructureMatrix<Boolean> imposerMatrice = new StructureMatrix<>(0, Point3D.class);
     protected StructureMatrix<Matrix33> matrice = new StructureMatrix<>(0, Matrix33.class);
+    private StructureMatrix<Point3D> verticale  =new StructureMatrix<>(0, Point3D.class);
 
     {
 
@@ -57,6 +58,15 @@ public class Camera extends CameraBox {
 
     public Camera() {
         this(new Point3D(0d, 0d, -100d), Point3D.O0, Point3D.Y);
+        verticale.setElem(new Point3D(Point3D.Y));
+    }
+
+    public StructureMatrix<Point3D> getVerticale() {
+        return verticale;
+    }
+
+    public void setVerticale(StructureMatrix<Point3D> verticale) {
+        this.verticale = verticale;
     }
 
     public Camera(Point3D eye, Point3D lookat) {
@@ -209,6 +219,8 @@ public class Camera extends CameraBox {
         getDeclaredDataStructure().put("eye/eye", eye);
         getDeclaredDataStructure().put("lookat/lookAt", lookat);
         getDeclaredDataStructure().put("matrice/matrice", matrice);
+        getDeclaredDataStructure().put("verticale/verticale", verticale);
+        calculerMatrice(verticale.getElem());
 
     }
 }

@@ -141,7 +141,7 @@ public class Scene extends Representable implements Serializable {
     public void cameraActive(Camera c) {
         this.cameraActive.setElem(c);
         if (!cameras.getData1d().contains(c)) {
-            cameras.add(1, c);
+            cameras.getData1d().add(0, c);
         }
     }
 
@@ -387,6 +387,10 @@ public class Scene extends Representable implements Serializable {
     }
 
 
+    public void setCameraActive(StructureMatrix<Camera> cameraActive) {
+        this.cameraActive = cameraActive;
+    }
+
     public StructureMatrix<Representable> getObjets() {
         return objets;
     }
@@ -451,19 +455,7 @@ public class Scene extends Representable implements Serializable {
         this.dernierAjout = dernierAjout;
     }
 
-    public void setLumieres(ArrayList<Lumiere> lumieres) {
-        this.lumieres.setAll(lumieres);
-    }
-
-    public void setCameras(ArrayList<Camera> cameras) {
-        this.cameras.setAll(cameras);
-
-    }
-
     public void clear() {
-        scene.clear();    }
-
-    public Representable get(int i) {
-        return getObjets().getElem(i);
+        objets.reset();
     }
 }

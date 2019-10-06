@@ -15,21 +15,6 @@
  *     along with Empty3.  If not, see <https://www.gnu.org/licenses/>. 2
  */
 
-/*
- * This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
- *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
- *
- *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <https://www.gnu.org/licenses/>
- */
-
 package one.empty3.library;
 
 import java.awt.*;
@@ -39,25 +24,25 @@ import java.awt.*;
  */
 public class ColorTexture extends ITexture {
 
-    private Color color;
+    private StructureMatrix<Color> color = new StructureMatrix<Color>(0, Color.class);
 
     public ColorTexture() {
-        color = Color.BLACK;
+        color.setElem(Color.BLACK);
     }
 
     public ColorTexture(Color c) {
         this();
         if (c != null) {
-            color = c;
+            color.setElem(c);
         }
     }
 
     public Color color() {
-        return color;
+        return color.getElem();
     }
 
     public void color(Color c) {
-        color = c;
+        color.setElem(c);
     }
 
     @Override
@@ -66,7 +51,7 @@ public class ColorTexture extends ITexture {
     }
 
     public int getColorAt(double x, double y) {
-        return color.getRGB();
+        return color.getElem().getRGB();
     }
 
     public void timeNext() {
@@ -75,6 +60,11 @@ public class ColorTexture extends ITexture {
 
     public void timeNext(long milli) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public StructureMatrix getDeclaredProperty(String name) {
+        return color;
     }
 
     /**
@@ -89,6 +79,14 @@ public class ColorTexture extends ITexture {
      */
     public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double x,
                                           double y) {
+        return color.getElem();
+    }
+
+    public StructureMatrix<Color> getColor() {
         return color;
+    }
+
+    public void setColor(StructureMatrix<Color> color) {
+        this.color = color;
     }
 }

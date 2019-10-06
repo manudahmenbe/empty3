@@ -45,7 +45,7 @@ import com.xuggle.mediatool.MediaListenerAdapter;
 /**
  * @author manu
  */
-public abstract class ITexture extends MediaListenerAdapter {
+public abstract class ITexture extends MediaListenerAdapter implements MatrixPropertiesObject{
     public static final int COLOR_IDENT = 0;
     public static final int COLOR_MIROR_X = 1;
     public static final int COLOR_MIROR_Y = 2;
@@ -113,4 +113,8 @@ public abstract class ITexture extends MediaListenerAdapter {
 
     public abstract void timeNext(long milli);
 
+
+    @Override
+    public abstract StructureMatrix getDeclaredProperty(String name);
 }
+

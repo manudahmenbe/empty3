@@ -55,10 +55,10 @@ public class TRISphere extends Sphere {
     }
 
     public void setCentre(Point3D centre) {
-        Axe axe2 = new Axe(getCircle().getAxis().getP1(), getCircle().getAxis().getP2());
+        Axe axe2 = new Axe(getCircle().getAxis().getElem().getP1().getElem(), getCircle().getAxis().getElem().getP2().getElem());
         Point3D center2 = axe2.getCenter();
-        axe2.getP1().changeTo(getCircle().getAxis().getP1().moins(center2).plus(centre));
-        axe2.getP2().changeTo(getCircle().getAxis().getP2().moins(center2).plus(centre));
+        axe2.getP1().getElem().changeTo(getCircle().getAxis().getElem().getP1().getElem().moins(center2).plus(centre));
+        axe2.getP2().getElem().changeTo(getCircle().getAxis().getElem().getP2().getElem().moins(center2).plus(centre));
         circle = new StructureMatrix<>(0, Circle.class);
         circle.setElem(new Circle(axe2, circle.getElem().getRadius()));
     }

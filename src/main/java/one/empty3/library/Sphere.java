@@ -37,31 +37,30 @@ import one.empty3.library.core.nurbs.ParametricSurface;
 
 public class Sphere extends ParametricSurface {
     protected StructureMatrix<Circle> circle = new StructureMatrix<>(0, Circle.class);
-    private StructureMatrix<Axe> axe = new StructureMatrix<>(0, Axe.class);
 
     public Sphere()
     {
         super();
-        this.axe.setElem(new Axe());
         circle.setElem(new Circle());
 
 
     }
     public Sphere(Axe axis, double radius) {
         this();
-        this.axe .setElem(axis);
         circle .setElem(new Circle(axis, radius));
     }
 
     public Sphere(Point3D center, double radius) {
         this();
-        axe .setElem(new Axe(center.plus(Point3D.Y.mult(radius)), center.plus(Point3D.Y.mult(-radius))
-        ));
-        circle .setElem(new Circle(axe.getElem(), radius));
+        getCircle().getAxis().setElem(new Axe(center.plus(Point3D.Y.mult(radius)), center.plus(Point3D.Y.mult(-radius))));
     }
 
     public Point3D calculerPoint3D(double u, double v) {
         Circle c = circle.getData0d();
+        if (!c.isCalculerRepere1())
+        {
+            c.calculerRepere1();
+        }
         return c.getCenter().plus(
                 c.vectX.mult(
                         Math.cos(2.0 * Math.PI * u) * Math.cos(-Math.PI / 2 + Math.PI * v)).plus(
@@ -79,14 +78,9 @@ public class Sphere extends ParametricSurface {
         this.circle.setElem(circle);
     }
 
-    public Axe getAxe() {
-        return axe.data0d;
-    }
-
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredDataStructure().put("axe/axe du cercle sustantif", axe);
         getDeclaredDataStructure().put("circle/circle", circle);
 
     }

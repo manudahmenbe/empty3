@@ -24,12 +24,12 @@ public class TestStl extends TestObjetSub {
         StlFile file = new StlFile();
         Scene load = new Scene();
         try {
-            File file1 = new File("target/classes/be/manudahmen/empty3/one.empty3.library/tests2/modeleStl/another_nude_girl-ascii.stl");
+            File file1 = new File("samples/stl/another_nude_girl-ascii.stl");
             load = file.load(file1.getAbsolutePath());
         } catch (IncorrectFormatException | IOException | ParsingErrorException e) {
             e.printStackTrace();
         }
-        scene().add(load.get(0));
+        scene().add(load.getObjets().getElem(0));
 
         camera().setEye(P.n(0, 0, -1000.0));
     }

@@ -44,22 +44,20 @@ import one.empty3.library.core.nurbs.ParametricCurve;
 public class Circle extends ParametricCurve {
     protected StructureMatrix<Axe> axis =new StructureMatrix(0, Axe.class);
     //public Point3D center;
-    protected StructureMatrix<Double>radius = new StructureMatrix<>(0, Double.class);
+    protected StructureMatrix<Double> radius = new StructureMatrix<>(0, Double.class);
     protected Point3D vectX;
     protected Point3D vectY;
     protected Point3D vectZ;
-
+    private boolean isCalculerRepere1 = false;
     public Circle()
     {
         axis.setElem(new Axe());
         radius.setElem(10.0);
-        calculerRepere1();
     }
 
     public Circle(Axe axis, double radius) {
         this.axis.setElem( axis);
         this.radius.setElem(radius);
-        calculerRepere1();
 
     }
 
@@ -113,13 +111,20 @@ public class Circle extends ParametricCurve {
         }
         if(!success)
         {
+            isCalculerRepere1 = false;
             throw new NullPointerException("Cannot compute axis");
         }
+        isCalculerRepere1 = true;
     }
-
+    public boolean isCalculerRepere1()
+    {
+        return isCalculerRepere1;
+    }
 
     @Override
     public Point3D calculerPoint3D(double t) {
+        if(!isCalculerRepere1())
+            calculerRepere1();
         return getCenter().plus(
                 (
                         vectX.mult(
@@ -132,12 +137,12 @@ public class Circle extends ParametricCurve {
         );
     }
 
-    public Axe getAxis() {
-        return axis.getElem();
+    public StructureMatrix<Axe> getAxis() {
+        return axis;
     }
 
-    public void setAxis(Axe axis) {
-        this.axis.setElem(axis);
+    public void setAxis(StructureMatrix<Axe> axis) {
+        this.axis = axis;
     }
 
     public Point3D getCenter() {
@@ -183,7 +188,6 @@ public class Circle extends ParametricCurve {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        calculerRepere1();
         getDeclaredDataStructure().put("axis/axe du cercle (perpendiculaire au plan)", axis);
         getDeclaredDataStructure().put("radius/rayon", radius);
     }

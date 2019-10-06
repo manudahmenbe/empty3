@@ -48,7 +48,6 @@ import java.util.List;
 public class Point3D extends Representable implements IMovable {
     public Point3D() {
         super();
-        coordArr = new StructureMatrix<Double>(1, Double.class);
         coordArr.setElem(0d, 0);
         coordArr.setElem(0d, 1);
         coordArr.setElem(0d, 2);
@@ -83,7 +82,7 @@ public class Point3D extends Representable implements IMovable {
      * *
      * Coordonnées (coordArr,y,z) du point
      */
-    public StructureMatrix<Double> coordArr;
+    public StructureMatrix<Double> coordArr = new StructureMatrix<>(1, Double.class);
     /**
      * *
      * Pour le tracé de surface normale au point
@@ -140,7 +139,11 @@ public class Point3D extends Representable implements IMovable {
      * @param p0 point à copier
      */
     public Point3D(Point3D p0) {
-        this(p0.get(0), p0.get(1), p0.get(2), p0.texture);
+        this();
+        coordArr.setElem(p0.get(0), 0);
+        coordArr.setElem(p0.get(1), 1);
+        coordArr.setElem(p0.get(2), 2);
+        texture(p0.texture);
     }
 
     public Point3D(StructureMatrix<Double> coordArr) {
@@ -352,7 +355,7 @@ public class Point3D extends Representable implements IMovable {
 
     @Override
     public String toString() {
-        return "( " + (Double) (coordArr.getElem(0)) + " , " + (Double) (coordArr.getElem(1)) + " , " + (Double) (coordArr.getElem(2)) + " ) ";
+        return "\n\tp3( " + (Double) (coordArr.getElem(0)) + " , " + (Double) (coordArr.getElem(1)) + " , " + (Double) (coordArr.getElem(2)) + " ) ";
     }
 
     private Point3D norme(Double d) {

@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class TestSpheres extends TestObjetSub {
 
@@ -45,7 +46,7 @@ public class TestSpheres extends TestObjetSub {
 
     @Override
     public void ginit() {
-        scene().clear();
+        scene().getObjets().data1d = new ArrayList<>();
         Sphere[] spheres = new Sphere[TestSpheres.CIRCLES_COUNT];
         for (int i = 0; i < spheres.length; i++) {
             Axe axe = new Axe(Point3D.random(100d), Point3D.random(100d));

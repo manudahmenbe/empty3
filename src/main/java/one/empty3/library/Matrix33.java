@@ -72,7 +72,7 @@ public class Matrix33 extends  Representable {
 
     public Matrix33() {
         d = new StructureMatrix<>(1, Double.class);
-        d.setAll(new Double[] { 0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0});
+        d.setAll(new Double[] { 1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0});
 
     }
 
@@ -287,5 +287,9 @@ public class Matrix33 extends  Representable {
         super.declareProperties();
         getDeclaredDataStructure().put("d/3x3 matrix", d);
 
+    }
+
+    public StructureMatrix<Double> getD() {
+        return d;
     }
 }

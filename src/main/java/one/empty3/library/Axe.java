@@ -55,20 +55,20 @@ public class Axe extends Representable{
         this.p2.setElem(p2);
     }
 
-    public Point3D getP1() {
-        return p1.getElem();
+    public StructureMatrix<Point3D> getP1() {
+        return p1;
     }
 
-    public void setP1(Point3D p1) {
-        this.p1.setElem(p1);
+    public void setP1(StructureMatrix<Point3D> p1) {
+        this.p1 = p1;
     }
 
-    public Point3D getP2() {
-        return p2.getElem();
+    public StructureMatrix<Point3D> getP2() {
+        return p2;
     }
 
-    public void setP2(Point3D p2) {
-        this.p2.setElem(p2);
+    public void setP2(StructureMatrix<Point3D> p2) {
+        this.p2 = p2;
     }
 
     public Point3D getVectAxe() {
@@ -91,12 +91,12 @@ public class Axe extends Representable{
     public void declareProperties() {
         super.declareProperties();
         getDeclaredDataStructure().put("p1/p1", p1);
-        getDeclaredDataStructure().put("p2/p1", p2);
+        getDeclaredDataStructure().put("p2/p2", p2);
 
     }
 
     @Override
     public String toString() {
-        return "axis (\np1"+getP1()+"\n"+getP2()+"\n)\n";
+        return "axis (\np1"+getP1()+"\np2"+getP2()+"\n)\n";
     }
 }

@@ -35,20 +35,21 @@ package one.empty3.library;
 /**
  * Created by Win on 26-01-16.
  */
-public class Rotation {
-    protected Matrix33 rot;
-    protected Point3D centreRot;
+public class Rotation implements MatrixPropertiesObject
+{
+    protected StructureMatrix<Matrix33> rot = new StructureMatrix<>(0, Matrix33.class);
+    protected StructureMatrix<Point3D> centreRot = new StructureMatrix<>(0, Point3D.class);
     protected boolean unmodified = true;
     public Rotation() {
         if (isUnmodified())
         {
-            rot  = new Matrix33(Matrix33.I);
-            centreRot = new Point3D(Point3D.O0);
+            rot.setElem(new Matrix33(Matrix33.I));
+            centreRot.setElem(new Point3D(Point3D.O0));
         }
     }
     public Rotation(Matrix33 rot, Point3D centreRot) {
-        this.rot = rot;
-        this.centreRot = centreRot;
+        this.rot.setElem(rot);
+        this.centreRot.setElem(centreRot);
     }
 
     public boolean isUnmodified() {
@@ -61,11 +62,11 @@ public class Rotation {
 
     public Point3D rotation(Point3D p ) {
         if(rot==null)
-            rot = new Matrix33(Matrix33.I);
+            rot.setElem(new Matrix33(Matrix33.I));
         if(centreRot==null)
-            centreRot = p;
+            centreRot.setElem(p);
         if(p!=null) {
-            return p.plus(centreRot).plus(rot.mult(p.scale()));
+            return p.plus(centreRot.getElem()).plus(rot.getElem().mult(p.scale()));
         }
         else return p;
     }
@@ -75,19 +76,28 @@ public class Rotation {
         return Matrix33.rotationX(angle).mult(p);
     }
 
-    public Point3D getCentreRot() {
-        return centreRot;
-    }
-
-    public void setCentreRot(Point3D centreRot) {
-        this.centreRot = centreRot;
-    }
-
-    public Matrix33 getRot() {
+    public StructureMatrix<Matrix33> getRot() {
         return rot;
     }
 
-    public void setRot(Matrix33 rot) {
+    public void setRot(StructureMatrix<Matrix33> rot) {
         this.rot = rot;
+    }
+
+    public StructureMatrix<Point3D> getCentreRot() {
+        return centreRot;
+    }
+
+    public void setCentreRot(StructureMatrix<Point3D> centreRot) {
+        this.centreRot = centreRot;
+    }
+
+    @Override
+    public StructureMatrix getDeclaredProperty(String name) {
+        if(name.equals("centreRot"))
+            return centreRot;
+        else if(name.equals("rot"))
+            return rot;
+        else throw new UnsupportedOperationException("Property not found");
     }
 }

@@ -60,10 +60,10 @@ public class TestCircles extends TestObjetSub {
     @Override
     public void testScene() throws Exception {
         for (int i = 0; i < circles.length; i++) {
-            Point3D axe = circles[i].getAxis().getP1();
+            Point3D axe = circles[i].getAxis().getElem().getP1().getElem();
             axe.changeTo(axe.plus(Point3D.random(MAX_SIZE / 10)));
 
-            axe = circles[i].getAxis().getP2();
+            axe = circles[i].getAxis().getElem().getP2().getElem();
             axe.changeTo(axe.plus(Point3D.random(MAX_SIZE / 10)));
         }
     }

@@ -1,4 +1,21 @@
 /*
+ *  This file is part of Empty3.
+ *
+ *     Empty3 is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     Empty3 is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *
+ *     You should have received a copy of the GNU General Public License
+ *     along with Empty3.  If not, see <https://www.gnu.org/licenses/>. 2
+ */
+
+/*
  * This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
  *     the Free Software Foundation, either version 3 of the License, or
@@ -23,7 +40,7 @@ import java.util.function.Consumer;
 /**
  * Created by manue on 07-09-19.
  */
-public class StructureMatrix<T>  extends Representable {
+public class StructureMatrix<T>   implements MatrixPropertiesObject {
     private static final int INSERT_ROW = 0;
     private static final int INSERT_COL = 1;
     private int dim;
@@ -117,6 +134,12 @@ public class StructureMatrix<T>  extends Representable {
     }
 */
     public StructureMatrix(int dim, Class classType) {
+        init(dim, classType);
+    }
+
+
+    public void init(int dim, Class classType)
+    {
         this.dim = dim;
         if(dim==1)
             data1d = new ArrayList<T>();
@@ -124,7 +147,6 @@ public class StructureMatrix<T>  extends Representable {
             data2d = new ArrayList<List<T>>();
         this.classType = classType;
     }
-
     public void setElem(T value)
     {
         dim = 0;
@@ -133,13 +155,12 @@ public class StructureMatrix<T>  extends Representable {
     }
     public void setElem(T elem, int i)
     {
-        this.classType = elem.getClass();
-        dim = 1;
-        if (i < getData1d().size()) {
-            getData1d().set(i, elem);
-        }
+
         for (int j = this.getData1d().size(); j <= i; j++) {
             data1d.add(elem);
+        }
+        if (i < getData1d().size()) {
+            getData1d().set(i, elem);
         }
     }
     public void setElem(T elem, int i, int j)
@@ -395,5 +416,19 @@ public class StructureMatrix<T>  extends Representable {
     public void setAll(ArrayList<T> all) {
         dim = 1;
         this.data1d = all;
+    }
+
+    public void reset() {
+        if(dim==0)
+            data0d = null;
+        if(dim==1)
+            data1d = new ArrayList<T>();
+        if(dim==2)
+            data2d = new ArrayList<List<T>>();
+    }
+
+    @Override
+    public StructureMatrix getDeclaredProperty(String name) {
+        return null;
     }
 }

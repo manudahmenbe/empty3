@@ -2,7 +2,8 @@ package tests2.anneaux;
 
 import one.empty3.library.*;
 import one.empty3.library.core.move.Trajectoires;
-import one.empty3.library.core.testing.TestObjetSub;
+import one.empty3.library.core.testing.*;
+import one.empty3.library.core.testing.Resolution;
 
 import java.awt.*;
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class TestCitron extends TestObjetSub {
     public static void main(String... args) {
         TestCitron testCitron = new TestCitron();
         testCitron.setMaxFrames(1000);
+        testCitron.setDimension(new Resolution(100, 100));
         new Thread(testCitron).start();
     }
 
@@ -38,7 +40,7 @@ public class TestCitron extends TestObjetSub {
             citrons[i].setMaxX(20);
             citrons[i].setMaxY(20);
             try {
-                citrons[i].texture(new TextureImg(ECBufferedImage.getFromFile(new java.io.File("./textures/herbe.jpg"))));
+                citrons[i].texture(new TextureImg(ECBufferedImage.getFromFile(new java.io.File("samples/img/herbe.jpg"))));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -56,7 +58,7 @@ public class TestCitron extends TestObjetSub {
                     1.0 * frame() / getMaxFrames(), 0.0, DIM);
             Point3D pB = sphere.mult(-1d);
             axe = new Axe(sphere, pB);
-            citrons[i].getCircle().setAxis(axe);
+            citrons[i].getCircle().getAxis().setElem(axe);
         }
     }
 }

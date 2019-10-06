@@ -160,9 +160,9 @@ public class Horloge extends JFrame {
         double f = 2 * Math.PI;
         Date d = new Date();
 
-        sH.getCircle().getAxis().setP1(position(f * d.getHours() / 12).mult(60d));
-        sM.getCircle().getAxis().setP1(position(f * d.getMinutes() / 60).mult(80d));
-        sS.getCircle().getAxis().setP1(position(f * d.getSeconds() / 60).mult(100d));
+        sH.getCircle().getAxis().getElem().getP1().setElem(position(f * d.getHours() / 12).mult(60d));
+        sM.getCircle().getAxis().getElem().getP1().setElem(position(f * d.getMinutes() / 60).mult(80d));
+        sS.getCircle().getAxis().getElem().getP1().setElem(position(f * d.getSeconds() / 60).mult(100d));
         droite0.setOrigine(position(f * d.getHours() / 12).mult(60d));
         droite1.setOrigine(position(f * d.getMinutes() / 60).mult(80d));
         droite2.setOrigine(position(f * d.getSeconds() / 60).mult(100d));

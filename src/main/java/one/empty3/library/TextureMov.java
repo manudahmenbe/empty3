@@ -46,6 +46,7 @@ public class TextureMov extends ITexture {
     private IMediaReader reader;
     private boolean notSuivante = false;
     private int track = 0;
+    private StructureMatrix<File> fileStructureMatrix = new StructureMatrix<>(0, File.class);
     private File file = null;
     private int transparent = Color.WHITE.getRGB();
     /**
@@ -63,6 +64,7 @@ public class TextureMov extends ITexture {
 
     public void setFile(File file) {
         this.file = file;
+        fileStructureMatrix.setElem(file);
         init(file.getAbsolutePath());
     }
 
@@ -75,7 +77,7 @@ public class TextureMov extends ITexture {
     public void init(String filename)
     {
         this.file = new File(filename);
-
+        fileStructureMatrix.setElem(file);
 
         CAPACITY = 100;
 
@@ -136,6 +138,11 @@ public class TextureMov extends ITexture {
     @Override
     public void timeNext(long milli) {
 
+    }
+
+    @Override
+    public StructureMatrix getDeclaredProperty(String name) {
+        return fileStructureMatrix;
     }
 
 

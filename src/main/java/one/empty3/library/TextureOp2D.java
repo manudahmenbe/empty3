@@ -35,8 +35,8 @@ package one.empty3.library;
 /**
  * Created by manue on 28-05-19.
  */
-public abstract class TextureOp2D extends ITexture {
-    protected ITexture upText;
+public abstract class TextureOp2D extends ITexture implements MatrixPropertiesObject {
+    protected StructureMatrix<ITexture> upText = new StructureMatrix<>(0, ITexture.class);
 
     @Override
     public void iterate() throws EOFVideoException {
@@ -57,6 +57,8 @@ public abstract class TextureOp2D extends ITexture {
     public abstract int getColorAt(double u, double v);
 
     public void setUpText(ITexture upText) {
-        this.upText = upText;
+        this.upText.setElem(upText);
     }
+
+
 }

@@ -49,11 +49,12 @@ import java.io.File;
  */
 public class ImageTexture extends ITexture {
 
+    private StructureMatrix<ECBufferedImage> ecBufferedImageStructureMatrix = new StructureMatrix<>(0, ECBufferedImage.class);
     private ECBufferedImage image;
 
     private String nom = "texture";
 
-    private String nomFichier = "image.png";
+    private String nomFichier = "ecBufferedImageStructureMatrix.png";
 
     private Scene scene;
     private AVIReader reader;
@@ -62,7 +63,8 @@ public class ImageTexture extends ITexture {
     private int transparent = 0xFFFFFF00;
 
     public ImageTexture(ECBufferedImage bi) {
-        this.image = bi;
+        this.ecBufferedImageStructureMatrix.setElem(bi);
+        image = bi;
     }
 
     @Override
@@ -73,28 +75,28 @@ public class ImageTexture extends ITexture {
     @Override
     public int getColorAt(double x, double y) {
         Point2D trans = getCoord(x, y);
-        return couleur(trans.x / image.getWidth(), trans.y / image.getHeight()).getRGB();
+        return couleur(trans.x / ecBufferedImageStructureMatrix.getElem().getWidth(), trans.y / ecBufferedImageStructureMatrix.getElem().getHeight()).getRGB();
     }
 
     protected Color couleur(double rx, double ry) {
-        int x = (int) (rx * image.getWidth());
-        int y = (int) (ry * image.getHeight());
+        int x = (int) (rx * ecBufferedImageStructureMatrix.getElem().getWidth());
+        int y = (int) (ry * ecBufferedImageStructureMatrix.getElem().getHeight());
         if (x < 0) {
             x = 0;
         }
         if (y < 0) {
             y = 0;
         }
-        if (x >= image.getWidth()) {
-            x = image.getWidth() - 1;
+        if (x >= ecBufferedImageStructureMatrix.getElem().getWidth()) {
+            x = ecBufferedImageStructureMatrix.getElem().getWidth() - 1;
         }
-        if (y >= image.getHeight()) {
-            y = image.getHeight() - 1;
+        if (y >= ecBufferedImageStructureMatrix.getElem().getHeight()) {
+            y = ecBufferedImageStructureMatrix.getElem().getHeight() - 1;
         }
 
 
-        int c = image != null ? image
-                .getRGB(x, y)
+        int c = ecBufferedImageStructureMatrix != null ? ecBufferedImageStructureMatrix
+                .getElem().getRGB(x, y)
                 :
                 transparent;
         if (
@@ -112,12 +114,22 @@ public class ImageTexture extends ITexture {
     }
 
 
-    public BufferedImage getImage() {
+    public BufferedImage getEcBufferedImageStructureMatrix() {
+        return ecBufferedImageStructureMatrix.getElem();
+    }
+
+    public void setEcBufferedImageStructureMatrix(ECBufferedImage ecBufferedImageStructureMatrix) {
+        this.ecBufferedImageStructureMatrix.setElem(ecBufferedImageStructureMatrix);
+        image = ecBufferedImageStructureMatrix;
+    }
+
+    public ECBufferedImage getImage() {
         return image;
     }
 
-    public void setImage(ECBufferedImage image) {
-        this.image = image;
+    public void setImage(ECBufferedImage bi) {
+        image = bi;
+        ecBufferedImageStructureMatrix.setElem(bi);
     }
 
     public String getNom() {
@@ -150,6 +162,11 @@ public class ImageTexture extends ITexture {
     public void timeNext(long milli) {
     }
 
+    @Override
+    public StructureMatrix getDeclaredProperty(String name) {
+        return ecBufferedImageStructureMatrix;
+    }
+
 
     /**
      * Quadrilatère numQuadX = 1, numQuadY = 1, coordArr, y 3----2 ^2y |\ | | 4 |
@@ -161,28 +178,28 @@ public class ImageTexture extends ITexture {
      * @param y        valeur de y
      * @return
      */
-    public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double x,
+/*    public Color getMaillageTexturedColor(int numQuadX, int numQuadY, double x,
                                           double y) {
         Point2D p = getCoord(x, y);
 
-        int xi = ((int) (1d * image.getWidth() * p.x));
-        int yi = ((int) (1d * image.getHeight() * p.y));
+        int xi = ((int) (1d * ecBufferedImageStructureMatrix.getWidth() * p.x));
+        int yi = ((int) (1d * ecBufferedImageStructureMatrix.getHeight() * p.y));
 
 
-        if (xi >= image.getWidth()) {
-            xi = image.getWidth() - 1;
+        if (xi >= ecBufferedImageStructureMatrix.getWidth()) {
+            xi = ecBufferedImageStructureMatrix.getWidth() - 1;
         }
-        if (yi >= image.getHeight()) {
-            yi = image.getHeight() - 1;
+        if (yi >= ecBufferedImageStructureMatrix.getHeight()) {
+            yi = ecBufferedImageStructureMatrix.getHeight() - 1;
         }
-        Color c = new Color(image.getRGB(xi, yi));
+        Color c = new Color(ecBufferedImageStructureMatrix.getRGB(xi, yi));
         if (c.equals(transparent)) {
             return new Color(transparent);
         } else {
             return c;
         }
     }
-
+*/
     /**
      * +|--r11->/-----| y^r12^ 0/1 ^r12^ -|-----/<-r11--|+coordArr
      *
@@ -195,7 +212,7 @@ public class ImageTexture extends ITexture {
      * @param numTRI
      * @return
      */
-    public Color getMaillageTRIColor(int numQuadX, int numQuadY, double x,
+  /*  public Color getMaillageTRIColor(int numQuadX, int numQuadY, double x,
                                      double y, double r11, double r12, int numTRI) {
 
         double dx = 0;
@@ -208,19 +225,19 @@ public class ImageTexture extends ITexture {
             dy = r12;
         }
         int xi = ((int) ((((int) x + dx) / numQuadX + Math.signum(numTRI - 0.5)
-                * image.getWidth())));
-        int yi = ((int) ((((int) y + dy) / numQuadY * image.getHeight())));
-        Point2D p = getCoord(xi / (double) image.getWidth(), yi / (double) image.getHeight());
+                * ecBufferedImageStructureMatrix.getWidth())));
+        int yi = ((int) ((((int) y + dy) / numQuadY * ecBufferedImageStructureMatrix.getHeight())));
+        Point2D p = getCoord(xi / (double) ecBufferedImageStructureMatrix.getWidth(), yi / (double) ecBufferedImageStructureMatrix.getHeight());
 
         int x1 = (int) p.x;
         int y1 = (int) p.y;
 
-        Color c = new Color(image.getRGB(x1, y1));
+        Color c = new Color(ecBufferedImageStructureMatrix.getRGB(x1, y1));
         if (c.equals(transparent)) {
             return new Color(transparent);
         } else {
             return c;
         }
     }
-
+*/
 }

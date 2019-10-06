@@ -35,6 +35,7 @@ package one.empty3.library.svgtexture;
 
 import one.empty3.library.EOFVideoException;
 import one.empty3.library.ITexture;
+import one.empty3.library.StructureMatrix;
 
 import java.io.File;
 
@@ -70,5 +71,11 @@ public class SVGTexture extends ITexture {
     @Override
     public void timeNext(long milli) {
         // NOTHING TO DO HERE
+    }
+
+    @Override
+    public StructureMatrix getDeclaredProperty(String name) {
+        return null;
+
     }
 }

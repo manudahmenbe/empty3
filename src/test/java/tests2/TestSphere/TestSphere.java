@@ -92,9 +92,10 @@ public class TestSphere extends TestObjetSub {
         ));
         scene().cameraActive().calculerMatrice(Point3D.Y);
         for (int i = 0; i < s.length; i++) {
-            Point3D pA = s[i].getCircle().getAxis().getP1();
+            Point3D pA = s[i].getCircle().getAxis().getElem().getP1().getElem();
             Point3D pB = Trajectoires.sphere(longpc(i + 1), latpc(i + 1), size);
-            s[i].getCircle().setAxis(new Axe(pA, pB));
+            s[i].getCircle().getAxis().getElem().getP1().setElem(pA);
+            s[i].getCircle().getAxis().getElem().getP2().setElem(pB);
             s[i].getCircle().calculerRepere1();
         }
     }

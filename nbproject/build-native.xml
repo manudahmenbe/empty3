@@ -667,7 +667,7 @@
                 }
                 var splashScreenAvailable = new String(project.getProperty("splashscreen.available"));
                 if (defined(splashScreenAvailable)) {
-                    project.setProperty("deploy.splash.image",new String(project.getProperty("application.splash")));
+                    project.setProperty("deploy.splash.ecBufferedImageStructureMatrix",new String(project.getProperty("application.splash")));
                 }
                 jar.perform();
             ]]>
@@ -849,13 +849,13 @@
                 info.setTitle(title); // title known from before
                 info.setVendor(vendor);
                 info.setDescription(description);
-                var splash = new String(project.getProperty("deploy.splash.image"));
+                var splash = new String(project.getProperty("deploy.splash.ecBufferedImageStructureMatrix"));
                 if(defined(splash)) {
                     if(isTrue(fx_ant_api_1_1)) {
                         var sicon = info.createSplash();
                         sicon.setHref(splash);
                         sicon.setMode("any");
-                        print("Adding splash image reference: " + splash);
+                        print("Adding splash ecBufferedImageStructureMatrix reference: " + splash);
                     } else {
                         print("Warning: Splash Image not supported by this version of JavaFX SDK deployment Ant task. Please upgrade JavaFX to 2.0.2 or higher.");
                     }

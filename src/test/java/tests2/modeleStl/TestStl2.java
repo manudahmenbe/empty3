@@ -29,7 +29,7 @@ public class TestStl2 extends TestObjetSub {
         } catch (IncorrectFormatException | IOException | ParsingErrorException e) {
             e.printStackTrace();
         }
-        scene().add(load.get(0));
+        scene().add(load.getObjets().getElem(0));
 
         camera().setEye(P.n(0, 0, -1500.0));
     }

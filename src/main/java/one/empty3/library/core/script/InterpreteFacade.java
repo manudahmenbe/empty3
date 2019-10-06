@@ -297,9 +297,9 @@ public class InterpreteFacade {
         return c;
     }
 
-    public ArrayList<Camera> interpreteCameraCollection()
+    public StructureMatrix<Camera> interpreteCameraCollection()
             throws InterpreteException {
-        ArrayList<Camera> cameras = new ArrayList<Camera>();
+        StructureMatrix<Camera> cameras = new StructureMatrix<Camera>(1, Camera.class);
 
         interpreteBlank();
         interpreteParentheseOuvrante();
@@ -313,7 +313,7 @@ public class InterpreteFacade {
                 if ("camera".equals(id == null ? "NULL" : id.toLowerCase())) {
                     interpreteBlank();
                     c = interpreteCamera();
-                    cameras.add(c);
+                    cameras.add(1, c);
                     System.out.println(id);
                 } else {
                     break;
@@ -434,8 +434,8 @@ public class InterpreteFacade {
         return (Integer) ib.get().get(0);
     }
 
-    ArrayList<Lumiere> interpreteLumiereCollection() throws InterpreteException {
-        ArrayList<Lumiere> lumieres = new ArrayList<Lumiere>();
+    StructureMatrix<Lumiere> interpreteLumiereCollection() throws InterpreteException {
+        StructureMatrix<Lumiere> lumieres = new StructureMatrix<>(1, Lumiere.class);
         InterpretesBase ib = new InterpretesBase();
         ArrayList<Integer> pattern = new ArrayList<Integer>();
         pattern.add(ib.BLANK);
@@ -452,7 +452,7 @@ public class InterpreteFacade {
                 interpreteBlank();
                 if ("lumierepoint".equals(id == null ? "NULL" : id
                         .toLowerCase())) {
-                    lumieres.add(interpreteLumierePoint());
+                    lumieres.add(1, interpreteLumierePoint());
                 }
                 interpreteBlank();
             }
