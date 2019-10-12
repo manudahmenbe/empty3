@@ -1,5 +1,18 @@
 * README MIS A JOUR
-* AU 18/12/2014. 
+* AU 12/10/2019.
+
+
+12/10/2019
+----------
+Les Representable ("objet3D") contiennent des propriétés de classe "StructureMatrix" qui peuvent être à 0, 1 ou 2
+dimensions. Contenant des objets (pas des données de type scalar).
+Dans chaque Representable, les StructureMatrix sont instanciées dans le constructeur avec des valeurs par défaut.
+En cas de changement, une méthode
+    public void declareProperties();
+permet de rafraîchir les références vers les propriétés StructureMatrix.
+La méthode declarations() permet d'itérer ou de getter (sur) une/les propriété(s).
+Celà a demandé des efforts, d'abandonner la vitesse d'exécution qui n'était déjà pas élevée au profit d'une interface
+GUI : e3gui
 
 
 21/03/2019

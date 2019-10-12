@@ -405,14 +405,14 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
         stringBuilder.append("<StructureMatrix name=\"" + name + "\" dim=\"" + is.getDim() + "\" class=\"" + is.getClass().getName() + "\" typeClass=\"" + is.getClassType().getName() + "\">");
         switch (is.getDim()) {
             case 0:
-                stringBuilder.append("<Data dim=\"0\">");
+                stringBuilder.append("<Data>");
                 stringBuilder.append("<Cell l=\"0\" c=\"0\">");
                 xmlRepresentation(filesPath, parent, stringBuilder, is.getElem());
                 stringBuilder.append("</Cell>");
                 stringBuilder.append("</Data>");
                 break;
             case 1:
-                stringBuilder.append("<Data dim=\"1\">");
+                stringBuilder.append("<Data>");
                 int[] i1 = new int[]{0, 0};
                 is.data1d.forEach(new Consumer() {
                     @Override
@@ -428,7 +428,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
                 stringBuilder.append("</Data>");
                 break;
             case 2:
-                stringBuilder.append("<Data dim=\"2\">");
+                stringBuilder.append("<Data>");
                 int[] i2 = new int[]{0, 0};
                 is.data2d.forEach(new Consumer<List>() {
                     @Override

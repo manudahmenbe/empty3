@@ -142,13 +142,10 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
     public String toString() {
         String s = "bezier2(";
 
-        for(int i=0; i<coefficients.getData2d().size(); i++) {
-            s+="\n(\n";
-            for (int j = 0; j < coefficients.getData2d().get(i).size(); j++) {
-                s += coefficients.getElem(i,j).toString();
-            }
-            s+="\n)\n";
-        }
+        s += "controls : "+coefficients.toString();
+        s += "power1 : "+power1.toString();
+        s += "power2 : "+power2.toString();
+
         s+=")";
         return s;
     }
