@@ -13,7 +13,8 @@ permet de rafraîchir les références vers les propriétés StructureMatrix.
 La méthode declarations() permet d'itérer ou de getter (sur) une/les propriété(s).
 Celà a demandé des efforts, d'abandonner la vitesse d'exécution qui n'était déjà pas élevée au profit d'une interface
 GUI : e3gui
-
+La représentation XML: nouvelle. Donc enregistrer/charger les données 3D. Pas encore terminé. La position n'est pas
+sauvegardée ou chargée pour le moment.
 
 21/03/2019
 ----------
