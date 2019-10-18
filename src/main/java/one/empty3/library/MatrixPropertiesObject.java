@@ -17,10 +17,15 @@
 
 package one.empty3.library;
 
+import java.util.HashMap;
+
 /**
  * Created by manue on 06-10-19.
  */
 public interface MatrixPropertiesObject {
     public StructureMatrix getDeclaredProperty(String name);
+    public void declareProperties();
+    public HashMap<String, StructureMatrix> declarations();
+
 
 }

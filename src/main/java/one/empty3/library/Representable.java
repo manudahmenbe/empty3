@@ -97,7 +97,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     public Point3D rotate(Point3D p0, Representable ref) {
         if (p0 == null) {
             return Point3D.O0;
-        } else if (ref != null && ref.getRotation() != null)
+        } else if (ref != null && ref.getRotation() != null && ref.getRotation().getElem()!=null)
             return ref.getRotation().getElem().rotation(p0);
         else
             return p0;
@@ -353,12 +353,12 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-    public void xmlRepresentation(String filesPath, MatrixPropertiesObject parent, StringBuilder stringBuilder, Object o) {
+    public void xmlRepresentation(String filesPath, StringBuilder stringBuilder, Object o) {
         if(o == null) return;
         if (o instanceof StructureMatrix) {
-            xmlRepresentation(filesPath, parent, stringBuilder, (StructureMatrix) o);
+            xmlRepresentation(filesPath, stringBuilder, (StructureMatrix) o);
         } else if (o instanceof Representable) {
-            xmlRepresentation(filesPath, parent, stringBuilder, ((Representable) o));
+            xmlRepresentation(filesPath, stringBuilder, ((Representable) o));
         } else {
             switch (o.getClass().getName()) {
                 case "java.lang.Boolean":
@@ -377,7 +377,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
                     //xmlRepresentation(filesPath, (XmlRepresentable)parent, stringBuilder, ((ArrayList) o));
                     break;
                 case "java.io.File":
-                    xmlRepresentation(filesPath,(MatrixPropertiesObject) parent, stringBuilder, ((File) o));
+                    xmlRepresentation(filesPath, stringBuilder, ((File) o));
                     break;
             }
 
@@ -385,7 +385,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     }
 
 
-    public void xmlRepresentation(String filesPath, MatrixPropertiesObject parent, StringBuilder stringBuilder, Representable is) {
+    public void xmlRepresentation(String filesPath, StringBuilder stringBuilder, Representable is) {
         if(stringBuilder.toString().length()==0)
         {
             stringBuilder.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
@@ -393,7 +393,11 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
         stringBuilder.append("<Representable class=\"" + is.getClass().getName() + "\">\n");
         is.declareProperties();
         is.declarations().forEach((s, o) -> {
-            xmlRepresentation(filesPath, (MatrixPropertiesObject)is, stringBuilder, s, o);
+            if(o instanceof StructureMatrix) {
+                StructureMatrix b = (StructureMatrix)o;
+                xmlRepresentation(filesPath, s, stringBuilder,  o);
+            }
+
         });
         stringBuilder.append("</Representable>\n");
     }
@@ -401,13 +405,13 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     public void xmlRepresentation(String filesPath, MatrixPropertiesObject parent, StringBuilder stringBuilder) {
     }
 
-    public void xmlRepresentation(String filesPath, MatrixPropertiesObject parent, StringBuilder stringBuilder, String name, StructureMatrix is) {
+    public void xmlRepresentation(String filesPath, String name, StringBuilder stringBuilder, StructureMatrix is) {
         stringBuilder.append("<StructureMatrix name=\"" + name + "\" dim=\"" + is.getDim() + "\" class=\"" + is.getClass().getName() + "\" typeClass=\"" + is.getClassType().getName() + "\">");
         switch (is.getDim()) {
             case 0:
                 stringBuilder.append("<Data>");
                 stringBuilder.append("<Cell l=\"0\" c=\"0\">");
-                xmlRepresentation(filesPath, parent, stringBuilder, is.getElem());
+                xmlRepresentation(filesPath, stringBuilder, is.getElem());
                 stringBuilder.append("</Cell>");
                 stringBuilder.append("</Data>");
                 break;
@@ -418,7 +422,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
                     @Override
                     public void accept(Object o) {
                         stringBuilder.append("<Cell l=\"" + i1[0] + "\" c=\"" + i1[1] + "\">");
-                        xmlRepresentation(filesPath, is, stringBuilder, o);
+                        xmlRepresentation(filesPath, stringBuilder, o);
                         stringBuilder.append("</Cell>");
                         i1[1]++;
 
@@ -438,7 +442,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
                             @Override
                             public void accept(Object o) {
                                 stringBuilder.append("<Cell l=\"" + i2[0] + "\" c=\"" + i2[1] + "\">");
-                                xmlRepresentation(filesPath, is, stringBuilder, o);
+                                xmlRepresentation(filesPath, stringBuilder, o);
                                 i2[1]++;
                                 stringBuilder.append("</Cell>");
                             }

@@ -194,9 +194,14 @@ public class ZBufferImpl extends Representable implements ZBuffer {
          * ex.printStackTrace(); } }
          */
         // COLLECTION
+
+
         Iterator<Representable> it;
         if (r instanceof Scene) {
             Scene scene = (Scene) r;
+
+            this.setTexture(scene.texture()==null?this.texture():scene.texture());
+
             it = scene.iterator();
             while (it.hasNext()) {
                 draw(it.next());

@@ -32,6 +32,8 @@
 
 package one.empty3.library;
 
+import java.util.HashMap;
+
 /**
  * Created by Win on 26-01-16.
  */
@@ -91,13 +93,21 @@ public class Rotation implements MatrixPropertiesObject
     public void setCentreRot(StructureMatrix<Point3D> centreRot) {
         this.centreRot = centreRot;
     }
-
+    private HashMap<String , StructureMatrix> declaredDataStructures = new HashMap<>();
     @Override
     public StructureMatrix getDeclaredProperty(String name) {
-        if(name.equals("centreRot"))
-            return centreRot;
-        else if(name.equals("rot"))
-            return rot;
-        else throw new UnsupportedOperationException("Property not found");
+        return declaredDataStructures.get(name);
+    }
+
+    @Override
+    public void declareProperties() {
+        declaredDataStructures.put("rot/Matrice de rotation 3x3", getRot());
+        declaredDataStructures.put("centreRot/Centre de rotation", getCentreRot());
+    }
+
+    @Override
+    public HashMap<String, StructureMatrix> declarations() {
+        declareProperties();
+        return declaredDataStructures;
     }
 }

@@ -48,13 +48,7 @@ public class FctXY extends Fct1D_1D {
     {
 
         formulaX.setElem("10.0");
-        try {
-            treeX = new AlgebricTree(formulaX.getElem());
-            treeX.getParametersValues().put("x", 10.0);
-            treeX.construct();
-        } catch (AlgebraicFormulaSyntaxException e) {
-            e.printStackTrace();
-        }
+        setFormulaX(formulaX.getElem());
 
     }
 
@@ -80,9 +74,7 @@ public class FctXY extends Fct1D_1D {
         treeX.getParametersValues().put("x", input);
         try {
             return treeX.eval();
-        } catch (TreeNodeEvalException e) {
-            e.printStackTrace();
-        } catch (AlgebraicFormulaSyntaxException e) {
+        } catch (TreeNodeEvalException | AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
         }
         return Double.NaN;

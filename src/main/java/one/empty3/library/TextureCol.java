@@ -32,7 +32,7 @@
 
 package one.empty3.library;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * @author Manuel Dahmen
@@ -80,10 +80,6 @@ public class TextureCol extends ITexture {
     public void timeNext(long milli) {
     }
 
-    @Override
-    public StructureMatrix getDeclaredProperty(String name) {
-        return color;
-    }
 
     /**
      * Quadrilatère numQuadX = 1, numQuadY = 1, coordArr, y 3----2 ^2y |\ | | 4 |

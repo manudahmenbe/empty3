@@ -42,6 +42,8 @@ package one.empty3.library;
 
 import com.xuggle.mediatool.MediaListenerAdapter;
 
+import java.util.HashMap;
+
 /**
  * @author manu
  */
@@ -115,6 +117,19 @@ public abstract class ITexture extends MediaListenerAdapter implements MatrixPro
 
 
     @Override
-    public abstract StructureMatrix getDeclaredProperty(String name);
+    public StructureMatrix getDeclaredProperty(String name) {
+        return null;
+    }
+
+    @Override
+    public void declareProperties() {
+
+    }
+
+    @Override
+    public HashMap<String, StructureMatrix> declarations() {
+        return null;
+    }
+
 }
 

@@ -40,7 +40,7 @@ import java.util.function.Consumer;
 /**
  * Created by manue on 07-09-19.
  */
-public class StructureMatrix<T>   implements MatrixPropertiesObject {
+public class StructureMatrix<T>  {
     private static final int INSERT_ROW = 0;
     private static final int INSERT_COL = 1;
     private int dim;
@@ -354,8 +354,4 @@ public class StructureMatrix<T>   implements MatrixPropertiesObject {
             data2d = new ArrayList<List<T>>();
     }
 
-    @Override
-    public StructureMatrix getDeclaredProperty(String name) {
-        return null;
     }
-}
