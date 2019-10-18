@@ -72,10 +72,12 @@ public class TRIObjetGenerateurAbstract extends Representable implements TRIObje
     @Override
     public void declareProperties() {
         super.declareProperties();
+        /*
         getDeclaredDataStructure().put("maxX/ MaxX cordinates iterations for drawing - disable", maxX);
         getDeclaredDataStructure().put("maxY/ MaxY cordinates iterations for drawing - disable", maxY);
         getDeclaredDataStructure().put("cx/ Circulaire X last iterations for drawing - disable", cx);
         getDeclaredDataStructure().put("cy/ Circulaire X last iterations for drawing - disable", cy);
+    */
     }
     @Override
     public int getMaxX() {

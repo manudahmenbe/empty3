@@ -109,22 +109,23 @@ public class Tubulaire3 extends ParametricSurface {
         refs[2] = new Point3D(0d, 1d, 0d);
 
         tangente = tangente.norme1();
-        Point3D normal = calculerNormale(t);
+        Point3D normale = calculerNormale(t);
 
-        double [] mins =new double [3];
+        double[] maxs = new double[3];
+
 
         for(int i=0; i<3; i++)
         {
-
-            Point3D px = tangente.prodVect(normal).norme1();
+            Point3D px = tangente.prodVect(normale.prodVect(refs[i])).norme1();
 
             Point3D py = px.prodVect(tangente).norme1();
+
 
             vecteurs[i][0] = tangente;
             vecteurs[i][1] = px;
             vecteurs[i][2] = py;
 
-            mins[i] = vecteurs[i][0].
+            maxs[i] = vecteurs[i][0].
                     prodVect(vecteurs[i][1])
             .norme()+
                     vecteurs[i][0]
@@ -133,9 +134,14 @@ public class Tubulaire3 extends ParametricSurface {
         }
 
         int j = 0;
-        for(int i=0 ; i<3; i++)
-            if(mins[i]>mins[(i+1)%3])
+
+        double max = 0.0;
+        for (int i = 0; i < 3; i++) {
+            if (maxs[i] > maxs[(i + 1) % 3] && maxs[i] > max) {
+                max = maxs[i];
                 j = i;
+            }
+        }
         return vecteurs[j];
     }
 
@@ -151,23 +157,25 @@ public class Tubulaire3 extends ParametricSurface {
     public void declareProperties() {
         super.declareProperties();
         getDeclaredDataStructure().put("soulCurve/ame de la courbe", soulCurve);
+        soulCurve.getElem().declareProperties();
         getDeclaredDataStructure().put("diameterFunction/ fonction de la longueur du diamètre", diameterFunction);
+        diameterFunction.getElem().declareProperties();
 
     }
 
-    public CourbeParametriquePolynomialeBezier getSoulCurve() {
-        return soulCurve.getElem();
+    public StructureMatrix<CourbeParametriquePolynomialeBezier> getSoulCurve() {
+        return soulCurve;
     }
 
-    public void setSoulCurve(CourbeParametriquePolynomialeBezier soulCurve) {
-        this.soulCurve.setElem(soulCurve);
+    public void setSoulCurve(StructureMatrix<CourbeParametriquePolynomialeBezier> soulCurve) {
+        this.soulCurve = soulCurve;
     }
 
-    public FctXY getDiameterFunction() {
-        return diameterFunction.getElem();
+    public StructureMatrix<FctXY> getDiameterFunction() {
+        return diameterFunction;
     }
 
-    public void setDiameterFunction(FctXY diameterFunction) {
-        this.diameterFunction.setElem(diameterFunction);
+    public void setDiameterFunction(StructureMatrix<FctXY> diameterFunction) {
+        this.diameterFunction = diameterFunction;
     }
 }
