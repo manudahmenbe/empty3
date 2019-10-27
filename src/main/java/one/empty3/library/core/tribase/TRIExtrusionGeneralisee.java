@@ -33,14 +33,17 @@
 package one.empty3.library.core.tribase;
 
 
-import one.empty3.library.*;
+import one.empty3.library.Point3D;
+import one.empty3.library.StructureMatrix;
+import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
+import one.empty3.library.core.nurbs.ParametricSurface;
 
-public class TRIExtrusionGeneralisee extends TRIObjetGenerateurAbstract {
+public class TRIExtrusionGeneralisee extends ParametricSurface {
 
-    public Chemin chemin;
-    public Surface surface;
-    private boolean sectionA = true;
-    private boolean sectionB = true;
+    public StructureMatrix<CourbeParametriquePolynomialeBezier> curve = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
+    public StructureMatrix<CurveSurface> surface = new StructureMatrix<>(0, CurveSurface.class);
+    private StructureMatrix<Boolean> sectionA = new StructureMatrix<>(0, Boolean.class);
+    private StructureMatrix<Boolean> sectionB = new StructureMatrix<>(0, Boolean.class);
     private Point3D normaleFixe;
 
     public TRIExtrusionGeneralisee() {
@@ -49,73 +52,48 @@ public class TRIExtrusionGeneralisee extends TRIObjetGenerateurAbstract {
 
     }
 
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredDataStructure().put("curve/ame de l'extrusion", curve);
+        getDeclaredDataStructure().put("surface/Surface à extruder", curve);
+        getDeclaredDataStructure().put("sectionA/sectionA", sectionA);
+        getDeclaredDataStructure().put("sectionB/sectionB", sectionB);
+
+    }
+
     public boolean isSectionA() {
-        return sectionA;
+        return sectionA.getElem();
     }
 
     public void setSectionA(boolean sectionA) {
-        this.sectionA = sectionA;
+        this.sectionA.setElem( sectionA);
     }
 
     public boolean isSectionB() {
-        return sectionB;
+        return sectionB.getElem();
     }
 
     public void setSectionB(boolean sectionB) {
-        this.sectionB = sectionB;
+        this.sectionB .setElem(sectionB);
     }
 
-    @Override
-    public void setMaxY(int maxY) {
-        super.setMaxY(maxY); //To change body of generated methods, choose Tools | Templates.
-        surface.setMax(getMaxY());
-    }
 
-    @Override
-    public void setMaxX(int maxX) {
-        super.setMaxX(maxX); //To change body of generated methods, choose Tools | Templates.
-        chemin.setMax(getMaxX());
-    }
 
-    public Chemin getChemin() {
-        return chemin;
-    }
-
-    public void setChemin(Chemin chemin) {
-        this.chemin = chemin;
-        this.setMaxX(chemin.getMax());
-    }
-
-    public Surface getSurface() {
-        return surface;
-    }
-
-    public void setSurface(Surface surface) {
-        this.surface = surface;
-        this.setMaxY(surface.getMax());
-    }
-
-    @Override
-    public Point3D coordPoint3D(int ichemin, int isurface) {
+    public Point3D calculerPoint3D(double u, double v) {
 
         Point3D Op, T, NX, NY, pO;
 
-        Op = chemin.getPoint(ichemin);
+        Op = curve.getElem().calculerPoint3D(u);
 
-        if (ichemin == chemin.getMax() - 1 && sectionB) {
-            return Op;
-        } else if (ichemin == 0 && sectionA) {
-            return Op;
-        }
-
-        T = chemin.tangent(ichemin);
+        T = curve.getElem().tangente(u);
 
 
         /**
          * Plan normal pour le chemin
          *
          */
-        Point3D normale = chemin.normale(ichemin);
+        Point3D normale = curve.getElem().calculerNormale(u);
         /*if ((normale.norme() < 0.001 || normale.prodVect(T).norme() < 0.001)) {
             if (normaleFixe == null) {
                 normaleFixe = T.prodVect(Point3D.r(1));
@@ -132,8 +110,7 @@ public class TRIExtrusionGeneralisee extends TRIObjetGenerateurAbstract {
         System.err.println("NX"+NX);
         System.err.println("NY"+NY);
  */
-        pO = Op.plus(T.mult(surface.getPoint(isurface).getZ()).plus(NX.mult(surface.getPoint(isurface).getX()))).plus(
-                NY.mult(surface.getPoint(isurface).getY()));
+        pO = Op.plus(NX.mult(surface.getElem().calculerPoint3D(v))).plus(NY.mult(surface.getElem().calculerPoint3D(v)));
         return pO;
 
     }

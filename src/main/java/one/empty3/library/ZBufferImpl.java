@@ -766,6 +766,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     @Override
     public void testDeep(Point3D p, int c) {
         ime.testDeep(p, c);
+        ime.testDeep(p, c);
 
     }
 
@@ -1285,6 +1286,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
     }
 
+    public void dessine(Point3D p, ITexture texture) {
+        ime.dessine(p, new Color(texture.getColorAt(0.5, 0.5)));
+    }
     public class ImageMapElement {
 
         protected int couleur_fond_int = -1;
@@ -1408,6 +1412,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     public Point3D invert(int x, int y, double z)
     {
+        camera().getMatrice().tild().mult(new Point3D((double)x, (double)y, z));
         return null;
     }
 

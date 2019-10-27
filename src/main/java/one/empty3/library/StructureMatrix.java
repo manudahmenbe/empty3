@@ -34,6 +34,7 @@ package one.empty3.library;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -69,9 +70,9 @@ public class StructureMatrix<T>  {
     {
         this.dim = dim;
         if(dim==1)
-            data1d = new ArrayList<T>();
+            data1d = Collections.synchronizedList(new ArrayList<T>());
         if(dim==2)
-            data2d = new ArrayList<List<T>>();
+            data2d = Collections.synchronizedList(new ArrayList<List<T>>());
         this.classType = classType;
     }
     public void setElem(T value)
@@ -95,9 +96,9 @@ public class StructureMatrix<T>  {
 
         this.classType= elem.getClass();
         if(data2d==null)
-            data2d = new ArrayList<>();
+            data2d = Collections.synchronizedList(new ArrayList<>());
         while(data2d.size()<=i) {
-            data2d.add(new ArrayList<>());
+            data2d.add(Collections.synchronizedList(new ArrayList<>()));
         }
         while(data2d.get(i).size()<=j) {
             data2d.get(i).add(elem);
@@ -165,7 +166,7 @@ public class StructureMatrix<T>  {
         {
             if(rowCol==INSERT_ROW)
             {
-                ArrayList<T> ins = new ArrayList<>();
+                List<T> ins = Collections.synchronizedList(new ArrayList<T>());
                 for(int i=0; i<data2d.get(0).size(); i++)
                     ins.add(value);
                 data2d.add(pos, ins);
@@ -233,7 +234,7 @@ public class StructureMatrix<T>  {
     {
         if(this.dim==2)
         {
-            data2d.add(new ArrayList<T>());
+            data2d.add(Collections.synchronizedList(new ArrayList<T>()));
         }
     }
 
@@ -319,7 +320,7 @@ public class StructureMatrix<T>  {
     }
 
     public void setAll(T[] all) {
-        data1d = new ArrayList<>();
+        data1d = Collections.synchronizedList(new ArrayList<>());
         switch (dim)
         {
             case 1:
@@ -328,7 +329,7 @@ public class StructureMatrix<T>  {
         }
     }
     public void setAll(T[][] all) {
-        data2d = new ArrayList<List<T>>();
+        data2d = Collections.synchronizedList(new ArrayList<List<T>>());
         switch (dim)
         {
             case 2:
@@ -349,9 +350,9 @@ public class StructureMatrix<T>  {
         if(dim==0)
             data0d = null;
         if(dim==1)
-            data1d = new ArrayList<T>();
+            data1d = Collections.synchronizedList(new ArrayList<T>());
         if(dim==2)
-            data2d = new ArrayList<List<T>>();
+            data2d = Collections.synchronizedList(new ArrayList<List<T>>());
     }
 
     }

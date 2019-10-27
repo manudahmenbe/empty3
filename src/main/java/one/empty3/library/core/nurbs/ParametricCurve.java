@@ -48,6 +48,9 @@ import one.empty3.library.StructureMatrix;
  * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class ParametricCurve extends Representable {
+    private double INCR_TAN = 0.00001;
+    private double INCR_NOR = 0.0000001;
+
     private static ParametricCurve.Globals globals;
 
 
@@ -75,7 +78,6 @@ public class ParametricCurve extends Representable {
     protected StructureMatrix<Boolean> connected = new StructureMatrix<>(0, Boolean.class);
     private Parameters parameters = new Parameters(true);
     private StructureMatrix<Double> incrU = new StructureMatrix<>(0, Double.class);
-    private Double incrTAN = 0.0001;
 
     public static void setGlobals(Globals globals) {
         ParametricCurve.globals = globals;
@@ -96,7 +98,7 @@ public class ParametricCurve extends Representable {
 
     public Point3D calculerVitesse3D(double t)
     {
-        return calculerPoint3D(t*(1+incrTAN)).moins(calculerPoint3D(t)).mult(incrTAN);
+        return calculerPoint3D(t*(1+INCR_TAN)).moins(calculerPoint3D(t)).mult(INCR_TAN);
     }
 
     public Point3D tangente(Double t)
@@ -143,6 +145,10 @@ public class ParametricCurve extends Representable {
 
     public Boolean getConnected() {
         return this.connected.getElem();
+    }
+
+    public Point3D calculerNormale(double u) {
+        return calculerPoint3D(u+INCR_TAN).moins(calculerPoint3D(u-INCR_TAN)).norme1();
     }
 
     public static class Globals {

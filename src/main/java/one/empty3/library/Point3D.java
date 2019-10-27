@@ -45,7 +45,7 @@ import java.util.List;
  *
  * @author Manuel Dahmen
  */
-public class Point3D extends Representable implements IMovable {
+public class Point3D extends Representable {
     public Point3D() {
         super();
         coordArr.setElem(0d, 0);
@@ -409,20 +409,6 @@ public class Point3D extends Representable implements IMovable {
         throw new UnsupportedOperationException("Pas implémenté encore");
     }
 
-    @Override
-    public void moveAdd(Point3D add) {
-        this.set(0, add.get(0));
-        this.set(1, add.get(1));
-        this.set(2, add.get(2));
-    }
-
-    @Override
-    public void moveTo(Point3D to) {
-        this.set(0, to.get(0));
-        this.set(1, to.get(1));
-        this.set(2, to.get(2));
-
-    }
 
     public Point3D changeTo(Point3D dst) {
         for (int i = 0; i < coordArr.getData1d().size(); i++)
