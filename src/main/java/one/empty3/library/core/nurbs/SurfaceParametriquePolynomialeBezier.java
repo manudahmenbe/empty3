@@ -88,8 +88,8 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
     @Override
     public Point3D calculerPoint3D(double u, double v) {
         Point3D sum = Point3D.O0;
-        for (int i = 0; i < power1.getElem(); i++) {
-            for (int j = 0; j < power2.getElem(); j++) {
+        for (int i = 0; i <getPower1(); i++) {
+            for (int j = 0; j < getPower2(); j++) {
                 sum = sum.plus(coefficients.getElem(i,j).mult(B(i, power1.getElem() - 1, u) * B(j, power2.getElem() - 1, v)));
             }
         }
@@ -123,7 +123,7 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
     }
 
     public Integer getPower1() {
-        return power1.getElem();
+        return coefficients.getData2d().size();
     }
 
     public void setPower1(Integer power1) {
@@ -131,7 +131,7 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
     }
 
     public Integer getPower2() {
-        return power2.getElem();
+        return coefficients.getData2d().get(0).size();
     }
 
     public void setPower2(Integer power2) {

@@ -51,6 +51,8 @@ public class ParametricCurve extends Representable {
     private double INCR_TAN = 0.00001;
     private double INCR_NOR = 0.0000001;
 
+    private double incrTAN;
+
     private static ParametricCurve.Globals globals;
 
 

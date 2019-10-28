@@ -1412,8 +1412,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     public Point3D invert(int x, int y, double z)
     {
-        camera().getMatrice().tild().mult(new Point3D((double)x, (double)y, z));
-        return null;
+        return camera().getMatrice().tild().mult(new Point3D((double)x, (double)y, z));
     }
 
 

@@ -403,6 +403,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     }
 
     public void xmlRepresentation(String filesPath, MatrixPropertiesObject parent, StringBuilder stringBuilder) {
+            xmlRepresentation(filesPath, stringBuilder, (Representable)parent);
     }
 
     public void xmlRepresentation(String filesPath, String name, StringBuilder stringBuilder, StructureMatrix is) {
