@@ -36,9 +36,9 @@ public class TestTore extends TestObjetSub {
         tri.setCirculaireX(true);
         tri.setCirculaireY(true);
 
-        tri.setSurface(s);
+       // tri.setSurface(s);
 
-        tri.setChemin(c);
+      //  tri.setChemin(c);
 
         tri.setMaxX(100);
         tri.setMaxY(100);

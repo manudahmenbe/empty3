@@ -17,16 +17,9 @@
 
 package one.empty3.library;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * Created by manue on 06-10-19.
+ * Created by manue on 29-10-19.
  */
-public interface MatrixPropertiesObject {
-    public StructureMatrix getDeclaredProperty(String name);
-    public void declareProperties();
-    public Map<String, StructureMatrix> declarations();
-
-
+public abstract class StructureMatrixListener {
+    public abstract void actionOnChange();
 }

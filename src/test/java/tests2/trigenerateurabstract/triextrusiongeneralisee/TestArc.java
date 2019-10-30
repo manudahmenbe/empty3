@@ -15,7 +15,6 @@ import one.empty3.library.Point3D;
 import one.empty3.library.TextureCol;
 import one.empty3.library.core.testing.TestObjetSub;
 import one.empty3.library.core.tribase.CheminBezier;
-import one.empty3.library.core.tribase.SurfaceCercle;
 import one.empty3.library.core.tribase.TRIExtrusionGeneralisee;
 
 import java.awt.*;
@@ -46,9 +45,9 @@ public class TestArc extends TestObjetSub {
         bezierCubique.add(Point3D.Y);
         CheminBezier cheminBezier = new CheminBezier(bezierCubique);
 
-        eg.setChemin(cheminBezier/*new CheminDroite(new LineSegment(Point3D.O0, Point3D.Y.mult(5)))*/);
+        //eg.setChemin(cheminBezier/*new CheminDroite(new LineSegment(Point3D.O0, Point3D.Y.mult(5)))*/);
 
-        eg.setSurface(new SurfaceCercle(2));
+        //eg.setSurface(new SurfaceCercle(2));
 
         eg.setMaxX(100);
 

@@ -15,7 +15,6 @@ import one.empty3.library.Point3D;
 import one.empty3.library.TextureCol;
 import one.empty3.library.core.testing.TestObjetSub;
 import one.empty3.library.core.tribase.CheminDroite;
-import one.empty3.library.core.tribase.SurfaceCercle;
 import one.empty3.library.core.tribase.TRIExtrusionGeneralisee;
 
 import java.awt.*;
@@ -40,9 +39,9 @@ public class TestCylindre extends TestObjetSub {
         eg = new TRIExtrusionGeneralisee();
         CheminDroite cd = new CheminDroite(new LineSegment(Point3D.X, Point3D.Y, new TextureCol(Color.WHITE)));
 
-        eg.setChemin(cd);
+        //eg.setChemin(cd);
 
-        eg.setSurface(new SurfaceCercle(2));
+        //eg.setSurface(new SurfaceCercle(2));
 
         eg.setMaxX(100);
 

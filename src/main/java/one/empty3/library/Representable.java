@@ -43,9 +43,7 @@ import one.empty3.library.core.raytracer.RtRay;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -228,15 +226,15 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
 
 
 
-    private HashMap<String, StructureMatrix> declaredDataStructure = new HashMap<>();
+    private Map<String, StructureMatrix> declaredDataStructure = Collections.synchronizedMap(new HashMap());
 
-    public HashMap<String, StructureMatrix> getDeclaredDataStructure() {
+    public Map<String, StructureMatrix> getDeclaredDataStructure() {
         return declaredDataStructure;
     }
 
-    private HashMap<String, StructureMatrix> declaredLists = new HashMap<>();
+    private Map<String, StructureMatrix> declaredLists = new HashMap<>();
 
-    public HashMap<String, StructureMatrix> getDeclaredLists() {
+    public Map<String, StructureMatrix> getDeclaredLists() {
         return declaredLists;
     }
 
@@ -281,9 +279,9 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     }
 
 
-    public HashMap<String, StructureMatrix> declarations() {
+    public Map<String, StructureMatrix> declarations() {
         declareProperties();
-        HashMap<String, StructureMatrix> dec = new HashMap<>();
+        Map<String, StructureMatrix> dec = Collections.synchronizedMap(new HashMap<>());
         getDeclaredDataStructure().forEach(new BiConsumer<String, StructureMatrix>() {
             @Override
             public void accept(String s, StructureMatrix structureMatrix) {
