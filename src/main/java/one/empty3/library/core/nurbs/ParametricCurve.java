@@ -71,7 +71,7 @@ public class ParametricCurve extends Representable {
         super();
         startU.setElem(0.0);
         endU.setElem(1.0);
-        incrU.setElem(0.01);
+        incrU.setElem(0.1);
         connected.setElem(Boolean.TRUE);
     }
 

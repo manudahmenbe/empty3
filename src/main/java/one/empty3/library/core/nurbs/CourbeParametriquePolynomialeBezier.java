@@ -64,7 +64,7 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
         //double bSum = 0.0;
         for (int i = 0; i < N; i++) {
             //bSum += B(i, N, t);
-            sum = sum.plus(coefficients.getElem(i).mult(B(i, N - 1, t)).mult(1.0));
+            sum = sum.plus(coefficients.getElem(i).mult(B(i, N - 1, t)));
         }
         return sum;
     }
