@@ -86,7 +86,7 @@ public class Bonus extends RepresentableConteneur {
 
         for (int i = 0; i < licorne; i++) {
             TRISphere2<Cheval_Licorne> s;
-            s = new TRISphere2<Cheval_Licorne>(this, random(), 0.01);
+            s = new TRISphere2(this, random(), 0.01);
             s.texture(new ColorTexture(Color.BLUE));
 
             s.setMaxX(maxx);
@@ -110,7 +110,7 @@ public class Bonus extends RepresentableConteneur {
 
         }
         for (int i = 0; i < fuite; i++) {
-            TRISphere2<MouvementDirectionnel> s = new TRISphere2<MouvementDirectionnel>(this, random(), 0.01);
+            TRISphere2 s = new TRISphere2<>(this, random(), 0.01);
             s.texture(new ColorTexture(Color.GRAY));
 
             s.setMaxX(maxx);
@@ -125,8 +125,8 @@ public class Bonus extends RepresentableConteneur {
 
     public Point3D random() {
         double u, v;
-        u = r.nextDouble();
-        v = r.nextDouble();
+        u = Math.random();
+        v = Math.random();
         return new Point3D(u, v, 0d);
     }
 
@@ -145,36 +145,5 @@ public class Bonus extends RepresentableConteneur {
         }
         return false;
     }
-//
-//    public boolean isLocked()
-//    {
-//        return locked;
-//    }
-//    public void setLocked(boolean locked)
-//    {
-//        this.locked = locked;
-//    }
-//    public boolean getLock()
-//    {
-//        if(!locked)
-//        {
-//            locked = true;
-//            return true;
-//        }
-//        else
-//        {
-//            return false;
-//        }
-//    }
-//
-//    public void waitForLock() {
-//        while(!getLock())
-//        {
-//            try {
-//                Thread.sleep(50);
-//            } catch (InterruptedException ex) {
-//                Logger.getLogger(Bonus.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//    }
+
 }

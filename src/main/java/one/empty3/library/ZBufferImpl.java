@@ -631,7 +631,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         for (int i = 0; i < itere; i++) {
             Point3D p = p1.plus(p2.moins(p1).mult(i / itere));
             if (curve != null)
-                p = rotate(curve.calculerPoint3D(u + i / itere * (u1 - u)), n);
+                p = rotate(curve.calculerPoint3D(u + i / itere * (u1 - u)), curve);
             ime.testDeep(p, t.getColorAt(u, 0));
         }
 
@@ -652,7 +652,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             Point3D p = p1.plus(p2.moins(p1).mult(i / itereU));
             if (surface != null)
                 p = surface.calculerPoint3D(u + i / itereU * (u1 - u), v + i / itereV * (v1 - v));
-            ime.testDeep(p, texture.getColorAt(u + i / itereU * (u1 - u), v + i / itereV * (v1 - v)));
+            ime.testDeep(p, texture.getColorAt(u + i / itereU * (u1 - u), v + i / itereV * (v1 - v)), surface);
+
         }
     }
 
@@ -879,11 +880,14 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
                     }
                 }
-                if (displayType <= SURFACE_DISPLAY_TEXT_QUADS)
-                    ime.testDeep(pFinal, n.calculerNormale3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b));
+                if (displayType <= SURFACE_DISPLAY_TEXT_QUADS) {
+                    Point3D point3D = n.calculerNormale3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b);
+                    ime.testDeep(pFinal, point3D, texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
+                }
                 else
                 {
                     ime.testDeep(pFinal, col);
+                    ime.testDeep(pFinal, texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
 
                 }
             }
@@ -1278,11 +1282,22 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
 
         public void testDeep(Point3D p) {
-            testDeep(p, p.texture());
+            testDeep(p, p!=null?p.texture():CFAST);//WTF
         }
 
         public void testDeep(Point3D p, Color c) {
             testDeep(p, p.getNormale(), c);
+        }
+
+        public void testDeep(Point3D pFinal, Point3D point3D, int colorAt, Representable n) {
+            testDeep(pFinal, point3D, colorAt);
+            Point point = coordonneesPoint2D(pFinal);
+            if(ime!=null&&point!=null) {
+                ime.setElementRepresentable((int) point.getX(), (int) point.getY(), n);
+            }
+        }
+        public void testDeep(Point3D pFinal, int colorAt, Representable n) {
+            testDeep(pFinal, pFinal.getNormale(), colorAt, n);
         }
     }
 
@@ -1293,19 +1308,33 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
         protected int couleur_fond_int = -1;
         private ImageMapElement instance;
+        private Representable[][] Simerepresentable;
 
         public ImageMapElement() {
             Scordinate = new Point3D[la][ha];
             Scolor = new int[la * ha];
             Simeid = new long[la][ha];
             Simeprof = new double[la][ha];
+            Simerepresentable = new Representable[la][ha];
 
             for (int i = 0; i < la; i++) {
                 for (int j = 0; j < ha; j++) {
                     Simeprof[i][j] = INFINI.getZ();
                     Simeid[i][j] = idImg;
                     Scolor[j * la + i] = COULEUR_FOND_INT(i, j);
+                    Simerepresentable[i][j] = null;
                 }
+            }
+        }
+        public Representable getElementRepresentable(int x, int y) {
+            if (checkCordinates(x, y)) {
+                return Simerepresentable[x][y] ;
+            }
+            return null;
+        }
+        public void setElementRepresentable(int x, int y, Representable representable) {
+            if (checkCordinates(x, y)) {
+                Simerepresentable[x][y] = representable;
             }
         }
 
@@ -1392,6 +1421,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         private void setRGBInts(int rgb, int[] sc, int x, int y) {
             sc[x + y * la] = rgb;
         }
+
     }
 
     public Point3D clickAt(double x, double y) {
@@ -1410,6 +1440,17 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         return p;
     }
 
+    /***
+     *
+     * @param x Coordonnees de l'image ds ZBuffer
+     * @param y Coordonnees de l'image ds ZBuffer
+     * @return Point3D avec texture. Si vide Point3D.INFINI
+     */
+    public Representable representableAt(int x, int y) {
+        Representable p = ime.getIME().getElementRepresentable(x, y);
+        return p;
+    }
+
     public Point3D invert(int x, int y, Point3D orig, Camera camera)
     {
         x = (x-largeur()/2);
@@ -1420,8 +1461,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         double pY = Math.cos(camera.getAngleY())*dist;
 
         return camera.getMatrice().tild().mult(new Point3D(
-                pX*2.0*x/largeur()/**Math.atan2(moins, largeur())*/,
-                -pY*2.0*y/hauteur()/**Math.atan2(moins, hauteur())*/, orig.getZ()
+                pX*2.0*x/largeur(),
+                -pY*2.0*y/hauteur(), orig.getZ()
                 ));
     }
 

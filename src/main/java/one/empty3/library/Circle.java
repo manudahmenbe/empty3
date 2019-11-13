@@ -42,7 +42,7 @@ import one.empty3.library.core.nurbs.ParametricCurve;
 
 
 public class Circle extends ParametricCurve {
-    protected StructureMatrix<Axe> axis =new StructureMatrix(0, Axe.class);
+    protected StructureMatrix<Axe> axis = new StructureMatrix<>(0, Axe.class);
     //public Point3D center;
     protected StructureMatrix<Double> radius = new StructureMatrix<>(0, Double.class);
     protected Point3D vectX;

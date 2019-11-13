@@ -281,7 +281,6 @@ public class Matrix33 extends  Representable {
     public List<Double> getDoubles() {
         return d.getData1d();
     }
-
     @Override
     public void declareProperties() {
         super.declareProperties();
@@ -292,4 +291,11 @@ public class Matrix33 extends  Representable {
     public StructureMatrix<Double> getD() {
         return d;
     }
+
+    public void setD(Double [] d1) {
+        d = new StructureMatrix<>(1, Double.class);
+        d.setAll(d1);
+    }
+
+
 }

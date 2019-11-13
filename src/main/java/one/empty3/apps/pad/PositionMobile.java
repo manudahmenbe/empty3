@@ -63,7 +63,7 @@ public class PositionMobile {
         positionIncrement2 = Double.parseDouble(bundle.getString("positionIncrement2"));
         this.positionUpdate = positionUpdate;
         this.terrain = positionUpdate.getTerrain();
-        positionSol = new Point3D(0.5, 0.5, 0.07);
+        positionSol = new Point3D(0.5, 0.5, 0.0);
         getPositionSol().setZ(Double.parseDouble(bundle.getString("hauteur")));
         angleVisee = Point3D.X;
         trace = new HashMap<>();

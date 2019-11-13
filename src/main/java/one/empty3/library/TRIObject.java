@@ -37,8 +37,8 @@
  */
 package one.empty3.library;
 
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class TRIObject extends Representable {
 
@@ -65,8 +65,8 @@ public class TRIObject extends Representable {
         triangles.getData1d().clear();
     }
 
-    public ArrayList<TRI> getTriangles() {
-        return (ArrayList<TRI>) triangles.getData1d();
+    public List<TRI> getTriangles() {
+        return (List<TRI>) triangles.getData1d();
     }
 
     public Iterator<TRI> iterator() {

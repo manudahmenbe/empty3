@@ -42,8 +42,7 @@ import java.util.Iterator;
 public class SolPlan extends Terrain {
 
 
-    public SolPlan(/*Game game*/) {
-        //super(game);
+    public SolPlan() {
         ps = new ParametricSurface() {
 
             @Override

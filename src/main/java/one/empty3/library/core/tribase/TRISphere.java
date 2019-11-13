@@ -59,8 +59,7 @@ public class TRISphere extends Sphere {
         Point3D center2 = axe2.getCenter();
         axe2.getP1().getElem().changeTo(getCircle().getAxis().getElem().getP1().getElem().moins(center2).plus(centre));
         axe2.getP2().getElem().changeTo(getCircle().getAxis().getElem().getP2().getElem().moins(center2).plus(centre));
-        circle = new StructureMatrix<>(0, Circle.class);
-        circle.setElem(new Circle(axe2, circle.getElem().getRadius()));
+        circle.getElem().getAxis().setElem(axe2);
     }
 
     public void setRadius(double radius) {

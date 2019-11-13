@@ -37,7 +37,6 @@ import one.empty3.library.core.nurbs.ParametricLine;
 
 import java.awt.*;
 import java.util.ConcurrentModificationException;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 
 public class PositionUpdateImpl implements PositionUpdate, Runnable {
@@ -90,7 +89,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
         direction = new Point3D(directionOrigine);
         angle = Double.parseDouble(bundle.getString("angle"));
 
-        if(player==null) {
+        if (player == null) {
             player = new Player("Manu", Color.GRAY, 0);
             score = (int) player.score();
         }
@@ -224,60 +223,67 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
 
         Point3D pos = terrain.p3(positionMobile.getPositionSol());
 
-        try {
-            for (Iterator<Representable> it = bonus.getListRepresentable().iterator();
-                 it.hasNext(); ) {
-                Representable bon;
-                if ((bon = it.next()) != null && bon instanceof TRISphere2
-                        && Point3D.distance(((TRISphere2) bon).getCentre(), pos) < ((TRISphere2) bon).getCircle().getRadius()) {
-//                    bonus.remove(bon);
+        boolean catched = true;
+        while (catched)
+            try { // TODO Les bonus sont tous bouffés d'un coup depuis que j'ai implementé les StructureMatrix.
+                for (Representable representable : bonus.getListRepresentable()) {
+                    Representable bon = representable;
+                    if (bon != null && bon instanceof TRISphere2
+                            && Point3D.distance(((TRISphere2) bon).getCentre(), pos) < ((TRISphere2) bon).getCircle().getRadius()) {
+                     bonus.remove(bon);
 
-                    double points = 0.0;
+                        double points = 0.0;
 
-                    points = ((TRISphere2) bon).getGameObject().getValue();
+                        points = ((TRISphere2) bon).getGameObject().getValue();
 
-                    score += points;
+                        score += points;
 
-                    Sounds.playSoundBonusHit();
+                        Sounds.playSoundBonusHit();
 
-                    Mouvement mouvement = new Mouvement(bon, 10000, new ParametricLine(new LineSegment(((TRISphere2) bon).getCentre(), ((TRISphere2) bon).getCentre().plus(P.n(0, 0, 10))))) {
+                        Mouvement mouvement = new Mouvement(bon, 10000, new ParametricLine(new LineSegment(((TRISphere2) bon).getCentre(), ((TRISphere2) bon).getCentre().plus(P.n(0, 0, 10))))) {
 
 
-                        @Override
-                        protected synchronized void action(Representable representable, double moveTimeRatio) {
+                            @Override
+                            protected synchronized void action(Representable representable, double moveTimeRatio) {
 
-                        }
-
-                        @Override
-                        protected synchronized void setPosition(Point3D position) {
-                            if (representable instanceof TRISphere2) {
-                                ((TRISphere2) representable).setCentre(position);
                             }
 
-                        }
+                            @Override
+                            protected synchronized void setPosition(Point3D position) {
+/*
+                                if (representable instanceof TRISphere2) {
+                                    ((TRISphere2) representable).setCentre(position);
+                                }
+*/
+                            }
 
-                        @Override
-                        protected synchronized void startMoveAction() {
-                            path.add(((TRISphere2) bon).getCoords());
+                            @Override
+                            protected synchronized void startMoveAction() {
+/*
+                                path.add(((TRISphere2) bon).getCoords());
+                                 */
 
-                        }
+                            }
 
-                        @Override
-                        protected synchronized void endMoveAction() {
-                            bonus.removeBonus(bon);
-                        }
-                    };
-                    mouvement.start();
+                            @Override
+                            protected synchronized void endMoveAction() {
+                                bonus.removeBonus(bon);
+                            }
+                        };
+                        mouvement.start();
 
-                    System.out.println(score);
+                        System.out.println(score);
 
 
-                    //circuit = new Circuit(bonus);
+                        //circuit = new Circuit(bonus);
 
+                    }
                 }
+
+                catched = false;
+            } catch (ConcurrentModificationException | java.util.NoSuchElementException ex) {
+                catched = true;
             }
-        } catch (ConcurrentModificationException | java.util.NoSuchElementException ex) {
-        }
     }
 
 

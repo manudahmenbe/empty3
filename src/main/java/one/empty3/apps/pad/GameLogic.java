@@ -32,9 +32,15 @@
 
 package one.empty3.apps.pad;
 
+import one.empty3.library.Point3D;
+import one.empty3.library.Representable;
+import one.empty3.library.core.tribase.TRISphere;
+
+import java.util.Iterator;
+
 public class GameLogic {
 
-/**
+
  private double hauteur = 0.01;
  protected Point3D positionOrigine = Point3D.O0.plus(hauteur);
  protected Point3D position = positionOrigine;
@@ -140,5 +146,5 @@ public class GameLogic {
  {
  return gagne;
  }
- */
+
 }

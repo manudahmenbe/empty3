@@ -145,8 +145,8 @@ public class RepresentableConteneur extends Representable implements IMovable, I
         getDeclaredDataStructure().put("listRepresentable", re);
     }
 
-    public ArrayList<Representable> getListRepresentable() {
-        return (ArrayList<Representable>) re.getData1d();
+    public List<Representable> getListRepresentable() {
+        return re.getData1d();
     }
 
 }
