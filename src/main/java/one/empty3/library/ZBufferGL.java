@@ -44,16 +44,6 @@ public class ZBufferGL implements ZBuffer {
     }
 
     @Override
-    public Point coordonneesPoint2D(Point3D p) {
-        return null;
-    }
-
-    @Override
-    public Point3D coordonneesPoint3D(Point3D p) {
-        return null;
-    }
-
-    @Override
     public void couleurDeFond(ITexture couleurFond) {
 
     }
@@ -66,11 +56,6 @@ public class ZBufferGL implements ZBuffer {
     @Override
     public void draw(Representable r) {
 
-    }
-
-    @Override
-    public double distanceCamera(Point3D p) {
-        return 0;
     }
 
     @Override
@@ -98,10 +83,6 @@ public class ZBufferGL implements ZBuffer {
 
     }
 
-    @Override
-    public void isometrique() {
-
-    }
 
     @Override
     public void line(Point3D p1, Point3D p2, ITexture t) {
@@ -111,11 +92,6 @@ public class ZBufferGL implements ZBuffer {
     @Override
     public boolean lock() {
         return false;
-    }
-
-    @Override
-    public void perspective() {
-
     }
 
     @Override

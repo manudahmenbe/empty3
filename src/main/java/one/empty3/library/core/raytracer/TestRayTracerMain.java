@@ -102,7 +102,7 @@ public class TestRayTracerMain extends RtRaytracer {
         myScene.setActiveCamera(0);
         // On lance le rendu
         try {
-            Render(myScene, 1920, 1080, "tests2-results/raytracer-base" + ConsoleUtils.currentDate());
+            Render(myScene, 1920, 1080, "tests-results/raytracer-base" + ConsoleUtils.currentDate());
         } catch (IOException e) {
             e.printStackTrace();
         }

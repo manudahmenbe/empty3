@@ -57,30 +57,6 @@ public interface ZBuffer {
      */
     Camera camera();
 
-
-    /**
-     * Coordonnées du point sur écran
-     *
-     * @param p point dans l'espace en 3 dim
-     * @return point en coordonnées Image
-     */
-    Point coordonneesPoint2D(Point3D p);
-
-    /**
-     * *
-     * ???
-     *
-     * @param p
-      * @return
-     */
-    Point3D coordonneesPoint3D(Point3D p);
-
-    /**
-     * *
-     * Définit couleur de fond
-     *
-     * @param couleurFond
-     */
     void couleurDeFond(ITexture couleurFond);
 
 
@@ -95,14 +71,6 @@ public interface ZBuffer {
      * @param r         Objet à peindre
      */
     void draw(Representable r);
-
-    /**
-     * Distance à la caméra ???
-     *
-     * @param p
-     * @return
-     */
-    double distanceCamera(Point3D p);
 
     int getColorAt(Point p);
 
@@ -134,10 +102,6 @@ public interface ZBuffer {
 
     void isobox(boolean isBox);
 
-    /**
-     * Rendu en 3D isométrique
-     */
-    void isometrique();
 
     /**
      * @param p1 premier point
@@ -154,10 +118,6 @@ public interface ZBuffer {
      */
     boolean lock();
 
-    /**
-     * Rendu en 3D caméra-oeil
-     */
-    void perspective();
 
     /**
      * Dessine un point

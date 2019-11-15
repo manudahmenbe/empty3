@@ -847,12 +847,6 @@ public abstract class TestObjet implements Test, Runnable {
                     }
                 }
                 pauseActive = false;
-                if (isometrique) {
-                    z.isometrique();
-                    z.isobox(noZoom);
-                } else {
-                    z.perspective();
-                }
 
 
                 try {

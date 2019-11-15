@@ -298,4 +298,23 @@ public class Matrix33 extends  Representable {
     }
 
 
+    public Point3D[] getColVectors() {
+        Point3D [] colVectors = new Point3D[3];
+        for(int c=0; c<3; c++)
+        {
+            Point3D p = new Point3D(d.getElem(0, c), d.getElem(1, c),d.getElem(2, c));
+            colVectors[c] = p;
+        }
+        return colVectors;
+    }
+
+    public Point3D[] getRowVectors() {
+        Point3D [] rowVectors = new Point3D[3];
+        for(int l=0; l<3; l++)
+        {
+            Point3D p = new Point3D(d.getElem(l, 0), d.getElem(l, 1),d.getElem(l, 2));
+            rowVectors[l] = p;
+        }
+        return rowVectors;
+    }
 }

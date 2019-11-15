@@ -66,6 +66,6 @@ public abstract class PGeneratorZ extends Representable {
     }
 
     public Point point(ZBuffer z, Point3D p) {
-        return z.coordonneesPoint2D(p);
+        return z.camera().coordonneesPoint2D(p, ((ZBufferImpl)z));
     }
 }

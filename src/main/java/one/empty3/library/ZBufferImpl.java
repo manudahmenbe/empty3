@@ -51,8 +51,6 @@ import java.util.function.Consumer;
  */
 public class ZBufferImpl extends Representable implements ZBuffer {
 
-    public static final int PERSPECTIVE_ISOM = 0;
-    public static final int PERSPECTIVE_OEIL = 1;
 
 
     public static final int DISPLAY_ALL = 0;
@@ -67,7 +65,6 @@ public class ZBufferImpl extends Representable implements ZBuffer {
      */
     // DEFINITIONS
     public static double INFINI_PROF = Double.MAX_VALUE;
-    public int type_perspective = PERSPECTIVE_OEIL;
     protected Point3D planproj = null;
     protected Point3D camera = null;
     protected boolean colorationActive = false;
@@ -93,24 +90,29 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     private long[][] Simeid;
     private double[][] Simeprof;
     private Scene currentScene;
-    private Box2D box;
+    public Box2D box;
     private Point3D activeLight = new Point3D(-10d, 0d, 100d);
     private int displayType = SURFACE_DISPLAY_TEXT_QUADS;
-
+    ZBufferImpl that;
     public ZBufferImpl() {
-        this(Resolution.HD1080RESOLUTION);
+        that = this;
+
     }
 
-    public ZBufferImpl(Resolution resolution) {
-        this(resolution.x(), resolution.y());
-    }
 
     public ZBufferImpl(int l, int h) {
+        this();
         la = l;
         ha = h;
         dimx = la;
         dimy = ha;
         this.ime = new ImageMap(la, ha);
+    }
+
+    public ZBufferImpl(Resolution resolution) {
+
+
+        this(resolution.x(), resolution.y());
     }
 
     protected long idImg() {
@@ -133,55 +135,12 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         this.cameraC = c;
         this.scene().cameraActive(c);
     }
-
-    public Point coordonneesPoint2D(Point3D p) {
-        switch (type_perspective) {
-            case PERSPECTIVE_ISOM:
-                return coordonneesPointEcranIsometrique(coordonneesPoint3D(p));
-            case PERSPECTIVE_OEIL:
-                return coordonneesPointEcranPerspective(coordonneesPoint3D(p));
-            default:
-                throw new UnsupportedOperationException("Type de perspective non reconnu");
-        }
-    }
-
-    public Point3D coordonneesPoint3D(Point3D p) {
-        return scene().cameraActive().calculerPointDansRepere(p);
-    }
-
-    protected Point coordonneesPointEcranIsometrique(Point3D p) {
-        java.awt.Point p2 = new java.awt.Point(
-                (int) (1.0 * la / (box.getMaxx() - box.getMinx()) * (p.getX() - box.getMinx())),
-                ha - (int) (1.0 * ha / (box.getMaxy() - box.getMiny()) * (p.getY() - box.getMiny())));
-        if (p2.getX() >= 0.0 && p2.getX() < la && p2.getY() >= 0 && p2.getY() < ha) {
-            return p2;
-        } else {
-            return null;
-        }
-    }
-
-    private Point coordonneesPointEcranPerspective(Point3D x3d) {
-
-        if (x3d.getZ() > 0 && -angleX < Math.atan(x3d.getX() / x3d.getZ())
-                && Math.atan(x3d.getX() / x3d.getZ()) < angleX && -angleY < Math.atan(x3d.getY() / x3d.getZ())
-                && Math.atan(x3d.getY() / x3d.getZ()) < angleY) {
-            double scale = (1.0 / (x3d.getZ()));
-            return new Point((int) (x3d.getX() * scale * la + la / 2), (int) (-x3d.getY() * scale * ha + ha / 2));
-        }
-        return null;
-    }
-
     public void draw() {
         if (firstRun && ime == null) {
             ime = new ImageMap(la, ha);
             firstRun = false;
         }
 
-        if (type_perspective == PERSPECTIVE_ISOM) {
-
-            box = new Box2D();
-
-        }
         draw(scene());
     }
 
@@ -516,17 +475,6 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         line(p4, p1, texture, u, v + v1, u, v, n);
     }
 
-    public double distanceCamera(Point3D x3d) {
-        switch (type_perspective) {
-            case PERSPECTIVE_ISOM:
-                return x3d.getZ() - scene().cameraActive().eye.getElem().getZ();
-            case PERSPECTIVE_OEIL:
-                return x3d.moins(scene().cameraActive().eye.getElem()).norme();
-            default:
-                throw new UnsupportedOperationException("Type de perspective non reconnu");
-        }
-
-    }
 
     public double echelleEcran() {
         return box.echelleEcran();
@@ -588,9 +536,6 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     public void isobox(boolean isBox) {
     }
 
-    public void isometrique() {
-        type_perspective = PERSPECTIVE_ISOM;
-    }
 
     /**
      * @return largeur du zbuffer
@@ -606,8 +551,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
      * @param t  colour of de la line
      */
     public void line(Point3D p1, Point3D p2, ITexture t) {
-        Point x1 = coordonneesPoint2D(p1);
-        Point x2 = coordonneesPoint2D(p2);
+        Point x1 = camera().coordonneesPoint2D(p1, this);
+        Point x2 = camera().coordonneesPoint2D(p2, this);
         if (x1 == null || x2 == null) {
             return;
         }
@@ -621,8 +566,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     }
 
     public void line(Point3D p1, Point3D p2, ITexture t, double u, double u1, ParametricCurve curve) {
-        Point x1 = coordonneesPoint2D(p1);
-        Point x2 = coordonneesPoint2D(p2);
+        Point x1 = camera().coordonneesPoint2D(p1, this);
+        Point x2 = camera().coordonneesPoint2D(p2, this);
         if (x1 == null || x2 == null) {
             return;
         }
@@ -640,8 +585,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     public void line(Point3D p1, Point3D p2, ITexture texture, double u, double v, double u1, double v1,
                       ParametricSurface surface) {
         // TODO Check
-        Point x1 = coordonneesPoint2D(p1);
-        Point x2 = coordonneesPoint2D(p2);
+        Point x1 = camera().coordonneesPoint2D(p1, this);
+        Point x2 = camera().coordonneesPoint2D(p2, this);
         if (x1 == null || x2 == null) {
             return;
         }
@@ -695,9 +640,6 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                         Point.distance(p3.x, p3.y, p4.x, p4.y)), Point.distance(p4.x, p4.y, p1.x, p1.y));
     }
 
-    public void perspective() {
-        type_perspective = PERSPECTIVE_OEIL;
-    }
 
     public void plotPoint(Color color, Point3D p) {
         if (p != null && color != null) {
@@ -787,8 +729,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     }
 
     private void tracerAretes(Point3D point3d, Point3D point3d2, Color c) {
-        Point p1 = coordonneesPoint2D(point3d);
-        Point p2 = coordonneesPoint2D(point3d2);
+        Point p1 = camera().coordonneesPoint2D(point3d, this);
+        Point p2 = camera().coordonneesPoint2D(point3d2, this);
         if (p1 == null || p2 == null) {
             return;
         }
@@ -818,9 +760,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     }
 
     public void tracerTriangle(Point3D pp1, Point3D pp2, Point3D pp3, ITexture t, double u0, double u1, double v0, double v1) {
-        Point p1 = coordonneesPoint2D(pp1);
-        Point p2 = coordonneesPoint2D(pp2);
-        Point p3 = coordonneesPoint2D(pp3);
+        Point p1 = camera().coordonneesPoint2D(pp1, this);
+        Point p2 = camera().coordonneesPoint2D(pp2, this);
+        Point p3 = camera().coordonneesPoint2D(pp3, this);
         if (p1 == null || p2 == null || p3 == null) {
             return;
         }
@@ -830,7 +772,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         double iteres1 = 1.0 / (Math.abs(p1.getX() - p2.getX()) + Math.abs(p1.getY() - p2.getY()));
         for (double a = 0; a < 1.0; a += iteres1) {
             Point3D p3d = pp1.plus(pp1.mult(-1d).plus(pp2).mult(a));
-            Point pp = coordonneesPoint2D(p3d);
+            Point pp = camera().coordonneesPoint2D(p3d, this);
             if (pp != null) {
                 double iteres2 = 1.0 / (Math.abs(pp.getX() - p3.getX()) + Math.abs(pp.getY() - p3.getY()));
                 for (double b = 0; b < 1.0; b += iteres2) {
@@ -852,10 +794,10 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     public void tracerQuad(Point3D pp1, Point3D pp2, Point3D pp3, Point3D pp4, ITexture texture, double u0, double u1,
                            double v0, double v1, ParametricSurface n) {
         Point p1, p2, p3, p4;
-        p1 = coordonneesPoint2D(pp1);
-        p2 = coordonneesPoint2D(pp2);
-        p3 = coordonneesPoint2D(pp3);
-        p4 = coordonneesPoint2D(pp4);
+        p1 = camera().coordonneesPoint2D(pp1, this);
+        p2 = camera().coordonneesPoint2D(pp2, this);
+        p3 = camera().coordonneesPoint2D(pp3, this);
+        p4 = camera().coordonneesPoint2D(pp4, this);
 
         int col = texture.getColorAt(u0 , v0);
 
@@ -897,9 +839,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     public void tracerTriangle(Point3D pp1, Point3D pp2, Point3D pp3, ITexture c) {
         Point p1, p2, p3;
-        p1 = coordonneesPoint2D(pp1);
-        p2 = coordonneesPoint2D(pp2);
-        p3 = coordonneesPoint2D(pp3);
+        p1 = camera().coordonneesPoint2D(pp1, this);
+        p2 = camera().coordonneesPoint2D(pp2, this);
+        p3 = camera().coordonneesPoint2D(pp3, this);
 
         Point3D n = (pp3.moins(pp1)).prodVect(pp2.moins(pp1)).norme1();
 
@@ -1196,7 +1138,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
 
         public void dessine(Point3D x3d, Color c) {
-            Point ce = coordonneesPoint2D(x3d);
+            Point ce = camera().coordonneesPoint2D(x3d, that);
             if (ce == null) {
                 return;
             }
@@ -1239,10 +1181,10 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             if (x3d == null)
                 return;
             int cc = c;
-            Point ce = coordonneesPoint2D(x3d);
+            Point ce = camera().coordonneesPoint2D(x3d, that);
             if (ce == null)
                 return;
-            double deep = distanceCamera(x3d);
+            double deep = camera().distanceCamera(x3d);
 
             int x = (int) ce.getX();
             int y = (int) ce.getY();
@@ -1291,7 +1233,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
         public void testDeep(Point3D pFinal, Point3D point3D, int colorAt, Representable n) {
             testDeep(pFinal, point3D, colorAt);
-            Point point = coordonneesPoint2D(pFinal);
+            Point point = camera().coordonneesPoint2D(pFinal, that);
             if(ime!=null&&point!=null) {
                 ime.setElementRepresentable((int) point.getX(), (int) point.getY(), n);
             }

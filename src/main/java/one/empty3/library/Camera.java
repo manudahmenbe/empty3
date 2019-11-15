@@ -31,6 +31,8 @@
  */
 package one.empty3.library;
 
+import java.awt.*;
+
 /**
  * @author Manuel Dahmen
  */
@@ -39,7 +41,10 @@ public class Camera extends CameraBox {
     /**
      *
      */
+    public static final int PERSPECTIVE_ISOM = 0;
+    public static final int PERSPECTIVE_OEIL = 1;
     private static final long serialVersionUID = 2743860672948547944L;
+    public int type_perspective = PERSPECTIVE_OEIL;
 
     public static Camera PARDEFAULT = new Camera();
 
@@ -223,4 +228,55 @@ public class Camera extends CameraBox {
         calculerMatrice(verticale.getElem());
 
     }
+
+    Point coordonneesPointEcranPerspective(Point3D x3d, int la, int ha) {
+
+        if (x3d.getZ() > 0 && -getAngleX() < Math.atan(x3d.getX() / x3d.getZ())
+                && Math.atan(x3d.getX() / x3d.getZ()) < getAngleX()&& -getAngleY() < Math.atan(x3d.getY() / x3d.getZ())
+                && Math.atan(x3d.getY() / x3d.getZ()) < getAngleY()) {
+            double scale = (1.0 / (x3d.getZ()));
+            return new Point((int) (x3d.getX() * scale * la + la / 2), (int) (-x3d.getY() * scale * ha + ha / 2));
+        }
+        return null;
+    }
+
+    public Point coordonneesPointEcranIsometrique(Point3D p, ZBufferImpl.Box2D box, int la, int ha) {
+        Point p2 = new Point(
+                (int) (1.0 * la / (box.getMaxx() - box.getMinx()) * (p.getX() - box.getMinx())),
+                ha - (int) (1.0 * ha / (box.getMaxy() - box.getMiny()) * (p.getY() - box.getMiny())));
+        if (p2.getX() >= 0.0 && p2.getX() < la && p2.getY() >= 0 && p2.getY() < ha) {
+            return p2;
+        } else {
+            return null;
+        }
+    }
+
+
+
+    public Point coordonneesPoint2D(Point3D p, ZBufferImpl impl) {
+        switch (type_perspective) {
+            case PERSPECTIVE_ISOM:
+                return coordonneesPointEcranIsometrique(coordonneesPoint3D(p), impl.box, impl.la, impl.ha);
+            case PERSPECTIVE_OEIL:
+                return coordonneesPointEcranPerspective(coordonneesPoint3D(p), impl.la, impl.ha);
+            default:
+                throw new UnsupportedOperationException("Type de perspective non reconnu");
+        }
+    }
+
+    public Point3D coordonneesPoint3D(Point3D p) {
+        return calculerPointDansRepere(p);
+    }
+    public double distanceCamera(Point3D x3d) {
+        switch (type_perspective) {
+            case PERSPECTIVE_ISOM:
+                return x3d.getZ() - eye.getElem().getZ();
+            case PERSPECTIVE_OEIL:
+                return x3d.moins(eye.getElem()).norme();
+            default:
+                throw new UnsupportedOperationException("Type de perspective non reconnu");
+        }
+
+    }
+
 }
