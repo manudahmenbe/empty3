@@ -79,24 +79,32 @@ public class ArcBall2 {
 
     }
     public void moveTo(int x, int y) {
-        Point3D mult = currentCamera.getMatrice().tild().mult(new Point3D((double) x, (double) y, 0.0));
+        Point3D mult = zBuffer.invert(x, y,new Point3D((double) x, (double) y, 0.0), currentCamera);
         Point3D intersect = intersect(new Axe(currentCamera.eye(), mult));
         computeMatrix(pointCenter, currentPosition, intersect);
         currentPosition = intersect;
     }
+
+    Matrix33 rot;
+
     public void computeMatrix(Point3D p0, Point3D intersect1, Point3D intersect2)
     {
         if(p0!=null && intersect1!=null && intersect2!=null)
         {
             Matrix33 matrix33 = representable.getRotation().getElem().getRot().getElem();
-            matrix33.getRowVectors();
-            matrix33.getColVectors();
+            if(!currentPosition.equals(pointCenter) && !intersect1.equals(intersect2)) {
+                Point3D vY = intersect1.moins(p0).prodVect(intersect2.moins(p0)).norme1();
+                Point3D mvZ = currentPosition.moins(pointCenter).norme1();
+                Point3D vX = vY.prodVect(mvZ).norme1();
 
+
+                rot = new Matrix33(new Point3D[]{vX, vY, mvZ});
+            }
 
         }
     }
-    public Double [] matrix()
+    public Matrix33 matrix()
     {
-        return null;
+        return rot;
     }
 }

@@ -382,7 +382,4 @@ public class StructureMatrix<T>  {
         listeners.remove(listener);
     }
 
-    public void setCenter(Point3D center) {
-        this.center = center;
-    }
 }

@@ -324,8 +324,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                             ime.testDeep(rotate(p4, r));
                             break;
                         default:
-                            tracerQuad(rotate(p1, r), rotate(p2, r),
-                                    rotate(p3, r), rotate(p4, r),
+                            tracerQuad(rotate(p1, n), rotate(p2, n),
+                                    rotate(p3, n), rotate(p4, n),
                                     n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
                             break;
                     }
@@ -829,7 +829,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 else
                 {
                     ime.testDeep(pFinal, col);
-                    ime.testDeep(pFinal, texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
+                    //ime.testDeep(pFinal, texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
 
                 }
             }
@@ -1393,6 +1393,26 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         return p;
     }
 
+    public Axe invert(int x, int y, Camera camera)
+    {
+        x = (x-largeur()/2);
+        y = (y-hauteur()/2);
+        double a = camera.distanceCamera(new Point3D(
+                (double) x, (double) y, 0.));
+        double dist = camera.coordonneesPoint3D(new Point3D(
+                (double) x, (double) y, a))
+                .moins(camera.getEye()).norme();
+
+        double pX = Math.cos(camera.getAngleX())*dist;
+        double pY = Math.cos(camera.getAngleY())*dist;
+
+        return new Axe(camera.eye(),
+                camera.getMatrice().tild().mult(new Point3D(
+                pX*2.0*x/largeur(),
+                -pY*2.0*y/hauteur(), dist)
+        ));
+
+    }
     public Point3D invert(int x, int y, Point3D orig, Camera camera)
     {
         x = (x-largeur()/2);

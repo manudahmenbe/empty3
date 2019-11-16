@@ -90,7 +90,7 @@ public class Matrix33 extends  Representable {
 
             for (int j = 0; j < 3; j++) {
 
-                d.setElem(p[i].get(j), j * 3 + i);
+                d.setElem(p[i].get(j), i * 3 + j);
             }
         }
     }
@@ -302,7 +302,7 @@ public class Matrix33 extends  Representable {
         Point3D [] colVectors = new Point3D[3];
         for(int c=0; c<3; c++)
         {
-            Point3D p = new Point3D(d.getElem(0, c), d.getElem(1, c),d.getElem(2, c));
+            Point3D p = new Point3D(d.getElem( c), d.getElem(3+ c),d.getElem(6+ c));
             colVectors[c] = p;
         }
         return colVectors;
@@ -312,7 +312,7 @@ public class Matrix33 extends  Representable {
         Point3D [] rowVectors = new Point3D[3];
         for(int l=0; l<3; l++)
         {
-            Point3D p = new Point3D(d.getElem(l, 0), d.getElem(l, 1),d.getElem(l, 2));
+            Point3D p = new Point3D(d.getElem(l*3), d.getElem(l*3+1),d.getElem(l*3+2));
             rowVectors[l] = p;
         }
         return rowVectors;

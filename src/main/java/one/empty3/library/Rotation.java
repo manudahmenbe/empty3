@@ -60,14 +60,10 @@ public class Rotation implements MatrixPropertiesObject
     }
 
     public Point3D rotation(Point3D p ) {
-        if(rot==null)
-            rot.setElem(new Matrix33(Matrix33.I));
-        if(centreRot==null)
-            centreRot.setElem(p);
         if(p!=null) {
-            return p.plus(centreRot.getElem()).plus(rot.getElem().mult(p.scale()));
+            return p.plus(centreRot.getElem()).plus(rot.getElem().mult(p.moins(centreRot.getElem())));
         }
-        else return p;
+        return null;
     }
 
     public Point3D rotationAxe(Point3D p, int axe, double angle) {
