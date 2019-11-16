@@ -49,6 +49,8 @@ public class Circle extends ParametricCurve {
     protected Point3D vectY;
     protected Point3D vectZ;
     private boolean isCalculerRepere1 = false;
+    private Point3D center;
+
     public Circle()
     {
         axis.setElem(new Axe());
@@ -195,5 +197,9 @@ public class Circle extends ParametricCurve {
     @Override
     public String toString() {
         return "circle (\n"+axis.toString()+"\n";
+    }
+
+    public void setCenter(Point3D center) {
+        this.center = center;
     }
 }

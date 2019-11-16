@@ -56,7 +56,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     private final GLU glu;
     private final Object component;
     private final GLCanvas glcanvas;
-    double INCR_AA = 0.1;
+    double INCR_AA = 0.01;
     double DISTANCE_MIN = 100;
     Timer timer;
     TubulaireN2<Lines> path;
@@ -390,7 +390,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
         Point3D position = pos;//getMover().getPositionMobile().calcPosition();
 
-        Point3D normale = dir.prodVect(pos);//getTerrain().calcNormale(position.getX(), position.getY());
+        Point3D normale = /*dir.prodVect(pos);*/getTerrain().calcNormale(position.getX(), position.getY());
 
 
         glu.gluLookAt(pos.get(0), pos.get(1),
@@ -410,8 +410,13 @@ public class JoglDrawer extends Drawer implements GLEventListener {
          /**/
         if (toggleMenu == null)
             return;
-        if (toggleMenu.isDisplayBonus())
+        if (toggleMenu.isDisplayBonus()) {
+            bonus.getListRepresentable().forEach(representable -> {
+                Point3D center = ((TRISphere2) representable).getCoords();
+                ((TRISphere2) representable).getCircle().getAxis().getElem().setCenter(terrain.p3(center));
+            });
             draw(bonus, glu, gl);
+        }
         if (toggleMenu.isDisplaySky())
             draw3(new Ciel().getBleu(), glu, gl);
 
@@ -513,97 +518,26 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         gl.glBegin(GL2.GL_TRIANGLES);
         for (double i = 0; i <= 1; i += INCR_AA) {
             for (double j = 0; j <= 1; j += INCR_AA) {
+
                 final Double[][][] faces = Cube.getData();
-                TRI[] tris = new TRI[12];
-                //tris[12] = new TRI(new Point3D(0, 1, 0), new Point3D(1, 1, 0), new Point3D(0, 0, 0));
-                //tris[13] = new TRI(new Point3D(1, 0, 0), new Point3D(1, 1, 0), new Point3D(0, 0, 0));
+                TRI[] tris = new TRI[14];
+                tris[12] = new TRI(new Point3D(i, j+INCR_AA, 0.), new Point3D(1.+INCR_AA, j+INCR_AA, 0.), new Point3D(0., j+INCR_AA, 0.));
+                tris[13] = new TRI(new Point3D(1.+INCR_AA, j, 0.), new Point3D(1.+INCR_AA, j+INCR_AA, 0.), new Point3D(0.+INCR_AA, j, 0.));
 
-                int index = 0;
-                int a = 0;
-                for (Double[][] triRaw : faces) {
-
-
-                    tris[index] = new TRI();
-
-                    Point3D p1 = new Point3D((triRaw[0][0] + 1) / 2, (triRaw[0][1] + 1) / 2, (triRaw[0][2] + 1) / 2);
-                    Point3D p2 = new Point3D((triRaw[1][0] + 1) / 2, (triRaw[1][1] + 1) / 2, (triRaw[1][2] + 1) / 2);
-                    Point3D p3 = new Point3D((triRaw[2][0] + 1) / 2, (triRaw[2][1] + 1) / 2, (triRaw[2][2] + 1) / 2);
-                    tris[index] = new TRI(p1, p2, p3);
-                    index++;
+                for (int g = 0; g < 3; g++) {
+                    tris[12].getSommet().setElem(terrain.p3(tris[12].getSommet().getElem(g)), g);
+                    tris[13].getSommet().setElem(terrain.p3(tris[13].getSommet().getElem(g)), g);
                 }
 
-                index = 0;
-                for (TRI t : tris) {
-                    /*
-                    if(index>=12)
-                    {
-                        INCR_AA = 0.01;
+                double a = 0;
 
-                    }
-                    else
-                    {
-                        INCR_AA = 0.1;
-                    }
-                    */
-                    Point3D[] point3D = new Point3D[6];
-                    for (int p : new int[]{0, 1, 2}) {
-                        StructureMatrix<Point3D> p3 = t.getSommet();
+                tris[12].texture(new ColorTexture(Plasma.color(i + a, j + a, time())));
+                draw2(tris[12], glu, gl, true);
 
-                        for (int coord = 0; coord < 3; coord++) {
-                            switch (coord) {
-                                case 0:
-                                    point3D[0] = new Point3D(p3.getElem(0).get(coord), (i), (j));
-                                    point3D[1] = new Point3D(p3.getElem(0).get(coord), (i + INCR_AA), (j));
-                                    point3D[2] = new Point3D(p3.getElem(0).get(coord), (i + INCR_AA), (j + INCR_AA));
-                                    point3D[3] = new Point3D(p3.getElem(0).get(coord), (i), (j));
-                                    point3D[4] = new Point3D(p3.getElem(0).get(coord), (i), (j + INCR_AA));
-                                    point3D[5] = new Point3D(p3.getElem(0).get(coord), (i + INCR_AA), (j + INCR_AA));
-                                    break;
-                                case 1:
-                                    point3D[0] = new Point3D((i) * 2, p3.getElem(0).get(coord), (j) * 2);
-                                    point3D[1] = new Point3D((i + INCR_AA) * 2, p3.getElem(0).get(coord), (j) * 2);
-                                    point3D[2] = new Point3D((i + INCR_AA) * 2, p3.getElem(0).get(coord), (j + INCR_AA) * 2);
-                                    point3D[3] = new Point3D((i) * 2, p3.getElem(0).get(coord), (j) * 2);
-                                    point3D[4] = new Point3D((i) * 2, p3.getElem(0).get(coord), (j + INCR_AA) * 2);
-                                    point3D[5] = new Point3D((i + INCR_AA) * 2, p3.getElem(0).get(coord), (j + INCR_AA) * 2);
-                                    break;
-                                case 2:
-                                    point3D[0] = new Point3D((i) * 2, (j) * 2, p3.getElem(0).get(coord));
-                                    point3D[1] = new Point3D((i + INCR_AA) * 2, (j) * 2, p3.getElem(0).get(coord));
-                                    point3D[2] = new Point3D((i + INCR_AA) * 2, (j + INCR_AA) * 2, p3.getElem(0).get(coord));
-                                    point3D[3] = new Point3D((i) * 2, (j) * 2, p3.getElem(0).get(coord));
-                                    point3D[4] = new Point3D((i) * 2, (j + INCR_AA) * 2, p3.getElem(0).get(coord));
-                                    point3D[5] = new Point3D((i + INCR_AA) * 2, (j + INCR_AA) * 2, p3.getElem(0).get(coord));
-                                    break;
-                            }
-                            nbrTriReduce++;
+                tris[13].texture(new ColorTexture(Plasma.color(i + a, j + a, time())));
+                draw2(tris[13], glu, gl, true);
 
 
-                            TRI toDraw = new TRI();
-                            for (int g = 0; g < 3; g++) {
-                                toDraw.getSommet().setElem(getTerrain().p3(point3D[g]), g);
-                            }
-                            toDraw.texture(new ColorTexture(Plasma.color(i + a, j + a, time())));
-
-                            draw2(toDraw, glu, gl, true);
-
-                            toDraw = new TRI();
-                            for (int g = 0; g < 3; g++) {
-                                toDraw.getSommet().setElem(getTerrain().p3(point3D[g+3]), g);
-                            }
-                            toDraw.texture(new ColorTexture(Plasma.color(i + a, j + a, time())));
-
-
-                            toDraw.texture(new ColorTexture(Plasma.color(i + a, j + a, time())));
-                            //if(isClose(maxDistance, toDraw))
-                            draw2(toDraw, glu, gl, true);
-                        }
-
-
-                    }
-                    index++;
-
-                }
             }
         }
         gl.glEnd();

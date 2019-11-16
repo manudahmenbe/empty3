@@ -71,7 +71,7 @@ public abstract class Drawer {
         component.setIconImages(imageList);
 
         toggleMenu.setDisplaySky(false);
-        toggleMenu.setDisplayGround(false);
+        toggleMenu.setDisplayGround(true);
         toggleMenu.setDisplayGroundGrid(true);
 
     }

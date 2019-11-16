@@ -50,6 +50,7 @@ public class StructureMatrix<T>  {
     public List<List<T>> data2d;
     private Class<?> classType;
     private StructureMatrix<Point3D> all;
+    private Point3D center;
 
     public StructureMatrix()
     {
@@ -381,4 +382,7 @@ public class StructureMatrix<T>  {
         listeners.remove(listener);
     }
 
+    public void setCenter(Point3D center) {
+        this.center = center;
+    }
 }

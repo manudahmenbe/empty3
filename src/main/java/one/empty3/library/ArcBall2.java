@@ -84,13 +84,19 @@ public class ArcBall2 {
         computeMatrix(pointCenter, currentPosition, intersect);
         currentPosition = intersect;
     }
-    void computeMatrix(Point3D p0, Point3D intersect1, Point3D intersect2)
+    public void computeMatrix(Point3D p0, Point3D intersect1, Point3D intersect2)
     {
         if(p0!=null && intersect1!=null && intersect2!=null)
         {
             Matrix33 matrix33 = representable.getRotation().getElem().getRot().getElem();
             matrix33.getRowVectors();
             matrix33.getColVectors();
+
+
         }
+    }
+    public Double [] matrix()
+    {
+        return null;
     }
 }
