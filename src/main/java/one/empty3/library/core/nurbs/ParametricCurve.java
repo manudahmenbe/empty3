@@ -102,7 +102,10 @@ public class ParametricCurve extends Representable {
     {
         return calculerPoint3D(t*(1+INCR_TAN)).moins(calculerPoint3D(t)).mult(INCR_TAN);
     }
-
+    public Point3D calculerTangente(double t)
+    {
+        return calculerPoint3D(t*(1+INCR_TAN)).moins(calculerPoint3D(t)).mult(INCR_TAN);
+    }
     public Point3D tangente(Double t)
     {
         return calculerPoint3D(t*1.0001).moins(calculerPoint3D(t));

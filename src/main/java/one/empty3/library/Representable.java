@@ -458,6 +458,15 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
         stringBuilder.append("</StructureMatrix>");
     }
 
+
+    Map<String, Double> data = new HashMap<>();
+    public void addData(String key, double number) {
+        data.put(key, number);
+    }
+    public double getData(String key)
+    {
+        return data.get(key);
+    }
 }
 
 

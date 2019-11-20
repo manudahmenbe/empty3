@@ -101,12 +101,18 @@ public class Axe extends Representable{
         return "axis (\np1"+getP1()+"\np2"+getP2()+"\n)\n";
     }
 
-    public void setCenter(Point3D center) {
+    public Axe setCenter(Point3D center) {
         Point3D currentCenter = p2.getElem().moins(p1.getElem()).mult(0.5);
         Point3D p12 = center.plus(p1.getElem());
         Point3D p22 = center.plus(p2.getElem());
 
         getP1().setElem(p12);
         getP2().setElem(p22);
+
+        return this;
+    }
+
+    public static Axe defaut() {
+        return new Axe(Point3D.Y, Point3D.Y.mult(-1.));
     }
 }
