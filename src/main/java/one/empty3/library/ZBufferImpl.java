@@ -1228,7 +1228,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
 
         public void testDeep(Point3D p) {
-            testDeep(p, p!=null?p.texture():CFAST);//WTF
+            testDeep(p, (p!=null &&p.texture()!=null)?p.texture():CFAST);//WTF
         }
 
         public void testDeep(Point3D p, Color c) {
