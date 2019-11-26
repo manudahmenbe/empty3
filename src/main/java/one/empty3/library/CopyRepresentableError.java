@@ -17,15 +17,10 @@
 
 package one.empty3.library;
 
-import java.util.Map;
-
 /**
- * Created by manue on 06-10-19.
+ * Created by manue on 23-11-19.
  */
-public interface MatrixPropertiesObject {
-    public StructureMatrix getDeclaredProperty(String name);
-    public void declareProperties();
-    public Map<String, StructureMatrix> declarations();
-    public Representable copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException;
-
+public class CopyRepresentableError extends Exception {
+    public CopyRepresentableError(String s) {
+    }
 }

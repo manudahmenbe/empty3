@@ -107,4 +107,14 @@ public class ArcBall2 {
     {
         return rot;
     }
+
+    public double getRadius()
+    {
+        return radius;
+    }
+
+    public void setRadius(double radius)
+    {
+        this.radius = radius;
+    }
 }

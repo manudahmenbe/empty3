@@ -382,4 +382,67 @@ public class StructureMatrix<T>  {
         listeners.remove(listener);
     }
 
+    private T cloneElement(T t) throws IllegalAccessException, CopyRepresentableError, InstantiationException {
+        T t1 = t;
+        if (t instanceof StructureMatrix)
+            t1 = (T) ((StructureMatrix) t).copy();
+        if (t instanceof MatrixPropertiesObject)
+            t1 = (T) ((Representable) t).copy();
+        return t1;
+    }
+    public StructureMatrix<T> copy() throws IllegalAccessException, CopyRepresentableError, InstantiationException {
+        StructureMatrix<T> tStructureMatrix = new StructureMatrix<>();
+        switch(getDim())
+        {
+            case 0:
+                tStructureMatrix.data0d = cloneElement(data0d);
+                break;
+            case 1:
+                data1d.forEach(new Consumer<T>() {
+                    @Override
+                    public void accept(T t) {
+                        try {
+                            tStructureMatrix.add(1, cloneElement(t));
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        } catch (CopyRepresentableError copyRepresentableError) {
+                            copyRepresentableError.printStackTrace();
+                        } catch (InstantiationException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                break;
+            case 2:
+                int i[] = new int[2];
+                i[0] = 0;
+                i[1] = 0;
+                data2d.forEach(new Consumer<List<T>>() {
+                    @Override
+                    public void accept(List<T> ts) {
+                        i[0] ++;
+                        ts.forEach(new Consumer<T>() {
+                            @Override
+                            public void accept(T t) {
+                                try {
+                                    tStructureMatrix.setElem(cloneElement(t), i[0], i[1]);
+                                } catch (IllegalAccessException e) {
+                                    e.printStackTrace();
+                                } catch (CopyRepresentableError copyRepresentableError) {
+                                    copyRepresentableError.printStackTrace();
+                                } catch (InstantiationException e) {
+                                    e.printStackTrace();
+                                }
+                                i[1] ++;
+
+                            }
+                        });
+                    }
+
+                });
+                break;
+        }
+        return null;
+
+    }
 }

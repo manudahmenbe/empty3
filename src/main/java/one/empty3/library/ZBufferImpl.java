@@ -1440,4 +1440,6 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     public void setDisplayType(int displayType) {
         this.displayType = displayType;
     }
+
+
 }

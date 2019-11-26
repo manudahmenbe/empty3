@@ -467,6 +467,34 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     {
         return data.get(key);
     }
+
+    public Representable copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
+        Class<? extends Representable> aClass = this.getClass();
+        try {
+            Representable representable = aClass.newInstance();
+            declarations().forEach(new BiConsumer<String, StructureMatrix>() {
+                @Override
+                public void accept(String s, StructureMatrix structureMatrix) {
+                    try {
+                        representable.setProperty(s, structureMatrix.copy());
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return representable;
+        } catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
+
+        return null;
+    }
 }
 
 
