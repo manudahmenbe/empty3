@@ -103,4 +103,9 @@ public class Rotation implements MatrixPropertiesObject
         declareProperties();
         return declaredDataStructures;
     }
+
+    @Override
+    public MatrixPropertiesObject copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
+        return new Rotation((Matrix33)getRot().copy().getElem(), (Point3D) (getCentreRot().copy().getElem()));
+    }
 }

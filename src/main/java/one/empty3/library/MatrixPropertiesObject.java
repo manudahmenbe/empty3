@@ -26,6 +26,6 @@ public interface MatrixPropertiesObject {
     public StructureMatrix getDeclaredProperty(String name);
     public void declareProperties();
     public Map<String, StructureMatrix> declarations();
-    public Representable copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException;
+    public MatrixPropertiesObject copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException;
 
 }

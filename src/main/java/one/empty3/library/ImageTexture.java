@@ -167,6 +167,11 @@ public class ImageTexture extends ITexture {
         return ecBufferedImageStructureMatrix;
     }
 
+    @Override
+    public MatrixPropertiesObject copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
+        return null;
+    }
+
 
     /**
      * Quadrilatère numQuadX = 1, numQuadY = 1, coordArr, y 3----2 ^2y |\ | | 4 |

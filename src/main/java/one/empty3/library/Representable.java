@@ -468,7 +468,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
         return data.get(key);
     }
 
-    public Representable copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
+    public MatrixPropertiesObject copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
         Class<? extends Representable> aClass = this.getClass();
         try {
             Representable representable = aClass.newInstance();
@@ -476,7 +476,13 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
                 @Override
                 public void accept(String s, StructureMatrix structureMatrix) {
                     try {
-                        representable.setProperty(s, structureMatrix.copy());
+                        try {
+                            representable.setProperty(s, structureMatrix.copy());
+                        } catch (CopyRepresentableError copyRepresentableError) {
+                            copyRepresentableError.printStackTrace();
+                        } catch (InstantiationException e) {
+                            e.printStackTrace();
+                        }
                     } catch (InvocationTargetException e) {
                         e.printStackTrace();
                     } catch (IllegalAccessException e) {

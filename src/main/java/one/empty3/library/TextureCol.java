@@ -103,4 +103,8 @@ public class TextureCol extends ITexture {
                 "; alpha:" + ((c&0xFF000000)>>24) + ")\n";
     }
 
+    @Override
+    public MatrixPropertiesObject copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
+        return null;
+    }
 }

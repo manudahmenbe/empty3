@@ -145,6 +145,11 @@ public class TextureMov extends ITexture {
         return fileStructureMatrix;
     }
 
+    @Override
+    public MatrixPropertiesObject copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
+        return null;
+    }
+
 
     public boolean nextFrame() {
         if(images.size()>0) {

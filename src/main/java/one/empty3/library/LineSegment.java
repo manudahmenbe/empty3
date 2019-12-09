@@ -67,6 +67,8 @@ public class LineSegment extends ParametricCurve implements CurveElem {
     // prodScalaire product (3D) which allows vector operations in arguments
     public LineSegment(Point3D p1, Point3D p2) {
         this();
+        setOrigine(p1);
+        setExtremite(p2);
     }
 
     public LineSegment(Point3D origin, Point3D extrem, ITexture texture) {
@@ -229,5 +231,10 @@ public class LineSegment extends ParametricCurve implements CurveElem {
         getDeclaredDataStructure().put("origine/point origine", origine);
         getDeclaredDataStructure().put("extremite/point extremite", extremite);
 
+    }
+
+    public double getLength()
+    {
+        return getOrigine().moins(getExtremite()).getLength();
     }
 }

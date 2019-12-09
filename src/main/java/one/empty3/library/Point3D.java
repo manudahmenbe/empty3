@@ -35,9 +35,7 @@ import one.empty3.library.core.nurbs.ParametricCurve;
 import one.empty3.library.core.nurbs.ParametricSurface;
 
 import java.awt.*;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * *
@@ -421,6 +419,10 @@ public class Point3D extends Representable {
 
     public static Point3D n(double i, double i1, double i2) {
         return new Point3D(i, i1, i2);
+    }
+
+    public double getLength() {
+        return norme();
     }
 
 

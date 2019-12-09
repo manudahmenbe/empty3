@@ -1397,8 +1397,17 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         return p;
     }
 
+    /***
+     *
+     * @param x Coordonnées dans le composant
+     * @param y Coordonnées dans le composant
+     * @param camera Caméra où calculer. null="this.camera()"
+     * @return axe p1: camera.axe, p3 à dist.
+     */
     public Axe invert(int x, int y, Camera camera)
     {
+        if(camera==null)
+            camera = this.camera();
         x = (x-largeur()/2);
         y = (y-hauteur()/2);
         double a = camera.distanceCamera(new Point3D(

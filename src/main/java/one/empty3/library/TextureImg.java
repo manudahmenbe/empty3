@@ -147,6 +147,11 @@ public class TextureImg extends ITexture {
         return image;
     }
 
+    @Override
+    public MatrixPropertiesObject copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
+        return null;
+    }
+
 
     public String toString() {
         String imageString = null;

@@ -33,9 +33,7 @@
 package one.empty3.library.svgtexture;
 
 
-import one.empty3.library.EOFVideoException;
-import one.empty3.library.ITexture;
-import one.empty3.library.StructureMatrix;
+import one.empty3.library.*;
 
 import java.io.File;
 
@@ -77,5 +75,10 @@ public class SVGTexture extends ITexture {
     public StructureMatrix getDeclaredProperty(String name) {
         return null;
 
+    }
+
+    @Override
+    public MatrixPropertiesObject copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
+        return null;
     }
 }
