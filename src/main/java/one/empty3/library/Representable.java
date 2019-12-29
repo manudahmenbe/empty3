@@ -48,6 +48,17 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class Representable implements Serializable, Comparable, XmlRepresentable, MatrixPropertiesObject {
+
+
+    public static final int DISPLAY_ALL = 0;
+    public static final int SURFACE_DISPLAY_TEXT_QUADS = 1;
+    private static final int SURFACE_DISPLAY_TEXT_TRI = 2;
+    public static final int SURFACE_DISPLAY_COL_QUADS = 3;
+    public static final int SURFACE_DISPLAY_COL_TRI = 4;
+    public static final int SURFACE_DISPLAY_LINES = 5;
+    public static final int SURFACE_DISPLAY_POINTS = 6;
+    private static final String[] displayTypes = {"All", "Textured Quad", "SURFACE_DISPLAY_TEXT_TRI", "SURFACE_DISPLAY_COL_QUADS", "SURFACE_DISPLAY_COL_TRI", "SURFACE_DISPLAY_LINES", "SURFACE_DISPLAY_POINTS"};
+    private int displayType = SURFACE_DISPLAY_TEXT_QUADS;
     public static Point3D SCALE1;
     public static final ITexture DEFAULT_TEXTURE = new TextureCol(Colors.random());
     protected static ArrayList<Painter> classPainters = new ArrayList<Painter>();
@@ -500,6 +511,18 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
 
 
         return null;
+    }
+
+    public int getDisplayType() {
+        return displayType;
+    }
+
+    public void setDisplayType(int displayType) {
+        this.displayType = displayType;
+    }
+
+    public static String[] getDisplayTypes() {
+        return displayTypes;
     }
 }
 

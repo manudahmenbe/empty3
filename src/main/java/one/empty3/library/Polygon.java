@@ -42,7 +42,7 @@ import java.awt.*;
 /**
  * @author Manuel
  */
-public class Polygon extends Representable implements SurfaceElem {
+public class Polygon extends Representable implements SurfaceElem, ClosedCurve {
 
     /**
      *

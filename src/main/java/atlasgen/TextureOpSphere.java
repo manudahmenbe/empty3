@@ -32,10 +32,7 @@
 
 package atlasgen;
 
-import one.empty3.library.EOFVideoException;
-import one.empty3.library.ITexture;
-import one.empty3.library.StructureMatrix;
-import one.empty3.library.TextureOp2D;
+import one.empty3.library.*;
 
 /**
  * Created by manue on 10-05-19.
@@ -63,6 +60,11 @@ public class TextureOpSphere extends TextureOp2D {
     @Override
     public StructureMatrix getDeclaredProperty(String name) {
         return upText;
+    }
+
+    @Override
+    public MatrixPropertiesObject copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
+        return null;
     }
 
     @Override

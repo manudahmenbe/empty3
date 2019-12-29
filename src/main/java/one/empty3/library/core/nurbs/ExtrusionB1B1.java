@@ -17,26 +17,13 @@
 
 package one.empty3.library.core.nurbs;
 
-import one.empty3.library.Point3D;
 import one.empty3.library.StructureMatrix;
 
 /**
- * Created by manue on 23-11-19.
+ * Created by manue on 29-12-19.
  */
-public class ExtrsuionCurveCurve extends ParametricSurface{
-    private StructureMatrix<ParametricCurve> base = new StructureMatrix<>(0, ParametricCurve.class);
-    private StructureMatrix<ParametricCurve> path = new StructureMatrix<>(0, ParametricCurve.class);
+public class ExtrusionB1B1 extends ExtrusionCurveCurve {
+    private StructureMatrix<CourbeParametriquePolynomialeBezier> base = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
+    private StructureMatrix<CourbeParametriquePolynomialeBezier> path = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
 
-    @Override
-    public void declareProperties() {
-        super.declareProperties();
-        getDeclaredDataStructure().put("base/Surface à extruder", base);
-        getDeclaredDataStructure().put("path/Chemin d'extrusion", path);
-    }
-
-    public Point3D calculerPoint3D(double u, double v){
-       return base.getElem().calculerPoint3D(u).plus(path.getElem().calculerPoint3D(v));
-
-
-    }
 }

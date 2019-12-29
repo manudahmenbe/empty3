@@ -42,7 +42,7 @@ import one.empty3.pointset.PCont;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.*;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -50,7 +50,6 @@ import java.util.function.Consumer;
  * * Classe de rendu graphique
  */
 public class ZBufferImpl extends Representable implements ZBuffer {
-
 
 
     public static final int DISPLAY_ALL = 0;
@@ -94,6 +93,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     private Point3D activeLight = new Point3D(-10d, 0d, 100d);
     private int displayType = SURFACE_DISPLAY_TEXT_QUADS;
     ZBufferImpl that;
+
     public ZBufferImpl() {
         that = this;
 
@@ -135,7 +135,12 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         this.cameraC = c;
         this.scene().cameraActive(c);
     }
+
     public void draw() {
+        scene().lumieres().clear();
+        for (int i = 0; i < scene().getObjets().data1d.size(); i++)
+            if (scene().getObjets().getElem(i).getClass().isAssignableFrom(Lumiere.class))
+                scene().lumieres().add((Lumiere) scene().getObjets().getElem(i));
         if (firstRun && ime == null) {
             ime = new ImageMap(la, ha);
             firstRun = false;
@@ -159,7 +164,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         if (r instanceof Scene) {
             Scene scene = (Scene) r;
 
-            this.setTexture(scene.texture()==null?this.texture():scene.texture());
+            this.setTexture(scene.texture() == null ? this.texture() : scene.texture());
 
             it = scene.iterator();
             while (it.hasNext()) {
@@ -202,21 +207,21 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                             break;
                         case SURFACE_DISPLAY_COL_TRI:
                         case SURFACE_DISPLAY_TEXT_TRI:
-                         tracerTriangle(
-                                 n.calculerPoint3D(u, v),
-                                 n.calculerPoint3D(u + n.getIncrU(), v),
-                                 n.calculerPoint3D(u + n.getIncrU(),
-                                         v + n.getIncrV()),
-                                 n.texture(),
-                                 u,
-                                 v, u+n.getIncrU(), v+n.getEndV());
-                         tracerTriangle(n.calculerPoint3D(u, v),
-                                 n.calculerPoint3D(u, v + n.getIncrV()),
-                                 n.calculerPoint3D(u + n.getIncrU(),
-                                         v + n.getIncrV()),
-                         n.texture(),
-                                 u,
-                                 v, u+n.getIncrU(), v+n.getEndV());
+                            tracerTriangle(
+                                    n.calculerPoint3D(u, v),
+                                    n.calculerPoint3D(u + n.getIncrU(), v),
+                                    n.calculerPoint3D(u + n.getIncrU(),
+                                            v + n.getIncrV()),
+                                    n.texture(),
+                                    u,
+                                    v, u + n.getIncrU(), v + n.getEndV());
+                            tracerTriangle(n.calculerPoint3D(u, v),
+                                    n.calculerPoint3D(u, v + n.getIncrV()),
+                                    n.calculerPoint3D(u + n.getIncrU(),
+                                            v + n.getIncrV()),
+                                    n.texture(),
+                                    u,
+                                    v, u + n.getIncrU(), v + n.getEndV());
 
                             break;
                         case SURFACE_DISPLAY_LINES:
@@ -246,12 +251,12 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                         ime.testDeep(rotate(tri.getSommet().getElem(i), r)
                                 , tri.texture);
                     break;
-                    default:
-                        tracerTriangle(rotate(tri.getSommet().getElem(0), r),
-                                rotate(tri.getSommet().getElem(1), r),
-                                rotate(tri.getSommet().getElem(2), r)
-                                , tri.texture());
-                        break;
+                default:
+                    tracerTriangle(rotate(tri.getSommet().getElem(0), r),
+                            rotate(tri.getSommet().getElem(1), r),
+                            rotate(tri.getSommet().getElem(2), r)
+                            , tri.texture());
+                    break;
 
             }
         }
@@ -309,25 +314,22 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                         p3 = p3.plus(n3.norme1().mult(h.height(u + n.getIncrU(), v + n.getIncrV())));
                         p4 = p4.plus(n4.norme1().mult(h.height(u, v + n.getIncrV())));
                     }
-                    switch (displayType) {
-                        case SURFACE_DISPLAY_LINES:
-                            tracerLines(rotate(p1, r)
-                                    , rotate(p2, r),
-                                    rotate(p3, r),
-                                    rotate(p4, r)
-                                    , n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
-                            break;
-                        case SURFACE_DISPLAY_POINTS:
-                            ime.testDeep(rotate(p1, r));
-                            ime.testDeep(rotate(p2, r));
-                            ime.testDeep(rotate(p3, r));
-                            ime.testDeep(rotate(p4, r));
-                            break;
-                        default:
-                            tracerQuad(rotate(p1, n), rotate(p2, n),
-                                    rotate(p3, n), rotate(p4, n),
-                                    n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
-                            break;
+                    if (displayType == SURFACE_DISPLAY_LINES) {
+                        tracerLines(rotate(p1, r)
+                                , rotate(p2, r),
+                                rotate(p3, r),
+                                rotate(p4, r)
+                                , n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
+                        break;
+                    } else if (displayType == SURFACE_DISPLAY_POINTS) {
+                        ime.testDeep(rotate(p1, r));
+                        ime.testDeep(rotate(p2, r));
+                        ime.testDeep(rotate(p3, r));
+                        ime.testDeep(rotate(p4, r));
+                    } else {
+                        tracerQuad(rotate(p1, n), rotate(p2, n),
+                                rotate(p3, n), rotate(p4, n),
+                                n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
                     }
 
                     /*
@@ -411,8 +413,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             b.getPoints().forEach(new Consumer() {
                 @Override
                 public void accept(Object o) {
-                    ime.testDeep(rotate((Point3D)o, b)
-                            , ((Point3D)o).texture().getColorAt(0,0));
+                    ime.testDeep(rotate((Point3D) o, b)
+                            , ((Point3D) o).texture().getColorAt(0, 0));
                 }
             });
         } else if (r instanceof POConteneur) {
@@ -444,27 +446,24 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 }
             }
 
-        }else if(r instanceof Polygon) {
+        } else if (r instanceof Polygon) {
             Polygon p = (Polygon) r;
             List<Point3D> points = p.getPoints().getData1d();
-            int length= points.size();
+            int length = points.size();
             Point3D centre = Point3D.O0;
-            for(int i=0; i<points.size(); i++)
-                centre=centre.plus(points.get(i));
-            centre = centre.mult(1.0/points.size());
-            for (int i = 0; i < length; i++)
-            {
-                if(getDisplayType()<=SURFACE_DISPLAY_COL_TRI) {
+            for (int i = 0; i < points.size(); i++)
+                centre = centre.plus(points.get(i));
+            centre = centre.mult(1.0 / points.size());
+            for (int i = 0; i < length; i++) {
+                if (getDisplayType() <= SURFACE_DISPLAY_COL_TRI) {
                     draw(new TRI(points.get(i), points.get((i + 1) % points.size()), centre, p.texture()));
-                }
-                else {
+                } else {
                     line(rotate(points.get((i % length)), p), rotate(points.get((i + 1) % length), p), p.texture);
                 }
             }
         }
 
     }
-
 
 
     private void tracerLines(Point3D p1, Point3D p2, Point3D p3, Point3D p4, ITexture texture, double u, double v,
@@ -583,7 +582,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     }
 
     public void line(Point3D p1, Point3D p2, ITexture texture, double u, double v, double u1, double v1,
-                      ParametricSurface surface) {
+                     ParametricSurface surface) {
         // TODO Check
         Point x1 = camera().coordonneesPoint2D(p1, this);
         Point x2 = camera().coordonneesPoint2D(p2, this);
@@ -602,8 +601,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
             }
             ime.testDeep(p, texture.getColorAt(u + i / itereU * (u1 - u), v + i / itereV * (v1 - v)), surface);
-            }
         }
+    }
 
 
     public boolean lock() {
@@ -750,6 +749,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     }
 
+
     public void tracerLumineux() {
         throw new UnsupportedOperationException("Not supported yet."); // To
         // change
@@ -782,14 +782,12 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 for (double b = 0; b < 1.0; b += iteres2) {
                     Point3D p = p3d.plus(p3d.mult(-1d).plus(pp3).mult(b));
                     // Point p22 = coordonneesPoint2D(p);
-                    if(displayType<=SURFACE_DISPLAY_TEXT_TRI)
-                    {
-                        ime.testDeep(p, t.getColorAt(u0+a*(u1-u0), v0+b*(v1-v0)));
-                    }
-                    else if(displayType==SURFACE_DISPLAY_COL_TRI)
+                    if (displayType <= SURFACE_DISPLAY_TEXT_TRI) {
+                        ime.testDeep(p, t.getColorAt(u0 + a * (u1 - u0), v0 + b * (v1 - v0)));
+                    } else if (displayType == SURFACE_DISPLAY_COL_TRI)
                         ime.testDeep(p, col);
                     else ;
-                        // LINES, POINTS;
+                    // LINES, POINTS;
                 }
             }
         }
@@ -803,13 +801,13 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         p3 = camera().coordonneesPoint2D(pp3, this);
         p4 = camera().coordonneesPoint2D(pp4, this);
 
-        int col = texture.getColorAt(u0 , v0);
+        int col = texture.getColorAt(u0, v0);
 
         if (p1 == null || p2 == null || p3 == null || p4 == null)
             return;
         TRI triBas = new TRI(pp1, pp2, pp3, texture);
         Point3D normale = triBas.normale();
-        double inter = 1.0 / (maxDistance(p1, p2, p3, p4) + 1) / 3;
+        double inter = 1 / (maxDistance(p1, p2, p3, p4) + 1) / 3;
         for (double a = 0; a < 1.0; a += inter) {
             Point3D pElevation1 = pp1.plus(pp1.mult(-1d).plus(pp2).mult(a));
             Point3D pElevation2 = pp4.plus(pp4.mult(-1d).plus(pp3).mult(a));
@@ -829,9 +827,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 if (displayType <= SURFACE_DISPLAY_TEXT_QUADS) {
                     Point3D point3D = n.calculerNormale3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b);
                     ime.testDeep(pFinal, point3D, texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
-                }
-                else
-                {
+                } else {
                     ime.testDeep(pFinal, col);
                     //ime.testDeep(pFinal, texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
 
@@ -1228,7 +1224,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
 
         public void testDeep(Point3D p) {
-            testDeep(p, (p!=null &&p.texture()!=null)?p.texture():CFAST);//WTF
+            testDeep(p, (p != null && p.texture() != null) ? p.texture() : CFAST);//WTF
         }
 
         public void testDeep(Point3D p, Color c) {
@@ -1238,10 +1234,11 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         public void testDeep(Point3D pFinal, Point3D point3D, int colorAt, Representable n) {
             testDeep(pFinal, point3D, colorAt);
             Point point = camera().coordonneesPoint2D(pFinal, that);
-            if(ime!=null&&point!=null) {
+            if (ime != null && point != null) {
                 ime.setElementRepresentable((int) point.getX(), (int) point.getY(), n);
             }
         }
+
         public void testDeep(Point3D pFinal, int colorAt, Representable n) {
             testDeep(pFinal, pFinal.getNormale(), colorAt, n);
         }
@@ -1250,6 +1247,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     public void dessine(Point3D p, ITexture texture) {
         ime.dessine(p, new Color(texture.getColorAt(0.5, 0.5)));
     }
+
     public class ImageMapElement {
 
         protected int couleur_fond_int = -1;
@@ -1272,12 +1270,14 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 }
             }
         }
+
         public Representable getElementRepresentable(int x, int y) {
             if (checkCordinates(x, y)) {
-                return Simerepresentable[x][y] ;
+                return Simerepresentable[x][y];
             }
             return null;
         }
+
         public void setElementRepresentable(int x, int y, Representable representable) {
             if (checkCordinates(x, y)) {
                 Simerepresentable[x][y] = representable;
@@ -1310,7 +1310,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
 
         public Point3D getElementPoint(int x, int y) {
-            if (checkCordinates(x, y) && Scordinate[x][y]!=null) {
+            if (checkCordinates(x, y) && Scordinate[x][y] != null) {
                 return Scordinate[x][y];
             } else {
                 return INFINI;
@@ -1404,41 +1404,40 @@ public class ZBufferImpl extends Representable implements ZBuffer {
      * @param camera Caméra où calculer. null="this.camera()"
      * @return axe p1: camera.axe, p3 à dist.
      */
-    public Axe invert(int x, int y, Camera camera)
-    {
-        if(camera==null)
+    public Axe invert(int x, int y, Camera camera) {
+        if (camera == null)
             camera = this.camera();
-        x = (x-largeur()/2);
-        y = (y-hauteur()/2);
+        x = (x - largeur() / 2);
+        y = (y - hauteur() / 2);
         double a = camera.distanceCamera(new Point3D(
                 (double) x, (double) y, 0.));
         double dist = camera.coordonneesPoint3D(new Point3D(
                 (double) x, (double) y, a))
                 .moins(camera.getEye()).norme();
 
-        double pX = Math.cos(camera.getAngleX())*dist;
-        double pY = Math.cos(camera.getAngleY())*dist;
+        double pX = Math.cos(camera.getAngleX()) * dist;
+        double pY = Math.cos(camera.getAngleY()) * dist;
 
         return new Axe(camera.eye(),
                 camera.getMatrice().tild().mult(new Point3D(
-                pX*2.0*x/largeur(),
-                -pY*2.0*y/hauteur(), dist)
-        ));
+                        pX * 2.0 * x / largeur(),
+                        -pY * 2.0 * y / hauteur(), dist)
+                ));
 
     }
-    public Point3D invert(int x, int y, Point3D orig, Camera camera)
-    {
-        x = (x-largeur()/2);
-        y = (y-hauteur()/2);
+
+    public Point3D invert(int x, int y, Point3D orig, Camera camera) {
+        x = (x - largeur() / 2);
+        y = (y - hauteur() / 2);
         double dist = orig.moins(camera.getEye()).norme();
 
-        double pX = Math.cos(camera.getAngleX())*dist;
-        double pY = Math.cos(camera.getAngleY())*dist;
+        double pX = Math.cos(camera.getAngleX()) * dist;
+        double pY = Math.cos(camera.getAngleY()) * dist;
 
         return camera.getMatrice().tild().mult(new Point3D(
-                pX*2.0*x/largeur(),
-                -pY*2.0*y/hauteur(), orig.getZ()
-                ));
+                pX * 2.0 * x / largeur(),
+                -pY * 2.0 * y / hauteur(), orig.getZ()
+        ));
     }
 
 
