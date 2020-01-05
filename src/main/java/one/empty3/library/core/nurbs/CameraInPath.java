@@ -78,15 +78,12 @@ public class CameraInPath extends Camera {
         super.calculerMatrice(verticale == null ? n : verticale);
     }
 
-    public double getT() {
-        return t;
+    @Override
+    public Point3D calculerCurveT(double u, double t) {
+        T.getElem().setT(t);
+        calculerMatrice(null);
+        return courbe.getElem().calculerPoint3D(T.getElem().getT());
     }
-
-    public void setT(double t) {
-        this.t = t;
-        calculerMatriceT(null);
-    }
-
     @Override
     public Point3D calculerPointDansRepere(Point3D p) {
         return Matrix33.rot(angleA, angleB).mult(super.calculerPointDansRepere(p));
@@ -101,5 +98,9 @@ public class CameraInPath extends Camera {
 
     public void setCourbe(StructureMatrix<ParametricCurve> courbe) {
         this.courbe = courbe;
+    }
+
+    public void setT(double t) {
+        this.T.getElem().setT(t);
     }
 }

@@ -229,8 +229,8 @@ public class Scene extends Representable implements Serializable {
         return LumierePointSimple.PARDEFAUT;
     }
 
-    public ArrayList<Lumiere> lumieres() {
-        return (ArrayList<Lumiere>) lumieres.getData1d();
+    public List<Lumiere> lumieres() {
+        return lumieres.getData1d();
     }
 
     public int lumiereTotaleCouleur(int c, Point3D p, Point3D n) {

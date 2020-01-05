@@ -264,6 +264,11 @@ public class ParametricCurve extends Representable {
         this.incrTAN = incrTAN;
     }
 
+
+    @Override
+    public Point3D calculerCurveT(double tCurve, double t) {
+        return calculerPoint3D(tCurve);
+    }
 }
 
 

@@ -462,4 +462,9 @@ public class Point3D extends Representable {
     public void setCoordArr(StructureMatrix<Double> coordArr) {
         this.coordArr = coordArr;
     }
+
+    public Point3D calculerPoint0dT(double t) {
+        return this;
+    }
+
 }

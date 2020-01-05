@@ -306,4 +306,10 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
     public String toString() {
         return "ParametricSurface()\n";
     }
+
+    @Override
+    public Point3D calculerSurfaceT(double u, double v, double t) {
+        return calculerPoint3D(u, v);
+    }
+
 }

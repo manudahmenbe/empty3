@@ -20,7 +20,6 @@ package one.empty3.library.core.nurbs;
 import one.empty3.library.Matrix33;
 import one.empty3.library.Point3D;
 import one.empty3.library.StructureMatrix;
-import one.empty3.library.core.move.Trajectoires;
 
 /**
  * Created by manue on 29-12-19.
@@ -32,15 +31,18 @@ public class TourRevolution extends ParametricSurface {
     private StructureMatrix<Double> scaleYheight = new StructureMatrix<>(0, Double.class);
     private StructureMatrix<Double> scaleXradius = new StructureMatrix<>(0, Double.class);
 
-    public Point3D calPoint3D(double u, double v) {
-        return rotationBase.getElem().mult(positionBase.getElem().plus(baseCurveXy.getElem().calculerPoint3D(u).mult(Trajectoires.sphere(
-                v * scaleYheight.getElem(), 0, scaleXradius.getElem())
-        )));
+    public Point3D calculerPoint3D(double u, double v) {
+        return rotationBase.getElem().mult(positionBase.getElem().plus(baseCurveXy.getElem().calculerPoint3D(u).mult(Matrix33.rot(u, v).mult(
+                Point3D.X
+        ).mult(Point3D.n(1, 1, 1)))));
     }
 
 
     public TourRevolution() {
         baseCurveXy.add(0, new CourbeParametriquePolynomialeBezier());
+        baseCurveXy.getElem().getCoefficients().setElem(baseCurveXy.getElem().getCoefficients().getElem(0), 0);
+        baseCurveXy.getElem().getCoefficients().setElem(new Point3D(10., 0., 1.), 0);
+        baseCurveXy.getElem().getCoefficients().setElem(new Point3D(10., 10., 1.), 1);
         rotationBase.add(0, new Matrix33());
         positionBase.add(0, new Point3D());
         scaleXradius.add(0, new Double(1.0));
@@ -55,4 +57,6 @@ public class TourRevolution extends ParametricSurface {
         getDeclaredDataStructure().put("scaleXradius/Factor for X=(radius)", scaleXradius);
         getDeclaredDataStructure().put("scaleYheight/Factor for Y=(cordinate)", scaleYheight);
     }
+
+
 }

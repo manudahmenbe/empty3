@@ -35,6 +35,7 @@
  */
 package one.empty3.library;
 
+import one.empty3.library.core.TemporalComputedObject3D;
 import one.empty3.library.core.lighting.Colors;
 import one.empty3.library.core.raytracer.RtIntersectInfo;
 import one.empty3.library.core.raytracer.RtMatiere;
@@ -47,7 +48,7 @@ import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-public class Representable implements Serializable, Comparable, XmlRepresentable, MatrixPropertiesObject {
+public class Representable implements Serializable, Comparable, XmlRepresentable, MatrixPropertiesObject, TemporalComputedObject3D {
 
 
     public static final int DISPLAY_ALL = 0;
@@ -75,6 +76,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     private int RENDERING_DEFAULT = 0;
     protected Render render = Render.getInstance(0, -1);
     protected Point3D scale;
+    protected StructureMatrix<T> T = new StructureMatrix<T>(0, one.empty3.library.T.class);
 
     public Representable() {
         if (!(this instanceof Matrix33 || this instanceof Point3D )) {
@@ -524,6 +526,29 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     public static String[] getDisplayTypes() {
         return displayTypes;
     }
+
+
+    @Override
+    public double T(T t) {
+        this.T.setElem(t);
+        return t.getT();
+    }
+
+    @Override
+    public Point3D calculerPointT(double t) {
+        return null;
+    }
+
+    @Override
+    public Point3D calculerCurveT(double u, double t) {
+        return null;
+    }
+
+    @Override
+    public Point3D calculerSurfaceT(double u, double v, double t) {
+        return null;
+    }
+
 }
 
 

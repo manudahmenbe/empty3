@@ -50,7 +50,6 @@ public class TourDeRevolution extends Representable {
     private CourbeDeImage courbe;
     private TRIObject o;
     private PObjet op;
-    private Barycentre position;
 
     public TourDeRevolution(File image, Axe axe) {
         try {
@@ -68,12 +67,12 @@ public class TourDeRevolution extends Representable {
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-        TourDeRevolution tr = new TourDeRevolution(new File("cafe.png"), null);
+        TourDeRevolution tr = new TourDeRevolution(new File("tour.png"), new Axe(Point3D.Y.mult(-1.), Point3D.Y.mult(1.)));
         tr.generateB();
         PObjet o = tr.getPO();
         ZBuffer z = new ZBufferImpl(500, 500);
         Scene s = new Scene();
-        s.add(o);
+        s.add(tr);
         z.scene(s);
         z.draw();
         try {
@@ -122,15 +121,15 @@ public class TourDeRevolution extends Representable {
             }
 
         }
-        /*
+
          for (int i = 0; i < max; i++)
-         for (j = 0; j < points[0].size(); j++) {
+             for (int j = 0; j < points[0].size(); j++) {
          if (i > 0 && j > 0) {
          o.add(new TRI(points[j].get(i), points[j-1].get(i), points[j-1].get(i-1), Color.red));
          o.add(new TRI(points[j].get(i), points[j].get(i-1), points[j-1].get(i-1), Color.red));
          }
          }
-         */
+
     }
 
     public PObjet getPO() {
