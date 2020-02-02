@@ -358,6 +358,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
         if (r instanceof TRIGenerable) {
             r = ((TRIGenerable) r).generate();
+
         } else if (r instanceof PGenerator) {
             r = ((PGenerator) r).generatePO();
         }

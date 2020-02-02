@@ -42,7 +42,7 @@ Global license :
 
 package one.empty3.apps.pad;
 
-import one.empty3.library.IMovable;
+import one.empty3.library.Cube;
 import one.empty3.library.Point2D;
 import one.empty3.library.Point3D;
 
@@ -60,7 +60,7 @@ public interface PositionUpdate extends Runnable
 
     void dec(long timeMillis);
 
-    boolean plot(Point3D position, Point3D deplacement, IMovable plottee);
+    boolean plot(Point3D position, Point3D deplacement, Cube plottee);
 
     int state();
 

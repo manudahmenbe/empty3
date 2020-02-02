@@ -34,8 +34,7 @@
 
 package test3.waterfall_demo;
 
-import one.empty3.library.Point3D;
-import one.empty3.library.StructureMatrix;
+import one.empty3.library.*;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
 import one.empty3.library.core.nurbs.ParametricCurve;
 import one.empty3.library.core.testing.TestObjetSub;
@@ -47,16 +46,26 @@ import java.util.List;
  * Created by manue on 02-02-20.
  *
  *
- * Idées :
+ * Idées : XTRIX
  * 1) Tetris : les courbes bougent but remplir l'écran
- * 2) Des gouttes tombent le long des courbes, remplir des bacs genre casse-brique
- * 
+ * 2) Des gouttes ou des blocs tombent le long des courbes, remplir des bacs genre casse-brique
+ * 3) Niveaux ? Règles de jeux différentes ?
+ *
  */
 public class Waterfall_Demo extends TestObjetSub {
+    public static final int CURVE_VERTICAL  = 0;
+    public static final int CURVE_RANDOM  = 1;
+    public static final boolean OPTION_CURVE_CUT = true;
+
     int nCurves = 20;
     int nodeMeanY = 5;
     private StructureMatrix<ParametricCurve> curves = new StructureMatrix<>(1, ParametricCurve.class);
-
+    private StructureMatrix<Double> ts = new StructureMatrix<>(1, Double.class);
+    private Double vIncrFrame = 0.01;
+    private RepresentableConteneur blocks = new RepresentableConteneur();
+    private int curve_shape = 0;
+    private boolean option_curve_cut;
+    private int nPointsMax = 20;
 
     public void ginit() {
         int[] height = new int[10];
@@ -64,32 +73,21 @@ public class Waterfall_Demo extends TestObjetSub {
 
             List<Point3D> pointsCurveN = new ArrayList<Point3D>();
 
-            pointsCurveN.add(new Point3D(
-                    (Math.random() - 0.5) * getDimension().x() * 2,
-                    -0. + -getDimension().y(), 0.));
+            pointsCurveN.add(new Point3D(0.,0.,0.));
+
+            pStart(pointsCurveN.get(0));
 
             int pointN = 1;
 
             boolean TRUE = true;
 
 
-            Point3D pointNcandidate = pointsCurveN.get(0);
-            while (TRUE) {
+            Point3D pointNcandidate = (Point3D) pointsCurveN.get(0).clone();
 
-
-                pointNcandidate = pointsCurveN.get(pointN - 1).plus(new Point3D((Math.random() - 0.5) * getDimension().x() / nCurves,
-                        Math.random() * getDimension().y() / nodeMeanY, 0.));
-
-                while (!(pointNcandidate.getX() >= -this.getDimension().x() && pointNcandidate.getX() < this.getDimension().x()))
-                    pointNcandidate = pointsCurveN.get(pointN - 1).plus(new Point3D((Math.random() - 0.5) * getDimension().x() / nCurves,
-                            Math.random() * getDimension().y() / nodeMeanY, 0.));
-
-                if (pointNcandidate.getY() >= -this.getDimension().y() & pointNcandidate.getY() < this.getDimension().y())
-                    pointsCurveN.add(pointNcandidate);
-                else
-                    break;
-
-
+            while (candidate(pointNcandidate, pointsCurveN, pointN)) {
+                    // TODO MAKE IT WORK pointsCurveN.add((Point3D) pointNcandidate.copy());
+                pointsCurveN.add(pointNcandidate);
+                pointNcandidate = (Point3D) pointNcandidate.clone();
                 pointN++;
             }
 
@@ -98,25 +96,147 @@ public class Waterfall_Demo extends TestObjetSub {
             Point3D[] c = new Point3D[pointN];
 
             curves.setElem(new CourbeParametriquePolynomialeBezier(pointsCurveN.toArray(c)), curveN);
+
+
+            int mlc = 10;
+            blocks.add(new Cube(mlc, Point3D.O0));
+
+
+            ts.setElem(0., curveN);
         }
 
         curves.data1d.forEach(parametricCurve -> scene().add(parametricCurve));
-
-        System.out.println(curves.toString());
+        scene().add(blocks);
 
         scene().cameraActive().setEye(new Point3D(0., 0., -Math.max((double) getDimension().x(), (double) getDimension().y()) * 2));
     }
 
     public void finit() {
+        for(int i=0; i<ts.data1d.size(); i++) {
+            ts.data1d.set(i, ts.data1d.get(i) + vIncrFrame );
+            if(ts.getElem(i)>1.)
+                ts.setElem(0., i);
+        }
+
     }
 
     public void testScene() {
+        for(int i = 0; i<blocks.getListRepresentable().size(); i++) {
+            ((Cube)(blocks.getListRepresentable().get(i))).setPosition(
+                    curves.getData1d().get(i).calculerPoint3D(ts.data1d.get(i)));
+        }
 
     }
 
     public static void main(String[] args) {
-        Waterfall_Demo waterfall_demo = new Waterfall_Demo();
-        waterfall_demo.setMaxFrames(1);
-        new Thread(waterfall_demo).start();
+        Waterfall_Demo waterfall_demo0 = new Waterfall_Demo();
+        waterfall_demo0.setMaxFrames(3600*25);
+        waterfall_demo0.setCurve_shape(CURVE_VERTICAL);
+        waterfall_demo0.setOption_curve_cut(!OPTION_CURVE_CUT);
+        new Thread(waterfall_demo0).start();
+
+
+        Waterfall_Demo waterfall_demo1 = new Waterfall_Demo();
+        waterfall_demo1.setMaxFrames(3600*25);
+        waterfall_demo0.setCurve_shape(CURVE_VERTICAL);
+        waterfall_demo0.setOption_curve_cut(OPTION_CURVE_CUT);
+        new Thread(waterfall_demo1).start();
+
+
+        Waterfall_Demo waterfall_demo2 = new Waterfall_Demo();
+        waterfall_demo2.setMaxFrames(3600*25);
+        waterfall_demo0.setCurve_shape(CURVE_RANDOM);
+        new Thread(waterfall_demo2).start();
+
+
+        Waterfall_Demo waterfall_demo3 = new Waterfall_Demo();
+        waterfall_demo3.setMaxFrames(3600*25);
+        waterfall_demo3.setCurve_shape(CURVE_RANDOM);
+        waterfall_demo3.setOption_curve_cut(!OPTION_CURVE_CUT);
+        new Thread(waterfall_demo3).start();
+
+    }
+
+    public boolean candidate(Point3D p, List<Point3D> pointsCurveN, int pointN)
+    {
+        if(pointsCurveN.size()>=nPointsMax)
+            return false;
+        Point3D pNext = null;
+        switch (curve_shape)
+        {
+            case CURVE_RANDOM:
+
+                pNext = pointsCurveN.get(pointN - 1).plus(new Point3D((Math.random() - 0.5) * getDimension().x() / nCurves,
+                        (Math.random() - 0.5) * getDimension().y() / nodeMeanY, 0.));
+                if(option_curve_cut== OPTION_CURVE_CUT &&!(pNext.getX() >= -this.getDimension().x() && pNext.getX() < this.getDimension().x()&&
+                        (pNext.getY() >= -this.getDimension().y() && pNext.getY() < this.getDimension().y())))
+                    return false;
+                while(!(pNext.getX() >= -this.getDimension().x() && pNext.getX() < this.getDimension().x()&&
+                        (pNext.getY() >= -this.getDimension().y() && pNext.getY() < this.getDimension().y())))
+                    pNext = pointsCurveN.get(pointN - 1).plus(new Point3D((Math.random() - 0.5) * getDimension().x() / nCurves,
+                            (Math.random() - 0.5) * getDimension().y() / nodeMeanY, 0.));
+                break;
+            case CURVE_VERTICAL:
+                pNext = pointsCurveN.get(pointN - 1).plus(new Point3D((Math.random() - 0.5) * getDimension().x() / nCurves,
+                        Math.random() * getDimension().y() / nodeMeanY, 0.));
+                if(option_curve_cut== OPTION_CURVE_CUT) {
+                    if(!(pNext.getX() >= -this.getDimension().x() && pNext.getX() < this.getDimension().x()&&
+                        (pNext.getY() >= -this.getDimension().y() && pNext.getY() < this.getDimension().y())))
+                            return false;
+                }
+                if(p.getY()>=getDimension().y())
+                    pNext = new Point3D(pointsCurveN.get(pointN - 1).getX(),
+                            (double)getDimension().y(), 0.);
+                else
+                    pNext = pointsCurveN.get(pointN - 1).plus(new Point3D((Math.random() - 0.5) * getDimension().x() / nCurves,
+                        Math.random() * getDimension().y() / nodeMeanY, 0.));
+
+
+                break;
+            default:
+                break;
+        }
+        if(pNext==null)
+            return false;
+        p.changeTo(pNext);
+        if(p.getCoordArr().data1d.size()!=3)
+            throw new IndexOutOfBoundsException("pNext coordArr size != 3");
+        return true;
+    }
+    public void pStart(Point3D p)
+    {
+        Point3D pNext;
+        switch (curve_shape)
+        {
+            case CURVE_RANDOM:
+                pNext = new Point3D((Math.random() - 0.5) * getDimension().x(),
+                        (Math.random() - 0.5) * getDimension().y(), 0.);
+                break;
+            case CURVE_VERTICAL:
+                pNext = new Point3D(
+                        (Math.random() - 0.5) * getDimension().x() * 2,
+                        -0. + -getDimension().y(), 0.);
+                break;
+            default:
+                pNext = new Point3D();
+                break;
+        }
+        p.changeTo(pNext);
+    }
+
+    public int getCurve_shape() {
+        return curve_shape;
+    }
+
+    public void setCurve_shape(int curve_shape) {
+        this.curve_shape = curve_shape;
+    }
+
+    public boolean isOption_curve_cut() {
+        return option_curve_cut;
+    }
+
+    public void setOption_curve_cut(boolean option_curve_cut) {
+        this.option_curve_cut = option_curve_cut;
     }
 }

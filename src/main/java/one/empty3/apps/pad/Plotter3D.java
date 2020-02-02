@@ -120,12 +120,12 @@ public class Plotter3D implements KeyListener, Runnable {
         return positionUpdate.getPositionMobile().getPositionSol().to2DwoZ();
     }
 
-    public boolean plot(Point3D position, Point3D deplacement, IMovable plottee)
+    public boolean plot(Point3D position, Point3D deplacement, Cube plottee)
 
     {
         Point3D point3D = getTerrain().hauteur(position.getX() + deplacement.getX(), position.getY() + deplacement.getY(), position.getZ());
 
-        plottee.moveTo(point3D);
+        plottee.setPosition(point3D);
 
         getScene().add((Representable) plottee);
         return true;

@@ -176,7 +176,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
     }
 
     @Override
-    public boolean plot(Point3D position, Point3D deplacement, IMovable plottee) {
+    public boolean plot(Point3D position, Point3D deplacement, Cube plottee) {
         return getPlotter3D().plot(position, deplacement, plottee);
     }
 

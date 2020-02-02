@@ -45,7 +45,6 @@ import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class Representable implements Serializable, Comparable, XmlRepresentable, MatrixPropertiesObject, TemporalComputedObject3D {
@@ -295,12 +294,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     public Map<String, StructureMatrix> declarations() {
         declareProperties();
         Map<String, StructureMatrix> dec = Collections.synchronizedMap(new HashMap<>());
-        getDeclaredDataStructure().forEach(new BiConsumer<String, StructureMatrix>() {
-            @Override
-            public void accept(String s, StructureMatrix structureMatrix) {
-                dec.put(s, structureMatrix);
-            }
-        });
+        getDeclaredDataStructure().forEach((s, structureMatrix) -> dec.put(s, structureMatrix));
         return dec;
     }
 
@@ -485,24 +479,22 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
         Class<? extends Representable> aClass = this.getClass();
         try {
             Representable representable = aClass.newInstance();
-            declarations().forEach(new BiConsumer<String, StructureMatrix>() {
-                @Override
-                public void accept(String s, StructureMatrix structureMatrix) {
+            representable.declareProperties();
+            declarations().forEach((s, structureMatrix) -> {
+                try {
                     try {
-                        try {
-                            representable.setProperty(s, structureMatrix.copy());
-                        } catch (CopyRepresentableError copyRepresentableError) {
-                            copyRepresentableError.printStackTrace();
-                        } catch (InstantiationException e) {
-                            e.printStackTrace();
-                        }
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchMethodException e) {
+                        representable.setProperty(s.split("/")[0], structureMatrix.copy());
+                    } catch (CopyRepresentableError copyRepresentableError) {
+                        copyRepresentableError.printStackTrace();
+                    } catch (InstantiationException e) {
                         e.printStackTrace();
                     }
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
                 }
             });
             return representable;

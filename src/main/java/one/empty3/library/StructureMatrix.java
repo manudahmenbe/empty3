@@ -89,20 +89,18 @@ public class StructureMatrix<T> {
             while (j <= i) {
                 try {
                     if (getClassType().equals(Boolean.class)) {
-                        data1d.add((T) Boolean.TRUE);
+                        data1d.add((T) Boolean.FALSE);
                     } else if (getClassType().equals(Integer.class)) {
                         data1d.add((T) (Integer) 0);
                     } else if (getClassType().equals(Double.class)) {
-                        data1d.add((T) (Integer) 0);
+                        data1d.add((T) (Double) 0.);
                     } else if (getClassType().equals(String.class)) {
                         data1d.add((T) "");
                     } else {
                         data1d.add((T) getClassType().newInstance());
                     }
-                } catch (InstantiationException e) {
+                } catch (InstantiationException | IllegalAccessException e) {
 
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
                 j++;

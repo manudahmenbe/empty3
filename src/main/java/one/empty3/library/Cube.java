@@ -37,7 +37,7 @@
  */
 package one.empty3.library;
 
-public class Cube extends Representable implements TRIGenerable, IMovable {
+public class Cube extends Representable implements TRIGenerable {
 
     /**
      *
@@ -111,9 +111,9 @@ public class Cube extends Representable implements TRIGenerable, IMovable {
 
         for (int i = 0; i < 12; i++) {
             TRI t = new TRI(
-                    new Point3D(coordCube[i][0], texture()).mult(mlc),
-                    new Point3D(coordCube[i][1], texture()).mult(mlc),
-                    new Point3D(coordCube[i][2], texture()).mult(mlc),
+                    new Point3D(coordCube[i][0], texture()).mult(mlc).plus(position),
+                    new Point3D(coordCube[i][1], texture()).mult(mlc).plus(position),
+                    new Point3D(coordCube[i][2], texture()).mult(mlc).plus(position),
                     texture());
 
             ts.add(t);
@@ -160,17 +160,6 @@ public class Cube extends Representable implements TRIGenerable, IMovable {
         return "cube(\n\t" + position.toString() + "\n\t" + mlc + "\n)\n";
     }
 
-    @Override
-    public void moveAdd(Point3D add) {
-        position = position.plus(add);
-        generate();
-    }
-
-    @Override
-    public void moveTo(Point3D to) {
-        position = to;
-        generate();
-    }
 
     public static Double[][][] getData()
     {

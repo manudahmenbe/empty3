@@ -105,7 +105,7 @@ public class Point3D extends Representable {
      * @param z0 z-coordonnée
      */
     public Point3D(Double x0, Double y0, Double z0) {
-        this();
+        super();
         coordArr.setElem(x0, 0);
         coordArr.setElem(y0, 1);
         coordArr.setElem(z0, 2);
@@ -139,7 +139,7 @@ public class Point3D extends Representable {
      * @param p0 point à copier
      */
     public Point3D(Point3D p0) {
-        this();
+        super();
         coordArr.setElem(p0.get(0), 0);
         coordArr.setElem(p0.get(1), 1);
         coordArr.setElem(p0.get(2), 2);
@@ -147,7 +147,7 @@ public class Point3D extends Representable {
     }
 
     public Point3D(StructureMatrix<Double> coordArr) {
-        Point3D p = new Point3D(coordArr.getElem(0), coordArr.getElem(1), coordArr.getElem(2));
+        this(coordArr.getElem(0), coordArr.getElem(1), coordArr.getElem(2));
     }
 
     public static Point3D n(Double a, Double b, Double c) {
@@ -189,8 +189,14 @@ public class Point3D extends Representable {
     }
 
     public Double get(int i) {
-        if(i>=0 && i<3)
+        if(i>=0 && i<3 && coordArr.data1d.size()==3)
             return coordArr.getElem(i);
+        else
+            try {
+                throw new Throwable("point3D coordArr out of bounds or array dim error\nValues="+coordArr.toString()+"\nSize="+coordArr.data1d.size());
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
         return Double.NaN;
     }
     public Point3D scale() {
