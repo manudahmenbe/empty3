@@ -411,9 +411,9 @@ public class Point3D extends Representable {
 
 
     public Point3D changeTo(Point3D dst) {
-        this.coordArr.reset();
         for (int i = 0; i < 3; i++)
-            this.coordArr.add(1, dst.coordArr.getElem(i));
+            this.coordArr.setElem(dst.coordArr.getElem(i),i);
+
         texture(dst.texture());
         return this;
     }

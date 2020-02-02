@@ -33,7 +33,6 @@
 package one.empty3.library.core.nurbs;
 
 import one.empty3.library.Point3D;
-import one.empty3.library.StructureMatrix;
 
 /**
  * @author Manuel Dahmen <manuel.dahmen@gmx.com>
@@ -46,9 +45,7 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
         super();
     }
     public CourbeParametriquePolynomialeBezier(Point3D[] coefficients) {
-        this.coefficients = new StructureMatrix<>(1, Point3D.class);
-        this.coefficients.setAll(coefficients);
-        power.setElem(coefficients.length);
+        super(coefficients);
     }
 
     public double B(int i, int n, double t) {

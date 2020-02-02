@@ -315,11 +315,11 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                         p4 = p4.plus(n4.norme1().mult(h.height(u, v + n.getIncrV())));
                     }
                     if (displayType == SURFACE_DISPLAY_LINES) {
-                        tracerLines(rotate(p1, r)
-                                , rotate(p2, r),
-                                rotate(p3, r),
-                                rotate(p4, r)
-                                , n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
+                        tracerLines(p1
+                                , p2,
+                                p3,
+                                p4,
+                                n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
                         break;
                     } else if (displayType == SURFACE_DISPLAY_POINTS) {
                         ime.testDeep(rotate(p1, r));
@@ -1401,31 +1401,10 @@ public class ZBufferImpl extends Representable implements ZBuffer {
      *
      * @param x Coordonnées dans le composant
      * @param y Coordonnées dans le composant
+     * @param orig point 3D à inverser dans le repère de la caméra
      * @param camera Caméra où calculer. null="this.camera()"
      * @return axe p1: camera.axe, p3 à dist.
      */
-    public Axe invert(int x, int y, Camera camera) {
-        if (camera == null)
-            camera = this.camera();
-        x = (x - largeur() / 2);
-        y = (y - hauteur() / 2);
-        double a = camera.distanceCamera(new Point3D(
-                (double) x, (double) y, 0.));
-        double dist = camera.coordonneesPoint3D(new Point3D(
-                (double) x, (double) y, a))
-                .moins(camera.getEye()).norme();
-
-        double pX = Math.cos(camera.getAngleX()) * dist;
-        double pY = Math.cos(camera.getAngleY()) * dist;
-
-        return new Axe(camera.eye(),
-                camera.getMatrice().tild().mult(new Point3D(
-                        pX * 2.0 * x / largeur(),
-                        -pY * 2.0 * y / hauteur(), dist)
-                ));
-
-    }
-
     public Point3D invert(int x, int y, Point3D orig, Camera camera) {
         x = (x - largeur() / 2);
         y = (y - hauteur() / 2);
@@ -1436,7 +1415,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
         return camera.getMatrice().tild().mult(new Point3D(
                 pX * 2.0 * x / largeur(),
-                -pY * 2.0 * y / hauteur(), orig.getZ()
+                -pY * 2.0 * y / hauteur(), dist
         ));
     }
 

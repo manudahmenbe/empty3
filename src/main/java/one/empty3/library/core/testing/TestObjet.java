@@ -156,7 +156,7 @@ public abstract class TestObjet implements Test, Runnable {
     private Buffer buf;
     private boolean isVBR;
     private AudioFormat audioFormat;
-    private Resolution dimension;
+    private Resolution dimension = new Resolution(resx, resy);
 
     public TestObjet() {
 
@@ -1140,5 +1140,9 @@ public abstract class TestObjet implements Test, Runnable {
     public void setDimension(Resolution dimension) {
         this.resx= dimension.x();
         this.resy= dimension.y();
+    }
+
+    public Resolution getDimension() {
+        return dimension;
     }
 }

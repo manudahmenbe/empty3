@@ -86,7 +86,9 @@ public class Polygon extends Representable implements SurfaceElem, ClosedCurve {
             java.util.List<Point3D> tmp = points.getData1d();
             points = new StructureMatrix<>(1, Point3D.class);
             for (int i = 0; i < tmp.size(); i++)
+            {
                 points.setElem(tmp.get(i), i);
+            }
             points.setElem(point3D, newLength - 1);
         }
         declareProperties();
