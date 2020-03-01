@@ -157,6 +157,7 @@ public abstract class TestObjet implements Test, Runnable {
     private boolean isVBR;
     private AudioFormat audioFormat;
     private Resolution dimension = new Resolution(resx, resy);
+    private String name;
 
     public TestObjet() {
 
@@ -572,8 +573,13 @@ public abstract class TestObjet implements Test, Runnable {
                     + binaryExtension);
             while (file == null || file.exists()) {
                 serie++;
+
+                String sub = (name==null?sousdossier:name);
+                if(!(sub.endsWith("/")||sub.endsWith("\\")||sub.endsWith(File.separator)))
+                    sub = sub+File.separator;
+
                 file = new File(this.dir.getAbsolutePath() + File.separator
-                        + sousdossier + File.separator + "__SERID_" + (serie)
+                        + sub + "__SERID_" + (serie)
                         + "__" + filename + (1000000 + frame) + "."
                         + fileExtension);
                 fileScene = new File(this.dir.getAbsolutePath()
@@ -869,7 +875,11 @@ public abstract class TestObjet implements Test, Runnable {
 
 
                 if ((generate & GENERATE_IMAGE) > 0) {
-                    z.draw();
+                    try {
+                        z.draw();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                     afterRenderFrame();
                     ri = z.image();
 
@@ -1144,5 +1154,9 @@ public abstract class TestObjet implements Test, Runnable {
 
     public Resolution getDimension() {
         return dimension;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
