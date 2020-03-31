@@ -318,9 +318,6 @@ imgBuf. add(new ECBufferedImage(image) );
   }
 
 
-}
-
-
    /**
      * The number of seconds between frames.
      */
