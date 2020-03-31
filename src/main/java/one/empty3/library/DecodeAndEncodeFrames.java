@@ -406,7 +406,7 @@ playVideo(refTextureMov, file.getAbsolutePath())
  * read (imgBufSize - imgBuf. size()) frames
  * if end then return
  * wait still bufer not empty.
- * stop when clear/destroy texture??? // TODO
+ * stop when clear/destroy texture??? // TODO */
     public void run() {
    } 
 }
