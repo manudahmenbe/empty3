@@ -396,7 +396,7 @@ imgBuf. add(new ECBufferedImage(image) );
     public DecodeAndCaptureFrames(File file, TextureMov refTextureMov) {
         this.file = file;
         this.text = text;
-playVideo(refTextureMov, file.getAbsolutePath())
+
     }
 /***
 * open file. 
@@ -405,5 +405,7 @@ playVideo(refTextureMov, file.getAbsolutePath())
  * wait still bufer not empty.
  * stop when clear/destroy texture??? // TODO */
     public void run() {
+playVideo(refTextureMov, file.getAbsolutePath()):
+;
    } 
 }
