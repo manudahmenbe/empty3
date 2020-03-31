@@ -102,7 +102,7 @@ private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
    * Opens a file, and plays the video from it on a screen at the right rate.
    * @param filename The file or URL to play.
    */
-  private void playVideo(TextureMov text, String filename) throws InterruptedException, IOException {
+  private static void playVideo(TextureMov text, String filename) throws InterruptedException, IOException {
     /*
      * Start by creating a container object, in this case a demuxer since
      * we are reading, to get video data from.
