@@ -37,7 +37,7 @@ package one.empty3.library;
 
 
 
-import com.xuggle.xuggler.*;
+//import com.xuggle.xuggler.*;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -130,7 +130,12 @@ public class DecodeAndCaptureFrames extends Thread {
         this.file = file;
         this.refTextureMov = refTextureMov;
     }
-
+/***
+* open file. 
+ * read (imgBufSize - imgBuf. size()) frames
+ * if end then return
+ * wait still bufer not empty.
+ * stop when clear/destroy texture??? // TODO
     public void run() {
         if (!IVideoResampler.isSupported(
                 IVideoResampler.Feature.FEATURE_COLORSPACECONVERSION))
@@ -268,9 +273,6 @@ public class DecodeAndCaptureFrames extends Thread {
             videoCoder.close();
             videoCoder = null;
         }
-        if (container != null) {
-            container.close();
-            container = null;
-        }
+        if (container != 
     }
 }
