@@ -336,8 +336,6 @@ imgBuf. add(new ECBufferedImage(image) );
      */
 
     private static long mLastPtsWrite = Global.NO_PTS;
-    private static TextureMov refTextureMov;
-    private final File file;
 
     /**
      * Write the video frame out to a PNG file every once and a while.
