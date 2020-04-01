@@ -403,7 +403,7 @@ imgBuf. add(new ECBufferedImage(image) );
  * if end then return
  * wait still bufer not empty.
  * stop when clear/destroy texture??? // TODO */
-    public void run() {
+    public void run() throws InterruptedException{
 playVideo(text, file.getAbsolutePath());
    } 
 }
