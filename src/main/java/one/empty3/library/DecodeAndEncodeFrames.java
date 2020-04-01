@@ -310,7 +310,7 @@ imgBuf. add(new ECBufferedImage(image) );
       } else {
         final String[] parsedArgs = cmd.getArgs();
         for(String arg: parsedArgs)
-          playVideo(arg);
+          System.out.println("todo write movie from directory"+arg);//playVideo(arg);
       }
     } catch (ParseException e) {
       System.err.println("Exception parsing command line: " + e.getLocalizedMessage());
