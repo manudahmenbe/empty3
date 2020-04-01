@@ -74,7 +74,7 @@ if(bitrate<=0)
 //		let us begin
 		positionInMicroseconds = 0;
 		}
-public void frame(BuffuredImage in) {
+public void frame(BufferedImage in) {
 //              encode 30 frames, right
 //			create a green box with a 50 pixel border for the frame image
 			BufferedImage outputImage = new BufferedImage(videoStreamCoder.getWidth(),
