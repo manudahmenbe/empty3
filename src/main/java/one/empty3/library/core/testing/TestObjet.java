@@ -91,7 +91,7 @@ public abstract class TestObjet implements Test, Runnable {
     Properties properties = new Properties();
     ShowTestResult str;
     private File avif;
-    private AVIWriter aw;
+   // private AVIWriter aw;
     private boolean aviOpen = false;
     private String filmName;
     private int idxFilm;
@@ -829,7 +829,7 @@ public abstract class TestObjet implements Test, Runnable {
                     isAudioDone = true;
                 } else {
                     try {
-                        aw.writeSamples(audioTrackNo, len, audioBuffer, 0, len, true);
+                       // aw.writeSamples(audioTrackNo, len, audioBuffer, 0, len, true);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -884,7 +884,7 @@ public abstract class TestObjet implements Test, Runnable {
 
                         try {
 
-                            aw.write(videoTrackNo, ri, 1);
+                         //   aw.write(videoTrackNo, ri, 1);
                             dataWriter.writeFrameData(frame(), "Writing movie frame");
 
                         } catch (IOException e) {
@@ -952,13 +952,13 @@ public abstract class TestObjet implements Test, Runnable {
         }
         if ((generate & GENERATE_MOVIE) > 0 && true) {
 
-            try {
-                aw.finish();
-                aw.close();
+           // try {
+             //   aw.finish();
+              //  aw.close();
 
-            } catch (IOException e) {
+           // //} catch (IOException e) {
                 o.println("Can't close or flush movie" + runtimeInfoSucc());
-            }
+            //}
         }
         String cmd;
 
