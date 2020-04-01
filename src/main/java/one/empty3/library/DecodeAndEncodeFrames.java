@@ -393,7 +393,7 @@ imgBuf. add(new ECBufferedImage(image) );
      */
 
 
-    public DecodeAndCaptureFrames(File file, TextureMov refTextureMov) {
+    public DecodeAndEncodeFrames(File file, TextureMov refTextureMov) {
         this.file = file;
         this.text = text;
 
