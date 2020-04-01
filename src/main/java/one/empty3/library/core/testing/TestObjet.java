@@ -149,7 +149,7 @@ public abstract class TestObjet implements Test, Runnable {
     private int videoTrackNo;
     private double fps = 25.0;
     private Buffer buf;
-    private boolean isVBR;
+ //   private boolean isVBR;
     private AudioFormat audioFormat;
     private Resolution dimension = new Resolution(resx, resy);
     private String name;
