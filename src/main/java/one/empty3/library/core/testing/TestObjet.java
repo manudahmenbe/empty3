@@ -91,7 +91,7 @@ public abstract class TestObjet implements Test, Runnable {
     Properties properties = new Properties();
     ShowTestResult str;
     private File avif;
-    private AVIWriter aw;
+  //  private AVIWriter aw;
     private boolean aviOpen = false;
     private String filmName;
     private int idxFilm;
@@ -216,10 +216,10 @@ initCompiler();
         avif = new File(this.dir.getAbsolutePath() + File.separator
                 + sousdossier + this.getClass().getName() + "__" + filmName + idxFilm + ".AVI");
 /*
-        aw = null;
+      //  aw = null;
         int track = -1;
         try {
-            aw = new AVIWriter(avif);
+       //     aw = new AVIWriter(avif);
 
             Properties properties = new Properties();
             // TODO ADD PROPERTIES
@@ -963,8 +963,8 @@ compiler. init(avif
         if ((generate & GENERATE_MOVIE) > 0 && true) {
 
            try {
-               aw.finish();
-             aw.close();
+             //  aw.finish();
+             //aw.close();
 
            } catch (IOException e) {
                 o.println("Can't close or flush movie" + runtimeInfoSucc());
@@ -1077,9 +1077,9 @@ compiler. init(avif
         }
         if (isAviOpen()) {
             try {
-                aw.finish();
-                aw.close();
-                aw = null;
+               // aw.finish();
+           // //    aw.close();
+             //   aw = null;
                 aviOpen = false;
             } catch (IOException e) {
                 o.println("Can't close or flush movie" + runtimeInfoSucc());
