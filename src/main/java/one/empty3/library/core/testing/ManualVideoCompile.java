@@ -28,7 +28,7 @@ public class ManualVideoCompile {
 	
 	IStreamCoder videoStreamCoder;
         IContainer container;
-        long positionInMicroseconds;
+        double positionInMicroseconds;
         int frameRate;
 
 
