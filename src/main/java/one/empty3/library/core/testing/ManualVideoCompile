@@ -30,7 +30,7 @@ public class ManualVideoCompile {
 	
 	private static final Integer OUTPUT_HEIGHT = 540;
 	
-	public static void main(String[] arguments) {
+	public static void init(String[] arguments) {
 		logger.debug("Compiling an empty stream to {}", OUTPUT_FILE);
 		
 		File outputFile = new File(OUTPUT_FILE);
@@ -69,18 +69,18 @@ public class ManualVideoCompile {
 		
 //		let us begin
 		long positionInMicroseconds = 0;
-		
-//              encode 30 frames, right?
-		for (int i = 0; i < 30 * frameRate.getDouble(); i++) {
+		}
+public static void frame(BuffuredImage in) {
+//              encode 30 frames, right
 //			create a green box with a 50 pixel border for the frame image
 			BufferedImage outputImage = new BufferedImage(videoStreamCoder.getWidth(),
 					videoStreamCoder.getHeight(), BufferedImage.TYPE_INT_ARGB);
 			
 			Graphics graphics = outputImage.getGraphics();
 			graphics.setColor(Color.GREEN);
-			graphics.drawRect(50, 50, 
+			graphics.drawImage(in, 0, 0, 
 					videoStreamCoder.getWidth() - 100, 
-					videoStreamCoder.getHeight() - 100);
+					videoStreamCoder.getHeight() - 100, null);
 			
 			outputImage = convert(outputImage, BufferedImage.TYPE_3BYTE_BGR);
 			
@@ -106,15 +106,13 @@ public class ManualVideoCompile {
 //			after all this, increase the timestamp by one frame (in microseconds)
 			positionInMicroseconds += (frameRate.getDouble() * Math.pow(1000, 2));
 		}
-		
+		public static end() {
 //		done, so now let's wrap this up.		
 		container.writeTrailer();
 		
 		videoStreamCoder.close();
 //		container.flushPackets();
 		container.close();
-		
-		DecodeAndPlayVideo.main(new String[]{OUTPUT_FILE});
 	}
 	
 	private static BufferedImage convert(BufferedImage value, int type) {
