@@ -119,6 +119,13 @@
         </extensions>
     </build>
 
+
+<repositories>
+<repository>
+<id>mvnrepo</id>
+<url>https://mvnrepository.com/</url>
+</repository>
+</repositories>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
