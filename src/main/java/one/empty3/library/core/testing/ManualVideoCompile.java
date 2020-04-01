@@ -94,7 +94,7 @@ public void frame(BufferedImage in) {
 			IConverter converter = ConverterFactory.createConverter(outputImage, 
 					videoStreamCoder.getPixelType());
 			
-			IVideoPicture frame = converter.toPicture(outputImage, positionInMicroseconds);
+			IVideoPicture frame = converter.toPicture(outputImage, (long)positionInMicroseconds);
 			frame.setQuality(0);
 			
 			if (videoStreamCoder.encodeVideo(packet, frame, 0) < 0) {
