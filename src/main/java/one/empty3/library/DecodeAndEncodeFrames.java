@@ -344,7 +344,7 @@ imgBuf. add(new ECBufferedImage(image) );
      * @param picture the video frame which contains the time stamp.
      * @param image   the buffered image to write out
      */
-
+/*
     private void processFrame(IVideoPicture picture, BufferedImage image) {
         try {
             // if uninitialized, backdate mLastPtsWrite so we get the very
