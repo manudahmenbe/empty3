@@ -817,8 +817,8 @@ compiler. init(avif.getAbsolutePath()
 
             byte [] audioBuffer = null;
             // Advance audio to movie time + 1 second (audio must be ahead of video by 1 second)
-            while (audioTrack != null && !isAudioDone && aw.getDuration(audioTrackNo).doubleValue() < 1.0
-            *frame() / fps) {
+            while (audioTrack != null && !isAudioDone /*&& aw.getDuration(audioTrackNo).doubleValue() < 1.0
+            *frame() / fps*/) {
                 // => variable bit rate: format can change at any time
                 audioFormat = audioIn.getFormat();
                 if (audioFormat == null) {
