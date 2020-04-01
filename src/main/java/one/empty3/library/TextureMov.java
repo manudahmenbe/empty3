@@ -82,7 +82,7 @@ public class TextureMov extends ITexture {
         CAPACITY = 100;
 
         images = new ArrayList<>();
-        new DecodeAndCaptureFrames(file, this).start();
+        new DecodeAndEncodeFrames(file, this).start();
     }
 
 
