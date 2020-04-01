@@ -147,7 +147,7 @@ public abstract class TestObjet implements Test, Runnable {
     private AudioInputStream audioIn;
     private int audioTrackNo;
     private int videoTrackNo;
-    private int fps = 25.0;
+    private int fps = 25;
    //private Buffer buf;
 private ManualVideoCompile compiler ;
    private boolean isVBR;
