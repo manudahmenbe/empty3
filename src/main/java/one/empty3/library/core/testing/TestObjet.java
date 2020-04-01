@@ -750,8 +750,8 @@ compiler = new ManualVideoCompile () ;
     }
 public void initCompiler() {
 
-compiler. init(avif
-,resx,resy,fps ) ;
+compiler. init(avif.getAbsolutePath()
+,resx,resy,fps , 0) ;
 } 
     public void run() {
         if(!initialise)
