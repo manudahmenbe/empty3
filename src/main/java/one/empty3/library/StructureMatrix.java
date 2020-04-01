@@ -82,7 +82,7 @@ public class StructureMatrix<T> {
         listenersPropertyChanged();
     }
 
-    public void setElem(@NotNull T elem, int i) {
+    public void setElem(T elem, int i) {
         if (i >= data1d.size()) {
             int j = data1d.size();
             while (j <= i) {
