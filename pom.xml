@@ -126,7 +126,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13</version>
         </dependency>
         <dependency>
             <groupId>org.jogamp.jogl</groupId>
@@ -224,13 +224,5 @@
             <artifactId>webcam-capture</artifactId>
             <version>0.3.9</version>
         </dependency>
-<!-- https://mvnrepository.com/artifact/junit/junit -->
-<dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.13</version>
-    <scope>test</scope>
-</dependency>
-
     </dependencies>
 </project>
