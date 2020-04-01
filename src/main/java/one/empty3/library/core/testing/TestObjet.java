@@ -197,6 +197,9 @@ private ManualVideoCompile compiler ;
     }
 
     public void startNewMovie() {
+compiler.end();
+initCompiler();
+/*
         if ((generate & GENERATE_MOVIE) > 0) {
             if (isAviOpen()) {
                 try {
@@ -208,11 +211,11 @@ private ManualVideoCompile compiler ;
                     o.println("Can't close or flush movie" + runtimeInfoSucc());
                 }
             }
-        }
+        }*/
         idxFilm++;
         avif = new File(this.dir.getAbsolutePath() + File.separator
                 + sousdossier + this.getClass().getName() + "__" + filmName + idxFilm + ".AVI");
-
+/*
         aw = null;
         int track = -1;
         try {
@@ -250,7 +253,7 @@ private ManualVideoCompile compiler ;
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private boolean unterminable() {
@@ -745,7 +748,11 @@ compiler = new ManualVideoCompile () ;
     public void addAudioFile(File audio) {
         this.audioTrack = audio;
     }
+public void initCompiler() {
 
+compiler. init(avif
+,resx,resy,fps ) ;
+} 
     public void run() {
         if(!initialise)
             init();
