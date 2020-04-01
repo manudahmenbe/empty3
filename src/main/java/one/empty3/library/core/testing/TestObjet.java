@@ -91,7 +91,7 @@ public abstract class TestObjet implements Test, Runnable {
     Properties properties = new Properties();
     ShowTestResult str;
     private File avif;
-   // private AVIWriter aw;
+    private AVIWriter aw;
     private boolean aviOpen = false;
     private String filmName;
     private int idxFilm;
@@ -148,8 +148,8 @@ public abstract class TestObjet implements Test, Runnable {
     private int audioTrackNo;
     private int videoTrackNo;
     private double fps = 25.0;
- //   private Buffer buf;
- //   private boolean isVBR;
+   private Buffer buf;
+   private boolean isVBR;
     private AudioFormat audioFormat;
     private Resolution dimension = new Resolution(resx, resy);
     private String name;
@@ -952,13 +952,13 @@ public abstract class TestObjet implements Test, Runnable {
         }
         if ((generate & GENERATE_MOVIE) > 0 && true) {
 
-           // try {
-             //   aw.finish();
-              //  aw.close();
+           try {
+               aw.finish();
+             aw.close();
 
-           // //} catch (IOException e) {
+           } catch (IOException e) {
                 o.println("Can't close or flush movie" + runtimeInfoSucc());
-            //}
+            }
         }
         String cmd;
 
