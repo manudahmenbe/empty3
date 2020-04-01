@@ -26,37 +26,39 @@ public class ManualVideoCompile {
 	
 	private static final String OUTPUT_FILE = "/home/rfkrocktk/Desktop/out.flv";
 	
-	private static final Integer OUTPUT_WIDTH = 960;
-	
-	private static final Integer OUTPUT_HEIGHT = 540;
-	
-	public static void init(String[] arguments) {
+	IStreamCoder videoStreamCoder;
+        IContainer container;
+        long positionInMicroseconds;
+        IRational frameRate;
+
+
+	public void init(String OUTPUT_FILE, int width, int height, int frameRate) {
 		logger.debug("Compiling an empty stream to {}", OUTPUT_FILE);
 		
 		File outputFile = new File(OUTPUT_FILE);
 		
-		if (outputFile.exists())
-			outputFile.delete();
+		//if (outputFile.exists())
+		//	outputFile.delete();
 		
 //		open a container
-		IContainer container = IContainer.make();
+		container = IContainer.make();
 		container.open(OUTPUT_FILE, IContainer.Type.WRITE, null);
 		
 //		create the video stream and get its coder
 		ICodec videoCodec = ICodec.findEncodingCodec(ICodec.ID.CODEC_ID_H264);
 		IStream videoStream = container.addNewStream(videoCodec);
-		IStreamCoder videoStreamCoder = videoStream.getStreamCoder();
+	        videoStreamCoder = videoStream.getStreamCoder();
 		
 //		setup the stream coder
-		IRational frameRate = IRational.make(1, 30);
+		frameRate = IRational.make(1, 30);
 		
-		videoStreamCoder.setWidth(OUTPUT_WIDTH);
-		videoStreamCoder.setHeight(OUTPUT_HEIGHT);
+		videoStreamCoder.setWidth(width);
+		videoStreamCoder.setHeight(height);
 		videoStreamCoder.setFrameRate(frameRate);
 		videoStreamCoder.setTimeBase(IRational.make(frameRate.getDenominator(),
 				frameRate.getNumerator()));
 		videoStreamCoder.setBitRate(350000);
-		videoStreamCoder.setNumPicturesInGroupOfPictures(30);
+		videoStreamCoder.setNumPicturesInGroupOfPictures(frameRate);
 		videoStreamCoder.setPixelType(IPixelFormat.Type.YUV420P);
 		videoStreamCoder.setFlag(IStreamCoder.Flags.FLAG_QSCALE, true);
 		videoStreamCoder.setGlobalQuality(0);
@@ -68,9 +70,9 @@ public class ManualVideoCompile {
 		container.writeHeader();
 		
 //		let us begin
-		long positionInMicroseconds = 0;
+		positionInMicroseconds = 0;
 		}
-public static void frame(BuffuredImage in) {
+public void frame(BuffuredImage in) {
 //              encode 30 frames, right
 //			create a green box with a 50 pixel border for the frame image
 			BufferedImage outputImage = new BufferedImage(videoStreamCoder.getWidth(),
