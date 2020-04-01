@@ -93,7 +93,7 @@ import org.apache.commons.cli.ParseException;
  *
  */
 
-public class DecodeAndCaptureFrames extends Thread {
+public class DecodeAndEncodeFrames extends Thread {
  private TextureMov text;
 private File file;
 private boolean stop = false;
