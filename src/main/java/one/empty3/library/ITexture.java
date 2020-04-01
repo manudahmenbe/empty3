@@ -111,9 +111,9 @@ public abstract class ITexture extends MediaListenerAdapter implements MatrixPro
     public abstract int getColorAt(double x, double y);
 
 
-    public abstract void timeNext();
+    public void timeNext(){} 
 
-    public abstract void timeNext(long milli);
+    public void timeNext(long milli){} 
 
 
     @Override
