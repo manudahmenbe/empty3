@@ -97,6 +97,7 @@ public class DecodeAndEncodeFrames extends Thread {
  private TextureMov text;
 private File file;
 private boolean stop = false;
+public static final MAXSIZE = 50;
 private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
   /**
    * Opens a file, and plays the video from it on a screen at the right rate.
