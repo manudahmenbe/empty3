@@ -838,11 +838,11 @@ compiler. init(avif.getAbsolutePath()
                 if (len == -1) {
                     isAudioDone = true;
                 } else {
-                    try {
+                   // try {
                        // aw.writeSamples(audioTrackNo, len, audioBuffer, 0, len, true);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                  //  } catch (IOException e) {
+                 //       e.printStackTrace();
+              //      }
                 }
             }
 
@@ -892,14 +892,14 @@ compiler. init(avif.getAbsolutePath()
 
                     if ((generate & GENERATE_MOVIE) > 0 && isAviOpen()) {
 
-                        try {
+                       // try {
 
                          //   aw.write(videoTrackNo, ri, 1);
                             dataWriter.writeFrameData(frame(), "Writing movie frame");
 
-                        } catch (IOException e) {
-                            reportException(e);
-                            return;
+                      //  } catch (IOException e) {
+                            //reportException(e);
+                       //     return;
                         }
                     } else {
                         o.println(
@@ -962,13 +962,13 @@ compiler. init(avif.getAbsolutePath()
         }
         if ((generate & GENERATE_MOVIE) > 0 && true) {
 
-           try {
+         //  try {
              //  aw.finish();
              //aw.close();
 
-           } catch (IOException e) {
-                o.println("Can't close or flush movie" + runtimeInfoSucc());
-            }
+       //    } catch (IOException e) {
+       //         o.println("Can't close or flush movie" + runtimeInfoSucc());
+     //       }
         }
         String cmd;
 
