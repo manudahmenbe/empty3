@@ -259,7 +259,7 @@ stop = true;
   /**
    * Takes the video picture and displays it at the right time.
    */
-  private static BufferedImage displayVideoAtCorrectTime(long streamStartTime,
+  private BufferedImage displayVideoAtCorrectTime(long streamStartTime,
       final MediaPicture picture, final MediaPictureConverter converter,
       BufferedImage image, final ImageFrame window, long systemStartTime,
       final Rational systemTimeBase, final Rational streamTimebase)
@@ -291,7 +291,7 @@ imgBuf. add(new ECBufferedImage(image) );
    * @throws IOException 
    * @throws InterruptedException 
    */
-  public void main(String[] args) throws InterruptedException, IOException
+  public static void main(String[] args)
   {
     final Options options = new Options();
     options.addOption("h", "help", false, "displays help");
@@ -347,7 +347,7 @@ imgBuf. add(new ECBufferedImage(image) );
      * @param image   the buffered image to write out
      */
 
-    private static void processFrame(IVideoPicture picture, BufferedImage image) {
+    private void processFrame(IVideoPicture picture, BufferedImage image) {
         try {
             // if uninitialized, backdate mLastPtsWrite so we get the very
             // first frame
@@ -405,6 +405,6 @@ imgBuf. add(new ECBufferedImage(image) );
  * wait still bufer not empty.
  * stop when clear/destroy texture??? // TODO */
     public void run() {
-playVideo(refTextureMov, file.getAbsolutePath());
+playVideo(text, file.getAbsolutePath());
    } 
 }
