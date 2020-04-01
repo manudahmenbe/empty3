@@ -305,8 +305,8 @@ imgBuf. add(new ECBufferedImage(image) );
         final String version = io.humble.video_native.Version.getVersionInfo();
         System.out.println("Humble Version: " + version);
       } else if (cmd.hasOption("help") || args.length == 0) {
-        final HelpFormatter formatter = new HelpFormatter();
-        formatter.printHelp(DecodeAndPlayVideo.class.getCanonicalName() + " <filename>", options);
+        //final HelpFormatter formatter = new HelpFormatter();
+        //formatter.printHelp(DecodeAndPlayVideo.class.getCanonicalName() + " <filename>", options);
       } else {
         final String[] parsedArgs = cmd.getArgs();
         for(String arg: parsedArgs)
