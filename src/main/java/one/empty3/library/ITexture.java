@@ -40,7 +40,7 @@
  */
 package one.empty3.library;
 
-import com.xuggle.mediatool.MediaListenerAdapter;
+//import com.xuggle.mediatool.MediaListenerAdapter;
 
 import java.util.HashMap;
 
