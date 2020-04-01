@@ -50,15 +50,15 @@ if(bitrate<=0)
 		ICodec videoCodec = ICodec.findEncodingCodec(ICodec.ID.CODEC_ID_H264);
 		IStream videoStream = container.addNewStream(videoCodec);
 	        videoStreamCoder = videoStream.getStreamCoder();
-		
+		IRational i = IRational.make(1, frameRate);
 //		setup the stream coder
 		//frameRate = (int)IRational.make(1, frameRate);
 		
 		videoStreamCoder.setWidth(width);
 		videoStreamCoder.setHeight(height);
-		videoStreamCoder.setFrameRate(frameRate);
-		videoStreamCoder.setTimeBase(IRational.make(frameRate.getDenominator(),
-				frameRate.getNumerator()));
+		videoStreamCoder.setFrameRate(i);
+		videoStreamCoder.setTimeBase(IRational.make(o.getDenominator(),
+				i.getNumerator()));
 		videoStreamCoder.setBitRate(bitrate);
 		videoStreamCoder.setNumPicturesInGroupOfPictures(frameRate);
 		videoStreamCoder.setPixelType(IPixelFormat.Type.YUV420P);
