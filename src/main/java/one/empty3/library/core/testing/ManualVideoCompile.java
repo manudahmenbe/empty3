@@ -110,7 +110,7 @@ public void frame(BuffuredImage in) {
 //			after all this, increase the timestamp by one frame (in microseconds)
 			positionInMicroseconds += (frameRate.getDouble() * Math.pow(1000, 2));
 		}
-		public static end() {
+    public void end() {
 //		done, so now let's wrap this up.		
 		container.writeTrailer();
 		
