@@ -37,7 +37,7 @@
  */
 package one.empty3.library;
 
-import org.monte.media.avi.AVIReader;
+//import org.monte.media.avi.AVIReader;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -58,7 +58,7 @@ public class TextureImg extends ITexture {
 
     private String file = "image.png";
 
-    private AVIReader reader;
+    //private AVIReader reader;
     private int track = 0;
     private File avifile = null;
     private int transparent = Color.TRANSLUCENT;
