@@ -1081,9 +1081,9 @@ compiler. init(avif.getAbsolutePath()
            // //    aw.close();
              //   aw = null;
                 aviOpen = false;
-            } catch (IOException e) {
-                o.println("Can't close or flush movie" + runtimeInfoSucc());
-            }
+         //   } catch (IOException e) {
+             //   o.println("Can't close or flush movie" + runtimeInfoSucc());
+          //  }
         }
 
     }
