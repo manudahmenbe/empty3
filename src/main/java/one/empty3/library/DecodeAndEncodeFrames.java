@@ -47,7 +47,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with Humble-Video.  If not, see <http://www.gnu.org/licenses/>.
  *******************************************************************************/
-package io.humble.video.demos;
+package one.empty3.library;
 
 import io.humble.video.Decoder;
 import io.humble.video.Demuxer;
