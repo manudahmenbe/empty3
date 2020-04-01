@@ -202,6 +202,12 @@
     <artifactId>commons-cli</artifactId>
     <version>1.4</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/com.badlogicgames.gdx/gdx -->
+<dependency>
+    <groupId>com.badlogicgames.gdx</groupId>
+    <artifactId>gdx</artifactId>
+    <version>1.9.10</version>
+</dependency>
 
     </dependencies>
 </project>
