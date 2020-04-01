@@ -64,7 +64,7 @@ import io.humble.video.awt.MediaPictureConverterFactory;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
+import java.io.File;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
