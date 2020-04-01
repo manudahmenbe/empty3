@@ -900,7 +900,7 @@ compiler. init(avif.getAbsolutePath()
                       //  } catch (IOException e) {
                             //reportException(e);
                        //     return;
-                        }
+                  //      }
                     } else {
                         o.println(
                                 "No file open for avi writing");
