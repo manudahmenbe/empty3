@@ -224,7 +224,7 @@ private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
           bytesRead += videoDecoder.decode(picture, packet, offset);
           if (picture.isComplete()) {
             image = displayVideoAtCorrectTime(streamStartTime, picture,
-                converter, image, window, systemStartTime, systemTimeBase,
+                converter, image, null, systemStartTime, systemTimeBase,
                 streamTimebase);
           }
           offset += bytesRead;
@@ -240,7 +240,7 @@ private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
       videoDecoder.decode(picture, null, 0);
       if (picture.isComplete()) {
         image = displayVideoAtCorrectTime(streamStartTime, picture, converter,
-            image, window, systemStartTime, systemTimeBase, streamTimebase);
+            image, null, systemStartTime, systemTimeBase, streamTimebase);
       }
     } while (picture.isComplete());
     
