@@ -29,7 +29,7 @@ public class ManualVideoCompile {
 	IStreamCoder videoStreamCoder;
         IContainer container;
         long positionInMicroseconds;
-        IRational frameRate;
+        int frameRate;
 
 
 	public void init(String OUTPUT_FILE, int width, int height, int frameRate, int bitrate) {
@@ -52,7 +52,7 @@ if(bitrate<=0)
 	        videoStreamCoder = videoStream.getStreamCoder();
 		
 //		setup the stream coder
-		frameRate = (int)IRational.make(1, frameRate);
+		//frameRate = (int)IRational.make(1, frameRate);
 		
 		videoStreamCoder.setWidth(width);
 		videoStreamCoder.setHeight(height);
