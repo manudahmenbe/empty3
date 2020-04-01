@@ -70,7 +70,7 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-
+import java.util.ArrayList;
 /**
  * Opens a media file, finds the first video stream, and then plays it.
  * This is meant as a demonstration program to teach the use of the Humble API.
