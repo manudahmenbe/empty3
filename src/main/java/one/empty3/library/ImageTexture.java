@@ -37,7 +37,7 @@
  */
 package one.empty3.library;
 
-import org.monte.media.avi.AVIReader;
+//import org.monte.media.avi.AVIReader;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -57,7 +57,7 @@ public class ImageTexture extends ITexture {
     private String nomFichier = "ecBufferedImageStructureMatrix.png";
 
     private Scene scene;
-    private AVIReader reader;
+   // private AVIReader reader;
     private int track = 0;
     private File avifile = null;
     private int transparent = 0xFFFFFF00;
