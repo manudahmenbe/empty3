@@ -148,7 +148,8 @@ public abstract class TestObjet implements Test, Runnable {
     private int audioTrackNo;
     private int videoTrackNo;
     private double fps = 25.0;
-   private Buffer buf;
+   //private Buffer buf;
+private ManualVideoCompile compiler ;
    private boolean isVBR;
     private AudioFormat audioFormat;
     private Resolution dimension = new Resolution(resx, resy);
@@ -486,6 +487,8 @@ public abstract class TestObjet implements Test, Runnable {
 
         setDimension(HD1080);
         initialise = true;
+
+compiler = new ManualVideoCompile () ;
     }
 
     private String dateForFilename(Date date) {
