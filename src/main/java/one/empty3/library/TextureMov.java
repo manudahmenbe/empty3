@@ -43,7 +43,7 @@ import java.util.ArrayList;
 public class TextureMov extends ITexture {
     public final int maxBuffSize = 25 * 60 * 700;
     private final Object e = null;
-    private IMediaReader reader;
+//  private IMediaReader reader;
     private boolean notSuivante = false;
     private int track = 0;
     private StructureMatrix<File> fileStructureMatrix = new StructureMatrix<>(0, File.class);
