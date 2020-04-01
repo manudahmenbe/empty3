@@ -21,7 +21,7 @@ import com.xuggle.xuggler.video.ConverterFactory;
 import com.xuggle.xuggler.video.IConverter;
 
 public class ManualVideoCompile {
-	
+	public ManualVideoCompile(){}
 	private static final Logger logger = LoggerFactory.getLogger(ManualVideoCompile.class);
 	
 	private static final String OUTPUT_FILE = "/home/rfkrocktk/Desktop/out.flv";
