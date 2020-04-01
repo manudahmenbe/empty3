@@ -32,7 +32,7 @@
 
 package one.empty3.library;
 
-import com.xuggle.mediatool.IMediaReader;
+//import com.xuggle.mediatool.IMediaReader;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
