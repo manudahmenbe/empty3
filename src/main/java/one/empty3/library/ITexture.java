@@ -47,7 +47,7 @@ import java.util.HashMap;
 /**
  * @author manu
  */
-public abstract class ITexture extends MediaListenerAdapter implements MatrixPropertiesObject{
+public abstract class ITexture implements MatrixPropertiesObject{
     public static final int COLOR_IDENT = 0;
     public static final int COLOR_MIROR_X = 1;
     public static final int COLOR_MIROR_Y = 2;
