@@ -108,7 +108,7 @@ public void frame(BufferedImage in) {
 			}
 			
 //			after all this, increase the timestamp by one frame (in microseconds)
-			positionInMicroseconds += (frameRate.getDouble() * Math.pow(1000, 2));
+			positionInMicroseconds += (frameRate * Math.pow(1000, 2));
 		}
     public void end() {
 //		done, so now let's wrap this up.		
