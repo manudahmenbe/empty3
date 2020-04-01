@@ -57,7 +57,7 @@ if(bitrate<=0)
 		videoStreamCoder.setWidth(width);
 		videoStreamCoder.setHeight(height);
 		videoStreamCoder.setFrameRate(i);
-		videoStreamCoder.setTimeBase(IRational.make(o.getDenominator(),
+		videoStreamCoder.setTimeBase(IRational.make(i.getDenominator(),
 				i.getNumerator()));
 		videoStreamCoder.setBitRate(bitrate);
 		videoStreamCoder.setNumPicturesInGroupOfPictures(frameRate);
