@@ -361,7 +361,7 @@ imgBuf. add(new ECBufferedImage(image) );
                 // Make a temorary file name
 
 
-                while (!refTextureMov.hasCapacity()) {
+                while (!text.hasCapacity()) {
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException ex) {
@@ -370,7 +370,7 @@ imgBuf. add(new ECBufferedImage(image) );
 
                 }
 
-                refTextureMov.add(image);
+                text.add(image);
                 System.out.println(refTextureMov.images.size());
                 // indicate file written
 
@@ -395,7 +395,7 @@ imgBuf. add(new ECBufferedImage(image) );
 
     public DecodeAndEncodeFrames(File file, TextureMov refTextureMov) {
         this.file = file;
-        this.text = text;
+        this.text = refTextureMov;
 
     }
 /***
