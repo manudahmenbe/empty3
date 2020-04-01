@@ -1076,7 +1076,7 @@ compiler. init(avif.getAbsolutePath()
 
         }
         if (isAviOpen()) {
-            try {
+         //   try {
                // aw.finish();
            // //    aw.close();
              //   aw = null;
