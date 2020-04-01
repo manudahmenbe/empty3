@@ -32,7 +32,6 @@
 
 package one.empty3.library;
 
-import com.sun.istack.internal.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -322,7 +321,7 @@ public class StructureMatrix<T> {
         return classType;
     }
 
-    public void setAll(@NotNull T[] all) {
+    public void setAll(T[] all) {
         data1d = Collections.synchronizedList(new ArrayList<>());
         switch (dim) {
             case 1:
