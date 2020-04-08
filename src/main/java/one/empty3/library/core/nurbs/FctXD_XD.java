@@ -57,7 +57,7 @@ private String fs = "1:1:1.0";
 /***
  *
  * @param fs formula:dima(int):dimb(int)
- *
+ * // TODO algebre tree n dim
  * @return int[]
 */
 public S(String fs)
