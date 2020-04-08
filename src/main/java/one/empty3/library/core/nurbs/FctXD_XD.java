@@ -44,13 +44,13 @@ this.dimb = dimb;
 }
     public class Ixx extends FctXD_XD
     {
-
-        @Override
-        public Double [] result(Double [] input, Double [] output) {
-            return output;
+        public void result(Double [] input, Double [] output) {
+            
         }
     }
-    public abstract void result(double [] input, double [] output);
+public void result(Double [] input, Double [] output) {
+            
+        }
 }
 public class S extends FctXD_XD {
 private String fs = "1:1:1.0";
