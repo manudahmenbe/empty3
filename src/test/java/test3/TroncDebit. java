@@ -2,6 +2,8 @@ public class TroncDebit extends Representable {
     private StructureMatrix <Double> radius;
     private StructureMatrix<Double> height;
     private StructureMatrix<Point3D> axes;
+    private StructureMatrix<Double> posSpeed01N;
+
     public TroncDebit () {
         
     } 
