@@ -37,6 +37,7 @@ public class FctXD_XD {
  * Created by md 2020 4 8 */
 public abstract class FctXD_XD {
 int dima,dimb;
+private AlgebricTree treeF ;
     public FctXD_XD(int dima, int dimb){
 this.dima = dima;
 this.dimb = dimb;
@@ -49,7 +50,34 @@ this.dimb = dimb;
             return output;
         }
     }
-    public abstract Double [] result(double [] input, double [] output);
+    public abstract void result(double [] input, double [] output);
+}
+public class S extends FctXD_XD {
+private String fs = "1:1:1.0";
+/***
+ *
+ * @param fs formula:dima(int):dimb(int)
+ *
+ * @return int[]
+*/
+public S(String fs)
+{
+
+String [] splits = fs.split(fs);
+
+if(splits.length==3) {
+
+this.formula = splits[0];
+dima = Integer.parseInt(splits[1]);
+dimb = Integer.parseInt(splits[2]);
+}
+treeF = new AlgrebricTree(formula);
+
+
 }
 
+public void result(double [] input, double [] output){
+
+
+}
 }
