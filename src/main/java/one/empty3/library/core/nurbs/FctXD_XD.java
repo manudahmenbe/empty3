@@ -45,11 +45,11 @@ this.dimb = dimb;
     {
 
         @Override
-        public double result(Double [] input, Double [] output) {
+        public Double [] result(Double [] input, Double [] output) {
             return output;
         }
     }
-    public abstract double result(double [] input, double [] output);
+    public abstract Double [] result(double [] input, double [] output);
 }
 
 }
