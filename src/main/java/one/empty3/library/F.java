@@ -68,7 +68,7 @@ this.formula = splits[0];
 dima = Integer.parseInt(splits[1]);
 dimb = Integer.parseInt(splits[2]);
 }
-treeF = new AlgrebricTree(formula);
+treeF = new AlgebricTree(formula);
 
 
 }
