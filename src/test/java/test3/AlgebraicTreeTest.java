@@ -95,8 +95,10 @@ public class AlgebraicTreeTest {
             }
         } catch (AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
+assertFalse(true);
         } catch(NullPointerException ex) {
             ex.printStackTrace();
+assertFalse(true);
 }
         return false;
     }
@@ -123,8 +125,10 @@ public class AlgebraicTreeTest {
             }
         } catch (AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
+assertFalse(true);
         } catch(NullPointerException ex) {
             ex.printStackTrace();
+assertFalse(true);
 }
         return false;
     }
