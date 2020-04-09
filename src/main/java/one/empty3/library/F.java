@@ -60,10 +60,10 @@ private String formula = "1.0";
 public F(String fs)
 {
 
-String [] splits = fs.split(fs);
+String [] splits = fs.split(":");
 
 if(splits.length==3) {
-
+this.fs = fs;
 this.formula = splits[0];
 dima = Integer.parseInt(splits[1]);
 dimb = Integer.parseInt(splits[2]);
