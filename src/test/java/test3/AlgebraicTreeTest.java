@@ -96,7 +96,7 @@ public class AlgebraicTreeTest {
         } catch (AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
         } catch(NullPointerException ex) {
-            e.printStackTrace();
+            ex.printStackTrace();
 }
         return false;
     }
@@ -124,7 +124,7 @@ public class AlgebraicTreeTest {
         } catch (AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
         } catch(NullPointerException ex) {
-            e.printStackTrace();
+            ex.printStackTrace();
 }
         return false;
     }
