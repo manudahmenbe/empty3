@@ -40,16 +40,11 @@ public class F {
  * Created by md 2020 4 8 */
 private int dima,dimb;
 private AlgebricTree treeF ;
-    public F(int dima, int dimb){
-this.dima = dima;
-this.dimb = dimb;
-}
     public class Void extends F
     {
         public void result(Double [] input, Double [] output) {
             
-        }
-    }
+    }}
 /*** 
 * input x(n:int) : formula 
 * separator ; y(n) = formula(x(n:int))
