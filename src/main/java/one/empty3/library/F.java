@@ -53,10 +53,11 @@ this.dimb = dimb;
 /*** 
 * input x(n:int) : formula 
 * separator ; y(n) = formula(x(n:int))
+*/
 public void result(Double [] input, Double [] output) {
             
         }
-}
+
 private String fs = "1:1:1.0";
 /***
  *
@@ -80,8 +81,5 @@ treeF = new AlgrebricTree(formula);
 
 }
 
-public void result(double [] input, double [] output){
 
-
-}
 }
