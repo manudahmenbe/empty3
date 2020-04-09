@@ -91,7 +91,7 @@ public class AlgebraicTreeTest {
                 return true;
             } catch (TreeNodeEvalException e) {
                 e.printStackTrace();
-                assertFalse(false);
+                assertFalse(true);
             }
         } catch (AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
@@ -119,7 +119,7 @@ public class AlgebraicTreeTest {
                 return true;
             } catch (TreeNodeEvalException e) {
                 e.printStackTrace();
-                assertFalse(false);
+                assertFalse(true);
             }
         } catch (AlgebraicFormulaSyntaxException e) {
             e.printStackTrace();
