@@ -54,6 +54,7 @@ public void result(Double [] input, Double [] output) {
         }
 
 private String fs = "1:1:1.0";
+private String formula = "1.0";
 /***
  *
  * @param fs formula:dima(int):dimb(int)
