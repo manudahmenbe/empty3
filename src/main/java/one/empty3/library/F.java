@@ -70,7 +70,7 @@ dimb = Integer.parseInt(splits[2]);
 }
 try {
 treeF = new AlgebricTree(formula);
-} catch(AlgebraicFormulaSyntaxException|Exception ex) {
+} catch(AlgebraicFormulaSyntaxException ex) {
       ex.printStackTrace();
 }
 
