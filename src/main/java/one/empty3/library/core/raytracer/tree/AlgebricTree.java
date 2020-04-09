@@ -109,9 +109,9 @@ public class AlgebricTree extends Tree {
             while (i < subformula.length() && Character.isLetterOrDigit(i)) {
                 i++;
             }
-            if (i == subformula.length() && i > 0) {
+            
                 VariableTreeNodeType variableTreeNodeType = new VariableTreeNodeType();
-                variableTreeNodeType.setValues(new Object[]{subformula, parametersValues});
+                variableTreeNodeType.setValues(new Object[]{subformula.substring(0, i), parametersValues});
                 src.getChildren().add(new TreeNodeVariable(src, new Object[]{subformula, parametersValues}, variableTreeNodeType));
 
                 return true;
