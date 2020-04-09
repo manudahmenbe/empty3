@@ -115,7 +115,8 @@ public class AlgebricTree extends Tree {
                 src.getChildren().add(new TreeNodeVariable(src, new Object[]{subformula, parametersValues}, variableTreeNodeType));
 
                 return true;
-            }
+   
+
         }
         return src.getChildren().size() > 0;
     }
