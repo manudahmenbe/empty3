@@ -74,9 +74,9 @@ public class AlgebricTree extends Tree {
                         addPower(src, subformula) ||
                         addSingleSign(src, subformula) ||
                         addDouble(src, subformula) ||
-                        addVariable(src, subformula) ||
-                        addFunction(src, subformula) ||
-                        addBracedExpression(src, subformula)
+                           addFunction(src, subformula) ||
+                       addVariable(src, subformula) ||
+                      addBracedExpression(src, subformula)
 
                 ) {
             /*Iterator<TreeNode> it = src.getChildren().iterator();
