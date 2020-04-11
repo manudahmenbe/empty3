@@ -387,7 +387,7 @@ public class AlgebricTree extends Tree {
             }
 
 
-            if (i == values.length() - 1 && count == 0 && values.charAt(i) == ')') {
+            if ( count == 0 && values.charAt(i) == ')') {
 
 
                 String fName = values.substring(oldFactorPos, newFactorPos - 1);
