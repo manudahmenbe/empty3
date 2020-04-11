@@ -32,7 +32,7 @@
 
 package one.empty3.library.core.raytracer.tree.functions;
 import java.util.*;
-import one.empty3.library.core.raytracer.tree.FunctionTreeNodeType;
+import one.empty3.library.core.raytracer.tree.*;
 
 /**
  * Created by manuel on 24-01-17.
