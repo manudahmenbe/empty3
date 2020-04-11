@@ -39,8 +39,7 @@ import one.empty3.library.core.raytracer.tree.FunctionTreeNodeType;
  */
 public class MathFunctionTreeNodeType extends FunctionTreeNodeType {
 
-public MathFunctionTreeNodeType(String formula, Map<String, Object> params){ 
-this.formula = formula;
+public MathFunctionTreeNodeType(String formula, Map<String, Double> params){ 
 algebricTree = new AlgebricTree(formula, params);
 
 }
