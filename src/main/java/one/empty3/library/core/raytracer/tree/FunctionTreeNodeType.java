@@ -41,7 +41,7 @@ import java.lang.reflect.Method;
 public abstract class FunctionTreeNodeType extends TreeNodeType {
     protected AlgebricTree algebricTree;
     private String fName;
-
+    protected double[] objects
     public AlgebricTree getAlgebricTree() {
         return algebricTree;
     }
