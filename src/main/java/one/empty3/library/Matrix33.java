@@ -83,6 +83,17 @@ public class Matrix33 extends  Representable {
         }
         this.d.setAll(d);
     }
+public Matrix33(double[] d) {
+        if (d.length != 9) {
+            System.out.println("Erreur dans Matrix33 . 9 éléments requis");
+            throw new IndexOutOfBoundsException("Matrix33 9 "+d.length);
+        }
+        Double D = new Double[9];
+        for(int i=0;i<9;i++){
+D[i] = d[i];
+	}
+        this.d.setAll(D);
+    }
 
     public Matrix33(Point3D[] p) {
         this();
