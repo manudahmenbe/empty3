@@ -88,7 +88,7 @@ public Matrix33(double[] d) {
             System.out.println("Erreur dans Matrix33 . 9 éléments requis");
             throw new IndexOutOfBoundsException("Matrix33 9 "+d.length);
         }
-        Double D = new Double[9];
+        Double[] D = new Double[9];
         for(int i=0;i<9;i++){
 D[i] = d[i];
 	}
