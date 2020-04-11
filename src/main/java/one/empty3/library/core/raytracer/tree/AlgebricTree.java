@@ -103,7 +103,8 @@ public class AlgebricTree extends Tree {
         return true;
     }
 
-    private boolean addVariable(TreeNode src, String subformula) {
+    private boolean addVariable(TreeNode src, String subformula) 
+   throws AlgebraicFormulaSyntaxException{
         if (Character.isLetter(subformula.charAt(0))) {
             int i = 1;
             while (i < subformula.length() && Character.isLetterOrDigit(i)) {
@@ -115,9 +116,9 @@ public class AlgebricTree extends Tree {
                 src.getChildren().add(new TreeNodeVariable(src, new Object[]{subformula, parametersValues}, variableTreeNodeType));
 
 if (subformula.length>i)
-add(src, subformula.substring(i));
+    throw new AlgebraicFormulaSyntaxException("var tree node test failed. error in formula");
 
-                return true;
+              
    
 
         }
