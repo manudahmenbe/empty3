@@ -52,7 +52,7 @@ public class AlgebricTree extends Tree {
         this.formula = formula;
     }
 
-    public AlgebricTree(String fParamString, Map<String, Double> parametersValues) {
+    public AlgebricTree(String formula, Map<String, Double> parametersValues) {
         this.formula = formula;
         this.parametersValues = parametersValues;
     }
