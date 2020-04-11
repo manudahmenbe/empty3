@@ -395,7 +395,7 @@ public class AlgebricTree extends Tree {
 
 
                 MathFunctionTreeNodeType mathFunctionTreeNodeType = new MathFunctionTreeNodeType(
-fParamString
+fParamString, parametersValues
 );
 
                 TreeNode t2 = new TreeNode(t, new Object[]{fName}, mathFunctionTreeNodeType);
