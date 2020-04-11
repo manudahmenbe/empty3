@@ -236,6 +236,17 @@ assertFalse(true);
 
         testResultVariable("10*cos(10*u)", 10*Math.cos(10*u), vars, true);
     }
+
+@Test
+    public void testSimpleFunction3() {
+        double u = 10;
+        HashMap<String, Double> vars = new HashMap<>();
+        vars.put("u", u);
+
+
+        testResultVariable("cos(10*u)+u", Math.cos(10*u)+u, vars, true);
+    }
+
     @Test
     public void testSimpleFunction2() {
         double u = 10;
