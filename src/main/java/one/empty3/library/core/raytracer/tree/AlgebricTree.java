@@ -107,7 +107,7 @@ public class AlgebricTree extends Tree {
    throws AlgebraicFormulaSyntaxException{
         if (Character.isLetter(subformula.charAt(0))) {
             int i = 1;
-            while (i < subformula.length() && Character.isLetterOrDigit(i)) {
+            while (i < subformula.length() && Character.isLetterOrDigit(subformula.charAt(i))) {
                 i++;
             }
             
