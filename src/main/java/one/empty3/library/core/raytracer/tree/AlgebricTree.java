@@ -115,7 +115,7 @@ public class AlgebricTree extends Tree {
                 variableTreeNodeType.setValues(new Object[]{subformula.substring(0, i), parametersValues});
                 src.getChildren().add(new TreeNodeVariable(src, new Object[]{subformula, parametersValues}, variableTreeNodeType));
 
-if (subformula.length))>i)
+if (subformula.length()>i)
     throw new AlgebraicFormulaSyntaxException("var tree node test failed. error in formula");
 
               
