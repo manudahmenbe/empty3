@@ -4,7 +4,7 @@ public class Vec
 {
 private final int dims;
 private StructureMatrix <Double> vecVal
-    = new StructureMatrix (1, Vec.class);
+    = new StructureMatrix (1, Double.class);
     
 private StructureMatrix <Vec> vec
     = new StructureMatrix (1, Vec.class);
