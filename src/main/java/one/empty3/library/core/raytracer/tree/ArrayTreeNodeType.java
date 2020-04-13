@@ -10,7 +10,7 @@ list = new StructureMatrix(1, t) ;
     public ArrayTreeNodeType() {
          this(Double.class);
 } 
-    public boolean add(Object o) {
+    public void add(Object o) {
 list.add(1, o);
 } 
 @Override
