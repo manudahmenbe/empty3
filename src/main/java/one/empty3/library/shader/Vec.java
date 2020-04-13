@@ -2,7 +2,7 @@ package one.empty3.library.shader;
 
 public class Vec
 {
-private final int dims;
+private int dims;
 private StructureMatrix <Double> vecVal
     = new StructureMatrix (1, Double.class);
     
