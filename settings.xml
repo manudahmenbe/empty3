@@ -8,7 +8,7 @@
   <repositories>
     <repository>
       <id>myrepo</id>
-      <url>ftp://ftp.empty3.one/downloads/maven</url>
+      <url>https://empty3.one/downloads/maven</url>
       
         <repository>
           <id>mvn-r</id>
