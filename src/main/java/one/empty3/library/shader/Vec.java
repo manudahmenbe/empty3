@@ -12,11 +12,11 @@ private StructureMatrix <Vec> vec
     public Vec(Double... comps) {
        //  Vec v = new Vec() ;
          for(Double d : comps) 
-             vecVal.add(d);
+             vecVal.add(1, d);
 } 
     public Vec(Vec... comps) {
         for(Vec v : comps)
-            vec.add(v);
+            vec.add(1, v);
             
 } 
 
