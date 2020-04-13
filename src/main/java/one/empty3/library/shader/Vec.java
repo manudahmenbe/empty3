@@ -9,10 +9,10 @@ private StructureMatrix <Double> vecVal
 private StructureMatrix <Vec> vec
     = new StructureMatrix (1, Vec.class);
     
-    public Vec v(Double... comps) {
-         Vec v = new Vec() ;
+    public Vec(Double... comps) {
+       //  Vec v = new Vec() ;
          for(Double d : comps) 
-             v.addValue(d);
+             vecVal.add(d);
 } 
     public Vec(Vec... comps) {
         for(Vec v : comps)
