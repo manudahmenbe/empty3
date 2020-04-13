@@ -25,6 +25,7 @@ private StructureMatrix <Vec> vec
         if(vecVal.data1d.size()>0) {
             this.dims =vecVal.data1d.size();
             return dims;
+}
         if(vec.data1d.size()>0)
             for(int i=0;i<vec.data1d.size();i++)
                 dims += vec.data1d.size():
