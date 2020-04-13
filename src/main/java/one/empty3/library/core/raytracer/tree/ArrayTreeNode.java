@@ -6,6 +6,9 @@ public class ArrayTreeNode<T> extends TreeNode {
     public ArrayTreeNode(Class t) {
 list = new StructureMatrix(1, t) ;
 } 
+    public ArrayTreeNode() {
+list = new StructureMatrix(1, Double.class) ;
+} 
     public boolean add(Object o) {
 t.add(o);
 } 
