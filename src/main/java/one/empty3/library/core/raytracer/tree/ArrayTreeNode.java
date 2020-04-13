@@ -7,7 +7,7 @@ public class ArrayTreeNodeType extends TreeNodeType {
 super();
 list = new StructureMatrix(1, t) ;
 } 
-    public ArrayTreeNode() {
+    public ArrayTreeNodeType() {
          this(Double.class);
 } 
     public boolean add(Object o) {
