@@ -1,6 +1,6 @@
 package one.empty3.library.core.raytracer.tree;
 import one.empty3.library.*;
-public class ArrayTreeNode extends TreeNode {
+public class ArrayTreeNode extends TreeNodeType {
     private StructureMatrix list;
 // todo des que tu as un separateur tu dois recommener avant quil soit pas la
     public ArrayTreeNode(Class t) {
