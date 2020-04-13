@@ -13,4 +13,6 @@ list = new StructureMatrix(1, t) ;
     public boolean add(Object o) {
 list.add(1, o);
 } 
+@Override
+public Double eval(){return 0.0;}
 } 
