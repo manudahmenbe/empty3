@@ -56,7 +56,8 @@ return s;
         if(vecVal.data1d.size()>0) {
             da = new Double[getDims() ];
             int i = 0;
-            for(Double a :(Double) vecVal.data1d.get(i)) {
+            for(i=0;i<vecVal.data1d.get(i); i++) {
+                Double a = Val.data1d.get(i);
                 da[i] = a;
                 i++;
             } 
