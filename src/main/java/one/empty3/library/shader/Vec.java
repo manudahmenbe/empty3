@@ -47,5 +47,11 @@ for(int i=0;i<vec.data1d.size();
 getElem(i).toString()+", ";
 s+=")";
 return s;
-} 
+}
+    public Vec eval() {
+   return null;
+    } 
+    public Double[] value() {
+    return null;
+    } 
 } 
