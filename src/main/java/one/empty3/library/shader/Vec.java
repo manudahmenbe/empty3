@@ -52,6 +52,22 @@ return s;
    return null;
     } 
     public Double[] value() {
+        if(vecVal.data1d.size()) {
+            Double [] da = new Double[vecVal.data1d.size()];
+            int i = 0;
+            for(Double a : vecVal.data1d.get(i)) {
+                da[i] = a;
+                i++;
+            } 
+            return da;
+        } else {
+            Double [] da = new Double[vec.data1d.size()];
+            int i = 0; // TODO
+            for(Double a : vec.data1d.get(i). value()[0] ) {
+                da[i] = a;
+                i++;
+            } 
+        } 
     return null;
     } 
 } 
