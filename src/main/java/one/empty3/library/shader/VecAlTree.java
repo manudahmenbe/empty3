@@ -1,4 +1,5 @@
 package one.empty3.library.shader;
+import one.empty3.library.core.raytracer.tree.*;
 public class VecAlTree extends Vec {
     AlgebricTree tree;
     public VecAlTree(String formula) {
