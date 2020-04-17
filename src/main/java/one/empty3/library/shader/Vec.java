@@ -53,7 +53,7 @@ return s;
     } 
     public Double[] value() {
         Double [] da;
-        if(vecVal.data1d.size()) {
+        if(vecVal.data1d.size()>0) {
             da = new Double[getDims() ];
             int i = 0;
             for(Double a : vecVal.data1d.get(i)) {
