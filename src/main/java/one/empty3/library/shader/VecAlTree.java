@@ -8,4 +8,7 @@ public class VecAlTree extends Vec {
  public void setParameter(String p, Double d) {
  tree.setParameter(p, d);
  } 
+    public Double [] getValue() {
+    return new Double [] {tree. eval() } ;
+    } 
 } 
