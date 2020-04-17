@@ -19,7 +19,7 @@ private StructureMatrix <Vec> vec
             vec.add(1, v);
             
 } 
-
+public Vec() {} 
     public int getDims() {
         int dims =0;
         if(vecVal.data1d.size()>0) {
@@ -50,7 +50,7 @@ return s;
 }
     public Vec eval() {
    return null;
-    } 
+
     public Double[] value() {
         Double [] da;
         if(vecVal.data1d.size()>0) {
