@@ -57,7 +57,7 @@ return s;
             da = new Double[getDims() ];
             int i = 0;
             for(i=0;i<vecVal.data1d.get(i); i++) {
-                Double a = Val.data1d.get(i);
+                Double a = vecVal.getElem(i);
                 da[i] = a;
                 i++;
             } 
@@ -67,7 +67,7 @@ return s;
             int i = 0; // TODO
             int j = 0;
             for(i=0; i<vec.data1d.size(); i++) {
-                Double [] d = (Double) vec. data1d. get(i) ;
+                Double [] d = (Double) vec. data1d. getElem(i) ;
                 for(Double a : d) {
                     da[j] = a;
                     j++;
