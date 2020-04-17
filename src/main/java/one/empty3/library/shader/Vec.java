@@ -50,7 +50,7 @@ return s;
 }
     public Vec eval() {
    return null;
-
+} 
     public Double[] value() {
         Double [] da;
         if(vecVal.data1d.size()>0) {
