@@ -1,4 +1,5 @@
 package one.empty3.library.shader;
+import one.empty3.library.raytracer.tree.*;
 /***
 *  VecStack. 
 * fonctions vecteurs
