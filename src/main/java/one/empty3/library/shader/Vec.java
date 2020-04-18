@@ -69,7 +69,7 @@ return s;
 
 //Double [] d = new Double[ vec. data1d. size()] ;
             for(i=0; i<vec.data1d.size(); i++) {
-             Double [] d = (Double[] )( vec. data1d. getElem(i). value()) ;
+             Double [] d = (Double[] )( vec.getElem(i).value()) ;
                 for(Double a : d) {
                     da[j] = a;
                     j++;
