@@ -56,7 +56,9 @@ public class AlgebricTree extends Tree {
         this.formula = formula;
         this.parametersValues = parametersValues;
     }
-
+    public void setParameter(String s, Double d) {
+        this.parametersValues.put(s, d);
+} 
     public AlgebricTree construct() throws AlgebraicFormulaSyntaxException {
         root = new TreeNode(formula);
         add(root, formula);
