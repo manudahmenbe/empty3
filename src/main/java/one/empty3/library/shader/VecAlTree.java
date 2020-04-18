@@ -2,17 +2,20 @@ package one.empty3.library.shader;
 import one.empty3.library.core.raytracer.tree.*;
 public class VecAlTree extends Vec {
     AlgebricTree tree;
+private boolean invalidTree = true;
     public VecAlTree(String formula) {
         super() ;
             
 
-        tree=new AlgebricTree(formula) 
-            ;
+        
         try {
+tree=new AlgebricTree(formula) 
+            ;
             tree.construct();
+invalidTree = false;
           } catch(AlgebraicFormulaSyntaxException t) {
         System.out.println ("error vecaltreecondtruct\n"+tree ) ;
-        } 
+    invalidTree = true;    } 
   	
     } 
  public void setParameter(String p, Double d) {
