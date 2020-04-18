@@ -5,7 +5,7 @@ package one.empty3.library.shader;
 * a parser à partir d'un fichirr xml ptmrporre
 *
 */
-public class VecStack {
+public class VecStack extends VecAlTree {
     private StructureMatrix <Integer> numsIn = new StructureMatrix (1, Integer.class) ;
     private StructureMatrix <Integer> numsOut = new StructureMatrix (1, Integer.class) ;
 
@@ -17,7 +17,7 @@ public class VecStack {
 * @param formula f(in, out) 
 */
     public VecStack(String formula) {
-        
+        super(formula) ;
 } 
 public StructureMatrix <Integer> getVecIn() {
      return numsIn;
@@ -28,5 +28,10 @@ public StructureMatrix <Integer> getVecOut() {
 } 
 public String getFormula() {
      return formula;
+} 
+
+public Double [] value() {
+    for(int=0;i<numsIn.data1d.size(); i++) 
+    tree.setParameter("in("+i+ ") ", ordValue(i) ) 
 } 
 } 
