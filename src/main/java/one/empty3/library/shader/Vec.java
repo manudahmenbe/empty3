@@ -51,6 +51,14 @@ return s;
     public Vec eval() {
    return null;
 } 
+
+   public Double value(int i, int j) {
+        if(i>=0 && i<j && j<= getDims() ) {
+             
+
+} 
+} 
+
     public Double[] value() {
         Double [] da;
         if(vecVal.data1d.size()>0) {
