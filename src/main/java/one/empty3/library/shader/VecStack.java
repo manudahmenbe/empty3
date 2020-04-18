@@ -1,8 +1,14 @@
 package one.empty3.library.shader;
-
+/***
+*  VecStack. 
+* fonctions vecteurs
+* a parser à partir d'un fichirr xml ptmrporre
+*
+*/
 public class VecStack {
-    private int [] numsIn;
-    private int [] numsOut;
+    private StructureMatrix <Integer> numsIn = new StructureMatrix (1, Integer.class) ;
+    private StructureMatrix <Integer> numsOut = new StructureMatrix (1, Integer.class) ;
+
 
 
 /***
@@ -10,9 +16,17 @@ public class VecStack {
 * @param out out[i : int]
 * @param formula f(in, out) 
 */
-    public VecStack(int [] in, int[] out, String formula) {
-
+    public VecStack(String formula) {
+        
 } 
-public void setVecIn(Vec... vs) {} 
-public void setVecOut(Vec... vs) {} 
+public StructureMatrix <Integer> getVecIn() {
+     return numsIn;
+} 
+
+public StructureMatrix <Integer> getVecOut() {
+     return numsOut;
+} 
+public String getFormula() {
+     return formula;
+} 
 } 
