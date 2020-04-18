@@ -7,8 +7,8 @@ import one.empty3.library.raytracer.tree.*;
 *
 */
 public class VecStack extends VecAlTree {
-    private StructureMatrix <Integer> numsIn = new StructureMatrix (1, Integer.class) ;
-    private StructureMatrix <Integer> numsOut = new StructureMatrix (1, Integer.class) ;
+    private StructureMatrix <Integer> numsIn = new StructureMatrix<> (1, Integer.class) ;
+    private StructureMatrix <Integer> numsOut = new StructureMatrix<> (1, Integer.class) ;
 
 
 
