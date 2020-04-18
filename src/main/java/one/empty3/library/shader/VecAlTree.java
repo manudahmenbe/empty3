@@ -28,7 +28,10 @@ tree. eval() } ;
 } catch (TreeNodeEvalException ex) {
      ex.printStackTrace();
      return new Double[] {0.0};
-} 
+} catch(AlgebraicFormulaSyntaxException ex){
+     ex.printStackTrace();
+     return new Double[] {0.0};
+}
 
 
    } 
