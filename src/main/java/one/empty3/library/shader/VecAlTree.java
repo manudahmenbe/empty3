@@ -1,12 +1,13 @@
 package one.empty3.library.shader;
 import one.empty3.library.core.raytracer.tree.*;
 public class VecAlTree extends Vec {
+    protcted String formula;
     AlgebricTree tree;
 private boolean invalidTree = true;
     public VecAlTree(String formula) {
         super() ;
             
-
+this.formula = formula;
         
         try {
 tree=new AlgebricTree(formula) 
