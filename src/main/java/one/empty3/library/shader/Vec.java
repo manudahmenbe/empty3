@@ -54,7 +54,7 @@ return s;
 
    public Double value(int i, int j) {
         if(i>=0 && i<j && j<= getDims() ) {
-             
+             return null;
 
 } 
 } 
