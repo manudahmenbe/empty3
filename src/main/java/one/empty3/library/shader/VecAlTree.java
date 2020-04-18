@@ -10,7 +10,7 @@ public class VecAlTree extends Vec {
             ;
         try {
             tree.construct();
-          } catch(AlgebraicFormulaSyntaxException|TreeNodeEvalException t) {
+          } catch(AlgebraicFormulaSyntaxException t) {
         System.out.println ("error vecaltreecondtruct\n"+tree ) ;
         } 
   	
@@ -19,6 +19,14 @@ public class VecAlTree extends Vec {
  tree.setParameter(p, d);
  }
     public Double [] getValue() {
-    return new Double [] {tree. eval() } ;
-    } 
+try {
+    return new Double [] {
+tree. eval() } ;
+} catch (TreeNodeEvalException ex) {
+     ex.printStackTrace();
+     return new Double[] {0.0};
+} 
+
+
+   } 
 } 
