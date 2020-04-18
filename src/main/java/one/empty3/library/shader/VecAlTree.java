@@ -11,7 +11,7 @@ public class VecAlTree extends Vec {
         try {
             tree.construct();
           } catch(Throwable t) {
-        System.out.println ("error vecaltreecondtruct\n"+trre ) ;
+        System.out.println ("error vecaltreecondtruct\n"+tree ) ;
         } 
   	
     } 
