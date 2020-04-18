@@ -32,6 +32,7 @@ public String getFormula() {
 
 public Double [] value() {
     for(int=0;i<numsIn.data1d.size(); i++) 
-    tree.setParameter("in("+i+ ") ", super.value()[i] ) 
+    tree.setParameter("in("+i+ ") ", super.value()[i]) ;
+    return super.value();
 } 
 } 
