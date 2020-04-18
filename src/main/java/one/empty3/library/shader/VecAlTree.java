@@ -10,7 +10,7 @@ public class VecAlTree extends Vec {
             ;
         try {
             tree.construct();
-          } catch(Throwable t) {
+          } catch(AlgebraicFormulaSyntaxException t) {
         System.out.println ("error vecaltreecondtruct\n"+tree ) ;
         } 
   	
