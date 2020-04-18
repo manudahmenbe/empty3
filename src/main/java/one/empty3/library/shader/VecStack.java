@@ -12,8 +12,8 @@ public class VecStack extends VecAlTree {
 
 
 /***
-* @param in in[i:int] 
-* @param out out[i : int]
+* @param in in() [i:int] 
+* @param out out() [i : int]
 * @param formula f(in, out) 
 */
     public VecStack(String formula) {
