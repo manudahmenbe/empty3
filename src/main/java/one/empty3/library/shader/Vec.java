@@ -56,7 +56,7 @@ return s;
         if(i>=0 && i<j && j<= getDims() ) {
              return null;
 
-} 
+} return null;
 } 
 
     public Double[] value() {
