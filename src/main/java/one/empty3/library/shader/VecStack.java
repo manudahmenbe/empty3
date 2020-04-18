@@ -13,6 +13,6 @@ public class VecStack {
     public VecStack(int [] in, int[] out, String formula) {
 
 } 
-public void addVecIn() {} 
-public void addVecOut() {} 
+public void setVecIn(Vec... vs) {} 
+public void setVecOut(Vec... vs) {} 
 } 
