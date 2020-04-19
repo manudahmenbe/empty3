@@ -148,7 +148,9 @@ scm:git:git://github.com/manuelddahmen/empty3.git
  
           <testDoctitle>My Test API for ${project.name} ${project.version}</testDoctitle> <!-- Used by javadoc:test-javadoc goal -->
           <testWindowtitle>My Test API for ${project.name} ${project.version}</testWindowtitle> <!-- Used by javadoc:test-javadoc goal -->
-        </execution>
+ </configuration>
+			
+			</execution>
       </executions>
     </plugin>
 <plugin>
