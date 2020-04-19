@@ -35,7 +35,8 @@ private int compileShader(int shader_type, String shaderString){
     }
     return shader;
 }
-
+public static void main (String [] args) {
+    
 // Load shaders from file
 String vertexShaderString = loadStringFromAssetFile(context, "your_vertex_shader.glsl");
 String fragmentShaderString = loadStringFromAssetFile(context, "your_fragment_shader.glsl");
