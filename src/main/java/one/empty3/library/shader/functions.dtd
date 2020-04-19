@@ -1,1 +1,24 @@
 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!DOCTYPE compute [
+
+ <!ELEMENT vec (double | vec | function)*>
+
+ <! ATTLIST vec (length) 
+
+ <!ELEMENT double (#PCDATA) >
+
+ <!ELEMENT function (name, args, def)>
+
+ <!ELEMENT name (#PCDATA)>
+
+ <!ELEMENT args (arg)*>
+
+ <!ELEMENT arg (name, class) >
+
+ <!ELEMENT def (conditions, instructions, return, errorcase >
+
+<!ELEMENT class (name) >
+
+]>
