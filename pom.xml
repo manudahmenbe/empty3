@@ -24,14 +24,14 @@
     <id>ossrh</id>
     <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
   </repository>
-
+<!--
 
 <repository>
             <id>if2</id>
             <name>empty3.one</name>
             <url>ftp://ftp.empty3.one/downloads/.m2</url>
 </repository>
-
+-->
 
 </distributionManagement>
 
