@@ -1,6 +1,6 @@
 package one.empty3.library.shader ;
 
-
+/*
 import java.io.*;
 import com.jogamp.common.nio.Buffers;
 import com.jogamp.opengl.GL3;
@@ -246,3 +246,4 @@ glUseProgram(shaderProgram);
 } 
 
 } 
+*/
