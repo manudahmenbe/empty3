@@ -17,10 +17,18 @@
 
  <!ELEMENT arg (name, class) >
 
- <!ELEMENT def (instructions| return| errorcase >
+ <!ELEMENT def (instructions| return| errorcase) >
 
 <!ELEMENT class (name) >
 
-<! ELEMENT instructions (instructions| instruction) >
-<! ELEMENT instructions (conditions|instructions) >
+<! ELEMENT instruction (methodinvoke) >
+<! ELEMENT methodinvoke(objectinstance|methodname|parameters) >
+<! ELEMENT objectinstance 
+<! ELEMENT methodname #CDATA
+<! ELEMENT parameters (methodinvoke|scalar|memberdata)*>
+<! ELEMENT scalar #CDATA
+<! ELEMENT memberdata (objectinstance|membername) >
+<! ELEMENT membername #CDATA
+<! ELEMENT instructions (conditions|instructions|instruction)* >
+<! ELEMENT 
 ]>
