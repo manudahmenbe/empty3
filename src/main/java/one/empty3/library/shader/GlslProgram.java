@@ -1,8 +1,7 @@
 package one.empty3.library.shader ;
-import java.io.*;
 
-package openglexample1;
- 
+
+import java.io.*;
 import com.jogamp.common.nio.Buffers;
 import com.jogamp.opengl.GL3;
 import com.jogamp.opengl.GLAutoDrawable;
