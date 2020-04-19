@@ -7,18 +7,20 @@
 
  <! ATTLIST vec (length) 
 
- <!ELEMENT double (#PCDATA) >
+ <!ELEMENT double (#CDATA) >
 
  <!ELEMENT function (name, args, def)>
 
- <!ELEMENT name (#PCDATA)>
+ <!ELEMENT name (#CDATA)>
 
  <!ELEMENT args (arg)*>
 
  <!ELEMENT arg (name, class) >
 
- <!ELEMENT def (conditions, instructions, return, errorcase >
+ <!ELEMENT def (instructions| return| errorcase >
 
 <!ELEMENT class (name) >
 
+<! ELEMENT instructions (instructions| instruction) >
+<! ELEMENT instructions (conditions|instructions) >
 ]>
