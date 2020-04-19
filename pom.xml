@@ -36,7 +36,7 @@
 </distributionManagement>
 
     <build>
-        <defaultGoal>install</defaultGoal>
+        <defaultGoal>deploy</defaultGoal>
         <directory>${basedir}/target</directory>
         <finalName>${project.artifactId}-${project.version}</finalName>
         <resources>
