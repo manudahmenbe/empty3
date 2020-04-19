@@ -18,15 +18,15 @@ import java.util.Vector;
 import java.util.stream.Stream;
 import javax.swing.JFrame;
  
-/**
+
  *
  * @author memmanuel
- */
+
 class WindowC extends JFrame implements GLEventListener {
  
     /**
      * @return the glcanvas
-     */
+     
     public GLCanvas getGlcanvas() {
         return glcanvas;
     }
