@@ -194,7 +194,10 @@ scm:git:git://github.com/manuelddahmen/empty3.git
             <phase>verify</phase>
             <goals>
               <goal>sign</goal>
-            </goals>
+            </goals>gpg --list-secret-keys --keyid-format LONG
+		  <configuration>
+        <keyname></keyname>
+      </configuration>
           </execution>
         </executions>
       </plugin>
