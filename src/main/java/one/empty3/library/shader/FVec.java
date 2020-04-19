@@ -5,6 +5,5 @@ public class FVec {
    StructureMatrix<VecStack> operands;
   public Vec eval(Object... stringdoubleParams){
     return null;
-    ;
   } 
 } 
