@@ -14,7 +14,8 @@
     <version>2020.2</version>
     <description>3D rendering engine. Plus modelling.</description>
     <packaging>jar</packaging>
-
+    <url>https://github,com/manuelddahmen/empty3</url>
+    
     <distributionManagement>
   <snapshotRepository>
     <id>ossrh</id>
@@ -34,6 +35,35 @@
 -->
 
 </distributionManagement>
+
+	<licenses>
+		<license>
+			<name>Gnu Gpl 3</name>
+			<url>http://www.fsf.org/licenses/gpl</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://github.com/manuelddahmen/empty3</url>
+		<connection>scm:git:git://github.com/manuelddahmen/empty3.git</connection>
+		<developerConnection>
+scm:git:git://github.com/manuelddahmen/empty3.git
+</developerConnection>
+	</scm>
+
+	<developers>
+		<developer>
+			<email>kevinsawicki@gmail.com</email>
+			<name>Kevin Sawicki</name>
+			<url>https://github.com/kevinsawicki</url>
+			<id>kevinsawicki</id>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
     <build>
         <defaultGoal>deploy</defaultGoal>
