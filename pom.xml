@@ -125,6 +125,30 @@
 <id>mvnrepo</id>
 <url>https://www.dcm4che.org/maven2/</url>
 </repository>
+    <repository>
+      <id>myrepo</id>
+      <url>https://empty3.one/downloads/maven</url>
+      
+        <repository>
+          <id>mvn-r</id>
+          <name>mvn r</name>
+          <url>http://mvnrepository.com/maven</url>
+        </repository>
+<repository>
+<id>spring io</id>
+<url>https://repo.spring.io/plugins-release/</url>
+        </repository>
+<repository>
+<id>maven-central</id>
+<url>https://repo1.maven.org/maven2/</url>
+        </repository>
+<repository>
+<id>netbeans</id>
+<url>http://bits.netbeans.org/maven2/</url>
+        </repository>
+
+
+      
 </repositories>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
