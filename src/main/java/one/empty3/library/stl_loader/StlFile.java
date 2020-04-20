@@ -285,7 +285,7 @@ public class StlFile {
      * until the end
      *
      * @param inList The list to transform into Point3f[]
-     * @return Point3f[] The result.
+     * @return Point3D[] The result.
      */
     private Point3D[] objectToPoint3Array(ArrayList inList) {
         Point3D outList[] = new Point3D[inList.size()];
@@ -306,7 +306,7 @@ public class StlFile {
      * TO-DO: 1.- Here we fill stripCounts... Find a better place to do it?
      *
      * @param inList The list to transform into Point3f[]
-     * @return Vector3f[] The result.
+     * @return Point3D[] The result.
      */
     private Point3D[] objectToVectorArray(ArrayList inList) {
         Point3D outList[] = new Point3D[inList.size()];
@@ -336,6 +336,7 @@ public class StlFile {
      *
      * @param file The name of the file
      * @throws IOException
+     * @throws IncorrectFormatException
      */
     private void readBinaryFile(String file) throws IOException, IncorrectFormatException {
         FileInputStream data;                 // For reading the file
