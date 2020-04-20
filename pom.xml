@@ -79,6 +79,7 @@ scm:git:git://github.com/manuelddahmen/empty3.git
                 </includes>
                 <excludes>
                     <exclude>**/*.java</exclude>
+<exclude>**/*.html</exclude>
                     <exclude>**/*.form</exclude>
                 </excludes>
             </resource>
