@@ -9,7 +9,7 @@ import one.empty3.library.core.testing.TestObjetSub;
 
 import java.awt.*;
 
-/**
+/*__
  * @author Se7en
  */
 public class TestTriHole extends TestObjetSub {

@@ -8,8 +8,8 @@ import one.empty3.library.core.tribase.TubulaireN2;
 
 import java.awt.*;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class TestGDXBSpline1 extends TestObjet {
     private static final double INCR_PRECISION = 0.00001;

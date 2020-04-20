@@ -42,7 +42,7 @@ import one.empty3.library.Sphere;
 
 import java.util.ArrayList;
 
-/**
+/*__
  * @author Se7en
  */
 public class BalleClous extends Sphere implements HeightMapSurface{

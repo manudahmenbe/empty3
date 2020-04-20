@@ -1,4 +1,4 @@
-/***
+/*__
 
  Empty3
  Copyright (C) 2010-2019  Manuel DAHMEN
@@ -33,7 +33,7 @@ import java.util.Map;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-/**
+/*__
  * Created by Manuel Dahmen on 15-12-16.
  */
 public class AlgebraicTreeTest {

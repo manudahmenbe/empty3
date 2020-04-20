@@ -30,19 +30,19 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/***
+/*__
  * Global license :
  * <p>
  * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <manuel.dahmen@gmail.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  ***/
 
 
 package one.empty3.library.core.tribase.equationeditor;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 class EquationLexicalException extends Exception {
 

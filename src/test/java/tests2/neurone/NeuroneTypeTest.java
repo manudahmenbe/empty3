@@ -4,7 +4,7 @@
  */
 package tests2.neurone;
 
-/**
+/*__
  * @author Se7en
  */
 public class NeuroneTypeTest extends Neurone {

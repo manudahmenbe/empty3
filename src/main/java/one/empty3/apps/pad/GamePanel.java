@@ -34,7 +34,7 @@ package one.empty3.apps.pad;
 
 import one.empty3.library.Point3D;
 
-/**
+/*__
  * Created by Manuel Dahmen on 31-10-18.
  */
 public class GamePanel {

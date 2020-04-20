@@ -40,7 +40,7 @@ package one.empty3.apps.pad.help;
 import one.empty3.apps.pad.Bonus;
 import one.empty3.library.core.gdximports.gdx_BSplineCurve;
 
-/**
+/*__
  *  Gros escargot mais lent. Fonctionne pendant 40 sec.
  * Champ d'action plus large. Cf. licorne se déplace le
  * long d'une BSpline pour attraper les objets.

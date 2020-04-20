@@ -30,12 +30,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/**
+/*__
  * *
  * Global license :  *
  * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <manuel.dahmen@gmail.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  * <p>
  * *
  */
@@ -44,8 +44,8 @@ package one.empty3.library.core.tribase.equationeditor;
 import one.empty3.library.Point3D;
 import one.empty3.library.core.tribase.TRIObjetGenerateurAbstract;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class TRIObjetSurfaceEquationParametrique
         extends TRIObjetGenerateurAbstract {
@@ -54,7 +54,7 @@ public class TRIObjetSurfaceEquationParametrique
     AnalyseurEquationJep sy;
     AnalyseurEquationJep sz;
 
-    /**
+    /*__
      * *
      *
      * @param sx variable : (u,v)

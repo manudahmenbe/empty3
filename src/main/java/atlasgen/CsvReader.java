@@ -30,7 +30,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-package atlasgen; /**
+package atlasgen; /*__
  * Created by manushell on 19-06-18.
  */
 

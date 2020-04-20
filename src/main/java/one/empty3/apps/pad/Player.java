@@ -30,12 +30,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/***
+/*__
  Global license :
 
  Microsoft Public Licence
 
- author Manuel Dahmen <manuel.dahmen@gmx.com>
+ author Manuel Dahmen _manuel.dahmen@gmx.com_
 
  ***/
 
@@ -52,8 +52,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Properties;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class Player {
 

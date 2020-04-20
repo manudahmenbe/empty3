@@ -150,7 +150,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     }
 
 
-    /***
+    /*__
      * DOn't call ZBuffer dessiine methods here: it would loop.
      *
      * @param z ZBuffer use plot or dessine(P) or tracerTriangle(TRI, Itexture)
@@ -163,7 +163,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
         return false;
     }
 
-    /**
+    /*__
      * When correctly initialized, PaintingAct action method is called while
      * the shape is rendered.
      *
@@ -213,7 +213,7 @@ public class Representable implements Serializable, Comparable, XmlRepresentable
     private void set(Representable r) {
     }
 
-    /***
+    /*__
      *
      * @param o
      * @return ???

@@ -1,4 +1,4 @@
-/**
+/*__
  * *
  * Global license :  *
  * CC Attribution
@@ -19,7 +19,7 @@ import one.empty3.library.core.testing.TestObjetSub;
 
 import java.io.File;
 
-/**
+/*__
  *
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */

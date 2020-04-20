@@ -30,12 +30,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/***
+/*__
 Global license : 
 
  Microsoft Public Licence
 
- author Manuel Dahmen <manuel.dahmen@gmx.com>
+ author Manuel Dahmen _manuel.dahmen@gmx.com_
 
  Creation time 05-nov.-2014
 
@@ -54,9 +54,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
+/*__
  *
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class Circuit extends TubulaireN
 {

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
+/*__
  * Created by manue on 08-02-20.
  */
 public enum BaseProperty {

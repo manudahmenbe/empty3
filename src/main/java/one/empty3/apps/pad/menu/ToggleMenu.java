@@ -35,7 +35,7 @@ package one.empty3.apps.pad.menu;
 
 import java.util.HashMap;
 
-/**
+/*__
  * Created by manuel on 20-05-17.
  */
 public class ToggleMenu {

@@ -34,7 +34,7 @@ package atlasgen;
 
 import java.io.File;
 
-/**
+/*__
  * Created by manue on 28-04-19.
  */
 public class TestEarth extends TestSoS {

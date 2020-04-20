@@ -34,7 +34,7 @@ package one.empty3.library.core.nurbs;
 
 import one.empty3.library.*;
 
-/**
+/*__
  * Created by manue on 02-02-19.
  */
 public class PcOnPs extends ParametricCurve {

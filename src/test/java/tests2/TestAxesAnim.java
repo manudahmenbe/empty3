@@ -9,7 +9,7 @@ import one.empty3.library.core.tribase.Plan3D;
 
 import java.awt.*;
 
-/**
+/*__
  * *
  * Global license :  *
  * Microsoft Public Licence
@@ -21,7 +21,7 @@ import java.awt.*;
  * *
  */
 
-/**
+/*__
  *
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */

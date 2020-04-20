@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-/**
+/*__
  * Created by manue on 15-06-19.
  */
 public class QuadratureCercle extends TestObjetSub {

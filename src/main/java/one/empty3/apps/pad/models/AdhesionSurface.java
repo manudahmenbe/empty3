@@ -32,7 +32,7 @@
 
 package one.empty3.apps.pad.models;
 
-/**
+/*__
  * Created by Win on 19-10-18.
  */
 public class AdhesionSurface {

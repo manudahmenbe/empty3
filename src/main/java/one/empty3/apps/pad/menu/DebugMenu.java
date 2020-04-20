@@ -32,7 +32,7 @@
 
 package one.empty3.apps.pad.menu;
 
-/**
+/*__
  * Created by manuel on 17-07-17.
  */
 public class DebugMenu extends Menu {

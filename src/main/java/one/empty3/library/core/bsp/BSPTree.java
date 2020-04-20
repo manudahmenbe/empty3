@@ -32,7 +32,7 @@
 
 package one.empty3.library.core.bsp;
 
-/**
+/*__
  * Created by manue on 29-05-19.
  */
 public class BSPTree {

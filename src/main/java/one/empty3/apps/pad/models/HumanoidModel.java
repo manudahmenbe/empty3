@@ -35,7 +35,7 @@ package one.empty3.apps.pad.models;
 import one.empty3.library.LineSegment;
 import one.empty3.library.Point3D;
 
-/**
+/*__
  * Created by Win on 17-10-18.
  */
 public class HumanoidModel extends Model {

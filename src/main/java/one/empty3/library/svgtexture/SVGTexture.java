@@ -37,7 +37,7 @@ import one.empty3.library.*;
 
 import java.io.File;
 
-/**
+/*__
  * Created by manue on 24-09-15.
  */
 public class SVGTexture extends ITexture {

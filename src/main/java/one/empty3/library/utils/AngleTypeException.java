@@ -32,7 +32,7 @@
 
 package one.empty3.library.utils;
 
-/**
+/*__
  * Created by manuel on 03-12-16.
  */
 public class AngleTypeException extends Exception {

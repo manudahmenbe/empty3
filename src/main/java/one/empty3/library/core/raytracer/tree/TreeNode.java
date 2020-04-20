@@ -36,7 +36,7 @@ import one.empty3.library.core.raytracer.tree.functions.MathFunctionTreeNodeType
 
 import java.util.ArrayList;
 
-/**
+/*__
  * Created by Manuel Dahmen on 15-12-16.
  */
 public class TreeNode {

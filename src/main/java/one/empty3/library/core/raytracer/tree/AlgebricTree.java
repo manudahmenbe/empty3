@@ -38,7 +38,7 @@ import one.empty3.library.core.raytracer.tree.functions.MathFunctionTreeNodeType
 import java.util.HashMap;
 import java.util.Map;
 
-/**
+/*__
  * Created by Manuel Dahmen on 15-12-16.
  */
 public class AlgebricTree extends Tree {

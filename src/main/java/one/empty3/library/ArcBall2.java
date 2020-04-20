@@ -19,7 +19,7 @@ package one.empty3.library;
 
 import java.awt.*;
 
-/**
+/*__
  * Created by manue on 06-11-19.
  */
 public class ArcBall2 {
@@ -31,7 +31,7 @@ public class ArcBall2 {
     private double lastX, lastY;
     private Representable representable;
 
-    /**
+    /*__
      *
      * @param ray origin: camera.eye ; extrem : vector dir
      * @return t :: orig+t*v

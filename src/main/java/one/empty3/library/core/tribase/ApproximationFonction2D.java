@@ -41,7 +41,7 @@ import one.empty3.library.Courbe;
 
 import java.util.ArrayList;
 
-/**
+/*__
  * @author Manuel DAHMEN
  */
 public class ApproximationFonction2D implements Courbe {

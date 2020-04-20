@@ -39,7 +39,7 @@ public abstract class Chemin extends ParametricCurve {
 
     private int max = 100;
 
-    /**
+    /*__
      * *
      * Implémentation optionnelle pour l'instant
      *
@@ -47,7 +47,7 @@ public abstract class Chemin extends ParametricCurve {
      */
     public abstract double getLength();
 
-    /**
+    /*__
      * Point d'index i sur Max
      *
      * @param i index
@@ -57,14 +57,14 @@ public abstract class Chemin extends ParametricCurve {
         return calculerPoint3D(1.0 * i / getMax());
     }
 
-    /**
+    /*__
      * @return Nombre de points pour le chemin discret
      */
     public int getMax() {
         return max;
     }
 
-    /**
+    /*__
      * *
      * Définit le nombre maximal de points
      *
@@ -74,7 +74,7 @@ public abstract class Chemin extends ParametricCurve {
         this.max = n;
     }
 
-    /**
+    /*__
      * *
      * Retourne la tangente au point d'index i
      *
@@ -94,7 +94,7 @@ public abstract class Chemin extends ParametricCurve {
         throw new UnsupportedOperationException("Index non permis: " + i + "." + max);
     }
 
-    /**
+    /*__
      * *
      * Retourne les vecteurs du plan normal au point d'index i
      *

@@ -35,7 +35,7 @@ package one.empty3.apps.pad;
 import javax.swing.*;
 import java.awt.*;
 
-/**
+/*__
  * Created by Win on 26-10-18.
  */
 public class NewPlayerDialog extends JDialog {

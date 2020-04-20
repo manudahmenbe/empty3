@@ -10,7 +10,7 @@ import one.empty3.library.core.testing.TestObjetSub;
 import java.awt.*;
 
 
-/**
+/*__
  * Created by manuel on 03-10-15.
  */
 class Forme extends ParametricSurface {

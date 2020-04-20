@@ -32,7 +32,7 @@
 
 package one.empty3.library.core.physics;
 
-/**
+/*__
  * Created by manuel on 07-06-18.
  */
 public interface IForce {

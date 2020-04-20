@@ -12,10 +12,10 @@ import one.empty3.library.core.testing.TestObjet;
 
 import java.awt.*;
 
-/**
+/*__
  * Test OK
  *
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class TestBezierN extends TestObjet {
     private CourbeParametriquePolynomialeBezier b;

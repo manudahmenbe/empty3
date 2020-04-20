@@ -9,7 +9,7 @@ package tests2.repereAssocieAUneCourbeEX;
 import one.empty3.library.Point3D;
 import one.empty3.library.core.tribase.TRIObjetGenerateurAbstract;
 
-/**
+/*__
  * @author manue_001
  */
 public class TRITRINuage extends TRIObjetGenerateurAbstract {

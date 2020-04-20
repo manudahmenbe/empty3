@@ -32,7 +32,7 @@
 
 package one.empty3.library.core.raytracer.tree;
 
-/**
+/*__
  * Created by manue on 01-07-19.
  */
 public class TreeNodeDouble extends TreeNode {

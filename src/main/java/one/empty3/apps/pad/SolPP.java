@@ -30,12 +30,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/**
+/*__
  * *
  * Global license :  *
  * Microsoft Public Licence
  *
- * author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  *
  Creation time 05-nov.-2014
  *
@@ -51,9 +51,9 @@ import one.empty3.library.core.nurbs.ParametricSurface;
 
 import java.awt.*;
 
-/**
+/*__
  *
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class SolPP {
 

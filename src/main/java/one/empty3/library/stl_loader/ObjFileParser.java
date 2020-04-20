@@ -32,7 +32,7 @@
 
 package one.empty3.library.stl_loader;
 
-/**
+/*__
  * Created by manuel on 07-05-17.
  */
 public class ObjFileParser {

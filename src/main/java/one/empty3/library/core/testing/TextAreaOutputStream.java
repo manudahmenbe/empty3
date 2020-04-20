@@ -37,7 +37,7 @@
  */
 package one.empty3.library.core.testing;
 
-/**
+/*__
  * @author Se7en
  */
 /*
@@ -50,7 +50,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.io.OutputStream;
 
-/**
+/*__
  * An output stream that writes its output to a javax.swing.JTextArea
  * control.
  *
@@ -60,7 +60,7 @@ import java.io.OutputStream;
 public class TextAreaOutputStream extends OutputStream {
     private JTextArea textControl;
 
-    /**
+    /*__
      * Creates a new instance of TextAreaOutputStream which writes
      * to the specified instance of javax.swing.JTextArea control.
      *
@@ -72,7 +72,7 @@ public class TextAreaOutputStream extends OutputStream {
         textControl = control;
     }
 
-    /**
+    /*__
      * Writes the specified byte as a character to the
      * javax.swing.JTextArea.
      *

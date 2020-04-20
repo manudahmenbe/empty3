@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 import one.empty3.library.Scene;
 import org.junit.Test;
 
-/**
+/*__
  * Created by manue on 20-09-19.
  */
 public class XmlSceneTest extends TestCase {

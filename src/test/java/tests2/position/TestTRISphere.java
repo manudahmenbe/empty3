@@ -8,7 +8,7 @@ import one.empty3.library.core.tribase.TRISphere;
 
 import java.awt.*;
 
-/**
+/*__
  * @author Se7en
  */
 public class TestTRISphere extends TestObjetSub {

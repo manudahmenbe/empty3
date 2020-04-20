@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/*__
  * @author Se7en
  */
 public class TestBalleClous1 extends TestObjetSub {

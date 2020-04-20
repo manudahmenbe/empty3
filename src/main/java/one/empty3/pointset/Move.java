@@ -42,7 +42,7 @@ import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
-/**
+/*__
  * Created by manue on 16-07-19.
  */
 public class Move {

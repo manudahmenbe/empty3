@@ -31,7 +31,7 @@
  */
 
 package one.empty3.pointset;
-/***
+/*__
  *
  * Rassembler et améliorer les calculs sur des ensembles de points dans un package
  * utilisable et extensible.

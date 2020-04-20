@@ -30,12 +30,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/***
+/*__
 Global license : 
 
  CC Attribution
 
- author Manuel Dahmen <manuel.dahmen@gmx.com>
+ author Manuel Dahmen _manuel.dahmen@gmx.com_
 
  ***/
 
@@ -50,9 +50,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
+/*__
  *
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class SimpleMap extends Map
 {

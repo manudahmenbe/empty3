@@ -1,4 +1,4 @@
-/***
+/*__
  Global license :
 
  CC Attribution
@@ -16,7 +16,7 @@ import one.empty3.library.TextureCol;
 
 import java.awt.*;
 
-/**
+/*__
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 class Axes extends RepresentableConteneur {

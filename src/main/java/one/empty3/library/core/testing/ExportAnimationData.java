@@ -37,7 +37,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
-/**
+/*__
  * Created by manuel on 01-06-17.
  */
 public class ExportAnimationData {

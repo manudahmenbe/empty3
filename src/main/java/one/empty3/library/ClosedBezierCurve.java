@@ -19,7 +19,7 @@ package one.empty3.library;
 
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
 
-/**
+/*__
  * Created by manue on 27-12-19.
  */
 public class ClosedBezierCurve extends CourbeParametriquePolynomialeBezier implements ClosedCurve {

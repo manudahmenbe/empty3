@@ -30,11 +30,11 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/**
+/*__
  * *
  * Global license : * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  * <p>
  * *
  */
@@ -44,7 +44,7 @@ package one.empty3.library;
 
 import java.util.HashMap;
 
-/**
+/*__
  * @author manu
  */
 public abstract class ITexture implements MatrixPropertiesObject{
@@ -101,7 +101,7 @@ public abstract class ITexture implements MatrixPropertiesObject{
         return dm;
     }
 
-    /***
+    /*__
      * Retourne color at point (coordArr*textresx, y*textresy)
      *
      * @param x 0..1

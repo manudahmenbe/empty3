@@ -38,7 +38,7 @@ import java.io.StreamTokenizer;
 
 public class StlFileParser extends StreamTokenizer {
 
-    /**
+    /*__
      * Constructor: object creation and setup
      *
      * @param r The Reader instance
@@ -48,7 +48,7 @@ public class StlFileParser extends StreamTokenizer {
         setup();
     }
 
-    /**
+    /*__
      * Gets a number from the stream. Note that we don't recognize numbers in
      * the tokenizer automatically because numbers might be in scientific
      * notation, which isn't processed correctly by StreamTokenizer. The number
@@ -75,7 +75,7 @@ public class StlFileParser extends StreamTokenizer {
         return true;
     } // end of getNumber
 
-    /**
+    /*__
      * Method that sets some params of the Tokenizer for reading the file
      * correctly
      */

@@ -32,7 +32,7 @@
 
 package one.empty3.library.core.raytracer;
 
-/**
+/*__
  * Created by manuel on 25-12-16.
  */
 public class GeometricObject extends RtObject // (Representable

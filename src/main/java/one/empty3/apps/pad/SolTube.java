@@ -40,7 +40,7 @@ import one.empty3.library.core.tribase.TubulaireN2;
 
 import java.util.Iterator;
 
-/**
+/*__
  * Created by manuel on 25-05-17.
  */
 public class SolTube extends Terrain  {

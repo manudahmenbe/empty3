@@ -20,7 +20,7 @@ package one.empty3.library;
 import java.util.List;
 import java.util.function.Consumer;
 
-/**
+/*__
  * Created by manue on 03-11-19.
  */
 public class ArcBall {

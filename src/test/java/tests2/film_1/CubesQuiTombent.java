@@ -5,7 +5,7 @@ import one.empty3.library.LineSegment;
 import one.empty3.library.Matrix33;
 import one.empty3.library.core.testing.TestObjet;
 
-/**
+/*__
  * @author Se7en
  */
 public class CubesQuiTombent extends TestObjet {

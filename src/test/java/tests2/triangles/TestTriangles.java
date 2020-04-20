@@ -17,7 +17,7 @@ public class TestTriangles extends TestObjetSub {
     public TestTriangles() {
     }
 
-    /**
+    /*__
      * @param args
      */
     public static void main(String[] args) {

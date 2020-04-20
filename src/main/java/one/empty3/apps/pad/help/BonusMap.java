@@ -40,7 +40,7 @@ package one.empty3.apps.pad.help;
 import java.awt.*;
 import java.util.HashMap;
 
-/**
+/*__
  *
  * @author Se7en
  */

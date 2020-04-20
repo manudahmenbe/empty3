@@ -43,7 +43,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-/**
+/*__
  * @author Manuel DAHMEN
  */
 public class ApproximationFonction1D implements Courbe {

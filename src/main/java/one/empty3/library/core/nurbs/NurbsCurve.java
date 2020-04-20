@@ -30,11 +30,11 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/**
+/*__
  * *
  * Global license : * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  * <p>
  * *
  */
@@ -46,8 +46,8 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class NurbsCurve extends ParametricCurve {
     ArrayList<Double> knots = new ArrayList<>();

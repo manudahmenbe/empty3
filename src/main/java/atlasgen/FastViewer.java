@@ -32,7 +32,7 @@
 
 package atlasgen;
 
-/**
+/*__
  * Created by manue on 30-05-19.
  */
 public class FastViewer {

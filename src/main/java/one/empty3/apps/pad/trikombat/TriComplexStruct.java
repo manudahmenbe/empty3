@@ -37,7 +37,7 @@ import one.empty3.library.core.tribase.ApproximationFonction1D;
 import one.empty3.library.core.tribase.ApproximationFonction2D;
 import one.empty3.library.core.tribase.Tubulaire;
 
-/**
+/*__
  * Created by manuel on 03-09-16.
  */
 public class TriComplexStruct {
@@ -46,11 +46,11 @@ public class TriComplexStruct {
     private ApproximationFonction1D nbSpires;
 
 
-    /**
+    /*__
      * Paramètre global, statique
      */
     private Point3D vitesseGlobale;
-    /**
+    /*__
      * Vitesse dynamique, propriétés de la fonction à déterminer
      */
     private ApproximationFonction2D vitesseDansLePlanNormaleAuTube;

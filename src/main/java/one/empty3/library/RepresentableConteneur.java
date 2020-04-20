@@ -38,7 +38,7 @@ package one.empty3.library;
 
 import java.util.*;
 
-/**
+/*__
  * @author Atelier
  */
 public class RepresentableConteneur extends Representable implements IMovable, IScalable {

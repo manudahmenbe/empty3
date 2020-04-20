@@ -35,7 +35,7 @@ package atlasgen;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-/**
+/*__
  * Created by manuel on 19-06-18.
  */
 public class RelativePixeler {

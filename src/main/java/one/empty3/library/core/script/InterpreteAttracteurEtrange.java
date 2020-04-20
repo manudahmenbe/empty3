@@ -45,7 +45,7 @@ import one.empty3.library.core.extra.AttracteurEtrange;
 
 import java.util.ArrayList;
 
-/**
+/*__
  * @author Manuel
  */
 public class InterpreteAttracteurEtrange implements Interprete {

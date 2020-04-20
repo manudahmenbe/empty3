@@ -30,12 +30,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/**
+/*__
  * *
  * Global license :  *
  * CC Attribution
  *
- * author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  *
  **
  */
@@ -47,9 +47,9 @@ import one.empty3.library.Cube;
 import java.awt.*;
 import java.util.ResourceBundle;
 
-/**
+/*__
  *
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 class Vaisseau {
     private final ResourceBundle bundle;

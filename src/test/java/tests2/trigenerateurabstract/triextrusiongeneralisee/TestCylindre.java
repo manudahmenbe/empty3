@@ -1,9 +1,9 @@
-/**
+/*__
  * *
  * Global license :  *
  * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <manuel.dahmen@gmail.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  * <p>
  * *
  */
@@ -19,9 +19,9 @@ import one.empty3.library.core.tribase.TRIExtrusionGeneralisee;
 
 import java.awt.*;
 
-/**
+/*__
  *
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class TestCylindre extends TestObjetSub {
 

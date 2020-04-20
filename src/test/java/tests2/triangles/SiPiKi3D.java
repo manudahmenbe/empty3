@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class SiPiKi3D extends RepresentableConteneur {
-    /**
+    /*__
      *
      */
     private static final long serialVersionUID = 1L;
@@ -19,7 +19,7 @@ public class SiPiKi3D extends RepresentableConteneur {
         this.nRecursion = nRecursion;
     }
 
-    /**
+    /*__
      * @param args
      */
     public static void main(String[] args) {

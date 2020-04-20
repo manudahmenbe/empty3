@@ -32,7 +32,7 @@
 
 package one.empty3.library.core.iterate;
 
-/**
+/*__
  * Created by Win on 10-01-19.
  */
 public class IntervalIterator {
@@ -46,7 +46,7 @@ public class IntervalIterator {
     public IntervalIterator() {
     }
 
-    /***
+    /*__
      * Réfléchir surface et caméra en plus
      * pas 1 -1 et lsystem
      * @param step

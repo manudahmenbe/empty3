@@ -32,7 +32,7 @@
 
 package one.empty3.library.core.raytracer.tree;
 
-/**
+/*__
  * Created by Manuel Dahmen on 15-12-16.
  */
 public abstract class TreeNodeType {

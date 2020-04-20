@@ -19,7 +19,7 @@ package one.empty3.library;
 
 import java.util.Map;
 
-/**
+/*__
  * Created by manue on 06-10-19.
  */
 public interface MatrixPropertiesObject {

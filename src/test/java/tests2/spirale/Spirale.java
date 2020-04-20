@@ -1,4 +1,4 @@
-/***
+/*__
  Global license :
 
  Microsoft Public Licence
@@ -11,7 +11,7 @@ package tests2.spirale;
 
 import one.empty3.library.core.testing.TestObjetSub;
 
-/**
+/*__
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class Spirale extends TestObjetSub {

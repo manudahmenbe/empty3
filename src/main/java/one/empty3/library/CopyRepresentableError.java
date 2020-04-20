@@ -17,7 +17,7 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * Created by manue on 23-11-19.
  */
 public class CopyRepresentableError extends Exception {

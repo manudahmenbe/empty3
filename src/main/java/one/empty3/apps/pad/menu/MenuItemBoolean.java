@@ -32,7 +32,7 @@
 
 package one.empty3.apps.pad.menu;
 
-/**
+/*__
  * Created by manuel on 21-05-17.
  */
 public class MenuItemBoolean extends MenuItem {

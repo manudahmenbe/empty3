@@ -30,12 +30,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/***
+/*__
 Global license : 
 
  CC Attribution
 
- author Manuel Dahmen <manuel.dahmen@gmx.com>
+ author Manuel Dahmen _manuel.dahmen@gmx.com_
 
  ***/
 
@@ -47,9 +47,9 @@ import one.empty3.library.Point3D;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-/**
+/*__
  *
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public abstract class Map {
     public final int CARD_TYPE_COLORS = 0;

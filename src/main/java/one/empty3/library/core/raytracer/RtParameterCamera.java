@@ -34,7 +34,7 @@ package one.empty3.library.core.raytracer;
 
 import one.empty3.library.*;
 
-/**
+/*__
  * Created by manuel on 02-12-16.
  */
 public class RtParameterCamera extends RtTargetCamera {

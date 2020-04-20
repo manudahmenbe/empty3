@@ -36,7 +36,7 @@ import atlasgen.TextureOpSphere;
 
 import java.awt.image.BufferedImage;
 
-/**
+/*__
  * Created by manue on 22-06-19.
  */
 public class HeightMapSphere extends Sphere implements HeightMapSurface {

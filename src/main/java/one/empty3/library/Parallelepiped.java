@@ -42,11 +42,11 @@ package one.empty3.library;/*
  * Pour le moment le programme est entièrement accessible sans frais supplémentaire. Get the sources, build it, use it, like it, share it.
  */
 
-/**
+/*__
  * *
  * Global license : * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  * <p>
  * *
  */
@@ -56,8 +56,8 @@ import one.empty3.library.Polygon;
 import one.empty3.library.RepresentableConteneur;
 import one.empty3.library.TextureCol;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class Parallelepiped extends RepresentableConteneur {
 

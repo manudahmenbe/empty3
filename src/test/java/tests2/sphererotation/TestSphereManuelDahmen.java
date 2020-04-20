@@ -1,9 +1,9 @@
-/***
+/*__
  Global license :
 
  Microsoft Public Licence
 
- author Manuel Dahmen <manuel.dahmen@gmail.com>
+ author Manuel Dahmen _manuel.dahmen@gmx.com_
  ***/
 
 
@@ -19,11 +19,11 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/*__
  * cette classe produit une image de sphère avec "Manuel Dahmen" écrit dessus. La sphère tourne
  * puis s'en va et revient à l'écran.
  *
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class TestSphereManuelDahmen extends TestObjetSub {
     double distance = 35;

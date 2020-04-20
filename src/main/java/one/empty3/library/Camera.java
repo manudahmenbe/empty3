@@ -33,12 +33,12 @@ package one.empty3.library;
 
 import java.awt.*;
 
-/**
+/*__
  * @author Manuel Dahmen
  */
 public class Camera extends CameraBox {
 
-    /**
+    /*__
      *
      */
     public static final int PERSPECTIVE_ISOM = 0;
@@ -149,7 +149,7 @@ public class Camera extends CameraBox {
         return p2;
     }
 
-    /**
+    /*__
      * @return
      */
     public Point3D eye() {

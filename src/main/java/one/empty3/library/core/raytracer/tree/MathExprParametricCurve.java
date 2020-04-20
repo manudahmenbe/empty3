@@ -37,11 +37,11 @@ import one.empty3.library.core.nurbs.ParametricCurve;
 
 import java.util.HashMap;
 
-/**
+/*__
  * Created by manuel on 05-02-17.
  */
 public class MathExprParametricCurve extends ParametricCurve {
-    /***
+    /*__
      * t: parameter
      */
     private final String[] exprStringXyz;

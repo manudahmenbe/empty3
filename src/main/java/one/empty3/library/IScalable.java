@@ -32,7 +32,7 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * Created by manuel on 19-05-17.
  */
 public interface IScalable {

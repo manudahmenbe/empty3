@@ -39,12 +39,12 @@ import one.empty3.library.core.nurbs.SurfaceElem;
 
 import java.awt.*;
 
-/**
+/*__
  * @author Manuel
  */
 public class Polygon extends Representable implements SurfaceElem, ClosedCurve {
 
-    /**
+    /*__
      *
      */
     private StructureMatrix<Point3D> points = new StructureMatrix<>(1, Point3D.class);

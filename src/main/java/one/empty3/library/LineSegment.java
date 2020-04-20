@@ -43,7 +43,7 @@ import one.empty3.library.core.nurbs.ParametricCurve;
 
 import java.awt.*;
 
-/**
+/*__
  * @author MANUEL DAHMEN
  *         <p>
  *         dev
@@ -82,28 +82,28 @@ public class LineSegment extends ParametricCurve implements CurveElem {
         return origine.getElem().plus(extremite.getElem().moins(origine.getElem()).mult(d));
     }
 
-    /**
+    /*__
      * @return the extremite
      */
     public Point3D getExtremite() {
         return extremite.getElem();
     }
 
-    /**
+    /*__
      * @param extremite the extremite to set
      */
     public void setExtremite(Point3D extremite) {
         this.extremite.setElem(extremite);
     }
 
-    /**
+    /*__
      * @return the origine
      */
     public Point3D getOrigine() {
         return origine.getElem();
     }
 
-    /**
+    /*__
      * @param origine the origine to set
      */
     public void setOrigine(Point3D origine) {

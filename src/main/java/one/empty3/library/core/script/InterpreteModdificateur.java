@@ -41,7 +41,7 @@ import one.empty3.library.*;
 
 import java.util.ArrayList;
 
-/**
+/*__
  * @author manuel
  */
 public class InterpreteModdificateur implements Interprete {

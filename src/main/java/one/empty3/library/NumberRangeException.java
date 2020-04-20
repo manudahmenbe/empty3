@@ -32,7 +32,7 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * Created by Win on 28-08-18.
  */
 public class NumberRangeException extends Throwable {

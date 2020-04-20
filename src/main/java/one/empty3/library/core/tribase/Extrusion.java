@@ -37,7 +37,7 @@
  */
 package one.empty3.library.core.tribase;
 
-/**
+/*__
  * @author Manuel DAHMEN
  */
 public class Extrusion {

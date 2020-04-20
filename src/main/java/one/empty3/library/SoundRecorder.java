@@ -36,7 +36,7 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
-/**
+/*__
  * Created by manue on 03-09-15.
  */
 public class SoundRecorder {

@@ -38,7 +38,7 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.logging.Logger;
 
-/**
+/*__
  * Created by manue on 12-08-19.
  */
 public class WriteManifest {

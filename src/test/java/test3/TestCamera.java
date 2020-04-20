@@ -4,7 +4,7 @@ import one.empty3.library.Camera;
 import one.empty3.library.Point3D;
 import org.junit.Test;
 
-/**
+/*__
  * Created by manue on 11-09-19.
  */
 public class TestCamera {

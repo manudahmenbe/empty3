@@ -62,7 +62,7 @@ import java.util.Iterator;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-/**
+/*__
  * @author Manuel DAHMEN
  */
 public abstract class TestObjet implements Test, Runnable {
@@ -1088,7 +1088,7 @@ compiler. init(avif.getAbsolutePath()
 
     }
 
-    /**
+    /*__
      * Definir la scene scene().add(<<Representable>>)
      *
      * @throws java.lang.Exception

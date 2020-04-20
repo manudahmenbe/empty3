@@ -34,7 +34,7 @@ package atlasgen.tests;
 
 import one.empty3.library.core.testing.TestObjet;
 
-/**
+/*__
  * Created by manue on 11-05-19.
  */
 public class TestEarth2 extends TestObjet {

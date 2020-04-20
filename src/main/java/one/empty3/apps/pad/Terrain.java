@@ -28,12 +28,12 @@
  *
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
- */    /**
+ */    /*__
  * *
  * Global license :  *
  * CC Attribution
  *
- * author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  *
  **
  */
@@ -44,9 +44,9 @@ import one.empty3.library.Point3D;
 import one.empty3.library.RepresentableConteneur;
 import one.empty3.library.core.nurbs.ParametricSurface;
 
-/**
+/*__
  *
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public abstract class Terrain extends RepresentableConteneur {
     protected ParametricSurface ps;
@@ -76,7 +76,7 @@ public abstract class Terrain extends RepresentableConteneur {
         Point3D v2 = ps.calculerPoint3D(u, v+ps.getIncrV()).moins(ps.calculerPoint3D(u, v));
         return v1.prodVect(v2);
     }
-    /***
+    /*__
      * 
      * @param u X-coordonnée [0-1] sur la surface
      * @param v Y-coordonnée [0-1] sur la surface

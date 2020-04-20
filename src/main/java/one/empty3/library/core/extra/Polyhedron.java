@@ -42,7 +42,7 @@ import one.empty3.library.*;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
-/**
+/*__
  * @author MANUEL DAHMEN
  *         <p>
  *         dev
@@ -163,7 +163,7 @@ public class Polyhedron extends Representable implements TRIConteneur {
         steps();
     }
 
-    /**
+    /*__
      * @param p 0
      */
     public void add(Point3D p) {
@@ -177,7 +177,7 @@ public class Polyhedron extends Representable implements TRIConteneur {
         steps();
     }
 
-    /**
+    /*__
      *
      */
     public void deleteAll() {

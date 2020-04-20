@@ -1,4 +1,4 @@
-/**
+/*__
  * *
  * Global license :  *
  * Microsoft Public Licence
@@ -16,7 +16,7 @@ import one.empty3.library.Point3D;
 import one.empty3.library.core.nurbs.SurfaceParametricPolygonalBezier;
 import one.empty3.library.core.testing.TestObjetSub;
 
-/**
+/*__
  *
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */

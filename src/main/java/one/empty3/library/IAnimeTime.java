@@ -36,7 +36,7 @@
  */
 package one.empty3.library;
 
-/**
+/*__
  * @author Se7en
  */
 public interface IAnimeTime {

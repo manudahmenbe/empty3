@@ -37,7 +37,7 @@ import one.empty3.library.Scene;
 import one.empty3.library.ZBuffer;
 import one.empty3.library.core.raytracer.RtRaytracer;
 
-/**
+/*__
  * Created by Manuel Dahmen on 15-12-16.
  */
 public abstract class GeometricSolution {

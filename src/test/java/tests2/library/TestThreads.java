@@ -1,4 +1,4 @@
-/***
+/*__
  Global license :
 
  CC Attribution
@@ -9,7 +9,7 @@
 
 package tests2.library;
 
-/**
+/*__
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class TestThreads {

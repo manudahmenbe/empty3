@@ -32,7 +32,7 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * Created by manue on 17-03-19.
  */
 public interface HeightMapSurface {

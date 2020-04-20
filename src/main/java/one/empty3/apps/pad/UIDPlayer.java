@@ -35,7 +35,7 @@ package one.empty3.apps.pad;
 import java.net.URL;
 import java.util.Date;
 
-/**
+/*__
  * Created by manuel on 19-05-17.
  */
 public class UIDPlayer {

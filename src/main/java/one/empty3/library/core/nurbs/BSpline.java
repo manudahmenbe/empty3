@@ -37,7 +37,7 @@ import one.empty3.library.StructureMatrix;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
+/*__
  * @author Manuel Dahmen
  *
  * BSpline

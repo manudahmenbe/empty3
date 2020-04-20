@@ -36,7 +36,7 @@ import one.empty3.library.core.tribase.ApproximationFonction1D;
 
 import java.util.ArrayList;
 
-/**
+/*__
  * Created by manuel on 29-07-16.
  * <p>
  * Opacités
@@ -51,19 +51,19 @@ public class Trainee {
     private ArrayList<Point3D> traines;
     private ApproximationFonction1D taillesF;
     private ArrayList<Double> taille;
-    /***
+    /*__
      * Distance Unité : px
      */
     private Double distMax;
-    /***
+    /*__
      * Distance Unité : px
      */
     private Double distMin;
-    /***
+    /*__
      * double 0..1
      */
     private ArrayList<Double> opacites;
-    /***
+    /*__
      * Fonction définie sur [0,taille] à valeur dans [0,1]
      */
     private ApproximationFonction1D opacitesF;

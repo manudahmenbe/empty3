@@ -144,7 +144,7 @@ public class InterpreteFacade {
         }
     }
 
-    /**
+    /*__
      * *
      *
      * @return segment de droite
@@ -166,7 +166,7 @@ public class InterpreteFacade {
 
     }
 
-    /**
+    /*__
      * @return @throws InterpreteException
      */
     public SimpleSphere intepreteSimpleSphere() throws InterpreteException {
@@ -674,7 +674,7 @@ public class InterpreteFacade {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    /**
+    /*__
      * @return @throws InterpreteException
      */
     public Tetraedre interpreteTetraedre() throws InterpreteException {

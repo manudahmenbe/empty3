@@ -1,4 +1,4 @@
-/**
+/*__
  * *
  * Global license : * CC Attribution
  * <p>
@@ -15,7 +15,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
+/*__
  *
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */

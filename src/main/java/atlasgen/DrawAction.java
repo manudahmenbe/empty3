@@ -34,7 +34,7 @@ package atlasgen;
 
 import java.awt.*;
 
-/**
+/*__
  * Created by manue on 19-06-18.
  */
 public class DrawAction implements Action {

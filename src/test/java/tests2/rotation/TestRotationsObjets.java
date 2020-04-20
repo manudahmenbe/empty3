@@ -1,9 +1,9 @@
-/***
+/*__
  * Global license :
  * <p>
  * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <manuel.dahmen@gmail.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  ***/
 
 
@@ -17,11 +17,11 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 
-/**
+/*__
  * cette classe produit une image de sphère avec "Manuel Dahmen" écrit dessus. La sphère tourne
  * puis s'en va et revient à l'écran.
  *
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class TestRotationsObjets extends TestObjetSub {
     static int nObjets = 2;
@@ -78,7 +78,7 @@ public class TestRotationsObjets extends TestObjetSub {
         new Thread(ts).start();
     }
 
-    /***
+    /*__
      * On laisse la caméra toujours à la même place dans ce test, et on fait tourner les objets
      */
     @Override

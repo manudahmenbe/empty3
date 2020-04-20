@@ -32,7 +32,7 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * Created by manuel on 21-10-16.
  */
 public class Intersects {

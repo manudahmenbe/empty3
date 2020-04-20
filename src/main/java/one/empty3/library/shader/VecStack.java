@@ -1,7 +1,7 @@
 package one.empty3.library.shader;
 import one.empty3.library.core.raytracer.tree.*;
 import one.empty3.library.*;
-/***
+/*__
 *  VecStack. 
 * fonctions vecteurs
 * a parser à partir d'un fichirr xml ptmrporre
@@ -13,7 +13,7 @@ public class VecStack extends VecAlTree {
 
 
 
-/***
+/*__
 * @param in in() [i:int] 
 * @param out out() [i : int]
 * @param formula f(in, out) 

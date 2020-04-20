@@ -36,7 +36,7 @@
  */
 package one.empty3.library;
 
-/**
+/*__
  * @author Atelier
  */
 public class POINT3D_RIO extends Point3D {
@@ -45,7 +45,7 @@ public class POINT3D_RIO extends Point3D {
     public static final Point3D Y = new Point3D(0d, 1d, 0d);
     public static final Point3D Z = new Point3D(0d, 0d, 1d);
     public static final Point3D O0 = new Point3D(0d, 0d, 0d);
-    /**
+    /*__
      *
      */
     private static final long serialVersionUID = -5729435529487300122L;

@@ -3,7 +3,7 @@ package tests2.borromeanRings;
 import one.empty3.library.Point3D;
 import one.empty3.library.core.nurbs.ParametricCurve;
 
-/**
+/*__
  * Created by Win on 11-09-18.
  */
 public class BorromeanRings extends ParametricCurve {

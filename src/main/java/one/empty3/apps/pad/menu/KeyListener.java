@@ -34,7 +34,7 @@ package one.empty3.apps.pad.menu;
 
 import java.awt.event.KeyEvent;
 
-/**
+/*__
  * Created by manuel on 21-05-17.
  */
 public class KeyListener implements java.awt.event.KeyListener {

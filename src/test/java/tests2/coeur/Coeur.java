@@ -1,4 +1,4 @@
-/***
+/*__
  Global license :
 
  Microsoft Public Licence
@@ -14,7 +14,7 @@ package tests2.coeur;
 import one.empty3.library.Point3D;
 import one.empty3.library.core.tribase.TRIObjetGenerateurAbstract;
 
-/**
+/*__
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class Coeur extends TRIObjetGenerateurAbstract {

@@ -37,7 +37,7 @@
  */
 package one.empty3.apps.pad.help;
 
-/**
+/*__
  *
  * @author Se7en
  */

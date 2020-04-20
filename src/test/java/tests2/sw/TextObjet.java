@@ -9,7 +9,7 @@ import one.empty3.library.core.tribase.Plan3D;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-/**
+/*__
  * Created by Win on 16-01-16.
  */
 public class TextObjet extends Plan3D {

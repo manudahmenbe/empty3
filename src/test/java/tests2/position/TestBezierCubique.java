@@ -4,7 +4,7 @@
  */
 package tests2.position;
 
-/**
+/*__
  * @author Se7en
  */
 public class TestBezierCubique {

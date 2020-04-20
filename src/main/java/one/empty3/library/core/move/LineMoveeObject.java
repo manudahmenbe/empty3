@@ -36,7 +36,7 @@ import one.empty3.library.LineSegment;
 import one.empty3.library.MoveeObject;
 import one.empty3.library.Point3D;
 
-/**
+/*__
  * Created by manuel on 29-06-17.
  */
 public class LineMoveeObject extends LineTrajectory implements MoveeObject {

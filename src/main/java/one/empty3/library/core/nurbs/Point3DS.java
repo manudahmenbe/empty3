@@ -34,7 +34,7 @@ package one.empty3.library.core.nurbs;
 
 import one.empty3.library.*;
 
-/**
+/*__
  * Created by manue on 28-04-19.
  */
 public class Point3DS extends ParametricCurve {

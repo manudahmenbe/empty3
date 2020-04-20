@@ -37,7 +37,7 @@ import one.empty3.library.core.raytracer.tree.AlgebraicFormulaSyntaxException;
 import one.empty3.library.core.raytracer.tree.AlgebricTree;
 import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
 
-/**
+/*__
  * Created by manue on 28-05-19.
  */
 public class FctXY extends Fct1D_1D {

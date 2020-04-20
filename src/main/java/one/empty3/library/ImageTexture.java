@@ -44,7 +44,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 
-/**
+/*__
  * @author manu
  */
 public class ImageTexture extends ITexture {
@@ -173,7 +173,7 @@ public class ImageTexture extends ITexture {
     }
 
 
-    /**
+    /*__
      * Quadrilatère numQuadX = 1, numQuadY = 1, coordArr, y 3----2 ^2y |\ | | 4 |
      * 0--\-1 1 -> 2x
      *
@@ -205,7 +205,7 @@ public class ImageTexture extends ITexture {
         }
     }
 */
-    /**
+    /*__
      * +|--r11->/-----| y^r12^ 0/1 ^r12^ -|-----/<-r11--|+coordArr
      *
      * @param numQuadX

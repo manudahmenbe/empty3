@@ -33,7 +33,7 @@ package one.empty3.library.core.extra;
 
 import one.empty3.library.*;
 
-/**
+/*__
  * @author manuel
  */
 public final class AttracteurEtrange extends Representable implements POConteneur {

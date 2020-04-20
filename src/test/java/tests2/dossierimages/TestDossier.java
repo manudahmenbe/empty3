@@ -13,7 +13,7 @@ import one.empty3.library.core.tribase.Plan3D;
 import java.awt.*;
 import java.io.File;
 
-/**
+/*__
  * @author Se7en
  */
 public class TestDossier extends TestObjetSub {

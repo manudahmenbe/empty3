@@ -76,7 +76,7 @@ public abstract class Drawer {
 
     }
 
-    /**
+    /*__
      *
      * @param p Point 2D in the window (mouse cordinates)
      * @return Segment Near Far direction of click

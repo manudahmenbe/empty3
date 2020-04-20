@@ -2,7 +2,7 @@ package tests2;
 
 import one.empty3.library.core.testing.TestObjetSub;
 
-/**
+/*__
  * Manuel Dahmen
  */
 public abstract class App {

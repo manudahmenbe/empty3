@@ -41,7 +41,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-/**
+/*__
  * Created by manuel on 19-05-17.
  */
 public class Game {

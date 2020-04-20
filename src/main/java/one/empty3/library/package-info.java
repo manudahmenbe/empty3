@@ -30,14 +30,14 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/**
+/*__
  * *
  *
  * @author Manuel Dahmen
  */
 package one.empty3.library;
 
-/**
+/*__
  * *
  *
  * @author manuel Dahmen

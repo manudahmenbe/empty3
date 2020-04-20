@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
 
-/**
+/*__
  * Created by manue on 07-09-19.
  */
 public class StructureMatrixTest {

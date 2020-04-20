@@ -38,7 +38,7 @@ import javax.swing.text.NumberFormatter;
 import java.io.File;
 import java.text.DecimalFormat;
 
-/**
+/*__
  * Created by Win on 06-07-18.
  */
 public class Seriald {

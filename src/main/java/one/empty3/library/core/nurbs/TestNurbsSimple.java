@@ -30,11 +30,11 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/**
+/*__
  * *
  * Global license : * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  * <p>
  * *
  */
@@ -47,8 +47,8 @@ import one.empty3.library.core.testing.TestObjetSub;
 
 import java.awt.*;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class TestNurbsSimple extends TestObjetSub {
 

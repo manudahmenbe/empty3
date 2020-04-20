@@ -5,7 +5,7 @@ import one.empty3.library.core.lighting.Colors;
 import one.empty3.library.core.move.Trajectoires;
 import one.empty3.library.core.testing.TestObjetSub;
 
-/**
+/*__
  * Created by Win on 28-08-18.
  */
 public class TestCircles extends TestObjetSub {

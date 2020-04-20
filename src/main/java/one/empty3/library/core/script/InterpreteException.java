@@ -50,7 +50,7 @@ public class InterpreteException extends Exception {
         super(string);
     }
 
-    /**
+    /*__
      * @param string
      * @param e
      */

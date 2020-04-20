@@ -89,7 +89,7 @@ public class TRIExtrusionGeneralisee extends ParametricSurface {
         T = curve.getElem().tangente(u);
 
 
-        /**
+        /*__
          * Plan normal pour le chemin
          *
          */

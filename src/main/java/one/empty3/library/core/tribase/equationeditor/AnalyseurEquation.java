@@ -30,12 +30,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/***
+/*__
  * Global license :
  * <p>
  * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <manuel.dahmen@gmail.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  ***/
 
 
@@ -48,8 +48,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class AnalyseurEquation {
     public Symbole topOf;

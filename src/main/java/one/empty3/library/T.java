@@ -36,7 +36,7 @@ package one.empty3.library;
 
 import one.empty3.library.core.nurbs.Fct1D_1D;
 
-/**
+/*__
  * Created by manue on 05-01-20.
  */
 public class T {
@@ -116,7 +116,7 @@ public class T {
     }
 
 
-    /****
+    /*__*
      * Set function for the object X
      * @param curveT curveT = curve t=f(t0)
      */

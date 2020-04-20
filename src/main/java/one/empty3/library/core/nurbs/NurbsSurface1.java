@@ -30,11 +30,11 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/**
+/*__
  * *
  * Global license : * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  * <p>
  * *
  */
@@ -43,14 +43,14 @@ package one.empty3.library.core.nurbs;
 import one.empty3.library.Point3D;
 import one.empty3.library.core.tribase.TRIObjetGenerateurAbstract;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class NurbsSurface1 extends TRIObjetGenerateurAbstract {
 
     public static final int type_coordU = 0;
     public static final int type_coordV = 1;
-    /**
+    /*__
      * *
      * <p>
      * degree:
@@ -253,7 +253,7 @@ public class NurbsSurface1 extends TRIObjetGenerateurAbstract {
         return s + "\n\n)";
     }
 
-    /**
+    /*__
      * *
      * "Knots"
      */
@@ -281,7 +281,7 @@ public class NurbsSurface1 extends TRIObjetGenerateurAbstract {
         }
     }
 
-    /**
+    /*__
      * *
      * Point3D Weight associated
      */

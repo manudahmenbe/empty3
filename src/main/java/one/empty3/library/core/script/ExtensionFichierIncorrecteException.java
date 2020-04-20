@@ -31,7 +31,7 @@
  */
 package one.empty3.library.core.script;
 
-/**
+/*__
  * @author Atelier
  */
 public class ExtensionFichierIncorrecteException extends Exception {

@@ -43,7 +43,7 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/*__
  * @author manue_001
  */
 public class RegisterOutput {

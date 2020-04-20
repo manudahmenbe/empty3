@@ -38,7 +38,7 @@ import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
 
 import java.util.HashMap;
 
-/**
+/*__
  * Created by manue on 16-07-19.
  *
  * '"

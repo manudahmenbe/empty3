@@ -32,7 +32,7 @@
 
 package one.empty3.library.core.raytracer.tree;
 
-/**
+/*__
  * Created by manuel on 16-12-16.
  */
 public class TermTreeNodeType extends TreeNodeType {

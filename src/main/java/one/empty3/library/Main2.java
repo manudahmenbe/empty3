@@ -35,7 +35,7 @@ package one.empty3.library;
 import javax.swing.*;
 import java.awt.*;
 
-/**
+/*__
  * Created by manuel on 25-01-17.
  */
 public class Main2 extends JFrame {

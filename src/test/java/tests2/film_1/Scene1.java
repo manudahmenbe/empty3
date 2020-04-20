@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 ;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class Scene1 extends TestObjet {
     private static final int NUMBRE = 50;

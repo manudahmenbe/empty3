@@ -34,7 +34,7 @@ package one.empty3.library.core.nurbs;
 
 import one.empty3.library.Point3D;
 
-/**
+/*__
  * Created by manue on 31-05-19.
  */
 public class ThickCurveBehavior extends ParametricSurface{

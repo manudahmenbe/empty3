@@ -6,7 +6,7 @@ import one.empty3.library.core.tribase.TRISphere;
 
 import java.awt.*;
 
-/**
+/*__
  * Created by Win on 24-01-16.
  */
 public class TestSpheresTournent extends TestObjetSub {

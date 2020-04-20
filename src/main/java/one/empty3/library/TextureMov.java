@@ -49,7 +49,7 @@ public class TextureMov extends ITexture {
     private StructureMatrix<File> fileStructureMatrix = new StructureMatrix<>(0, File.class);
     private File file = null;
     private int transparent = Color.WHITE.getRGB();
-    /**
+    /*__
      * The video stream index, used to ensure we display frames from one and
      * only one video stream from the media container.
      */

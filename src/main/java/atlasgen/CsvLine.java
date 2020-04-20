@@ -34,7 +34,7 @@ package atlasgen;
 
 import java.util.List;
 
-/**
+/*__
  * Created by manue on 19-06-18.
  */
 public class CsvLine {

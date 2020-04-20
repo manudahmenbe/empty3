@@ -34,7 +34,7 @@ package one.empty3.library;
 
 import one.empty3.library.core.nurbs.ParametricCurve;
 
-/****
+/*__*
  *
  * TODO Check all the constructors.
  *

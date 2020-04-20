@@ -52,7 +52,7 @@ public class Tetraedre extends Representable implements TRIGenerable {
         obj = new TRIObject();
     }
 
-    /**
+    /*__
      * @param ps
      * @param c
      */

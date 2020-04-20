@@ -34,7 +34,7 @@ package one.empty3.library.core.nurbs;
 
 import one.empty3.library.Point3D;
 
-/**
+/*__
  * Created by manue on 30-07-19.
  */
 public class P3Matrix  {

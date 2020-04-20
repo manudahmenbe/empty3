@@ -41,7 +41,7 @@ import one.empty3.library.*;
 
 import java.io.File;
 
-/**
+/*__
  * @author Manuel
  */
 public class Puzzle implements TRIGenerable {

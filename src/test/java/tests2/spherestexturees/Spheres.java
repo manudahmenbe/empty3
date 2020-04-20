@@ -4,7 +4,7 @@ import one.empty3.library.*;
 import one.empty3.library.core.lighting.Colors;
 import one.empty3.library.core.testing.TestObjetSub;
 
-/**
+/*__
  * @author Manuel DAHMEN
  */
 public class Spheres extends TestObjetSub {

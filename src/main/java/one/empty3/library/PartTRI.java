@@ -33,7 +33,7 @@
 package one.empty3.library;
 
 
-/**
+/*__
  * Created by manue on 01-03-19.
  */
 public class PartTRI extends TRI {

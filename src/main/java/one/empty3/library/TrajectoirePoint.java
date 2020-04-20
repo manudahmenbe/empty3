@@ -92,7 +92,7 @@ public class TrajectoirePoint implements Trajectoire {
         return points[ind + 1].mult(indD - t).plus(points[ind].mult(duree[ind] - (indD - t)));
     }
 
-    /**
+    /*__
      * *
      * * DEPRECATED
      */
@@ -100,7 +100,7 @@ public class TrajectoirePoint implements Trajectoire {
         return 0.0;
     }
 
-    /**
+    /*__
      * *
      * * DEPRECATED
      */

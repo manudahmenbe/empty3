@@ -36,7 +36,7 @@ import one.empty3.library.*;
 
 import java.util.ArrayList;
 
-/**
+/*__
  * @author Manuel DAHMEN @date
  */
 public class InterpreteCamera implements Interprete {

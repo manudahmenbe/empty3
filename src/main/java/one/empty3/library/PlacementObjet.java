@@ -37,7 +37,7 @@
  */
 package one.empty3.library;
 
-/**
+/*__
  * @author manuel
  */
 public class PlacementObjet {

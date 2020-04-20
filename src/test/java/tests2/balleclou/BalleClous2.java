@@ -10,7 +10,7 @@ import one.empty3.library.Sphere;
 
 import java.util.ArrayList;
 
-/**
+/*__
  * @author Manuel Dahmen
  */
 public class BalleClous2 extends Sphere {

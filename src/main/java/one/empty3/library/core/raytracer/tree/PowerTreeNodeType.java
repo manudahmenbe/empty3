@@ -32,7 +32,7 @@
 
 package one.empty3.library.core.raytracer.tree;
 
-/**
+/*__
  * Created by manue on 21-08-19.
  */
 public class PowerTreeNodeType extends TreeNodeType {

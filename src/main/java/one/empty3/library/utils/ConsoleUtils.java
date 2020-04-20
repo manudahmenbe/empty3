@@ -37,7 +37,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
+/*__
  * Created by manuel on 30-11-16.
  */
 public class ConsoleUtils {

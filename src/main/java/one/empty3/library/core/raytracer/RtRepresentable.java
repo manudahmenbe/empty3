@@ -34,7 +34,7 @@ package one.empty3.library.core.raytracer;
 
 import one.empty3.library.*;
 
-/**
+/*__
  * Created by manuel on 02-10-16.
  */
 public class RtRepresentable extends RtObject {

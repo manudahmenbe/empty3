@@ -38,7 +38,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
+/*__
  * Created by manuel on 19-05-17.
  */
 public class ListSearch<E> extends ArrayList<E> {

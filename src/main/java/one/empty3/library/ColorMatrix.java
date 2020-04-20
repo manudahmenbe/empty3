@@ -39,7 +39,7 @@ package one.empty3.library;
 
 public class ColorMatrix<E> extends Representable {
 
-    /**
+    /*__
      *
      */
     private static final long serialVersionUID = 8229059930778672554L;

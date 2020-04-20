@@ -30,10 +30,10 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/**
+/*__
  * *
  * Global license  GNU GPL v2
- * author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 package one.empty3.library;
 
@@ -46,7 +46,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
-/**
+/*__
  * * Classe de rendu graphique
  */
 public class ZBufferImpl extends Representable implements ZBuffer {
@@ -59,7 +59,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     public static final int SURFACE_DISPLAY_COL_TRI = 4;
     public static final int SURFACE_DISPLAY_LINES = 5;
     public static final int SURFACE_DISPLAY_POINTS = 6;
-    /**
+    /*__
      * Couleur de fond (texture: couleur, image, vidéo, ...
      */
     // DEFINITIONS
@@ -496,7 +496,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         return new ZBufferImpl(x, y);
     }
 
-    /**
+    /*__
      * @return hauteur du zbuffer
      */
     public int hauteur() {
@@ -537,7 +537,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     }
 
 
-    /**
+    /*__
      * @return largeur du zbuffer
      */
     public int largeur() {
@@ -545,7 +545,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     }
 
     @Override
-    /**
+    /*__
      * @param p1 first point
      * @param p2 second point
      * @param t  colour of de la line
@@ -1114,7 +1114,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         public float w = 10.0f;
         public float h = w * la / ha;
 
-        /**
+        /*__
          * @param scene
          */
         public Box2DPerspective(Scene scene) {
@@ -1375,7 +1375,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         return clickAt((int) (x * largeur()), (int) y * hauteur());
     }
 
-    /***
+    /*__
      *
      * @param x Coordonnees de l'image ds ZBuffer
      * @param y Coordonnees de l'image ds ZBuffer
@@ -1387,7 +1387,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         return p;
     }
 
-    /***
+    /*__
      *
      * @param x Coordonnees de l'image ds ZBuffer
      * @param y Coordonnees de l'image ds ZBuffer
@@ -1398,7 +1398,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         return p;
     }
 
-    /***
+    /*__
      *
      * @param x Coordonnées dans le composant
      * @param y Coordonnées dans le composant

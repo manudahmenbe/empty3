@@ -37,14 +37,14 @@ import one.empty3.library.Matrix33;
 import one.empty3.library.Point3D;
 import one.empty3.library.StructureMatrix;
 
-/**
+/*__
  * @author Manuel Dahmen
  */
 public class CameraInPath extends Camera {
     private double angleA = 0;
     private double angleB = 0;
 
-    /**
+    /*__
      * Need to get a position of the camera since it's a Z-axis
      * Rotate, position angles around the camera.
      */

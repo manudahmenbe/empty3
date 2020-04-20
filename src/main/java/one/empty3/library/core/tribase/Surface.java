@@ -39,7 +39,7 @@ public abstract class Surface extends ParametricCurve {
 
     protected int max = 100;
 
-    /**
+    /*__
      * Point d'index i sur Max
      *
      * @param i index

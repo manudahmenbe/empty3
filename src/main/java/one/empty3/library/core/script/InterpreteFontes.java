@@ -35,7 +35,7 @@
  Vous êtes libre de :
 
  */
-/**
+/*__
  *
  */
 package one.empty3.library.core.script;
@@ -48,7 +48,7 @@ import one.empty3.library.Representable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-/**
+/*__
  * @author MANUEL DAHMEN
  *         <p>
  *         dev

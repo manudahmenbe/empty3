@@ -1,6 +1,6 @@
 package tests2.neurone;
 
-/**
+/*__
  * @author Se7en
  */
 public abstract class Neurone {

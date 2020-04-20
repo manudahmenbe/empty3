@@ -32,7 +32,7 @@
 
 package one.empty3.library.core.raytracer.tree.solvers;
 
-/**
+/*__
  * Created by manuel on 30-12-16.
  */
 public class OctopusChange {

@@ -21,12 +21,12 @@ import one.empty3.library.*;
 
 import java.awt.*;
 
-/**
+/*__
  * Created by manue on 23-11-19.
  */
 public class CameraArcBall {
 
-/**
+/*__
  * Created by manue on 06-11-19.
  */
     private final ZBufferImpl zBuffer;
@@ -37,7 +37,7 @@ public class CameraArcBall {
     private double lastX, lastY;
     private Representable representable;
 
-    /**
+    /*__
      *
      * @param ray origin: camera.eye ; extrem : vector dir
      * @return t :: orig+t*v

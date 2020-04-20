@@ -1,9 +1,9 @@
-/***
+/*__
  Global license :
 
  Microsoft Public Licence
 
- author Manuel Dahmen <manuel.dahmen@gmail.com>
+ author Manuel Dahmen _manuel.dahmen@gmx.com_
  ***/
 
 
@@ -15,8 +15,8 @@ import one.empty3.library.core.tribase.*;
 
 import java.awt.*;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class TestTore extends TestObjetSub {
     public static void main(String[] args) {

@@ -30,12 +30,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/***
+/*__
 Global license : 
 
  CC Attribution
 
- author Manuel Dahmen <manuel.dahmen@gmx.com>
+ author Manuel Dahmen _manuel.dahmen@gmx.com_
 
  ***/
 
@@ -45,9 +45,9 @@ package one.empty3.apps.pad;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/*__
  *
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class TestTimer {
     public static void main(String [] args) {

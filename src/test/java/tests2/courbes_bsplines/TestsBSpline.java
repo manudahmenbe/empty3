@@ -10,10 +10,10 @@ import one.empty3.library.TextureCol;
 
 import java.awt.*;
 
-/**
+/*__
  * Test BAD UGLY COMME TA MERE
  *
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class TestsBSpline {
     public static double[] u(int N) {

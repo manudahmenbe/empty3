@@ -30,11 +30,11 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/**
+/*__
  * *
  * Global license : * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  * <p>
  * *
  */
@@ -46,8 +46,8 @@ import one.empty3.library.core.nurbs.NurbsSurface;
 
 import java.util.ArrayList;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class InterpreteNurbs implements Interprete {
 
@@ -65,7 +65,7 @@ public class InterpreteNurbs implements Interprete {
     public Object interprete(String text, int pos) throws InterpreteException {
         NurbsSurface nurbs = new NurbsSurface();
 
-        /**
+        /*__
          * ( m n (
          */
         InterpretesBase ib;
@@ -91,7 +91,7 @@ public class InterpreteNurbs implements Interprete {
         Integer m = (Integer) o.get(3);
         Integer n = (Integer) o.get(4);
 
-        /**
+        /*__
          * *
          * Tableau de points3D et poids;
          */
@@ -128,7 +128,7 @@ public class InterpreteNurbs implements Interprete {
 
         nurbs.setMaillage(points, poids);
 
-        /**
+        /*__
          * )
          */
         pattern = new ArrayList<Integer>();
@@ -142,7 +142,7 @@ public class InterpreteNurbs implements Interprete {
         ib.read(text, pos);
         pos = ib.getPosition();
 
-        /**
+        /*__
          * i j (
          */
         //nurbs.texture(tc);
@@ -186,7 +186,7 @@ public class InterpreteNurbs implements Interprete {
 
         nurbs.setReseauFonction(T);
 
-        /**
+        /*__
          * )
          */
         pattern = new ArrayList<Integer>();
@@ -200,7 +200,7 @@ public class InterpreteNurbs implements Interprete {
         ib.read(text, pos);
         pos = ib.getPosition();
 
-        /**
+        /*__
          * *
          * )
          */

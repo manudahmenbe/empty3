@@ -9,7 +9,7 @@ import one.empty3.library.Point3D;
 import one.empty3.library.core.nurbs.ParametricCurve;
 
 
-/**
+/*__
  * @author Se7en
  */
 public class CourbeChoisieRandom extends ParametricCurve {
@@ -18,7 +18,7 @@ public class CourbeChoisieRandom extends ParametricCurve {
     private final double l;
     private final double n;
 
-    /**
+    /*__
      * Dimension de la spire
      *
      * @param h

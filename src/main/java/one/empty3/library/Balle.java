@@ -35,7 +35,7 @@ package one.empty3.library;
 import one.empty3.library.core.nurbs.CameraInPath;
 import one.empty3.library.core.nurbs.Fct2D_1D;
 
-/**
+/*__
  * Created by manue on 22-06-19.
  */
 

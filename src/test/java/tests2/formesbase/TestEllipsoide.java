@@ -1,4 +1,4 @@
-/**
+/*__
  * *
  * Global license :  *
  * Microsoft Public Licence
@@ -14,9 +14,9 @@ import one.empty3.library.Point3D;
 import one.empty3.library.core.testing.TestObjetSub;
 import one.empty3.library.core.tribase.TRIEllipsoide;
 
-/**
+/*__
  *
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class TestEllipsoide extends TestObjetSub {
 

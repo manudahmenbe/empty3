@@ -17,7 +17,7 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * Created by manue on 27-12-19.
  */
 public interface ClosedCurve {

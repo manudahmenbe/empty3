@@ -36,7 +36,7 @@
  */
 package one.empty3.library.core.testing;
 
-/**
+/*__
  * @author Manuel DAHMEN
  */
 public interface Report {

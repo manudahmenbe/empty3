@@ -407,7 +407,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
          circuit = mover.getCircuit();
          if(circuit!=null)
          draw((TRIConteneur)circuit, glu, gl);
-         /**/
+         /*__/
         if (toggleMenu == null)
             return;
         if (toggleMenu.isDisplayBonus()) {

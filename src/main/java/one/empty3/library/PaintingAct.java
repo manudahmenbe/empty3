@@ -32,7 +32,7 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * Created by manue on 08-10-15.
  */
 public abstract class PaintingAct {

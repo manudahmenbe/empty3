@@ -36,7 +36,7 @@ import one.empty3.library.core.nurbs.ParametricCurve;
 
 import java.util.List;
 
-/**
+/*__
  * Created by manue on 20-06-19.
  */
 public class PolyLine extends ParametricCurve {

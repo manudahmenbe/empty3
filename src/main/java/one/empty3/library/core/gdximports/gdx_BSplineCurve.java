@@ -38,8 +38,8 @@ import com.badlogic.gdx.utils.Array;
 import one.empty3.library.Point3D;
 import one.empty3.library.core.nurbs.ParametricCurve;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class gdx_BSplineCurve extends ParametricCurve {
     int degree;

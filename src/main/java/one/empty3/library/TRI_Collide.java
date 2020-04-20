@@ -32,7 +32,7 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * Created by manue on 30-05-19.
  */
 public class TRI_Collide {

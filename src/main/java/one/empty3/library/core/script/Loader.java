@@ -760,7 +760,7 @@ public class Loader implements SceneLoader {
         return !failed;
     }
 
-    /**
+    /*__
      * @param string
      * @param s
      */

@@ -7,7 +7,7 @@ import one.empty3.library.core.lighting.Colors;
 import one.empty3.library.core.testing.TestObjet;
 import one.empty3.library.core.tribase.TRISphere;
 
-/**
+/*__
  * Created by Manuel Dahmen on 05-02-16.
  */
 public class TestSpheres extends TestObjet {

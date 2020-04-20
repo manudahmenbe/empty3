@@ -1,4 +1,4 @@
-/***
+/*__
  Global license :
 
  CC Attribution
@@ -14,7 +14,7 @@ import one.empty3.library.Point3D;
 import one.empty3.library.RepresentableConteneur;
 import one.empty3.library.core.testing.TestObjetSub;
 
-/**
+/*__
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class TestFeu extends TestObjetSub {

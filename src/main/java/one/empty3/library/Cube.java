@@ -39,7 +39,7 @@ package one.empty3.library;
 
 public class Cube extends Representable implements TRIGenerable {
 
-    /**
+    /*__
      *
      */
     private static final long serialVersionUID = 3437509687221141764L;

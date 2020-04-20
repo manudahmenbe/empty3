@@ -17,7 +17,7 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * Created by manue on 29-10-19.
  */
 public abstract class StructureMatrixListener {

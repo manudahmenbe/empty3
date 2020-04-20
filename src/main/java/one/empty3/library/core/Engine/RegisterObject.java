@@ -36,8 +36,8 @@ import one.empty3.library.*;
 
 import java.lang.reflect.Method;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class RegisterObject {
     public class Entry {

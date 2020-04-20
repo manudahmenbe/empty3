@@ -1,4 +1,4 @@
-/***
+/*__
  Global license :
 
  Microsoft Public Licence
@@ -19,7 +19,7 @@ import one.empty3.library.core.testing.TestObjetSub;
 
 import java.awt.*;
 
-/**
+/*__
  * Future: this should be.manudahmen.empty3.tests2.be very low level: like :
  * Representable.setSelectionZoneId(long szid);
  * ZBuffer.getSelectionZoneId(int coordArr, int y);

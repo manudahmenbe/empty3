@@ -32,12 +32,12 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * @author Atelier
  */
 public class HorsDeLEcranException extends Exception {
 
-    /**
+    /*__
      *
      */
     private static final long serialVersionUID = -1661478980489042845L;

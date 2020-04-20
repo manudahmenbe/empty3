@@ -1,4 +1,4 @@
-/***
+/*__
  Global license :
 
  CC Attribution
@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/*__
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class TestBezierTextImage extends TestObjetSub {

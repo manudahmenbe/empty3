@@ -39,7 +39,7 @@ package one.empty3.apps.pad.help;
 
 import java.util.ResourceBundle;
 
-/**
+/*__
  *
  * @author Se7en
  */

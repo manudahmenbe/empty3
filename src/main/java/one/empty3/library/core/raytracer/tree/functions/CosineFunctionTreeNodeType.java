@@ -34,7 +34,7 @@ package one.empty3.library.core.raytracer.tree.functions;
 
 import one.empty3.library.core.raytracer.tree.FunctionTreeNodeType;
 
-/**
+/*__
  * Created by manuel on 24-01-17.
  */
 public class CosineFunctionTreeNodeType extends FunctionTreeNodeType {

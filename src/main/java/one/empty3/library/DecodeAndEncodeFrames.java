@@ -29,7 +29,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
-/*******************************************************************************
+/*__****************************************************************************
  * Copyright (c) 2014, Art Clarke.  All rights reserved.
  *  
  * This file is part of Humble-Video.
@@ -71,7 +71,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import java.util.ArrayList;
-/**
+/*__
  * Opens a media file, finds the first video stream, and then plays it.
  * This is meant as a demonstration program to teach the use of the Humble API.
  * <p>
@@ -99,7 +99,7 @@ private File file;
 private boolean stop = false;
 public static final long MAXSIZE = 50;
 private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
-  /**
+  /*__
    * Opens a file, and plays the video from it on a screen at the right rate.
    * @param filename The file or URL to play.
    */
@@ -152,7 +152,7 @@ private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
         videoDecoder.getHeight(),
         videoDecoder.getPixelFormat());
 
-    /** A converter object we'll use to convert the picture in the video to a BGR_24 format that Java Swing
+    /*__ A converter object we'll use to convert the picture in the video to a BGR_24 format that Java Swing
      * can work with. You can still access the data directly in the MediaPicture if you prefer, but this
      * abstracts away from this demo most of that byte-conversion work. Go read the source code for the
      * converters if you're a glutton for punishment.
@@ -163,7 +163,7 @@ private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
             picture);
     BufferedImage image = null;
 
-    /**
+    /*__
      * This is the Window we will display in. See the code for this if you're curious, but to keep this demo clean
      * we're 'simplifying' Java AWT UI updating code. This method just creates a single window on the UI thread, and blocks
      * until it is displayed.
@@ -173,7 +173,7 @@ private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
     //  throw new RuntimeException("Attempting this demo on a headless machine, and that will not work. Sad day for you.");
    // }
     
-    /**
+    /*__
      * Media playback, like comedy, is all about timing. Here we're going to introduce <b>very very basic</b>
      * timing. This code is deliberately kept simple (i.e. doesn't worry about A/V drift, garbage collection pause time, etc.)
      * because that will quickly make things more complicated. 
@@ -198,7 +198,7 @@ private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
     // All the MediaPicture objects decoded from the videoDecoder will share this timebase.
     final Rational streamTimebase = videoDecoder.getTimeBase();
 
-    /**
+    /*__
      * Now, we start walking through the container looking at each packet. This
      * is a decoding loop, and as you work with Humble you'll write a lot
      * of these.
@@ -209,12 +209,12 @@ private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
      */
     final MediaPacket packet = MediaPacket.make();
     while(demuxer.read(packet) >= 0) {
-      /**
+      /*__
        * Now we have a packet, let's see if it belongs to our video stream
        */
       if (packet.getStreamIndex() == videoStreamId)
       {
-        /**
+        /*__
          * A packet can actually contain multiple sets of samples (or frames of samples
          * in decoding speak).  So, we may need to call decode  multiple
          * times at different offsets in the packet's data.  We capture that here.
@@ -257,7 +257,7 @@ private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
 stop = true;
   }
 
-  /**
+  /*__
    * Takes the video picture and displays it at the right time.
    */
   private BufferedImage displayVideoAtCorrectTime(long streamStartTime,
@@ -284,7 +284,7 @@ imgBuf. add(new ECBufferedImage(image) );
     return image;
   }
   
-  /**
+  /*__
    * Takes a media container (file) as the first argument, opens it,
    * opens up a window and plays back the video.
    *  
@@ -319,26 +319,26 @@ imgBuf. add(new ECBufferedImage(image) );
   }
 
 
-   /**
+   /*__
      * The number of seconds between frames.
      */
 
     public static final double SECONDS_BETWEEN_FRAMES = 0;
 
-    /**
+    /*__
      * The number of nano-seconds between frames.
      */
 
     public static final long NANO_SECONDS_BETWEEN_FRAMES =
             (long) (Global.DEFAULT_PTS_PER_SECOND * SECONDS_BETWEEN_FRAMES);
 
-    /**
+    /*__
      * Time of last frame write.
      */
 
     private static long mLastPtsWrite = Global.NO_PTS;
 
-    /**
+    /*__
      * Write the video frame out to a PNG file every once and a while.
      * The files are written out to the system's temporary directory.
      *
@@ -384,7 +384,7 @@ imgBuf. add(new ECBufferedImage(image) );
         }
     }
 
-    /**
+    /*__
      * Takes a media container (file) as the first argument, opens it,
      * reads through the file and captures video frames periodically as
      * specified by SECONDS_BETWEEN_FRAMES.  The frames are written as PNG
@@ -397,7 +397,7 @@ imgBuf. add(new ECBufferedImage(image) );
         this.text = refTextureMov;
 
     }
-/***
+/*__
 * open file. 
  * read (imgBufSize - imgBuf. size()) frames
  * if end then return

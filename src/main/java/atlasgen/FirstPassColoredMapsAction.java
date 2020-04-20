@@ -37,7 +37,7 @@ import one.empty3.library.core.lighting.Colors;
 import java.awt.*;
 import java.util.HashMap;
 
-/**
+/*__
  * Created by Manuel Dahmen on 30-06-18.
  */
 public class FirstPassColoredMapsAction implements Action {

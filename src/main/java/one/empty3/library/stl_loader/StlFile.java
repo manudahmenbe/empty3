@@ -44,7 +44,7 @@ import java.util.StringTokenizer;
 
 // New from JDK 1.4 for endian related problems
 
-/**
+/*__
  * Title: STL Loader Description: STL files loader (Supports ASCII and binary
  * files) for Java3D Needs JDK 1.4 due to endian problems Company: Universidad
  * del Pais Vasco (UPV/EHU)
@@ -93,7 +93,7 @@ public class StlFile {
     // Default = Not available
     private String objectName = "Not available";
 
-    /**
+    /*__
      * Constructor
      */
     public StlFile() {
@@ -111,7 +111,7 @@ public class StlFile {
         return basePath;
     }
 
-    /**
+    /*__
      * Set the path where files associated with this .stl file are located. Only
      * needs to be called to set it to a different directory from that
      * containing the .stl file.
@@ -134,7 +134,7 @@ public class StlFile {
         return baseUrl;
     }
 
-    /**
+    /*__
      * Modifier for baseUrl, if accessing internet.
      *
      * @param url The new url
@@ -167,7 +167,7 @@ public class StlFile {
         this.objectName = name;
     }
 
-    /**
+    /*__
      * The Stl File is loaded from the already opened file. To attach the model
      * to your scene, call getSceneGroup() on the Scene object passed back, and
      * attach the returned BranchGroup to your scene graph. For an example, see
@@ -197,7 +197,7 @@ public class StlFile {
         return makeScene();
     }
 
-    /**
+    /*__
      * The Stl File is loaded from the .stl file specified by the filename. To
      * attach the model to your scene, call getSceneGroup() on the Scene object
      * passed back, and attach the returned BranchGroup to your scene graph. For
@@ -219,7 +219,7 @@ public class StlFile {
         return load(reader);
     } // End of load(String)
 
-    /**
+    /*__
      * The Stl file is loaded off of the web. To attach the model to your scene,
      * call getSceneGroup() on the Scene object passed back, and attach the
      * returned BranchGroup to your scene graph. For an example, see
@@ -247,7 +247,7 @@ public class StlFile {
         return load(reader);
     } // End of load(URL)
 
-    /**
+    /*__
      * Method that creates the SceneBase with the stl file info
      *
      * @return SceneBase The scene
@@ -279,7 +279,7 @@ public class StlFile {
         return scene;
     } // end of makeScene
 
-    /**
+    /*__
      * Method that takes the info from an ArrayList of Point3f and returns a
      * Point3f[]. Needed for ASCII files as we don't know the number of facets
      * until the end
@@ -298,7 +298,7 @@ public class StlFile {
 
     /////////////////////// Accessors and Modifiers ///////////////////////////
 
-    /**
+    /*__
      * Method that takes the info from an ArrayList of Vector3f and returns a
      * Vector3f[]. Needed for ASCII files as we don't know the number of facets
      * until the end
@@ -325,7 +325,7 @@ public class StlFile {
         return outList;
     } // End of objectToVectorArray
 
-    /**
+    /*__
      * Method for reading binary files Execution is completly different It uses
      * ByteBuffer for reading data and ByteOrder for retrieving the machine's
      * endian (Needs JDK 1.4)
@@ -406,7 +406,7 @@ public class StlFile {
         }// End else
     }// End of readBinaryFile
 
-    /**
+    /*__
      * Method that reads "endfacet" then EOL
      *
      * @param parser The file parser. An instance of StlFileParser.
@@ -419,7 +419,7 @@ public class StlFile {
         }
     }//End of readEndFacet
 
-    /**
+    /*__
      * Method that reads "endloop" then EOL
      *
      * @param parser The file parser. An instance of StlFileParser.
@@ -432,7 +432,7 @@ public class StlFile {
         }
     }//End of readEndLoop
 
-    /**
+    /*__
      * Method that reads the EOL Needed for verifying that the file has a
      * correct format
      *
@@ -449,7 +449,7 @@ public class StlFile {
         }
     }
 
-    /**
+    /*__
      * Method that reads a face of the object (Cares about the format)
      *
      * @param parser The file parser. An instance of StlFileParser.
@@ -485,7 +485,7 @@ public class StlFile {
         }
     }// End of readFacet
 
-    /**
+    /*__
      * Method that reads a face in binary files All binary versions of the
      * methods end by 'B' As in binary files we can read the number of faces, we
      * don't need to use coordArray and normArray (reading binary files should
@@ -546,7 +546,7 @@ public class StlFile {
 
     }// End of readFacetB
 
-    /**
+    /*__
      * Method that reads ASCII files Uses StlFileParser for correct reading and
      * format checking The beggining of that method is common to binary and
      * ASCII files We try to detect what king of file it is
@@ -607,7 +607,7 @@ public class StlFile {
         }// End of binary file
     }//End of readFile
 
-    /**
+    /*__
      * Method that reads "outer loop" and then EOL
      *
      * @param parser The file parser. An instance of StlFileParser.
@@ -629,7 +629,7 @@ public class StlFile {
         }
     }//End of readLoop
 
-    /**
+    /*__
      * Method that reads a normal
      *
      * @param parser The file parser. An instance of StlFileParser.
@@ -675,7 +675,7 @@ public class StlFile {
         }
     }// End of Read Normal
 
-    /**
+    /*__
      * Method that reads the word "solid" and stores the object name. It also
      * detects what kind of file it is TO-DO: 1.- Better way control of
      * exceptions? 2.- Better way to decide between Ascii and Binary?
@@ -708,7 +708,7 @@ public class StlFile {
         }
     }//End of readSolid
 
-    /**
+    /*__
      * Method that reads the coordinates of a vector
      *
      * @param parser The file parser. An instance of StlFileParser.

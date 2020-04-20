@@ -5,7 +5,7 @@ import one.empty3.library.core.nurbs.ParametricSurface;
 
 import java.awt.*;
 
-/**
+/*__
  * Created by Win on 15-11-18.
  */
 public class Pieuvre extends RepresentableConteneur {

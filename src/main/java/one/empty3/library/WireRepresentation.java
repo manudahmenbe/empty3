@@ -39,7 +39,7 @@ package one.empty3.library;
 import one.empty3.library.core.nurbs.ParametricSurface;
 import one.empty3.library.core.nurbs.SurfaceParametricPolygonalBezier;
 
-/**
+/*__
  * @author Se7en
  */
 public class WireRepresentation extends RepresentableConteneur {

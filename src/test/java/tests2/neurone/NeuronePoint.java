@@ -2,7 +2,7 @@ package tests2.neurone;
 
 import one.empty3.library.*;import one.empty3.library.core.testing.TestObjetSub;
 
-/**
+/*__
  * @author Se7en
  */
 public class NeuronePoint extends Neurone {

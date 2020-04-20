@@ -36,12 +36,12 @@ public class F {
  */
 
 
-/**
+/*__
  * Created by md 2020 4 8 */
 private int dima,dimb;
 private AlgebricTree treeF ;
     
-/*** 
+/*__ 
 * input x(n:int) : formula 
 * separator ; y(n) = formula(x(n:int))
 */
@@ -51,7 +51,7 @@ public void result(Double [] input, Double [] output) {
 
 private String fs = "1:1:1.0";
 private String formula = "1.0";
-/***
+/*__
  *
  * @param fs formula:dima(int):dimb(int)
  * // TODO algebre tree n dim

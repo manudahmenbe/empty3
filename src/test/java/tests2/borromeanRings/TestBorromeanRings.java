@@ -5,7 +5,7 @@ import one.empty3.library.Point3D;
 import one.empty3.library.core.move.Trajectoires;
 import one.empty3.library.core.testing.TestObjetSub;
 
-/**
+/*__
  * Created by Win on 11-09-18.
  */
 public class TestBorromeanRings extends TestObjetSub {

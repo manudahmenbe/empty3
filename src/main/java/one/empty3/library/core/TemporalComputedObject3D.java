@@ -20,7 +20,7 @@ package one.empty3.library.core;
 import one.empty3.library.Point3D;
 import one.empty3.library.T;
 
-/**
+/*__
  * Created by manue on 05-01-20.
  */
 public interface TemporalComputedObject3D {

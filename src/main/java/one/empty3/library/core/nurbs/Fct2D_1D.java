@@ -32,7 +32,7 @@
 
 package one.empty3.library.core.nurbs;
 
-/**
+/*__
  * Created by manue on 28-05-19.
  */
 public abstract class Fct2D_1D {

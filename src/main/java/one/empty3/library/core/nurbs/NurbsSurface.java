@@ -30,11 +30,11 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/**
+/*__
  * *
  * Global license : * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  * <p>
  * *
  */
@@ -42,19 +42,19 @@ package one.empty3.library.core.nurbs;
 
 import one.empty3.library.*;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class NurbsSurface extends ParametricSurface {
 
     public static final int type_coordU = 0;
     public static final int type_coordV = 1;
-    /**
+    /*__
      * *
      * degreeU degré de la fonction de base B_spline pour U
      */
     private int degreeU;
-    /**
+    /*__
      * *
      * degreeV degré de la fonction de base B_spline pour V
      */
@@ -105,7 +105,7 @@ public class NurbsSurface extends ParametricSurface {
         }
     }
 
-    /**
+    /*__
      * *
      * Méthode non utilisée
      */
@@ -138,7 +138,7 @@ public class NurbsSurface extends ParametricSurface {
         this.poids = poids;
     }
 
-    /***
+    /*__
      * @param T Ligne 0: intervalle u Ligne 1: intervalle v
      */
     public void setReseauFonction(double[][] T) {
@@ -209,13 +209,13 @@ public class NurbsSurface extends ParametricSurface {
         return s + "\n\n)";
     }
 
-    /**
+    /*__
      * *
      * "Knots"
      */
     class Intervalle {
 
-        /**
+        /*__
          * Data : tableau à 2 lignes longueur de la première ligne degreeU + 1 :
          * premiers nombres égaux à a (en particulier a==0) r points croissant
          * de a à b degreeU + 1 : derniers nombres égaux à b (en particulier
@@ -241,7 +241,7 @@ public class NurbsSurface extends ParametricSurface {
         }
     }
 
-    /**
+    /*__
      * *
      * Point3D Weight associated
      */

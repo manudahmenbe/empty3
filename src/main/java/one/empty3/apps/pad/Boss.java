@@ -35,7 +35,7 @@ package one.empty3.apps.pad;
 import one.empty3.library.Point2D;
 import one.empty3.library.Representable;
 
-/**
+/*__
  * Created by manuel on 07-05-17.
  */
 public abstract class Boss {

@@ -32,7 +32,7 @@
 
 package one.empty3.library.core.raytracer;
 
-/**
+/*__
  * Created by manuel on 30-07-16.
  */
 public class RtMatiere {/*! \class CMaterial

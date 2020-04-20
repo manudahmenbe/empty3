@@ -36,7 +36,7 @@ import one.empty3.apps.pad.Timer;
 import one.empty3.library.Point3D;
 import one.empty3.library.core.gdximports.gdx_BSplineCurve;
 
-/**
+/*__
  *
  * @author Se7en
  */

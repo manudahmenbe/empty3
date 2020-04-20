@@ -38,7 +38,7 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
+/*__
  * Created by Manuel Dagmen on 29-06-18.
  */
 public class DrawPerCountryAction implements Action {

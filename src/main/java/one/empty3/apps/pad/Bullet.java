@@ -43,7 +43,7 @@ import one.empty3.library.stl_loader.StlFile;
 import java.io.FileNotFoundException;
 import java.util.ResourceBundle;
 
-/**
+/*__
  * Created by manuel on 29-06-17.
  */
 public class Bullet extends Representable implements MoveeObject {

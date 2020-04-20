@@ -40,7 +40,7 @@ package one.empty3.apps.pad.help;
 import one.empty3.apps.pad.Bonus;
 import one.empty3.library.core.gdximports.gdx_BSplineCurve;
 
-/**
+/*__
  *  Court et vole pendant un laps de temps prédéfini.
  * le long d'un b-spline 30 objets/1000 en 20 secondes.
  * @author Se7en

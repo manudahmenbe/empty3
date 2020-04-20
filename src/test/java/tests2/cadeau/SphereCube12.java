@@ -1,4 +1,4 @@
-/***
+/*__
  Global license :
 
  Microsoft Public Licence
@@ -15,7 +15,7 @@ import one.empty3.library.core.tribase.TRISphere;
 
 import java.awt.*;
 
-/**
+/*__
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class SphereCube12 extends TestObjetSub {

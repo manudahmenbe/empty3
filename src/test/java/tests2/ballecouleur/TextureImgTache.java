@@ -1,4 +1,4 @@
-/**
+/*__
  * *
  * Global license : * CC Attribution
  * <p>
@@ -14,7 +14,7 @@ import one.empty3.library.core.testing.TestObjetSub;
 import java.awt.*;
 import java.util.HashMap;
 
-/**
+/*__
  *
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */

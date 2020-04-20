@@ -38,7 +38,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
-/**
+/*__
  * Image loading class that converts BufferedImages into a data structure that
  * can be easily passed to OpenGL.
  * 

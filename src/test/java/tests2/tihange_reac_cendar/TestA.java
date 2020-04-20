@@ -17,7 +17,7 @@
 
 package tests2.tihange_reac_cendar;
 
-/**
+/*__
  * Created by manue on 23-02-20.
  */
 public class TestA {

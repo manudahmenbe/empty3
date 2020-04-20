@@ -47,7 +47,7 @@ import java.io.IOException;
 import java.util.Base64;
 
 
-/**
+/*__
  * @author manu
  */
 public class TextureImg extends ITexture {

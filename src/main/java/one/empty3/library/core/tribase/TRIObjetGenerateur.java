@@ -40,7 +40,7 @@ package one.empty3.library.core.tribase;
 import one.empty3.library.Point3D;
 import one.empty3.library.TRI;
 
-/**
+/*__
  * Implémentations requises: TRIGenerable, TourDeRevolution, Tubulaire, Spheres
  *
  * @author manuel

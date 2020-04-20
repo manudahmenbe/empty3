@@ -208,7 +208,7 @@ public class Horloge extends JFrame {
         }
     }
 
-    /**
+    /*__
      * @param c
      */
     public void update(Configuration<Horloge> c) {

@@ -34,7 +34,7 @@ package one.empty3.library.core.nurbs;
 
 import one.empty3.library.Point3D;
 
-/**
+/*__
  * Created by manue on 28-05-19.
  */
 public abstract class Fct1D_1D extends ParametricCurve {

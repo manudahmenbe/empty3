@@ -40,8 +40,8 @@ package one.empty3.library.core.gdximports;
 import one.empty3.library.*;
 import com.badlogic.gdx.math.Vector3;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class Conv {
     public static Vector3 conv(Vector3 out, Point3D in) {

@@ -37,11 +37,11 @@ import one.empty3.library.core.nurbs.ParametricSurface;
 
 import java.util.HashMap;
 
-/**
+/*__
  * Created by manuel on 05-02-17.
  */
 public class MathExprParametricSurface extends ParametricSurface {
-    /***
+    /*__
      * a, b: parameters
      */
     private final String[] exprStringXyz;

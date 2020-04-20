@@ -6,7 +6,7 @@ import one.empty3.library.*;import one.empty3.library.core.testing.TestObjetSub;
 import java.awt.*;
 
 
-/**
+/*__
  * @author Se7en
  */
 public class TestBalleClous111 extends TestObjetSub {

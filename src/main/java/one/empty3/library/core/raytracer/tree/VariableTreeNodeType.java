@@ -34,7 +34,7 @@ package one.empty3.library.core.raytracer.tree;
 
 import java.util.Map;
 
-/**
+/*__
  * Created by manuel on 16-12-16.
  */
 public class VariableTreeNodeType extends TreeNodeType {

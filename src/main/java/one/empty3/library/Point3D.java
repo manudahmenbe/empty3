@@ -37,7 +37,7 @@ import one.empty3.library.core.nurbs.ParametricSurface;
 import java.awt.*;
 import java.util.List;
 
-/**
+/*__
  * *
  * <p>
  * Classe pour les éléments à trois coordonnées de type Double
@@ -53,51 +53,51 @@ public class Point3D extends Representable {
         coordArr.setElem(0d, 2);
     }
 
-    /**
+    /*__
      * *
      * axe X vector
      */
     public static final Point3D X = new Point3D(1d, 0d, 0d);
-    /**
+    /*__
      * *
      * axe Y vector
      */
     public static final Point3D Y = new Point3D(0d, 1d, 0d);
-    /**
+    /*__
      * *
      * axe Z vector
      */
     public static final Point3D Z = new Point3D(0d, 0d, 1d);
-    /**
+    /*__
      * *
      * O0 origin
      */
     public static final Point3D O0 = new Point3D(0d, 0d, 0d);
-    /**
+    /*__
      * *
      * Point "Infinite" limite pour Z-Buffer
      */
     public static final Point3D INFINI = new Point3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
-    /**
+    /*__
      * *
      * Coordonnées (coordArr,y,z) du point
      */
     public StructureMatrix<Double> coordArr = new StructureMatrix<>(1, Double.class);
-    /**
+    /*__
      * *
      * Pour le tracé de surface normale au point
      */
     protected Point3D normale;
-    /**
+    /*__
      * *
      * id
      */
 
-    /**
+    /*__
      * *
      * Constructeur Point Origine
      */
-    /**
+    /*__
      * *
      *
      * @param x0 coordArr-coordonnée
@@ -111,7 +111,7 @@ public class Point3D extends Representable {
         coordArr.setElem(z0, 2);
     }
 
-    /**
+    /*__
      * *
      *
      * @param x0 coordArr-coordonnée
@@ -123,7 +123,7 @@ public class Point3D extends Representable {
         texture(t);
     }
 
-    /**
+    /*__
      * *
      * Initialise à partir d'un vecteur
      *
@@ -133,7 +133,7 @@ public class Point3D extends Representable {
         this(x0[0], x0[1], x0[2], t);
     }
 
-    /***
+    /*__
      *
      *
      * @param p0 point à copier
@@ -154,7 +154,7 @@ public class Point3D extends Representable {
         return new Point3D(a, b, c);
     }
 
-    /**
+    /*__
      * *
      * Distance cartésienne entre 2 points
      *
@@ -256,7 +256,7 @@ public class Point3D extends Representable {
         return p1;
     }
 
-    /**
+    /*__
      * *
      * Multiplication
      *
@@ -275,7 +275,7 @@ public class Point3D extends Representable {
         return Matrix33.YZX.mult(Matrix33.ZXY.mult(Matrix33.XYZ.mult(point3D)));
     }
 
-    /**
+    /*__
      * *
      * norme d'un vecteur (distance du point à l'origine)
      *
@@ -286,7 +286,7 @@ public class Point3D extends Representable {
                 * (getZ()));
     }
 
-    /**
+    /*__
      * *
      * "direction" (norme1)
      *
@@ -296,7 +296,7 @@ public class Point3D extends Representable {
         return mult(1 / norme());
     }
 
-    /**
+    /*__
      * *
      * Ajoute @param i à chaque coordonnée
      *
@@ -319,7 +319,7 @@ public class Point3D extends Representable {
         return p1;
     }
 
-    /**
+    /*__
      * *
      * Produit scalaire
      *
@@ -334,7 +334,7 @@ public class Point3D extends Representable {
             throw new NullPointerException("Exception prodScalre p2==null");
     }
 
-    /**
+    /*__
      * *
      * produit vectoriel
      *

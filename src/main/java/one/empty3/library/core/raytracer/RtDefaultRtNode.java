@@ -32,7 +32,7 @@
 
 package one.empty3.library.core.raytracer;
 
-/**
+/*__
  * Created by manuel on 03-08-16.
  */
 public class RtDefaultRtNode extends RtNode {

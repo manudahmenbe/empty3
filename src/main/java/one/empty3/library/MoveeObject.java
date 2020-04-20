@@ -34,7 +34,7 @@ package one.empty3.library;
 
 import one.empty3.library.*;
 
-/**
+/*__
  * Created by manuel on 29-06-17.
  */
 public interface MoveeObject {

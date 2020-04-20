@@ -34,7 +34,7 @@ package one.empty3.library.core;
 
 import java.util.Arrays;
 
-/**
+/*__
  * Created by manue on 24-07-19.
  */
 public class EcArrays<T>

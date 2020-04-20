@@ -24,7 +24,7 @@ import javax.swing.JFrame;
 
 class WindowC extends JFrame implements GLEventListener {
  
-    /**
+    /*__
      * @return the glcanvas
      
     public GLCanvas getGlcanvas() {

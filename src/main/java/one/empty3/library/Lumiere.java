@@ -32,7 +32,7 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * @author Atelier
  */
 public abstract class Lumiere  extends Representable{

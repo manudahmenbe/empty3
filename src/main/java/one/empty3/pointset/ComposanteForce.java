@@ -31,7 +31,7 @@
  */
 
 package one.empty3.pointset;
-/***
+/*__
 
  Empty3
  Copyright (C) 2010-2019  Manuel DAHMEN

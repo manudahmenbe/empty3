@@ -49,7 +49,7 @@ public class TRIObject extends Representable {
 
     }
 
-    /**
+    /*__
      * @param t
      */
     public TRIObject(TRI t) {

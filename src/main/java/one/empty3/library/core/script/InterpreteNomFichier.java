@@ -29,7 +29,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
-/**
+/*__
  *
  */
 package one.empty3.library.core.script;
@@ -38,7 +38,7 @@ import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/*__
  * @author MANUEL DAHMEN
  *         <p>
  *         dev

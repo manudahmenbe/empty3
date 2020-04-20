@@ -1,5 +1,5 @@
 package test3;
-/***
+/*__
 
  Empty3
  Copyright (C) 2010-2019  Manuel DAHMEN
@@ -30,7 +30,7 @@ import one.empty3.pointset.PCont;
 
 import java.util.HashMap;
 
-/***
+/*__
  *
  * Rassembler et améliorer les calculs sur des ensembles de points dans un package
  * utilisable et extensible.

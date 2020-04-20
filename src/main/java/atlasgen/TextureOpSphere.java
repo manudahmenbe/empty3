@@ -34,7 +34,7 @@ package atlasgen;
 
 import one.empty3.library.*;
 
-/**
+/*__
  * Created by manue on 10-05-19.
  */
 public class TextureOpSphere extends TextureOp2D {

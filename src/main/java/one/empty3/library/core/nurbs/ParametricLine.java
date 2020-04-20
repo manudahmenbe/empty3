@@ -35,7 +35,7 @@ package one.empty3.library.core.nurbs;
 import one.empty3.library.*;
 
 
-/**
+/*__
  * Created by manuel on 29-06-17.
  */
 public class ParametricLine extends ParametricCurve implements CurveElem{

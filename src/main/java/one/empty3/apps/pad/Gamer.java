@@ -34,7 +34,7 @@ package one.empty3.apps.pad;
 
 import one.empty3.library.ITexture;
 
-/**
+/*__
  * Created by manuel on 19-05-17.
  */
 public class Gamer {

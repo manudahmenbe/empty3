@@ -8,7 +8,7 @@ package tests2.repereAssocieAUneCourbeEX;
 import one.empty3.library.Point3D;
 import one.empty3.library.core.nurbs.ParametricCurve;
 
-/**
+/*__
  * @author Se7en
  */
 public class CourbeChoisie extends ParametricCurve {
@@ -17,7 +17,7 @@ public class CourbeChoisie extends ParametricCurve {
     private final double l;
     private final double n;
 
-    /**
+    /*__
      * Dimension de la spire
      *
      * @param h

@@ -39,8 +39,8 @@ package one.empty3.library.core.lighting;
 
 import java.awt.*;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmail.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class Colors {
     public static Color TRANSPARENT = new Color(1f,0f,0f,.5f );

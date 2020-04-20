@@ -40,7 +40,7 @@ package one.empty3.library;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
-/**
+/*__
  * @author Manuel DAHMEN
  */
 public interface Serialisable {

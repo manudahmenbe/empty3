@@ -41,7 +41,7 @@ public class BezierCubique2D extends Representable {
 
     public static final int DIM2 = 200;
     public static final int DIM1 = 200;
-    /**
+    /*__
      *
      */
     private final int ordreU = 4;
@@ -49,7 +49,7 @@ public class BezierCubique2D extends Representable {
     private final int ordre = 4;
     private String id;
     private TextureCol color;
-    /**
+    /*__
      * *
      * 11 12 13 14 0123 21 22 23 24 4567 31 32 33 34 8901 41 42 43 44 2345
      */

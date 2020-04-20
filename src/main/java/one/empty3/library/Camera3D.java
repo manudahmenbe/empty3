@@ -32,12 +32,12 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * @author Atelier
  */
 public class Camera3D extends Camera {
 
-    /**
+    /*__
      *
      */
     private static final long serialVersionUID = 1907724549670145492L;

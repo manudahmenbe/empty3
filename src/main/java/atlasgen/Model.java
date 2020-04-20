@@ -34,7 +34,7 @@ package atlasgen;
 
 import java.awt.*;
 
-/**
+/*__
  * Created by manue on 26-04-19.
  */
 public class Model {

@@ -1,4 +1,4 @@
-/***
+/*__
  Global license :
 
  Microsoft Public Licence
@@ -18,7 +18,7 @@ import one.empty3.library.core.tribase.Plan3D;
 
 import javax.imageio.ImageIO;
 
-/**
+/*__
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class TestTransparence extends TestObjetSub {

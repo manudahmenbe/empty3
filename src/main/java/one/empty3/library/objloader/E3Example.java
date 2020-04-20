@@ -39,7 +39,7 @@ import one.empty3.library.*;
 import javax.swing.*;
 import java.awt.*;
 
-/**
+/*__
  * Created by manue on 02-06-19.
  */
 public class E3Example extends EcDrawer {

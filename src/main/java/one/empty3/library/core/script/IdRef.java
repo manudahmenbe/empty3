@@ -38,7 +38,7 @@ public class IdRef {
         // TODO Auto-generated constructor stub
     }
 
-    /**
+    /*__
      * @param args
      */
 }

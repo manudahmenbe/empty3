@@ -1,5 +1,5 @@
 package test3;
-/***
+/*__
 
  Empty3
  Copyright (C) 2010-2019  Manuel DAHMEN
@@ -21,7 +21,7 @@ package test3;
 
 import one.empty3.library.core.testing.TestObjetSub;
 
-/***
+/*__
  *
  * Rassembler et améliorer les calculs sur des ensembles de points dans un package
  * utilisable et extensible.

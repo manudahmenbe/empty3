@@ -1,4 +1,4 @@
-/**
+/*__
  * Importer une autre test: ah si ca pouvait être fait par classes!
  */
 package tests2.repereAssocieAUneCourbeEX;
@@ -13,7 +13,7 @@ import one.empty3.library.core.tribase.TRICylindre;
 
 import java.awt.*;
 
-/**
+/*__
  *
  * @author Manuel Dahmen
  */

@@ -34,7 +34,7 @@ package one.empty3.library;
 
 import java.util.HashMap;
 
-/**
+/*__
  * Created by Win on 26-01-16.
  */
 public class Rotation implements MatrixPropertiesObject

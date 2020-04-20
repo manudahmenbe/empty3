@@ -39,21 +39,21 @@ import one.empty3.library.core.nurbs.ParametricCurve;
 import one.empty3.library.core.nurbs.ParametricSurface;
 
 public class AonB extends ParametricSurface {
-    /***
+    /*__
      *
      */
     private Representable a = null;
-    /***
+    /*__
      *
      */
     private Representable b = null;
 
-    /***
+    /*__
      * For curve or surface a : [1-2][min-max] entry parameter
      * @param parameterARange
      */
     private double parameterARange[][];
-    /***
+    /*__
      * For curve or surface b : [1-2][min-max] (entry parameter, for bounds checking)
      * @param parameterBRange
      */
@@ -62,7 +62,7 @@ public class AonB extends ParametricSurface {
     private AonB down;
 
 
-    /***
+    /*__
      *
      * @param a Parametric Curve or Surface
      * @param b Parametric Curve or Surface
@@ -105,7 +105,7 @@ public class AonB extends ParametricSurface {
         this.parameterBRange = parameterBRange;
     }
 
-    /***
+    /*__
      *
      * @return
      */
@@ -122,7 +122,7 @@ public class AonB extends ParametricSurface {
         return false;
     }
 
-    /***
+    /*__
      *
      * @param z
      */
@@ -169,7 +169,7 @@ public class AonB extends ParametricSurface {
     }
 
 
-    /***
+    /*__
      * TODO
      * @param down
      */

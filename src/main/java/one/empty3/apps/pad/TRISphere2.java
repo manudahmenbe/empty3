@@ -36,7 +36,7 @@ import one.empty3.apps.pad.help.BonusClass;
 import one.empty3.library.Point3D;
 import one.empty3.library.core.tribase.TRISphere;
 
-/**
+/*__
  * Created by manuel on 19-05-17.
  */
 class TRISphere2<T extends BonusClass> extends TRISphere {

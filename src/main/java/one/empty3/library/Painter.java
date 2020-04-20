@@ -32,11 +32,11 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * Created by manuel Dahmen manuel.dahmen@gmail.com on 08-10-15.
  */
 
-/***
+/*__
  * Destinée à concevoir des actions de dessin spécifiques à certaines formes d'un type général Representable.
  * <p/>
  * Par exemple : au lieu de tracer un maillage de surface (action par défaut) dessiner des points aléatoirement

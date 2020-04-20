@@ -30,11 +30,11 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/**
+/*__
  * *
  * Global license : * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  * <p>
  * *
  */
@@ -42,7 +42,7 @@ package one.empty3.library;
 
 import java.awt.*;
 
-/**
+/*__
  * *
  * Rendu graphique
  *
@@ -50,7 +50,7 @@ import java.awt.*;
  */
 public interface ZBuffer {
 
-    /**
+    /*__
      * Retourne la caméra de la scène virtuelle
      *
      * @return camera used for display
@@ -60,12 +60,12 @@ public interface ZBuffer {
     void couleurDeFond(ITexture couleurFond);
 
 
-    /**
+    /*__
      * Dessine la scène complète
      */
     void draw();
 
-    /**
+    /*__
      * Ajoute un objet à l'image... (le dessine si tout est bien initialisé
      *
      * @param r         Objet à peindre
@@ -74,7 +74,7 @@ public interface ZBuffer {
 
     int getColorAt(Point p);
 
-    /**
+    /*__
      * *
      * Instancie un zbuffer. Si l'instance demandée (coordArr, y) existe déjà, elle est
      * retournée.
@@ -86,14 +86,14 @@ public interface ZBuffer {
     ZBuffer getInstance(int x, int y);
 
 
-    /**
+    /*__
      * Retourne l'image, après dessin par draw
      *
      * @return image
      */
     ECBufferedImage image();
 
-    /**
+    /*__
      * Verrou
      *
      * @return Verrou?
@@ -103,14 +103,14 @@ public interface ZBuffer {
     void isobox(boolean isBox);
 
 
-    /**
+    /*__
      * @param p1 premier point
      * @param p2 second point
      * @param t  couleur de la line
      */
     void line(Point3D p1, Point3D p2, ITexture t);
 
-    /**
+    /*__
      * Verouille le zbuffer pendant les calculs.
      *
      * @return false si le zbuffer a été préalablement verrouillé. true si
@@ -119,7 +119,7 @@ public interface ZBuffer {
     boolean lock();
 
 
-    /**
+    /*__
      * Dessine un point
      *
      * @param p point
@@ -127,7 +127,7 @@ public interface ZBuffer {
      */
     void plotPoint(Point3D p, Color c);
 
-    /**
+    /*__
      * *
      * Résolution X
      *
@@ -135,40 +135,40 @@ public interface ZBuffer {
      */
     int resX();
 
-    /**
+    /*__
      * Résolution Y
      *
      * @return résolution y
      */
     int resY();
 
-    /**
+    /*__
      * Retourne la scène en cours de traitement
      *
      * @return scene
      */
     Scene scene();
 
-    /**
+    /*__
      * Assigne une nouvelle scène
      *
      * @param s scene
      */
     void scene(Scene s);
 
-    /**
+    /*__
      * Passe une nouvelle image
      */
     void next();
 
-    /**
+    /*__
      * Teste le point p
      *
      * @param point3D point
      */
     void testDeep(Point3D point3D);
 
-    /**
+    /*__
      * Dessine un point
      *
      * @param p point
@@ -179,14 +179,14 @@ public interface ZBuffer {
     void testDeep(Point3D p, int c);
     void tracerLumineux();
 
-    /**
+    /*__
      * Déverrouille le zbuffer
      *
      * @return true si déverrouillage. False si non-verrouillé
      */
     boolean unlock();
 
-    /**
+    /*__
      * Ajuste le facteur de zoom (cadre) en 3D isométrique
      *
      * @param z

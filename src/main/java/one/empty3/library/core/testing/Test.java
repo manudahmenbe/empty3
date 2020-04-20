@@ -40,31 +40,31 @@ import one.empty3.library.ZBuffer;
 import java.io.File;
 import java.util.ArrayList;
 
-/**
+/*__
  * @author Manuel DAHMEN
  */
 public interface Test extends Runnable {
 
-    /***
+    /*__
      * After the loop extend to add extra info on movie
      */
     void afterRender();
 
-    /**
+    /*__
      * Prefer use scene().cameraActive()
      *
      * @return
      */
     Camera camera();
 
-    /**
+    /*__
      * Prefer use scene().cameraActive()
      *
      * @return
      */
     void camera(Camera c);
 
-    /***
+    /*__
      * Not in use
      *
      * @return
@@ -72,60 +72,60 @@ public interface Test extends Runnable {
     ArrayList<TestInstance.Parameter> getInitParams();
 
 
-    /***
+    /*__
      * boolean for begin loop and making a movie or a image sequence
      *
      * @return isLoop?
      */
     boolean loop();
 
-    /***
+    /*__
      * boolean for begin loop and making a movie or a image sequence
      *
      * @return isLoop?
      */
     void loop(boolean isLooping);
 
-    /***
+    /*__
      * Internal use
      *
      * @return
      */
     boolean nextFrame();
 
-    /***
+    /*__
      * Internal use
      */
     void publishResult();
 
 
-    /***
+    /*__
      * Main run test method. Don't call it directly. Called when test starts
      */
     void run();
 
-    /**
+    /*__
      * Scene to render. Instance Read only
      *
      * @return
      */
     Scene scene();
 
-    /**
+    /*__
      * Main frame animation method
      *
      * @throws Exception
      */
     void testScene() throws Exception;
 
-    /**
+    /*__
      * Main frame animation method. Load a file. Deprecated?
      *
      * @throws Exception
      */
     void testScene(File f) throws Exception;
 
-    /***
+    /*__
      * Use for drawing fast after scene is drawn
      *
      * @return instance of running ZBuffer (ZBufferImpl)

@@ -19,7 +19,7 @@ package one.empty3.library;
 
 import java.awt.*;
 
-/**
+/*__
  * @author Manuel Dahmen
  */
 public class ColorTexture extends ITexture {
@@ -72,7 +72,7 @@ public class ColorTexture extends ITexture {
         return null;
     }
 
-    /**
+    /*__
      * Quadrilatère numQuadX = 1, numQuadY = 1, coordArr, y 3----2 ^2y |\ | | 4 |
      * 0--\-1 1 -> 2x
      *

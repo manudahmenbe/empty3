@@ -42,7 +42,7 @@ import one.empty3.library.*;
 
 import java.util.ArrayList;
 
-/**
+/*__
  * @author manuel
  */
 class InterpreteCube implements Interprete {

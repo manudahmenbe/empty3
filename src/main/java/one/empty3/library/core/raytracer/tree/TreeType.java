@@ -34,7 +34,7 @@ package one.empty3.library.core.raytracer.tree;
 
 import java.util.HashMap;
 
-/**
+/*__
  * Created by Manuel Dahmen on 15-12-16.
  */
 public class TreeType {

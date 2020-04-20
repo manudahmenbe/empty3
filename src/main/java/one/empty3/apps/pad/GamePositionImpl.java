@@ -35,7 +35,7 @@ package one.empty3.apps.pad;
 import one.empty3.library.Point2D;
 import one.empty3.library.Point3D;
 
-/**
+/*__
  * Created by manuel on 28-08-16.
  */
 public class GamePositionImpl extends Thread implements GamePosition

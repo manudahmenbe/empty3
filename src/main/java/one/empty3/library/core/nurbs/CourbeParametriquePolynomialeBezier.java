@@ -34,8 +34,8 @@ package one.empty3.library.core.nurbs;
 
 import one.empty3.library.Point3D;
 
-/**
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+/*__
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolynomiale {
 

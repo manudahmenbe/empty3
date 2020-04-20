@@ -34,7 +34,7 @@ package one.empty3.library;
 
 import java.awt.*;
 
-/**
+/*__
  * Created by manue on 15-06-19.
  */
 public class ZBufferGL implements ZBuffer {

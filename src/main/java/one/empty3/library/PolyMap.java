@@ -32,7 +32,7 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * Represents polygons built on a up axis. Each point of one polygon is joint by
  * his neighbors left, right, up down '''
  *
@@ -44,7 +44,7 @@ package one.empty3.library;
 //    private List<Polygon> polys = new ArrayList<Polygon>();
 //    private int size;
 //
-//    /**
+//    /*__
 //     * *
 //     * Constructor
 //     *
@@ -60,7 +60,7 @@ package one.empty3.library;
 //
 //    }
 //
-//    /**
+//    /*__
 //     * *
 //     * Add point
 //     *
@@ -78,7 +78,7 @@ package one.empty3.library;
 //        }
 //    }
 //
-//    /**
+//    /*__
 //     * *
 //     *
 //     * @return maillage as an array
@@ -105,7 +105,7 @@ package one.empty3.library;
 //        return pts;
 //    }
 //
-//    /**
+//    /*__
 //     * *
 //     * Gets points on a (coordArr,y) matrix;
 //     *
@@ -120,7 +120,7 @@ package one.empty3.library;
 //
 //    }
 //
-//    /**
+//    /*__
 //     * *
 //     * Polygon's list Each polygon must have the same size than others
 //     *

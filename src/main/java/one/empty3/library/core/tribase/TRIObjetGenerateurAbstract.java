@@ -42,7 +42,7 @@ import java.awt.*;
 import java.awt.Point;
 import java.util.List;
 
-/**
+/*__
  * @author MANUEL DAHMEN
  *         <p>
  *         dev
@@ -51,7 +51,7 @@ import java.util.List;
  */
 public class TRIObjetGenerateurAbstract extends Representable implements TRIObjetGenerateur {
     // Overrides from TriObjetGenerateur
-    /**
+    /*__
      *
      */
 
@@ -125,7 +125,7 @@ public class TRIObjetGenerateurAbstract extends Representable implements TRIObje
         return null;
     }
 
-    /**
+    /*__
      * *
      *
      * @param numX num�ro de valeur de coordArr par rapport � maxX
@@ -171,7 +171,7 @@ public class TRIObjetGenerateurAbstract extends Representable implements TRIObje
         }
     }
 
-    /***
+    /*__
      * Method for interpolate cordinates
      * and textures.
      *
@@ -214,7 +214,7 @@ public class TRIObjetGenerateurAbstract extends Representable implements TRIObje
         }
     }
 
-    /***
+    /*__
      * Draws in Image with ZBuffer 2D drawing class
      * <p>
      * Ce serait mieux de calculer les points avec

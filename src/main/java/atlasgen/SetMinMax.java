@@ -40,7 +40,7 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
+/*__
  * Created by Maauel Dahmen on 30-06-18.
  */
 public class SetMinMax implements Action {

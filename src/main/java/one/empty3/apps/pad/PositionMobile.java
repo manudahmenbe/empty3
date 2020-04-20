@@ -38,7 +38,7 @@ import one.empty3.library.Point3D;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-/**
+/*__
  * Created by manuel on 10-07-17.
  */
 public class PositionMobile {

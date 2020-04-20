@@ -42,7 +42,7 @@ import one.empty3.library.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-/**
+/*__
  * @author MANUEL DAHMEN
  *         <p>
  *         dev
@@ -56,7 +56,7 @@ public class SimpleSphereAvecTexture extends SimpleSphere {
     private double angle;
     private String fichier;
 
-    /**
+    /*__
      * @param c
      * @param r
      * @param col

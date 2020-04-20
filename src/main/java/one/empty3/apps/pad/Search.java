@@ -34,9 +34,9 @@
 
 package one.empty3.apps.pad;
 
-/**
+/*__
  *
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class Search {
 

@@ -46,7 +46,7 @@ import java.util.List;
 public class Scene extends Representable implements Serializable {
 
     public static final String VERSION = "2019.1";
-    /**
+    /*__
      *
      */
     public String author;
@@ -325,7 +325,7 @@ public class Scene extends Representable implements Serializable {
         //throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    /**
+    /*__
      * @return
      */
     public boolean updateTime() {

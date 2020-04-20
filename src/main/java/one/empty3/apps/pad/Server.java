@@ -38,7 +38,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
+/*__
  * Created by manuel on 19-05-17.
  */
 public class Server {

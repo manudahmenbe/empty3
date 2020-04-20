@@ -49,7 +49,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/*__
  * @author Manuel DAHMEN
  */
 public class InterpreteSphere implements Interprete {

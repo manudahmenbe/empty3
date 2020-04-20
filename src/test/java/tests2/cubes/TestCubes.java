@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 
-/**
+/*__
  * @author Se7en
  */
 public class TestCubes extends TestObjetSub {

@@ -8,7 +8,7 @@ import one.empty3.library.core.nurbs.ParametricSurface;
 
 import java.awt.*;
 
-/**
+/*__
  * Created by Win on 22-12-18.
  */
 public class Tihange extends RepresentableConteneur {

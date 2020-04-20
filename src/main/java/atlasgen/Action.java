@@ -32,7 +32,7 @@
 
 package atlasgen;
 
-/**
+/*__
  * Created by Manuel Dahmen
  * on 19-06-18.
  */

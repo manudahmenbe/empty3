@@ -32,7 +32,7 @@
 
 package atlasgen;
 
-/**
+/*__
  * Created by Win on 10-07-18.
  */
 public class Ratio {

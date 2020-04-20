@@ -21,7 +21,7 @@
 //
 //import java.util.ArrayList;
 //
-///**
+///*__
 // * @author Se7en
 // */
 //public class InterpretePolyMapDef implements Interprete {

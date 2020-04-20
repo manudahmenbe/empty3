@@ -35,7 +35,7 @@ package one.empty3.apps.pad.menu;
 import com.jogamp.opengl.GL;
 import com.jogamp.opengl.glu.GLU;
 
-/**
+/*__
  * Created by manuel on 21-05-17.
  */
 public class JoglDisplay {

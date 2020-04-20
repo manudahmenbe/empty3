@@ -39,7 +39,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-/**
+/*__
  * Created by manuel on 07-06-17.
  */
 public class DarkFortressGUIKeyListener implements KeyListener, Runnable {

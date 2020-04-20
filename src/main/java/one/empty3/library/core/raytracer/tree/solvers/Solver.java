@@ -37,7 +37,7 @@ import one.empty3.library.core.raytracer.tree.Constraint;
 
 import java.util.ArrayList;
 
-/**
+/*__
  * Created by manuel on 29-12-16.
  */
 public abstract class Solver {

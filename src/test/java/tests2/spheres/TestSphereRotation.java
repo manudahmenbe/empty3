@@ -1,8 +1,8 @@
-/***
+/*__
  Global license :
 
 
- author Manuel Dahmen <manuel.dahmen@gmail.com>
+ author Manuel Dahmen _manuel.dahmen@gmx.com_
 
  Creation time 06-nov.-2014
 
@@ -18,7 +18,7 @@ import one.empty3.library.core.move.Trajectoires;
 import one.empty3.library.core.testing.TestObjetSub;
 
 
-/**
+/*__
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
 public class TestSphereRotation extends TestObjetSub {

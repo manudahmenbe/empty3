@@ -32,7 +32,7 @@
 
 package one.empty3.library;
 
-/**
+/*__
  * Created by manue on 28-05-19.
  */
 public abstract class TextureOp2D extends ITexture implements MatrixPropertiesObject {

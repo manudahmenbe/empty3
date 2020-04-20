@@ -32,7 +32,7 @@
 
 package one.empty3.apps.pad.trikombat;
 
-/**
+/*__
  * Created by manuel on 03-09-16.
  */
 public class TRIWarrior {

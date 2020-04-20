@@ -35,7 +35,7 @@ import one.empty3.library.*;
 import java.awt.*;
 import java.util.Random;
 
-/**
+/*__
  * @author Manuel
  */
 public class CollineModele1 extends Representable implements TRIGenerable {

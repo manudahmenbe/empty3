@@ -1,4 +1,4 @@
-/**
+/*__
  * *
  * Global license : * GNU GPL v3
  * <p>
@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/*__
  *
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */

@@ -12,7 +12,7 @@ import java.awt.*;
 import java.io.File;
 import java.util.HashMap;
 
-/**
+/*__
  * @author Manuel Dahmen
  * Doesn't work
  */

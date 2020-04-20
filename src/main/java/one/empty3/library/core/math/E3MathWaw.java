@@ -39,7 +39,7 @@ import one.empty3.library.Matrix33;
 import one.empty3.library.Point3D;
 import one.empty3.library.core.nurbs.ParametricCurve;
 
-/**
+/*__
  * @author Se7en
  */
 public class E3MathWaw {
@@ -47,7 +47,7 @@ public class E3MathWaw {
     static double approxTangente = 0.000001;
     static double approxNormale = 0.000001;
 
-    /**
+    /*__
      * @param c            chemin à parcourir
      * @param emplacementT Valeur de la variable de la courbe paramétrique.
      * @return Les 3 segments de droites (vecteurs) qui composent le repère. 0:
@@ -74,7 +74,7 @@ public class E3MathWaw {
 
         pts[3] = pts[0].prodVect(pts[1]).norme1();
 
-        /**
+        /*__
          * Contrairement à ce que j'ai écrit sur Empty3, il semble que j'aie
          * fait une erreur de vocabulaire: une courbe ne possède pas deux
          * normale mais un plan normal en chaque point (pour une courbe 2 fois
@@ -146,7 +146,7 @@ public class E3MathWaw {
         Point3D[] axes;
 
 
-        /***
+        /*__
          * @param axes Axes avec le point d'origine en position 0 de tableau.
          */
         public Repere(Point3D[] axes) {

@@ -30,7 +30,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/**
+/*__
  * @author Atelier
  * @author Atelier
  * @author Atelier
@@ -40,7 +40,7 @@
  * @author Atelier
  * @author Atelier
  */
-/**
+/*__
  * @author Atelier
  *
  */

@@ -39,7 +39,7 @@ package one.empty3.library;
 
 import java.io.Serializable;
 
-/**
+/*__
  * cadre à la scène, avec possibilité d'élargir le cadre ou de ne pas en tenir
  * compte
  *
@@ -50,7 +50,7 @@ import java.io.Serializable;
  */
 public class SceneCadre implements Serializable {
 
-    /**
+    /*__
      *
      */
     private static final long serialVersionUID = -2001787693050570304L;

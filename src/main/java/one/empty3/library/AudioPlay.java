@@ -31,17 +31,17 @@
  */
 
 package one.empty3.library;
-/**
+/*__
  * *
  * Global license : * CC Attribution
  *
- * author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * author Manuel Dahmen _manuel.dahmen@gmx.com_
  *
  **
  */
-/**
+/*__
  *
- * @author Manuel Dahmen <manuel.dahmen@gmx.com>
+ * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 class AudioPlay {
 

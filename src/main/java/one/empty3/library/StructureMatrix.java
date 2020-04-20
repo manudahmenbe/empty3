@@ -38,7 +38,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
-/**
+/*__
  * Created by manue on 07-09-19.
  */
 public class StructureMatrix<T> {

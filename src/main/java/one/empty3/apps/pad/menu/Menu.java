@@ -35,7 +35,7 @@ package one.empty3.apps.pad.menu;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/*__
  * Created by manuel on 21-05-17.
  */
 public class Menu {

@@ -39,7 +39,7 @@ package one.empty3.library.core.script;
 
 import java.util.ArrayList;
 
-/**
+/*__
  * *
  * AUTHOR DAHMEN MANUEL DATE 18 AVRIL 2012
  */

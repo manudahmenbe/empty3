@@ -35,7 +35,7 @@
  Vous êtes libre de :
 
  */
-/**
+/*__
  *
  */
 package one.empty3.library.core.script;
@@ -45,7 +45,7 @@ import one.empty3.library.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-/**
+/*__
  * @author MANUEL DAHMEN
  *         <p>
  *         dev

@@ -34,7 +34,7 @@ package one.empty3.pointset;
 
 import one.empty3.library.Point3D;
 
-/**
+/*__
  * Created by manue on 16-07-19.
  */
 public class Gravity extends Point3D {

@@ -3,7 +3,7 @@ package tests2.mammaires;
 import one.empty3.library.Point3D;
 import one.empty3.library.core.nurbs.ParametricSurface;
 
-/**
+/*__
  * Created by manuel on 23-05-17.
  */
 public class mammaires {
@@ -24,7 +24,7 @@ public class mammaires {
         }
     }
 
-    /***
+    /*__
      * Spheric Ball
      */
     static class Sein2 extends ParametricSurface {
@@ -44,7 +44,7 @@ public class mammaires {
         }
     }
 
-    /***
+    /*__
      *
      */
     static class Sein3 extends ParametricSurface {

@@ -32,7 +32,7 @@
 
 package one.empty3.library.core.testing;
 
-/**
+/*__
  * @author Se7en
  */
 /*

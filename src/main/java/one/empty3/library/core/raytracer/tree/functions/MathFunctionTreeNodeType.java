@@ -34,7 +34,7 @@ package one.empty3.library.core.raytracer.tree.functions;
 import java.util.*;
 import one.empty3.library.core.raytracer.tree.*;
 
-/**
+/*__
  * Created by manuel on 24-01-17.
  */
 public class MathFunctionTreeNodeType extends FunctionTreeNodeType {

@@ -34,7 +34,7 @@ package one.empty3.library.core.nurbs;
 
 import one.empty3.library.*;
 
-/**
+/*__
  * Created by manue on 13-02-19.
  * // TODO
  * // Epaisseur (2 surfaces "paralelles")

@@ -31,7 +31,7 @@
  */
 
 package one.empty3.library;
-/**
+/*__
  * @author manu
  */
 
@@ -42,7 +42,7 @@ import com.xuggle.xuggler.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-/**
+/*__
  * Takes a media container, finds the first video stream, decodes that
  * stream, and then writes video frames at some interval based on the
  * video presentation time stamps.
@@ -51,20 +51,20 @@ import java.io.File;
  */
 
 public class DecodeAndCaptureFrames extends Thread {
-    /**
+    /*__
      * The number of seconds between frames.
      */
 
     public static final double SECONDS_BETWEEN_FRAMES = 0;
 
-    /**
+    /*__
      * The number of nano-seconds between frames.
      */
 
     public static final long NANO_SECONDS_BETWEEN_FRAMES =
             (long) (Global.DEFAULT_PTS_PER_SECOND * SECONDS_BETWEEN_FRAMES);
 
-    /**
+    /*__
      * Time of last frame write.
      */
 
@@ -72,7 +72,7 @@ public class DecodeAndCaptureFrames extends Thread {
     private static TextureMov refTextureMov;
     private final File file;
 
-    /**
+    /*__
      * Write the video frame out to a PNG file every once and a while.
      * The files are written out to the system's temporary directory.
      *
@@ -118,7 +118,7 @@ public class DecodeAndCaptureFrames extends Thread {
         }
     }
 
-    /**
+    /*__
      * Takes a media container (file) as the first argument, opens it,
      * reads through the file and captures video frames periodically as
      * specified by SECONDS_BETWEEN_FRAMES.  The frames are written as PNG
