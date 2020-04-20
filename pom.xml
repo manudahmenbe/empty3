@@ -205,7 +205,7 @@ scm:git:git://github.com/manuelddahmen/empty3.git
               <goal>sign</goal>
             </goals>
 		  <configuration>
-        <keyname>9B7BFF13229B7BFF1322EE55E4EE55E4</keyname>
+        <keyname>22EE55E4</keyname>
 			  
       </configuration>
           </execution>
