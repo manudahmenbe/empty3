@@ -139,8 +139,8 @@ scm:git:git://github.com/manuelddahmen/empty3.git
         <execution>
           <id>attach-javadocs</id>
           <goals>
-            <goal>javadoc:fix</goal><!-- default jar -->
-     <goal>javadoc:jar</goal>
+            <goal>javadoc</goal><!-- default jar -->
+     <goal>jar</goal>
      </goals>
 		
 		<configuration>
