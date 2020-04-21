@@ -14,7 +14,7 @@
     <version>2020.2</version>
     <description>3D rendering engine. Plus modelling.</description>
     <packaging>jar</packaging>
-    <url>https://github,com/manuelddahmen/empty3</url>
+    <url>https://github.com/manuelddahmen/empty3</url>
     
     <distributionManagement>
   <snapshotRepository>
@@ -51,13 +51,13 @@
 scm:git:git://github.com/manuelddahmen/empty3.git
 </developerConnection>
 	</scm>
-
-	<developers>
+<developers>
 		<developer>
 			<email>kevinsawicki@gmail.com</email>
-			<name>Kevin Sawicki</name>
-			<url>https://github.com/kevinsawicki</url>
-			<id>kevinsawicki</id>
+			<name>Manuel D Dahmen
+			</name>
+			<url>https://github.com/manuelddahmen</url>
+			<id>manuelddahmen</id>
 		</developer>
 	</developers>
 
