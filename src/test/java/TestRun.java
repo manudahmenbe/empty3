@@ -6,9 +6,12 @@ public class TestRun {
 
      public static void main(String [] args) {
           Class cl = Class.forName(args[0]);  
-          Object t=  cl.newInstance () ;
-          if(t instanceof TestObjet) 
-              runTest((TestObjet ) t) ;
-
+         try {
+              Object t=  cl.newInstance () ;
+              if(t instanceof TestObjet) 
+                   runTest((TestObjet ) t) ;
+         } catch(InstantiationException ex) {
+              ex,printStackTrace();
+         }
      } 
 } 
