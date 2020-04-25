@@ -11,7 +11,7 @@ public class TestRun {
               if(t instanceof TestObjet) 
                    runTest((TestObjet ) t) ;
          } catch(InstantiationException ex) {
-              ex,printStackTrace();
+              ex.printStackTrace();
          }
      } 
 } 
