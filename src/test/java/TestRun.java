@@ -10,7 +10,7 @@ public class TestRun {
               Object t=  cl.newInstance () ;
               if(t instanceof TestObjet) 
                    runTest((TestObjet ) t) ;
-         } catch(InstantiationException ex) {
+         } catch(Exception ex) {
               ex.printStackTrace();
          }
      } 
