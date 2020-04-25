@@ -1,3 +1,4 @@
+import one.empty3.library.core.testing.*;
 public class TestRun {
     public static void runTest(TestObjet to) {
         new Thread(to).start();
