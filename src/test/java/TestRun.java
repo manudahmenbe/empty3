@@ -5,7 +5,7 @@ public class TestRun {
     } 
 
      public static void main(String [] args) {
-          String cl = Class.forName(args[0]);  
+          Class cl = Class.forName(args[0]);  
           Object t=  cl.newInstance () ;
           if(t instanceof TestObjet) 
               runTest((TestObjet ) t) ;
