@@ -197,7 +197,8 @@ private ManualVideoCompile compiler ;
     }
 
     public void startNewMovie() {
-compiler.end();
+if(compiler!=null)
+    compiler.end();
 initCompiler();
 /*
         if ((generate & GENERATE_MOVIE) > 0) {
@@ -699,7 +700,7 @@ compiler = new ManualVideoCompile () ;
             }
 
             RenderedImage i = ImageIO.read(is);
-            BufferedImage bi = (BufferedImage) i;
+            BufferedImage bi = (Bufferedmage) i;
 
             ECBufferedImage eci = new ECBufferedImage(bi);
             biic.setImage(eci);
