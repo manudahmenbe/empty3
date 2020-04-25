@@ -490,6 +490,9 @@ initCompiler();
 
         setDimension(HD1080);
         initialise = true;
+        publishResult(false);
+        setMaxFrames(10000);
+        loop(true);
 
 compiler = new ManualVideoCompile () ;
     }
