@@ -126,7 +126,7 @@ scm:git:git://github.com/manuelddahmen/empty3.git
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
+                <version>1.6.0</version>
                 <configuration>
                     <mainClass>TestRun</mainClass>
                     <arguments>
