@@ -130,7 +130,7 @@ scm:git:git://github.com/manuelddahmen/empty3.git
                 <configuration>
                     <mainClass>TestRun</mainClass>
                     <arguments>
-                        <argument>tests2.TestAxes</argument>
+                        <argument>test3.QuadratureCercle</argument>
                     </arguments>
                 </configuration>
             </plugin>
