@@ -197,7 +197,7 @@ private ManualVideoCompile compiler ;
     }
 
     public void startNewMovie() {
-if(compiler!=null || frame>0)
+if(compiler!=null && frame>0)
     compiler.end();
 initCompiler();
 /*
