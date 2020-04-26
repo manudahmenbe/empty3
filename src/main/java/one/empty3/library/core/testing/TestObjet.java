@@ -700,7 +700,7 @@ compiler = new ManualVideoCompile () ;
             }
 
             RenderedImage i = ImageIO.read(is);
-            BufferedImage bi = (Bufferedmage) i;
+            BufferedImage bi = (BufferedImage) i;
 
             ECBufferedImage eci = new ECBufferedImage(bi);
             biic.setImage(eci);
