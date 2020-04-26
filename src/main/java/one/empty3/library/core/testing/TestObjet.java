@@ -70,6 +70,7 @@ public abstract class TestObjet implements Test, Runnable {
     public static Resolution HD720  = new Resolution(1280, 720);
     public static Resolution HD1080 = new Resolution(1920, 1080);
     public static Resolution UHD    = new Resolution(1920*2, 1080*2);
+    public static R=solution VGAZIZI= new Resolution(640, 480);
 
     public static final int GENERATE_NOTHING = 0;
     public static final int GENERATE_IMAGE = 1;
@@ -152,7 +153,7 @@ public abstract class TestObjet implements Test, Runnable {
 private ManualVideoCompile compiler ;
    private boolean isVBR;
     private AudioFormat audioFormat;
-    private Resolution dimension = new Resolution(resx, resy);
+    private Resolution dimension = VGAZIZI;
     private String name;
 
     public TestObjet() {
@@ -168,6 +169,8 @@ private ManualVideoCompile compiler ;
     public TestObjet(boolean binit) {
         if (binit) {
             init();
+            setResx(resolution.x);
+            setResy(resolution.y);
         } else {
         }
     }
