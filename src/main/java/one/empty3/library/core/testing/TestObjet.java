@@ -197,9 +197,7 @@ private ManualVideoCompile compiler ;
     }
 
     public void startNewMovie() {
-if(compiler!=null && frame>0)
-    compiler.end();
-initCompiler();
+
 /*
         if ((generate & GENERATE_MOVIE) > 0) {
             if (isAviOpen()) {
@@ -216,6 +214,9 @@ initCompiler();
         idxFilm++;
         avif = new File(this.dir.getAbsolutePath() + File.separator
                 + sousdossier + this.getClass().getName() + "__" + filmName + idxFilm + ".AVI");
+        if(compiler!=null && frame>0)
+    compiler.end();
+initCompiler();
 /*
       //  aw = null;
         int track = -1;
