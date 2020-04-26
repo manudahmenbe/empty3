@@ -169,8 +169,8 @@ private ManualVideoCompile compiler ;
     public TestObjet(boolean binit) {
         if (binit) {
             init();
-            setResx(resolution.getX());
-            setResy(resolution.getY());
+            setResx(resolution.x());
+            setResy(resolution.y());
         } else {
         }
     }
