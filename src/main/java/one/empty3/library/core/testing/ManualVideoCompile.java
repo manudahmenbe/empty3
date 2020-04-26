@@ -37,7 +37,7 @@ if(bitrate<=0)
      bitrate = 350000;
 		logger.debug("Compiling an empty stream to {}", OUTPUT_FILE);
 		
-		File outputFile = new File(OUTPUT_FILE);
+		File outputFile = new File(OUTPUT_FILE+".flv");
 		
 		//if (outputFile.exists())
 		//	outputFile.delete();
