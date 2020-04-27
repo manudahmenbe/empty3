@@ -58,6 +58,7 @@ public class CameraInPath extends Camera {
 
     public CameraInPath(ParametricCurve maCourbe) {
         this.T = new StructureMatrix (0, Double.class) ;
+T. setElem(0.0) ;
         this.courbe.setElem(maCourbe);
     }
 
