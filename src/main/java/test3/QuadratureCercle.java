@@ -28,7 +28,7 @@ public class QuadratureCercle extends TestObjetSub {
     private int framesItere = 100;
 
     public QuadratureCercle() {
-        pointCount = 100000;
+        pointCount = 100;
         dimCube = 100;
         dimSphere = 100;
         maxSpeed = 20;
@@ -53,7 +53,7 @@ public class QuadratureCercle extends TestObjetSub {
         textures = new ITexture[pointCount];
         textureDefault = null;
         try {
-            textureDefault = new TextureImg(new ECBufferedImage(ImageIO.read(new File("samples/img/herbe.jpg"))));
+            textureDefault = new TextureColor(Color.Green); //new TextureImg(new ECBufferedImage(ImageIO.read(new File("samples/img/herbe.jpg"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
