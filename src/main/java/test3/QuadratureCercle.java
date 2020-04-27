@@ -28,7 +28,7 @@ public class QuadratureCercle extends TestObjetSub {
     private int framesItere = 100;
 
     public QuadratureCercle() {
-        pointCount = 100;
+        pointCount = 1000;
         dimCube = 100;
         dimSphere = 100;
         maxSpeed = 20;
@@ -67,7 +67,7 @@ public class QuadratureCercle extends TestObjetSub {
                     radius);
 
             textures[i] = textureDefault;
-            representableConteneur.add(p2[i]);
+            representableConteneur.add(spheres[i]);
             spheres[i].texture(textures[i]);
             speed[i] = Point3D.random(maxSpeed);
             while (speed[i].norme() < minSpeed) {
