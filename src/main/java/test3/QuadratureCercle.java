@@ -14,7 +14,7 @@ import java.io.IOException;
 public class QuadratureCercle extends TestObjetSub {
     private final int dimCube;
     private final int dimSphere;
-    private final int radius;
+    private double radius;
     private Sphere[] spheres;
     private int pointCount;
     private Point3D[] speed;
@@ -33,7 +33,7 @@ public class QuadratureCercle extends TestObjetSub {
         dimSphere = 100;
         maxSpeed = 20;
         minSpeed = 5;
-        radius = 5;
+        radius = dimCube/10.0;
         forme = 1;
     }
 
@@ -87,8 +87,8 @@ public class QuadratureCercle extends TestObjetSub {
         
         
         scene().remove(spheres[i]);
-        spheres[i] = new Sphere(new Axe(p2[i].plus(spheres[i].getAxe().getP1().getElem()),
-                p2[i].plus(spheres[i].getAxe().getP2().getElem())),
+        spheres[i] = new Sphere(new Axe(p2[i].plus(speed[i]),
+                p2[i].plus(speed[i])),
                 radius);
         scene().add(spheres[i]);
 
