@@ -80,10 +80,10 @@ public class QuadratureCercle extends TestObjetSub {
     }
 
     public void bounce(int i) {
-        representableConteneur.remove(p2[i]);
-        p2[i] = p2[i].plus(speed[i]);
-        p2[i].texture(textureDefault);
-        representableConteneur.add(p2[i]);
+        //representableConteneur.remove(p2[i]);
+        //p2[i] = p2[i].plus(speed[i]);
+       //p2[i].texture(textureDefault);
+        //representableConteneur.add(p2[i]);
         /*
         /*
         scene().remove(spheres[i]);
