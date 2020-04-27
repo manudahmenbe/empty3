@@ -3,7 +3,7 @@ package test3;
 import one.empty3.library.*;
 import one.empty3.library.core.nurbs.CameraInPath;
 import one.empty3.library.core.testing.TestObjetSub;
-
+import java.awt.Color;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
