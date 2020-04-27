@@ -84,9 +84,9 @@ double t = this. t. getElem() ;
 
     @Override
     public Point3D calculerCurveT( double u, double t) {
-        t.setElem(t);
+        t.setElem((Double) t);
         calculerMatrice(null);
-        return courbe.getElem().calculerPoint3D(t.getElem());
+        return courbe.getElem().calculerPoint3D((Double) t.getElem());
     }
     @Override
     public Point3D calculerPointDansRepere(Point3D p) {
