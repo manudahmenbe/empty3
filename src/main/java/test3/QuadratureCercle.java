@@ -52,11 +52,11 @@ public class QuadratureCercle extends TestObjetSub {
         speed = new Point3D[pointCount];
         textures = new ITexture[pointCount];
         textureDefault = null;
-        try {
+      //try {
             textureDefault = new ColorTexture(Color.GREEN); //new TextureImg(new ECBufferedImage(ImageIO.read(new File("samples/img/herbe.jpg"))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //} catch (IOException e) {
+         //   e.printStackTrace();
+      !! }
         p2 = new Point3D[pointCount];
         for (int i = 0; i < pointCount; i++) {
             p2[i] = Point3D.random(100d);
