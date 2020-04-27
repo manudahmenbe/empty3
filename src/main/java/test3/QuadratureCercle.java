@@ -84,8 +84,8 @@ public class QuadratureCercle extends TestObjetSub {
         p2[i] = p2[i].plus(speed[i]);
         p2[i].texture(textureDefault);
         representableConteneur.add(p2[i]);
-        /*
-        /*
+        
+        
         scene().remove(spheres[i]);
         spheres[i] = new Sphere(new Axe(p2[i].plus(spheres[i].getAxe().getP1()),
                 p2[i].plus(spheres[i].getAxe().getP2())),
@@ -93,7 +93,7 @@ public class QuadratureCercle extends TestObjetSub {
         scene().add(spheres[i]);
 
         spheres[i].texture(textures[i]);
-*/
+
 
         if (forme == 1) {
             if (p2[i].norme() > dimSphere && speed[i].prodScalaire(p2[i]) > 0)
@@ -123,7 +123,7 @@ public class QuadratureCercle extends TestObjetSub {
     @Override
     public void finit() throws Exception {
         CameraInPath camera = new CameraInPath(new Circle(
-                new Axe(Point3D.O0.plus(Point3D.X), Point3D.O0.moins(Point3D.X)), 400));
+                new Axe(Point3D.O0.plus(Point3D.X), Point3D.O0.moins(Point3D.X)), 800d));
         scene().add(camera);
         scene().cameraActive(camera);
         double t = 1.0 * frame() / (getMaxFrames());
