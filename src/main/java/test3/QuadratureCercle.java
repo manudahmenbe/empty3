@@ -87,8 +87,8 @@ public class QuadratureCercle extends TestObjetSub {
         
         
         scene().remove(spheres[i]);
-        spheres[i] = new Sphere(new Axe(p2[i].plus(spheres[i].getAxe().getP1().getElem(),
-                p2[i].plus(spheres[i].getAxe().getP2().getElem()),
+        spheres[i] = new Sphere(new Axe(p2[i].plus(spheres[i].getAxe().getP1().getElem()),
+                p2[i].plus(spheres[i].getAxe().getP2().getElem())),
                 radius);
         scene().add(spheres[i]);
 
