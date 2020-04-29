@@ -266,7 +266,7 @@ initCompiler();
     }
 
     public boolean isAviOpen() {
-        return aviOpen;
+        return compiler!=;
     }
 
     public void setAviOpen(boolean aviOpen) {
