@@ -96,7 +96,7 @@ scm:git:git://github.com/manuelddahmen/empty3.git
                 <configuration>
                     <skipTests>false</skipTests>			     
         <forkMode>once</forkMode>
-        <argLine>-Xms2048m -Xm2048m</argLine>
+        <argLine>-Xms2048m -Xmx2048m</argLine>
                 </configuration>
             </plugin>
             <plugin>
