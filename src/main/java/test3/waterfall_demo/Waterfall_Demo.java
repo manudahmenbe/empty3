@@ -57,7 +57,7 @@ public class Waterfall_Demo extends TestObjetSub {
     public int CURVE_RANDOM  = 1;
     public boolean OPTION_CURVE_CUT = true;
 
-    int nCurves = 20;
+    int nCurves = 5;
     int nodeMeanY = 5;
     private StructureMatrix<ParametricCurve> curves = new StructureMatrix<>(1, ParametricCurve.class);
     private StructureMatrix<Double> ts = new StructureMatrix<>(1, Double.class);
