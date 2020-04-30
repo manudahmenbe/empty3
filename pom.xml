@@ -132,7 +132,7 @@ scm:git:git://github.com/manuelddahmen/empty3.git
                 <configuration>
                     <mainClass>TestRun</mainClass>
                     <arguments>
-                        <argument>test3.waterfall_demo.Waterfall_Demo</argument>
+                        <argument> tests2.tihange_reac_cendar.TestTihange</argument>
                     </arguments>
                 </configuration>
             </plugin>
