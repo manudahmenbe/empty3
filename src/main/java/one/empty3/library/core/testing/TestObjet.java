@@ -463,6 +463,15 @@ initCompiler();
         try {
             config.load(new FileInputStream(System.getProperty("user.home")
                     + File.separator + "empty3.config"));
+        
+            
+            }
+            catch(Exception|NullPointerException ex)
+              {
+                config.setProperty("folderoutput", "./EmptyCanvasTests)
+              System.out.println("userHome/empty3.config not found use default")
+          }
+                                   try {
             if (config.getProperty("folderoutput") != null) {
                 dir1 = new File(config.getProperty("folderoutput"));
             } else {
