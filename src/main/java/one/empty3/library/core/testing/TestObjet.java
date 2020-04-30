@@ -471,11 +471,11 @@ initCompiler();
                 config.setProperty("folderoutput", "./EmptyCanvasTests");
               System.out.println("userHome/empty3.config not found use default");
           }
-                                   try {
+                         //          try {
             if (config.getProperty("folderoutput") != null) {
                 dir1 = new File(config.getProperty("folderoutput"));
             } else {
-                dir1 = new File("/"
+                dir1 = new File("./"
                         + File.separator + "EmptyCanvas");
             }
        // } catch (IOException ex) {
