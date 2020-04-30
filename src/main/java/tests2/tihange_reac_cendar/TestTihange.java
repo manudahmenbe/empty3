@@ -6,7 +6,14 @@ import one.empty3.library.core.move.Trajectoires;
 import one.empty3.library.core.testing.TestObjetSub;
 
 public class TestTihange extends TestObjetSub {
+    public TestTihange(){
+        
+        setMaxFrames(1);
+        setGenerate(GENERATE_MOVIE | GENERATE_IMAGE | GENERATE_MODEL);
+       
+    }
     public static void main(String... args) {
+        
         TestTihange testTihange = new TestTihange();
         testTihange.setMaxFrames(1);
         testTihange.setGenerate(GENERATE_MOVIE | GENERATE_IMAGE | GENERATE_MODEL);
