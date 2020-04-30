@@ -478,9 +478,9 @@ initCompiler();
                 dir1 = new File("/"
                         + File.separator + "EmptyCanvas");
             }
-        } catch (IOException ex) {
-            o.println(ex.getLocalizedMessage());
-        }
+       // } catch (IOException ex) {
+         //   o.println(ex.getLocalizedMessage());
+      //  }
         dir1.mkdirs();
 
         this.dir = new File(dir1.getAbsolutePath() + File.separator
