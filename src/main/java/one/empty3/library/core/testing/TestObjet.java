@@ -266,7 +266,7 @@ initCompiler();
     }
 
     public boolean isAviOpen() {
-        return compiler!=;
+        return compiler!=null;
     }
 
     public void setAviOpen(boolean aviOpen) {
@@ -468,8 +468,8 @@ initCompiler();
             }
             catch(Exception|NullPointerException ex)
               {
-                config.setProperty("folderoutput", "./EmptyCanvasTests)
-              System.out.println("userHome/empty3.config not found use default")
+                config.setProperty("folderoutput", "./EmptyCanvasTests");
+              System.out.println("userHome/empty3.config not found use default");
           }
                                    try {
             if (config.getProperty("folderoutput") != null) {
