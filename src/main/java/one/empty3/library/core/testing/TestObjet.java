@@ -466,7 +466,7 @@ initCompiler();
         
             
             }
-            catch(Exception|NullPointerException ex)
+            catch(Exception ex)
               {
                 config.setProperty("folderoutput", "./EmptyCanvasTests");
               System.out.println("userHome/empty3.config not found use default");
