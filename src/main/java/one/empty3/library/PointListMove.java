@@ -30,7 +30,13 @@ public class PointListMove {
     }
     
     public void next(){
-         
+         for(RepresentableT rt : points) {
+              // rt getproperty
+             // rt set T ++
+             // 2 compute Vec change p3 to vec
+             // 1 choose type
+             // 3 vec0.changeto vec1
+         }
     }
     
 }
