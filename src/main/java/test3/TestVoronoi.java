@@ -30,13 +30,16 @@ distancesSum[i][j] /= maxDist;
 // Laplace derivation 2
  for(int i= 0;i<getResx(); i++)
              for(int j= 0;j<getResy(); j++) {
+                 // laplacien[i][j]
 }
    }
 
 
    public void afterRenderFrame() { 
        BufferedImage img = z.image();
-       
+       for(int i= 0;i<getResx(); i++)
+             for(int j= 0;j<getResy(); j++) {
+                  img.setRgb(i, j, new Color((float)distancesSum[i][j], 0f, 0f));
        
    }
 }
