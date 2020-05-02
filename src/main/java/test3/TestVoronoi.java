@@ -3,6 +3,7 @@ import one.empty3.library.core.testing.*;
 import one.empty3.library.*;
 import one.empty3.library.core.lighting.Colors;
 import java.awt.*;
+import one.empty3.library.core.nurbs.*;
 import java.awt.image.*;
 import java.util.*;
 public class TestVoronoi extends TestObjetSub {
