@@ -6,12 +6,12 @@ import java.awt.*;
 import java.awt.image.*;
 import java.util.*;
 public class TestVoronoi extends TestObjetSub {
-
+public int pointsSize = 10;
    private CourbeParametriquePolynomialeBezier[] curves = new CourbeParametriqueBezier[pointsSize];
    private Double [][][] distancesSum;
    private ArrayList<Point3D> pointsList;
    private Double maxDist;
-   public int pointsSize = 10;
+   
    private int[][] pointNo;
    protected void addRand(CourbeParametriquePolynomialeBezier c) {
        c.getCoefficients().addElem(new Point3D(Math.random()*getResx(),
