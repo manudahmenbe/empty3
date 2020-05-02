@@ -1,8 +1,8 @@
 package test3;
 import one.empty3.library.core.testing.*;
 import one.empty3.library.*;
-import java.awt.Colir;
-import java.util.List;
+import java.awt.*;
+import java.util.*;
 public class TestVoronoi extends TestObjet {
 Double [][] distancesSum;
    private List<Point3D> pointsList;
