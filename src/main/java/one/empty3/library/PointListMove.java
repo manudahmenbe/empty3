@@ -2,8 +2,8 @@ package one.empty3.library;
 import one.empty3.library.core.nurbs.*;
 public class PointListMove {
     private RepresentableT [] points;
-    private StructureMatrix<String> formula = new StructureMatrix (1, String.class);
-    private StructureMatrix<ParametricCurve> curves = new StructureMatrix (1, ParametricCurve.class);
+    //private StructureMatrix<String> formula = new StructureMatrix (1, String.class);
+    //private StructureMatrix<ParametricCurve> curves = new StructureMatrix (1, ParametricCurve.class);
     class Slice {
         int type;
         
@@ -35,13 +35,13 @@ public class PointListMove {
     }
 
     public void curve(String property, ParametricCurve curve) {
-        this.curve = curve;
+        //this.curves.addElem(curve);
     }
     /***
      * @param formula vec{3}(f(ord(0), ord(1), ...))
      */
     public void formulaOrd(String property, String formula) {
-       this.formula = formula;
+       //this.formula = formula;
     
     }
     
