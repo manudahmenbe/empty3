@@ -15,7 +15,7 @@ public int pointsSize = 10;
    
    private int[][] pointNo;
    protected void addRand(CourbeParametriquePolynomialeBezier c) {
-       c.getCoefficients().addElem(new Point3D(Math.random()*getResx(),
+       c.getCoefficients().add(new Point3D(Math.random()*getResx(),
                                   Math.random()*getResy(),
                                   0.0));
 
