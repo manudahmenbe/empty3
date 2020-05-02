@@ -20,7 +20,7 @@ public class PointListMove {
     }
     class SliceFormula extends Slice {}
     class SliceCurve extends Slice {}
-    
+    class SliceFunction extends Slice {}
     // Slices of ord.ex (0,1), curve, curveOp 
     // tan, norm, cross, add... ???
     // collide
