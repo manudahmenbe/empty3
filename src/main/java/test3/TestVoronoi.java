@@ -57,7 +57,7 @@ public class TestVoronoi extends TestObjetSub {
                   pointNo[i][j] = pointNoIjk;
                      
                      
-                  }
+                  
                   
              }
         for(int i= 0;i<getResx(); i++)
