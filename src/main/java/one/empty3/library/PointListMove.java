@@ -5,10 +5,12 @@ public class PointListMove {
     private StructureMatrix<String> formula = new StructureMatrix (1, String.class);
     private StructureMatrix<ParametricCurve> curves = new StructureMatrix (1, ParametricCurve.class);
     private int type;
+    private double t, dt;
     // Slices of ord.ex (0,1), curve, curveOp 
     // tan, norm, cross, add... ???
-    public PointListMove (List<Point3D> [) {
+    public PointListMove (List<Point3D> p, double t, double dt) {
         this.points = p;
+        this.t = t;this.dt = dt;
     }
     
     public void random() {
