@@ -28,9 +28,9 @@ public int pointsSize = 10;
       //  distancesSum = new Double [getResx()][getResy()][pointsSize];
       pointNo = new int[getResx()][getResy()];
       for(int i = 1; i<pointsSize+1; i++) {
-          pointsList.add(new Point3D(Math.random()*getResx(),
-                                  Math.random()*getResy(),
-                                  0.0));
+          //pointsList.add(new Point3D(Math.random()*getResx(),
+          //                        Math.random()*getResy(),
+          //                        0.0));
           curves[i-1] = new CourbeParametriquePolynomialeBezier();
           for(int p=0;p<6;p++) {
               addRand(curves[i-1]);
