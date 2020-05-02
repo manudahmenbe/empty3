@@ -8,6 +8,7 @@ Double maxDist;
    public void ginit() {
         maxDist = 0.0;
         distancesSum = new Double [getResx()][getResy()];
+
         
    }
 
@@ -22,8 +23,17 @@ Double maxDist;
                        distancesSum[i][j] += Point3D.distance(p, pointsList.get(k));
                   if(distancesSum[i][j]>maxDist)
                        maxDist = distancesSum[i][j];
+             }
+// Laplace derivation 2
+ for(int i= 0;i<getResx(); i++)
+             for(int j= 0;j<getResy(); j++) {
+}
    }
 
 
-   public void testScene() {}
+   public void afterRenderFrame() { 
+       BufferedImage img = z.image();
+       
+       
+   }
 }
