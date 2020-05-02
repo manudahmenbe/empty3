@@ -1,5 +1,6 @@
 package one.empty3.library;
 import one.empty3.library.core.nurbs.*;
+import java.util.List;
 public class PointListMove {
     private RepresentableT [] points;
     //private StructureMatrix<String> formula = new StructureMatrix (1, String.class);
