@@ -26,8 +26,8 @@ public class PointListMove {
     // collide
     public PointListMove (double t, double dt, RepresentableT... p) {
         this.points = p;
-        this.t = t;
-        this.dt = dt;
+        //this.t = t;
+        //this.dt = dt;
     }
     
     public void customFunction(String property) {
