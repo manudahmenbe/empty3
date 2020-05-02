@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.image.*;
 import java.util.*;
 public class TestVoronoi extends TestObjetSub {
-   private Double [][] distancesSum;
+   private Double [][][] distancesSum;
    private ArrayList<Point3D> pointsList;
    private Double maxDist;
    public int pointsSize = 10;
@@ -37,7 +37,7 @@ public class TestVoronoi extends TestObjetSub {
                        
                   
                        distancesSum[i][j][k] = Point3D.distance(p, pointsList.get(k));
-                       if(distancesSum[i][j]>maxDist)
+                       if(distancesSum[i][j][k]>maxDist)
                            maxDist = distancesSum[i][j];
                      
                   }
@@ -57,7 +57,7 @@ public class TestVoronoi extends TestObjetSub {
              }
         for(int i= 0;i<getResx(); i++)
              for(int j= 0;j<getResy(); j++) {
-                  distancesSum[i][j] /= maxDist;
+                  //distancesSum[i][j][] /= maxDist;
              }
 // Laplace derivation 2
  for(int i= 0;i<getResx(); i++)
