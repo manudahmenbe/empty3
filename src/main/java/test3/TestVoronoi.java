@@ -1,5 +1,5 @@
 package test3;
 
-public class TestVoronoi {
-
+public class TestVoronoi extends TestObjet {
+   
 }
