@@ -902,8 +902,10 @@ compiler. init(avif.getAbsolutePath()
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
-                    afterRenderFrame();
+                    ;
                     ri = z.image();
+
+                    afterRenderFrame();
 
                     ri.getGraphics().drawString(description, 0, 0);
 
