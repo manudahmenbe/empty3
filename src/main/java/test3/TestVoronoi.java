@@ -42,7 +42,7 @@ public class TestVoronoi extends TestObjetSub {
                   
                        /*distancesSum[i][j][k] */dist= Point3D.distance(p, pointsList.get(k));
                        if(dist/*distancesSum[i][j][k]*/>maxDist)
-                           maxDist = distancesSum[i][j][k];
+                           maxDist = dist;// distancesSum[i][j][k];
                      
                   }
                 int pointNoIjk = 0;
