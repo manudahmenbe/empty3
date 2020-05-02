@@ -3,7 +3,7 @@ import one.empty3.library.core.testing.*;
 import one.empty3.library.*;
 import java.awt.*;
 import java.util.*;
-public class TestVoronoi extends TestObjet {
+public class TestVoronoi extends TestObjetSub {
    private Double [][] distancesSum;
    private ArrayList<Point3D> pointsList;
    private Double maxDist;
