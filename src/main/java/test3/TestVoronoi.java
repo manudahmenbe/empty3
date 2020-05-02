@@ -7,13 +7,18 @@ import java.awt.image.*;
 import java.util.*;
 public class TestVoronoi extends TestObjetSub {
 
-   private ParametricCurve[] curves = new CourbeParametriqueBezier[pointsSize];
+   private CourbeParametriquePolynomialeBezier[] curves = new CourbeParametriqueBezier[pointsSize];
    private Double [][][] distancesSum;
    private ArrayList<Point3D> pointsList;
    private Double maxDist;
    public int pointsSize = 10;
    private int[][] pointNo;
-   protected void addRand(CourbeParametriquePolynomiale c) {}
+   protected void addRand(CourbeParametriquePolynomialeBezier c) {
+       c.getCoefficients().addElem(new Point3D(Math.random()*getResx(),
+                                  Math.random()*getResy(),
+                                  0.0));
+
+}
    
    private Color [] colors = new Color[pointsSize+1];
    public void ginit() {
@@ -25,7 +30,9 @@ public class TestVoronoi extends TestObjetSub {
           pointsList.add(new Point3D(Math.random()*getResx(),
                                   Math.random()*getResy(),
                                   0.0));
-     
+     curves[i] = new CourbeParametriquePolynomialeBezier();
+     for(int p=0;p<6;p++)
+           addRand(curves[i]);
            colors[i] = Colors.random();
          }
       colors[0] = Color.BLACK;
@@ -45,7 +52,7 @@ public class TestVoronoi extends TestObjetSub {
                    
                   for(int k=0; k<pointsList.size(); k++) {
                        
-                      /*distancesSum[i][j][k] */dist= Point3D.distance(p, pointsList.get(k));
+                      /*distancesSum[i][j][k] */dist= Point3D.distance(p, curves.getElem(k).calculerPoint3D(((double)frame())/25.0/100.0));
                        if(dist/*distancesSum[i][j][k]*/>maxDist)
                            maxDist = dist;// distancesSum[i][j][k];
                      
