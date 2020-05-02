@@ -47,13 +47,13 @@ public class TestVoronoi extends TestObjetSub {
                   }
                 int pointNoIjk = 0;
                    double distMin = Math.max(getResx(),getResy());
-                  for(int k=0; k<pointsList.size(); k++) {
-                      if(distMin<dist/*distancesSum[i][j][k]*/) {
+                  for(int k=1; k<pointsList.size()-1; k++) {
+                      if(distMin>dist/*distancesSum[i][j][k]*/) {
                          distMin = dist/*distancesSum[i][j][k]*/;
                          pointNoIjk = k;
                      }
                   }
-                  pointNo[i][j] = pointNoIjk+1;
+                  pointNo[i][j] = pointNoIjk;
                      
                      
                   
