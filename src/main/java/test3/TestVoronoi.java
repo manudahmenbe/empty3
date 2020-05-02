@@ -36,7 +36,7 @@ distancesSum[i][j] /= maxDist;
 
 
    public void afterRenderFrame() { 
-       BufferedImage img = z.image();
+       BufferedImage img = getImg();
        for(int i= 0;i<getResx(); i++)
              for(int j= 0;j<getResy(); j++) {
                   img.setRgb(i, j, new Color((float)distancesSum[i][j], 0f, 0f));
