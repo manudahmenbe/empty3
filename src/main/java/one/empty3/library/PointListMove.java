@@ -14,7 +14,7 @@ public class PointListMove {
         this.t = t;this.dt = dt;
     }
     
-    public void random(String property) {
+    public void customFunction(String property) {
     
     }
 
