@@ -41,7 +41,7 @@ public class TestVoronoi extends TestObjetSub {
                            maxDist = distancesSum[i][j];
                      
                   }
-                int pointNoIjk = -1
+                int pointNoIjk = -1;
                    double distMin = Math.max(getResx(),getResy());
                   for(int k=0; k<pointsList.size(); k++) {
                       if(distMin>distancesSum[i][j][k])
