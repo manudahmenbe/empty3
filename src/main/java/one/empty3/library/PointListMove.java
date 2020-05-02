@@ -1,7 +1,7 @@
 package one.empty3.library;
 import one.empty3.library.core.nurbs.*;
 public class PointListMove {
-    private List<RepresentableT> points;
+    private RepresentableT [] points;
     private StructureMatrix<String> formula = new StructureMatrix (1, String.class);
     private StructureMatrix<ParametricCurve> curves = new StructureMatrix (1, ParametricCurve.class);
     private int type;
@@ -9,7 +9,7 @@ public class PointListMove {
     // Slices of ord.ex (0,1), curve, curveOp 
     // tan, norm, cross, add... ???
     // collide
-    public PointListMove (List<RepresantableT> p, double t, double dt) {
+    public PointListMove (double t, double dt, RepresentableT... p) {
         this.points = p;
         this.t = t;this.dt = dt;
     }
@@ -28,4 +28,9 @@ public class PointListMove {
        this.formula = formula;
     
     }
+    
+    public void next(){
+         
+    }
+    
 }
