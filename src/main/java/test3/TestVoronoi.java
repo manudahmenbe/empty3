@@ -1,7 +1,7 @@
 package test3;
 import one.empty3.library.core.testing.*;
 import one.empty3.library.*;
-import one.empty3.library.core.lighting.Colors;;
+import one.empty3.library.core.lighting.Colors;
 import java.awt.*;
 import java.awt.image.*;
 import java.util.*;
@@ -13,18 +13,20 @@ public class TestVoronoi extends TestObjetSub {
    private int[][] pointNo;
       
    
-   private Color [] colors = new Color[pointsSize];
+   private Color [] colors = new Color[pointsSize+1];
    public void ginit() {
         pointsList = new ArrayList();
         maxDist = 0.0;
         distancesSum = new Double [getResx()][getResy()][pointsSize];
       pointNo = new int[getResx()][getResy()];
-      for(int i = 0; i<pointsSize; i++)
+      for(int i = 0; i<pointsSize; i++) {
           pointsList.add(new Point3D(Math.random()*getResx(),
                                   Math.random()*getResy(),
                                   0.0));
      
-      colors[i] = Colors.random();
+           colors[i] = Colors.random();
+         }
+      colors[0] = Color.BLACK;
    }
 
    public void finit() {
@@ -39,18 +41,18 @@ public class TestVoronoi extends TestObjetSub {
                   
                        distancesSum[i][j][k] = Point3D.distance(p, pointsList.get(k));
                        if(distancesSum[i][j][k]>maxDist)
-                           maxDist = distancesSum[i][j];
+                           maxDist = distancesSum[i][j][k];
                      
                   }
-                int pointNoIjk = -1;
+                int pointNoIjk = 0;
                    double distMin = Math.max(getResx(),getResy());
                   for(int k=0; k<pointsList.size(); k++) {
-                      if(distMin>distancesSum[i][j][k])
+                      if(distMin>distancesSum[i][j][k]) {
                          distMin = distancesSum[i][j][k];
-                     pointNoIjk = k;
-                     
+                         pointNoIjk = k;
+                     }
                   }
-                  pointNo[i][j] = pointNoIjk;
+                  pointNo[i][j] = pointNoIjk+1;
                      
                      
                   
