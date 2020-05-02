@@ -27,13 +27,13 @@ public int pointsSize = 10;
         maxDist = 0.0;
       //  distancesSum = new Double [getResx()][getResy()][pointsSize];
       pointNo = new int[getResx()][getResy()];
-      for(int i = 0; i<pointsSize+1; i++) {
+      for(int i = 1; i<pointsSize+1; i++) {
           pointsList.add(new Point3D(Math.random()*getResx(),
                                   Math.random()*getResy(),
                                   0.0));
-     curves[i] = new CourbeParametriquePolynomialeBezier();
-     for(int p=0;p<6;p++)
-           addRand(curves[i]);
+     curves[i-1] = new CourbeParametriquePolynomialeBezier();
+     for(int p=0;p<6;p++) {
+           addRand(curves[i-1]);
            colors[i] = Colors.random();
          }
       colors[0] = Color.BLACK;
@@ -61,7 +61,7 @@ public int pointsSize = 10;
                 
                       if(distMin>dist/*distancesSum[i][j][k]*/) {
                          distMin = dist/*distancesSum[i][j][k]*/;
-                         pointNoIjk = k;
+                         pointNoIjk = k+1;
                      }
                   }
                   pointNo[i][j] = pointNoIjk;
