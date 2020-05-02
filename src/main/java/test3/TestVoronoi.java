@@ -1,6 +1,7 @@
 package test3;
 import one.empty3.library.core.testing.*;
 import one.empty3.library.*;
+import one.empty3.library.core.lighting.Colors;;
 import java.awt.*;
 import java.awt.image.*;
 import java.util.*;
