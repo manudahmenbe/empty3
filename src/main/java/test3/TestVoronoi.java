@@ -19,7 +19,7 @@ public class TestVoronoi extends TestObjetSub {
         maxDist = 0.0;
       //  distancesSum = new Double [getResx()][getResy()][pointsSize];
       pointNo = new int[getResx()][getResy()];
-      for(int i = 0; i<pointsSize; i++) {
+      for(int i = 0; i<pointsSize+1; i++) {
           pointsList.add(new Point3D(Math.random()*getResx(),
                                   Math.random()*getResy(),
                                   0.0));
@@ -37,17 +37,18 @@ public class TestVoronoi extends TestObjetSub {
 
                   //distancesSum [i][j][] = 0.0;
                   Point3D p = new Point3D((double)i, (double)j, 0.0);
+
+                int pointNoIjk = 0;
+                   double distMin = Math.max(getResx(),getResy());
+                   
                   for(int k=0; k<pointsList.size(); k++) {
                        
-                  
-                       /*distancesSum[i][j][k] */dist= Point3D.distance(p, pointsList.get(k));
+                      /*distancesSum[i][j][k] */dist= Point3D.distance(p, pointsList.get(k));
                        if(dist/*distancesSum[i][j][k]*/>maxDist)
                            maxDist = dist;// distancesSum[i][j][k];
                      
-                  }
-                int pointNoIjk = 0;
-                   double distMin = Math.max(getResx(),getResy());
-                  for(int k=1; k<pointsList.size()-1; k++) {
+                  
+                
                       if(distMin>dist/*distancesSum[i][j][k]*/) {
                          distMin = dist/*distancesSum[i][j][k]*/;
                          pointNoIjk = k;
@@ -56,7 +57,7 @@ public class TestVoronoi extends TestObjetSub {
                   pointNo[i][j] = pointNoIjk;
                      
                      
-                  
+                  }
                   
              }
         for(int i= 0;i<getResx(); i++)
