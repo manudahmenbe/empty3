@@ -31,7 +31,7 @@ public class TestVoronoi extends TestObjetSub {
         for(int i= 0;i<getResx(); i++)
              for(int j= 0;j<getResy(); j++) {
 
-                  distancesSum [i][j] = 0.0;
+                  //distancesSum [i][j][] = 0.0;
                   Point3D p = new Point3D((double)i, (double)j, 0.0);
                   for(int k=0; k<pointsList.size(); k++) {
                        
