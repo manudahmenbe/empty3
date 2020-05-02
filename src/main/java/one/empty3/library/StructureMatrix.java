@@ -234,7 +234,19 @@ public class StructureMatrix<T> {
         }
         listenersPropertyChanged();
     }
-
+public void add(T value) {
+        if (this.dim == 0) {
+            //data0d = value;
+        }
+        if (this.dim == 1) {
+            data1d.add(value);
+        }
+        if (this.dim == 2) {
+            //int ind1 = data2d.size();
+            //data2d.get(ind1).add(value);
+        }
+        listenersPropertyChanged();
+    }
     public void addRow() {
         if (this.dim == 2) {
             data2d.add(Collections.synchronizedList(new ArrayList<T>()));
