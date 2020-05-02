@@ -71,7 +71,7 @@ public class TestVoronoi extends TestObjetSub {
        BufferedImage image = img();
        for(int i= 0;i<getResx(); i++)
              for(int j= 0;j<getResy(); j++) {
-                int c = ((int)(double) distancesSum[i][j])*256+ 255<<24;
+                //int c = ((int)(double) distancesSum[i][j][])*256+ 255<<24;
                   image.setRGB(i, j, colors[pointNo[i][j]].getRGB());
        }
    }
