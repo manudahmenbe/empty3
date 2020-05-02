@@ -132,7 +132,7 @@ scm:git:git://github.com/manuelddahmen/empty3.git
                 <configuration>
                     <mainClass>TestRun</mainClass>
                     <arguments>
-                        <argument> tests2.tihange_reac_cendar.TestTihange</argument>
+                        <argument>test3.TestVoronoi</argument>
                     </arguments>
                 </configuration>
             </plugin>
