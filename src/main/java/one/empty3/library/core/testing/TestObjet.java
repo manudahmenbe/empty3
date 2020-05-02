@@ -198,7 +198,9 @@ private ManualVideoCompile compiler ;
         setResx(x);
         setResy(y);
     }
-
+    public BufferedImage img() {
+        return ri ;
+    }
     public void startNewMovie() {
 
 /*
