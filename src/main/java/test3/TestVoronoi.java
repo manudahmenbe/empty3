@@ -2,6 +2,7 @@ package test3;
 import one.empty3.library.core.testing.*;
 import one.empty3.library.*;
 import java.awt.*;
+import java.awt.image.*;
 import java.util.*;
 public class TestVoronoi extends TestObjetSub {
    private Double [][] distancesSum;
