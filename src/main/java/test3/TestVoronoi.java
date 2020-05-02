@@ -31,14 +31,17 @@ public int pointsSize = 10;
           pointsList.add(new Point3D(Math.random()*getResx(),
                                   Math.random()*getResy(),
                                   0.0));
-     curves[i-1] = new CourbeParametriquePolynomialeBezier();
-     for(int p=0;p<6;p++) {
-           addRand(curves[i-1]);
-           colors[i] = Colors.random();
-         }
+          curves[i-1] = new CourbeParametriquePolynomialeBezier();
+          for(int p=0;p<6;p++) {
+              addRand(curves[i-1]);
+          }
+         colors[i] = Colors.random();
+         
+         
+      }
+      
       colors[0] = Color.BLACK;
    }
-
    public void finit() {
       double dist = 0.0;
         maxDist = 0.0;
