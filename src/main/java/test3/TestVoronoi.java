@@ -46,7 +46,7 @@ distancesSum[i][j] /= maxDist;
        BufferedImage img = img();
        for(int i= 0;i<getResx(); i++)
              for(int j= 0;j<getResy(); j++) {
-                  img.setRgb(i, j, new Color((float)distancesSum[i][j], 0f, 0f));
+                  img.setRgb(i, j, new Color((float)((double)distancesSum[i][j]), 0f, 0f));
        }
    }
 }
