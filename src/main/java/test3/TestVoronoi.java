@@ -25,5 +25,5 @@ Double maxDist;
    }
 
 
-   public void testScene;
+   public void testScene() {}
 }
