@@ -2,7 +2,7 @@ package one.empty3.library;
 
 public class RepresentableT {
     protected double t, dt;
-    private ListPointMove propertiesMoves;
+    private RListMove propertiesMoves;
     public double getT() {
          return t;
     }
