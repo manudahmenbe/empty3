@@ -24,6 +24,9 @@ Double maxDist;
                   if(distancesSum[i][j]>maxDist)
                        maxDist = distancesSum[i][j];
              }
+        for(int i= 0;i<getResx(); i++)
+             for(int j= 0;j<getResy(); j++) {
+distancesSum[i][j] /= maxDist;
 // Laplace derivation 2
  for(int i= 0;i<getResx(); i++)
              for(int j= 0;j<getResy(); j++) {
