@@ -13,7 +13,8 @@ public class TestVoronoi extends TestObjetSub {
         pointsList = new ArrayList();
         maxDist = 0.0;
         distancesSum = new Double [getResx()][getResy()];
-        pointsList.add(new Point3D(Math.random()*getResx(),
+      for(int i = 0; i<10; i++)
+          pointsList.add(new Point3D(Math.random()*getResx(),
                                   Math.random()*getResy(),
                                   0.0));
         
