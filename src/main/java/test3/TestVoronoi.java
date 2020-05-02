@@ -53,7 +53,7 @@ public int pointsSize = 10;
                    
                   for(int k=0; k<pointsList.size(); k++) {
                        
-                      /*distancesSum[i][j][k] */dist= Point3D.distance(p, curves.getElem(k).calculerPoint3D(((double)frame())/25.0/100.0));
+                      /*distancesSum[i][j][k] */dist= Point3D.distance(p, curves[k].calculerPoint3D(((double)frame())/25.0/100.0));
                        if(dist/*distancesSum[i][j][k]*/>maxDist)
                            maxDist = dist;// distancesSum[i][j][k];
                      
