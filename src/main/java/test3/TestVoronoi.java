@@ -4,9 +4,9 @@ import one.empty3.library.*;
 import java.awt.*;
 import java.util.*;
 public class TestVoronoi extends TestObjet {
-Double [][] distancesSum;
-   private List<Point3D> pointsList;
-Double maxDist;
+   private Double [][] distancesSum;
+   private ArrayList<Point3D> pointsList;
+   private Double maxDist;
 
    public void ginit() {
         pointsList = new ArrayList();
