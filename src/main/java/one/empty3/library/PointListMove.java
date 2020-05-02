@@ -4,8 +4,21 @@ public class PointListMove {
     private RepresentableT [] points;
     private StructureMatrix<String> formula = new StructureMatrix (1, String.class);
     private StructureMatrix<ParametricCurve> curves = new StructureMatrix (1, ParametricCurve.class);
-    private int type;
-    private double t, dt;
+    class Slice {
+        int type;
+        double dt;
+        int [] ordIndexes;
+    }
+    class Vec {
+        List<Slice> vec;
+        public Double [] result() {
+            return null;
+        }
+        
+    }
+    class SliceFormula extends Slice {}
+    class SliceCurve extends Slice {}
+    
     // Slices of ord.ex (0,1), curve, curveOp 
     // tan, norm, cross, add... ???
     // collide
