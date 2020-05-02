@@ -6,11 +6,13 @@ public class PointListMove {
     private StructureMatrix<ParametricCurve> curves = new StructureMatrix (1, ParametricCurve.class);
     class Slice {
         int type;
-        double dt;
+        
+    
         int [] ordIndexes;
     }
     class Vec {
-        List<Slice> vec;
+        double dt;
+        protected List<Slice> vecSlices;
         public Double [] result() {
             return null;
         }
@@ -24,7 +26,8 @@ public class PointListMove {
     // collide
     public PointListMove (double t, double dt, RepresentableT... p) {
         this.points = p;
-        this.t = t;this.dt = dt;
+        this.t = t;
+        this.dt = dt;
     }
     
     public void customFunction(String property) {
