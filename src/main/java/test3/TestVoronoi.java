@@ -17,7 +17,7 @@ public class TestVoronoi extends TestObjet {
                                   0.0));
         
    }
-
+   public void testScene() {}
    public void finit() {
         maxDist = 0.0;
         for(int i= 0;i<getResx(); i++)
