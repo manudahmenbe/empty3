@@ -67,7 +67,7 @@ public class Colors {
         float [] f = new float[compNo];
         float sum = 0f;
           for (int j=0; j <compNo; j++) 
-              r[j] = 0f
+              r[j] = 0f;
         for(int i = 0; i<c.length; i++)
 {
             sum += d[i];
