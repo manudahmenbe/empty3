@@ -70,11 +70,11 @@ public class Colors {
               r[j] = 0f;
         for(int i = 0; i<c.length; i++)
 {
-            float proximityTerm = 1./(1.+ d[i]);
-            sum += proximituTerm;
+            float proximityTerm = ((float)d[i]);
+            sum += proximityTerm;
         c[i].getRGBComponents(f);
             for (int j=0; j <compNo; j++) 
-                r[j] += (float)(f[j]*d[i]*norm);
+                r[j] += (float)(f[j]*proximityTerm*norm);
         }
         for(int i = 0 ; i<compNo; i++) {
             r[i] /= sum;
@@ -98,10 +98,12 @@ public class Colors {
               r[j] = 0f;
         for(int i = 0; i<c.length; i++)
 {
-            sum += d[i];
+            float proxymityTerm;
+            
+            sum += proximity Term;
         c[i].getRGBComponents(f);
             for (int j=0; j <compNo; j++) 
-                r[j] += (float)(f[j]*proximity*norm);
+                r[j] += (float)(f[j]*proximityTerm*norm);
         }
         for(int i = 0 ; i<compNo; i++) {
             r[i] /= sum;
