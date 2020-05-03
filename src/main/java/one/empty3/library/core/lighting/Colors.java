@@ -100,11 +100,12 @@ public class Colors {
 {
         
         }
+        float sum=0f;
       for(int i = 0; i<c.length; i++)
 {
       
-      
-      float proxymityTerm = Math.exp(-((float)d[i])/(1f+(float)d[i]));
+      // besoin de distMin pour faire partiviper les autres?
+      float proxymityTerm = (float)Math.exp(-((float)d[i])/(1f+(float)d[i]));
             
             sum += proximityTerm;
         c[i].getRGBComponents(f);
