@@ -68,12 +68,13 @@ public class Colors {
             sum += d[i];
         c[i].getRGBComponents(f);
             for (int j=0; j <4; j++) 
-                r[j] += (float)(f[j]/d[i]/norm);
+                r[j] += (float)(f[j]/d[i]*norm);
         }
-        for(int i = 0 ; i<c.length; i++)
+        for(int i = 0 ; i<c.length; i++) {
             r[i] /= sum;
             if (r[i].isNan())
                 r[i] = 0f;
+            }
             return new Color(r[0], r[1], r[2], r[3]);
     }
 }
