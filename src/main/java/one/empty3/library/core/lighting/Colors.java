@@ -100,17 +100,17 @@ public class Colors {
 {
         
         }
-        float sum=0f;
+       // float sum=0f;
       for(int i = 0; i<c.length; i++)
 {
       
       // besoin de distMin pour faire partiviper les autres?
       float proxymityTerm = (float)Math.exp(-((float)d[i])/(1f+(float)d[i]));
             
-            sum += proximityTerm;
+            sum += proxymityTerm;
         c[i].getRGBComponents(f);
             for (int j=0; j <compNo; j++) 
-                r[j] += (float)(f[j]*proximityTerm*norm);
+                r[j] += (float)(f[j]*proxymityTerm*norm);
         }
         for(int i = 0 ; i<compNo; i++) {
             r[i] /= sum;
