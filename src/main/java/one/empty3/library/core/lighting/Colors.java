@@ -53,10 +53,14 @@ public class Colors {
     }
     
     public static mean(Color[] c, double[] f, double norm) {
+      float [] r = new float[4];
+        float [] f = new float[4];
         for(int i = 0; i<c.length; c++)
 {
-        
+        c[i].getRGBComponents(f);
+            for (int j=0; j <4; j++) 
+                r[j] += (float)(f[j]/norm);
         }
-            
+            return new Color(r);
     }
 }
