@@ -23,29 +23,29 @@ public int pointsSize = 10;
 
 }
    
-   private Color [] colors = new Color[pointsSize+1];
+   private Color [] colors = new Color[pointsSize];
    public void ginit() {
         //pointsList = new ArrayList();
         maxDist = 0.0;
       //  distancesSum = new Double [getResx()][getResy()][pointsSize];
      // pointNo = new int[getResx()][getResy()][pointsSize];
     pointDist = new double[getResx()][getResy()][pointsSize];
-    for(int i = 1; i<pointsSize+1; i++) {
+    for(int i = 0; i<pointsSize; i++) {
           //pointsList.add(new Point3D(Math.random()*getResx(),
           //                        Math.random()*getResy(),
           //                        0.0));
-          curves[i-1] = new CourbeParametriquePolynomialeBezier();
-         curves[i-1].getCoefficients().data1d.clear();
+          curves[i] = new CourbeParametriquePolynomialeBezier();
+         curves[i].getCoefficients().data1d.clear();
           for(int p=0;p<4;p++) {
-              addRand(curves[i-1]);
+              addRand(curves[i]);
           }
          colors[i] = Colors.random();
          
-         curves[i-1].declareProperties();
+         curves[i].declareProperties();
          
       }
       colorsArr = new int[getResx()][getResy()];
-      colors[0] = Color.BLACK;
+      //colors[0] = Color.BLACK;
    }
    public void finit() {
       double dist = 0.0;
