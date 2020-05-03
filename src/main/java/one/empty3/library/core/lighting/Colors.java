@@ -62,7 +62,7 @@ public class Colors {
     public static Color mean(Color[] c, double[] d, double norm) {
       int compNo = 3;
         if(c==null || d==null || c.length!=d.length)
-            throw NullPointerexception("index not equals or null");
+            throw NullpointerException("index not equals or null");
         float [] r = new float[compNo];
         float [] f = new float[compNo];
         float sum = 0f;
