@@ -32,6 +32,7 @@ public int pointsSize = 10;
           //                        Math.random()*getResy(),
           //                        0.0));
           curves[i-1] = new CourbeParametriquePolynomialeBezier();
+         curves[i-1].getCoefficients().data1d.clear();
           for(int p=0;p<4;p++) {
               addRand(curves[i-1]);
           }
@@ -56,7 +57,7 @@ public int pointsSize = 10;
                    
                   for(int k=0; k<pointsSize; k++) {
                        
-                      /*distancesSum[i][j][k] */dist= Point3D.distance(p, curves[k].calculerPoint3D(((double)frame())/25.0/100.0));
+                      /*distancesSum[i][j][k] */dist= Point3D.distance(p, curves[k].calculerPoint3D(((double)frame())/25.0/1.0));
                        if(dist/*distancesSum[i][j][k]*/>maxDist)
                            maxDist = dist;// distancesSum[i][j][k];
                      
