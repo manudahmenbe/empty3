@@ -69,7 +69,7 @@ public int pointsSize = 10;
                   
                 
                       if(distMin[k]>dist) {
-                         distMin[] = dist;
+                         distMin[k] = dist;
                          pointNoIjk = k+1;
                      }
                   }
