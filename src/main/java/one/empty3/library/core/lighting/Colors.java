@@ -60,7 +60,7 @@ public class Colors {
      * moyenne ponderee
       */
     public static Color mean(Color[] c, double[] d, double norm) {
-      int compNo = 4;
+      int compNo = 3;
         float [] r = new float[compNo];
         float [] f = new float[compNo];
         float sum = 0f;
