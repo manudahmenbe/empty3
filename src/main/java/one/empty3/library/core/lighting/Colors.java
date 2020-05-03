@@ -60,7 +60,7 @@ public class Colors {
      * moyenne ponderee
       */
     public static Color mean(Color[] c, double[] d, double norm) {
-      int compNo = 3;
+      int compNo = 4;
         if(c==null || d==null || c.length!=d.length)
             throw new NullPointerException("index not equals or null");
         float [] r = new float[compNo];
