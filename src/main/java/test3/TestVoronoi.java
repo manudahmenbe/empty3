@@ -100,7 +100,7 @@ public int pointsSize = 10;
        for(int i= 0;i<getResx(); i++)
              for(int j= 0;j<getResy(); j++) {
                 //int c = ((int)(double) distancesSum[i][j][])*256+ 255<<24;
-                  image.setRGB(i, j, colorsArr[i][j].getRGB());
+                  image.setRGB(i, j, colorsArr[i][j]);
        }
    }
 }
