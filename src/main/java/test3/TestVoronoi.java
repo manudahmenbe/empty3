@@ -26,7 +26,7 @@ public int pointsSize = 10;
         //pointsList = new ArrayList();
         maxDist = 0.0;
       //  distancesSum = new Double [getResx()][getResy()][pointsSize];
-      pointNo = new int[getResx()][getResy()][nPointsDist];
+      pointNo = new int[getResx()][getResy()][pointsSize];
       for(int i = 1; i<pointsSize+1; i++) {
           //pointsList.add(new Point3D(Math.random()*getResx(),
           //                        Math.random()*getResy(),
@@ -95,7 +95,7 @@ public int pointsSize = 10;
        for(int i= 0;i<getResx(); i++)
              for(int j= 0;j<getResy(); j++) {
                 //int c = ((int)(double) distancesSum[i][j][])*256+ 255<<24;
-                  image.setRGB(i, j, colors[pointNo[i][j]].getRGB());
+                  image.setRGB(i, j, colors[pointNo[i][j][0]].getRGB());
        }
    }
 }
