@@ -51,16 +51,22 @@ public class Colors {
                 (float) Math.random()
         );
     }
-    
+    /***
+     * moyenne ponderee
+      */
     public static Color mean(Color[] c, double[] d, double norm) {
       float [] r = new float[4];
         float [] f = new float[4];
+        float sum = 0f;
         for(int i = 0; i<c.length; c++)
 {
+            sum += d[i];
         c[i].getRGBComponents(f);
             for (int j=0; j <4; j++) 
                 r[j] += (float)(f[j]/d[i]/norm);
         }
-            return new Color(r[0], r[1], r[2], r]3]);
+        for(int i = 0 ; i<c.length; i++)
+            r[i] /= sum;
+            return new Color(r[0], r[1], r[2], r[3]);
     }
 }
