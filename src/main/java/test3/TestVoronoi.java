@@ -38,7 +38,7 @@ public int pointsSize = 10;
           }
          colors[i] = Colors.random();
          
-         
+         curves[i-1].declareProperties();
       }
       
       colors[0] = Color.BLACK;
