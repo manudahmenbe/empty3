@@ -12,8 +12,8 @@ public int pointsSize = 10;
    private Double [][][] distancesSum;
    //private ArrayList<Point3D> pointsList;
    private Double maxDist;
-   
-   private int[][] pointNo;
+   private int nPointsDist = pointsSize;
+   private int[][][] pointNo;
    protected void addRand(CourbeParametriquePolynomialeBezier c) {
        c.getCoefficients().add(new Point3D(Math.random()*getResx(),
                                   Math.random()*getResy(),
@@ -26,7 +26,7 @@ public int pointsSize = 10;
         //pointsList = new ArrayList();
         maxDist = 0.0;
       //  distancesSum = new Double [getResx()][getResy()][pointsSize];
-      pointNo = new int[getResx()][getResy()];
+      pointNo = new int[getResx()][getResy()][nPointsDist];
       for(int i = 1; i<pointsSize+1; i++) {
           //pointsList.add(new Point3D(Math.random()*getResx(),
           //                        Math.random()*getResy(),
@@ -53,22 +53,26 @@ public int pointsSize = 10;
                   Point3D p = new Point3D((double)i, (double)j, 0.0);
 
                 int pointNoIjk = 0;
-                   double distMin = Double.MAX_VALUE; //Math.max(getResx(),getResy());
+                   double [] distMin = new double [nPointsDist];
+                Double.MAX_VALUE; //Math.max(getResx(),getResy());
                    
                   for(int k=0; k<pointsSize; k++) {
-                       
+                       distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
+                   
                       /*distancesSum[i][j][k] */dist= Point3D.distance(p, curves[k].calculerPoint3D(((double)frame())/25.0/1.0));
                        if(dist/*distancesSum[i][j][k]*/>maxDist)
                            maxDist = dist;// distancesSum[i][j][k];
                      
                   
-                
-                      if(distMin>dist/*distancesSum[i][j][k]*/) {
-                         distMin = dist/*distancesSum[i][j][k]*/;
+                /*
+                      if(distMin>dist) {
+                         distMin = dist;
                          pointNoIjk = k+1;
-                     }
+                     }*/
                   }
-                  pointNo[i][j] = pointNoIjk;
+                
+                Arrays.sort(pointNo[i][j], Collections.reverseOrder());
+                 // pointNo[i][j] = pointNoIjk;
                      
                      
                   
