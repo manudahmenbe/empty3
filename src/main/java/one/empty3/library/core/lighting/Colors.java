@@ -70,10 +70,38 @@ public class Colors {
               r[j] = 0f;
         for(int i = 0; i<c.length; i++)
 {
-            sum += d[i];
+            float proximityTerm = 1./(1.+ d[i]);
+            sum += proximituTerm;
         c[i].getRGBComponents(f);
             for (int j=0; j <compNo; j++) 
                 r[j] += (float)(f[j]*d[i]*norm);
+        }
+        for(int i = 0 ; i<compNo; i++) {
+            r[i] /= sum;
+            if (Float.isNaN(r[i])||Float.isInfinite(r[i]))
+                r[i] = 1f;
+            }
+            return new Color(r[0], r[1], r[2]);
+    }
+    
+    /***
+     * moyenne ponderee
+      */
+    public static Color proxymity(Color[] c, double[] d, double norm) {
+      int compNo = 4;
+        if(c==null || d==null || c.length!=d.length)
+            throw new NullPointerException("index not equals or null");
+        float [] r = new float[compNo];
+        float [] f = new float[compNo];
+        float sum = 0f;
+          for (int j=0; j <compNo; j++) 
+              r[j] = 0f;
+        for(int i = 0; i<c.length; i++)
+{
+            sum += d[i];
+        c[i].getRGBComponents(f);
+            for (int j=0; j <compNo; j++) 
+                r[j] += (float)(f[j]*proximity*norm);
         }
         for(int i = 0 ; i<compNo; i++) {
             r[i] /= sum;
