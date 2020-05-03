@@ -51,4 +51,12 @@ public class Colors {
                 (float) Math.random()
         );
     }
+    
+    public static mean(Color[] c, double[] f, double norm) {
+        for(int i = 0; i<c.length; c++)
+{
+        
+        }
+            
+    }
 }
