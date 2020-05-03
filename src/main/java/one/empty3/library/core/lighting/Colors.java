@@ -73,12 +73,12 @@ public class Colors {
             sum += d[i];
         c[i].getRGBComponents(f);
             for (int j=0; j <compNo; j++) 
-                r[j] += (float)(f[j]/d[i]*norm);
+                r[j] += (float)(f[j]*d[i]*norm);
         }
         for(int i = 0 ; i<compNo; i++) {
             r[i] /= sum;
             if (Float.isNaN(r[i])||Float.isInfinite(r[i]))
-                r[i] = 0f;
+                r[i] = 1f;
             }
             return new Color(r[0], r[1], r[2]);
     }
