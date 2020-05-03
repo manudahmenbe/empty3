@@ -75,7 +75,7 @@ public class Colors {
             for (int j=0; j <compNo; j++) 
                 r[j] += (float)(f[j]/d[i]*norm);
         }
-        for(int i = 0 ; i<c.length; i++) {
+        for(int i = 0 ; i<compNo; i++) {
             r[i] /= sum;
             if (Float.isNaN(r[i])||Float.isInfinite(r[i]))
                 r[i] = 0f;
