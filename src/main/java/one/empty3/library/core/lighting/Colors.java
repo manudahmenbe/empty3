@@ -51,6 +51,11 @@ public class Colors {
                 (float) Math.random()
         );
     }
+    
+    
+    public abstract class FArrayElem {
+        public abstract double op(double d);
+    }
     /***
      * moyenne ponderee
       */
@@ -67,6 +72,8 @@ public class Colors {
         }
         for(int i = 0 ; i<c.length; i++)
             r[i] /= sum;
+            if (r[i].isNan())
+                r[i] = 0f;
             return new Color(r[0], r[1], r[2], r[3]);
     }
 }
