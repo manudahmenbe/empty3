@@ -98,7 +98,13 @@ public class Colors {
               r[j] = 0f;
         for(int i = 0; i<c.length; i++)
 {
-            float proxymityTerm 1f/(1f+(float)d[i]);
+        
+        }
+      for(int i = 0; i<c.length; i++)
+{
+      
+      
+      float proxymityTerm = Math.exp(-((float)d[i])/(1f+(float)d[i]));
             
             sum += proximityTerm;
         c[i].getRGBComponents(f);
