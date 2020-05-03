@@ -72,7 +72,7 @@ public class Colors {
         }
         for(int i = 0 ; i<c.length; i++) {
             r[i] /= sum;
-            if (Float.isNan(r[i])||Float.isInfinite(r[i]))
+            if (Float.isNaN(r[i])||Float.isInfinite(r[i]))
                 r[i] = 0f;
             }
             return new Color(r[0], r[1], r[2], r[3]);
