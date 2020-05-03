@@ -57,14 +57,14 @@ public int pointsSize = 10;
 
                 int pointNoIjk = 0;
                    double [] distMin = new double [nPointsDist];
-                Double.MAX_VALUE; //Math.max(getResx(),getResy());
-                   
-                  for(int k=0; k<pointsSize; k++) {
-                       distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
+               
+                 distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
+                    for(int k=0; k<pointsSize; k++) {
+                      // distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
                             /*distancesSum[i][j][k] */dist= Point3D.distance(p, curves[k].calculerPoint3D(((double)frame())/25.0/1.0));
                        if(dist/*distancesSum[i][j][k]*/>maxDist)
                            maxDist = dist;// distancesSum[i][j][k];
-                     pointNo[i][j][k] = dist;
+                     pointNo[i][j][k] = k;
              pointDist[i][j][k] = dist;
                   
                 
