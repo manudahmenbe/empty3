@@ -14,7 +14,8 @@ public int pointsSize = 10;
    private Double maxDist;
    private int nPointsDist = pointsSize;
    private double[][][] pointDist;
-   private int[][][] pointNo
+   private int[][][] pointNo;
+   private int[][] colorsArr;
    protected void addRand(CourbeParametriquePolynomialeBezier c) {
        c.getCoefficients().add(new Point3D(Math.random()*getResx(),
                                   Math.random()*getResy(),
@@ -40,8 +41,9 @@ public int pointsSize = 10;
          colors[i] = Colors.random();
          
          curves[i-1].declareProperties();
+         
       }
-      
+      colorsArr = new int[getResx()][getResy()];
       colors[0] = Color.BLACK;
    }
    public void finit() {
@@ -63,7 +65,7 @@ public int pointsSize = 10;
                        if(dist/*distancesSum[i][j][k]*/>maxDist)
                            maxDist = dist;// distancesSum[i][j][k];
                      pointNo[i][j][k] = dist;
-             
+             pointDist[i][j][k] = dist;
                   
                 
                       if(distMin[k]>dist) {
@@ -72,8 +74,9 @@ public int pointsSize = 10;
                      }
                   }
                 
-                Arrays.sort(pointNo[i][j], Collections.reverseOrder());
-                 // pointNo[i][j] = pointNoIjk;
+                //Arrays.sort(pointNo[i][j], Collections.reverseOrder());
+                for(int c = 0 ; c<pointNo[i][j].length; c++)
+                    colorsArr[i][j] = Colors.mean(colors, pointDist[i][j], 1.0);
                      
                      
                   
