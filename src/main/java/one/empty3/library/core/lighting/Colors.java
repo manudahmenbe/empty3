@@ -60,14 +60,15 @@ public class Colors {
      * moyenne ponderee
       */
     public static Color mean(Color[] c, double[] d, double norm) {
-      float [] r = new float[4];
-        float [] f = new float[4];
+      int compNo = 3;
+        float [] r = new float[compNo];
+        float [] f = new float[compNo];
         float sum = 0f;
         for(int i = 0; i<c.length; i++)
 {
             sum += d[i];
         c[i].getRGBComponents(f);
-            for (int j=0; j <4; j++) 
+            for (int j=0; j <compNo; j++) 
                 r[j] += (float)(f[j]/d[i]*norm);
         }
         for(int i = 0 ; i<c.length; i++) {
@@ -75,6 +76,6 @@ public class Colors {
             if (Float.isNaN(r[i])||Float.isInfinite(r[i]))
                 r[i] = 0f;
             }
-            return new Color(r[0], r[1], r[2], r[3]);
+            return new Color(r[0], r[1], r[2]);
     }
 }
