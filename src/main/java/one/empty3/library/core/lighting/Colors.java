@@ -58,7 +58,7 @@ public class Colors {
       float [] r = new float[4];
         float [] f = new float[4];
         float sum = 0f;
-        for(int i = 0; i<c.length; c++)
+        for(int i = 0; i<c.length; i++)
 {
             sum += d[i];
         c[i].getRGBComponents(f);
