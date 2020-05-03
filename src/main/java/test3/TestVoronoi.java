@@ -10,7 +10,7 @@ public class TestVoronoi extends TestObjetSub {
 public int pointsSize = 10;
    private CourbeParametriquePolynomialeBezier[] curves = new CourbeParametriquePolynomialeBezier[pointsSize];
    private Double [][][] distancesSum;
-   private ArrayList<Point3D> pointsList;
+   //private ArrayList<Point3D> pointsList;
    private Double maxDist;
    
    private int[][] pointNo;
@@ -23,7 +23,7 @@ public int pointsSize = 10;
    
    private Color [] colors = new Color[pointsSize+1];
    public void ginit() {
-        pointsList = new ArrayList();
+        //pointsList = new ArrayList();
         maxDist = 0.0;
       //  distancesSum = new Double [getResx()][getResy()][pointsSize];
       pointNo = new int[getResx()][getResy()];
@@ -54,7 +54,7 @@ public int pointsSize = 10;
                 int pointNoIjk = 0;
                    double distMin = Math.max(getResx(),getResy());
                    
-                  for(int k=0; k<pointsList.size(); k++) {
+                  for(int k=0; k<curves.size(); k++) {
                        
                       /*distancesSum[i][j][k] */dist= Point3D.distance(p, curves[k].calculerPoint3D(((double)frame())/25.0/100.0));
                        if(dist/*distancesSum[i][j][k]*/>maxDist)
