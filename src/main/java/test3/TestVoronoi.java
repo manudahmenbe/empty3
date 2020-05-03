@@ -28,8 +28,9 @@ public int pointsSize = 10;
         //pointsList = new ArrayList();
         maxDist = 0.0;
       //  distancesSum = new Double [getResx()][getResy()][pointsSize];
-      pointNo = new int[getResx()][getResy()][pointsSize];
-      for(int i = 1; i<pointsSize+1; i++) {
+     // pointNo = new int[getResx()][getResy()][pointsSize];
+    pointDist = new double[getResx()][getResy()][pointsSize];
+    for(int i = 1; i<pointsSize+1; i++) {
           //pointsList.add(new Point3D(Math.random()*getResx(),
           //                        Math.random()*getResy(),
           //                        0.0));
@@ -64,7 +65,7 @@ public int pointsSize = 10;
                             /*distancesSum[i][j][k] */dist= Point3D.distance(p, curves[k].calculerPoint3D(((double)frame())/25.0/1.0));
                        if(dist/*distancesSum[i][j][k]*/>maxDist)
                            maxDist = dist;// distancesSum[i][j][k];
-                     pointNo[i][j][k] = k;
+                 //    pointNo[i][j][k] = k;
              pointDist[i][j][k] = dist;
                   
                 
@@ -99,7 +100,7 @@ public int pointsSize = 10;
        for(int i= 0;i<getResx(); i++)
              for(int j= 0;j<getResy(); j++) {
                 //int c = ((int)(double) distancesSum[i][j][])*256+ 255<<24;
-                  image.setRGB(i, j, colors[pointNo[i][j][0]].getRGB());
+                  image.setRGB(i, j, colorsArr[i][j].getRGB());
        }
    }
 }
