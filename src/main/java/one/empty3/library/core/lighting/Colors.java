@@ -61,6 +61,6 @@ public class Colors {
             for (int j=0; j <4; j++) 
                 r[j] += (float)(f[j]/d[i]/norm);
         }
-            return new Color(r);
+            return new Color(r[0], r[1], r[2], r]3]);
     }
 }
