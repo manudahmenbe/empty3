@@ -138,6 +138,9 @@ public class Colors {
     
     /***
      * moyenne ponderee
+     * @param norm 1.0
+     * @param cd dist sorted array 
+     * @returns interpoled color.
       */
     public static Color proxymity(ColorDist[] cd, double norm) {
       int compNo = 4;
@@ -157,7 +160,7 @@ public class Colors {
 {
       
       // besoin de distMin pour faire partiviper les autres?
-      float proxymityTerm = (float)Math.exp(-((float)(cd[i].dist))/(1f+(float)(cd[i].dist)));
+      float proxymityTerm = (float)Math.exp(-((float)(1f*i/cd.length));
             
             sum += proxymityTerm;
         cd[i].color.getRGBComponents(f);
