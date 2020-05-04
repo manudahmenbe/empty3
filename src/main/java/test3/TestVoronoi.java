@@ -9,13 +9,16 @@ import java.util.*;
 public class TestVoronoi extends TestObjetSub {
 public int pointsSize = 10;
    private CourbeParametriquePolynomialeBezier[] curves = new CourbeParametriquePolynomialeBezier[pointsSize];
-   private Double [][][] distancesSum;
+  // private Double [][][] distancesSum;
    //private ArrayList<Point3D> pointsList;
    private Double maxDist;
    private int nPointsDist = pointsSize;
    private double[][][] pointDist;
    private int[][][] pointNo;
    private int[][] colorsArr;
+   private Colors.ColorDist [][][] cds;
+    
+
    protected void addRand(CourbeParametriquePolynomialeBezier c) {
        c.getCoefficients().add(new Point3D(Math.random()*getResx(),
                                   Math.random()*getResy(),
