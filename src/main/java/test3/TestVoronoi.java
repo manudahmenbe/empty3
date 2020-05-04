@@ -65,7 +65,7 @@ public int pointsSize = 10;
                  // distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
                     for(int k=0; k<pointsSize; k++) {
                 cds[k] = new ColorDist();
-                       cds[].dist=Double.MAX_VALUE;
+                       cds[k].dist=Double.MAX_VALUE;
                        if(k<nPointsDist) {
                      // pointDist[i][j][k] = dist;
                     // distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
