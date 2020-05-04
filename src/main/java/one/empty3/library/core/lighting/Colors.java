@@ -43,7 +43,7 @@ import java.awt.*;
  * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class Colors {
-    class ColorDist extends Comparable {
+    class ColorDist implements Comparable {
         public Color color;
         public double distance;
     }
