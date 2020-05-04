@@ -13,10 +13,10 @@ public int pointsSize = 10;
    //private ArrayList<Point3D> pointsList;
    private Double maxDist;
    private int nPointsDist = pointsSize;
-   private double[][][] pointDist;
+   ///private double[][][] pointDist;
    private int[][][] pointNo;
    private int[][] colorsArr;
-   private ColorDist [][][] cds;
+  // private ColorDist [][][] cds;
     
 
    protected void addRand(CourbeParametriquePolynomialeBezier c) {
@@ -31,8 +31,8 @@ public int pointsSize = 10;
         pointDist = new double[getResx()][getResy()][pointsSize];
         maxDist = 0.0;
       //  distancesSum = new Double [getResx()][getResy()][pointsSize];
-     // pointNo = new int[getResx()][getResy()][pointsSize];
-    cds = new ColorDist[getResx()][getResy()][pointsSize];
+     pointNo = new int[getResx()][getResy()][pointsSize];
+  //  cds = new ColorDist[getResx()][getResy()][pointsSize];
     for(int i = 0; i<pointsSize; i++) {
           //pointsList.add(new Point3D(Math.random()*getResx(),
           //                        Math.random()*getResy(),
@@ -51,6 +51,7 @@ public int pointsSize = 10;
       //colors[0] = Color.BLACK;
    }
    public void finit() {
+      ColorDist [] cds = new ColorDist[k];
       double dist = 0.0;
         maxDist = 0.0;
         for(int i= 0;i<getResx(); i++)
@@ -63,15 +64,15 @@ public int pointsSize = 10;
                    double [] distMin = new double [nPointsDist];
                  // distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
                     for(int k=0; k<pointsSize; k++) {
-                cds[i][j][k] = new ColorDist();
-                      pointDist[i][j][k] = dist;
+                cds[k] = new ColorDist();
+                     // pointDist[i][j][k] = dist;
                     // distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
                             /*distancesSum[i][j][k] */dist= Point3D.distance(p, curves[k].calculerPoint3D(((double)frame())/25.0/1.0));
                        if(dist/*distancesSum[i][j][k]*/>maxDist)
                            maxDist = dist;// distancesSum[i][j][k];
                  //    pointNo[i][j][k] = k;
-             cds[i][j][k].dist = dist;
-                 cds[i][j][k].color = colors[k];
+             cds[k].dist = dist;
+                 cds[k].color = colors[k];
                   
                 
                       if(distMin[k]>dist) {
@@ -82,7 +83,7 @@ public int pointsSize = 10;
                 
                 //Arrays.sort(pointNo[i][j], Collections.reverseOrder());
                 for(int c = 0 ; c<pointsSize; c++)
-                    colorsArr[i][j] = Colors.proxymity(colors, pointDist[i][j], 1.0).getRGB();
+                    colorsArr[i][j] = Colors.proxymity(cds, 1.0).getRGB();
                      
                      
                   
