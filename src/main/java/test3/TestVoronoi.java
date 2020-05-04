@@ -12,9 +12,9 @@ public int pointsSize = 10;
   // private Double [][][] distancesSum;
    //private ArrayList<Point3D> pointsList;
    private Double maxDist;
-   private int nPointsDist = pointsSize;
+   private int nPointsDist = 1;
    ///private double[][][] pointDist;
-   private int[][][] pointNo;
+  // private int[][][] pointNo;
    private int[][] colorsArr;
   // private ColorDist [][][] cds;
     
@@ -31,7 +31,7 @@ public int pointsSize = 10;
         //pointDist = new double[getResx()][getResy()][pointsSize];
         maxDist = 0.0;
       //  distancesSum = new Double [getResx()][getResy()][pointsSize];
-     pointNo = new int[getResx()][getResy()][pointsSize];
+   //  pointNo = new int[getResx()][getResy()][pointsSize];
   //  cds = new ColorDist[getResx()][getResy()][pointsSize];
     for(int i = 0; i<pointsSize; i++) {
           //pointsList.add(new Point3D(Math.random()*getResx(),
