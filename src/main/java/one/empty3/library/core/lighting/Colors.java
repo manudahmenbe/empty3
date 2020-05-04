@@ -45,7 +45,7 @@ import java.awt.*;
 public class Colors {
     class ColorDist implements Comparable {
         public Color color;
-        public double distance;
+        public double dist;
         
         public int compareTo(Object o) {
             if (o instanceof ColorDist)
