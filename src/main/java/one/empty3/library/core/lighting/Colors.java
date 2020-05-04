@@ -46,6 +46,13 @@ public class Colors {
     class ColorDist implements Comparable {
         public Color color;
         public double distance;
+        
+        public int compareTo(Object o) {
+            if (o instanceof ColorDist)
+            return dist<cd.dist?-1:(dist==cd.dist?0;1);
+            else 
+                return 0;//throw??
+        }
     }
     public static Color TRANSPARENT = new Color(1f,0f,0f,.5f );
     public static Color random() {
