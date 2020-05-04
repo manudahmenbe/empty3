@@ -1,6 +1,7 @@
 package one.empty3.library.core.lighting;
+import java.util.*;
 import java.awt.Color;
-public class ColorDist implements Comparable {
+public class ColorDist {
         public Color color;
         public double dist;
         /*
