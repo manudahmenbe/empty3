@@ -66,7 +66,7 @@ public int pointsSize = 10;
                     for(int k=0; k<pointsSize; k++) {
                 cds[k] = new ColorDist();
                        cds[k].dist=Double.MAX_VALUE;
-                       if(k<nPointsDist) {
+                      // if(k<nPointsDist) {
                      // pointDist[i][j][k] = dist;
                     // distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
                             /*distancesSum[i][j][k] */dist= Point3D.distance(p, curves[k].calculerPoint3D(((double)frame())/25.0/1.0));
@@ -74,7 +74,7 @@ public int pointsSize = 10;
                            maxDist = dist;// distancesSum[i][j][k];
                  //    pointNo[i][j][k] = k;
              cds[k].dist = dist;
-                          }
+                      //    }
                  cds[k].color = colors[k];
                   /*
                 
