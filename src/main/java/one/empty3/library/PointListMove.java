@@ -39,6 +39,7 @@ public class PointListMove {
         //this.curves.addElem(curve);
     }
     /***
+     * @param property structurematrix property name
      * @param formula vec{3}(f(ord(0), ord(1), ...))
      */
     public void formulaOrd(String property, String formula) {
