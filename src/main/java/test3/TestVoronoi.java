@@ -1,7 +1,7 @@
 package test3;
 import one.empty3.library.core.testing.*;
 import one.empty3.library.*;
-import one.empty3.library.core.lighting.Colors;
+import one.empty3.library.core.lighting.*;
 import java.awt.*;
 import one.empty3.library.core.nurbs.*;
 import java.awt.image.*;
@@ -16,7 +16,7 @@ public int pointsSize = 10;
    private double[][][] pointDist;
    private int[][][] pointNo;
    private int[][] colorsArr;
-   private Colors.ColorDist [][][] cds;
+   private ColorDist [][][] cds;
     
 
    protected void addRand(CourbeParametriquePolynomialeBezier c) {
@@ -63,7 +63,7 @@ public int pointsSize = 10;
                    double [] distMin = new double [nPointsDist];
                  // distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
                     for(int k=0; k<pointsSize; k++) {
-                cds[i][j][k] = new Colors.ColorDist();
+                cds[i][j][k] = new ColorDist();
                       pointDist[i][j][k] = dist;
                     // distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
                             /*distancesSum[i][j][k] */dist= Point3D.distance(p, curves[k].calculerPoint3D(((double)frame())/25.0/1.0));
