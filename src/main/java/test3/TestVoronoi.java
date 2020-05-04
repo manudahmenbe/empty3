@@ -82,7 +82,7 @@ public int pointsSize = 10;
                 
                 //Arrays.sort(pointNo[i][j], Collections.reverseOrder());
                 for(int c = 0 ; c<pointsSize; c++)
-                    colorsArr[i][j] = Colors.mean(colors, pointDist[i][j], 1.0).getRGB();
+                    colorsArr[i][j] = Colors.proxymity(colors, pointDist[i][j], 1.0).getRGB();
                      
                      
                   
