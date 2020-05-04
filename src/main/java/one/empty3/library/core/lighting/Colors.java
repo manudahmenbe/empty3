@@ -71,7 +71,10 @@ public class Colors {
         public abstract double op(double d);
     }
     /***
-     * moyenne ponderee
+     * @param c color array
+     * @param d factor array
+     * @param norm summary totally normal verse
+     * @return moyenne ponderee in bloom
       */
     public static Color mean(Color[] c, double[] d, double norm) {
       int compNo = 4;
@@ -97,9 +100,11 @@ public class Colors {
             }
             return new Color(r[0], r[1], r[2]);
     }
-    
-    /***
-     * moyenne ponderee
+     /***
+     * @param c color array
+     * @param d factor array
+     * @param norm summary totally normal verse
+     * @return spec funk house gouse in bloom
       */
     public static Color proxymity(Color[] c, double[] d, double norm) {
       int compNo = 4;
@@ -137,10 +142,10 @@ public class Colors {
     
     
     /***
-     * moyenne ponderee
+     * True colors results
      * @param norm 1.0
      * @param cd dist sorted array 
-     * @returns interpoled color.
+     * @return interpoled color.
       */
     public static Color proxymity(ColorDist[] cd, double norm) {
       int compNo = 4;
