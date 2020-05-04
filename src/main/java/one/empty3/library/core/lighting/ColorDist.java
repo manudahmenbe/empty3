@@ -24,7 +24,7 @@ class SortbyDist implements Comparator<ColorDist>
 
     // roll number 
 
-    public int compare(Student a, Student b) 
+    public int compare(ColorDist a, ColorDist b) 
 
     { 
 
