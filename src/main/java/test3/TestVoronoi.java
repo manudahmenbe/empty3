@@ -76,12 +76,12 @@ public int pointsSize = 10;
              cds[k].dist = dist;
                           }
                  cds[k].color = colors[k];
-                  
+                  /*
                 
                       if(distMin[k]>dist) {
                          distMin[k] = dist;
                          pointNoIjk = k+1;
-                     }
+                     }*/
                   }
                 
                 ColorDist.sort(cds);
