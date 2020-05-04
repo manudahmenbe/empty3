@@ -32,7 +32,7 @@ public int pointsSize = 10;
         maxDist = 0.0;
       //  distancesSum = new Double [getResx()][getResy()][pointsSize];
      // pointNo = new int[getResx()][getResy()][pointsSize];
-    cds = new Colors.ColorDist[getResx()][getResy()][pointsSize];
+    cds = new ColorDist[getResx()][getResy()][pointsSize];
     for(int i = 0; i<pointsSize; i++) {
           //pointsList.add(new Point3D(Math.random()*getResx(),
           //                        Math.random()*getResy(),
