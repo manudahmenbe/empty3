@@ -51,7 +51,7 @@ public int pointsSize = 10;
       //colors[0] = Color.BLACK;
    }
    public void finit() {
-      ColorDist [] cds = new ColorDist[nPoints];
+      ColorDist [] cds = new ColorDist[nPointsDist];
       double dist = 0.0;
         maxDist = 0.0;
         for(int i= 0;i<getResx(); i++)
