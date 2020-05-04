@@ -43,6 +43,10 @@ import java.awt.*;
  * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class Colors {
+    class ColorDist extends Comparable {
+        public Color color;
+        public double distance;
+    }
     public static Color TRANSPARENT = new Color(1f,0f,0f,.5f );
     public static Color random() {
         return new Color(
