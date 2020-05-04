@@ -28,7 +28,7 @@ public int pointsSize = 10;
    
    private Color [] colors = new Color[pointsSize];
    public void ginit() {
-        pointDist = new double[getResx()][getResy()][pointsSize];
+        //pointDist = new double[getResx()][getResy()][pointsSize];
         maxDist = 0.0;
       //  distancesSum = new Double [getResx()][getResy()][pointsSize];
      pointNo = new int[getResx()][getResy()][pointsSize];
