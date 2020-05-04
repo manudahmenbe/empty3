@@ -1,5 +1,5 @@
 package one.empty3.library.core.lighting;
-
+import java.awt.Color;
 public class ColorDist implements Comparable {
         public Color color;
         public double dist;
