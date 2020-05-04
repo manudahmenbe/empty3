@@ -43,6 +43,7 @@ import java.awt.*;
  * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class Colors {
+    /*
     public class ColorDist implements Comparable {
         public Color color;
         public double dist;
@@ -55,6 +56,7 @@ public class Colors {
                 return 0;//throw??
         }
     }
+    */
     public static Color TRANSPARENT = new Color(1f,0f,0f,.5f );
     public static Color random() {
         return new Color(
@@ -121,6 +123,44 @@ public class Colors {
             
             sum += proxymityTerm;
         c[i].getRGBComponents(f);
+            for (int j=0; j <compNo; j++) 
+                r[j] += (float)(f[j]*proxymityTerm*norm);
+        }
+        for(int i = 0 ; i<compNo; i++) {
+            r[i] /= sum;
+            if (Float.isNaN(r[i])||Float.isInfinite(r[i]))
+                r[i] = 1f;
+            }
+            return new Color(r[0], r[1], r[2]);
+    }
+    
+    
+    
+    /***
+     * moyenne ponderee
+      */
+    public static Color proxymity(ColorDist[] cd, double norm) {
+      int compNo = 4;
+        if(cd==null)
+            throw new NullPointerException("index not equals or null");
+        float [] r = new float[compNo];
+        float [] f = new float[compNo];
+        float sum = 0f;
+          for (int j=0; j <compNo; j++) 
+              r[j] = 0f;
+        for(int i = 0; i<cd.length; i++)
+{
+        
+        }
+       // float sum=0f;
+      for(int i = 0; i<cd.length; i++)
+{
+      
+      // besoin de distMin pour faire partiviper les autres?
+      float proxymityTerm = (float)Math.exp(-((float)(cd[i].dist))/(1f+(float)d[i]));
+            
+            sum += proxymityTerm;
+        cd[i].color.getRGBComponents(f);
             for (int j=0; j <compNo; j++) 
                 r[j] += (float)(f[j]*proxymityTerm*norm);
         }
