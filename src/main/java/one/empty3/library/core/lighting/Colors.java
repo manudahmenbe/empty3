@@ -187,7 +187,7 @@ public class Colors {
      * @param cd dist sorted array 
      * @return interpoled color.
       */
-    public static Color mean(ColorDist[] cd, double norm) {
+    public static Color mean(ColorDist[] cd, double norm, int n) {
       int compNo = 4;
         if(cd==null)
             throw new NullPointerException("index not equals or null");
@@ -196,16 +196,16 @@ public class Colors {
         float sum = 0f;
           for (int j=0; j <compNo; j++) 
               r[j] = 0f;
-        for(int i = 0; i<cd.length; i++)
+        for(int i = 0; i<n; i++)
 {
         
         }
        // float sum=0f;
-      for(int i = 0; i<cd.length; i++)
+      for(int i = 0; i<n; i++)
 {
       
       // besoin de distMin pour faire partiviper les autres?
-      float proxymityTerm = (float)(cd[i].dist/cd.length);
+      float proxymityTerm = (float)(cd[i].dist/n);
             
             sum += proxymityTerm;
         cd[i].color.getRGBComponents(f);
