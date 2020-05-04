@@ -179,4 +179,45 @@ public class Colors {
             }
             return new Color(r[0], r[1], r[2]);
     }
+    
+    
+        /***
+     * True colors results
+     * @param norm 1.0
+     * @param cd dist sorted array 
+     * @return interpoled color.
+      */
+    public static Color mean(ColorDist[] cd, double norm) {
+      int compNo = 4;
+        if(cd==null)
+            throw new NullPointerException("index not equals or null");
+        float [] r = new float[compNo];
+        float [] f = new float[compNo];
+        float sum = 0f;
+          for (int j=0; j <compNo; j++) 
+              r[j] = 0f;
+        for(int i = 0; i<cd.length; i++)
+{
+        
+        }
+       // float sum=0f;
+      for(int i = 0; i<cd.length; i++)
+{
+      
+      // besoin de distMin pour faire partiviper les autres?
+      float proxymityTerm = (float)(cd[i].dist/cd.length);
+            
+            sum += proxymityTerm;
+        cd[i].color.getRGBComponents(f);
+            for (int j=0; j <compNo; j++) 
+                r[j] += (float)(f[j]*proxymityTerm*norm);
+        }
+        for(int i = 0 ; i<compNo; i++) {
+            r[i] /= sum;
+            if (Float.isNaN(r[i])||Float.isInfinite(r[i]))
+                r[i] = 1f;
+            }
+            return new Color(r[0], r[1], r[2]);
+    }
+    
 }
