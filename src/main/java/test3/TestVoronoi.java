@@ -85,9 +85,11 @@ public int pointsSize = 10;
                   }
                 
                 ColorDist.sort(cds);
-                for(int c = 0 ; c<pointsSize; c++)
-                    colorsArr[i][j] = Colors.proxymity(cds, 1.0).getRGB();
-                     
+                for(int c = 0 ; c<pointsSize; c++) {
+                   Color z =  Colors.proxymity(cds, 1.0);
+                   z.setAlpha(9f);
+                    colorsArr[i][j] = z;
+                     }
                      
                   
                   
