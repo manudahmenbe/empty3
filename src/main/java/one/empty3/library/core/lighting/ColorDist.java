@@ -12,7 +12,7 @@ public class ColorDist implements Comparable {
                 return 0;//throw??
         }
         */
-        public void sort(ColorDist[] cd) {
+        public static void sort(ColorDist[] cd) {
             Arrays.sort(cd, new SortbyDist());
         }
     }
