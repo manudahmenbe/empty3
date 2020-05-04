@@ -81,7 +81,7 @@ public int pointsSize = 10;
                      }
                   }
                 
-                //Arrays.sort(pointNo[i][j], Collections.reverseOrder());
+                Arrays.sort(cds);
                 for(int c = 0 ; c<pointsSize; c++)
                     colorsArr[i][j] = Colors.proxymity(cds, 1.0).getRGB();
                      
