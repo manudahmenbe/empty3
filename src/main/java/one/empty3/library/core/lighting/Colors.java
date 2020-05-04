@@ -43,7 +43,7 @@ import java.awt.*;
  * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class Colors {
-    class ColorDist implements Comparable {
+    public class ColorDist implements Comparable {
         public Color color;
         public double dist;
         
