@@ -28,7 +28,12 @@ public int pointsSize = 1000;
    
    private Color [] colors = new Color[pointsSize];
    public void ginit() {
-        //pointDist = new double[getResx()][getResy()][pointsSize];
+ // mettre les distances dans l ordre
+      // regarder a 1 ou 2 pixels près 
+      // non
+      
+      
+      //pointDist = new double[getResx()][getResy()][pointsSize];
         maxDist = 0.0;
       //  distancesSum = new Double [getResx()][getResy()][pointsSize];
    //  pointNo = new int[getResx()][getResy()][pointsSize];
