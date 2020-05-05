@@ -7,7 +7,7 @@ import one.empty3.library.core.nurbs.*;
 import java.awt.image.*;
 import java.util.*;
 public class TestVoronoi extends TestObjetSub {
-public int pointsSize = 10;
+public int pointsSize = 1000;
    private CourbeParametriquePolynomialeBezier[] curves = new CourbeParametriquePolynomialeBezier[pointsSize];
   // private Double [][][] distancesSum;
    //private ArrayList<Point3D> pointsList;
