@@ -173,7 +173,7 @@ public class Colors {
                 r[j] += (float)(f[j]*proxymityTerm*norm/n);
         }
         for(int i = 0 ; i<compNo; i++) {
-            r[i] /= sum;
+            r[i] /=(float) Math.exp(0,0);
             if (Float.isNaN(r[i])||Float.isInfinite(r[i]))
                 r[i] = 1f;
             }
@@ -207,7 +207,7 @@ public class Colors {
       // besoin de distMin pour faire partiviper les autres?
       float proxymityTerm = (float)(cd[i].dist/n);
             
-            sum += proxymityTerm;
+            sum += (float)cd[cd.length-1].dist;
         cd[i].color.getRGBComponents(f);
             for (int j=0; j <compNo; j++) 
                 r[j] += (float)(f[j]*proxymityTerm*norm);
