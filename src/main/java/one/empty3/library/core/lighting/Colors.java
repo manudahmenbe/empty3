@@ -170,7 +170,7 @@ public class Colors {
             sum += proxymityTerm;
         cd[i].color.getRGBComponents(f);
             for (int j=0; j <compNo; j++) 
-                r[j] += (float)(f[j]*proxymityTerm*norm);
+                r[j] += (float)(f[j]*proxymityTerm*norm/n);
         }
         for(int i = 0 ; i<compNo; i++) {
             r[i] /= sum;
