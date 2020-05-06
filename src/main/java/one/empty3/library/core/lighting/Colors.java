@@ -147,7 +147,7 @@ public class Colors {
      * @param cd dist sorted array 
      * @return interpoled color.
       */
-    public static Color proxymity(ColorDist[] cd, double norm) {
+    public static Color proxymity(ColorDist[] cd, double norm,  int n) {
       int compNo = 4;
         if(cd==null)
             throw new NullPointerException("index not equals or null");
@@ -161,7 +161,7 @@ public class Colors {
         
         }
        // float sum=0f;
-      for(int i = 0; i<cd.length; i++)
+      for(int i = 0; i<n; i++)
 {
       
       // besoin de distMin pour faire partiviper les autres?
