@@ -173,7 +173,7 @@ public class Colors {
                 r[j] += (float)(f[j]*proxymityTerm*norm/n);
         }
         for(int i = 0 ; i<compNo; i++) {
-            r[i] /=(float) Math.exp(0,0);
+            r[i] /=(float) Math.exp(0.0);// ces malafes qui nous gouvernent en vrai.
             if (Float.isNaN(r[i])||Float.isInfinite(r[i]))
                 r[i] = 1f;
             }
