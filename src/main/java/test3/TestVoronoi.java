@@ -12,7 +12,7 @@ public int pointsSize = 30;
   // private Double [][][] distancesSum;
    //private ArrayList<Point3D> pointsList;
    private Double maxDist;
-   private int nPointsDist = 5;
+   private int nPointsDist = pointsSize;
    ///private double[][][] pointDist;
   // private int[][][] pointNo;
    private int[][] colorsArr;
