@@ -1185,4 +1185,7 @@ compiler. init(avif.getAbsolutePath()
     public void setName(String name) {
         this.name = name;
     }
+    public Color p3main() {
+        
+    }
 }
