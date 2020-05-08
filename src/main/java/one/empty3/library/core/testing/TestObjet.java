@@ -1186,6 +1186,6 @@ compiler. init(avif.getAbsolutePath()
         this.name = name;
     }
     public Color v2main() {
-        
+        return null;
     }
 }
