@@ -41,6 +41,7 @@ import java.util.ArrayList;
 
 
 public class TextureMov extends ITexture {
+    DecodeAndEncodeFrames defs;
     public final int maxBuffSize = 25 * 60 * 700;
     private final Object e = null;
 //  private IMediaReader reader;
@@ -82,7 +83,7 @@ public class TextureMov extends ITexture {
         CAPACITY = 100;
 
         images = new ArrayList<>();
-        new DecodeAndEncodeFrames(file, this).start();
+        defs = new DecodeAndEncodeFrames(file, this).start();
     }
 
 
@@ -117,7 +118,7 @@ public class TextureMov extends ITexture {
     }
 
     protected BufferedImage current(int i) {
-        while(images==null || images.size()==0)
+        while(defs.size()==0 && !defs.isClosed())
         {
             try {
                 Thread.sleep(10);
@@ -125,7 +126,7 @@ public class TextureMov extends ITexture {
                 ex.printStackTrace();
             }
         }
-        return images.get(i);
+        return defs.isClosed() ? null : defs.current();
 
     }
 
