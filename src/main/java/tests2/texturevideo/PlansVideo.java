@@ -21,10 +21,10 @@ public class PlansVideo extends TestObjetSub {
     
     
     public PlansVideo() {
-        main (new String[] {""});
+        vinit (new String[] {""});
     }
 
-    public void main(String[] args) {
+    public void vinit(String[] args) {
         String f1;
         String f2;
         String f3;
