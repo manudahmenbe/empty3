@@ -505,7 +505,7 @@ initCompiler();
 //        new File(directory.getAbsolutePath() + File.separator + "GAUCHE").mkdir();
 //        new File(directory.getAbsolutePath() + File.separator + "DROITE").mkdir();
 
-        setResolution(dimension.x(), dimension());
+        setResolution(dimension.x(), dimension.y());
         initialise = true;
         publishResult(false);
         setMaxFrames(100);
