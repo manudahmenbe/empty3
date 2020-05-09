@@ -72,9 +72,9 @@ public class PlansVideo extends TestObjetSub {
         TextureMov tc1, tc2, tc3, tc4;
 
         tc1 = new TextureMov(avi1);
-        tc2 = new TextureMov(avi2);
-        tc3 = new TextureMov(avi3);
-        tc4 = new TextureMov(avi4);
+        tc2 = tc1;//new TextureMov(avi2);
+        tc3 = tc1; // new TextureMov(avi3);
+        tc4 = tc1; // new TextureMov(avi4);
 
         Plan3D p1, p2, p3, p4;
 
