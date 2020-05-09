@@ -98,7 +98,7 @@ private boolean eof = false;
  private TextureMov text;
 private File file;
 private boolean stop = false;
-public static final long MAXSIZE = 60*4;
+public static final long MAXSIZE = 4;
 private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
   /*__
    * Opens a file, and plays the video from it on a screen at the right rate.
@@ -274,7 +274,7 @@ stop = true;
     // loop in a sleeping loop until we're within 1 ms of the time for that video frame.
     // a real video player needs to be much more sophisticated than this.
     while (imgBuf. size() > MAXSIZE || stop) {
-      Thread.sleep(1000);
+      Thread.sleep(10);
       systemTimestamp = System.nanoTime();
     }
     // finally, convert the image from Humble format into Java images.
