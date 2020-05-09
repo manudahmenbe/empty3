@@ -12,19 +12,19 @@ import java.io.File;
  * @author Dahmen Manuel
  */
 public class PlansVideo extends TestObjetSub {
+    
     private final String avi1;
     private final String avi2;
     private final String avi3;
     private final String avi4;
 
-    public PlansVideo(String avi1, String avi2, String avi3, String avi4) {
-        this.avi1 = avi1;
-        this.avi2 = avi2;
-        this.avi3 = avi3;
-        this.avi4 = avi4;
+    
+    
+    public PlansVideo() {
+        main (new String[] {""});
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         String f1;
         String f2;
         String f3;
@@ -43,10 +43,15 @@ public class PlansVideo extends TestObjetSub {
             f4 = f3;
         }
 
-
+        avi1 = f1;
+        avi2 = f2;
+        avi3 = f3;
+        avi4 = f4;
+        /*
+        
         if (new File(f1).isFile() && new File(f2).isFile() && new File(f3).isFile() && new File(f4).isFile()) {
 
-            PlansVideo pc = new PlansVideo(f1, f2, f3, f4);
+            PlansVideo pc = new PlansVideo();
 
             pc.loop(true);
 
@@ -57,6 +62,7 @@ public class PlansVideo extends TestObjetSub {
             System.err.println("Erreur un fichier ou l'autre n'existe pas");
 
         }
+        */
     }
 
     @Override
