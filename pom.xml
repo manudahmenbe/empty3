@@ -343,11 +343,11 @@ scm:git:git://github.com/manuelddahmen/empty3.git
             <artifactId>humble-video-all</artifactId>
             <version>0.3.0</version>
         </dependency>
-       <!-- <dependency>
+       <dependency>
             <groupId>io.humble</groupId>
             <artifactId>humble-video-noarch</artifactId>
-            <version>0.1.1</version>
-        </dependency>-->
+            <version>0.3.0</version>
+        </dependency>
         <dependency>
             <groupId>jep</groupId>
             <artifactId>jep</artifactId>
