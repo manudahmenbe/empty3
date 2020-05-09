@@ -13,10 +13,10 @@ import java.io.File;
  */
 public class PlansVideo extends TestObjetSub {
     
-    private final String avi1;
-    private final String avi2;
-    private final String avi3;
-    private final String avi4;
+    private String avi1;
+    private String avi2;
+    private String avi3;
+    private String avi4;
 
     
     
