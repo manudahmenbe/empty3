@@ -134,6 +134,7 @@ scm:git:git://github.com/manuelddahmen/empty3.git
                     <arguments>
                         <argument>tests2.texturevideo.PlansVideo</argument>
                     </arguments>
+<argLine>-Xms2048m -Xmx2048m</argLine>
                 </configuration>
             </plugin>
         
