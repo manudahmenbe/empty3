@@ -94,6 +94,7 @@ import java.util.ArrayList;
  */
 
 public class DecodeAndEncodeFrames extends Thread {
+private boolean eof = false;
  private TextureMov text;
 private File file;
 private boolean stop = false;
