@@ -37,10 +37,10 @@ public class PlansVideo extends TestObjetSub {
 
         } else {
 
-            f1 = "C:\\EmptyCanvas\\Textures\\_10.AVI";
-            f2 = "C:\\EmptyCanvas\\Textures\\Il embrasse sur la bouche.mp4";
-            f3 = "C:\\EmptyCanvas\\Textures\\03.mkv";
-            f4 = "C:\\EmptyCanvas\\Textures\\04.mkv";
+            f1 = "resources/mov/son.mp4";
+            f2 = f1;
+            f3 = f2;
+            f4 = f3;
         }
 
 
