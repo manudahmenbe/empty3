@@ -238,9 +238,12 @@ public class Representable extends RepresentableT implements Serializable, Compa
 
 
 
-    private Map<String, StructureMatrix> declaredDataStructure = Collections.synchronizedMap(new HashMap());
+    private Map<String, StructureMatrix> declaredDataStructure ;//= Collections.synchronizedMap(new HashMap());
 
     public Map<String, StructureMatrix> getDeclaredDataStructure() {
+        if(!this intanceof Point3D && declaredDataStructure==null)
+            declaredDataStructure = Collections.synchronizedMap(new HashMap());
+            
         return declaredDataStructure;
     }
 
