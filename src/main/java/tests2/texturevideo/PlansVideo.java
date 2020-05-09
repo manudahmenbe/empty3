@@ -47,10 +47,10 @@ public class PlansVideo extends TestObjetSub {
         avi2 = f2;
         avi3 = f3;
         avi4 = f4;
-        /*
+        
         
         if (new File(f1).isFile() && new File(f2).isFile() && new File(f3).isFile() && new File(f4).isFile()) {
-
+/*
             PlansVideo pc = new PlansVideo();
 
             pc.loop(true);
@@ -60,9 +60,10 @@ public class PlansVideo extends TestObjetSub {
         } else {
 
             System.err.println("Erreur un fichier ou l'autre n'existe pas");
-
+*/
+            
         }
-        */
+        
     }
 
     @Override
