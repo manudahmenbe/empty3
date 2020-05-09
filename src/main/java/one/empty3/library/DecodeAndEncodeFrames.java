@@ -408,5 +408,22 @@ try{
 playVideo(text, file.getAbsolutePath());
 }catch(InterruptedException ex){}
     catch(IOException ex) {}
+     
+     eof = true;
 }
+ 
+ 
+ public int size() {
+  return imgBuf.size();
+  }
+ public boolean isClosed() {
+  return eof;
+  }
+ public BufferedImage current() {
+ 
+ BufferedImage c = imgBuf.get(0);
+  imgBuf.remove(0);
+  return c;
+ 
+ }
 }
