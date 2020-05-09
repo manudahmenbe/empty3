@@ -47,7 +47,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.Consumer;
 
-public class Representable extends RepresentableT implements Serializable, Comparable, XmlRepresentable, MatrixPropertiesObject, TemporalComputedObject3D {
+public class Representable /*extends RepresentableT*/ implements Serializable, Comparable, XmlRepresentable, MatrixPropertiesObject, TemporalComputedObject3D {
 
 
     public static final int DISPLAY_ALL = 0;
@@ -238,10 +238,10 @@ public class Representable extends RepresentableT implements Serializable, Compa
 
 
 
-    private Map<String, StructureMatrix> declaredDataStructure ;//= Collections.synchronizedMap(new HashMap());
+    private Map<String, StructureMatrix> declaredDataStructure = Collections.synchronizedMap(new HashMap());
 
     public Map<String, StructureMatrix> getDeclaredDataStructure() {
-        if((!(this instanceof Point3D )) && (declaredDataStructure==null))
+        /6if((!(this instanceof Point3D )) && (declaredDataStructure==null))
             declaredDataStructure = Collections.synchronizedMap(new HashMap());
             
         return declaredDataStructure;
