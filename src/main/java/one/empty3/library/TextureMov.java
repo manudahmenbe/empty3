@@ -42,7 +42,7 @@ import java.util.ArrayList;
 
 public class TextureMov extends ITexture {
     DecodeAndEncodeFrames defs;
-    public final int maxBuffSize = 25 * 60 * 700;
+    public final int maxBuffSize = 4;
     private final Object e = null;
 //  private IMediaReader reader;
     private boolean notSuivante = false;
