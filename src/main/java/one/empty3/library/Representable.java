@@ -241,8 +241,8 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     private Map<String, StructureMatrix> declaredDataStructure = Collections.synchronizedMap(new HashMap());
 
     public Map<String, StructureMatrix> getDeclaredDataStructure() {
-        /6if((!(this instanceof Point3D )) && (declaredDataStructure==null))
-            declaredDataStructure = Collections.synchronizedMap(new HashMap());
+        /*if((!(this instanceof Point3D )) && (declaredDataStructure==null))
+            declaredDataStructure = Collections.synchronizedMap(new HashMap());*/
             
         return declaredDataStructure;
     }
