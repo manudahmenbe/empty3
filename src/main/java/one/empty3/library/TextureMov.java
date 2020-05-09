@@ -151,7 +151,7 @@ BufferedImage image;
 
     public boolean nextFrame() {
         image = current(0);
-        return image!=null
+        return image!=null;
     }
 
 
