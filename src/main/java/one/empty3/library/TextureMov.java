@@ -41,6 +41,7 @@ import java.util.ArrayList;
 
 
 public class TextureMov extends ITexture {
+BufferedImage image;
     DecodeAndEncodeFrames defs;
     public final int maxBuffSize = 4;
     private final Object e = null;
@@ -80,7 +81,7 @@ public class TextureMov extends ITexture {
         this.file = new File(filename);
         fileStructureMatrix.setElem(file);
 
-        CAPACITY = 100;
+        CAPACITY = 4;
 
         images = new ArrayList<>();
         defs = new DecodeAndEncodeFrames(file, this);
@@ -94,13 +95,8 @@ public class TextureMov extends ITexture {
     }
 
     public int getColorAt(double u, double v) {
-        BufferedImage image;
-        try {
-            image  = current(0);
-        } catch (NullPointerException ex) {
-            ex.printStackTrace();
-            return 0;
-        }
+        
+     
         if(image==null)
             return 0;
 
@@ -118,7 +114,7 @@ public class TextureMov extends ITexture {
             return Color.TRANSLUCENT;
     }
 
-    protected BufferedImage current(int i) {
+    protected ECBufferedImage current(int i) {
         while(defs.size()==0 && !defs.isClosed())
         {
             try {
@@ -154,14 +150,7 @@ public class TextureMov extends ITexture {
 
 
     public boolean nextFrame() {
-        if(images.size()>0) {
-            images.remove(0);
-            return true;
-        }
-        else
-        {
-            return true;
-        }
+        image = current(0);
     }
 
 
