@@ -422,7 +422,7 @@ playVideo(text, file.getAbsolutePath());
   }
  public ECBufferedImage current() {
  
- BufferedImage c = imgBuf.get(0);
+ ECBufferedImage c = imgBuf.get(0);
   imgBuf.remove(0);
   return c;
  
