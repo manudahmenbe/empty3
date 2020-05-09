@@ -420,7 +420,7 @@ playVideo(text, file.getAbsolutePath());
  public boolean isClosed() {
   return eof;
   }
- public BufferedImage current() {
+ public ECBufferedImage current() {
  
  BufferedImage c = imgBuf.get(0);
   imgBuf.remove(0);
