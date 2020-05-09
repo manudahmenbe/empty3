@@ -34,7 +34,7 @@
  *
 
 /*
- * 2013-2019 Manuel Dahmen
+ * 2013-2020 Manuel Dahmen
  */
 package one.empty3.library.core.testing;
 
@@ -197,6 +197,7 @@ private ManualVideoCompile compiler ;
     public void setResolution(int x, int y) {
         setResx(x);
         setResy(y);
+        dimension = new Resolution(x, y);
     }
     public BufferedImage img() {
         return ri ;
@@ -504,10 +505,10 @@ initCompiler();
 //        new File(directory.getAbsolutePath() + File.separator + "GAUCHE").mkdir();
 //        new File(directory.getAbsolutePath() + File.separator + "DROITE").mkdir();
 
-        setDimension(HD1080);
+        setResolution(dimension);
         initialise = true;
         publishResult(false);
-        setMaxFrames(10000);
+        setMaxFrames(100);
         loop(true);
 
 compiler = new ManualVideoCompile () ;
