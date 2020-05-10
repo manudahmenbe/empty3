@@ -90,6 +90,9 @@ public abstract class TestObjet implements Test, Runnable {
     public static final int ON_TEXTURE_ENDS_LOOP_TEXTURE = 1;
     public static final int ON_MAX_FRAMES_STOP = 0;
     public static final int ON_MAX_FRAMES_CONTINUE = 1;
+    public static final int ENCODER_MONTE = 0;
+    public static final int ENCODER_HUMBLE = 1;
+    protected int encoder = 0;
     protected Scene scene = new Scene();
     protected String description = "@ Manuel Dahmen \u2610";
     protected Camera c;
@@ -210,7 +213,7 @@ private ManualVideoCompile compiler ;
     }
     public void startNewMovie() {
 
-/*
+
         if ((generate & GENERATE_MOVIE) > 0) {
             if (isAviOpen()) {
                 try {
@@ -222,14 +225,14 @@ private ManualVideoCompile compiler ;
                     o.println("Can't close or flush movie" + runtimeInfoSucc());
                 }
             }
-        }*/
+        if(encoder==1) {
         idxFilm++;
         avif = new File(this.dir.getAbsolutePath() + File.separator
                 + sousdossier + this.getClass().getName() + "__" + filmName + idxFilm + ".AVI");
         if(compiler!=null && frame>0)
     compiler.end();
 initCompiler();
-/*
+else {
       //  aw = null;
         int track = -1;
         try {
@@ -267,8 +270,10 @@ initCompiler();
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
-    }
+        }
+}
+} 
+ }
 
     private boolean unterminable() {
         return unterminable;
