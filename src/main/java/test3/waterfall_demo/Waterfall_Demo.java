@@ -102,7 +102,7 @@ public class Waterfall_Demo extends TestObjetSub {
             blocks.add(new Cube(mlc, Point3D.O0));
 
 
-            ts.setElem(0., curveN);
+            ts.setElem(0, curveN);
         }
 
         curves.data1d.forEach(parametricCurve -> scene().add(parametricCurve));
@@ -120,9 +120,9 @@ public class Waterfall_Demo extends TestObjetSub {
         for(int i=0; i<blocks.getListRepresentable().size(); i++) {
             Representable representable =blocks.getListRepresentable().get(i);
             if(representable instanceof Cube)
-                ((Cube) representable).getRotation().getElem().getCentreRot().setElem(curves.getElem(i).calculerPoint3D(
-                        ts.getElem(i)
-                ));
+              //  ((Cube) representable).getPosition().changeTo(curves.getElem(i).calculerPoint3D(
+                   //     ts.getElem(i)
+               // ));
             }
 
     }
