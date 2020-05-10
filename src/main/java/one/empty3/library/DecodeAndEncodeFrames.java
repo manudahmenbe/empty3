@@ -93,13 +93,8 @@ import java.util.ArrayList;
  *
  */
 
-public class DecodeAndEncodeFrames extends Thread {
-private boolean eof = false;
- private TextureMov text;
-private File file;
-private boolean stop = false;
-public static final long MAXSIZE = 4;
-private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
+public class DecodeAndEncodeFrames extends VideoDecoder {
+
   /*__
    * Opens a file, and plays the video from it on a screen at the right rate.
    * @param filename The file or URL to play.
@@ -394,8 +389,7 @@ imgBuf. add(new ECBufferedImage(image) );
 
 
     public DecodeAndEncodeFrames(File file, TextureMov refTextureMov) {
-        this.file = file;
-        this.text = refTextureMov;
+        super(file, refTextureMov);
 
     }
 /*__
