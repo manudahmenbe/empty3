@@ -212,15 +212,15 @@ private ManualVideoCompile compiler ;
         return ri ;
     }
     public void startNewMovie() {
-
-
+idxFilm++;
+        avif = new File(this.dir.getAbsolutePath() + File.separator
++ sousdossier + this.getClass().getName() + "__" + filmName + idxFilm + ".AVI");
+   
         if ((generate & GENERATE_MOVIE) > 0) {
-                 idxFilm++;
+                 
         if(encoder==1) {
    
-        avif = new File(this.dir.getAbsolutePath() + File.separator
-                + sousdossier + this.getClass().getName() + "__" + filmName + idxFilm + ".AVI");
-        if(compiler!=null && frame>0)
+                     if(compiler!=null && frame>0)
     compiler.end();
 initCompiler();
            } 
