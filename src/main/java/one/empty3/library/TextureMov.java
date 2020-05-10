@@ -42,7 +42,7 @@ import java.util.ArrayList;
 
 public class TextureMov extends ITexture {
 BufferedImage image;
-    DecodeAndEncodeFrames defs;
+    MovieEncoder defs;
     public final int maxBuffSize = 4;
     private final Object e = null;
 //  private IMediaReader reader;
@@ -84,7 +84,7 @@ BufferedImage image;
         CAPACITY = 4;
 
         images = new ArrayList<>();
-        defs = new DecodeAndEncodeFrames(file, this);
+        defs = MovieEncoderFactory.newInstance(file, this);
         defs.start();
     }
 
