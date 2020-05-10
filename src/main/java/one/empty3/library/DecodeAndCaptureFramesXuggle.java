@@ -50,7 +50,7 @@ import java.io.File;
  * @author trebor
  */
 
-public class DecodeAndCaptureFramesXuggle extends Thread {
+public class DecodeAndCaptureFramesXuggle extends MovieDecoder {
     /*__
      * The number of seconds between frames.
      */
@@ -127,8 +127,7 @@ public class DecodeAndCaptureFramesXuggle extends Thread {
 
 
     public DecodeAndCaptureFramesXuggle(File file, TextureMov refTextureMov) {
-        this.file = file;
-        this.refTextureMov = refTextureMov;
+        DecodeAndCaptureFramesXuggle(file, refTextureMov);
     }
 
     public void run() {
