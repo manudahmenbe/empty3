@@ -37,7 +37,7 @@
  * 2013-2020 Manuel Dahmen
  */
 package one.empty3.library.core.testing;
-
+import ru.sbtqa.monte.media.avi.AviWriter;
 import one.empty3.library.*;
 import one.empty3.library.core.export.ObjExport;
 import one.empty3.library.core.export.STLExport;
