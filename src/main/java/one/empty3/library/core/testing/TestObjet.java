@@ -38,6 +38,12 @@
  */
 package one.empty3.library.core.testing;
 import ru.sbtqa.monte.media.avi.AviWriter;
+import ru.sbtqa.monte.media.Format;
+import ru.sbtqa.monte.media.FormatKeys;
+import ru.sbtqa.monte.media.FormatKeys.MediaType;
+import ru.sbtqa.monte.media.VideoFormatKeys;
+import ru.sbtqa.monte.media.avi.AVIWriter;
+import ru.sbtqa.monte.media.math.Rational
 import one.empty3.library.*;
 import one.empty3.library.core.export.ObjExport;
 import one.empty3.library.core.export.STLExport;
