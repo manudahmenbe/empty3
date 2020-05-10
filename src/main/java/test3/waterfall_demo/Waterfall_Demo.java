@@ -119,7 +119,7 @@ public class Waterfall_Demo extends TestObjetSub {
         }
         for(int i=0; i<blocks.getListRepresentable().size(); i++) {
             Representable representable =blocks.getListRepresentable().get(i);
-            if(representable instanceof Cube)
+            //if(representable instanceof Cube)
               //  ((Cube) representable).getPosition().changeTo(curves.getElem(i).calculerPoint3D(
                    //     ts.getElem(i)
                // ));
