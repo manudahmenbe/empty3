@@ -37,7 +37,7 @@
  * 2013-2020 Manuel Dahmen
  */
 package one.empty3.library.core.testing;
-import ru.sbtqa.monte.media.avi.AviWriter;
+import ru.sbtqa.monte.media.avi.AVIWriter;
 import ru.sbtqa.monte.media.Format;
 import ru.sbtqa.monte.media.FormatKeys;
 import ru.sbtqa.monte.media.FormatKeys.MediaType;
