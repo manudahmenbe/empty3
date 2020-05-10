@@ -84,7 +84,7 @@ BufferedImage image;
         CAPACITY = 4;
 
         images = new ArrayList<>();
-        defs = VideoDecoderFactory.newInstance(file, this);
+        defs = VideoDecoderFactory.createInstance(file, this);
         defs.start();
     }
 
