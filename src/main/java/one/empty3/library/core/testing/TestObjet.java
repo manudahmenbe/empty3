@@ -101,7 +101,7 @@ public abstract class TestObjet implements Test, Runnable {
     Properties properties = new Properties();
     ShowTestResult str;
     private File avif;
-  //  private AVIWriter aw;
+    private AVIWriter aw;
     private boolean aviOpen = false;
     private String filmName;
     private int idxFilm;
