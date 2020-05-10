@@ -92,7 +92,7 @@ public class DecodeAndCaptureFramesXuggle extends VideoDecoder {
                 // Make a temorary file name
 
 
-                while (imgBuf.size>=MAXSIZE) {
+                while (imgBuf.size()>=MAXSIZE) {
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException ex) {
@@ -101,7 +101,7 @@ public class DecodeAndCaptureFramesXuggle extends VideoDecoder {
 
                 }
 
-                imgBuf.add(image);
+                imgBuf.add(new ECBufferedImage (image));
                 
                 // indicate file written
 
@@ -125,7 +125,7 @@ public class DecodeAndCaptureFramesXuggle extends VideoDecoder {
 
 
     public DecodeAndCaptureFramesXuggle(File file, TextureMov refTextureMov) {
-        DecodeAndCaptureFramesXuggle(file, refTextureMov);
+        super(file, refTextureMov);
     }
 
     public void run() {
