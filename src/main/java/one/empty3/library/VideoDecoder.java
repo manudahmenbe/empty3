@@ -76,6 +76,7 @@ public abstract class VideoDecoder extends Thread {
     public VideoDecoder(File file, TextureMov refTextureMov) {
         this.file = file;
         this.text = refTextureMov;
+        start();
 
    }
  public int size() {
