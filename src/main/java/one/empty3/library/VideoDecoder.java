@@ -61,12 +61,12 @@ import java.util.ArrayList;
 import java.io.File;
 
 public abstract class VideoDecoder extends Thread {
-    private boolean eof = false;
-    private TextureMov text;
-    private File file;
-    private boolean stop = false;
-    public static final long MAXSIZE = 4;
-    private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
+    protected boolean eof = false;
+    protected TextureMov text;
+    protected File file;
+    protected boolean stop = false;
+    protected static final long MAXSIZE = 4;
+    protected ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
 
 
 /***
