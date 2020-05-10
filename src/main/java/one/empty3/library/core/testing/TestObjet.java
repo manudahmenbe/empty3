@@ -285,7 +285,7 @@ else {
     }
 
     public boolean isAviOpen() {
-        return (compiler!=null&&encoder==1)||(isAviOpen&&encoder==0);
+        return (compiler!=null&&encoder==1)||(aviOpen&&encoder==0);
     }
 
     public void setAviOpen(boolean aviOpen) {
