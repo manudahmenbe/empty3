@@ -50,7 +50,7 @@ import java.io.File;
  * @author trebor
  */
 
-public class DecodeAndCaptureFramesXuggle extends MovieDecoder {
+public class DecodeAndCaptureFramesXuggle extends VideoDecoder {
     /*__
      * The number of seconds between frames.
      */
