@@ -395,7 +395,7 @@ scm:git:git://github.com/manuelddahmen/empty3.git
 <dependency>
     <groupId>one.empty3</groupId>
     <artifactId>montemedia</artifactId>
-    <version>0.0.7</version>
+    <version>0.0.7-2-SNAPSHOT</version>
  </dependency>
 
     </dependencies>
