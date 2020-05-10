@@ -237,7 +237,7 @@ else {
                 }
             
     
-             /6 aw = null;
+             //aw = null;
         }
         int track = -1;
         try {
@@ -277,9 +277,8 @@ else {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-} 
- }
+     } 
+   }
 
     private boolean unterminable() {
         return unterminable;
