@@ -279,7 +279,7 @@ else {
         }
      } 
    }
-
+}
     private boolean unterminable() {
         return unterminable;
     }
