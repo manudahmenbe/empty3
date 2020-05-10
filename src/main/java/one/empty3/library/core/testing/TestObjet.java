@@ -254,7 +254,7 @@ else {
             // new Format(properties));
             // Determine audio format
             audioIn = null;
-
+/*
             if (audioTrack != null) {
                 if (audioTrack.getName().toLowerCase().endsWith(".mp3")) {
                     audioIn = new MP3AudioInputStream(audioTrack);
@@ -268,10 +268,11 @@ else {
                 isAudioDone = false;
                 buf = new Buffer();
             }
+            */
             aviOpen = true;
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        //} catch (UnsupportedAudioFileException e) {
+        //    e.printStackTrace();
+        //} catch (IOException e) {
             e.printStackTrace();
         }
 }
