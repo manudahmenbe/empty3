@@ -69,7 +69,10 @@ public abstract class VideoDecoder extends Thread {
     private ArrayList<ECBufferedImage> imgBuf = new ArrayList() ;
 
 
-
+/***
+* init, start, run, and block on maxsize reached
+* @param file video to draw on surface
+* @param refTextureMov texture
     public VideoDecoder(File file, TextureMov refTextureMov) {
         this.file = file;
         this.text = refTextureMov;
