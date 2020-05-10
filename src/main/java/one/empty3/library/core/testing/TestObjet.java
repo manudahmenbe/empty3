@@ -43,7 +43,7 @@ import ru.sbtqa.monte.media.FormatKeys;
 import ru.sbtqa.monte.media.FormatKeys.MediaType;
 import ru.sbtqa.monte.media.VideoFormatKeys;
 import ru.sbtqa.monte.media.avi.AVIWriter;
-import ru.sbtqa.monte.media.math.Rational
+import ru.sbtqa.monte.media.math.Rational;
 import one.empty3.library.*;
 import one.empty3.library.core.export.ObjExport;
 import one.empty3.library.core.export.STLExport;
@@ -215,7 +215,18 @@ private ManualVideoCompile compiler ;
 
 
         if ((generate & GENERATE_MOVIE) > 0) {
-            if (isAviOpen()) {
+                 idxFilm++;
+        if(encoder==1) {
+   
+        avif = new File(this.dir.getAbsolutePath() + File.separator
+                + sousdossier + this.getClass().getName() + "__" + filmName + idxFilm + ".AVI");
+        if(compiler!=null && frame>0)
+    compiler.end();
+initCompiler();
+           } 
+      
+else {
+    if (isAviOpen()) {
                 try {
                     aw.finish();
                     aw.close();
@@ -225,14 +236,6 @@ private ManualVideoCompile compiler ;
                     o.println("Can't close or flush movie" + runtimeInfoSucc());
                 }
             }
-        if(encoder==1) {
-        idxFilm++;
-        avif = new File(this.dir.getAbsolutePath() + File.separator
-                + sousdossier + this.getClass().getName() + "__" + filmName + idxFilm + ".AVI");
-        if(compiler!=null && frame>0)
-    compiler.end();
-initCompiler();
-else {
       //  aw = null;
         int track = -1;
         try {
