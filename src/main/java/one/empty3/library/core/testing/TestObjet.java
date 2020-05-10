@@ -235,8 +235,10 @@ else {
                 } catch (IOException e) {
                     o.println("Can't close or flush movie" + runtimeInfoSucc());
                 }
-            }
-        aw = null;
+            
+    
+             /6 aw = null;
+        }
         int track = -1;
         try {
             aw = new AVIWriter(avif);
@@ -275,7 +277,7 @@ else {
         } catch (IOException e) {
             e.printStackTrace();
         }
-}
+
 } 
  }
 
