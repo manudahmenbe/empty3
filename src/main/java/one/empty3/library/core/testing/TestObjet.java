@@ -236,10 +236,10 @@ else {
                     o.println("Can't close or flush movie" + runtimeInfoSucc());
                 }
             }
-      //  aw = null;
+        aw = null;
         int track = -1;
         try {
-       //     aw = new AVIWriter(avif);
+            aw = new AVIWriter(avif);
 
             Properties properties = new Properties();
             // TODO ADD PROPERTIES
@@ -272,7 +272,7 @@ else {
             aviOpen = true;
         //} catch (UnsupportedAudioFileException e) {
         //    e.printStackTrace();
-        //} catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 }
