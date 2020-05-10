@@ -69,9 +69,7 @@ public class DecodeAndCaptureFramesXuggle extends MovieDecoder {
      */
 
     private static long mLastPtsWrite = Global.NO_PTS;
-    private static TextureMov refTextureMov;
-    private final File file;
-
+   
     /*__
      * Write the video frame out to a PNG file every once and a while.
      * The files are written out to the system's temporary directory.
@@ -94,7 +92,7 @@ public class DecodeAndCaptureFramesXuggle extends MovieDecoder {
                 // Make a temorary file name
 
 
-                while (!refTextureMov.hasCapacity()) {
+                while (imgBuf.size>=MAXSIZE) {
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException ex) {
@@ -103,8 +101,8 @@ public class DecodeAndCaptureFramesXuggle extends MovieDecoder {
 
                 }
 
-                refTextureMov.add(image);
-                System.out.println(refTextureMov.images.size());
+                imgBuf.add(image);
+                
                 // indicate file written
 
                 double seconds = ((double) picture.getPts()) / Global.DEFAULT_PTS_PER_SECOND;
