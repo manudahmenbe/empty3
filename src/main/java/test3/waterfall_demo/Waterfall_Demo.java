@@ -102,7 +102,7 @@ public class Waterfall_Demo extends TestObjetSub {
             blocks.add(new Cube(mlc, Point3D.O0));
 
 
-            ts.setElem(0, curveN);
+            ts.setElem(0., curveN);
         }
 
         curves.data1d.forEach(parametricCurve -> scene().add(parametricCurve));
