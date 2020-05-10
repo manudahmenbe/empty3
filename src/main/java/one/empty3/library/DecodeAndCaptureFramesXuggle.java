@@ -55,20 +55,20 @@ public class DecodeAndCaptureFramesXuggle extends VideoDecoder {
      * The number of seconds between frames.
      */
 
-    public static final double SECONDS_BETWEEN_FRAMES = 0;
+    public final double SECONDS_BETWEEN_FRAMES = 0;
 
     /*__
      * The number of nano-seconds between frames.
      */
 
-    public static final long NANO_SECONDS_BETWEEN_FRAMES =
+    public final long NANO_SECONDS_BETWEEN_FRAMES =
             (long) (Global.DEFAULT_PTS_PER_SECOND * SECONDS_BETWEEN_FRAMES);
 
     /*__
      * Time of last frame write.
      */
 
-    private static long mLastPtsWrite = Global.NO_PTS;
+    private long mLastPtsWrite = Global.NO_PTS;
    
     /*__
      * Write the video frame out to a PNG file every once and a while.
@@ -78,7 +78,7 @@ public class DecodeAndCaptureFramesXuggle extends VideoDecoder {
      * @param image   the buffered image to write out
      */
 
-    private static void processFrame(IVideoPicture picture, BufferedImage image) {
+    private void processFrame(IVideoPicture picture, BufferedImage image) {
         try {
             // if uninitialized, backdate mLastPtsWrite so we get the very
             // first frame
