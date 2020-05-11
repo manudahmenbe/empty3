@@ -1,6 +1,6 @@
 import java.util.*;
 public class PojoHelper {
-    public static setProperties(Properties p) {
+    public static boolean setProperties(Object o, Properties p) {
          
     }
 }
