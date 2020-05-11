@@ -23,7 +23,8 @@ public class TestRun {
 Class cl; int resx; int resy; int maxFrames;
          switch(key) {
     case "class":
-         cl = Class.forName(args[0]);  
+         try {
+              cl = Class.forName(args[0]);  
          
               Object t=  cl.newInstance () ;
               
