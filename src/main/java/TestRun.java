@@ -34,13 +34,13 @@ Class cl; int resx; int resy; int maxFrames;
          }
          break;
     case "resx":
-         resx = Integer.parseInteger(value);
+         resx = Integer.parseInt(value);
          break;
     case "resy":
-         resy = Integer.parseInteger(value);
+         resy = Integer.parseInt(value);
          break;
     case "maxFrames":
-         maxFrames = Integer.parseInteger(value);
+         maxFrames = Integer.parseInt(value);
          break;
    case "p":
          String k2 = kv[1];
