@@ -6,7 +6,7 @@ public static Object getO(String so) {
             double d;
 int i =0;
             try {
-		    d = Double.parseInteger(so);
+		    d = Double.parseDouble(so);
 		    return d;
 	    } catch(Exception ex) {
 		    try {
