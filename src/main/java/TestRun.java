@@ -3,7 +3,7 @@ import java.util.*;
 public class TestRun {
     //Map<String, String> properties = new HashMap<>();
     public static void runTest(TestObjet to, Properties p) {
-        to.setProperties(p);
+        ((Pojo)to).setProperties(p);
         new Thread(to).start();
     } 
 
