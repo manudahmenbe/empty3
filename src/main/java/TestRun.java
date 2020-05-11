@@ -53,7 +53,7 @@ Class cl; int resx; int resy; int maxFrames;
          p.load(fis);
          break;
     }
-
+   }
 
     if(t instanceof TestObjet) {
 
