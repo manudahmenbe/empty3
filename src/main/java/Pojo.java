@@ -34,13 +34,13 @@ public static boolean setProperties(Object o, Properties p) {
          return null;
     }
     
-    public Class getPropertyType(Object o, String propertyName) throws NoSuchMethodException {
+    public static Class getPropertyType(Object o, String propertyName) throws NoSuchMethodException {
         Method propertyGetter = null;
         propertyGetter = o.getClass().getMethod("get" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.length() > 1 ? propertyName.substring(1) : ""));
         return propertyGetter.getReturnType();
     }
 
-    public void setProperty(Object o, String propertyName, Object value) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    public static void setProperty(Object o, String propertyName, Object value) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
 
         propertySetter = o.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), value.getClass());
@@ -48,7 +48,7 @@ public static boolean setProperties(Object o, Properties p) {
         System.out.println("RType : " + o.getClass().getName() + " Property: " + propertyName + " New Value set " + getProperty(propertyName));
     }
 
-    public Object getProperty(Object o, String propertyName) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    public static Object getProperty(Object o, String propertyName) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
         propertySetter = o.getClass().getMethod("get" + ("" + propertyName.charAt(0)).toUpperCase() + propertyName.substring(1));
         return propertySetter.invoke(o);
