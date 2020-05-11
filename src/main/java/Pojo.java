@@ -1,4 +1,8 @@
 import java.util.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.function.Consumer;
 public class Pojo {
    
 public static Object getO(String so) {
