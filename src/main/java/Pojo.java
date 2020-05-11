@@ -25,10 +25,13 @@ public static boolean setProperties(Object o, Properties p) {
         while (it.hasNext()) {
                 String propName = it.next();
                 String value = p.getProperty(propName);
-                setProperty(o, propName, getO(value);
+                setProperty(o, propName, getO(value));
             }
          return false;
     }
+/***
+* not implemented
+*/
   public static Properties getProperties(Object o, Properties p) {
       
          return null;
