@@ -15,7 +15,7 @@ return i;
 } catch(Exception ex) {
      return so;
 }
-{
+}
 return so;
 }
 public static boolean setProperties(Object o, Properties p) {
