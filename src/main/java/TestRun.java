@@ -48,9 +48,7 @@ Class cl; int resx; int resy; int maxFrames;
     case "file":
          FileInputStream fis = new FileInputStream(
               new File(value));
-         Properties p2 = Properties.load(fis);
-         for()
-         p.addAll(p2);
+         p.load(fis);
          break;
     }
 
