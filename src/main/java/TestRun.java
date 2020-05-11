@@ -1,5 +1,6 @@
 import one.empty3.library.core.testing.*;
 import java.util.*;
+import java.io.*;
 public class TestRun {
     //Map<String, String> properties = new HashMap<>();
     public static void runTest(TestObjet to, Properties p) {
