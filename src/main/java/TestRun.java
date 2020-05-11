@@ -12,7 +12,8 @@ public class TestRun {
     Properties p = new Properties ();
     System.out.println(args.length + " arguments :");
     
-    // P properties -< args.foreach.split
+Object t;
+        // P properties -< args.foreach.split
 Class cl; int resx; int resy; int maxFrames;
     for (String arg: args) {
          String [] kv = arg.split("=");
@@ -27,7 +28,7 @@ Class cl; int resx; int resy; int maxFrames;
          try {
               cl = Class.forName(args[0]);  
          
-              Object t=  cl.newInstance () ;
+              t=  cl.newInstance () ;
               
          } catch(Exception ex) {
               ex.printStackTrace();
@@ -58,7 +59,7 @@ Class cl; int resx; int resy; int maxFrames;
 
    // if(cl instanceof TestObjet) {
 
-        runTest((TestObjet ) cl, p) ;
+        runTest((TestObjet)t, p) ;
 //    }
 
     }
