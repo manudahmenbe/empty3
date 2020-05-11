@@ -6,15 +6,18 @@ public class TestRun {
         new Thread(to).start();
     } 
 
-     public static void main(String [] args) {
+    public static void main(String [] args) {
+    Properties p = new Properties ();
+    System.out.println(args.length + " arguments :");
+    
+    // P properties -< args.foreach.split
 
-System.out.println(args.length + " arguments :");
     for (String arg: args) {
          String [] kv = arg.split("=");
          String key = kv[0];
          String value = kv[1];
 
-
+         
 
 Class cl; int resx; int resy; int maxFrames;
          switch(key) {
@@ -40,6 +43,13 @@ Class cl; int resx; int resy; int maxFrames;
          String k2 = kv[1];
          String v2 = kv[2];
          // 
+         
+         break;
+    case "file":
+         Properties p2 = Properties.load(
+             new File(value)
+         );
+         p.addAll(p2);
          break;
     }
 
