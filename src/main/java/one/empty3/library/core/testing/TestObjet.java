@@ -183,7 +183,9 @@ private ManualVideoCompile compiler ;
         } else {
         }
     }
-
+public void setProperties ( Properties p) {
+        this.getClass();
+    }
     public static void main(String[] args) {
         TestObjet gui = new TestObjetSub();
         gui.loop(true);
