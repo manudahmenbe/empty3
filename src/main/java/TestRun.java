@@ -56,9 +56,9 @@ Class cl; int resx; int resy; int maxFrames;
     }
    }
 
-    if(t instanceof TestObjet) {
+    if(cl instanceof TestObjet) {
 
-        runTest((TestObjet ) t, p) ;
+        runTest((TestObjet ) cl, p) ;
     }
 
     }
