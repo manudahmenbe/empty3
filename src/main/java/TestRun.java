@@ -1,5 +1,7 @@
 import one.empty3.library.core.testing.*;
+import java.util.*;
 public class TestRun {
+    Map<String, String> properties = new HashMap<>();
     public static void runTest(TestObjet to) {
         new Thread(to).start();
     } 
