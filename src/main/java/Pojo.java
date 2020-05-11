@@ -1,7 +1,13 @@
 import java.util.*;
 public class Pojo {
     public static boolean setProperties(Object o, Properties p) {
-        
+        Iterator it = property.keySet().iterator();
+		
+		while (it.hasNext()) {
+            String propName = it.next();
+            String value = p.getProperty(propName);
+            
+     }
          return false;
     }
   public static Properties getProperties(Object o, Properties p) {
