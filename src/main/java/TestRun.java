@@ -35,9 +35,8 @@ Class cl; int resx; int resy; int maxFrames;
          maxFrames = Integer.parseInteger(value);
          break;
     case "p":
-         String [] pkv = value.split(value);
-         String k2 = pkv[0];
-         String v2 = pkv[1];
+         String k2 = kv[1];
+         String v2 = kv[2];
          // 
          break;
     }
