@@ -17,7 +17,7 @@ public class TestRun {
          String key = kv[0];
          String value = kv[1];
 
-         
+         p.setProperty(key, value);
 
 Class cl; int resx; int resy; int maxFrames;
          switch(key) {
@@ -46,9 +46,10 @@ Class cl; int resx; int resy; int maxFrames;
          
          break;
     case "file":
-         Properties p2 = Properties.load(
-             new File(value)
-         );
+         FileInputStream fis = new FileInputStream(
+              new File(value));
+         Properties p2 = Properties.load(fis);
+         for()
          p.addAll(p2);
          break;
     }
