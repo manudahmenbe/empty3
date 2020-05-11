@@ -2,7 +2,7 @@ import one.empty3.library.core.testing.*;
 import java.util.*;
 public class TestRun {
     Map<String, String> properties = new HashMap<>();
-    public static void runTest(TestObjet to) {
+    public static void runTest(TestObjet to, Properties p) {
         new Thread(to).start();
     } 
 
@@ -55,7 +55,7 @@ Class cl; int resx; int resy; int maxFrames;
 
     if(t instanceof TestObjet) {
 
-        runTest((TestObjet ) t) ;
+        runTest((TestObjet ) t, p) ;
     }
 
     }
