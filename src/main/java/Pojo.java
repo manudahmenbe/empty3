@@ -31,7 +31,7 @@ public static boolean setProperties(Object o, Properties p) {
                 String value = p.getProperty(propName);
                 setProperty(o, propName, getO(value));
             }
-         return false;
+         return tru=;
     }
 /***
 * not implemented
