@@ -8,13 +8,16 @@ public class TestRun {
 
 System.out.println(args.length + " arguments :");
     for (String arg: args) {
-         String kv = arg.split("=");
+         String [] kv = arg.split("=");
          String key = kv[0];
          String value = kv[1];
 
+
+
+Class cl; int resx; int resy; int maxFrames;
          switch(key) {
     case "class":
-         Class cl = Class.forName(args[0]);  
+         cl = Class.forName(args[0]);  
          
               Object t=  cl.newInstance () ;
               
@@ -23,15 +26,28 @@ System.out.println(args.length + " arguments :");
          }
          break;
     case "resx":
+         resx = Integer.parseInteger(value);
+         break;
     case "resy":
+         resy = Integer.parseInteger(value);
+         break;
+    case "maxFrames":
+         maxFrames = Integer.parseInteger(value);
+         break;
+    case "p":
+         String [] pkv = value.split(value);
+         String k2 = pkv[0];
+         String v2 = pkv[1];
+         // 
          break;
     }
 
 
-    if(t instanceof TestObjet) 
-                   runTest((TestObjet ) t) ;
-}
+    if(t instanceof TestObjet) {
+
+        runTest((TestObjet ) t) ;
+    }
 
     }
-     } 
+     
 } 
