@@ -1,13 +1,32 @@
 import java.util.*;
 public class Pojo {
-    public static boolean setProperties(Object o, Properties p) {
+   
+public static Object getO(String so) {
+
+            double d;
+int i =0;
+            try {
+		    d = Double.parseInteger(so);
+		    return d;
+	    } catch(Exception ex) {
+		    try {
+		    i = Integer.parseInteger(so);
+return i;
+} catch(Exception ex) {
+     return so;
+}
+{
+return so;
+}
+public static boolean setProperties(Object o, Properties p) {
+	    
         Iterator it = property.keySet().iterator();
 		
-		while (it.hasNext()) {
-            String propName = it.next();
-            String value = p.getProperty(propName);
-            
-     }
+        while (it.hasNext()) {
+                String propName = it.next();
+                String value = p.getProperty(propName);
+                setProperty(o, propName, getO(value);
+            }
          return false;
     }
   public static Properties getProperties(Object o, Properties p) {
