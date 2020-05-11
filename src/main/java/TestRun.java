@@ -12,6 +12,7 @@ public class TestRun {
     Properties p = new Properties ();
     System.out.println(args.length + " arguments :");
     
+       
 Object t;
         // P properties -< args.foreach.split
 Class cl; int resx; int resy; int maxFrames;
