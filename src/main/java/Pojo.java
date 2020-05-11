@@ -9,24 +9,24 @@ public class Pojo {
          return null;
     }
     
-    public Class getPropertyType(String propertyName) throws NoSuchMethodException {
+    public Class getPropertyType(Object o, String propertyName) throws NoSuchMethodException {
         Method propertyGetter = null;
-        propertyGetter = this.getClass().getMethod("get" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.length() > 1 ? propertyName.substring(1) : ""));
+        propertyGetter = o.getClass().getMethod("get" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.length() > 1 ? propertyName.substring(1) : ""));
         return propertyGetter.getReturnType();
     }
 
-    public void setProperty(String propertyName, Object value) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    public void setProperty(Object o, String propertyName, Object value) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
 
-        propertySetter = this.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), value.getClass());
-        propertySetter.invoke(this, value);
-        System.out.println("RType : " + this.getClass().getName() + " Property: " + propertyName + " New Value set " + getProperty(propertyName));
+        propertySetter = o.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), value.getClass());
+        propertySetter.invoke(o, value);
+        System.out.println("RType : " + o.getClass().getName() + " Property: " + propertyName + " New Value set " + getProperty(propertyName));
     }
 
-    public Object getProperty(String propertyName) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    public Object getProperty(Object o, String propertyName) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
-        propertySetter = this.getClass().getMethod("get" + ("" + propertyName.charAt(0)).toUpperCase() + propertyName.substring(1));
-        return propertySetter.invoke(this);
+        propertySetter = o.getClass().getMethod("get" + ("" + propertyName.charAt(0)).toUpperCase() + propertyName.substring(1));
+        return propertySetter.invoke(o);
     }
 
 }
