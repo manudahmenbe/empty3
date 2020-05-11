@@ -3,8 +3,8 @@ public class Pojo {
    
 public static Object getO(String so) {
 
-            double d;
-int i =0;
+            Double d;
+Integer i =0;
             try {
 		    d = Double.parseDouble(so);
 		    return d;
