@@ -14,7 +14,7 @@ Integer i =0;
 		    return d;
 	    } catch(Exception ex) {
 		    try {
-		    i = Integer.parseInteger(so);
+		    i = Integer.parseInt(so);
 return i;
 } catch(Exception ex) {
      return so;
