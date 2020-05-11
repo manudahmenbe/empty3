@@ -3,7 +3,7 @@ public class Pojo {
     public static boolean setProperties(Object o, Properties p) {
          return false;
     }
-  public static void setProperties(Object o, Properties p) {
+  public static Properties getProperties(Object o, Properties p) {
          
     }
 }
