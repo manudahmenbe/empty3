@@ -40,10 +40,10 @@ Class cl; int resx; int resy; int maxFrames;
     case "maxFrames":
          maxFrames = Integer.parseInteger(value);
          break;
-    case "p":
+   case "p":
          String k2 = kv[1];
          String v2 = kv[2];
-         // 
+         
          
          break;
     case "file":
