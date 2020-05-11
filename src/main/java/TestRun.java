@@ -13,7 +13,7 @@ public class TestRun {
     System.out.println(args.length + " arguments :");
     
     // P properties -< args.foreach.split
-
+Class cl; int resx; int resy; int maxFrames;
     for (String arg: args) {
          String [] kv = arg.split("=");
          String key = kv[0];
@@ -21,7 +21,7 @@ public class TestRun {
 
          p.setProperty(key, value);
 
-Class cl; int resx; int resy; int maxFrames;
+
          switch(key) {
     case "class":
          try {
