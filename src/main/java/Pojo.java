@@ -6,7 +6,7 @@ public class Pojo {
     }
   public static Properties getProperties(Object o, Properties p) {
       
-         return nulm;
+         return null;
     }
     
     public Class getPropertyType(String propertyName) throws NoSuchMethodException {
