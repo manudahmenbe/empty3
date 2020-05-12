@@ -27,7 +27,7 @@ public static boolean setProperties(Object o, Properties p) {
        Iterator it = p.keySet().iterator();
 		
         while(it.hasNext()) {
-String pr= it.next();
+String pr= it.next().toString();
                 String propName = pr;
                 String value = p.getProperty(pr);
                 setProperty(o, propName, getO(value));
