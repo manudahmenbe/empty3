@@ -24,7 +24,7 @@ return so;
 }
 public static boolean setProperties(Object o, Properties p) {
 	    try {
-       Iterator<String> it = p.keySet().iterator();
+       Iterator it = p.keySet().iterator();
 		
         while(it.hasNext()) {
 String pr= it.next();
@@ -56,7 +56,7 @@ String pr= it.next();
 
         propertySetter = o.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), value.getClass());
         propertySetter.invoke(o, value);
-        System.out.println("RType : " + o.getClass().getName() + " Property: " + propertyName + " New Value set " + getPropertyo,(propertyName));
+        System.out.println("RType : " + o.getClass().getName() + " Property: " + propertyName + " New Value set " + getProperty(o, propertyName));
     }
 
     public static Object getProperty(Object o, String propertyName) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
