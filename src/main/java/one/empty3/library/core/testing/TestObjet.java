@@ -985,9 +985,6 @@ if(encoder==ENCODER_MONTE) {
                     }
 
                 }
-           // } catch (ArrayIndexOutOfBoundsException ex) {
-           //     ex.printStackTrace();
-           // }
             z.next();
 
         }
@@ -1005,19 +1002,19 @@ if(encoder==ENCODER_MONTE) {
             }
         }
         if ((generate & GENERATE_MOVIE) > 0 && true) {
-if(encoder==ENCODER_MONTE) {
-          try {
-              aw.finish();
-             aw.close();
+             if(encoder==ENCODER_MONTE) {
+                  try {
+                      aw.finish();
+                      aw.close();
 
-         } catch (IOException e) {
-               o.println("Can't close or flush movie" + runtimeInfoSucc());
-           }
+                   } catch (IOException e) {
+                       o.println("Can't close or flush movie" + runtimeInfoSucc());
+                   }
         
-            }
-            else {
-                compiler.end();
-            }
+              } else {
+             
+                  compiler.end();
+              }
          }
             /*
         String cmd;
