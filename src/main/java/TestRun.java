@@ -27,10 +27,11 @@ Class cl; int resx; int resy; int maxFrames;
          switch(key) {
     case "class":
          try {
-              cl = Class.forName(args[0]);  
+              cl = Class.forName(value);  
          
               t=  cl.newInstance () ;
-              
+              if(!(t instanceof TestObjet))
+                  return;
          } catch(Exception ex) {
               ex.printStackTrace();
          }
