@@ -885,7 +885,7 @@ compiler. init(avif.getAbsolutePath()
             }
 
 
-            try {
+            
                 pauseActive = true;
                 while (isPause()) {
                     try {
@@ -894,7 +894,7 @@ compiler. init(avif.getAbsolutePath()
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                }
+                
                 pauseActive = false;
 
 
@@ -941,6 +941,7 @@ if(encoder==ENCODER_MONTE) {
                             reportException(e);
                             return;
                         }
+    }
  else if(encoder==ENCODER_HUMBLE) {
  compiler.add(ri);
  }
@@ -984,9 +985,9 @@ if(encoder==ENCODER_MONTE) {
                     }
 
                 }
-            } catch (ArrayIndexOutOfBoundsException ex) {
-                ex.printStackTrace();
-            }
+           // } catch (ArrayIndexOutOfBoundsException ex) {
+           //     ex.printStackTrace();
+           // }
             z.next();
 
         }
@@ -1004,15 +1005,17 @@ if(encoder==ENCODER_MONTE) {
             }
         }
         if ((generate & GENERATE_MOVIE) > 0 && true) {
+if(encoder==ENCODER_MONTE) 
+          try {
+              aw.finish();
+             aw.close();
 
-         //  try {
-             //  aw.finish();
-             //aw.close();
-
-       //    } catch (IOException e) {
-       //         o.println("Can't close or flush movie" + runtimeInfoSucc());
-     //       }
+         } catch (IOException e) {
+               o.println("Can't close or flush movie" + runtimeInfoSucc());
+           }
         }
+            else compiler.end();
+            /*
         String cmd;
 
         if (loop() && avif != null) {
@@ -1038,7 +1041,7 @@ if(encoder==ENCODER_MONTE) {
                 o.println(ex.getLocalizedMessage());
             }
         }
-
+*/
         dataWriter.end();
 
 
