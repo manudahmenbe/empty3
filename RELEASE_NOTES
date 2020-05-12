@@ -17,3 +17,10 @@
 </html>
 2020.2.1 Snapshot
 goal: introduce time in representable. auto-time scene* changes
+2020.2.5 Release
+done: passes argument double, int, string to
+testobjet via TestRun main method (getter prop
+name)
+format 
+     class=<fully qualified TestObjet class 
+name> argument1=value1 ...
