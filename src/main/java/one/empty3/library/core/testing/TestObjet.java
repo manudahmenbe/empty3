@@ -943,7 +943,7 @@ compiler. init(avif.getAbsolutePath()
                         }
                       } else if(encoder==ENCODER_HUMBLE) {
                         compiler.add(ri);
-                    
+                    }
                     } else {
                         o.println(
                                 "No file open for avi writing");
@@ -1015,7 +1015,7 @@ compiler. init(avif.getAbsolutePath()
                   compiler.end();
               }
          }
-            /*
+            
         String cmd;
 
         if (loop() && avif != null) {
@@ -1041,7 +1041,7 @@ compiler. init(avif.getAbsolutePath()
                 o.println(ex.getLocalizedMessage());
             }
         }
-*/
+
         dataWriter.end();
 
 
