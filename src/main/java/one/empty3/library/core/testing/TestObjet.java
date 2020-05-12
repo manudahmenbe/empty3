@@ -931,16 +931,19 @@ compiler. init(avif.getAbsolutePath()
                     ri.getGraphics().drawString(description, 0, 0);
 
                     if ((generate & GENERATE_MOVIE) > 0 && isAviOpen()) {
+if(encoder==ENCODER_MONTE) {
+                       try {
 
-                       // try {
-
-                         //   aw.write(videoTrackNo, ri, 1);
+                            aw.write(videoTrackNo, ri, 1);
                             dataWriter.writeFrameData(frame(), "Writing movie frame");
 
-                      //  } catch (IOException e) {
-                            //reportException(e);
-                       //     return;
-                  //      }
+                       } catch (IOException e) {
+                            reportException(e);
+                            return;
+                        }
+ else if(encoder==ENCODER_HUMBLE) {
+ compiler.add(ri);
+ }
                     } else {
                         o.println(
                                 "No file open for avi writing");
