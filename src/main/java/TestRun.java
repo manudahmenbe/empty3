@@ -51,9 +51,14 @@ Class cl; int resx; int resy; int maxFrames;
          
          break;
     case "file":
+                 try {
          FileInputStream fis = new FileInputStream(
               new File(value));
          p.load(fis);
+             } catch(FileNotFoundException|IOException ex)
+                     {
+                     ex.printStackTrace();
+                     }
          break;
     }
    }
