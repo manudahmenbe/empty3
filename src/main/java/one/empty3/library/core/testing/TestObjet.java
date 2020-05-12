@@ -1014,6 +1014,7 @@ if(encoder==ENCODER_MONTE)
                o.println("Can't close or flush movie" + runtimeInfoSucc());
            }
         }
+            }
             else compiler.end();
             /*
         String cmd;
