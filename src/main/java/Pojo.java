@@ -24,7 +24,7 @@ return so;
 }
 public static boolean setProperties(Object o, Properties p) {
 	    try {
-        Iterator it = property.keySet().iterator();
+      //  Iterator it = properties.keySet().iterator();
 		
         for(Property pr : p) {
                 String propName = pr.getName();
