@@ -942,7 +942,7 @@ compiler. init(avif.getAbsolutePath()
                             return;
                         }
                       } else if(encoder==ENCODER_HUMBLE) {
-                        compiler.add((BufferedImage)ri);
+                        compiler.frame((BufferedImage)ri);
                       }
                     } else {
                         o.println(
