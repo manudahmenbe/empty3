@@ -23,7 +23,7 @@ return i;
 return so;
 }
 public static boolean setProperties(Object o, Properties p) {
-	    
+	    try {
         Iterator it = property.keySet().iterator();
 		
         while (it.hasNext()) {
@@ -32,6 +32,9 @@ public static boolean setProperties(Object o, Properties p) {
                 setProperty(o, propName, getO(value));
             }
          return true;
+		    } catch(Exception zx) {
+	    return false;
+	    }
     }
 /***
 * not implemented
