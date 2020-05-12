@@ -894,7 +894,7 @@ compiler. init(avif.getAbsolutePath()
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                
+                }
                 pauseActive = false;
 
 
@@ -1049,7 +1049,8 @@ compiler. init(avif.getAbsolutePath()
         o.println("Quit run method " + runtimeInfoSucc());
 
     }
-
+    
+        
     public void saveBMood(boolean b) {
         saveTxt = b;
     }
