@@ -20,7 +20,7 @@ return i;
      return so;
 }
 }
-return so;
+//return so;
 }
 public static boolean setProperties(Object o, Properties p) {
 	    try {
