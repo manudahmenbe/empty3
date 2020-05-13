@@ -1,7 +1,7 @@
 package one.empty3.library;
 import ru.sbtqa.monte.media.*;
 import java.io.File;
-import java.awt.BufferedImage;
+import java.awt.image.BufferedImage;
 public class DecodeMonte extends VideoDecoder {
  
  public DecodeMonte(File file, TextureMov refTextureMov) {
@@ -33,7 +33,7 @@ try {
  in.read(track, inbuf);
  codec.process(inbuf, codecbuf);
  if (!codecbuf.isFlag(BufferFlag.DISCARD)) {
- imgBuf.add(Images.cloneImage((BufferedImage)codecbuf.data));
+ imgBuf.add(new ECBufferedImage(Images.cloneImage((BufferedImage)codecbuf.data))) ;
  
  }
  
