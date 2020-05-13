@@ -29,8 +29,8 @@ public class QuadratureCercle extends TestObjetSub {
 
     public QuadratureCercle() {
         pointCount = 100;
-        dimCube = 100;
-        dimSphere = 100;
+        dimCube = 10;
+        dimSphere = 10;
         maxSpeed = 20;
         minSpeed = 5;
         radius = dimCube/10.0;
