@@ -15,10 +15,17 @@ try {
  Buffer inbuf = new Buffer();
  Buffer codecbuf = new Buffer();
  do {
+  if(imgBuf.size()>MAX_SIZE)
+   try {
+    Thread.sleep(100);
+    } catch(InterruptedException ex) {
+   
+   }
  in.read(track, inbuf);
  codec.process(inbuf, codecbuf);
  if (!codecbuf.isFlag(BufferFlag.DISCARD)) {
  imgBuf.add(Images.cloneImage((BufferedImage)codecbuf.data));
+ 
  }
  
  } while (!inbuf.isFlag(BufferFlag.END_OF_MEDIA));
