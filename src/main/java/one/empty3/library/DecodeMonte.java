@@ -4,14 +4,14 @@ import ru.sbtqa.monte.media.*;
 public class DecodeMonte extends VideoEncoder {
  public void run() {
 
-try {  
+try {
  //ArrayList<BufferedImage> frames=new ArrayList<BufferedImage> ();
  
  MovieReader in = Registry.getInstance().getReader(file);
  Format format = new Format(DataClassKey, BufferedImage.class);
  int track = in.findTrack(0, new Format(MediaTypeKey,MediaType.VIDEO));
  Codec codec=Registry.getInstance().getCodec(in.getFormat(track), format);
- try {
+ 
  Buffer inbuf = new Buffer();
  Buffer codecbuf = new Buffer();
  do {
