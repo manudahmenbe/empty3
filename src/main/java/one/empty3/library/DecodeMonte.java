@@ -1,5 +1,6 @@
 package one.empty3.library;
 import ru.sbtqa.monte.media.*;
+import java.io.File;
 
 public class DecodeMonte extends VideoDecoder {
  
