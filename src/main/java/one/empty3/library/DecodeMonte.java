@@ -15,7 +15,7 @@ try {
  in.read(track, inbuf);
  codec.process(inbuf, codecbuf);
  if (!codecbuf.isFlag(BufferFlag.DISCARD)) {
- frames.add(Images.cloneImage((BufferedImage)codecbuf.data));
+ imgBuf.add(Images.cloneImage((BufferedImage)codecbuf.data));
  }
  
  } while (!inbuf.isFlag(BufferFlag.END_OF_MEDIA));
