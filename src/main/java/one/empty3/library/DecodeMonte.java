@@ -1,8 +1,8 @@
-public class MovieDecoderMontemedia extends MovieEncoder {
+public class MovieDecoderMontemedia extends VideoEncoder {
  public void run() {
-}
-BufferedImage[] readMovie(File file) throws IOException {
- ArrayList<BufferedImage> frames=new ArrayList<BufferedImage> ();
+
+try {  
+ //ArrayList<BufferedImage> frames=new ArrayList<BufferedImage> ();
  
  MovieReader in = Registry.getInstance().getReader(file);
  Format format = new Format(DataClassKey, BufferedImage.class);
@@ -19,10 +19,13 @@ BufferedImage[] readMovie(File file) throws IOException {
  }
  
  } while (!inbuf.isFlag(BufferFlag.END_OF_MEDIA));
- } finally {
+ } catch(IOException ex) {
+  ex.printStackTrace();
+ }
+ finally {
  in.close();
  }
  
 // return frames.toArray(new BufferedImage[frames.size()]);
- }
+ 
 }
