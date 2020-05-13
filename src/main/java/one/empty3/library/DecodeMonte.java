@@ -19,7 +19,7 @@ try {
  
  MovieReader in = Registry.getInstance().getReader(file);
  Format format = new Format(VideoFormatKeys.DataClassKey, BufferedImage.class);
- int track = in.findTrack(0, new Format(MediaTypeKey,MediaType.VIDEO));
+ int track = in.findTrack(0, new Format(FormatKeys.MediaTypeKey,MediaType.VIDEO));
  Codec codec=Registry.getInstance().getCodec(in.getFormat(track), format);
  
  Buffer inbuf = new Buffer();
