@@ -1,3 +1,6 @@
+public class MovieDecoderMontemedia {
+ public void run() {
+}
 BufferedImage[] readMovie(File file) throws IOException {
  ArrayList<BufferedImage> frames=new ArrayList<BufferedImage> ();
  
@@ -20,5 +23,6 @@ BufferedImage[] readMovie(File file) throws IOException {
  in.close();
  }
  
- return frames.toArray(new BufferedImage[frames.size()]);
+// return frames.toArray(new BufferedImage[frames.size()]);
  }
+}
