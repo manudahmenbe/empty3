@@ -18,10 +18,10 @@ public class TestRun {
 Class cl; int resx; int resy; int maxFrames;
     for (String arg: args) {
          String [] kv = arg.split("=");
-        if(kv.length<2) {
+        if(kv.length==2) {
             System.out.println("argument : key=value;"+kv.length);
             continue;
-         }
+         
          String key = kv[0];
          String value = kv[1];
 
@@ -67,7 +67,7 @@ Class cl; int resx; int resy; int maxFrames;
          break;
     }
    }
-
+}
    // if(cl instanceof TestObjet) {
 if(t!=null)
         runTest((TestObjet)t, p) ;
