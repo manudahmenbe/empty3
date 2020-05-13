@@ -20,7 +20,7 @@ Class cl; int resx; int resy; int maxFrames;
          String [] kv = arg.split("=");
         if(kv.length==2) {
             System.out.println("argument : key=value;"+kv.length);
-            continue;
+            
          
          String key = kv[0];
          String value = kv[1];
