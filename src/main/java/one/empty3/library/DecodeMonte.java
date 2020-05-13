@@ -1,5 +1,6 @@
 package one.empty3.library;
 import ru.sbtqa.monte.media.*;
+import ru.sbtqa.monte.media.FormatKeys.*;
 import java.io.File;
 import java.awt.image.BufferedImage;
 public class DecodeMonte extends VideoDecoder {
