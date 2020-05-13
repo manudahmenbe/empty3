@@ -15,7 +15,7 @@ try {
  Buffer inbuf = new Buffer();
  Buffer codecbuf = new Buffer();
  do {
-  if(imgBuf.size()>MAX_SIZE)
+  if(size()>MAX_SIZE)
    try {
     Thread.sleep(100);
     } catch(InterruptedException ex) {
