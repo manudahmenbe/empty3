@@ -18,6 +18,8 @@ public class TestRun {
 Class cl; int resx; int resy; int maxFrames;
     for (String arg: args) {
          String [] kv = arg.split("=");
+        if(kv,lengty<2)
+            System.out.println("argument : key=value;"+kv.length);
          String key = kv[0];
          String value = kv[1];
 
