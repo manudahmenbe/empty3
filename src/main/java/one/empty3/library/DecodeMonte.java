@@ -14,10 +14,11 @@ public class DecodeMonte extends VideoDecoder {
  
  
  public void run() {
+  try {
     if(!file.exists())
        throw new NullPointerException("file not found exception"+file.getCanonicalPath());
  MovieReader in = Registry.getInstance().getReader(file);
-try {
+
  //ArrayList<BufferedImage> frames=new ArrayList<BufferedImage> ();
  
  Format format = new Format(VideoFormatKeys.DataClassKey, BufferedImage.class);
