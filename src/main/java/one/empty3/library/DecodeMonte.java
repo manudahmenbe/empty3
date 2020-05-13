@@ -42,10 +42,10 @@ try {
  } while (!inbuf.isFlag(BufferFlag.END_OF_MEDIA));
  } catch(IOException ex) {
   ex.printStackTrace();
- }
+/* }
  finally {
  in.close();
- }
+ }*/
  
 // return frames.toArray(new BufferedImage[frames.size()]);
  
