@@ -18,7 +18,7 @@ public class TestRun {
 Class cl; int resx; int resy; int maxFrames;
     for (String arg: args) {
          String [] kv = arg.split("=");
-        if(kv,length<2) {
+        if(kv.length<2) {
             System.out.println("argument : key=value;"+kv.length);
             continue;
          }
