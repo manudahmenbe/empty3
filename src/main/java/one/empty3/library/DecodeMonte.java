@@ -1,7 +1,7 @@
 package one.empty3.library;
 import ru.sbtqa.monte.media.*;
 
-public class MovieDecoderMontemedia extends VideoEncoder {
+public class DecodeMonte extends VideoEncoder {
  public void run() {
 
 try {  
