@@ -17,7 +17,7 @@ try {
  //ArrayList<BufferedImage> frames=new ArrayList<BufferedImage> ();
  
  MovieReader in = Registry.getInstance().getReader(file);
- Format format = new Format(VideoFormatKeys.DataClassKey, BufferedImage.class);
+ Format format = new Format(FormatKeys.DataClassKey, BufferedImage.class);
  int track = in.findTrack(0, new Format(MediaTypeKey,MediaType.VIDEO));
  Codec codec=Registry.getInstance().getCodec(in.getFormat(track), format);
  
