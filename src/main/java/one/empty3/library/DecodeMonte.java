@@ -1,4 +1,4 @@
-public class MovieDecoderMontemedia {
+public class MovieDecoderMontemedia extends MovieEncoder {
  public void run() {
 }
 BufferedImage[] readMovie(File file) throws IOException {
