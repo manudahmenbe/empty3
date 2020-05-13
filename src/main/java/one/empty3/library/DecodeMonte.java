@@ -14,10 +14,10 @@ public class DecodeMonte extends VideoDecoder {
  
  public void run() {
 
+ MovieReader in = Registry.getInstance().getReader(file);
 try {
  //ArrayList<BufferedImage> frames=new ArrayList<BufferedImage> ();
  
- MovieReader in = Registry.getInstance().getReader(file);
  Format format = new Format(VideoFormatKeys.DataClassKey, BufferedImage.class);
  int track = in.findTrack(0, new Format(FormatKeys.MediaTypeKey,MediaType.VIDEO));
  Codec codec=Registry.getInstance().getCodec(in.getFormat(track), format);
