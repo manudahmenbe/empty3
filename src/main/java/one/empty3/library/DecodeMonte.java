@@ -212,7 +212,7 @@ if(in==null)
             }*/
 
             // Read images from the track
-            BufferedImage img = createImage(in.getFormat());
+            BufferedImage img = createImage(in.getFormat(track));
             in.read(track, img);
             do {
                 imgBuf.add(new ECBufferedImage(img));
