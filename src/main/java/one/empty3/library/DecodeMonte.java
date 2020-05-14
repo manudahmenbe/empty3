@@ -231,9 +231,9 @@ if(imgBuf.size()>MAXSIZE)
 }
  
  
-             }
-        }
-    }
+             
+        
+    
 
     /**
      * Creates a buffered image of the specified depth with a random color palette.
