@@ -30,9 +30,9 @@ public class PlansVideo extends TestObjetSub {
             f3 = args[2];
             f4 = args[3];
 
-        } else {*/
+        } else {*/0
 
-            f1 = "resources/mov/file_example_AVI_640_800kB.avi";
+            f1 = "resources/mov/file_example_AVI_480_750kB-mc.avi";
             f2 = f1;
             f3 = f2;
             f4 = f3;
