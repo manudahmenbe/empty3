@@ -29,20 +29,21 @@ public class PlansVideo extends TestObjetSub {
         String f2;
         String f3;
         String f4;
+        /4
         if (args.length >= 4) {
             f1 = args[0];
             f2 = args[1];
             f3 = args[2];
             f4 = args[3];
 
-        } else {
+        } else {*/
 
             f1 = "resources/mov/2018-03-31 11.51.58.jpg";
 //VID_20200416_201314.mp4";
             f2 = f1;
             f3 = f2;
             f4 = f3;
-        }
+       // }
 
         avi1 = f1;
         avi2 = f2;
