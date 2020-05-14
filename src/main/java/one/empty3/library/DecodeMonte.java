@@ -212,11 +212,13 @@ if(in==null)
             }*/
 
             // Read images from the track
-            BufferedImage img = null;
+            BufferedImage img = createImage(in.getFormat());
+            in.read(track, img);
             do {
                 imgBuf.add(new ECBufferedImage(img));
 if(imgBuf.size()>MAXSIZE)
    try {Thread.sleep(50);}catch(Exception ex){}
+in.read(track, img);
                 //...to do: do something with the image...
             } while (img != null);
         } catch (UnsupportedOperationException e) {
