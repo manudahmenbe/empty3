@@ -399,6 +399,15 @@ scm:git:git://github.com/manuelddahmen/empty3.git
     <artifactId>montemedia</artifactId>
     <version>0.0.7-2</version>
  </dependency>
-
+<dependency>
+    <groupId>org.jcodec</groupId>
+    <artifactId>jcodec</artifactId>
+    <version>0.2.3</version>
+</dependency>
+<dependency>
+    <groupId>org.jcodec</groupId>
+    <artifactId>jcodec-javase</artifactId>
+    <version>0.2.3</version>
+</dependency>
     </dependencies>
 </project>
