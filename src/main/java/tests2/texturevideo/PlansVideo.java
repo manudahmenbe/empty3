@@ -24,7 +24,7 @@ public class PlansVideo extends TestObjetSub {
         vinit (new String[] {""});
     }
 
-    public void vinit(String[] args) {
+    public void ginit() {
         String f1;
         String f2;
         String f3;
@@ -51,7 +51,7 @@ public class PlansVideo extends TestObjetSub {
         
         
         if (new File(f1).isFile() && new File(f2).isFile() && new File(f3).isFile() && new File(f4).isFile()) {
-/*
+
             PlansVideo pc = new PlansVideo();
 
             pc.loop(true);
@@ -61,15 +61,13 @@ public class PlansVideo extends TestObjetSub {
         } else {
 
             System.err.println("Erreur un fichier ou l'autre n'existe pas");
-*/
+
             
         }
         
     }
 
-    @Override
-    public void testScene() throws Exception {
-
+    
         TextureMov tc1, tc2, tc3, tc4;
 
         tc1 = new TextureMov(avi1);
