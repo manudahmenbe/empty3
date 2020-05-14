@@ -21,7 +21,8 @@ public class PlansVideo extends TestObjetSub {
     
     
     public PlansVideo() {
-        vinit (new String[] {""});
+        ginit (
+          );
     }
 
     public void ginit() {
