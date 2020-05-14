@@ -24,3 +24,6 @@ name)
 format 
      class=<fully qualified TestObjet class 
 name> argument1=value1 ...
+
+2020.2.6-SNAPSHOT
+Repair TextureMov
