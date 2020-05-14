@@ -120,7 +120,7 @@ if(in==null)
         }
     }
 
-    private static void test(File file, Format format) throws IOException {
+    private void test(File file, Format format) throws IOException {
         testWriting(file, format);
         try {
             testReading(file);
@@ -129,7 +129,7 @@ if(in==null)
         }
     }
 
-    private static void testWriting(File file, Format format) throws IOException {
+    private void testWriting(File file, Format format) throws IOException {
         System.out.println("Writing " + file);
 
         // Make the format more specific
@@ -192,7 +192,7 @@ if(in==null)
         }
     }
 
-    private static void testReading(File file) throws IOException {
+    private void testReading(File file) throws IOException {
         System.out.println("Reading " + file);
         AVIReader in = null;
 
