@@ -65,7 +65,7 @@ public class PlansVideo extends TestObjetSub {
             
         }
         
-    }
+    
 
     
         TextureMov tc1, tc2, tc3, tc4;
