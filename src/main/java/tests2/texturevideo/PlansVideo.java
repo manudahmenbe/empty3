@@ -32,7 +32,7 @@ public class PlansVideo extends TestObjetSub {
 
         } else {*/
 
-            f1 = "resources/mov/VID_20200416_201314.mp4";
+            f1 = "resources/mov/file_example_AVI_640_800kB.avi";
             f2 = f1;
             f3 = f2;
             f4 = f3;
