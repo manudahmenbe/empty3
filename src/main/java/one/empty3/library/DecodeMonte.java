@@ -206,10 +206,10 @@ if(in==null)
 
             // Look for the first video track
             int track = 0;
-            while (/*track < in.getTrackCount()
-                  && */in.getFormat(track).get(MediaTypeKey) != MediaType.VIDEO) {
+            /*while (track < in.getTrackCount()
+                  && in.getFormat(track).get(MediaTypeKey) != MediaType.VIDEO) {
                 track++;
-            }
+            }*/
 
             // Read images from the track
             BufferedImage img = null;
