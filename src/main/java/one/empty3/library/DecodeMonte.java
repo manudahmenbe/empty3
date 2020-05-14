@@ -17,7 +17,7 @@ import static ru.sbtqa.monte.media.VideoFormatKeys.*;
 import ru.sbtqa.monte.media.VideoFormatKeys.PixelFormat;
 import ru.sbtqa.monte.media.avi.AVIReader;
 import ru.sbtqa.monte.media.avi.AVIWriter;
-import ru.sbtqa.monte.media.math.Rational
+import ru.sbtqa.monte.media.math.Rational;
 public class DecodeMonte extends VideoDecoder {
  
  public DecodeMonte(File file, TextureMov refTextureMov) {
