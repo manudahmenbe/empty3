@@ -29,7 +29,7 @@ public class PlansVideo extends TestObjetSub {
         String f2;
         String f3;
         String f4;
-        /4
+        /*
         if (args.length >= 4) {
             f1 = args[0];
             f2 = args[1];
