@@ -18,13 +18,6 @@ public class PlansVideo extends TestObjetSub {
     private String avi3;
     private String avi4;
 
-    
-    
-    public PlansVideo() {
-        ginit (
-          );
-    }
-
     public void ginit() {
         String f1;
         String f2;
@@ -55,11 +48,11 @@ public class PlansVideo extends TestObjetSub {
         
         if (new File(f1).isFile() && new File(f2).isFile() && new File(f3).isFile() && new File(f4).isFile()) {
 
-            PlansVideo pc = new PlansVideo();
+          
 
-            pc.loop(true);
+            loop(true);
 
-            pc.run();
+            
 
         } else {
 
