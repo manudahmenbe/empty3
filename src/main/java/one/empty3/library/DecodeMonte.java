@@ -30,7 +30,7 @@ public class DecodeMonte extends VideoDecoder {
  public void run() {
 
 
-            testReading(new File("avidemo-jpg.avi"), new Format(EncodingKey, ENCODING_AVI_MJPG, DepthKey, 24, QualityKey, 1f));
+            testReading(file);
  /*
 
  try {
@@ -94,7 +94,7 @@ if(in==null)
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public void tests(String[] args) {
         //System.out.println("AVIDemo " + DecodeMonte.class.getPackage().getImplementationVersion());
         System.out.println("This is a demo of the Monte Media library.");
         System.out.println("Copyright © Werner Randelshofer. All Rights Reserved.");
@@ -119,6 +119,7 @@ if(in==null)
             ex.printStackTrace();
         }
     }
+    
 
     private void test(File file, Format format) throws IOException {
         testWriting(file, format);
@@ -137,8 +138,8 @@ if(in==null)
               FrameRateKey, new Rational(30, 1),//
               WidthKey, 400, //
               HeightKey, 400);
-
-        // Create a buffered image for this format
+     
+     // Create a buffered image for this format
         BufferedImage img = createImage(format);
         Graphics2D g = img.createGraphics();
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
