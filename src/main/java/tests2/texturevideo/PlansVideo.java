@@ -32,8 +32,7 @@ public class PlansVideo extends TestObjetSub {
 
         } else {*/
 
-            f1 = "resources/mov/VID_20191013_155351.mp4";
-        //2018-03-31 11.51.58.jpg";
+            f1 = "resources/mov/bulles.mp4";
 //VID_20200416_201314.mp4";
             f2 = f1;
             f3 = f2;
@@ -44,7 +43,7 @@ public class PlansVideo extends TestObjetSub {
         avi2 = f2;
         avi3 = f3;
         avi4 = f4;
-        
+       
         
         if (new File(f1).isFile() && new File(f2).isFile() && new File(f3).isFile() && new File(f4).isFile()) {
 
