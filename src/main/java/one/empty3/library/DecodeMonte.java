@@ -4,6 +4,20 @@ import ru.sbtqa.monte.media.image.Images;
 import ru.sbtqa.monte.media.FormatKeys.*;
 import java.io.*;
 import java.awt.image.BufferedImage;
+
+import java.awt.*;
+import java.awt.geom.Line2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.IndexColorModel;
+import java.io.*;
+import java.util.Random;
+import ru.sbtqa.monte.media.Format;
+import ru.sbtqa.monte.media.FormatKeys.MediaType;
+import static ru.sbtqa.monte.media.VideoFormatKeys.*;
+import ru.sbtqa.monte.media.VideoFormatKeys.PixelFormat;
+import ru.sbtqa.monte.media.avi.AVIReader;
+import ru.sbtqa.monte.media.avi.AVIWriter;
+import ru.sbtqa.monte.media.math.Rational
 public class DecodeMonte extends VideoDecoder {
  
  public DecodeMonte(File file, TextureMov refTextureMov) {
@@ -14,7 +28,12 @@ public class DecodeMonte extends VideoDecoder {
  
  
  public void run() {
-  try {
+
+
+            testReading(new File("avidemo-jpg.avi"), new Format(EncodingKey, ENCODING_AVI_MJPG, DepthKey, 24, QualityKey, 1f));
+ /*
+
+ try {
     if(!file.exists())
        throw new NullPointerException("file not found exception"+file.getCanonicalPath());
  MovieReader in = Registry.getInstance().getReader(file);
@@ -45,7 +64,7 @@ if(in==null)
  } while (!inbuf.isFlag(BufferFlag.END_OF_MEDIA));
  } catch(IOException ex) {
   ex.printStackTrace();
-}
+}36
 /* finally {
  in.close();
  }*/
@@ -54,3 +73,166 @@ if(in==null)
  
 }
   }
+
+ manuelddahmen / monte-media
+Code Pull requests 0 Projects 0 Actions Wiki Security 0 Pulse
+monte-media/src/main/java/ru/sbtqa/monte/avidemo/Main.java
+@kosteman kosteman fix javadoc; fill pom
+dbb0c61 on 6 Dec 2016
+223 lines (199 sloc)  9 KB
+ 
+/**
+ * @(#)Main.java
+ * Copyright © 2011-2012 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
+ */
+
+
+
+
+/**
+ * Demonstrates the use of {@link AVIReader} and {@link AVIWriter}.
+ *
+ * @author Werner Randelshofer
+ * @version $Id: Main.java 364 2016-11-09 19:54:25Z werner $
+ */
+
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        System.out.println("AVIDemo " + Main.class.getPackage().getImplementationVersion());
+        System.out.println("This is a demo of the Monte Media library.");
+        System.out.println("Copyright © Werner Randelshofer. All Rights Reserved.");
+        System.out.println("License: Creative Commons Attribution 3.0.");
+        System.out.println();
+
+        try {
+            test(new File("avidemo-jpg.avi"), new Format(EncodingKey, ENCODING_AVI_MJPG, DepthKey, 24, QualityKey, 1f));
+            test(new File("avidemo-jpg-q0.5.avi"), new Format(EncodingKey, ENCODING_AVI_MJPG, DepthKey, 24, QualityKey, 0.5f));
+            test(new File("avidemo-png.avi"), new Format(EncodingKey, ENCODING_AVI_PNG, DepthKey, 24));
+            test(new File("avidemo-raw24.avi"), new Format(EncodingKey, ENCODING_AVI_DIB, DepthKey, 24));
+            test(new File("avidemo-raw8.avi"), new Format(EncodingKey, ENCODING_AVI_DIB, DepthKey, 8));
+            test(new File("avidemo-rle8.avi"), new Format(EncodingKey, ENCODING_AVI_RLE8, DepthKey, 8));
+            test(new File("avidemo-tscc8.avi"), new Format(EncodingKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE, DepthKey, 8));
+            test(new File("avidemo-raw8gray.avi"), new Format(EncodingKey, ENCODING_AVI_DIB, DepthKey, 8, PixelFormatKey, PixelFormat.GRAY));
+            test(new File("avidemo-rle8gray.avi"), new Format(EncodingKey, ENCODING_AVI_RLE8, DepthKey, 8, PixelFormatKey, PixelFormat.GRAY));
+            test(new File("avidemo-tscc8gray.avi"), new Format(EncodingKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE, DepthKey, 8, PixelFormatKey, PixelFormat.GRAY));
+            test(new File("avidemo-tscc24.avi"), new Format(EncodingKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE, DepthKey, 24));
+            //test(new File("avidemo-rle4.avi"), AVIOutputStreamOLD.AVIVideoFormat.RLE, 4, 1f);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private static void test(File file, Format format) throws IOException {
+        testWriting(file, format);
+        try {
+            testReading(file);
+        } catch (UnsupportedOperationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void testWriting(File file, Format format) throws IOException {
+        System.out.println("Writing " + file);
+
+        // Make the format more specific
+        format = format.prepend(MediaTypeKey, MediaType.VIDEO, //
+              FrameRateKey, new Rational(30, 1),//
+              WidthKey, 400, //
+              HeightKey, 400);
+
+        // Create a buffered image for this format
+        BufferedImage img = createImage(format);
+        Graphics2D g = img.createGraphics();
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        AVIWriter out = null;
+        try {
+            // Create the writer
+            out = new AVIWriter(file);
+
+            // Add a track to the writer
+            out.addTrack(format);
+            out.setPalette(0, img.getColorModel());
+
+            // initialize the animation
+            g.setBackground(Color.WHITE);
+            g.setColor(Color.BLACK);
+            int rhour = Math.min(img.getWidth(), img.getHeight()) / 2 - 50;
+            int rminute = Math.min(img.getWidth(), img.getHeight()) / 2 - 30;
+            int cx = img.getWidth() / 2;
+            int cy = img.getHeight() / 2;
+            Stroke sfine = new BasicStroke(1.0f);
+            Stroke shour = new BasicStroke(7.0f);
+            Stroke sminute = new BasicStroke(5.0f);
+
+            for (int i = 0, n = 200; i < n; i++) {
+                double tminute = (double) i / (n - 1);
+                double thour = tminute / 60.0;
+
+                // Create an animation frame
+                g.clearRect(0, 0, img.getWidth(), img.getHeight());
+                Line2D.Double lhour = new Line2D.Double(cx, cy, cx + Math.sin(thour * Math.PI * 2) * rhour, cy - Math.cos(thour * Math.PI * 2) * rhour);
+                g.setColor(Color.BLACK);
+                g.setStroke(shour);
+                g.draw(lhour);
+                Line2D.Double lminute = new Line2D.Double(cx, cy, cx + Math.sin(tminute * Math.PI * 2) * rminute, cy - Math.cos(tminute * Math.PI * 2) * rminute);
+                g.setStroke(sminute);
+                g.draw(lminute);
+
+                // write it to the writer
+                out.write(0, img, 1);
+            }
+
+        } finally {
+            // Close the writer
+            if (out != null) {
+                out.close();
+            }
+
+            // Dispose the graphics object
+            g.dispose();
+        }
+    }
+
+    private static void testReading(File file) throws IOException {
+        System.out.println("Reading " + file);
+        AVIReader in = null;
+
+        try {
+            // Create the reader
+            in = new AVIReader(file);
+
+            // Look for the first video track
+            int track = 0;
+            while (track < in.getTrackCount()
+                  && in.getFormat(track).get(MediaTypeKey) != MediaType.VIDEO) {
+                track++;
+            }
+
+            // Read images from the track
+            BufferedImage img = null;
+            do {
+                imgBuf.add(new ECBufferedImage());
+if(imgBuf.size()>MAXSIZE)
+   try {Thread.sleep(50);}catch(Exception ex){}
+                //...to do: do something with the image...
+            } while (img != null);
+        } catch (UnsupportedOperationException e) {
+            System.out.println("Reading failed " + file);
+            throw e;
+        } catch (IOException e) {
+            System.out.println("Reading failed " + file);
+            throw e;
+        } finally {
+            // Close the rader
+            if (in != null) {
+                in.close();
+            }
+        }
+}
+}
