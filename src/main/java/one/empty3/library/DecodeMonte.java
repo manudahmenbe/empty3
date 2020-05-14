@@ -95,7 +95,7 @@ if(in==null)
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("AVIDemo " + Main.class.getPackage().getImplementationVersion());
+        //System.out.println("AVIDemo " + DecodeMonte.class.getPackage().getImplementationVersion());
         System.out.println("This is a demo of the Monte Media library.");
         System.out.println("Copyright © Werner Randelshofer. All Rights Reserved.");
         System.out.println("License: Creative Commons Attribution 3.0.");
@@ -210,7 +210,7 @@ if(in==null)
             // Read images from the track
             BufferedImage img = null;
             do {
-                imgBuf.add(new ECBufferedImage());
+                imgBuf.add(new ECBufferedImage(img));
 if(imgBuf.size()>MAXSIZE)
    try {Thread.sleep(50);}catch(Exception ex){}
                 //...to do: do something with the image...
