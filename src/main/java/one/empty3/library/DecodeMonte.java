@@ -28,9 +28,12 @@ public class DecodeMonte extends VideoDecoder {
  
  
  public void run() {
+try{
 
-
-            testReading(file);
+         testReading(file);
+ } catch(IOException ex) {
+      ex.printStackTrace();
+}
  /*
 
  try {
