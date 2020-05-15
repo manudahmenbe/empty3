@@ -3,7 +3,9 @@ import java.io.File;
 public class VideoDecoderFactory {
      public static VideoDecoder createInstance(File f, TextureMov m)
       {
-          return new DecodeMonte( /*DecodeAndCaptureFramesXuggle(*/f,m);
+          return new DecodeAndCaptureFramesXuggle(f,m);
+
+
        }
 
 
