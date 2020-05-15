@@ -9,7 +9,7 @@ import java.awt.*;
 import one.empty3.library.core.nurbs.*;
 import java.awt.image.*;
 import java.util.*;
-public class ShaderTexture extends TextureImage {
+public class TextureShader extends TextureMov {
 public int pointsSize = 3;
    private CourbeParametriquePolynomialeBezier[] curves = new CourbeParametriquePolynomialeBezier[pointsSize];
   // private Double [][][] distancesSum;
