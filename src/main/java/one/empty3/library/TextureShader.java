@@ -28,11 +28,12 @@ public int pointsSize = 3;
 
 
         for(int j= 0;j<getResy(); j++) {
+            p((double)i, (double));
    }
 
 
  }
-   public void main(Point2D pos, Color c) {
+   public void p(Point2D pos, Color c) {
        return c;
    }
     
