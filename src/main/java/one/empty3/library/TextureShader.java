@@ -28,7 +28,7 @@ public int pointsSize = 3;
 
 
         for(int j= 0;j<getResy(); j++) {
-            p((double)i, (double));
+            p((double)i, (double)j);
    }
 
 
