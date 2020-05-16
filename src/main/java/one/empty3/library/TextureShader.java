@@ -1,6 +1,6 @@
 package one.empty3.library;
 
-import one.empty3.library.shader;
+import one.empty3.library.shader.*;
 
 import one.empty3.library.core.testing.*;
 import one.empty3.library.*;
@@ -11,11 +11,11 @@ import java.awt.image.*;
 import java.util.*;
 public class TextureShader extends TextureMov {
 public int pointsSize = 3;
-   private CourbeParametriquePolynomialeBezier[] curves = new CourbeParametriquePolynomialeBezier[pointsSize];
+//   private CourbeParametriquePolynomialeBezier[] curves = new CourbeParametriquePolynomialeBezier[pointsSize];
   // private Double [][][] distancesSum;
    //private ArrayList<Point3D> pointsList;
-   private Double maxDist;
-   private int nPointsDist = 2;
+ //  private Double maxDist;
+/5   private int nPointsDist = 2;
    ///private double[][][] pointDist;
   // private int[][][] pointNo;
    private int[][] colorsArr;
