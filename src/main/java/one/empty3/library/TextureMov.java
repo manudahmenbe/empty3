@@ -130,7 +130,7 @@ BufferedImage image;
 
     @Override
     public void timeNext() {
-
+        nextFrame();
     }
 
     @Override
