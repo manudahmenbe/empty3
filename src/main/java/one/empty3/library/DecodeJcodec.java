@@ -17,7 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-
+/*false code
 public class DecodeJcodec extends VideoDecoder {
 
 public DecodeJcodec(File f, TextureMov tex) {
@@ -27,7 +27,7 @@ public void run() {
     SeekableByteChannel sink = null;
     SeekableByteChannel source = null;
     try {
-        source = readableFileChannel(file);
+        source = new ReadableFileChannel(file);
  //       sink = writableFileChannel(out);
 
         MP4Demuxer demux = new MP4Demuxer(source);
@@ -74,4 +74,4 @@ public void run() {
     }
 }
  
-}
+}*/
