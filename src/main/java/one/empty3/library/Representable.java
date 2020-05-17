@@ -78,10 +78,10 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     protected StructureMatrix<T> T = new StructureMatrix<T>(0, one.empty3.library.T.class);
 
     public Representable() {
-        if (!(this instanceof Matrix33 || this instanceof Point3D )) {
+        if (!(this instanceof Matrix33 || this instanceof Point3D || this instanceof Camera)) {
             rotation .setElem(new Rotation());
-            scale = new Point3D(1d, 1d, 1d);
-            texture = new TextureCol(Colors.random());
+            //scale = new Point3D(1d, 1d, 1d);
+            //texture = new TextureCol(Colors.random());
 
         }
     }
