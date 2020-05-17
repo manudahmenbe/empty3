@@ -74,4 +74,15 @@ public void run() {
             source.close();
     }
 }
+     
+      public boolean isClosed() {
+  return false;
+  }
+ public ECBufferedImage current() {
+ 
+ ECBufferedImage c = imgBuf.get(0);
+  imgBuf.remove(0);
+  return c;
+ 
+     
 }
