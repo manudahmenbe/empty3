@@ -123,7 +123,7 @@ BufferedImage image;
                 ex.printStackTrace();
             }
         }
-        return defs.isClosed() ? null : defs.current();
+        return defs.current();
 
     }
 
