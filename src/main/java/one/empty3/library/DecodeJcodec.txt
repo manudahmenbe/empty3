@@ -1,12 +1,14 @@
 package one.empty3.library;
-public class DecodeJcodec{
+public class DecodeJcodec extends TextureMov {
 
-private static void avc2png(String in, String out) throws IOException {
+private static TextureMov(String in) {
+}
+public void run() {
     SeekableByteChannel sink = null;
     SeekableByteChannel source = null;
     try {
         source = readableFileChannel(in);
-        sink = writableFileChannel(out);
+ //       sink = writableFileChannel(out);
 
         MP4Demuxer demux = new MP4Demuxer(source);
 
@@ -37,9 +39,12 @@ private static void avc2png(String in, String out) throws IOException {
             _out.clear();
 
             AWTUtil.toBufferedImage(rgb, bi);
-            ImageIO.write(bi, "png", new File(format(out, i)));
-            if (i % 100 == 0)
-                System.out.println((i * 100 / totalFrames) + "%");
+            imgBuf.add(new ECBufferedImage(bi));
+            if (size()>MAXSISE)
+              try {
+   Thread .sleep(100);
+}catch(IOException ex){}
+               
         }
     } finally {
         if (sink != null)
@@ -47,5 +52,6 @@ private static void avc2png(String in, String out) throws IOException {
         if (source != null)
             source.close();
     }
+}
 }
 }
