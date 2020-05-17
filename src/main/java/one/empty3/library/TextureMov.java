@@ -113,7 +113,7 @@ BufferedImage image;
         } else
             return Color.TRANSLUCENT;
     }
- b   
+
     protected void current() {
         while(defs.size()==0 && !defs.isClosed())
         {
