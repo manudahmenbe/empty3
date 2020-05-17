@@ -241,6 +241,13 @@ public class DecodeAndCaptureFramesXuggle extends VideoDecoder {
                         // process the video frame
 System.out.println("xuggler image process");
                         processFrame(newPic, javaImage);
+                        
+                        if(size()>MAXSIZE)
+                            try {
+                                Thread.sleep(100);
+                            } catch(Exception e) {
+                                e.printStackTrace();
+                            }
                     }
                 }
             } else {
