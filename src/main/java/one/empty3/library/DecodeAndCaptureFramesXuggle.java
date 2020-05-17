@@ -239,15 +239,16 @@ public class DecodeAndCaptureFramesXuggle extends VideoDecoder {
                         BufferedImage javaImage = Utils.videoPictureToImage(newPic);
 
                         // process the video frame
-System.out.println("xuggler image process");
+
                         processFrame(newPic, javaImage);
                         
-                        if(size()>MAXSIZE)
+                        while(size()>MAXSIZE)
                             try {
                                 Thread.sleep(100);
                             } catch(Exception e) {
                                 e.printStackTrace();
                             }
+                        System.out.println("xuggler image process");
                     }
                 }
             } else {
