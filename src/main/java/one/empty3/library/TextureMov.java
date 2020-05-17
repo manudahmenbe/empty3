@@ -114,16 +114,16 @@ BufferedImage image;
             return Color.TRANSLUCENT;
     }
 
-    protected ECBufferedImage current(int i) {
-        while(defs.size()==0 && !defs.isClosed())
+    protected void current() {
+        while(defs.size()==0 && !defs.isClosed() && !((image=defs.current())==null))
         {
             try {
                 Thread.sleep(10);
+                
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
         }
-        return defs.current();
 
     }
 
@@ -150,7 +150,7 @@ BufferedImage image;
 
 
     public boolean nextFrame() {
-        image = current(0);
+        current();
         return image!=null;
     }
 
