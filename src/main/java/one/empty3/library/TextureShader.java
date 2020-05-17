@@ -44,7 +44,7 @@ public int pointsSize = 3;
 class ShaderTexture extends TextureMov {
      public ShaderTexture(String glsl) {
      }
-     
+     */
 
 }
-*/
+
