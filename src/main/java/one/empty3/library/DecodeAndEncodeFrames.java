@@ -406,7 +406,7 @@ playVideo(text, file.getAbsolutePath());
   ex.printStackTrace();
 }
     catch(IOException ex) {
-    ex printStackTrace();
+    ex. printStackTrace();
     }
      
      eof = true;
