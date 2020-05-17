@@ -51,8 +51,8 @@ public class Plan3D extends ParametricSurface {
         vY.setElem(new Point3D(0.0, 1.0, 0.0));
         setCirculaireX(false);
         setCirculaireY(false);
-        setMaxX(1);
-        setMaxY(1);
+        //setMaxX(1);
+        //setMaxY(1);
     }
 
     @Override
