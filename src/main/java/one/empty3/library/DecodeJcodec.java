@@ -1,7 +1,7 @@
 package one.empty3.library;
 
 import org.jcodec.codecs.h264.H264Utils;
-import org.jcodec.common.NIOUtils;
+import org.jcodec.common.io.NIOUtils;
 import org.jcodec.common.SeekableByteChannel;
 import org.jcodec.common.model.ColorSpace;
 import org.jcodec.common.model.Picture;
