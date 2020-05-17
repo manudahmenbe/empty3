@@ -113,9 +113,9 @@ BufferedImage image;
         } else
             return Color.TRANSLUCENT;
     }
-
+ b   
     protected void current() {
-        while(defs.size()==0 && !defs.isClosed() && !((image=defs.current())==null))
+        while(defs.size()==0 && !defs.isClosed())
         {
             try {
                 Thread.sleep(10);
@@ -124,7 +124,8 @@ BufferedImage image;
                 ex.printStackTrace();
             }
         }
-
+     if(defs.size()>0)
+        image=defs.current();
     }
 
 
