@@ -123,6 +123,7 @@ public class DecodeAndCaptureFramesXuggle extends VideoDecoder {
     }
 
     public void run() {
+        System.out.println("run xuggler video texture");
         if (!IVideoResampler.isSupported(
                 IVideoResampler.Feature.FEATURE_COLORSPACECONVERSION))
             throw new RuntimeException(
@@ -238,7 +239,7 @@ public class DecodeAndCaptureFramesXuggle extends VideoDecoder {
                         BufferedImage javaImage = Utils.videoPictureToImage(newPic);
 
                         // process the video frame
-
+System.out.println("xuggler image process");
                         processFrame(newPic, javaImage);
                     }
                 }
