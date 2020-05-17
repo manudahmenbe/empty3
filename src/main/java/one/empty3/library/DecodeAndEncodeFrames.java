@@ -401,8 +401,13 @@ imgBuf. add(new ECBufferedImage(image) );
     public void run() {
 try{
 playVideo(text, file.getAbsolutePath());
-}catch(InterruptedException ex){}
-    catch(IOException ex) {}
+}catch(InterruptedException ex){
+
+  ex.printStackTrace();
+}
+    catch(IOException ex) {
+    ex printStackTrace();
+    }
      
      eof = true;
 }
