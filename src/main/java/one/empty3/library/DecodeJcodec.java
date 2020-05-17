@@ -21,8 +21,7 @@ import java.util.ArrayList;
 public class DecodeJcodec extends VideoDecoder {
 
 public DecodeJcodec(File f, TextureMov tex) {
-     this.file = file;
-     this.refTextureMov = tex;
+     super(f,tex);
 }
 public void run() {
     SeekableByteChannel sink = null;
