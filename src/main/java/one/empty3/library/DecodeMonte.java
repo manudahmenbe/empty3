@@ -218,7 +218,7 @@ if(in==null)
              in.read(track, img);
                 imgBuf.add(new ECBufferedImage(img));
 if(imgBuf.size()>MAXSIZE)
-   try {Thread.sleep(50);}catch(Exception ex){ex.prinrStackTrace();}
+   try {Thread.sleep(50);}catch(Exception ex){ex.printStackTrace();}
 in.read(track, img);
                 //...to do: do something with the image...
             } while (img != null);
