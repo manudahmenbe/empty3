@@ -20,7 +20,9 @@ import java.util.ArrayList;
 
 public class DecodeJcodec extends TextureMov {
 
-private static TextureMov(String in) {
+private static DecodeJcodec(File f, TextureMov tex) {
+     this.file = file;
+     this.refTextureMov = tex;
 }
 public void run() {
     SeekableByteChannel sink = null;
