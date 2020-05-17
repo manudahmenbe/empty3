@@ -89,7 +89,7 @@ public abstract class VideoDecoder extends Thread {
  public ECBufferedImage current() {
  
  ECBufferedImage c = imgBuf.get(0);
-  imgBuf.remove(0);
+  imgBuf.data1d,remove(0);
   return c;
  
  }
