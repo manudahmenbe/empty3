@@ -56,7 +56,7 @@ public class Plan3D extends ParametricSurface {
     }
 
     @Override
-    public Plan3D calculerPoint3D(double u, double v) {
+    public Point3D calculerPoint3D(double u, double v) {
         return p0.getElem().plus(vX.getElem().moins(p0.getElem()).mult(u)
                 .plus(vY.getElem().moins(p0.getElem()).mult(v)));
     }
