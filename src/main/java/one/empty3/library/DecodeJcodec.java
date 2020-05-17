@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class DecodeJcodec extends VideoDecoder {
 
-private static DecodeJcodec(File f, TextureMov tex) {
+public DecodeJcodec(File f, TextureMov tex) {
      this.file = file;
      this.refTextureMov = tex;
 }
