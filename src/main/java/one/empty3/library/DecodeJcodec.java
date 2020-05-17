@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
-public class DecodeJcodec extends TextureMov {
+public class DecodeJcodec extends VideoDecoder {
 
 private static DecodeJcodec(File f, TextureMov tex) {
      this.file = file;
