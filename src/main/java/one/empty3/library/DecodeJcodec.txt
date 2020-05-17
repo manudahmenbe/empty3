@@ -1,0 +1,51 @@
+package one.empty3.library;
+public class DecodeJcodec{
+
+private static void avc2png(String in, String out) throws IOException {
+    SeekableByteChannel sink = null;
+    SeekableByteChannel source = null;
+    try {
+        source = readableFileChannel(in);
+        sink = writableFileChannel(out);
+
+        MP4Demuxer demux = new MP4Demuxer(source);
+
+        H264Decoder decoder = new H264Decoder();
+
+        Transform transform = new Yuv420pToRgb(0, 0);
+
+        MP4DemuxerTrack inTrack = demux.getVideoTrack();
+
+        VideoSampleEntry ine = (VideoSampleEntry) inTrack.getSampleEntries()[0];
+        Picture target1 = Picture.create((ine.getWidth() + 15) & ~0xf, (ine.getHeight() + 15) & ~0xf,
+                ColorSpace.YUV420);
+        Picture rgb = Picture.create(ine.getWidth(), ine.getHeight(), ColorSpace.RGB);
+        ByteBuffer _out = ByteBuffer.allocate(ine.getWidth() * ine.getHeight() * 6);
+        BufferedImage bi = new BufferedImage(ine.getWidth(), ine.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
+        AvcCBox avcC = Box.as(AvcCBox.class, Box.findFirst(ine, LeafBox.class, "avcC"));
+
+        decoder.addSps(avcC.getSpsList());
+        decoder.addPps(avcC.getPpsList());
+
+        Packet inFrame;
+        int totalFrames = (int) inTrack.getFrameCount();
+        for (int i = 0; (inFrame = inTrack.getFrames(1)) != null; i++) {
+            ByteBuffer data = inFrame.getData();
+
+            Picture dec = decoder.decodeFrame(splitMOVPacket(data, avcC), target1.getData());
+            transform.transform(dec, rgb);
+            _out.clear();
+
+            AWTUtil.toBufferedImage(rgb, bi);
+            ImageIO.write(bi, "png", new File(format(out, i)));
+            if (i % 100 == 0)
+                System.out.println((i * 100 / totalFrames) + "%");
+        }
+    } finally {
+        if (sink != null)
+            sink.close();
+        if (source != null)
+            source.close();
+    }
+}
+}
