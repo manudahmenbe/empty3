@@ -92,16 +92,8 @@ public class DecodeAndCaptureFramesXuggle extends VideoDecoder {
                 // Make a temorary file name
 
 
-                while (imgBuf.size()>=MAXSIZE) {
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
+                
 
-                }
-
-                imgBuf.add(new ECBufferedImage (image));
                 
                 // indicate file written
 
@@ -111,6 +103,8 @@ public class DecodeAndCaptureFramesXuggle extends VideoDecoder {
 
                 mLastPtsWrite += NANO_SECONDS_BETWEEN_FRAMES;
             }
+            imgBuf.add(new ECBufferedImage (image));
+                
         } catch (Exception e) {
             e.printStackTrace();
         }
