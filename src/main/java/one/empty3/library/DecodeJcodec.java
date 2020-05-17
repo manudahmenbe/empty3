@@ -27,7 +27,7 @@ public void run() {
     SeekableByteChannel sink = null;
     SeekableByteChannel source = null;
     try {
-        source = readableFileChannel(in);
+        source = readableFileChannel(file);
  //       sink = writableFileChannel(out);
 
         MP4Demuxer demux = new MP4Demuxer(source);
