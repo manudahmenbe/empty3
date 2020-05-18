@@ -96,7 +96,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     public ZBufferImpl() {
         that = this;
-
+        texture(new TextureCol(Color.BLACK));
     }
 
 
