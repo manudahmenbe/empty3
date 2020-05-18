@@ -69,7 +69,7 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     // protected Barycentre bc = new Barycentre();
     protected Representable parent;
     protected Scene scene;
-    protected ITexture texture;
+    protected ITexture texture = DEFAULT_TEXTURE;
     private String id;
     private Painter painter = null;
     private int RENDERING_DEFAULT = 0;
