@@ -98,7 +98,7 @@ public class PlansVideo extends TestObjetSub {
 
         scene().cameraActive(
                 new Camera(
-                        new Point3D(0d, 0d, -4d),
+                        new Point3D(0d, 0d, -8d),
                         Point3D.O0
                 )
         );
