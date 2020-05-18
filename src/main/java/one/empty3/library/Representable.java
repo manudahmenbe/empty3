@@ -76,7 +76,7 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     protected Render render = Render.getInstance(0, -1);
     protected Point3D scale;
     protected StructureMatrix<T> T = new StructureMatrix<T>(0, one.empty3.library.T.class);
-
+    protected HashMap<String,StructureMatrix> defaultHashMapData;
     public Representable() {
         if (!(this instanceof Matrix33 || this instanceof Point3D || this instanceof Camera)) {
             rotation .setElem(new Rotation());
@@ -238,11 +238,13 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
 
 
 
-    private Map<String, StructureMatrix> declaredDataStructure = Collections.synchronizedMap(new HashMap());
+    private Map<String, StructureMatrix> declaredDataStructure;// = Collections.synchronizedMap(new HashMap());
 
     public Map<String, StructureMatrix> getDeclaredDataStructure() {
-        /*if((!(this instanceof Point3D )) && (declaredDataStructure==null))
-            declaredDataStructure = Collections.synchronizedMap(new HashMap());*/
+        if((!(this instanceof Point3D )) && (declaredDataStructure==null))
+            declaredDataStructure = Collections.synchronizedMap(new HashMap());
+        else if (this instanceof Point3D && declaredDataStructure==null)
+             declaredDataStructure =defaultHashMapData;
             
         return declaredDataStructure;
     }
