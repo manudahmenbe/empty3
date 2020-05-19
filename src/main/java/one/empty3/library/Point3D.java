@@ -472,9 +472,37 @@ public class Point3D extends Representable {
     public Point3D calculerPoint0dT(double t) {
         return this;
     }
-    public Point3D statAdd(Point3D p){
-           for(int i=0; i<3; i++)
+    public Point3D statOp(Point3D p, char po, int length){
+        switch(po) {
+                case '+':
+                for(int i=0; i<3; i++)
                coordArr.getElem(i)+p.get(i);
+                break;
+                case '-'
+                    for(int i=0; i<3; i++)
+               coordArr.getElem(i)-p.get(i);
+                break;
+                    case '*'
+                        
+        for(int i=0; i<3; i++)
+               coordArr.getElem(i)*p.get(i);
+                break;
+                    case '/':
+                
+        for(int i=0; i<3; i++)
+              coordArr.getElem(
+            coordArr.getElem(i)/p.get(i);
+                break;
+                case '.':
+                double sum = 0.0;
+                for(int i=0; i<3; i++)
+              
+                  sum = coordArr.getElem(i)*p.get(i);
+                coordArr.setElem(0, sum);
+                break;
+                }
+           
+        
         return this;
     }
 }
