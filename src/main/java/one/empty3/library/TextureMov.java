@@ -72,11 +72,6 @@ BufferedImage image;
     }
 
 
-    @Override
-    public void iterate() throws EOFVideoException {
-
-    }
-
     public int getColorAt(double u, double v) {
         
      
