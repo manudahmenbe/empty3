@@ -478,11 +478,11 @@ public class Point3D extends Representable {
                 for(int i=0; i<3; i++)
              coordArr.setElem( i, coordArr.getElem(i)+p.get(i));
                 break;
-                case '-'
+                case '-':
                     for(int i=0; i<3; i++)
                coordArr.getElem(i)-p.get(i);
                 break;
-                    case '*'
+                    case '*':
                         
         for(int i=0; i<3; i++)
               coordArr.setElem( i,  coordArr.getElem(i)*p.get(i));
