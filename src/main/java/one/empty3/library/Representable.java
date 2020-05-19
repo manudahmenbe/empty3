@@ -469,7 +469,7 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
         stringBuilder.append("</StructureMatrix>");
     }
 
-
+/*
     Map<String, Double> data = new HashMap<>();
     public void addData(String key, double number) {
         data.put(key, number);
@@ -478,7 +478,7 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     {
         return data.get(key);
     }
-
+*/
     public MatrixPropertiesObject copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
         Class<? extends Representable> aClass = this.getClass();
         try {
