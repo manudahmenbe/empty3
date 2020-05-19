@@ -497,7 +497,7 @@ public class Point3D extends Representable {
                 double sum = 0.0;
                 for(int i=0; i<3; i++)
               
-                  sum = coordArr.getElem(i)*p.get(i);
+                  sum += coordArr.getElem(i)*p.get(i));
                 coordArr.setElem(0, sum);
                 break;
                 }
