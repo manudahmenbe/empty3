@@ -115,7 +115,7 @@ BufferedImage image;
     }
 
     protected void current() {
-        while(defs.size()==0 && !defs.isClosed())
+        /*while(defs.size()==0 && !defs.isClosed())
         {
             try {
                 Thread.sleep(10);
@@ -123,7 +123,7 @@ BufferedImage image;
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
-        }
+        }*/
      if(defs.size()>0)
         image=defs.current();
     }
