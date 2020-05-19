@@ -41,7 +41,7 @@ public class TextureGrad extends TextureMov {
     public TextureGrad(String s) {
         super(s);
     }
-*/
+
     public int getColorAt(double u, double v) {
 
         currentImg = images.get(0);
@@ -77,5 +77,5 @@ public class TextureGrad extends TextureMov {
             return new int[]{0, 0xff, 0xff, 0xff};
 
 
-    }
+    }*/
 }
