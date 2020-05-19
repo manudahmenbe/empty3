@@ -480,7 +480,7 @@ public class Point3D extends Representable {
                 break;
                 case '-':
                     for(int i=0; i<3; i++)
-               coordArr.getElem(i)-p.get(i);
+              coordArr.setElem( coordArr.getElem(i)-p.get(i));
                 break;
                     case '*':
                         
