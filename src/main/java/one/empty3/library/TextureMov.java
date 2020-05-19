@@ -108,7 +108,7 @@ public class TextureMov extends ITexture {
 
     
 
-    @Override
+    
     public MatrixPropertiesObject copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
         return null;
     }
