@@ -58,7 +58,7 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     public static final int SURFACE_DISPLAY_LINES = 5;
     public static final int SURFACE_DISPLAY_POINTS = 6;
     private static final String[] displayTypes = {"All", "Textured Quad", "SURFACE_DISPLAY_TEXT_TRI", "SURFACE_DISPLAY_COL_QUADS", "SURFACE_DISPLAY_COL_TRI", "SURFACE_DISPLAY_LINES", "SURFACE_DISPLAY_POINTS"};
-    private int displayType = SURFACE_DISPLAY_TEXT_QUADS;
+    private int displayType = 0; //SURFACE_DISPLAY_TEXT_QUADS;
     public static Point3D SCALE1;
     public static final ITexture DEFAULT_TEXTURE = new TextureCol(Colors.random());
     protected static ArrayList<Painter> classPainters = new ArrayList<Painter>();
