@@ -85,7 +85,7 @@ public class Scene extends Representable implements Serializable {
 
         this.dernierAjout = add;
 
-        add.scene(this);
+        //add.scene(this);
 
         objets.add(1, add);
 
@@ -98,7 +98,7 @@ public class Scene extends Representable implements Serializable {
         this.dernierAjout = add;
 
 
-        add.scene(this);
+        //add.scene(this);
 
         add.setPainter(new Painter(zBuffer, this));
 
