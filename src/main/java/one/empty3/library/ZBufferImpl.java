@@ -595,8 +595,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         double itereV = Math.max(Math.abs(x1.getX() - x2.getX()), Math.abs(x1.getY() - x2.getY())) * 4 + 1;
         for (int i = 0; i < itereU; i++) {
             Point3D p = p1.plus(p2.moins(p1).mult(i / itereU));
-            p.addData("u", u);
-            p.addData("v", v);
+            //p.addData("u", u);
+            //p.addData("v", v);
             if (surface != null) {
                 p = surface.calculerPoint3D(u + i / itereU * (u1 - u), v + i / itereV * (v1 - v));
 
