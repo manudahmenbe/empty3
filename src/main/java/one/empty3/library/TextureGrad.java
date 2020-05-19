@@ -37,11 +37,11 @@ import java.awt.image.BufferedImage;
 public class TextureGrad extends TextureMov {
     private BufferedImage currentImg;
     private BufferedImage nextImg;
-
+/*
     public TextureGrad(String s) {
         super(s);
     }
-
+*/
     public int getColorAt(double u, double v) {
 
         currentImg = images.get(0);
