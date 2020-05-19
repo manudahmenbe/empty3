@@ -40,10 +40,10 @@ public class TextureGrad extends TextureMov {
 /*
     public TextureGrad(String s) {
         super(s);
-    }
+    }*/
 
     public int getColorAt(double u, double v) {
-
+/*
         currentImg = images.get(0);
         nextImg = images.get(1);
 
@@ -59,7 +59,8 @@ public class TextureGrad extends TextureMov {
 
         col[3] = (int) ((col1[3] - colN[3]) / 2. + 256.);
 
-        return col[0] << 24 + col[1] << 16 + col[2] << 8 + col[2];
+        return col[0] << 24 + col[1] << 16 + col[2] << 8 + col[2];*/
+        return 0;
     }
 
     public int[] getRGB(BufferedImage image, double u, double v) {
