@@ -471,7 +471,9 @@ public class Point3D extends Representable {
 
     public Point3D calculerPoint0dT(double t) {
         return this;
-    }/*
+    }
+    
+    /*
     public Point3D statOp(Point3D p, char po, int length){
         switch(po) {
                 case '+':
