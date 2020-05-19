@@ -62,8 +62,7 @@ public abstract class ITexture implements MatrixPropertiesObject{
     public int getColorMask() {
         return colorMask;
     }
-    public abstract void iterate() throws EOFVideoException;
-
+    
     public void setColorMask(int colorMask) {
         this.colorMask = colorMask;
     }
