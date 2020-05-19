@@ -471,12 +471,12 @@ public class Point3D extends Representable {
 
     public Point3D calculerPoint0dT(double t) {
         return this;
-    }
+    }/*
     public Point3D statOp(Point3D p, char po, int length){
         switch(po) {
                 case '+':
                 for(int i=0; i<3; i++)
-             coordArr.setElem( i, coordArr.getElem(i)+p.get(i));
+             coordArr.setElem(i,coordArr.getElem(i)+p.get(i));
                 break;
                 case '-':
                     for(int i=0; i<3; i++)
@@ -504,5 +504,5 @@ public class Point3D extends Representable {
            
         
         return this;
-    }
+    }*/
 }
