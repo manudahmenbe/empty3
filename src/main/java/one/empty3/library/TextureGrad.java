@@ -78,5 +78,5 @@ public class TextureGrad extends TextureMov {
             return new int[]{0, 0xff, 0xff, 0xff};
 
 
-    }*/
+    }
 }
