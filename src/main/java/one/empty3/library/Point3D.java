@@ -476,7 +476,7 @@ public class Point3D extends Representable {
         switch(po) {
                 case '+':
                 for(int i=0; i<3; i++)
-               coordArr.getElem(i)+p.get(i);
+             coordArr.setElem( i, coordArr.getElem(i)+p.get(i));
                 break;
                 case '-'
                     for(int i=0; i<3; i++)
@@ -485,12 +485,12 @@ public class Point3D extends Representable {
                     case '*'
                         
         for(int i=0; i<3; i++)
-               coordArr.getElem(i)*p.get(i);
+              coordArr.setElem( i,  coordArr.getElem(i)*p.get(i));
                 break;
                     case '/':
                 
         for(int i=0; i<3; i++)
-              coordArr.getElem(
+              coordArr.setElem(i,
             coordArr.getElem(i)/p.get(i);
                 break;
                 case '.':
