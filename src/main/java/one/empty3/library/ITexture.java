@@ -114,7 +114,9 @@ public abstract class ITexture implements MatrixPropertiesObject{
 
     public void timeNext(long milli){} 
 
-public Iterator iterate(){return null;}
+    public void iterate() throws EOFVideoException {
+
+    }
     @Override
     public StructureMatrix getDeclaredProperty(String name) {
         return null;
