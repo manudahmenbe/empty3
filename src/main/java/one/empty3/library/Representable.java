@@ -130,12 +130,12 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     public void replace(String moo) {
         throw new UnsupportedOperationException("Operation non supportee");
     }
-
+/*
     public void scene(Scene scene) {
         this.scene = scene;
 
     }
-
+*/
 
     public boolean supporteTexture() {
         return false;
