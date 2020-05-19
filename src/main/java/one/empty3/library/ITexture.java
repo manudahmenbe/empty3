@@ -114,7 +114,7 @@ public abstract class ITexture implements MatrixPropertiesObject{
 
     public void timeNext(long milli){} 
 
-
+public Iterator iterate(){return null;}
     @Override
     public StructureMatrix getDeclaredProperty(String name) {
         return null;
