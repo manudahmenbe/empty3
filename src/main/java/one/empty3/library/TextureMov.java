@@ -67,11 +67,6 @@ BufferedImage image;
     public void init(String filename)
     {
         this.file = new File(filename);
-        fileStructureMatrix.setElem(file);
-
-        CAPACITY = 4;
-
-        images = new ArrayList<>();
         defs = VideoDecoderFactory.createInstance(file, this);
         defs.start();
     }
@@ -103,15 +98,7 @@ BufferedImage image;
     }
 
     protected void current() {
-        /*while(defs.size()==0 && !defs.isClosed())
-        {
-            try {
-                Thread.sleep(10);
-                
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
-        }*/
+       
      if(defs.size()>0)
         image=defs.current();
     }
@@ -141,15 +128,6 @@ BufferedImage image;
     public boolean nextFrame() {
         current();
         return image!=null;
-    }
-
-
-    public void add(BufferedImage image) {
-        images.add(new ECBufferedImage(image));
-    }
-
-    public boolean hasCapacity() {
-        return images.size()<CAPACITY;
     }
 
     public void setTransparent(Color black) {
