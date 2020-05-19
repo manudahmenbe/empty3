@@ -106,10 +106,7 @@ public class TextureMov extends ITexture {
 
     }
 
-    @Override
-    public StructureMatrix getDeclaredProperty(String name) {
-        return fileStructureMatrix;
-    }
+    
 
     @Override
     public MatrixPropertiesObject copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
