@@ -41,10 +41,8 @@ import java.util.ArrayList;
 
 
 public class TextureMov extends ITexture {
-BufferedImage image;
+    BufferedImage image;
     VideoDecoder defs;
-    private final Object e = null;
-    private StructureMatrix<File> fileStructureMatrix = new StructureMatrix<>(0, File.class);
     private File file = null;
     private int transparent = Color.WHITE.getRGB();
 
@@ -54,7 +52,6 @@ BufferedImage image;
 
     public void setFile(File file) {
         this.file = file;
-        fileStructureMatrix.setElem(file);
         init(file.getAbsolutePath());
     }
 
