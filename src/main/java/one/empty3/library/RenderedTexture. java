@@ -1,7 +1,7 @@
 package one.empty3.library;
 import one.empty3.library.core.testing.TestObjet;
 public class RenderedTexture {
-     public RendredTexture(int x, int y) {
+     public RenderedTexture(int x, int y) {
      }
      public void render(TestObjet to){}
      public void render(Scene scene){}
