@@ -11,6 +11,7 @@ public class TestRun {
     public static void main(String [] args) {
     Properties p = new Properties ();
     System.out.println(args.length + " arguments :");
+    System.out.println(" arguments class=className"+"\nSETTERproperty (resx, resy, filename1,etc" );
     
     Object t=null;   
 
