@@ -132,9 +132,9 @@ scm:git:git://github.com/manuelddahmen/empty3.git
                 <configuration>
                     <mainClass>TestRun</mainClass>
                     <arguments>
-                       <argument>class=tests2.texturevideo.PlansVideo</argument>
+                     <!--<argument>class=tests2.texturevideo.PlansVideo</argument>-->
 <!--<argument>class=test3.waterfall_demo.Waterfall_Demo</argument>-->
-   <!--   <argument>class=test3.QuadratureCercle</argument>-->
+      <argument>class=test3.QuadratureCercle</argument>
                     </arguments>
 			<argLine>-Xms4000-Xmx4000m</argLine>
                 </configuration>
