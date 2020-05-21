@@ -135,7 +135,7 @@ scm:git:git://github.com/manuelddahmen/empty3.git
                      <!--<argument>class=tests2.texturevideo.PlansVideo</argument>-->
 <!--<argument>class=test3.waterfall_demo.Waterfall_Demo</argument>-->
     <!--  <argument>class=test3.QuadratureCercle</argument>-->
- <argument>tests2.coeur.TestCoeur1</argument>
+ <argument>class=tests2.coeur.TestCoeur1</argument>
                    </arguments>
 		<argLine>-Xms4000-Xmx4000m</argLine>
                 </configuration>
