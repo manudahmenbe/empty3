@@ -33,7 +33,7 @@ public class TestCoeur1 extends TestObjet {
     public void ginit() {
         coeur = new SurfaceElasticite(5, 3, 1);
         //try {
-            coeur.texture(new TextureMov("resources/mov/moi1.mp4" ));
+            coeur.texture(new TextureMov("resources/mov/moi.mp4" ));
         //} catch (IOException ex) {
             //coeur.texture(new TextureCol(Color.PINK));
         //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
