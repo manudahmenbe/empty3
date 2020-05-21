@@ -28,23 +28,14 @@ public class TestCoeur1 extends TestObjet {
 
     private tests2.coeur.SurfaceElasticite coeur;
 
-    public static void main(String[] args) {
-        TestCoeur1 tc = new TestCoeur1();
-
-        tc.loop(false);
-        tc.setMaxFrames(400);
-        tc.setGenerate(GENERATE_MODEL | GENERATE_IMAGE);
-        new Thread(tc).start();
-    }
-
+    
     @Override
     public void ginit() {
         coeur = new SurfaceElasticite(5, 3, 1);
         //try {
-            coeur.texture(new TextureMov
-("resources/mov/moi1.mp4" ));
+            coeur.texture(new TextureMov("resources/mov/moi1.mp4" ));
         //} catch (IOException ex) {
-            coeur.texture(new TextureCol(Color.PINK));
+            //coeur.texture(new TextureCol(Color.PINK));
         //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
         //}
 
