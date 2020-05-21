@@ -40,7 +40,7 @@ public class TestCoeur1 extends TestObjet {
     public void ginit() {
         coeur = new SurfaceElasticite(5, 3, 1);
         try {
-            coeur.texture(new TextureImg(new ECBufferedImage(ImageIO.read(getClass().getResourceAsStream("moi1.jpg")))));
+            coeur.texture(new TextureImg(new File("resources/mov/moi1.mp4" )));
         } catch (IOException ex) {
             coeur.texture(new TextureCol(Color.PINK));
             Logger.getLogger(TestCoeur1.class.getName()).log(Level.SEVERE, null, ex);
