@@ -40,14 +40,15 @@ public class TestCoeur1 extends TestObjet {
     public void ginit() {
         coeur = new SurfaceElasticite(5, 3, 1);
         //try {
-            coeur.texture(new TextureImg(new File("resources/mov/moi1.mp4" )));
+            coeur.texture(new TextureMov
+(new File("resources/mov/moi1.mp4" )));
         //} catch (IOException ex) {
             coeur.texture(new TextureCol(Color.PINK));
-            Logger.getLogger(TestCoeur1.class.getName()).log(Level.SEVERE, null, ex);
+        //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
         //}
 
-        coeur.setMaxX(100);
-        coeur.setMaxY(100);
+        //coeur.setMaxX(100);
+        // coeur.setMaxY(100);
 
         scene().add(coeur);
 
