@@ -39,6 +39,7 @@ public class Light {
                         index = -index+1;
                   return i>=levels.length? 
                         levels[i-1]:levels[i];
+            }
       }
       public int [] getColorArray(int c) {
           return new int[] {
