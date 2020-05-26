@@ -41,9 +41,15 @@ public class Light {
           return getColorInt(c);
       public abstract Light();
 
-      public int compColor(int c, Camera c, Material m, Point3D p, Point3D n) {
-           Point3D c = c2p(c);
+      public int compColor(int c, Camera cam, Material m, Point3D p, Point3D n) {
+           Point3D cp = c2p(c);
 Point3D eye = c.eye();
+           Point 3D Ia = cp.mult(.Ka*m.getKa());
+           
+           Point3D s = (c.eye().moins(p).norme1());
+           Point3D Id =  cp.mult(Ld.*m.getKd()*(s.dot.n));
+           Point3D r = s.mult(-1).plus(n.mult(2*s.dot(n));
+           
            return c;
 
       }
