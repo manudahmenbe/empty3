@@ -53,7 +53,7 @@ Point3D eye = c.eye();
            Point3D r = s.mult(-1).plus(n.mult(2*s.dot(n));
            
            Point3D Is = cp.mult( Ls*m.getKs()*Math.pow((r.dot.v), f));
-           return getColor(new int[] {(float)cp.get(0), (float)cp.get(1),(float)cp.get(2)});;
+           return getColor(new int[] {(float)cp.get(2), (float)cp.get(1),(float)cp.get(0)});;
 
       }
 }
