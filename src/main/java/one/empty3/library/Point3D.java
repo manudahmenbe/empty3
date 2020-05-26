@@ -487,7 +487,9 @@ public static Point3D random(Double d, int n) {
         getDeclaredDataStructure().put("coordArr/coordonnées", coordArr);
     }
 
-
+    public Double get(int i) {
+        return i<coordArr.data1d.size()?coordArr.getElem(i):Double.NaN;
+    }
     public StructureMatrix<Double> getCoordArr() {
         return coordArr;
     }
