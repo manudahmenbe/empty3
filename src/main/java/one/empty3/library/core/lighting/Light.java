@@ -8,6 +8,16 @@ public class Light {
       private double Ls;
       private Point3D source;
       private double [] levels;
+      public Point3D c2p(int c) {
+          return /*new Point3D((double)c.getRed(),
+                (double)c.getGreen(),(double).getBlue(),
+              );//  (double)c.getAlpha());
+*/
+          int [] cs = getColorArray(c);
+          return new Point3D((double)cs[2],
+
+              (double)cs[1],(double)cs[0]);
+      }
       public double level(double angle) {
            if(levels==null)
                return angle;
@@ -32,7 +42,8 @@ public class Light {
       public abstract Light();
 
       public int compColor(int c, Point3D p, Point3D n, Camera c)) {
-           Point3D eye = c.eye();
+           Point3D c = c2p(c);
+Point3D eye = c.eye();
            return c;
 
       }
