@@ -175,7 +175,7 @@ public Point3D(Double x0, Double y0, Double z0) {
      */
     public static Double distance(Point3D p1, Point3D p2) {
         double d = 0.0;
-        for(int i=0; i<coordArr.getData1d().size(); i++)
+        for(int i=0; i<p1.getCoordArr.getData1d().size(); i++)
             d+=(p1.get(i)-p2.get(i))*(p1.get(i)*p2.get(i));
         return Math.sqrt(d);
    }
@@ -487,10 +487,10 @@ public static Point3D random(Double d, int n) {
         super.declareProperties();
         getDeclaredDataStructure().put("coordArr/coordonnées", coordArr);
     }
-
+/*
     public Double get(int i) {
         return i<coordArr.data1d.size()?coordArr.getElem(i):Double.NaN;
-    }
+    }*/
     public StructureMatrix<Double> getCoordArr() {
         return coordArr;
     }
