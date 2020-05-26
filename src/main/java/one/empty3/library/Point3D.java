@@ -212,15 +212,15 @@ public static Point3D random(Double d, int n) {
     }
 
     public Double get(int i) {
-        if(i>=0 && i<3 && coordArr.data1d.size()==3)
+       // if(i>=0 && i<3 && coordArr.data1d.size()==3)
             return coordArr.getElem(i);
-        else
+       /* else
             try {
                 throw new Throwable("point3D coordArr out of bounds or array dim error\nValues="+coordArr.toString()+"\nSize="+coordArr.data1d.size());
             } catch (Throwable throwable) {
                 throwable.printStackTrace();
             }
-        return Double.NaN;
+        return Double.NaN;*/
     }
     public Point3D scale() {
         if(scale==null)
@@ -273,9 +273,9 @@ public static Point3D random(Double d, int n) {
 
     public Point3D moins(Point3D p) {
         Point3D p1 = new Point3D(this);
-        p1.setX(p1.getX() - p.getX());
-        p1.setY(p1.getY() - p.getY());
-        p1.setZ(p1.getZ() - p.getZ());
+        for(int i=0;i<getCoordArr().size(); i++)
+            p1.set(i, p.get(i)-get(i));
+        
         return p1;
     }
 
@@ -286,12 +286,13 @@ public static Point3D random(Double d, int n) {
      * @param xFactor facteur
      * @return
      */
-    public Point3D mult(Double xFactor) {
-        Point3D p = new Point3D(this);
-        p.setX(p.getX() * xFactor);
-        p.setY(p.getY() * xFactor);
-        p.setZ(p.getZ() * xFactor);
-        return p;
+
+    public Point3D mult(Point3D p) {
+        Point3D p1 = new Point3D(this);
+        for(int i=0;i<getCoordArr().size(); i++)
+            p1.set(i, p.get(i)-get(i));
+        
+        return p1;
     }
 
     public Point3D mult(Point3D point3D) {
