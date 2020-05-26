@@ -149,7 +149,7 @@ public Point3D(Double x0, Double y0, Double z0) {
      *
      * @param p0 point à copier
      */
-    public Point3D(Point3D p0) {
+      public Point3D(Point3D p0) {
         super();
         for(int i=0; i<coordArr.data1d.size(); i++)
         coordArr.setElem(p0.get(i), i);
