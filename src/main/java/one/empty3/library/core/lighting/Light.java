@@ -44,7 +44,7 @@ public class Light {
 
       public int compColor(int c, Camera cam, Material m, Point3D p, Point3D n) {
            Point3D cp = c2p(c);
-           Point3D eye = c.eye();
+           Point3D eye = cam.eye();
            Point 3D Ia = cp.mult(La*m.getKa());
            
            Point3D s = (source.moins(p).norme1());
