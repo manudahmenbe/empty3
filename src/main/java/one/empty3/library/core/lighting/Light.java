@@ -33,6 +33,12 @@ public class Light {
       public double level(double angle) {
            if(levels==null)
                return angle;
+            else {
+                  int index = Arrays.binarysearch(levels, angle);
+                  if(index <0)
+                        index = -index+1;
+                  return i>=levels.length? 
+                        levels[i-1]:levels[i];
       }
       public int [] getColorArray(int c) {
           return new int[] {
