@@ -45,7 +45,7 @@ public class Light {
            return new Color(c);
       }
       public Color getColor(int [] c) {
-          return getColorInt(c);
+          return getColorInt(c[3],c[2],c[1],c[0]);
       }
       //public abstract Light();
 
