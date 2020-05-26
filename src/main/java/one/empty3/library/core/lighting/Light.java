@@ -14,7 +14,12 @@ public class Light {
 
       }
 
-
+      public static float[] fromColor(
+            Color c) {
+            return new float[] {c.getRed(),
+                c.getGreen(),c.getBlue(),
+                c.getAlpha()};
+      }
       public Point3D c2p(float [] c) {
           /*new Point3D((double)c.getRed(),
                 (double)c.getGreen(),(double).getBlue(),
