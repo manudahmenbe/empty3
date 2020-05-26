@@ -52,7 +52,9 @@ public class Point3D extends Representable {
         coordArr.setElem(0d, 1);
         coordArr.setElem(0d, 2);
     }
-
+public Point3D() {
+        super();
+    }
     /*__
      * *
      * axe X vector
@@ -137,7 +139,7 @@ public Point3D(Double x0, Double y0, Double z0) {
      */
     public Point3D(Double... x0) {
         for(Double d : x0)
-         coordArr.data1d.add(d);
+         coordArr.setElem(d);
     }
 
     /*__
