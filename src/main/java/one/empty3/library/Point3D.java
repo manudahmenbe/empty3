@@ -145,6 +145,14 @@ public Point3D(Double x0, Double y0, Double z0) {
         }
     }
 
+    public Point3D(Double... x0, ITexture t) {
+        int i=0;
+        for(Double d : x0) {
+         coordArr.setElem(d,i);
+         i++;
+        }
+        texture(t);
+    }
     /*__
      *
      *
