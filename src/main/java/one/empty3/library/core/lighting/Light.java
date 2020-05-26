@@ -16,7 +16,7 @@ public class Light {
 
 
       public Point3D c2p(int c) {
-          return /*new Point3D((double)c.getRed(),
+          /*new Point3D((double)c.getRed(),
                 (double)c.getGreen(),(double).getBlue(),
               );//  (double)c.getAlpha());
 */
@@ -54,7 +54,7 @@ public class Light {
            Point3D Ia = cp.mult(La*m.getKa());
            
            Point3D s = (source.moins(p).norme1());
-           Point3D v = (c.eye().moins(p).norme1())
+           Point3D v = (eye.moins(p).norme1())
            Point3D Id =  cp.mult(Ld.*m.getKd()*(s.dot(n)));
            Point3D r = s.mult(-1).plus(n.mult(2*s.dot(n)));
            
