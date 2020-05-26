@@ -170,17 +170,21 @@ public Point3D(Double x0, Double y0, Double z0) {
      * @return
      */
     public static Double distance(Point3D p1, Point3D p2) {
-        return Math.sqrt((p1.getX() - p2.getX()) * (p1.getX() - p2.getX())
-                + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY())
-                + (p1.getZ() - p2.getZ()) * (p1.getZ() - p2.getZ()));
-    }
+        double d = 0.0;
+        for(int i=0; i<coordArr.getData1d().size(); i++)
+            d+=p1.get(i)-p2.get(i);
+        return Math.sqrt(d);
+   }
 
 
 
     public static Point3D random(Double d) {
         return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
-
+public static Point3D random(Double d, int n) {
+        
+        return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
+    }
     public static Point3D r(Double d) {
         return random(d);
     }
