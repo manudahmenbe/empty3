@@ -58,7 +58,7 @@ public class Light {
            Point3D cp = c2p(c);
            Point3D eye = cam.getEye();
            Point3D Ia = cp.mult(La*m.getKa());
-           
+            
            Point3D s = (source.moins(p).norme1());
            Point3D v = (eye.moins(p).norme1());
            Point3D Id =  cp.mult(Ld*m.getKd()*(s.dot(n)));
