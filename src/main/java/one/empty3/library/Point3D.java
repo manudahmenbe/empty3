@@ -360,7 +360,7 @@ public static Point3D random(Double d, int n) {
         return this.prodScalaire(p2);
     }
 
-     * *
+     /* *
      * produit vectoriel
      *
      * @param p1
