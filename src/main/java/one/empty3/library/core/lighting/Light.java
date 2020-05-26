@@ -10,7 +10,7 @@ public class Light {
       private double f = 0;
       private double [] levels;
 
-      public Light(double Ka, double Ld, double Ks, Point3D source, double f, double[] levels) {
+      public Light(double La, double Ld, double Ls, Point3D source, double fexponent, double[] levels) {
 
       }
 
