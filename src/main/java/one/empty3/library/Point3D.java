@@ -110,6 +110,12 @@ public class Point3D extends Representable {
         coordArr.setElem(y0, 1);
         coordArr.setElem(z0, 2);
     }
+public Point3D(Double x0, Double y0, Double z0) {
+        super();
+        coordArr.setElem(x0, 0);
+        coordArr.setElem(y0, 1);
+        coordArr.setElem(z0, 2);
+    }
 
     /*__
      * *
@@ -129,8 +135,9 @@ public class Point3D extends Representable {
      *
      * @param x0 coordonnées (3)
      */
-    public Point3D(Double[] x0, ITexture t) {
-        this(x0[0], x0[1], x0[2], t);
+    public Point3D(Double... x0) {
+        for(Double d : x0)
+         coordArr.data1d.add(d);
     }
 
     /*__
