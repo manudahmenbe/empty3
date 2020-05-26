@@ -14,15 +14,15 @@ public class Light {
       }
       public int [] getColorArray(int c) {
           return new int[] {
-              c&0xff000000>>24,
-              c&0x00ff0000>>16,
-              c&0x0000ff00>>8
-              c&0x000000ff>>0
+              c&0xff000000>>24&0xff,
+              c&0x00ff0000>>16&0xff,
+              c&0x0000ff00>>8&0xff,
+              c&0x000000ff>>0&0xff
             }
       }
       public int getColorInt(int [] colors) {
-           return colors[3]<<24+colors[2]<<16+
-              colors[1]>>8+colors[0];
+           return colors[2]<<24+colors[1]<<16+
+              colors[0]>>8+colors[3];
       }
       public Color getColor(int c) {
            return new Color(c);
