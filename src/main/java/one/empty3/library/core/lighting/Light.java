@@ -57,7 +57,7 @@ public class Light {
            Point3D s = (source.moins(p).norme1());
            Point3D v = (eye.moins(p).norme1());
            Point3D Id =  cp.mult(Ld*m.getKd()*(s.dot(n)));
-           Point3D r = s.mult(-1).plus(n.mult(2*s.dot(n)));
+           Point3D r = s.mult(-1.).plus(n.mult(2.*s.dot(n)));
            
            Point3D Is = cp.mult( Ls*m.getKs()*Math.pow((r.dot(v)), f));
            Point3D It = Ia.plus(Id).plus(Is);
