@@ -61,7 +61,8 @@ public class Light {
            
            Point3D Is = cp.mult( Ls*m.getKs()*Math.pow((r.dot(v)), f));
            Point3D It = Ia.plus(Id).plus(Is);
-           return new Color((float)It.get(3), (float)It.get(2),(float)It.get(1),(float)It.get(0));
+           return new Color((float)(It.get(3)), (float)(It.get(2)),
+                            (float)(It.get(1)),(float)(It.get(0)));
 
       }
 }
