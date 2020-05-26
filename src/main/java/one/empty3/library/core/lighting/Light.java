@@ -20,7 +20,7 @@ public class Light {
                 c.getGreen(),c.getBlue(),
                 c.getAlpha()};
       }
-      public Point3D c2p(float [] c) {
+      public Point3D c2p(float [] cs) {
           /*new Point3D((double)c.getRed(),
                 (double)c.getGreen(),(double).getBlue(),
               );//  (double)c.getAlpha());
