@@ -7,6 +7,7 @@ public class Light {
       private double Ld;
       private double Ls;
       private Point3D source;
+      private double f = 0;
       private double [] levels;
       public Point3D c2p(int c) {
           return /*new Point3D((double)c.getRed(),
@@ -46,11 +47,13 @@ public class Light {
 Point3D eye = c.eye();
            Point 3D Ia = cp.mult(.Ka*m.getKa());
            
-           Point3D s = (c.eye().moins(p).norme1());
+           Point3D s = (source.moins(p).norme1());
+           Point3D v = (c.eye().moins(p).norme1())
            Point3D Id =  cp.mult(Ld.*m.getKd()*(s.dot.n));
            Point3D r = s.mult(-1).plus(n.mult(2*s.dot(n));
            
-           return c;
+           Point3D Is = cp.mult( Ls*m.getKs()*Math.pow((r.dot.v), f));
+           return getColor(new int[] {(float)cp.get(0), (float)cp.get(1),(float)cp.get(2)});;
 
       }
 }
