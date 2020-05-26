@@ -1,5 +1,13 @@
 package one.empty3.library.core.lighting;
-public abstract class Light {
+
+import java.awt.Color;
+
+public class Light {
+      private double La;
+      private double Ld;
+      private double Ls;
+      private Point3D source;
+      private int [] levels;
       public int [] getColorArray(int c) {
           return new int[] {
               c&0xff000000>>24,
@@ -12,6 +20,11 @@ public abstract class Light {
            return colors[3]<<24+colors[2]<<16+
               colors[1]>>8+colors[0];
       }
+      public Color getColor(int c) {
+           return new Color(c);
+      }
+      public Color getColor(int [] c) {
+          return getColorInt(c);
       public abstract Light();
 
       public int compColor(int c, Point3D p, Point3D n, Camera c)) {
