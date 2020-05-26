@@ -7,7 +7,11 @@ public class Light {
       private double Ld;
       private double Ls;
       private Point3D source;
-      private int [] levels;
+      private double [] levels;
+      public double level(double angle) {
+           if(levels==null)
+               return angle;
+      }
       public int [] getColorArray(int c) {
           return new int[] {
               c&0xff000000>>24,
