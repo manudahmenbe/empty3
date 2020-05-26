@@ -12,7 +12,7 @@
 package tests2.coeur;
 
 import one.empty3.library.Point3D;
-import one.empty3.library.core.tribase.TRIObjetGenerateurAbstract;
+import one.empty3.library.core.nurbs.ParametricSurface;
 
 /*__
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
