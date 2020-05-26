@@ -138,8 +138,10 @@ public Point3D(Double x0, Double y0, Double z0) {
      * @param x0 coordonnées (>3)
      */
     public Point3D(Double... x0) {
-        for(Double d : x0)
-         coordArr.setElem(d);
+        int i=0;
+        for(Double d : x0) {
+         coordArr.setElem(d,i);
+         i++;
     }
 
     /*__
