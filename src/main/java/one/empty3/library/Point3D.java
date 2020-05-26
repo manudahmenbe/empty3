@@ -133,7 +133,7 @@ public Point3D(Double x0, Double y0, Double z0) {
      * *
      * Initialise à partir d'un vecteur
      *
-     * @param x0 coordonnées (3)
+     * @param x0 coordonnées (>2)
      */
     public Point3D(Double... x0) {
         for(Double d : x0)
@@ -289,8 +289,10 @@ public Point3D(Double x0, Double y0, Double z0) {
      * @return
      */
     public Double norme() {
-        return Math.sqrt((getX()) * (getX()) + (getY()) * (getY()) + (getZ())
-                * (getZ()));
+        double n = 0.0;
+        for(int i=0; i<coordArr.getData1d().size(); i++)
+            n+= get(i)*get(i);
+        return Math.sqrt(n);
     }
 
     /*__
@@ -310,19 +312,17 @@ public Point3D(Double x0, Double y0, Double z0) {
      * @param i
      * @return
      */
-    public Point3D plus(Double i) {
+    public Point3D plus(Double d) {
         Point3D p = new Point3D(this);
-        p.setX(p.getX() + i);
-        p.setY(p.getY() + i);
-        p.setZ(p.getZ() + i);
+        for(int i=0; i<coordArr.getData1d().size(); i++)
+            p.set(i, get(i)+d);
         return p;
     }
 
     public Point3D plus(Point3D p) {
         Point3D p1 = new Point3D(this);
-        p1.setX(p1.getX() + p.getX());
-        p1.setY(p1.getY() + p.getY());
-        p1.setZ(p1.getZ() + p.getZ());
+        for(int i=0; i<coordArr.getData1d().size(); i++)
+            p1.set(i, get(i)+p.get(i));
         return p1;
     }
 
@@ -334,14 +334,27 @@ public Point3D(Double x0, Double y0, Double z0) {
      * @return
      */
     public Double prodScalaire(Point3D p2) {
+        double s = 0.0;
         if(p2!=null) {
-            return coordArr.getElem(0) * p2.getX() + coordArr.getElem(1) * p2.getY() + coordArr.getElem(2) * p2.getZ();
+            for(int i=0; i<coordArr.getData1d().size(); i++)
+            s +=coordArr.getElem(0) * p2.getX() + coordArr.getElem(1) * p2.getY() + coordArr.getElem(2) * p2.getZ();
         }
         else
             throw new NullPointerException("Exception prodScalre p2==null");
+        return s;
     }
 
-    /*__
+    /*__/*__
+     * *
+     * Produit scalaire
+     *
+     * @param p2
+     * @return
+     */
+    public Double dot(Point3D p2) {
+        return this.prodScalaire(p2);
+    }
+
      * *
      * produit vectoriel
      *
