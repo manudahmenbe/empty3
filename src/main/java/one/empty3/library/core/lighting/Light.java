@@ -35,7 +35,7 @@ public class Light {
               c&0x00ff0000>>16&0xff,
               c&0x0000ff00>>8&0xff,
               c&0x000000ff>>0&0xff
-            }
+            };
       }
       public int getColorInt(int [] colors) {
            return colors[2]<<24+colors[1]<<16+
@@ -46,7 +46,7 @@ public class Light {
       }
       public Color getColor(int [] c) {
           return getColorInt(c);
-      public abstract Light();
+      //public abstract Light();
 
       public int compColor(int c, Camera cam, Material m, Point3D p, Point3D n) {
            Point3D cp = c2p(c);
@@ -54,8 +54,8 @@ public class Light {
            Point3D Ia = cp.mult(La*m.getKa());
            
            Point3D s = (source.moins(p).norme1());
-           Point3D v = (eye.moins(p).norme1())
-           Point3D Id =  cp.mult(Ld.*m.getKd()*(s.dot(n)));
+           Point3D v = (eye.moins(p).norme1());
+           Point3D Id =  cp.mult(Ld*m.getKd()*(s.dot(n)));
            Point3D r = s.mult(-1).plus(n.mult(2*s.dot(n)));
            
            Point3D Is = cp.mult( Ls*m.getKs()*Math.pow((r.dot(v)), f));
