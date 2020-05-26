@@ -46,6 +46,7 @@ public class Light {
       }
       public Color getColor(int [] c) {
           return getColorInt(c);
+      }
       //public abstract Light();
 
       public int compColor(int c, Camera cam, Material m, Point3D p, Point3D n) {
