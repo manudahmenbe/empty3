@@ -1,5 +1,5 @@
 package one.empty3.library.core.lighting;
-
+import one.empty3.library.*;
 import java.awt.Color;
 
 public class Light {
@@ -28,6 +28,7 @@ public class Light {
       public abstract Light();
 
       public int compColor(int c, Point3D p, Point3D n, Camera c)) {
+           Point3D eye = c.eye();
            return c;
 
       }
