@@ -9,6 +9,12 @@ public class Light {
       private Point3D source;
       private double f = 0;
       private double [] levels;
+
+      public Light(double Ka, double Ld, double Ks, Point3D source, double f, double[] levels) {
+
+      }
+
+
       public Point3D c2p(int c) {
           return /*new Point3D((double)c.getRed(),
                 (double)c.getGreen(),(double).getBlue(),
