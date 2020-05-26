@@ -135,7 +135,7 @@ public Point3D(Double x0, Double y0, Double z0) {
      * *
      * Initialise à partir d'un vecteur
      *
-     * @param x0 coordonnées (>2)
+     * @param x0 coordonnées (>3)
      */
     public Point3D(Double... x0) {
         for(Double d : x0)
@@ -149,9 +149,8 @@ public Point3D(Double x0, Double y0, Double z0) {
      */
     public Point3D(Point3D p0) {
         super();
-        coordArr.setElem(p0.get(0), 0);
-        coordArr.setElem(p0.get(1), 1);
-        coordArr.setElem(p0.get(2), 2);
+        for(int i=0; i<coordArr.data1d.size(); i++)
+        coordArr.setElem(p0.get(i), i);
         texture(p0.texture);
     }
 
@@ -174,7 +173,7 @@ public Point3D(Double x0, Double y0, Double z0) {
     public static Double distance(Point3D p1, Point3D p2) {
         double d = 0.0;
         for(int i=0; i<coordArr.getData1d().size(); i++)
-            d+=p1.get(i)-p2.get(i);
+            d+=(p1.get(i)-p2.get(i))*(p1.get(i)*p2.get(i));
         return Math.sqrt(d);
    }
 
