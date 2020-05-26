@@ -14,6 +14,6 @@ public class Material {
      public double getKa() {return Ka;}
      public double getKd() {return Kd;}
      public double getKs() {return Ks;}
-     public double getRe() {return r;}
+     public Representable getRe() {return r;}
 
 }
