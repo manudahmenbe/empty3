@@ -1,3 +1,7 @@
+package one.empty3.library.core.lighting;
+
+import one.empty3.library.*;
+
 public class Material {
      double Ka, Kd, Ks;
      Representable r;
