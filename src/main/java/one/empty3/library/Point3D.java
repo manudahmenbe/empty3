@@ -51,10 +51,10 @@ public class Point3D extends Representable {
         coordArr.setElem(0d, 0);
         coordArr.setElem(0d, 1);
         coordArr.setElem(0d, 2);
-    }
+    }/*
 public Point3D() {
         super();
-    }
+    }*/
     /*__
      * *
      * axe X vector
@@ -111,13 +111,13 @@ public Point3D() {
         coordArr.setElem(x0, 0);
         coordArr.setElem(y0, 1);
         coordArr.setElem(z0, 2);
-    }
+    }/*
 public Point3D(Double x0, Double y0, Double z0) {
         super();
         coordArr.setElem(x0, 0);
         coordArr.setElem(y0, 1);
         coordArr.setElem(z0, 2);
-    }
+    }*/
 
     /*__
      * *
