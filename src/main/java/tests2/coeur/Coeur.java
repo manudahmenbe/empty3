@@ -17,7 +17,7 @@ import one.empty3.library.core.tribase.TRIObjetGenerateurAbstract;
 /*__
  * @author Manuel Dahmen <ibiiztera.it@gmail.com>
  */
-public class Coeur extends TRIObjetGenerateurAbstract {
+public class Coeur extends ParametricSurface {
     private double b;
 
     public void param01(double b) {
@@ -25,9 +25,9 @@ public class Coeur extends TRIObjetGenerateurAbstract {
     }
 
     @Override
-    public Point3D coordPoint3D(int x, int y) {
-        double a = 1.0 * x / getMaxX();
-        double t = 1.0 * y / getMaxY() * 2 * Math.PI;
+    public Point3D calculerPoint3D(double x, double y) {
+        double a = x;
+        double t = y * 2 * Math.PI;
         return new Point3D(a * Math.sin(t + b * 2 * Math.PI) * (1 + Math.cos(t)), a * Math.cos(t + b * Math.PI * 2) * (1 + Math.cos(t)), 0d);
     }
 
