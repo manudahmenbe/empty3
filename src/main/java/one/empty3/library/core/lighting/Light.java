@@ -49,7 +49,7 @@ public class Light {
       }
       //public abstract Light();
 
-      public int compColor(int c, Camera cam, Material m, Point3D p, Point3D n) {
+      public float[] compColor(float[] c, Camera cam, Material m, Point3D p, Point3D n) {
            Point3D cp = c2p(c);
            Point3D eye = cam.getEye();
            Point3D Ia = cp.mult(La*m.getKa());
@@ -61,8 +61,8 @@ public class Light {
            
            Point3D Is = cp.mult( Ls*m.getKs()*Math.pow((r.dot(v)), f));
            Point3D It = Ia.plus(Id).plus(Is);
-           return new Color((float)(double)(It.get(3)), (float)(double)(It.get(2)),
-                            (float)(double)(It.get(1)),(float)(double)(It.get(0))).getRgb();
+           return new float[]{(float)(double)(It.get(3)), (float)(double)(It.get(2)),
+                            (float)(double)(It.get(1)),(float)(double)(It.get(0))};
 
       }
 }
