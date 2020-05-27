@@ -7,15 +7,15 @@ public class DoubleArray {
     int max = 0;
     public DoubleArray(){
         doubles = new ArrayList<>();
-        doubles.add(new double[length]);
+        doubles.add(new Double[length]);
         index = new ArrayList<>();
         index.add(new int[length]);
       //  location = new ArrayList<>()
     }
-    public double getDouble(int index) {
+    public Double getDouble(int index) {
         return doubles.get(0)[this.index.get(0)[index]];
     }
-    public double getDouble(int index, int n) {
+    public Double getDouble(int index, int n) {
         return doubles.get(0)[this.index.get(0)[index]+n];
     }
     
@@ -25,7 +25,7 @@ public class DoubleArray {
         max++;
         return start;
     }
-    public int addDoubles(int n, double... ds) {
+    public int addDoubles(int n, Double... ds) {
         int start = max;
         for (int i = 0; i<n ; i++) {
             doubles.get(0)[this.index.get(0)[max] = max] = d;
