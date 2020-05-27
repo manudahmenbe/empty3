@@ -4,7 +4,6 @@ public class DoubleArray {
     private int length = 1000*1000*1000;
     List<Double[]> doubles;
     List<Integer[]> index;
-    List<Integer> location;
     int max = 0;
     public DoubleArray(){
         doubles = new ArrayList<>();
