@@ -295,6 +295,10 @@ Point3D p1 = new Point3D(this);
         
         return p1;
 }
+    
+     public Point3D mult(Point3D point3D) {
+        return Matrix33.YZX.mult(Matrix33.ZXY.mult(Matrix33.XYZ.mult(point3D)));
+       }
     /*__
      * *
      * norme d'un vecteur (distance du point à l'origine)
