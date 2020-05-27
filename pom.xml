@@ -136,6 +136,8 @@ scm:git:git://github.com/manuelddahmen/empty3.git
 <!--<argument>class=test3.waterfall_demo.Waterfall_Demo</argument>-->
     <!--  <argument>class=test3.QuadratureCercle</argument>-->
  <argument>class=tests2.coeur.TestCoeur1</argument>
+<argument>resx=640</argument>
+<argument>resy=480</argument>
                    </arguments>
 		<argLine>-Xms4000-Xmx4000m</argLine>
                 </configuration>
