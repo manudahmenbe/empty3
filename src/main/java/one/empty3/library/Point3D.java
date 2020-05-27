@@ -262,8 +262,14 @@ public static Point3D random(Double d, int n) {
     }
 
 
-
-
+    public Point3D plus(Point3D){
+Point3D p1 = new Point3D(this);
+        for(int i=0;i<coordArr.data1d.size(); i++)
+            p1.set(i, get(i)+p.get(i));
+        
+        return p1;
+    }
+    
     public Point3D moins(Point3D p) {
         Point3D p1 = new Point3D(this);
         for(int i=0;i<coordArr.data1d.size(); i++)
