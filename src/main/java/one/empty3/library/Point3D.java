@@ -288,7 +288,13 @@ public static Point3D random(Double d, int n) {
         
         return p1;
  }
-
+public Point3D mult(double d) {
+Point3D p1 = new Point3D(this);
+        for(int i=0;i<getCoordArr().size(); i++)
+            p1.set(i, get(i)*d);
+        
+        return p1;
+}
     /*__
      * *
      * norme d'un vecteur (distance du point à l'origine)
