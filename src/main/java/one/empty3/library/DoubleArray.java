@@ -9,7 +9,7 @@ public class DoubleArray {
         doubles = new ArrayList<>();
         doubles.add(new Double[length]);
         index = new ArrayList<>();
-        index.add(new int[length]);
+        index.add(new Integer[length]);
       //  location = new ArrayList<>()
     }
     public Double getDouble(int index) {
