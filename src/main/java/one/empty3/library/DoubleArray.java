@@ -13,13 +13,23 @@ public class DoubleArray {
         index.add(new int[length]);
       //  location = new ArrayList<>()
     }
-    public Double getIndex(int index) {
+    public Double getDouble(int index) {
         return doubles.get(0)[this.index.get(0)[index]];
     }
     
     public int add(Double d) {
+        int start = max;
         doubles.get(0)[this.index.get(0)[max] = max] = d;
         max++;
-        return max-1;
+        return start;
+    }
+    public int addDoubles(int n, double... ds) {
+        int start = max;
+        for (int i = 0; i<n ; i++) {
+            doubles.get(0)[this.index.get(0)[max] = max] = d;
+            max++;
+        }
+        return start;
+        
     }
 }
