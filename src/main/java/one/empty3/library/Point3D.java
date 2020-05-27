@@ -112,13 +112,7 @@ public Point3D() {
         coordArr.setElem(y0, 1);
         coordArr.setElem(z0, 2);
     }/*
-public Point3D(Double x0, Double y0, Double z0) {
-        super();
-        coordArr.setElem(x0, 0);
-        coordArr.setElem(y0, 1);
-        coordArr.setElem(z0, 2);
-    }*/
-
+public
     /*__
      * *
      *
@@ -293,11 +287,7 @@ public static Point3D random(Double d, int n) {
             p1.set(i, get(i)*p.get(i));
         
         return p1;
-    }
-/*
-    public Point3D mult(Point3D point3D) {
-        return Matrix33.YZX.mult(Matrix33.ZXY.mult(Matrix33.XYZ.mult(point3D)));
-    }*/
+ }
 
     /*__
      * *
@@ -336,12 +326,7 @@ public static Point3D random(Double d, int n) {
         return p;
     }
 
-    public Point3D plus(Point3D p) {
-        Point3D p1 = new Point3D(this);
-        for(int i=0; i<coordArr.getData1d().size(); i++)
-            p1.set(i, get(i)+p.get(i));
-        return p1;
-    }
+   
 
     /*__
      * *
