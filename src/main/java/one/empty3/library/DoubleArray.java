@@ -2,13 +2,13 @@ package one.empty3.library;
 import java.util.List;
 public class DoubleArray {
     private int length = 1000*1000*1000;
-    List<int[]> doubles;
+    List<double[]> doubles;
     List<int> index;
     List<int> location;
     int max = 0;
     public DoubleArray(){
         doubles = new ArrayList<>();
-        doubles.add(new Double[length]);
+        doubles.add(new double[length]);
         index = new ArrayList<>();
         index.add(new int[length]);
       //  location = new ArrayList<>()
