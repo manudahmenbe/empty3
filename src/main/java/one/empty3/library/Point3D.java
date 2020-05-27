@@ -395,10 +395,6 @@ Point3D p1 = new Point3D(this);
         return "\n\tp3( " + (Double) (coordArr.getElem(0)) + " , " + (Double) (coordArr.getElem(1)) + " , " + (Double) (coordArr.getElem(2)) + " ) ";
     }
 
-    private Point3D norme(Double d) {
-        return this.norme1().mult(d);
-    }
-
     @Override
     public boolean ISdrawStructureDrawFastIMPLEMENTED(ZBuffer z) {
         return super.ISdrawStructureDrawFastIMPLEMENTED(z); //To change body of generated methods, choose Tools | Templates.
