@@ -3,7 +3,7 @@ import java.util.List;
 public class DoubleArray {
     private int length = 1000*1000*1000;
     List<double[]> doubles;
-    List<int> index;
+    List<int[]> index;
     List<int> location;
     int max = 0;
     public DoubleArray(){
