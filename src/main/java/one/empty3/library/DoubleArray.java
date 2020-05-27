@@ -13,8 +13,11 @@ public class DoubleArray {
         index.add(new int[length]);
       //  location = new ArrayList<>()
     }
-    public Double getDouble(int index) {
+    public double getDouble(int index) {
         return doubles.get(0)[this.index.get(0)[index]];
+    }
+    public double getDouble(int index, int n) {
+        return doubles.get(0)[this.index.get(0)[index]+n];
     }
     
     public int add(Double d) {
