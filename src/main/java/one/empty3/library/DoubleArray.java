@@ -2,9 +2,9 @@ package one.empty3.library;
 import java.util.*;
 public class DoubleArray {
     private int length = 1000*1000*1000;
-    List<double[]> doubles;
-    List<int[]> index;
-    List<int> location;
+    List<Double[]> doubles;
+    List<Integer[]> index;
+    List<Integer> location;
     int max = 0;
     public DoubleArray(){
         doubles = new ArrayList<>();
