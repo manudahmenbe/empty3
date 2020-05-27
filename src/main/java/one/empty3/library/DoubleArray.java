@@ -18,7 +18,8 @@ public class DoubleArray {
     }
     
     public int add(Double d) {
-        return doubles.get(0)[this.index.get(0)[max] = max] = d;
+        doubles.get(0)[this.index.get(0)[max] = max] = d;
         max++;
+        return max-1;
     }
 }
