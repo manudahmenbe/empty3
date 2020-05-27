@@ -84,7 +84,7 @@ public Point3D() {
      * *
      * Coordonnées (coordArr,y,z) du point
      */
-    public StructureMatrix<Double> coordArr = new StructureMatrix<>(1, Double.class);
+    StructureMatrix<Double> coordArr = new StructureMatrix<>(1, Double.class);
     /*__
      * *
      * Pour le tracé de surface normale au point
