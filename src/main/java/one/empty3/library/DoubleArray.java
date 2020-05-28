@@ -12,6 +12,7 @@ public class DoubleArray {
         index.add(new Integer[length]);
       //  location = new ArrayList<>()
     }
+    public void clear() {}
     public Double getDouble(int index) {
         return doubles.get(0)[this.index.get(0)[index]];
     }
