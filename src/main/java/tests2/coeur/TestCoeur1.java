@@ -39,8 +39,8 @@ public class TestCoeur1 extends TestObjet {
         //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
         //}
 
-        //coeur.setMaxX(100);
-        // coeur.setMaxY(100);
+        coeur.setMaxX(100);
+        coeur.setMaxY(100);
 
         scene().add(coeur);
 
