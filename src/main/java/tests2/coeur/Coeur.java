@@ -23,7 +23,9 @@ public class Coeur extends ParametricSurface {
     public void param01(double b) {
         this.b = b;
     }
-
+    public Coeur() {
+        
+    }
     @Override
     public Point3D calculerPoint3D(double x, double y) {
         double a = x;
