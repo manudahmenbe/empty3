@@ -1,5 +1,9 @@
 package one.empty3.library;
 import java.util.*;
+/**
+* mettre dans des espaces et les supprimer
+* quand ils sont vides.
+*/
 public class DoubleArray {
     private int length = 1000*1000*1000;
     List<Double[]> doubles;
