@@ -9,11 +9,11 @@ public class DoubleArray {
     List<Double[]> doubles;
     List<Integer[]> index;
     int spaces;
-    boolean [] freeSpace
+    boolean [] freeSpace;
     int max = 0;
     public DoubleArray(int spaces, int spaceLength){
         freeSpace = new boolean[spaces];
-        this.spaces = spaces
+        this.spaces = spaces;
         doubles = new ArrayList<>();
         doubles.add(new Double[spaceLength]);
         index = new ArrayList<>();
