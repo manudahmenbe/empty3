@@ -28,7 +28,7 @@ public class DoubleArray {
     public int addDoubles(int n, Double... ds) {
         int start = max;
         for (int i = 0; i<n ; i++) {
-            doubles.get(0)[this.index.get(0)[max] = max] = d;
+            doubles.get(0)[this.index.get(0)[max] = max] = ds[i];
             max++;
         }
         return start;
