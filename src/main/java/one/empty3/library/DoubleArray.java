@@ -32,7 +32,7 @@ public class DoubleArray {
              }
              if(isEmpty) { 
                  freeSpace[i] = true;
-             
+             }
          }
     }
     public Double getDouble(int index) {
