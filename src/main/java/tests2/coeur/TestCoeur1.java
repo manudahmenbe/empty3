@@ -26,7 +26,7 @@ import java.io.File;
  */
 public class TestCoeur1 extends TestObjet {
 
-    private tests2.coeur.SurfaceElasticite coeur;
+    Coeur coeur;
 
     
     @Override
