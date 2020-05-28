@@ -31,7 +31,7 @@ public class TestCoeur1 extends TestObjet {
     
     @Override
     public void ginit() {
-        coeur = new SurfaceElasticite(5, 3, 1);
+        coeur = new Coeur();// new SurfaceElasticite(5, 3, 1);
         //try {
             coeur.texture(new TextureMov("resources/mov/moi.mp4" ));
         //} catch (IOException ex) {
