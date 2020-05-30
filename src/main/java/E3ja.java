@@ -1,5 +1,5 @@
-public class E3jo {
-     public E3jo() {
+public class E3ja {
+     public E3ja() {
           
      }
      public void setFunction(String path, String function) {
