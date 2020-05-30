@@ -1,3 +1,4 @@
+import one.empty3.library.core.raytracer.tree.*;
 public class E3ja {
      public E3ja(Object object) {
           
@@ -14,6 +15,7 @@ public class E3ja {
                String propertyName = pair[0];
                String formula = pair[1];
                AlgebricTree tree = new AlgebricTree(formula);
+               tree.construct();
                Pojo.setProperty(o, propertyName, tree);
                
           }
