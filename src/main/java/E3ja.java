@@ -6,6 +6,7 @@ public class E3ja {
        *  example: setFormulaFunctionA(AlgebricTree al) { ... }
        *           setFormulaFunctionB(...
        *  "formulaFunctionA=sin(x):formulaFunctionB=cos(x)"
+       */
      public void setFunctions(String propertyFunction) {
           String [] pf =  path.split(":");
           for(String i : pf) {
