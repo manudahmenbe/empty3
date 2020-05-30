@@ -7,14 +7,14 @@ public class E3ja {
        *           setFormulaFunctionB(...
        *  "formulaFunctionA=sin(x):formulaFunctionB=cos(x)"
        */
-     public void setFunctions(String propertyFunction) {
+     public void setFormula(Object o, String propertyFunction) {
           String [] pf =  path.split(":");
           for(String i : pf) {
                String [] pair = i.split("=");
                String propertyName = pair[0];
                String formula = pair[1];
                AlgebricTree tree = new AlgebricTree(formula);
-               Pojo.setProperty(propertyName, tree);
+               Pojo.setProperty(o, propertyName, tree);
                
           }
      }
