@@ -13,14 +13,14 @@ import java.util.*
 public class Shader{
    class SymbolTreeNode {
         String name;
-        Items kind;
+        Type kind;
         SymbolTreeNode children;
- } 
- class Tree {
+   } 
+   class Tree {
   SymbolTreeNode root;
   Iterator<SymbolTreeNode> iterate(){return null;}
 
-    class enum Items {Comment, Macro, FunctionDeclaration, FunctionBody, MemberVariable, ClassDeclaration, VariableName, VariableType, Literal, Scalar, ClassName}
+     enum Items {Comment, Macro, FunctionDeclaration, FunctionBody, MemberVariable, ClassDeclaration, VariableName, VariableType, Literal, Scalar, ClassName}
     class Comment extends SymbolTreeNode{
      enum Type { Line, Block, Doc }
      String text;
@@ -51,7 +51,7 @@ public class Shader{
               
               
              
-             switch(stack.current.type) {
+             switch(root.current.itemType) {
                case Items.Class:
                    i = parseExtend(shStr);
                    break;
