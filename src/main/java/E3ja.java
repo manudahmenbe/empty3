@@ -16,7 +16,7 @@ public class E3ja {
                String formula = pair[1];
                AlgebricTree tree = new AlgebricTree(formula);
                tree.construct();
-               Pojo.setProperty(o, propertyName, tree);
+               Pojo.setProperty(o, propertyName, (Object) tree);
                
           }
      }
