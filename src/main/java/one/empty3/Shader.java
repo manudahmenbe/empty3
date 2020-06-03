@@ -19,7 +19,7 @@ public class Shader{
              for(File f : fileOrDirectory) {
                   
                   String shStr = stripComment(new String(Files.readAllBytes(Paths.get(f.getAbsolutePath()))));
-                  shStr = splitInTypes();
+                  shStr = splitInTypes(shStr);
                   shStr = replaceMacro(shStr);
                   
              }
