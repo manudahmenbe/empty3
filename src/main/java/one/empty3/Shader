@@ -5,6 +5,14 @@ package one.empty3;
  * vn(double... ) 
   * glsl light.
  */
- public class Shader{
-public String[] shaders(File[] files) {}
-public String stripComment(String brut){}
+public class Shader{
+    public String[] shaders(File[] files) {}
+    
+    public String stripComment(String brut){}
+    public String parseHeaders() {}
+    public String parseGlobals() {}
+    public String parseClass() {}
+    public String parseMethod() {}
+    public String parseMethodDeclaration(String name, Object... arguments) {}
+    public String parseMethodImplementation() {}
+}
