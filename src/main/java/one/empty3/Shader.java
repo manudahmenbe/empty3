@@ -40,9 +40,10 @@ public class Shader{
              char ch = shStr.charAt(i);
              if(ch=='#') {i = readMacro(shStr, i+1);continue;}
              do { 
-                 i = readKeyword(shStr, i); 
+                 i = readKeyword(shStr, i);
+
               } while(i>=0)
-             i = readType(chStr, i) ;
+             i = readType(shStr, i) ;
              i = readIdentifier(shStr, i);
              
               
@@ -52,13 +53,13 @@ public class Shader{
              
              switch(stack.current.type) {
                case Items.Class:
-                   i = parseExtend(chStr);
+                   i = parseExtend(shStr);
                    break;
                case Items.Function:
                    i = parseArgumentList(shStr, i) ;
                    break;
                case Items.Variable:
-                   i = parseExpr(chStr) ;
+                   i = parseExpr(shStr) ;
                    break;
                
               } 
