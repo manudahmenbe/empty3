@@ -8,12 +8,13 @@ import java.awt.image.BufferedImage;
   * glsl light.
  */
 public class Shader{
-
+    
     public Shader(File fileOrDirectory) {}
     public void setOutput(File directory) {}
     public String[] shaders(File[] files) {}
     
     public String stripComment(String brut){}
+    public String replaceMacro() {}
     public String categoriser(String contentStripped) {}
     public String parseHeaders() {}
     public String parseMemberVars() {}
