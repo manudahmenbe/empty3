@@ -32,6 +32,31 @@ public class Shader{
         String def;
     }
     class Class extends SymbolTreeNode{}
+    public int readBlank(String shStr, int i) {
+        int j = 0;
+        while(shStr.charAt(j).isWhitespace()||shStr.charAt(j)=='\t'||shStr.charAt(j)=='\n' 
+             ||shStr.charAt(j)=='\r') {
+             j++;
+         }
+         return j;
+    }
+    
+    public int readComment(String shStr , int i){
+        if(shStr.charAt(i)=='/') {
+            i++;
+            if(shStr.charAt(i)=='/')
+                while(shStr.charAt(i)!='\n')
+                    i++;
+            if(shStr.charAt(i)=='/')
+                while(shStr.charAt(i)!='*') {
+                    i++;
+                }
+ i++;
+ if(shStr.charAt(i)!='/')
+     .children.add(new Comment());
+     
+
+    }
     public split(String shStr) {
         int i= 0;
         int j= 0;
@@ -44,8 +69,8 @@ public class Shader{
        if(j==i)
            j = readToken(shStr, i);
        if(j!=i)
-            
-            }
+           return null;
+       }
     }
  
     public boolean splitInTypes(String shStr) {
