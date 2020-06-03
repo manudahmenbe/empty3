@@ -10,6 +10,7 @@ import java.util.*
   *
   * where the rapers shit go?
  */
+ /*
 public class Shader{
    class SymbolTreeNode {
         String name;
@@ -204,3 +205,4 @@ public class Shader{
     public void runCode() {}
     public BufferedImage getOutput() {}
 }
+*/
