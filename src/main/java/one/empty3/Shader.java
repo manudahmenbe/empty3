@@ -17,10 +17,11 @@ public class Shader{
         SymbolTreeNode children;
    } 
    class Tree {
-  SymbolTreeNode root;
-  Iterator<SymbolTreeNode> iterate(){return null;}
-
-     enum Items {Comment, Macro, FunctionDeclaration, FunctionBody, MemberVariable, ClassDeclaration, VariableName, VariableType, Literal, Scalar, ClassName}
+       SymbolTreeNode root;
+       Iterator<SymbolTreeNode> iterate(){return null;}
+       SymbolTreeNode current;
+   }
+     enum Items {Comment, Macro, Function, FunctionDeclaration, FunctionBody, MemberVariable, ClassDeclaration, VariableName, VariableType, Literal, Scalar, ClassName}
     class Comment extends SymbolTreeNode{
      enum Type { Line, Block, Doc }
      String text;
@@ -31,7 +32,16 @@ public class Shader{
         String def;
     }
     class Class extends SymbolTreeNode{}
- 
+    public String[] splitBlank(String shStr) {
+        int i= 0;
+        j = readBlank();
+        if(j==i)
+           j = readComment(shStr, i);
+       if(j==i)
+           j = readString(shStr, i);
+       if(j==i)
+           j = readToken(shStr, i);
+    }
  
     public boolean splitInTypes(String shStr) {
      int i = 0;
