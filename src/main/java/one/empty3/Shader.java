@@ -37,14 +37,14 @@ public class Shader{
     class Class extends SymbolTreeNode{}
     public int readBlank(String shStr, int i) {
         int j = 0;
-        while(shStr.charAt(j).isWhitespace()||shStr.charAt(j)=='\t'||shStr.charAt(j)=='\n' 
+        while(Character.isWhitespace(shStr.charAt(i))||shStr.charAt(j)=='\t'||shStr.charAt(j)=='\n' 
              ||shStr.charAt(j)=='\r') {
              j++;
          }
          return j;
     }
     public int readChar(String shStr, char c, int i) {
-        return sh.charAt(i)==i+1:i;
+        return sh.charAt(i)==c+1:i;
     }
     public int readComment(String shStr , int i){
         if(shStr.charAt(i)=='/') {
