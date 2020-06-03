@@ -1,14 +1,25 @@
 import one.empty3.library.core.raytracer.tree.*;
+/***
+programme de calcul vectoriel matriciel ou en
+nombres réels
+
+
+*/
 public class E3ja {
-     public E3ja(Object object) {
+     public E3ja(
+                 
+                 
+) {
           
      }
      /*** 
        *  example: setFormulaFunctionA(AlgebricTree al) { ... }
        *           setFormulaFunctionB(...
-       *  "formulaFunctionA=sin(x):formulaFunctionB=cos(x)"
+       * 
+       
+       * formulaFunctionA=sin(x):formulaFunctionB=cos(x)"
        */
-     public void setFormula(Object o, String propertyFunction) {
+     public static void setFormula(Object o, String propertyFunction) {
           String [] pf =  propertyFunction.split(":");
           for(String i : pf) {
                String [] pair = i.split("=");
