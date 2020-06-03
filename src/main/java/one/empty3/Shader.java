@@ -67,7 +67,7 @@ return i;
          
     }
     
-     public int parseString(shStr, i){
+     public int readString(shStr, i){
      }
          public int parseInt(shStr, i){
          }
