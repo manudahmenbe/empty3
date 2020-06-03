@@ -42,7 +42,9 @@ public class Shader{
          }
          return j;
     }
-    
+    public int readComa(String shStr, int i) {
+        return i;
+    }
     public int readComment(String shStr , int i){
         if(shStr.charAt(i)=='/') {
             i++;
