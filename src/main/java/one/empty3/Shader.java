@@ -52,10 +52,12 @@ public class Shader{
                     i++;
                 }
  i++;
- if(shStr.charAt(i)!='/')
-     .children.add(new Comment());
+ if(shStr.charAt(i)!='/') {
+ i++;
+     root.children.add(new Comment());
      
-
+return i;
+}
     }
     public split(String shStr) {
         int i= 0;
