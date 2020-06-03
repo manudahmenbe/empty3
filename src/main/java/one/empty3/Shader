@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
   * where the rapers shit go?
  */
 public class Shader{
+    List<String> shaderFiles = new ArrayList<>();
     
     public Shader(File fileOrDirectory) {}
     public void setOutput(File directory) {}
