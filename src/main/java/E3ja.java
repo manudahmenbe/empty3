@@ -26,12 +26,13 @@ public class E3ja {
                String propertyName = pair[0];
                String formula = pair[1];
                try {
-               AlgebricTree tree = new AlgebricTree(formula);
-               tree.construct();
-               Pojo.setProperty(o, propertyName, (Object) tree);
-                    } catch(Exception ex ) {
+                   AlgebricTree tree = new AlgebricTree(formula);
+                   tree.construct();
+                   Pojo.setProperty(o, propertyName, (Object) tree);
+               } catch(Exception ex ) {
                     
                    ex.printStackTrace();
+               }
                
           }
      }
