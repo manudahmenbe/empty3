@@ -9,7 +9,7 @@ public class E3ja {
        *  "formulaFunctionA=sin(x):formulaFunctionB=cos(x)"
        */
      public void setFormula(Object o, String propertyFunction) {
-          String [] pf =  path.split(":");
+          String [] pf =  propertyFunction.split(":");
           for(String i : pf) {
                String [] pair = i.split("=");
                String propertyName = pair[0];
