@@ -6,6 +6,7 @@ package one.empty3;
   * glsl light.
  */
 public class Shader{
+    public Shader(File fileOrDirectory) {}
     public String[] shaders(File[] files) {}
     
     public String stripComment(String brut){}
