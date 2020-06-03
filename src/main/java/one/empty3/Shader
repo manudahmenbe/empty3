@@ -1,3 +1,10 @@
-vn(int n)
-vn(vn...)
-vn(double... ) 
+package one.empty3;
+/***
+ * vn(int n)
+ * vn(vn...)
+ * vn(double... ) 
+  * glsl light.
+ */
+ public class Shader{
+public String[] shaders(File[] files) {}
+public String stripComment(String brut){}
