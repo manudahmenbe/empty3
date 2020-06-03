@@ -68,6 +68,15 @@ return i;
     }
     
      public int readString(shStr, i){
+         if(shStr.charAt(i)=='\"') {
+              i++;
+              while(shStr.charAt(i)=!'\"') {
+                  if(shStr.charAt(i)=='\\') 
+                      i++;
+                  i++;
+              }
+         }
+         return i;
      }
          public int parseInt(shStr, i){
          }
