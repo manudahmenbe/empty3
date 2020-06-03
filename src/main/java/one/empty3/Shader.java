@@ -55,7 +55,7 @@ public class Shader{
  if(shStr.charAt(i)!='/') {
  i++;
      root.children.add(new Comment());
-     
+     }
 return i;
 }
     }
