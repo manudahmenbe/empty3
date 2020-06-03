@@ -12,7 +12,14 @@ import java.awt.image.BufferedImage;
 public class Shader{
     List<String> shaderFiles = new ArrayList<>();
     
-    public Shader(File fileOrDirectory) {}
+    public Shader(File fileOrDirectory) {
+         if(fileOrDirectory.isDirectory()) 
+             for(File f : fileOrDirectory) {
+                  
+                  String shStr = stripComment(new String(Files.readAllBytes(Paths.get(f.getAbsolutePath()))));
+                  shStr = replaceMacro(shStr);
+             }
+    }
     public void setOutput(File directory) {}
     public String[] shaders(File[] files) {}
     
