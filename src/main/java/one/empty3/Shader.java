@@ -88,28 +88,38 @@ return i;
     public int parseMethodBody(String shStr, int i) {
          
     }
-    public int readEquals() {}
-    public int readOperation(){}
+    public int readEquals(String shStr, int i) {}
+    public int readOperation(String shStr, int i){}
     public int readMethodCall(){}
-    public split(String shStr) {
+    public List<String> split(String shStr) {
+    List<String> lines = new ArrayList<>();
         int i= 0;
         int j= 0;
         while(j!=i) {
-        int j = readBlank();
+        int j = readBlank(shStr, i);
         if(j==i)
            j = readComment(shStr, i);
+       else
+           lines.add(shStr.substring(i, j);
        if(j==i)
            j = readString(shStr, i);
+                  else
+           lines.add(shStr.substring(i, j);
        if(j==i)
            j = readToken(shStr, i);
+                  else
+           lines.add(shStr.substring(i, j);
        if(j!=i)
            return null;
        }
+       return lines;
     }
- 
+    public int readToken(String shStr, int i) {
+        parsz
+    }
     public boolean splitInTypes(String shStr) {
      int i = 0;
-     root.
+     List<String> lines = split(shStr);
      int posTry = -1;
          while(i<shStr.length) {
              char ch = shStr.charAt(i);
