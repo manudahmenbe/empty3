@@ -67,7 +67,7 @@ public class Shader{
          
     }
     
-     public int readString(shStr, i){
+     public int readString(String shStr, int i){
          if(shStr.charAt(i)=='\"') {
               i++;
               while(shStr.charAt(i)=!'\"') {
@@ -78,11 +78,11 @@ public class Shader{
          }
          return i;
      }
-         public int parseInt(shStr, i){
+         public int parseInt(shStr, int i){
          }
-         public int parseFloat(shStr, i){
+         public int parseFloat(shStr, int i){
          }
-         public int parseDouble(shStr, i){
+         public int parseDouble(shStr, int i){
          }
          public int readContainer(String shStr, int i) {}
     public int readLiteral(String shStr, int i) {
