@@ -14,6 +14,8 @@ public class Shader{
    class SymbolTreeNode {
         String name;
         Items itemType;
+        String text;
+        Object jValue;
         SymbolTreeNode children;
    } 
    class Tree {
@@ -58,6 +60,11 @@ public class Shader{
      }
 return i;
 }
+    }
+    
+    class Literal {
+         enum Type {S, D, L, I, F}
+         
     }
     public int readLiteral(String shStr, int i) {
          i = parseString(shStr, i);
