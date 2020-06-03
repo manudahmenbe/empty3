@@ -53,12 +53,12 @@ public class Shader{
                 while(shStr.charAt(i)!='*') {
                     i++;
                 }
- i++;
- if(shStr.charAt(i)!='/') {
- i++;
-     root.children.add(new Comment());
-     }
-return i;
+             i++;
+            if(shStr.charAt(i)!='/') {
+               i++;
+               root.children.add(new Comment());
+            }
+            return i;
 }
     }
     
@@ -124,7 +124,9 @@ return i;
        return lines;
     }
     public int readToken(String shStr, int i) {
-        parsz
+        while(readBlank(shStr.charAt(i)==i)
+            i++;
+        return i+;
     }
     public boolean splitInTypes(String shStr) {
      int i = 0;
