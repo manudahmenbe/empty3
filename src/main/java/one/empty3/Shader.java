@@ -32,19 +32,25 @@ public class Shader{
         String def;
     }
     class Class extends SymbolTreeNode{}
-    public String[] splitBlank(String shStr) {
+    public split(String shStr) {
         int i= 0;
-        j = readBlank();
+        int j= 0;
+        while(j!=i) {
+        int j = readBlank();
         if(j==i)
            j = readComment(shStr, i);
        if(j==i)
            j = readString(shStr, i);
        if(j==i)
            j = readToken(shStr, i);
+       if(j!=i)
+            
+            }
     }
  
     public boolean splitInTypes(String shStr) {
      int i = 0;
+     root.
      int posTry = -1;
          while(i<shStr.length) {
              char ch = shStr.charAt(i);
