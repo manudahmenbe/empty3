@@ -63,9 +63,19 @@ return i;
     }
     
     class Literal {
-         enum Type {S, D, L, I, F}
+         enum Type {S, D, L, I, F, O, }
          
     }
+    
+     public int parseString(shStr, i){
+     }
+         public int parseInt(shStr, i){
+         }
+         public int parseFloat(shStr, i){
+         }
+         public int parseDouble(shStr, i){
+         }
+         public int readContainer(String shStr, int i) {}
     public int readLiteral(String shStr, int i) {
          i = parseString(shStr, i);
          i = parseInt(shStr, i);
@@ -73,6 +83,14 @@ return i;
          i = parseDouble(shStr, i);
          return i;
     }
+    public int parseArgumentList(shStr, int i) {
+    }
+    public int parseMethodBody(String shStr, int i) {
+         
+    }
+    public int readEquals() {}
+    public int readOperation(){}
+    public int readMethodCall(){}
     public split(String shStr) {
         int i= 0;
         int j= 0;
