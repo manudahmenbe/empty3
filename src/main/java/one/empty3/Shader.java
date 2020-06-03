@@ -13,7 +13,7 @@ import java.util.*
 public class Shader{
    class SymbolTreeNode {
         String name;
-        Items kind;
+        Items itemType;
         SymbolTreeNode children;
    } 
    class Tree {
