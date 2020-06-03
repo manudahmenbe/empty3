@@ -109,7 +109,7 @@ public class Shader{
         if(j==i)
            j = readComment(shStr, i);
        else
-           lines.add(shStr.substring(i, j);
+           j = lines.add(shStr.substring(i , j );
        if(j==i)
            j = readString(shStr, i);
                   else
@@ -123,6 +123,12 @@ public class Shader{
        }
        return lines;
     }
+    
+    public int readMacro(String shStr, int i) {
+        return i;
+    }
+    
+    
     public int readToken(String shStr, int i) {
         while(readBlank(shStr.charAt(i)==i)
             i++;
