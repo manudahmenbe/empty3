@@ -5,7 +5,9 @@ import java.awt.image.BufferedImage;
  * vn(int n)
  * vn(vn...)
  * vn(double... ) 
-  * glsl light.
+  * glsl light. like.
+  *
+  * where the raper shit does go?
  */
 public class Shader{
     
