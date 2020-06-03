@@ -59,6 +59,13 @@ public class Shader{
 return i;
 }
     }
+    public int readLiteral(String shStr, int i) {
+         i = parseString(shStr, i);
+         i = parseInt(shStr, i);
+         i = parseFloat(shStr, i);
+         i = parseDouble(shStr, i);
+         return i;
+    }
     public split(String shStr) {
         int i= 0;
         int j= 0;
