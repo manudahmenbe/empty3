@@ -10,8 +10,17 @@ import java.awt.image.BufferedImage;
   * where the rapers shit go?
  */
 public class Shader{
-    class Enum Items {Comment, Macro, FunctionDecaration, FunctionBody, MemberVariable, ClassDeclaration, VariableName, VariableType, Literal, Scalar, ClassName}
- 
+    class enum Items {Comment, Macro, FunctionDeclaration, FunctionBody, MemberVariable, ClassDeclaration, VariableName, VariableType, Literal, Scalar, ClassName}
+    class Comment {
+     enum Type { Line, Block, Doc }
+     String text;
+    }
+    class Macro { 
+        enum Type { Macro, Include }
+        String name;
+        String def;
+    }
+    claaa 
     List<String> shaderFiles = new ArrayList<>();
     
     public Shader(File fileOrDirectory) {
