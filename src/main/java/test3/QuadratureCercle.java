@@ -25,10 +25,10 @@ public class QuadratureCercle extends TestObjetSub {
     private RepresentableConteneur representableConteneur;
     private ITexture textureDefault;
     private int forme = 1;
-    private int framesItere = 100;
+    private int framesItere = 1;
 
     public QuadratureCercle() {
-        pointCount = 100;
+        pointCount = 1000;
         dimCube = 10;
         dimSphere = 10;
         maxSpeed = 20;
