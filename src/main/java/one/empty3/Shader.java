@@ -44,7 +44,7 @@ public class Shader{
          return j;
     }
     public int readChar(String shStr, char c, int i) {
-        return sh.charAt(i)==c+1:i;
+        return sh.charAt(i)==c?i+1:i;
     }
     public int readComment(String shStr , int i){
         if(shStr.charAt(i)=='/') {
@@ -82,10 +82,16 @@ public class Shader{
          return i;
      }
          public int parseInt(shStr, int i){
+          return i;
+
          }
          public int parseFloat(shStr, int i){
+          return i;
+          
          }
          public int parseDouble(shStr, int i){
+          return i;
+          
          }
          public int readContainer(String shStr, int i) {}
     public int readLiteral(String shStr, int i) {
@@ -96,15 +102,25 @@ public class Shader{
          return i;
     }
     public int parseArgumentList(shStr, int i) {
+          return i;
+    
     }
     public int parseMethodBody(String shStr, int i) {
+          return i;
          
     }
-    public int readEquals(String shStr, int i) {}
-    public int readOperation(String shStr, int i){}
-    public int readMethodCall(){}
+    public int readEquals(String shStr, int i) {
+          return i;
+    }
+    public int readOperation(String shStr, int i){
+          return i;
+    }
+    public int readMethodCall(){
+          return i;
+    }
     public List<String> split(String shStr) {
-    List<String> lines = new ArrayList<>();
+     
+         List<String> lines = new ArrayList<>();
         int i= 0;
         int j= 0;
         while(j!=i) {
@@ -193,16 +209,18 @@ public class Shader{
     public String stripComment(String brut){
          return brut;
     }
-    public String replaceMacro() {}
-    public String categoriser(String contentStripped) {}
-    public String parseHeaders() {}
-    public String parseMemberVars() {}
-    public String parseClass() {}
-    public String parseMemberMethod() {}
-    public String parseMethodDeclaration(String name, Object... arguments) {}
-    public String parseMethodImplementation() {}
+   // public String replaceMacro() {}
+ //   public String categoriser(String contentStripped) {}
+//    public String parseHeaders() {}
+ //   public String parseMemberVars() {}
+  //  public String parseClass() {}
+   // public String parseMemberMethod() {}
+//    public String parseMethodDeclaration(String name, Object... arguments) {}
+ //   public String parseMethodImplementation() {}
     
     public void runCode() {}
-    public BufferedImage getOutput() {}
+    public BufferedImage getOutput() {
+    return null;
+    }
 }
 
