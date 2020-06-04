@@ -1,7 +1,7 @@
 package one.empty3;
 import java.io.File;
 import java.awt.image.BufferedImage;
-import java.util.*
+import java.util.*;
 /***
  * vn(int n)
  * vn(vn...)
