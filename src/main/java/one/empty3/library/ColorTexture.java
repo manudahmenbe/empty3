@@ -58,7 +58,6 @@ public class ColorTexture extends ITexture {
     }
 
     public void timeNext(long milli) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
