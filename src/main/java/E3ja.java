@@ -32,7 +32,7 @@ public class E3ja {
                } catch(Exception ex ) {
                     
                    ex.printStackTrace();
-               } catch(AlAlgebraicFormulaSyntaxException ex)
+               } catch(AlgebraicFormulaSyntaxException ex)
                     {ex.printStackTrace();}
                
           }
