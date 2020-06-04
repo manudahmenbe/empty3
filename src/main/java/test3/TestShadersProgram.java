@@ -1,5 +1,5 @@
 package test3;
-
+/*
 public class TestShadersProgram extends TestCase {
     Shader shader;
     public void testNotFoundFile() {
@@ -10,3 +10,4 @@ public class TestShadersProgram extends TestCase {
             assertTrue(true);
         }
 }
+*/
