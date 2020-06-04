@@ -60,9 +60,11 @@ public class Shader{
             if(shStr.charAt(i)!='/') {
                i++;
                root.children.add(new Comment());
+               return i;
             }
-            return i;
-}
+            
+        }
+        return -1;
     }
     
     class Literal {
