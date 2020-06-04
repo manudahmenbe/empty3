@@ -187,19 +187,7 @@ public class Camera extends CameraBox {
 
 
 
-    @Override
-    public boolean supporteTexture() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
-    public ITexture texture() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void texture(ITexture tc) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
     public String toString() {
