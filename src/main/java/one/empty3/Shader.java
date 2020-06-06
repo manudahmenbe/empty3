@@ -193,7 +193,7 @@ public class Shader{
              }
     }
     public void setOutput(File directory) {}
-    public String shaders(File file) {}
+    public void shaders(File file) {}
     
     public String stripComment(String brut){
          return brut;
