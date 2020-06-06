@@ -1,5 +1,5 @@
 package one.empty3;
-import java.io.File;
+import java.io.*;
 import java.nio.file.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
