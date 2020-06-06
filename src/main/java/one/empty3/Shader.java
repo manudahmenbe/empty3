@@ -47,13 +47,13 @@ public class Shader{
          return j;
     }
     public int readChar(String shStr, char c, int i) {
-        return sh.charAt(i)==c?i+1:i;
+        return shStr.charAt(i)==c?i+1:i;
     }
     public int readComment(String shStr , int i) {
         if(shStr.charAt(i)=='/') {
             i++;
             if(shStr.charAt(i)=='/') {
-                while(shStr.charAt(i)!=System.lineSeparator)
+                while(shStr.charAt(i)!='\n')
                     i++;
                 return i;
              }
@@ -68,8 +68,9 @@ public class Shader{
         }
         return i;
    }
+ enum LiteralType {S, D, L, I, F, O, }
     class Literal {
-         enum Type {S, D, L, I, F, O, }
+         
          
     }
     
