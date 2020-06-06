@@ -1,6 +1,6 @@
 package one.empty3;
 import java.io.File;
-import java.nio.Paths;
+import java.nio.file.Paths;
 import java.awt.image.BufferedImage;
 import java.util.*;
 /***
@@ -122,7 +122,7 @@ public class Shader{
     public int readOperation(String shStr, int i){
           return i;
     }
-    public int readMethodCall(){
+    public int readMethodCall(int i){
           return i;
     }
     public List<String> split(String shStr) {
@@ -131,7 +131,7 @@ public class Shader{
         int i= 0;
         int j= 0;
         while(j!=i) {
-        int j = readBlank(shStr, i);
+            j = readBlank(shStr, i);
         if(j==i)
            j = readComment(shStr, i);
        else
