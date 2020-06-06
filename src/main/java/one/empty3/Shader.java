@@ -192,7 +192,7 @@ public class Shader{
                       //  shStr = replaceMacro(shStr);
                    } catch(IOException ex) {
                        ex.printStackTrace();
-                  
+                  }
              }
     }
     public void setOutput(File directory) {}
