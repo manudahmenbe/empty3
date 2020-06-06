@@ -1,6 +1,6 @@
 package one.empty3;
 import java.io.File;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
 /***
