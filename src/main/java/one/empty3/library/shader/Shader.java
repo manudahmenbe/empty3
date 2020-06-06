@@ -1,4 +1,4 @@
-package one.empty3;
+package one.empty3.library.shader;
 import java.io.*;
 import java.nio.file.*;
 import java.awt.image.BufferedImage;
@@ -14,6 +14,7 @@ import java.util.*;
  */
 
 public class Shader{
+    
    class SymbolTreeNode {
         String name;
         Items itemType;
@@ -180,7 +181,7 @@ public class Shader{
          
      return true;
     }
-    List<String> shaderFiles = new ArrayList<>();
+    List<Tree> shaderFiles = new ArrayList<>();
     
     public Shader(File fileOrDirectory) {
          if(fileOrDirectory.isDirectory()) 
@@ -188,7 +189,8 @@ public class Shader{
                   try {
                       File f = new File(fileOrDirectory.getAbsolutePath()+File.separator+sf);
                       String shStr = stripComment(new String(Files.readAllBytes(Paths.get(f.getAbsolutePath()))));
-                      splitInTypes(shStr);
+                      shaderFiles.add(tree);
+                   splitInTypes(shStr);
                       //  shStr = replaceMacro(shStr);
                    } catch(IOException ex) {
                        ex.printStackTrace();
