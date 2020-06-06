@@ -8,7 +8,8 @@ import java.util.*;
  * vn(double... ) 
   * glsl light. like.
   *
-
+ * chaque token doit etre identifie a
+ * un type
  */
 
 public class Shader{
