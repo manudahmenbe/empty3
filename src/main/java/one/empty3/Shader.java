@@ -188,7 +188,7 @@ public class Shader{
                   
                   String shStr = stripComment(new String(Files.readAllBytes(Paths.get(f.getAbsolutePath()))));
                   shStr = splitInTypes(shStr);
-                  shStr = replaceMacro(shStr);
+                //  shStr = replaceMacro(shStr);
                   
              }
     }
@@ -198,7 +198,7 @@ public class Shader{
     public String stripComment(String brut){
          return brut;
     }
-   // public String replaceMacro() {}
+   public String replaceMacro(String shStr) {return shStr}
  //   public String categoriser(String contentStripped) {}
 //    public String parseHeaders() {}
  //   public String parseMemberVars() {}
