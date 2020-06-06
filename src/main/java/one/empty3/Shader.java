@@ -156,7 +156,7 @@ public class Shader{
     
     
     public int readToken(String shStr, int i) {
-        while(readBlank(shStr.charAt(i), i)==i)
+        while(i<shStr.length()&&readBlank(shStr, i)==i)
             i++;
         return i;
     }
