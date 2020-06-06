@@ -82,7 +82,7 @@ public class Shader{
          }
          return i;
      }
-     public int parseInt(shStr, int i){
+     public int parseInt(String shStr, int i){
           return i;
 
          }
@@ -90,7 +90,7 @@ public class Shader{
           return i;
           
          }
-     public int parseDouble(shStr, int i){
+     public int parseDouble(String shStr, int i){
           return i;
           
      }
@@ -104,7 +104,7 @@ public class Shader{
          i = parseDouble(shStr, i);
          return i;
     }
-    public int parseArgumentList(shStr, int i) {
+    public int parseArgumentList(String shStr, int i) {
           return i;
     
     }
@@ -131,15 +131,15 @@ public class Shader{
         if(j==i)
            j = readComment(shStr, i);
        else
-           j = lines.add(shStr.substring(i , j );
+           j = lines.add(shStr.substring(i , j ));
        if(j==i)
            j = readString(shStr, i);
                   else
-           lines.add(shStr.substring(i, j);
+           lines.add(shStr.substring(i, j));
        if(j==i)
            j = readToken(shStr, i);
                   else
-           lines.add(shStr.substring(i, j);
+           lines.add(shStr.substring(i, j));
        if(j!=i)
            return null;
        }
@@ -154,7 +154,7 @@ public class Shader{
     public int readToken(String shStr, int i) {
         while(readBlank(shStr.charAt(i))==i)
             i++;
-        return i+;
+        return i;
     }
     public void buildTree(List<String> lines) {
     }
@@ -173,7 +173,7 @@ public class Shader{
 
              
 
-         }
+         
      return true;
     }
     List<String> shaderFiles = new ArrayList<>();
