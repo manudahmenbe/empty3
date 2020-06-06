@@ -135,14 +135,14 @@ public class Shader{
         if(j==i)
            j = readComment(shStr, i);
        else
-           j = lines.add(shStr.substring(i , j ));
+           lines.add(shStr.substring(i , j ));
        if(j==i)
-           j = readString(shStr, i);
-                  else
+           j = parseString(shStr, i);
+       else
            lines.add(shStr.substring(i, j));
        if(j==i)
            j = readToken(shStr, i);
-                  else
+       else
            lines.add(shStr.substring(i, j));
        if(j!=i)
            return null;
@@ -156,7 +156,7 @@ public class Shader{
     
     
     public int readToken(String shStr, int i) {
-        while(readBlank(shStr.charAt(i))==i)
+        while(readBlank(shStr.charAt(i), i)==i)
             i++;
         return i;
     }
@@ -184,10 +184,10 @@ public class Shader{
     
     public Shader(File fileOrDirectory) {
          if(fileOrDirectory.isDirectory()) 
-             for(File f : fileOrDirectory.list()) {
-                  
+             for(String sf : fileOrDirectory.list()) {
+                  File f = new File(fileOrDirectory.getAbsolutePath()+File.separator+sf);
                   String shStr = stripComment(new String(Files.readAllBytes(Paths.get(f.getAbsolutePath()))));
-                  shStr = splitInTypes(shStr);
+                  splitInTypes(shStr);
                 //  shStr = replaceMacro(shStr);
                   
              }
