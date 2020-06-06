@@ -86,7 +86,7 @@ public class Shader{
           return i;
 
          }
-     public int parseFloat(shStr, int i){
+     public int parseFloat(String shStr, int i){
           return i;
           
          }
