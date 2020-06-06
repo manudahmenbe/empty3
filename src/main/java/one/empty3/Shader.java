@@ -67,8 +67,7 @@ public class Shader{
             }
         }
         return i;
-    }
-    
+   }
     class Literal {
          enum Type {S, D, L, I, F, O, }
          
