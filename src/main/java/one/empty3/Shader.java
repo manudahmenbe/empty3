@@ -183,7 +183,7 @@ public class Shader{
     
     public Shader(File fileOrDirectory) {
          if(fileOrDirectory.isDirectory()) 
-             for(File f : fileOrDirectory) {
+             for(File f : fileOrDirectory.list()) {
                   
                   String shStr = stripComment(new String(Files.readAllBytes(Paths.get(f.getAbsolutePath()))));
                   shStr = splitInTypes(shStr);
