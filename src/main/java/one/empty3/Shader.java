@@ -185,10 +185,13 @@ public class Shader{
     public Shader(File fileOrDirectory) {
          if(fileOrDirectory.isDirectory()) 
              for(String sf : fileOrDirectory.list()) {
-                  File f = new File(fileOrDirectory.getAbsolutePath()+File.separator+sf);
-                  String shStr = stripComment(new String(Files.readAllBytes(Paths.get(f.getAbsolutePath()))));
-                  splitInTypes(shStr);
-                //  shStr = replaceMacro(shStr);
+                  try {
+                      File f = new File(fileOrDirectory.getAbsolutePath()+File.separator+sf);
+                      String shStr = stripComment(new String(Files.readAllBytes(Paths.get(f.getAbsolutePath()))));
+                      splitInTypes(shStr);
+                      //  shStr = replaceMacro(shStr);
+                   } catch(IOException ex) {
+                       ex.printStackTrace();
                   
              }
     }
