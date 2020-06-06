@@ -75,10 +75,10 @@ public class Shader{
          
     }
     
-     public int readString(String shStr, int i){
+     public int parseString(String shStr, int i){
          if(shStr.charAt(i)=='\"') {
               i++;
-              while(shStr.charAt(i)=!'\"') {
+              while(shStr.charAt(i)!='\"') {
                   if(shStr.charAt(i)=='\\') 
                       i++;
                   i++;
