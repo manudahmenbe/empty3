@@ -156,37 +156,19 @@ public class Shader{
             i++;
         return i+;
     }
+    public void buildTree(List<String> lines) {
+    }
     public boolean splitInTypes(String shStr) {
      int i = 0;
      List<String> lines = split(shStr);
      int posTry = -1;
-         while(i<shStr.length) {
-             char ch = shStr.charAt(i);
-             if(ch=='#') {i = readMacro(shStr, i+1);continue;}
-             do { 
-                 i = readKeyword(shStr, i);
+     buildTree(lines);
 
-              } while(i>=0)
-             i = readType(shStr, i) ;
-             i = readIdentifier(shStr, i);
+
+            
+           
              
-              
-             
-              
-              
-             
-             switch(root.current.itemType) {
-               case Items.Class:
-                   i = parseExtend(shStr);
-                   break;
-               case Items.Function:
-                   i = parseArgumentList(shStr, i) ;
-                   break;
-               case Items.Variable:
-                   i = parseExpr(shStr) ;
-                   break;
-               
-              } 
+   
                 
 
              
