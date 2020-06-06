@@ -25,13 +25,15 @@ public class Shader{
        Iterator<SymbolTreeNode> iterate(){return null;}
        SymbolTreeNode current;
    }
+ enum Type { Line, Block, Doc }
      enum Items {Comment, Macro, Function, FunctionDeclaration, FunctionBody, MemberVariable, ClassDeclaration, VariableName, VariableType, Literal, Scalar, ClassName}
     class Comment extends SymbolTreeNode{
-     enum Type { Line, Block, Doc }
+     
      String text;
     }
+      enum MacroType { Macro, Include }
     class Macro extends SymbolTreeNode{ 
-        enum Type { Macro, Include }
+   
         String name;
         String def;
     }
