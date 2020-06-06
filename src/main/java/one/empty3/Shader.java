@@ -198,7 +198,9 @@ public class Shader{
     public String stripComment(String brut){
          return brut;
     }
-   public String replaceMacro(String shStr) {return shStr}
+   public String replaceMacro(String shStr) {
+    return shStr;
+   }
  //   public String categoriser(String contentStripped) {}
 //    public String parseHeaders() {}
  //   public String parseMemberVars() {}
