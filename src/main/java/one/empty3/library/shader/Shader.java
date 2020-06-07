@@ -75,7 +75,7 @@ public class Shader{
          
          
     }
-    
+    private Tree tree;
      public int parseString(String shStr, int i){
          if(shStr.charAt(i)=='\"') {
               i++;
@@ -188,9 +188,12 @@ public class Shader{
              for(String sf : fileOrDirectory.list()) {
                   try {
                       File f = new File(fileOrDirectory.getAbsolutePath()+File.separator+sf);
+                      tree = new Tree();
                       String shStr = stripComment(new String(Files.readAllBytes(Paths.get(f.getAbsolutePath()))));
-                      shaderFiles.add(tree);
+                      
                    splitInTypes(shStr);
+                   
+                   shaderFiles.add(tree);
                       //  shStr = replaceMacro(shStr);
                    } catch(IOException ex) {
                        ex.printStackTrace();
