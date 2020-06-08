@@ -19,7 +19,7 @@ public class Shader{
         public SymbolTreeNode(String name, 
            Items itype, String text, Object value) {
             this.name = name;
-            this.itemType = itemType;
+            this.itemType = itype;
             this.jValue = value;
        } 
        public List<SymbolTreeNode> getChildrenType() {
