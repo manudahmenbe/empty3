@@ -16,6 +16,15 @@ import java.util.*;
 public class Shader{
     
    class SymbolTreeNode {
+        public SymbolTreeNode(String name, 
+           Items itype, String text, Object value) {
+            this.name = name;
+            this.itemType = itemType;
+            this.jValue = value;
+       } 
+       public List<SymbolTreeNode> getChildrenType() {
+           return children;
+       } 
         String name;
         Items itemType;
         String text;
@@ -33,7 +42,7 @@ public class Shader{
      
      String text;
     }
-      enum MacroType { Macro, Include }
+      enum MacroType { Macro, Include } 
     class Macro extends SymbolTreeNode{ 
    
         String name;
