@@ -164,13 +164,28 @@ public class Shader{
         return i;
     }
     public int readPredefinedDeclaration(int i) {
+        List<String> dec = new ArrayList<>();
+        dec.addAll(new String[] {"uniform" , "variyng"});
+        if(dec.contains(lines.get(i))) {
+             tree.current.itype = Items.MemberVariable;
+             tree.current.getChildren().add(new Item("predef member variable attribute",
+                 Items.Keyword, lines.get(i));
+             return i+1;
+        }
         return i;
     }
     public int readMethod( int i) {
         return i;
     } 
     public int readVariableDeclaration(int i) {
-         return i;
+   
+// type1 var1[=expression][,var2[=expression]][varn[=exprn]];
+      String type = lines.get(i);
+         String varName = lines.get(i+1);
+
+
+         String coma = lines.get(i+2);
+       return i;
     } 
     public int readInstruction(int i) {
          return i;
