@@ -154,8 +154,18 @@ public class Shader{
     public int readMacro(String shStr, int i) {
         return i;
     }
-    
-    
+    public int readPredefinedDeclaration(int i) {
+        return i;
+    }
+    public int readMethod( int i) {
+        return i;
+    } 
+    public int readVariableDeclaration(int i) {
+         return i;
+    } 
+    public int readInstruction(int i) {
+         return i;
+    } 
     public int readToken(String shStr, int i) {
         while(i<shStr.length()&&readBlank(shStr, i)==i)
             i++;
