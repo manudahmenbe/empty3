@@ -22,7 +22,7 @@ public class Shader{
             this.itemType = itype;
             this.jValue = value;
        } 
-       public List<SymbolTreeNode> getChildrenType() {
+       public List<SymbolTreeNode> getChildren() {
            return children;
        } 
         String name;
