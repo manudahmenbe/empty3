@@ -14,13 +14,15 @@ import java.util.*;
  */
 
 public class Shader{
-    
+    enum ParseContext {ClassDef, MemberDef, MethodDef, ListArgs, MethodBodyDef, VariableDef, Instruction, Operation }
+   public ParseContext context;
    class SymbolTreeNode {
         public SymbolTreeNode(String name, 
            Items itype, String text, Object value) {
             this.name = name;
             this.itemType = itype;
             this.jValue = value;
+            
        } 
        public List<SymbolTreeNode> getChildren() {
            return children;
