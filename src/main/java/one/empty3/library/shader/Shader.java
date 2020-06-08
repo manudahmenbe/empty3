@@ -169,7 +169,7 @@ public class Shader{
         List<String> dec = new ArrayList<>();
         dec.addAll(new String[] {"uniform" , "variyng"});
         if(dec.contains(lines.get(i))) {
-             tree.current.itype = Items.MemberVariable;
+             tree.current.itemType = Items.MemberVariable;
              tree.current.getChildren().add(new Item("predef member variable attribute",
                  Items.Keyword, lines.get(i));
              return i+1;
@@ -179,14 +179,25 @@ public class Shader{
     public int readMethod( int i) {
         return i;
     } 
+
+    public void buildExpression(
     public int readVariableDeclaration(int i) {
    
 // type1 var1[=expression][,var2[=expression]][varn[=exprn]];
-      String type = lines.get(i);
+         String itype = lines.get(i);
          String varName = lines.get(i+1);
-
-
-         String coma = lines.get(i+2);
+         
+         if(lines.get(i+2).equals("=")) {
+             Expression e = buildExpression(i+3);
+             SymbolTreeNode stn = new Var(varName,
+                new Type(itype), e);
+                ;
+         } else {
+             SymbolTreeNode stn = new Var(varName,
+                new Type(itype), null);
+         }
+             tree.current.add(stn);
+         
        return i;
     } 
     public int readInstruction(int i) {
