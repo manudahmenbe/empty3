@@ -14,6 +14,7 @@ import java.util.*;
  */
 
 public class Shader{
+    List<String> lines = new ArrayList<>();
     enum DataType {Void, Scalar, Object}
     // Datadim?
     enum ParseContext {ClassDef, MemberDef, MethodDef, ListArgs, MethodBodyDef, VariableDef, Instruction, Operation }
@@ -161,7 +162,7 @@ public class Shader{
     }
     public List<String> split(String shStr) {
      
-         List<String> lines = new ArrayList<>();
+         
         int i= 0;
         int j= 0;
         while(j!=i) {
@@ -237,7 +238,7 @@ public class Shader{
     }
     public boolean splitInTypes(String shStr) {
      int i = 0;
-     List<String> lines = split(shStr);
+     lines = split(shStr);
      int posTry = -1;
      buildTree(lines);
 
