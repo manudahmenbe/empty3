@@ -30,7 +30,7 @@ public class Shader{
        public void comment(String value) {}
        public void function(String name, String itype, SymbolTreeNode values) {}
                                                                              
-                                                                             
+                                                                        
        public List<SymbolTreeNode> getChildren() {
            return children;
        } 
@@ -58,6 +58,8 @@ public class Shader{
        SymbolTreeNode root;
        Iterator<SymbolTreeNode> iterate(){return null;}
        SymbolTreeNode current;
+       public void add(SymbolTreeNode s) {
+            current.getChildren().add(s);
    }
  enum Type { Line, Block, Doc }
      enum Items {Comment, Macro, Function, FunctionArgumentList, Keyword, FunctionDeclaration, FunctionBody, MemberVariable, ClassDeclaration, VariableName, VariableType, Literal, Scalar, ClassName}
@@ -231,7 +233,7 @@ public class Shader{
          } else {
              
          }
-     stn = new Var(varName, 
+         stn = new Var(varName, 
                 Type.Scalar, "", e);// scalar or class instance
              tree.current.add(e);
          
