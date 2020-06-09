@@ -167,7 +167,7 @@ public class Shader{
     }
     public int readPredefinedDeclaration(int i) {
         List<String> dec = new ArrayList<>();
-        dec.addAll(new String[] {"uniform" , "variyng"});
+        dec.addAll(new String[] {"uniform" , "varying"});
         if(dec.contains(lines.get(i))) {
              tree.current.itemType = Items.MemberVariable;
              tree.current.getChildren().add(new Item("predef member variable attribute",
