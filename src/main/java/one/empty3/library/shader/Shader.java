@@ -46,6 +46,14 @@ public class Shader{
               super(name, itype, text, value);
           }
    }
+ 
+ class Variable extends SymbolTreeNode {
+         public Variable(String name, 
+                  Items itype, String text, Object value) {
+              super(name, itype, text, value);
+          }
+   }
+ 
    class Tree {
        SymbolTreeNode root;
        Iterator<SymbolTreeNode> iterate(){return null;}
@@ -215,16 +223,17 @@ public class Shader{
          String itype = lines.get(i);
          String varName = lines.get(i+1);
          SymbolTreeNode stn;
+         Expression e = null;
          if(lines.get(i+2).equals("=")) {
-             Expression e = buildExpression(i+3);
-             stn = new Var(varName,
-                new Type(itype), e);
-                ;
+            
+             e = buildExpression(i+3);
+                
          } else {
-             stn = new Var(varName,
-                new Type(itype), null);
+             
          }
-             tree.current.add(stn);
+     stn = new Variable(varName,
+                new Type(itype), e);
+             tree.current.add(e);
          
        return i;
     } 
