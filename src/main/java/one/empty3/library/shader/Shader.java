@@ -232,7 +232,7 @@ public class Shader{
              
          }
      stn = new Var(varName,
-                new Type(itype), e);
+                Type.Scalar, e);// scalar or class instance
              tree.current.add(e);
          
        return i;
