@@ -164,23 +164,25 @@ public class Shader{
      
          
         int i= 0;
-        int j= 0;
+        
         while(j!=i) {
+            int j= i;
             j = readBlank(shStr, i);
-        if(j==i)
-           j = readComment(shStr, i);
-       else
-           lines.add(shStr.substring(i , j ));
-       if(j==i)
-           j = parseString(shStr, i);
-       else
-           lines.add(shStr.substring(i, j));
-       if(j==i)
-           j = readToken(shStr, i);
-       else
-           lines.add(shStr.substring(i, j));
-       if(j!=i)
-           return null;
+            if(j==i)
+                j = readComment(shStr, i);
+            else
+                lines.add(shStr.substring(i , j ));
+            if(j==i)
+                j = parseString(shStr, i);
+            else
+                lines.add(shStr.substring(i, j));
+            if(j==i)
+                j = readToken(shStr, i);
+            else
+                lines.add(shStr.substring(i, j));
+            if(j==i)
+                return null;
+            i = j;
        }
        return lines;
     }
