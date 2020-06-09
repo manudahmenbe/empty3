@@ -214,14 +214,14 @@ public class Shader{
 // type1 var1[=expression][,var2[=expression]][varn[=exprn]];
          String itype = lines.get(i);
          String varName = lines.get(i+1);
-         
+         SymbolTreeNode stn;
          if(lines.get(i+2).equals("=")) {
              Expression e = buildExpression(i+3);
-             SymbolTreeNode stn = new Var(varName,
+             stn = new Var(varName,
                 new Type(itype), e);
                 ;
          } else {
-             SymbolTreeNode stn = new Var(varName,
+             stn = new Var(varName,
                 new Type(itype), null);
          }
              tree.current.add(stn);
