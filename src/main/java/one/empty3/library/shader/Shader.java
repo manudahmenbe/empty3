@@ -26,6 +26,10 @@ public class Shader{
             this.jValue = value;
             
        } 
+       public void comment(String value) {}
+       public void function(String name, String itype, SymbolTreeNode values) {}
+                                                                             
+                                                                             
        public List<SymbolTreeNode> getChildren() {
            return children;
        } 
@@ -49,7 +53,10 @@ public class Shader{
  enum Type { Line, Block, Doc }
      enum Items {Comment, Macro, Function, FunctionArgumentList, Keyword, FunctionDeclaration, FunctionBody, MemberVariable, ClassDeclaration, VariableName, VariableType, Literal, Scalar, ClassName}
     class Comment extends SymbolTreeNode{
-     
+     public Comment(String name, 
+                  Items itype, String text, Object value) {
+              super(name, itype, text, value);
+          }
      String text;
     }
       enum MacroType { Macro, Include } 
