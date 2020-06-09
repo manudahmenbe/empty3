@@ -33,7 +33,7 @@ public class Shader{
         Items itemType;
         String text;
         Object jValue;
-        SymbolTreeNode children;
+        List<SymbolTreeNode> children = new ArrayList<>();
    } 
    class Expression extends SymbolTreeNode {
 
