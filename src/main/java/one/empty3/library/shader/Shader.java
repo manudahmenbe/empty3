@@ -44,7 +44,7 @@ public class Shader{
        SymbolTreeNode current;
    }
  enum Type { Line, Block, Doc }
-     enum Items {Comment, Macro, Function, FunctionDeclaration, FunctionBody, MemberVariable, ClassDeclaration, VariableName, VariableType, Literal, Scalar, ClassName}
+     enum Items {Comment, Macro, Function, FunctionArgumentList, Keyword, FunctionDeclaration, FunctionBody, MemberVariable, ClassDeclaration, VariableName, VariableType, Literal, Scalar, ClassName}
     class Comment extends SymbolTreeNode{
      
      String text;
