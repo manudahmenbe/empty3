@@ -47,8 +47,8 @@ public class Shader{
           }
    }
  
- class Variable extends SymbolTreeNode {
-         public Variable(String name, 
+ class Var extends SymbolTreeNode {
+         public Var(String name, 
                   Items itype, String text, Object value) {
               super(name, itype, text, value);
           }
@@ -231,7 +231,7 @@ public class Shader{
          } else {
              
          }
-     stn = new Variable(varName,
+     stn = new Var(varName,
                 new Type(itype), e);
              tree.current.add(e);
          
