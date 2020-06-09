@@ -14,6 +14,7 @@ import java.util.*;
  */
 
 public class Shader{
+    enum MethodReturnType {Void, Scalar, Object}
     enum ParseContext {ClassDef, MemberDef, MethodDef, ListArgs, MethodBodyDef, VariableDef, Instruction, Operation }
    public ParseContext context;
    class SymbolTreeNode {
@@ -33,6 +34,9 @@ public class Shader{
         Object jValue;
         SymbolTreeNode children;
    } 
+   class Expression extends SymbolTreeNode {
+
+   }
    class Tree {
        SymbolTreeNode root;
        Iterator<SymbolTreeNode> iterate(){return null;}
