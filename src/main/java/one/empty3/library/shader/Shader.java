@@ -60,6 +60,8 @@ public class Shader{
        SymbolTreeNode current;
        public void add(SymbolTreeNode s) {
             current.getChildren().add(s);
+         
+        }
    }
  enum Type { Line, Block, Doc }
      enum Items {Comment, Macro, Function, FunctionArgumentList, Keyword, FunctionDeclaration, FunctionBody, MemberVariable, ClassDeclaration, VariableName, VariableType, Literal, Scalar, ClassName}
@@ -305,7 +307,6 @@ public class Shader{
     
     public void runCode() {}
     public BufferedImage getOutput() {
-    return null;
+         return null;
     }
 }
-
