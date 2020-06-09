@@ -70,6 +70,7 @@ public class Shader{
     class Class extends SymbolTreeNode{
     public Class(String name, 
                   Items itype, String text, Object value) {
+           super(name, itype, text, value);
      }
     }
     public int readBlank(String shStr, int i) {
@@ -187,11 +188,11 @@ public class Shader{
         return i;
     }
     public int readPredefinedDeclaration(int i) {
-        List<String> dec = new ArrayList<>();
+        ArrayList<String> dec = new ArrayList<>();
         dec.addAll(new String[] {"uniform" , "varying"});
         if(dec.contains(lines.get(i))) {
              tree.current.itemType = Items.MemberVariable;
-             tree.current.getChildren().add(new Item("predef member variable attribute",
+             tree.current.getChildren().add(new SymbolTreeNode("predef member variable attribute",
                  Items.Keyword, lines.get(i)));
              return i+1;
         }
