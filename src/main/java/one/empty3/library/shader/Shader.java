@@ -61,11 +61,17 @@ public class Shader{
     }
       enum MacroType { Macro, Include } 
     class Macro extends SymbolTreeNode{ 
-   
+   public Macro(String name, 
+                  Items itype, String text, Object value) {
+    }
         String name;
         String def;
     }
-    class Class extends SymbolTreeNode{}
+    class Class extends SymbolTreeNode{
+    public Class(String name, 
+                  Items itype, String text, Object value) {
+     }
+    }
     public int readBlank(String shStr, int i) {
         int j = 0;
         while(Character.isWhitespace(shStr.charAt(i))||shStr.charAt(j)=='\t'||shStr.charAt(j)=='\n' 
