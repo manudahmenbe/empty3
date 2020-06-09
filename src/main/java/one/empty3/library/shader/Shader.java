@@ -176,7 +176,7 @@ public class Shader{
         if(dec.contains(lines.get(i))) {
              tree.current.itemType = Items.MemberVariable;
              tree.current.getChildren().add(new Item("predef member variable attribute",
-                 Items.Keyword, lines.get(i));
+                 Items.Keyword, lines.get(i)));
              return i+1;
         }
         return i;
