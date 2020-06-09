@@ -60,8 +60,9 @@ public class Shader{
     }
       enum MacroType { Macro, Include } 
     class Macro extends SymbolTreeNode{ 
-   public Macro(String name, 
-                  Items itype, String text, Object value) {
+        public Macro(String name, 
+                Items itype, String text, Object value) {
+          super(name, itype, text, value);
     }
         String name;
         String def;
