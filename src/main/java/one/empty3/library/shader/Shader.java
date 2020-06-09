@@ -14,7 +14,8 @@ import java.util.*;
  */
 
 public class Shader{
-    enum MethodReturnType {Void, Scalar, Object}
+    enum DataType {Void, Scalar, Object}
+    // Datadim?
     enum ParseContext {ClassDef, MemberDef, MethodDef, ListArgs, MethodBodyDef, VariableDef, Instruction, Operation }
    public ParseContext context;
    class SymbolTreeNode {
