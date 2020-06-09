@@ -204,8 +204,8 @@ public class Shader{
         return i;
     } 
 
-    public void buildExpression(int i) {
-        return ;
+    public Expression buildExpression(int i) {
+        return null;
     }
     public int readVariableDeclaration(int i) {
    
