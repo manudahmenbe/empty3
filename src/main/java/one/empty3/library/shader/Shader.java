@@ -36,7 +36,10 @@ public class Shader{
         List<SymbolTreeNode> children = new ArrayList<>();
    } 
    class Expression extends SymbolTreeNode {
-
+         public Expression(String name, 
+                  Items itype, String text, Object value) {
+              super(name, itype, text, value);
+          }
    }
    class Tree {
        SymbolTreeNode root;
