@@ -180,7 +180,9 @@ public class Shader{
         return i;
     } 
 
-    public void buildExpression(
+    public void buildExpression(int I) {
+        return i;
+    }
     public int readVariableDeclaration(int i) {
    
 // type1 var1[=expression][,var2[=expression]][varn[=exprn]];
