@@ -189,7 +189,8 @@ public class Shader{
     }
     public int readPredefinedDeclaration(int i) {
         ArrayList<String> dec = new ArrayList<>();
-        dec.addAll(new String[] {"uniform" , "varying"});
+        dec.add("uniform");
+        dec.add("varying");
         if(dec.contains(lines.get(i))) {
              tree.current.itemType = Items.MemberVariable;
              tree.current.getChildren().add(new SymbolTreeNode("predef member variable attribute",
