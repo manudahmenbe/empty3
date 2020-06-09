@@ -231,8 +231,8 @@ public class Shader{
          } else {
              
          }
-     stn = new Var(varName,
-                Type.Scalar, e);// scalar or class instance
+     stn = new Var(varName, 
+                Type.Scalar, "", e);// scalar or class instance
              tree.current.add(e);
          
        return i;
