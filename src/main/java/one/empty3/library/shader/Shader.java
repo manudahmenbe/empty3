@@ -43,6 +43,33 @@ public class Shader{
         Object jValue;
         List<SymbolTreeNode> children = new ArrayList<>();
    } 
+ class Assignment extends SymbolTreeNode {
+  public Assignment(String name, 
+           Items itype, String text, Object value) {
+            this.name = name;
+            this.itemType = itype;
+            this.jValue = value;
+            
+       } 
+ }
+ class MethodCall extends SymbolTreeNode {
+  public MethodCall(String name, 
+           Items itype, String text, Object value) {
+            this.name = name;
+            this.itemType = itype;
+            this.jValue = value;
+            
+       } 
+ }
+ class Value extends SymbolTreeNode {
+  public Value(String name, 
+           Items itype, String text, Object value) {
+            this.name = name;
+            this.itemType = itype;
+            this.jValue = value;
+            
+       } 
+ }
    class Expression extends SymbolTreeNode {
          public Expression(String name, 
                   Items itype, String text, Object value) {
