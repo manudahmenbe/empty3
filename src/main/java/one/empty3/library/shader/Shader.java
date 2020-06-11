@@ -30,7 +30,8 @@ public class Shader{
        } 
        public void comment(String value) {}
        public void function(String name, String itype, SymbolTreeNode values) {}
-                                                                             
+       public void variable() {}
+
                                                                         
        public List<SymbolTreeNode> getChildren() {
            return children;
