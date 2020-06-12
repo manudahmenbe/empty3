@@ -46,9 +46,7 @@ public class Shader{
  class Assignment extends SymbolTreeNode {
   public Assignment(String name, 
            Items itype, String text, Object value) {
-            this.name = name;
-            this.itemType = itype;
-            this.jValue = value;
+                         super(name, itype, text, value);
             
        } 
  }
