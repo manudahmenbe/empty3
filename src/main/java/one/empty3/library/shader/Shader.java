@@ -53,19 +53,14 @@ public class Shader{
  class MethodCall extends SymbolTreeNode {
   public MethodCall(String name, 
            Items itype, String text, Object value) {
-            this.name = name;
-            this.itemType = itype;
-            this.jValue = value;
-            
+          
+                          super(name, itype, text, value);
        } 
  }
  class Value extends SymbolTreeNode {
   public Value(String name, 
            Items itype, String text, Object value) {
-            this.name = name;
-            this.itemType = itype;
-            this.jValue = value;
-            
+                   super(name, itype, text, value);
        } 
  }
    class Expression extends SymbolTreeNode {
