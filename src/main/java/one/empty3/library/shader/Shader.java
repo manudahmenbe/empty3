@@ -20,7 +20,7 @@ String centroid = " centroid";
 String loop =" break continue do for while" ;
 String ifelse = " if else";
  String param = "in out inout" ;
-String scalar =" float int void bool true false*;
+String scalar =" float int void bool true false";
 String invariant = " invariant" ;
 String returns = " discard return";
 
