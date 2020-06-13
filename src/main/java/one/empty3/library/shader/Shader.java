@@ -24,14 +24,14 @@ String scalar =" float int void bool true false";
 String invariant = "invariant" ;
 String returns = "discard return";
 
-String mat = " mat2 mat3 mat4" ;
-String mat2 = " mat2x2 mat2x3 mat2x4";
-String mat3 = " mat3x2 mat3x3 mat3x4" ;
-String mat4 = " mat4x2 mat4x3 mat4x4";
+String mat = "mat2 mat3 mat4" ;
+String mat2 = "mat2x2 mat2x3 mat2x4";
+String mat3 = "mat3x2 mat3x3 mat3x4" ;
+String mat4 = "mat4x2 mat4x3 mat4x4";
 String vec = "vec2 vec3 vec4 ivec2 ivec3 ivec4 bvec2 bvec3 bvec4" ;
-String sampler = "sampler1D sampler2D sampler3D sammpler plerCube";
+String sampler = "sampler1D sampler2D sampler3D sammpler samplerCube";
  String sash = "sampler1DShadow sampler2DShadow" ;
-String struct = " struct";
+String struct = "struct";
  List<String> lines = new ArrayList<>();
     enum DataType {Void, Scalar, Object}
     // Datadim?
