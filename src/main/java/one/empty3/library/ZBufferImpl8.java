@@ -253,8 +253,8 @@ public void predraw() {
 
         /* OBJECTS */
         if (r instanceof Point3D) {
-            Point3D p = (Point3D) r;
-            ime.testDeep(p);
+            Point3D p = rotate((Point3D) r);
+            add(p.get(0), p.get(1), p.get(2), null, null, null, null, null, 0.0, 0.0, 0.0, p);
         }
         if (r instanceof ThickSurface) {
             // System.out.println("Surface");
@@ -631,7 +631,9 @@ public void predraw() {
         double itere = Math.max(Math.abs(x1.getX() - x2.getX()), Math.abs(x1.getY() - x2.getY())) * 4 + 1;
         for (int i = 0; i < itere; i++) {
             Point3D p = p1.plus(p2.moins(p1).mult(i / itere));
-            ime.testDeep(p, t.getColorAt(0.5, 0.5));
+            p.texture(t);
+            add(p.get(0), p.get(1), p.get(2), null, null, null,
+              null, null, null, i/itere, 0.0, 0.0, p);
         }
 
     }
@@ -648,8 +650,10 @@ public void predraw() {
             Point3D p = p1.plus(p2.moins(p1).mult(i / itere));
             if (curve != null)
                 p = rotate(curve.calculerPoint3D(u + i / itere * (u1 - u)), curve);
-            ime.testDeep(p, t.getColorAt(u, 0));
-        }
+            
+        
+            add(p.get(0), p.get(1), p.get(2), null, null, null,
+              null, null, null, i/itere, 0.0, 0.0, curve);
 
     }
 
@@ -672,7 +676,8 @@ public void predraw() {
                 p = surface.calculerPoint3D(u + i / itereU * (u1 - u), v + i / itereV * (v1 - v));
 
             }
-            ime.testDeep(p, texture.getColorAt(u + i / itereU * (u1 - u), v + i / itereV * (v1 - v)), surface);
+            add(p.get(0), p.get(1), p.get(2), null, null, null,
+              null, null, null,u + i / itereU * (u1 - u), v + i / itereV * (v1 - v), 0.0, surface);
         }
     }
 
@@ -821,12 +826,12 @@ public void predraw() {
 
     }
 
-    public Point3D rotate(Point3D p, double u, double v, double w, Representable r) {
+    public boolean add(Point3D p, Point3D t, Point3D n, double u, double v, double w, Representable r) {
         rotate(p);
-
-addData(p.get(0), p.get(1), p.get(2),
-        null,null, null, p.normale().get(0), 
-p.normale().get(1), p.normale().get(2), 0.0, 0.0, u , v, 0.0,
+    }
+        addData(p.get(0), p.get(1), p.get(2),
+        null,nul, null, n.get(0), 
+n.get(1), n.get(2), 0.0, 0.0, u , v, 0.0,
         r)
 }
     public void tracerLumineux() {
@@ -860,11 +865,13 @@ p.normale().get(1), p.normale().get(2), 0.0, 0.0, u , v, 0.0,
                 double iteres2 = 1.0 / (Math.abs(pp.getX() - p3.getX()) + Math.abs(pp.getY() - p3.getY()));
                 for (double b = 0; b < 1.0; b += iteres2) {
                     Point3D p = p3d.plus(p3d.mult(-1d).plus(pp3).mult(b));
+                    p.texture(t);
                     // Point p22 = coordonneesPoint2D(p);
                     if (displayType <= SURFACE_DISPLAY_TEXT_TRI) {
-                        ime.testDeep(p, t.getColorAt(u0 + a * (u1 - u0), v0 + b * (v1 - v0)));
+                        add(p.get(0), p.get(1), p.get(2), null, null, null, null, null, null, u0 + a * (u1 - u0), v0 + b * (v1 - v0), 0.0, p);
                     } else if (displayType == SURFACE_DISPLAY_COL_TRI)
-                        ime.testDeep(p, col);
+                          add(p.get(0), p.get(1), p.get(2), null, null, null, null, null, null, u0 + a * (u1 - u0), v0 + b * (v1 - v0), 0.0, p);
+                    
                     else ;
                     // LINES, POINTS;
                 }
@@ -904,12 +911,12 @@ p.normale().get(1), p.normale().get(2), 0.0, 0.0, u , v, 0.0,
                     }
                 }
                 if (displayType <= SURFACE_DISPLAY_TEXT_QUADS) {
-                    Point3D point3D = n.calculerNormale3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b);
-                    ime.testDeep(pFinal, point3D, texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
+                    Point3D no = n.calculerNormale3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b);
+                    add(pFinal.get(0), pFinal.get(1), pFinal.get(2), null, null, null, no.get(0), no.get(1), no.get(2), u0 + (u1 - u0) * a, v0 + (v1 - v0) * b, 0.0, n);
                 } else {
-                    ime.testDeep(pFinal, col);
-                    //ime.testDeep(pFinal, texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
 
+                    add(pFinal.get(0), pFinal.get(1), pFinal.get(2), null, null, null, null, null, null, u0 + (u1 - u0) * a, v0 + (v1 - v0) * b, 0.0, n);
+              
                 }
             }
         }
@@ -934,7 +941,8 @@ p.normale().get(1), p.normale().get(2), 0.0, 0.0, u , v, 0.0,
             for (double b = 0; b < 1.0; b += iteres2) {
                 Point3D p = p3d.plus(p3d.mult(-1d).plus(pp3).mult(b));
                 p.setNormale(n);
-                ime.testDeep(p, c.getColorAt(a, b));
+                add(pFinal.get(0), pFinal.get(1), pFinal.get(2), null, null, null, n.get(0), n.get(1), n.get(2), u0 + (u1 - u0) * a, v0 + (v1 - v0) * b, 0.0, n);
+              
             }
         }
     }
