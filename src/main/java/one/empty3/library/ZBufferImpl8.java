@@ -60,6 +60,7 @@ import java.util.function.Consumer;
 
  */
 class Data {
+    
     /**
       * Point x y z t x y z n x y z t u v w
       * Int textId int4 out rgba
@@ -155,7 +156,7 @@ public class ZBufferImpl8 extends Representable implements ZBuffer {
     private Point3D activeLight = new Point3D(-10d, 0d, 100d);
     private int displayType = SURFACE_DISPLAY_TEXT_QUADS;
     ZBufferImpl8 that;
-
+    Data data1;
     public ZBufferImpl8() {
         that = this;
         texture(new TextureCol(Color.BLACK));
@@ -833,7 +834,7 @@ public void predraw() {
     public boolean add(double px, double py, double pz, double tx, double ty, double tz, double nx, double ny, double nz, double u, double v, double w, Representable r) {
       //  rotate(p);
        ime.testDeep(new Point3D(px, py, pz), new Point3D(nx, ny, nz), r.texture().getColorAt(u, v));
-       data.addData(px, py, pz,
+       data1.addData(px, py, pz,
         tx, ty, tz, nx, ny, nz, u, v, 0.0, r);
        return true;
 }
