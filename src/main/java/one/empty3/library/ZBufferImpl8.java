@@ -49,7 +49,7 @@ import java.util.function.Consumer;
 /***
  * * Classe de rendu graphique
 
-
+           P2 écran 2 int
            P3 x y z 
            Tgt x y z
            N x y z 
@@ -58,9 +58,19 @@ import java.util.function.Consumer;
            T
            Representable container 
 
-           
-        */
  */
+class Data {
+    double [][][] dataP;
+    int [][] TextId;
+    Representable [][] container;
+
+    public Data(int h, int w) {
+        dataP = new double[13][h][w];
+        TextId = new int[h][w];
+        container = new Representable [h][w];
+    }
+
+}
 public class ZBufferImpl8 extends Representable implements ZBuffer {
 
 
