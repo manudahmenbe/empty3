@@ -349,7 +349,7 @@ public void predraw() {
                      * draw(new TRI(n.calculerPoint3D(u, v), n.calculerPoint3D(u + n.getIncrU(), v),
                      * n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.texture()), n);
                      * draw(new TRI(n.calculerPoint3D(u, v), n.calculerPoint3D(u, v + n.getIncrV()),
-                     * n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.texture()), n);
+                     * n. calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.texture()), n);
                      */
                     /*
                      * tracerTriangle(n.calculerPoint3D(u, v), n.calculerPoint3D(u + n.getIncrU(),
@@ -832,7 +832,9 @@ public void predraw() {
 
     }
 
-    public boolean add(double px, double py, double pz, double tx, double ty, double tz, double nx, double ny, double nz, double u, double v, double w, Representable r) {
+    public boolean add(Double px, Double py, Double pz, Double
+          tx, Double ty, Double tz, Double nx, Double ny, Double nz, 
+                       Double u, Double v, Double w, Representable r) {
       //  rotate(p);
        ime.testDeep(new Point3D(px, py, pz), new Point3D(nx, ny, nz), r.texture().getColorAt(u, v));
        data1.addData(px, py, pz,
