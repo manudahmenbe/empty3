@@ -62,19 +62,18 @@ import java.util.function.Consumer;
 class Data {
     /**
       * Point x y z t x y z n x y z t
-      * Int textId
+      * Int textId int4 out rgba
       * Representable surface line point3d
       */
     double [][][] dataP;
-    int [][] textId;
+    int [][][] textId;
     Representable [][] container;
-
+    
     public Data(int h, int w) {
         dataP = new double[13][h][w];
-        TextId = new int[h][w];
+        TextId = new int[5][h][w];
         container = new Representable [h][w];
     }
-
 }
 public class ZBufferImpl8 extends Representable implements ZBuffer {
 
