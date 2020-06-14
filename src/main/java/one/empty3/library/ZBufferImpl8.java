@@ -95,7 +95,7 @@ class Data {
 
             Point ce = zBuffer.camera().coordonneesPoint2D(x3d, zBuffer);
             if (ce == null)
-                return falsr;
+                return false;
             double deep = zBuffer.camera().distanceCamera(x3d);
 
             int x = (int) ce.getX();
