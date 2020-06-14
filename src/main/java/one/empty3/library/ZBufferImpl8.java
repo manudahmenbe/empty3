@@ -76,7 +76,9 @@ class Data {
         this.zBuffer = zBuffer;
     }
     public boolean addData(double px, double py, double pz,
-        double tx, ty tz, nx, ny, nz, double u, double v, double w,
+        double tx, double ty, double tz, 
+                           double nx, double ny, double nz, 
+                           double u, double v, double w,
         Representable r) {
         if(testP(px, py, pz)) {
              dataP[0][x][y] = px;
@@ -84,12 +86,12 @@ class Data {
              dataP[2][x][y] = pz;
         }
     }
-    public boolean testP(double px, py, pz) {
+    public boolean testP(double px, double py, double pz) {
         return testDeep(new Point3D(px, py, pz));
     }
 
 
-    public boolean testDeep(Point3D x3d, int c) {
+    public boolean testDeep(Point3D x3d) {
             if (x3d == null)
                 return false;
 
