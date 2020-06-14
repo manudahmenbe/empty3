@@ -71,7 +71,7 @@ class Data {
     Representable [][] container;
     Camera camera ;
     ZBufferImpl8 zBuffer;
-    public Data(int h, int w, ZBufferImpl8Buffer) {
+    public Data(int h, int w, ZBufferImpl8 zBuffer) {
         dataP = new double[16][h][w];
         colors = new int[5][h][w];
         container = new Representable [h][w];
