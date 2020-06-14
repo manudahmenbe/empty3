@@ -156,7 +156,7 @@ public class ZBufferImpl8 extends Representable implements ZBuffer {
     public Box2D box;
     private Point3D activeLight = new Point3D(-10d, 0d, 100d);
     private int displayType = SURFACE_DISPLAY_TEXT_QUADS;
-    ZBuffer that;
+    ZBufferImpl8 that;
     Data data1;
     public ZBufferImpl8() {
         that = this;
