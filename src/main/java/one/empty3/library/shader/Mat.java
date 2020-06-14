@@ -15,16 +15,16 @@ public class Mat {
           double [] val = new double[size+1];
           int incr1 = 0;
           int incr2 = 0;
-              incr1 = Math.sign(l2-l1);
-              incr2 = Math.sign(c2-c1);
+          incr1 = Math.sign(l2-l1);
+          incr2 = Math.sign(c2-c1);
 
           int i = 0;
           for(int l = l1; l<l2; l+=incr1)
               for(int c=c1; c<c2; c+=incr2)
              {
-                  if(i<v.length)
- set(l, c, v.get(i);
-                  val[i] = get(l,c);
+                  if(v!=null && i<v.length)
+                       set(l, c, v.get(l, c);
+                  val[i] = get(l, c);
 
                   i++;
              }
