@@ -46,8 +46,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
-/*__
+/***
  * * Classe de rendu graphique
+
+
+           P3 x y z 
+           Tgt x y z
+           N x y z 
+           Tex u v w TextId [12 double 1 int
+               (1 double)imeid 1 ref. ]
+           T
+           Representable container 
+
+           
+        */
  */
 public class ZBufferImpl8 extends Representable implements ZBuffer {
 
