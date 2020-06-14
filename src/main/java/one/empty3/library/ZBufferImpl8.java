@@ -60,8 +60,12 @@ import java.util.function.Consumer;
 
  */
 class Data {
+    /**
+      * Point x y z t x y z n x y z t
+      * Int textId
+      * Representable surface line point3d
     double [][][] dataP;
-    int [][] TextId;
+    int [][] textId;
     Representable [][] container;
 
     public Data(int h, int w) {
