@@ -61,12 +61,12 @@ import java.util.function.Consumer;
  */
 class Data {
     /**
-      * Point x y z t x y z n x y z t
+      * Point x y z t x y z n x y z t u v w
       * Int textId int4 out rgba
       * Representable surface line point3d
       */
     double [][][] dataP;
-    int [][][] textId;
+    int [][][] colors;
     Representable [][] container;
     Camera camera ;
     public Data(int h, int w, ZBuffer zBuffer) {
@@ -77,8 +77,8 @@ class Data {
     }
     public boolean addData(double px, double py, double pz,
         double tx, ty tz, nx, ny, nz, double t, double deep, double u, double v, double w,
-        int textId, Representable r) {
-        if(testP(px, py, pz) {
+        Representable r) {
+        if(testP(px, py, pz)) {
              dataP[0][x][y] = px;
              dataP[1][x][y] = py;
              dataP[2][x][y] = pz;
@@ -821,7 +821,14 @@ public void predraw() {
 
     }
 
+    public Point3D rotate(Point3D p, double u, double v, double w, Representable r) {
+        rotate(p);
 
+addData(p.get(0), p.get(1), p.get(2),
+        null,null, null, p.normale().get(0), 
+p.normale().get(1), p.normale().get(2), 0.0, 0.0, u , v, 0.0,
+        r)
+}
     public void tracerLumineux() {
         throw new UnsupportedOperationException("Not supported yet."); // To
         // change
