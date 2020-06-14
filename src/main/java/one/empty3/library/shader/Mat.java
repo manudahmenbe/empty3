@@ -6,6 +6,13 @@ public class Mat {
          this.l = i;
          this.c = j;
      }
+     public Mat(double [][] values) {
+         l = values.length;
+         c = values[0].length
+         for(int i = 0; i<l; i++)
+             for(int j = 0; j<c; j++)
+                 set(i, j, values[i][j];
+     }
      public boolean setValues( boolean isLineVec, double [] values) {
      }
      public boolean setValues(boolean isLineVec, Vec... vecs) {
@@ -99,4 +106,115 @@ for(int c2 = 0; c2<size; c2+=incr[1][1])
      public double set(double v) {
          return values.setElem(v);
      }
+
+
+  
+// Function to get cofactor of mat[p][q] in temp[][]. n is current 
+// dimension of mat[][] 
+
+void getCofactor(Mat m, int [][] tmp, int p, int q, int n) 
+{ 
+
+    int i = 0, j = 0; 
+
+  
+
+    // Looping for each element of the matrix 
+
+    for (int row = 0; row < n; row++) 
+
+    { 
+
+        for (int col = 0; col < n; col++) 
+
+        { 
+
+            //  Copying into temporary matrix only those element 
+
+            //  which are not in given row and column 
+
+            if (row != p && col != q) 
+
+            { 
+
+                temp[i][j++] = m.get(row,col); 
+
+  
+
+                // Row is filled, so increase row index and 
+
+                // reset col index 
+
+                if (j == n - 1) 
+
+                { 
+
+                    j = 0; 
+
+                    i++; 
+
+                } 
+
+            } 
+
+        } 
+
+    } 
+return new Mat(tmp);
+} 
+
+  
+/* Recursive function for finding determinant of matrix. 
+
+   n is current dimension of mat[][]. */
+final int Nmax = 7;
+int determinantOfMatrix(int n) 
+{ 
+
+    int N = Nmax;
+    int n = mat.l;
+    int D = 0; // Initialize result 
+
+  
+
+    //  Base case : if matrix contains single element 
+
+    if (n == 1) 
+
+        return mat[0][0]; 
+
+  
+
+    int [][]temp = new int[N][N]; // To store cofactors 
+
+  
+
+    int sign = 1;  // To store sign multiplier 
+
+  
+
+     // Iterate for each element of first row 
+
+    for (int f = 0; f < n; f++) 
+
+    { 
+
+        // Getting Cofactor of mat[0][f] 
+
+        getCofactor(mat, temp, 0, f, n); 
+
+        D += sign * mat.get(0,f) * determinantOfMatrix(temp, n - 1); 
+
+  
+
+        // terms are to be added with alternate sign 
+
+        sign = -sign; 
+
+    } 
+
+  
+
+    return D; 
+} 
 }
