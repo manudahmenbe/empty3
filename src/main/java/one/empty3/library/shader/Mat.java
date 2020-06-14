@@ -82,6 +82,7 @@ for(int c2 = 0; c2<size; c2+=incr[1][1])
      public Mat transpose() {
           }
      public double determinant() {
+         return determinantOfMatrix();
      }
      
      public Mat invert() {}
@@ -112,7 +113,7 @@ for(int c2 = 0; c2<size; c2+=incr[1][1])
 // Function to get cofactor of mat[p][q] in temp[][]. n is current 
 // dimension of mat[][] 
 
-void getCofactor(int [][] temp, int p, int q, int n) 
+void getCofactor(double[][] temp, int p, int q, int n) 
 { 
 
     int i = 0, j = 0; 
@@ -167,7 +168,7 @@ void getCofactor(int [][] temp, int p, int q, int n)
 
    n is current dimension of mat[][]. */
 final int Nmax = 7;
-int determinantOfMatrix() 
+double determinantOfMatrix() 
 { 
 
     int N = Nmax;
@@ -184,7 +185,7 @@ int determinantOfMatrix()
 
   
 
-    int [][]temp = new int[N][N]; // To store cofactors 
+    double [][]temp = new double[N][N]; // To store cofactors 
 
   
 
