@@ -1,5 +1,6 @@
 package one.empty3.library.shader;
 public class Mat {
+     /*
      int l,c;
      private StructureMatrix<Double> values = new StructureMatrix<>(2, Double.class);
      public Mat(int i, int j) {
@@ -164,9 +165,9 @@ void getCofactor(double[][] temp, int p, int q, int n)
 } 
 
   
-/* Recursive function for finding determinant of matrix. 
 
-   n is current dimension of mat[][]. */
+
+
 final int Nmax = 7;
 double determinantOfMatrix() 
 { 
