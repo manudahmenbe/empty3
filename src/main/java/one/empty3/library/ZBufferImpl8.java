@@ -76,7 +76,7 @@ class Data {
         this.zBuffer = zBuffer;
     }
     public boolean addData(double px, double py, double pz,
-        double tx, ty tz, nx, ny, nz, double t, double deep, double u, double v, double w,
+        double tx, ty tz, nx, ny, nz, double u, double v, double w,
         Representable r) {
         if(testP(px, py, pz)) {
              dataP[0][x][y] = px;
@@ -827,13 +827,11 @@ public void predraw() {
 
     }
 
-    public boolean add(Point3D p, Point3D t, Point3D n, double u, double v, double w, Representable r) {
-        rotate(p);
-    }
-        addData(p.get(0), p.get(1), p.get(2),
-        null,nul, null, n.get(0), 
-n.get(1), n.get(2), 0.0, 0.0, u , v, 0.0,
-        r)
+    public boolean add(double px, double py, double pz, double tx, double ty, double tz, double nx, double ny, double nz, double u, double v, double w, Representable r)
+      //  rotate(p);
+       ime.testDeep(new Point3D(px, py, pz, r.texture());
+       data.addData(px, py, pz,
+        tx, ty, tz, nx, ny, nz, u, v, 0.0, r);
 }
     public void tracerLumineux() {
         throw new UnsupportedOperationException("Not supported yet."); // To
