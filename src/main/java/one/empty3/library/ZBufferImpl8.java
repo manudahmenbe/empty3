@@ -68,12 +68,44 @@ class Data {
     double [][][] dataP;
     int [][][] textId;
     Representable [][] container;
-    
-    public Data(int h, int w) {
-        dataP = new double[13][h][w];
+    Camera camera ;
+    public Data(int h, int w, ZBuffer zBuffer) {
+        dataP = new double[16][h][w];
         TextId = new int[5][h][w];
         container = new Representable [h][w];
+        this.zBuffer = zBuffer;
     }
+    public boolean addData(double px, double py, double pz,
+        double tx, ty tz, nx, ny, nz, double t, double deep, double u, double v, double w,
+        int textId, Representable r) {
+        if(testP(px, py, pz) {
+             dataP[0][x][y] = px;
+             dataP[1][x][y] = py;
+             dataP[2][x][y] = pz;
+        }
+    }
+    public boolean testP(double px, py, pz) {
+        return testDeep(new Point3D(px, py, pz));
+    }
+
+
+    public boolean testDeep(Point3D x3d, int c) {
+            if (x3d == null)
+                return false;
+
+            Point ce = zBuffer.camera().coordonneesPoint2D(x3d, zBuffer);
+            if (ce == null)
+                return falsr;
+            double deep = zBuffer.camera().distanceCamera(x3d);
+
+            int x = (int) ce.getX();
+            int y = (int) ce.getY();
+            if (x >= 0 & x < la & y >= 0 & y < ha
+                    && (deep < data[13][x][y]) {
+                return true;
+                
+            }
+        }
 }
 public class ZBufferImpl8 extends Representable implements ZBuffer {
 
