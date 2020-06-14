@@ -71,7 +71,7 @@ class Data {
     Camera camera ;
     public Data(int h, int w, ZBuffer zBuffer) {
         dataP = new double[16][h][w];
-        TextId = new int[5][h][w];
+        colors = new int[5][h][w];
         container = new Representable [h][w];
         this.zBuffer = zBuffer;
     }
