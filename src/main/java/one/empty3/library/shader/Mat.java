@@ -160,7 +160,6 @@ void getCofactor(Mat m, int [][] tmp, int p, int q, int n)
         } 
 
     } 
-return new Mat(tmp);
 } 
 
   
@@ -168,11 +167,11 @@ return new Mat(tmp);
 
    n is current dimension of mat[][]. */
 final int Nmax = 7;
-int determinantOfMatrix(int n) 
+int determinantOfMatrix() 
 { 
 
     int N = Nmax;
-    int n = mat.l;
+    int n = l;
     int D = 0; // Initialize result 
 
   
@@ -181,7 +180,7 @@ int determinantOfMatrix(int n)
 
     if (n == 1) 
 
-        return mat[0][0]; 
+        return get(0,0); 
 
   
 
