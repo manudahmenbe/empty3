@@ -657,7 +657,7 @@ public void predraw() {
         
             add(p.get(0), p.get(1), p.get(2), null, null, null,
               null, null, null, i/itere, 0.0, 0.0, curve);
-
+        }
     }
 
     public void line(Point3D p1, Point3D p2, ITexture texture, double u, double v, double u1, double v1,
