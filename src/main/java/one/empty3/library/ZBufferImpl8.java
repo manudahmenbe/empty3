@@ -103,7 +103,7 @@ class Data {
             int x = (int) ce.getX();
             int y = (int) ce.getY();
             if (x >= 0 & x < la & y >= 0 & y < ha
-                    && (deep < data[13][x][y]) {
+                    && deep < data[13][x][y]) {
                 return true;
                 
             }
@@ -829,7 +829,7 @@ public void predraw() {
 
     }
 
-    public boolean add(double px, double py, double pz, double tx, double ty, double tz, double nx, double ny, double nz, double u, double v, double w, Representable r)
+    public boolean add(double px, double py, double pz, double tx, double ty, double tz, double nx, double ny, double nz, double u, double v, double w, Representable r) {
       //  rotate(p);
        ime.testDeep(new Point3D(px, py, pz), new Point3D(nx, ny, nz), r.texture().getColorAt(u, v));
        data.addData(px, py, pz,
