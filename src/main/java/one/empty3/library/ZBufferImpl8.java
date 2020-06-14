@@ -71,8 +71,8 @@ class Data {
     Representable [][] container;
     Camera camera ;
     ZBufferImpl8 zBuffer;
-    int la = w;
-    int ha = h;
+    int la;
+    int ha;
     public Data(int w, int h, ZBufferImpl8 zBuffer) {
         dataP = new double[16][h][w];
         colors = new int[5][h][w];
@@ -108,7 +108,7 @@ class Data {
             int x = (int) ce.getX();
             int y = (int) ce.getY();
             if (x >= 0 & x < la & y >= 0 & y < ha
-                    && deep < data[13][x][y]) {
+                    && deep < dataP[13][x][y]) {
                 return true;
                 
             }
@@ -261,8 +261,8 @@ public void predraw() {
 
         /* OBJECTS */
         if (r instanceof Point3D) {
-            Point3D p = rotate((Point3D) r);
-            add(p.get(0), p.get(1), p.get(2), null, null, null, null, null, 0.0, 0.0, 0.0, p);
+            Point3D p = rotate((Point3D) r, null);
+            add(p.get(0), p.get(1), p.get(2), null, null, null, null, null, null, 0.0, 0.0, 0.0, p);
         }
         if (r instanceof ThickSurface) {
             // System.out.println("Surface");
@@ -950,7 +950,7 @@ public void predraw() {
             for (double b = 0; b < 1.0; b += iteres2) {
                 Point3D p = p3d.plus(p3d.mult(-1d).plus(pp3).mult(b));
                 p.setNormale(n);
-                add(pFinal.get(0), pFinal.get(1), pFinal.get(2), null, null, null, n.get(0), n.get(1), n.get(2), u0 + (u1 - u0) * a, v0 + (v1 - v0) * b, 0.0, n);
+                add(p.get(0), p.get(1), p.get(2), null, null, null, n.get(0), n.get(1), n.get(2), u0 + (u1 - u0) * a, v0 + (v1 - v0) * b, 0.0, n);
               
             }
         }
