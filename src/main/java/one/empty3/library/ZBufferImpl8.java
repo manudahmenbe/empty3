@@ -72,7 +72,7 @@ class Data {
     Camera camera ;
     ZBufferImpl8 zBuffer;
     int la = w;
-    int ha = h
+    int ha = h;
     public Data(int w, int h, ZBufferImpl8 zBuffer) {
         dataP = new double[16][h][w];
         colors = new int[5][h][w];
