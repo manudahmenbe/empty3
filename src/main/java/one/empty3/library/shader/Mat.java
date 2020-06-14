@@ -30,4 +30,6 @@ public class Mat {
           }
      public double determinant() {
      }
+     
+     public Mat invert() {}
 }
