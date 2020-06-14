@@ -69,6 +69,7 @@ class Data {
     int [][][] colors;
     Representable [][] container;
     Camera camera ;
+    ZBuffer zBuffer;
     public Data(int h, int w, ZBuffer zBuffer) {
         dataP = new double[16][h][w];
         colors = new int[5][h][w];
