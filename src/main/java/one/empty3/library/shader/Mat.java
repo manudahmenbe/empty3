@@ -10,7 +10,7 @@ public class Mat {
      }
      public boolean setValues(boolean isLineVec, Vec... vecs) {
      }
-     public Vec slice(int l1, int c1, int l1, int c2, Vec v) {
+     public Vec slice(int l1, int c2, int l1, int c2, Vec v) {
           int size = Math.max(Math.abs(l1-l2), Math.abs(c2-c1));
           double [] val = new double[size+1];
           int incr1 = 0;
