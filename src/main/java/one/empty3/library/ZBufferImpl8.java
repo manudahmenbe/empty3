@@ -916,7 +916,7 @@ n.get(1), n.get(2), 0.0, 0.0, u , v, 0.0,
                     add(pFinal.get(0), pFinal.get(1), pFinal.get(2), null, null, null, no.get(0), no.get(1), no.get(2), u0 + (u1 - u0) * a, v0 + (v1 - v0) * b, 0.0, n);
                 } else {
 
-                    add(pFinal.get(0), pFinal.get(1), pFinal.get(2), null, null, null, null, null, null, u0 + (u1 - u0) * a, v0 + (v1 - v0) * b, 0.0, n);
+                    add(pFinal.get(0), pFinal.get(1), pFinal.get(2), null, null, null, normale.get(0), normale.get(1), normale.get(2), u0 + (u1 - u0) * a, v0 + (v1 - v0) * b, 0.0, n);
               
                 }
             }
