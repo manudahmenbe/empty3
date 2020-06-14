@@ -952,7 +952,8 @@ public void predraw() {
             for (double b = 0; b < 1.0; b += iteres2) {
                 Point3D p = p3d.plus(p3d.mult(-1d).plus(pp3).mult(b));
                 p.setNormale(n);
-                add(p.get(0), p.get(1), p.get(2), null, null, null, n.get(0), n.get(1), n.get(2), u0 + (u1 - u0) * a, v0 + (v1 - v0) * b, 0.0, n);
+                p.texture(c);
+                add(p.get(0), p.get(1), p.get(2), null, null, null, n.get(0), n.get(1), n.get(2), u0 + (u1 - u0) * a, v0 + (v1 - v0) * b, 0.0, p);
               
             }
         }
