@@ -181,6 +181,13 @@ public class Shader{
           return i;
           
          }
+ public int parseBoolean(String shStr, int i){
+     if(shStr.substring(i, i+4).equals("true"))
+          return i+4;
+     if(shStr.substring(i, i+4).equals("false"))
+          return i+4;
+  return i;
+         }
      public int parseDouble(String shStr, int i){
           return i;
           
@@ -189,11 +196,17 @@ public class Shader{
          return i;
     }
     public int readLiteral(String shStr, int i) {
-         i = parseString(shStr, i);
-         i = parseInt(shStr, i);
-         i = parseFloat(shStr, i);
-         i = parseDouble(shStr, i);
-         return i;
+       int j = i;
+     j = parseString(shStr, i);
+     if(i==j)
+          j = parseInt(shStr, i);
+     if(i==j)
+         j = parseFloat(shStr, i);
+     if(i==j)
+         j = parseDouble(shStr, i);
+     if(i==j) 
+         j = parseBoolean(shStr,i);
+     return j;
     }
     public int parseArgumentList(String shStr, int i) {
           return i;
