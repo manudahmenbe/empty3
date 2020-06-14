@@ -910,6 +910,15 @@ public class ZBufferImpl8 extends Representable implements ZBuffer {
         private double maxz = -1000000;
         private boolean notests = false;
 
+
+        /* 
+           P3 x y z
+           Tgt x y z
+           N x y z 
+           Tex u v w TextId 
+           T
+           
+        */
         public Box2D() {
             SceneCadre cadre = currentScene.getCadre();
             if (cadre.isCadre()) {
