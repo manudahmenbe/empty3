@@ -77,10 +77,10 @@ class Data {
         container = new Representable [h][w];
         this.zBuffer = zBuffer;
     }
-    public boolean addData(double px, double py, double pz,
-        double tx, double ty, double tz, 
-                           double nx, double ny, double nz, 
-                           double u, double v, double w,
+    public boolean addData(Double px, Double py, Double pz,
+        Double tx, Double ty, Double tz, 
+                           Double nx, Double ny, Double nz, 
+                           Double u, Double v, Double w,
         Representable r) {
         if(testP(px, py, pz)) {
                    /*
