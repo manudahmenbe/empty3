@@ -157,7 +157,20 @@ public class ZBufferImpl8 extends Representable implements ZBuffer {
         this.cameraC = c;
         this.scene().cameraActive(c);
     }
-
+/***
+ *
+ * Draw buffer with data
+ * Iterate on objects
+*/
+public void predraw() {
+      
+}
+/**
+ * Textures and lights
+ *
+*/
+    public void finishDraw() {
+    }
     public void draw() {
         scene().lumieres().clear();
         for (int i = 0; i < scene().getObjets().data1d.size(); i++)
@@ -1151,6 +1164,15 @@ public class ZBufferImpl8 extends Representable implements ZBuffer {
         public Box2DPerspective(Scene scene) {
         }
     }
+
+    public void preprocessor () {
+        if(data1==null) 
+            data1 = new Data(la, ha);
+        predraw();
+        finishDraw();
+
+    }
+
 
     public class ImageMap {
 
