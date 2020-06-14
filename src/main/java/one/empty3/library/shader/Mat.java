@@ -112,7 +112,7 @@ for(int c2 = 0; c2<size; c2+=incr[1][1])
 // Function to get cofactor of mat[p][q] in temp[][]. n is current 
 // dimension of mat[][] 
 
-void getCofactor(Mat m, int [][] tmp, int p, int q, int n) 
+void getCofactor(int [][] temp, int p, int q, int n) 
 { 
 
     int i = 0, j = 0; 
@@ -137,7 +137,7 @@ void getCofactor(Mat m, int [][] tmp, int p, int q, int n)
 
             { 
 
-                temp[i][j++] = m.get(row,col); 
+                temp[i][j++] = get(row,col); 
 
   
 
@@ -200,9 +200,9 @@ int determinantOfMatrix()
 
         // Getting Cofactor of mat[0][f] 
 
-        getCofactor(mat, temp, 0, f, n); 
+        getCofactor(temp, 0, f, n); 
 
-        D += sign * mat.get(0,f) * determinantOfMatrix(temp, n - 1); 
+        D += sign * get(0,f) * determinantOfMatrix(temp, n - 1); 
 
   
 
