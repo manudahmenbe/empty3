@@ -113,7 +113,7 @@ class Data {
             return false;
         }
 }
-public class ZBufferImpl8 extends Representable implements ZBuffer {
+public class ZBufferImpl8 extends ZBufferImpl implements ZBuffer {
 
 
     public static final int DISPLAY_ALL = 0;
