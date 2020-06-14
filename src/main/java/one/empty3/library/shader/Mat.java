@@ -42,7 +42,7 @@ public class Mat {
           if(c!=mat.l)
               return new Mat(-1, -1);
           double [] val = new double[size];
-          int incr = new int [] {{0,1},{1,0},{0,1},{1,0}};
+          int incr = new int [] {{0,1},{1,0}};
              // Varier les incr pour différents produits 
              // Annuler [0][1][0]  et [0][2][0] / size
           
@@ -50,16 +50,16 @@ public class Mat {
 
           int i = 0;
           for(int i= 0; i<size; i++)
-for(int i= 0; i<size; i++)
+for(int j= 0; j<size; j++)
   for(int l1 = 0; l2<size; l1+=incr[0][0])
               for(int c1 = 0; c1<size; c1+=incr[0][1]) 
-                  for(int l2 = 0; l2<size; l2+=incr[0][2])
-for(int c2 = 0; c2<size; c2+=incr[0][3])
+                  for(int l2 = 0; l2<size; l2+=incr[1][0])
+for(int c2 = 0; c2<size; c2+=incr[1][1])
                        
                 
              
              {
-                  mat2.set(i, j, get(i, j)+ mat.get(l2,c2));
+                  mat2.set(i, j, get(l1, c1)*mat.get(l2,c2));
              } 
          return mat2;
 
