@@ -1,6 +1,6 @@
 package one.empty3.library.shader;
 import one.empty3.library;
-public ShaderOperations {
+public class ShaderOperations {
 /*
     class VecValue extends Vec;
     class MatValue extends Mat;
