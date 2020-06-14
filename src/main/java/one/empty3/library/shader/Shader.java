@@ -357,7 +357,10 @@ public class Shader{
    // public String parseMemberMethod() {}
 //    public String parseMethodDeclaration(String name, Object... arguments) {}
  //   public String parseMethodImplementation() {}
-    
+    public void errorBeforeExecution(String shStr, int charPos) {
+    }
+    public void errorExecute(String type, int line ) {
+    }
     public void runCode() {}
     public BufferedImage getOutput() {
          return null;
