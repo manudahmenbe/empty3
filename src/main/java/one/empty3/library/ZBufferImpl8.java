@@ -83,9 +83,10 @@ class Data {
                            double u, double v, double w,
         Representable r) {
         if(testP(px, py, pz)) {
+                   /*
              dataP[0][x][y] = px;
              dataP[1][x][y] = py;
-             dataP[2][x][y] = pz;
+             dataP[2][x][y] = pz;*/
         }
     }
     public boolean testP(double px, double py, double pz) {
