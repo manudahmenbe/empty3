@@ -89,7 +89,9 @@ class Data {
              dataP[0][x][y] = px;
              dataP[1][x][y] = py;
              dataP[2][x][y] = pz;*/
+             return true;
         }
+        return false;
     }
     public boolean testP(double px, double py, double pz) {
         return testDeep(new Point3D(px, py, pz));
