@@ -87,19 +87,19 @@ class Data {
         Representable r) {
         if(testP(px, py, pz)) {
                    
-             dataP[0][x][y] = px;
-             dataP[1][x][y] = py;
-             dataP[2][x][y] = pz;
-             dataP[3][x][y] = tx;
-             dataP[4][x][y] = ty;
-             dataP[5][x][y] = tz;
-             dataP[6][x][y] = nx;
-             dataP[7][x][y] = ny;
-             dataP[8][x][y] = nz;
-             dataP[9][x][y] = u;
-             dataP[10][x][y] = v;
-             dataP[11][x][y] = w;
-             container[x][y] = r;
+             dataP[0][y][x] = px;
+             dataP[1][y][x] = py;
+             dataP[2][y][x] = pz;
+             dataP[3][y][x] = tx;
+             dataP[4][y][x] = ty;
+             dataP[5][y][x] = tz;
+             dataP[6][y][x] = nx;
+             dataP[7][y][x] = ny;
+             dataP[8][y][x] = nz;
+             dataP[9][y][x] = u;
+             dataP[10][y][x] = v;
+             dataP[11][y][x] = w;
+             container[y][x] = r;
              return true;
         }
         return false;
@@ -128,12 +128,12 @@ class Data {
             return false;
         }
        public int[][] getBitmap() {
-            int [] [] i = new int [w] [h];
+            int [] [] i = new int [h] [w];
             for(int y = 0; y<h; y++) 
                for(int x= 0; x<w; x++) 
 
-                   i[x] [y] = container[x] [y]. texture().getColorAt(
-                          dataP[9][x][y], dataP[10][x][y]);
+                   i[x] [y] = container[y] [x]. texture().getColorAt(
+                          dataP[9][y][x], dataP[10][y][x]);
              return i;
                      
        } 
