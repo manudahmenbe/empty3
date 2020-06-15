@@ -191,6 +191,7 @@ public class ZBufferImpl8 extends ZBufferImpl {
     ZBufferImpl8 that;
     Data data1;
     public ZBufferImpl8() {
+        
         that = this;
         texture(new TextureCol(Color.BLACK));
     }
@@ -203,6 +204,7 @@ public class ZBufferImpl8 extends ZBufferImpl {
         dimx = la;
         dimy = ha;
         this.ime = new ImageMap(la, ha);
+        data1 = new Data(la, ha, this);
     }
 
     public ZBufferImpl8(Resolution resolution) {
