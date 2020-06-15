@@ -75,7 +75,7 @@ class Data {
     int ha;
     int x, y;
     public Data(int w, int h, ZBufferImpl8 zBuffer) {
-        dataP = new double[16][h][w];
+        dataP = new Double[16][h][w];
         colors = new int[5][h][w];
         container = new Representable [h][w];
         this.zBuffer = zBuffer;
