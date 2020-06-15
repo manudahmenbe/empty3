@@ -872,7 +872,7 @@ public void predraw() {
           tx, Double ty, Double tz, Double nx, Double ny, Double nz, 
                        Double u, Double v, Double w, Representable r) {
       //  rotate(p);
-       ime.testDeep(new Point3D(px, py, pz), new Point3D(nx, ny, nz), r.texture().getColorAt(u, v));
+      // ime.testDeep(new Point3D(px, py, pz), new Point3D(nx, ny, nz), r.texture().getColorAt(u, v));
        data1.addData(px, py, pz,
         tx, ty, tz, nx, ny, nz, u, v, 0.0, r);
        return true;
