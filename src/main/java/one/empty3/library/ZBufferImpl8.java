@@ -908,8 +908,11 @@ public void predraw() {
       //  rotate(p);
       // ime.testDeep(new Point3D(px, py, pz), new Point3D(nx, ny, nz), r.texture().getColorAt(u, v));
       if( data1.addData(px, py, pz,
-        tx, ty, tz, nx, ny, nz, u, v, w, r))
+        tx, ty, tz, nx, ny, nz, u, v, w, r)) {
           System.out.println(":");
+          return true;
+      }
+      return false;
 }
     public void tracerLumineux() {
         throw new UnsupportedOperationException("Not supported yet."); // To
