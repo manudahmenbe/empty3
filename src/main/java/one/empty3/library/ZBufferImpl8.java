@@ -623,6 +623,7 @@ public void predraw() {
     }
 
     public ECBufferedImage image() {
+               /*
         ECBufferedImage bi2 = new ECBufferedImage(la, ha, ECBufferedImage.TYPE_INT_RGB);
         for (int i = 0; i < la; i++) {
             for (int j = 0; j < ha; j++) {
@@ -633,6 +634,8 @@ public void predraw() {
         }
         this.bi = bi2;
         return bi2;
+        */
+        return image2();
 
     }
 
