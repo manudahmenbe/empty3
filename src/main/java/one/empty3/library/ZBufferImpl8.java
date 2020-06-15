@@ -160,7 +160,7 @@ class Data {
    &&( container[y][x].texture()!=null)&&
   (  dataP[9][y][x]!=null)&&(dataP[10][y][x]!=null))
              
-                   i[y + la * x] = container[y] [x]. texture().getColorAt(
+                   i[x + la * y] = container[y] [x]. texture().getColorAt(
                           dataP[9][y][x], dataP[10][y][x]);
            else  
                 i[y + la * x] = 0;
