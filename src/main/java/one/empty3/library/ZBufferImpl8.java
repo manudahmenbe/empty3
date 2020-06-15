@@ -67,7 +67,7 @@ class Data {
       * Representable surface line point3d
       */
     Double [][][] dataP;
-    int [][][] colors;
+    int [] colors;
     Representable [][] container;
     Camera camera ;
     ZBufferImpl8 zBuffer;
@@ -76,7 +76,7 @@ class Data {
     int x, y;
     public Data(int w, int h, ZBufferImpl8 zBuffer) {
         dataP = new Double[16][h][w];
-        colors = new int[5][h][w];
+        colors = new int[h*w];
         container = new Representable [h][w];
         this.zBuffer = zBuffer;
         this.la = w;
@@ -95,8 +95,9 @@ class Data {
         for(int y = 0; y<ha; y++) 
                for(int x= 0; x<la; x++) {
             dataP[13][y][x] = Double.MAX_VALUE;
-                      container[y][x] = zBuffer
-                                 ;
+                      container[y][x] = zBuffer;
+                      dataP[9][y][x] = 1.0*x/la;
+             dataP[10][y][x] = 1.0*y/ha;           ;
                    }
                   
                    
@@ -152,7 +153,7 @@ class Data {
             return false;
         }
        public ECBufferedImage getBitmap() {
-            int [] i = new int [ha*la];
+            int [] i = c;
             for(int y = 0; y<ha; y++) 
                for(int x= 0; x<la; x++) 
  if(container[y][x]!=null
@@ -162,7 +163,7 @@ class Data {
                    i[y + la * x] = container[y] [x]. texture().getColorAt(
                           dataP[9][y][x], dataP[10][y][x]);
            else  
-                  ;
+                i[y + la * x] = 0;
                   
             BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
         bi.setRGB(0, 0, la, ha, 
@@ -214,7 +215,7 @@ public class ZBufferImpl8 extends ZBufferImpl {
     private Scene currentScene;
     public Box2D box;
     private Point3D activeLight = new Point3D(-10d, 0d, 100d);
-    private int displayType = SURFACE_DISPLAY_TEXT_QUADS;
+    private int displayType = 0; //SURFACE_DISPLAY_TEXT_QUADS;
     ZBufferImpl8 that;
     Data data1;
     public ZBufferImpl8() {
