@@ -156,11 +156,13 @@ class Data {
             for(int y = 0; y<ha; y++) 
                for(int x= 0; x<la; x++) 
  if(container[y][x]!=null
-   && container[y][x].texture()!=null)
+   && container[y][x].texture()!=null&&
+    dataP[9][y][x]!=null&&dataP[10][y][x]!=null)
+             
                    i[y + la * x] = container[y] [x]. texture().getColorAt(
                           dataP[9][y][x], dataP[10][y][x]);
-             
-                  
+           else  
+                  ;
                   
             BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
         bi.setRGB(0, 0, la, ha, 
