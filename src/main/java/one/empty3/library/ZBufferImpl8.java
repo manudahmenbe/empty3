@@ -79,7 +79,23 @@ class Data {
         colors = new int[5][h][w];
         container = new Representable [h][w];
         this.zBuffer = zBuffer;
+           
+               
+
+                   
+                   
+                  
     }
+           
+           public void clear() {
+           
+                          
+        for(int i=0; i<la*ha; i++)
+            dataP[13][i/la][i%la] = Double.MAX_VALUE;
+                   
+                  
+                   
+           } 
     public boolean addData(Double px, Double py, Double pz,
         Double tx, Double ty, Double tz, 
                            Double nx, Double ny, Double nz, 
@@ -250,6 +266,8 @@ public void predraw() {
         
     }
     public void draw() {
+               
+               data1. clear() ;
         scene().lumieres().clear();
         for (int i = 0; i < scene().getObjets().data1d.size(); i++)
             if (scene().getObjets().getElem(i).getClass().isAssignableFrom(Lumiere.class))
