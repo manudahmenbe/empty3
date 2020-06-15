@@ -97,7 +97,8 @@ class Data {
             dataP[13][y][x] = Double.MAX_VALUE;
                       container[y][x] = zBuffer;
                       dataP[9][y][x] = 1.0*x/la;
-             dataP[10][y][x] = 1.0*y/ha;           ;
+             dataP[10][y][x] = 1.0*y/ha;  
+             colors[x+la*y] = 0;
                    }
                   
                    
@@ -163,7 +164,7 @@ class Data {
                    i[x + la * y] = container[y] [x]. texture().getColorAt(
                           dataP[9][y][x], dataP[10][y][x]);
            else  
-                i[x + la * y] = 0;
+                System.out.println("error point null getBitmap");
                   
             BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
         bi.setRGB(0, 0, la, ha, 
