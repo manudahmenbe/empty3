@@ -93,9 +93,11 @@ class Data {
            
                           
         for(int y = 0; y<ha; y++) 
-               for(int x= 0; x<la; x++) 
+               for(int x= 0; x<la; x++) {
             dataP[13][y][x] = Double.MAX_VALUE;
-                   
+                      container[y][x] = zBuffer
+                                 ;
+                   }
                   
                    
            } 
