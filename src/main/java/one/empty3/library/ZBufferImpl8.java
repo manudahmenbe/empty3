@@ -123,7 +123,7 @@ class Data {
         }
         return false;
     }
-    public boolean testP(double px, double py, double pz) {
+    public boolean testP(Double px, Double py, Double pz) {
         if(px==null || py==null || pz==null)
                    return false;
         return testDeep(new Point3D(px, py, pz));
