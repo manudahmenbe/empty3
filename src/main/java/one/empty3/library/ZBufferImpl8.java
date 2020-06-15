@@ -153,7 +153,7 @@ class Data {
             return false;
         }
        public ECBufferedImage getBitmap() {
-            int [] i = c;
+            int [] i = colors;
             for(int y = 0; y<ha; y++) 
                for(int x= 0; x<la; x++) 
  if((container[y][x]!=null)
