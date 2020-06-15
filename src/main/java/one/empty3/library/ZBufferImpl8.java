@@ -138,7 +138,8 @@ class Data {
                   
                   
             BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
-        bi.setRGB(0, 0, la, ha, getBitmap(), 0, la);
+        bi.setRGB(0, 0, la, ha, 
+i, 0, la);
         return new ECBufferedImage(bi);
                      
        } 
