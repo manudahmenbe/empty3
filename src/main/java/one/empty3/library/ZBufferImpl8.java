@@ -73,6 +73,7 @@ class Data {
     ZBufferImpl8 zBuffer;
     int la;
     int ha;
+    int x, y;
     public Data(int w, int h, ZBufferImpl8 zBuffer) {
         dataP = new double[16][h][w];
         colors = new int[5][h][w];
@@ -85,10 +86,20 @@ class Data {
                            Double u, Double v, Double w,
         Representable r) {
         if(testP(px, py, pz)) {
-                   /*
+                   
              dataP[0][x][y] = px;
              dataP[1][x][y] = py;
-             dataP[2][x][y] = pz;*/
+             dataP[2][x][y] = pz;
+             dataP[3][x][y] = tx;
+             dataP[4][x][y] = ty;
+             dataP[5][x][y] = tz;
+             dataP[6][x][y] = nx;
+             dataP[7][x][y] = ny;
+             dataP[8][x][y] = nz;
+             dataP[9][x][y] = u;
+             dataP[10][x][y] = v;
+             dataP[11][x][y] = w;
+             container[x][y] = r;
              return true;
         }
         return false;
@@ -107,8 +118,8 @@ class Data {
                 return false;
             double deep = zBuffer.camera().distanceCamera(x3d);
 
-            int x = (int) ce.getX();
-            int y = (int) ce.getY();
+            x = (int) ce.getX();
+            y = (int) ce.getY();
             if (x >= 0 & x < la & y >= 0 & y < ha
                     && deep < dataP[13][x][y]) {
                 return true;
@@ -116,6 +127,8 @@ class Data {
             }
             return false;
         }
+           
+
 }
 public class ZBufferImpl8 extends ZBufferImpl {
 
