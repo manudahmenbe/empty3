@@ -66,7 +66,7 @@ class Data {
       * Int textId int4 out rgba
       * Representable surface line point3d
       */
-    double [][][] dataP;
+    Double [][][] dataP;
     int [][][] colors;
     Representable [][] container;
     Camera camera ;
@@ -124,6 +124,8 @@ class Data {
         return false;
     }
     public boolean testP(double px, double py, double pz) {
+        if(px==null || py==null || pz==null)
+                   return false;
         return testDeep(new Point3D(px, py, pz));
     }
 
