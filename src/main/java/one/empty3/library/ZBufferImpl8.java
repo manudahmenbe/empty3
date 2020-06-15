@@ -633,9 +633,9 @@ public void predraw() {
     }
 
     public ECBufferedImage image2() {
-        BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
-        bi.setRGB(0, 0, la, ha, getData(), 0, la);
-        return new ECBufferedImage(bi);
+        return data1. getBitmap();
+
+
     }
 
     public boolean isLocked() {
