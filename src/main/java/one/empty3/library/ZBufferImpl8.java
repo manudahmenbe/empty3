@@ -127,7 +127,16 @@ class Data {
             }
             return false;
         }
-           
+       public int[][] getBitmap() {
+            int [] [] i = new int [w] [h];
+            for(int y = 0; y<h; y++) 
+               for(int x= 0; x<w; x++) 
+
+                   i[x] [y] = container[x] [y]. texture().getColorAt(
+                          dataP[9][x][y], dataP[10][x][y]);
+             return i;
+                     
+       } 
 
 }
 public class ZBufferImpl8 extends ZBufferImpl {
