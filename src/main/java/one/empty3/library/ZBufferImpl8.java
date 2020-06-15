@@ -128,17 +128,17 @@ class Data {
             return false;
         }
        public ECBufferedImage getBitmap() {
-            int [] i = new int [h*w];
-            for(int y = 0; y<h; y++) 
-               for(int x= 0; x<w; x++) 
+            int [] i = new int [ha*la];
+            for(int y = 0; y<ha; y++) 
+               for(int x= 0; x<la; x++) 
 
-                   i[y + w * x] = container[y] [x]. texture().getColorAt(
+                   i[y + la * x] = container[y] [x]. texture().getColorAt(
                           dataP[9][y][x], dataP[10][y][x]);
              
                   
                   
             BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
-        bi.setRGB(0, 0, w, h, getBitmap(), 0, w);
+        bi.setRGB(0, 0, la, ha, getBitmap(), 0, la);
         return new ECBufferedImage(bi);
                      
        } 
@@ -242,7 +242,8 @@ public void predraw() {
  * Textures and lights
  *
 */
-    public BufferewImage finishDraw() {
+    public BufferedImage finishDraw() {
+               return null;
         
     }
     public void draw() {
