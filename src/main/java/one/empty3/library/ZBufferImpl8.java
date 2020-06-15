@@ -92,8 +92,9 @@ class Data {
            public void clear() {
            
                           
-        for(int i=0; i<la*ha; i++)
-            dataP[13][i/la][i%la] = Double.MAX_VALUE;
+        for(int y = 0; y<ha; y++) 
+               for(int x= 0; x<la; x++) 
+            dataP[13][y][x] = Double.MAX_VALUE;
                    
                   
                    
@@ -271,7 +272,7 @@ public void predraw() {
     }
     public void draw() {
                
-               data1. clear() ;
+         data1.clear() ;
         scene().lumieres().clear();
         for (int i = 0; i < scene().getObjets().data1d.size(); i++)
             if (scene().getObjets().getElem(i).getClass().isAssignableFrom(Lumiere.class))
