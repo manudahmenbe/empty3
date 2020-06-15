@@ -132,7 +132,7 @@ class Data {
             for(int y = 0; y<h; y++) 
                for(int x= 0; x<w; x++) 
 
-                   i[x] [y] = container[y] [x]. texture().getColorAt(
+                   i[y] [x] = container[y] [x]. texture().getColorAt(
                           dataP[9][y][x], dataP[10][y][x]);
              return i;
                      
