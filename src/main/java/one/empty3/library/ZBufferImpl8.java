@@ -89,20 +89,20 @@ class Data {
                   
     }
            
-           public void clear() {
+    public void clear() {
            
                           
         for(int y = 0; y<ha; y++) 
                for(int x= 0; x<la; x++) {
-            dataP[13][y][x] = Double.MAX_VALUE;
-                      container[y][x] = zBuffer;
-                      dataP[9][y][x] = 1.0*x/la;
-             dataP[10][y][x] = 1.0*y/ha;  
-             colors[x+la*y] = 0;
-                   }
+                   dataP[13][y][x] = Double.MAX_VALUE;
+                   container[y][x] = zBuffer;
+                   dataP[9][y][x] = 1.0*x/la;
+                   dataP[10][y][x] = 1.0*y/ha;  
+                   colors[x+la*y] = 0;
+               }
                   
                    
-           } 
+    } 
     public boolean addData(Double px, Double py, Double pz,
         Double tx, Double ty, Double tz, 
                            Double nx, Double ny, Double nz, 
@@ -848,14 +848,14 @@ public void predraw() {
     public void setColoration(boolean a) {
         this.colorationActive = a;
     }
-
+/*
     public void next() {
         if (texture() instanceof TextureMov) {
             ((TextureMov) texture()).nextFrame();
         }
         idImg++;
     }
-
+*/
     @Override
     public void testDeep(Point3D p, Color c) {
 
@@ -909,7 +909,7 @@ public void predraw() {
       // ime.testDeep(new Point3D(px, py, pz), new Point3D(nx, ny, nz), r.texture().getColorAt(u, v));
       if( data1.addData(px, py, pz,
         tx, ty, tz, nx, ny, nz, u, v, w, r)) {
-          System.out.println(":");
+          //System.out.println(":");
           return true;
       }
       return false;
