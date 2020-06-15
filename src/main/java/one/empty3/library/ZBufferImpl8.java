@@ -156,9 +156,9 @@ class Data {
             int [] i = c;
             for(int y = 0; y<ha; y++) 
                for(int x= 0; x<la; x++) 
- if(container[y][x]!=null
-   && container[y][x].texture()!=null&&
-    dataP[9][y][x]!=null&&dataP[10][y][x]!=null)
+ i(f(container[y][x]!=null)
+   &&( container[y][x].texture()!=null)&&
+  (  dataP[9][y][x]!=null)&&(dataP[10][y][x]!=null))
              
                    i[y + la * x] = container[y] [x]. texture().getColorAt(
                           dataP[9][y][x], dataP[10][y][x]);
