@@ -166,7 +166,7 @@ class Data {
            else  
                 System.out.println("error point null getBitmap");
                   
-            BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
+            BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_ARGB);
         bi.setRGB(0, 0, la, ha, 
 i, 0, la);
         return new ECBufferedImage(bi);
