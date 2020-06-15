@@ -79,7 +79,9 @@ class Data {
         colors = new int[5][h][w];
         container = new Representable [h][w];
         this.zBuffer = zBuffer;
-           
+        this.la = w;
+               
+        this.ha = h;
                
 
                    
@@ -138,6 +140,7 @@ class Data {
             y = (int) ce.getY();
             if (x >= 0 & x < la & y >= 0 & y < ha
                     && deep < dataP[13][x][y]) {
+                dataP[13][x][y] = deep;
                 return true;
                 
             }
