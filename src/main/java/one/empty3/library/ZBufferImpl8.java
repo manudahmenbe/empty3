@@ -906,9 +906,9 @@ public void predraw() {
                        Double u, Double v, Double w, Representable r) {
       //  rotate(p);
       // ime.testDeep(new Point3D(px, py, pz), new Point3D(nx, ny, nz), r.texture().getColorAt(u, v));
-       data1.addData(px, py, pz,
-        tx, ty, tz, nx, ny, nz, u, v, 0.0, r);
-       return true;
+      if( data1.addData(px, py, pz,
+        tx, ty, tz, nx, ny, nz, u, v, w, r))
+          System.out.println(":");
 }
     public void tracerLumineux() {
         throw new UnsupportedOperationException("Not supported yet."); // To
