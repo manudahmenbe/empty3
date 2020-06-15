@@ -960,7 +960,7 @@ public void predraw() {
     }
 
     public void tracerQuad(Point3D pp1, Point3D pp2, Point3D pp3, Point3D pp4, ITexture texture, double u0, double u1,
-                           double v0, double v1, ParametricSurface n) {
+                           double v1, double v0, ParametricSurface n) {
         Point p1, p2, p3, p4;
         p1 = camera().coordonneesPoint2D(pp1, this);
         p2 = camera().coordonneesPoint2D(pp2, this);
