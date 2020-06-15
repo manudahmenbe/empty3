@@ -146,7 +146,7 @@ class Data {
             y = (int) ce.getY();
             if (x >= 0 & x < la & y >= 0 & y < ha
                     && deep < dataP[13][x][y]) {
-                dataP[13][x][y] = deep;
+                dataP[13][y][x] = deep;
                 return true;
                 
             }
@@ -163,7 +163,7 @@ class Data {
                    i[x + la * y] = container[y] [x]. texture().getColorAt(
                           dataP[9][y][x], dataP[10][y][x]);
            else  
-                i[y + la * x] = 0;
+                i[x + la * y] = 0;
                   
             BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
         bi.setRGB(0, 0, la, ha, 
