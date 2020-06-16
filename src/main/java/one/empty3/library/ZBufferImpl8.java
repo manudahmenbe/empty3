@@ -71,7 +71,7 @@ class Data {
     ZBufferImpl8 zBuffer;
     int la;
     int ha;
-    int x, y;
+   
     public Data(int w, int h, ZBufferImpl8 zBuffer) {
         dataP = new Double[16][h][w];
        
@@ -108,8 +108,8 @@ class Data {
         Representable r) {
                Point p = null;
         if((p=testP(px, py, pz)) !=null) {
-             x=(int)p.getX();
-             y=(int)p.getY();
+             int x=(int)p.getX();
+             int y=(int)p.getY();
              dataP[0][y][x] = px;
              dataP[1][y][x] = py;
              dataP[2][y][x] = pz;
@@ -150,8 +150,8 @@ class Data {
             double deep = zBuffer.camera().distanceCamera(x3d);
 
             
-            x = (int) ce.getX();
-            y = (int) ce.getY();
+            int x = (int) ce.getX();
+            int y = (int) ce.getY();
             if ((x >= 0) & (x < la) & (y >= 0) & (y < ha)
                     && (deep < dataP[13][y][x])) {
                 dataP[13][y][x] = deep;
