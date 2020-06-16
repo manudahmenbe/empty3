@@ -142,8 +142,8 @@ class Data {
             if (x3d == null)
                 return null;
             Camera cam = zBuffer.scene().camera();
-            Point ce = cam.coordonneesPoint2D(
-                           cam.calculerPointDansRepere(x3d), 
+            Point ce = cam.coordonneesPoint2D( x3d,
+                         //  cam.calculerPointDansRepere(x3d), 
                            zBuffer);
             if (ce == null)
                 return null;
@@ -164,19 +164,18 @@ class Data {
             int [] c = new int[la*ha];
             for(int j = 0; j<ha; j++) 
                for(int i= 0; i<la; i++) {
- if((container[j][i]!=null)
-   &&( container[j][i].texture()!=null)&&
-  (  dataP[9][j][i]!=null)&&(dataP[10][j][i]!=null)
-   )
+ //if((container[j][i]!=null)
+ //  &&( container[j][i].texture()!=null)&&
+ // (  dataP[9][j][i]!=null)&&(dataP[10][j][i]!=null)
+ //  )
              
                    c[i + la * j] = container[j] [i]. texture().getColorAt(
                           dataP[9][j][i], dataP[10][j][i]);
-           else  
-                System.out.println("error point null getBitmap");
-                  }
+  //         else  
+   //             System.out.println("error point null getBitmap");
+                 }
             BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_ARGB);
-        bi.setRGB(0, 0, la, ha, 
-c, 0, la);
+        bi.setRGB(0, 0, la, ha, c, 0, la);
         return new ECBufferedImage(bi);
                      
        } 
