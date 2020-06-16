@@ -74,7 +74,7 @@ class Data {
     int x, y;
     public Data(int w, int h, ZBufferImpl8 zBuffer) {
         dataP = new Double[16][h][w];
-        colors = new int[h*w];
+       
         container = new Representable [h][w];
         this.zBuffer = zBuffer;
         this.la = w;
@@ -96,7 +96,7 @@ class Data {
                    container[j][i] = zBuffer;
                    dataP[9][j][i] = 1.0*i/la;
                    dataP[10][j][i] = 1.0*j/ha;  
-                   colors[i+la*j] = 0;
+                
                }
                   
                    
