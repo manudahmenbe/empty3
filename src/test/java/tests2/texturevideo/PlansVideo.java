@@ -17,31 +17,29 @@ public class PlansVideo extends TestObjetSub {
     private final String avi3;
     private final String avi4;
 
-    public PlansVideo(String avi1, String avi2, String avi3, String avi4) {
+    public void ginit() {
         this.avi1 = avi1;
         this.avi2 = avi2;
         this.avi3 = avi3;
         this.avi4 = avi4;
-    }
-
-    public static void main(String[] args) {
+    
         String f1;
         String f2;
         String f3;
-        String f4;
+        String f4;/*
         if (args.length >= 4) {
             f1 = args[0];
             f2 = args[1];
             f3 = args[2];
             f4 = args[3];
 
-        } else {
+        } else {*/
 
-            f1 = "C:\\EmptyCanvas\\Textures\\_10.AVI";
-            f2 = "C:\\EmptyCanvas\\Textures\\Il embrasse sur la bouche.mp4";
-            f3 = "C:\\EmptyCanvas\\Textures\\03.mkv";
-            f4 = "C:\\EmptyCanvas\\Textures\\04.mkv";
-        }
+            f1 = "empty3/resources/mov/VID_20200528_105353.mp4";
+            f2 = f1; // "C:\\EmptyCanvas\\Textures\\Il embrasse sur la bouche.mp4";
+            f3 = f1;//"C:\\EmptyCanvas\\Textures\\03.mkv";
+            f4 = f1;"C:\\EmptyCanvas\\Textures\\04.mkv";
+       // }
 
 
         if (new File(f1).isFile() && new File(f2).isFile() && new File(f3).isFile() && new File(f4).isFile()) {
@@ -64,10 +62,10 @@ public class PlansVideo extends TestObjetSub {
 
         TextureMov tc1, tc2, tc3, tc4;
 
-        tc1 = new TextureMov(avi1);
-        tc2 = new TextureMov(avi2);
-        tc3 = new TextureMov(avi3);
-        tc4 = new TextureMov(avi4);
+        tc1 = new TextureMov(f1);
+        tc2 = new TextureMov(f2);
+        tc3 = new TextureMov(f3);
+        tc4 = new TextureMov(f4);
 
         Plan3D p1, p2, p3, p4;
 
