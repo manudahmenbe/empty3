@@ -94,7 +94,7 @@ class Data {
                           
         for(int j = 0; j<ha; j++) 
                for(int i= 0; i<la; i++) {
-                   dataP[13][j][i] = Double.MAX_VALUE;
+                   dataP[13][j][i] = 9999999999.9; //Double.MAX_VALUE;
                    container[j][i] = zBuffer;
                    dataP[9][j][i] = 1.0*i/la;
                    dataP[10][j][i] = 1.0*j/ha;  
