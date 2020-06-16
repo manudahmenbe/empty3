@@ -92,13 +92,13 @@ class Data {
     public void clear() {
            
                           
-        for(int y = 0; y<ha; y++) 
-               for(int x= 0; x<la; x++) {
-                   dataP[13][y][x] = Double.MAX_VALUE;
-                   container[y][x] = zBuffer;
-                   dataP[9][y][x] = 1.0*x/la;
-                   dataP[10][y][x] = 1.0*y/ha;  
-                   colors[x+la*y] = 0;
+        for(int j = 0; j<ha; j++) 
+               for(int i= 0; i<la; i++) {
+                   dataP[13][j][i] = Double.MAX_VALUE;
+                   container[j][i] = zBuffer;
+                   dataP[9][j][i] = 1.0*i/la;
+                   dataP[10][j][i] = 1.0*j/ha;  
+                   colors[i+la*j] = 0;
                }
                   
                    
@@ -155,21 +155,21 @@ class Data {
             return false;
         }
        public ECBufferedImage getBitmap() {
-            int [] i = colors;
-            for(int y = 0; y<ha; y++) 
-               for(int x= 0; x<la; x++) 
- if((container[y][x]!=null)
-   &&( container[y][x].texture()!=null)&&
-  (  dataP[9][y][x]!=null)&&(dataP[10][y][x]!=null))
+            int [] c = colors;
+            for(int j = 0; j<ha; j++) 
+               for(int i= 0; i<la; i++) 
+ if((container[j][i]!=null)
+   &&( container[j][i].texture()!=null)&&
+  (  dataP[9][j][i]!=null)&&(dataP[10][j][i]!=null))
              
-                   i[x + la * y] = container[y] [x]. texture().getColorAt(
-                          dataP[9][y][x], dataP[10][y][x]);
+                   c[i + la * j] = container[j] [i]. texture().getColorAt(
+                          dataP[9][j][i], dataP[10][j][i]);
            else  
                 System.out.println("error point null getBitmap");
                   
             BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_ARGB);
         bi.setRGB(0, 0, la, ha, 
-i, 0, la);
+c, 0, la);
         return new ECBufferedImage(bi);
                      
        } 
