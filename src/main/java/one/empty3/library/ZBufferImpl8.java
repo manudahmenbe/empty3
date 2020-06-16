@@ -139,9 +139,10 @@ class Data {
     public boolean testDeep(Point3D x3d) {
             if (x3d == null)
                 return false;
-
-            Point ce = zBuffer.camera().coordonneesPoint2D(
-                       zBuffer.camera().calculerPointDansRepere(x3d), zBuffer);
+            Camera cam = zBuffer.scene().camera();
+            Point ce = cam.coordonneesPoint2D(
+                           cam.calculerPointDansRepere(x3d), 
+                           zBuffer);
             if (ce == null)
                 return false;
             double deep = zBuffer.camera().distanceCamera(x3d);
