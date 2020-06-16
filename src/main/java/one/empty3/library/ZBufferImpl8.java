@@ -474,7 +474,7 @@ public void predraw() {
                     } else {
                         tracerQuad(rotate(p1, n), rotate(p2, n),
                                 rotate(p3, n), rotate(p4, n),
-                                n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
+                                n.texture(), u, u + n.getIncrU(), v + n.getIncrV(), v,  n);
                     }
 
                     /*
