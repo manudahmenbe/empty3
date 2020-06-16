@@ -222,7 +222,7 @@ public class ZBufferImpl8 extends ZBufferImpl {
     private Scene currentScene;
     public Box2D box;
     private Point3D activeLight = new Point3D(-10d, 0d, 100d);
-    private int displayType = displayType;
+    private int displayType = DISPLAY_TYPE;
     ZBufferImpl8 that;
     Data data1;
     public ZBufferImpl8() {
