@@ -924,11 +924,11 @@ compiler. init(avif.getAbsolutePath()
                         ex.printStackTrace();
                     }
                     
-                    ri = z.image();
+                    ri = z.image2();
 
                     afterRenderFrame();
 
-                    ri.getGraphics().drawString(description, 0, 0);
+                   // ri.getGraphics().drawString(description, 0, 0);
 
                     if ((generate & GENERATE_MOVIE) > 0 && isAviOpen()) {
                       if(encoder==ENCODER_MONTE) {
