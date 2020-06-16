@@ -123,6 +123,7 @@ class Data {
              dataP[10][y][x] = v;
              dataP[11][y][x] = w;
              container[y][x] = r;
+             System.out.println("x,y "+x+", "+y);
              return true;
         }
         return false;
