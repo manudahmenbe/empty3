@@ -140,7 +140,8 @@ class Data {
             if (x3d == null)
                 return false;
 
-            Point ce = zBuffer.camera().coordonneesPoint2D(x3d, zBuffer);
+            Point ce = zBuffer.camera().coordonneesPoint2D(
+                       zBuffer.calculerPointDansRepere(x3d), zBuffer);
             if (ce == null)
                 return false;
             double deep = zBuffer.camera().distanceCamera(x3d);
