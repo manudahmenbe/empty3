@@ -144,6 +144,7 @@ class Data {
                 return false;
             double deep = zBuffer.camera().distanceCamera(x3d);
 
+            
             x = (int) ce.getX();
             y = (int) ce.getY();
             if (x >= 0 & x < la & y >= 0 & y < ha
