@@ -106,8 +106,10 @@ class Data {
                            Double nx, Double ny, Double nz, 
                            Double u, Double v, Double w,
         Representable r) {
-        if(testP(px, py, pz)) {
-                   
+               Point p = null;
+        if((p=testP(px, py, pz)) !=null) {
+             x=p.getX();
+             y=p.getY();
              dataP[0][y][x] = px;
              dataP[1][y][x] = py;
              dataP[2][y][x] = pz;
@@ -129,22 +131,22 @@ class Data {
         }
         return false;
     }
-    public boolean testP(Double px, Double py, Double pz) {
+    public Point testP(Double px, Double py, Double pz) {
         if(px==null || py==null || pz==null)
-                   return false;
+                   return null;
         return testDeep(new Point3D(px, py, pz));
     }
 
 
-    public boolean testDeep(Point3D x3d) {
+    public Point testDeep(Point3D x3d) {
             if (x3d == null)
-                return false;
+                return null;
             Camera cam = zBuffer.scene().camera();
             Point ce = cam.coordonneesPoint2D(
                            cam.calculerPointDansRepere(x3d), 
                            zBuffer);
             if (ce == null)
-                return false;
+                return null;
             double deep = zBuffer.camera().distanceCamera(x3d);
 
             
@@ -153,10 +155,10 @@ class Data {
             if ((x >= 0) & (x < la) & (y >= 0) & (y < ha)
                     && (deep < dataP[13][y][x])) {
                 dataP[13][y][x] = deep;
-                return true;
+                return ce;
                 
             }
-            return false;
+            return null;
         }
        public ECBufferedImage getBitmap() {
             int [] c = new int[la*ha];
