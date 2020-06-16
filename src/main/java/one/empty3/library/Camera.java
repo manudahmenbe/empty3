@@ -219,13 +219,15 @@ public class Camera extends CameraBox {
 
     Point coordonneesPointEcranPerspective(Point3D x3d, int la, int ha) {
 
-        if (x3d.getZ() > 0 && -getAngleX() < Math.atan(x3d.getX() / x3d.getZ())
+       /*
+ if (x3d.getZ() > 0 && -getAngleX() < Math.atan(x3d.getX() / x3d.getZ())
                 && Math.atan(x3d.getX() / x3d.getZ()) < getAngleX()&& -getAngleY() < Math.atan(x3d.getY() / x3d.getZ())
                 && Math.atan(x3d.getY() / x3d.getZ()) < getAngleY()) {
+       */
             double scale = (1.0 / (x3d.getZ()));
             return new Point((int) (x3d.getX() * scale * la + la / 2), (int) (-x3d.getY() * scale * ha + ha / 2));
-        }
-        return null;
+     /*   }
+        return null;*/
     }
 
     public Point coordonneesPointEcranIsometrique(Point3D p, ZBufferImpl.Box2D box, int la, int ha) {
