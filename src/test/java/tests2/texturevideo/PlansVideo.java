@@ -3,7 +3,7 @@ package tests2.texturevideo;
 import one.empty3.library.Camera;
 import one.empty3.library.Point3D;
 import one.empty3.library.TextureMov;
-import one.empty3.library.core.testing.TestObjet;
+import one.empty3.library.core.testing.TestObjetStub;
 import one.empty3.library.core.tribase.Plan3D;
 
 import java.io.File;
