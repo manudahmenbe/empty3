@@ -11,7 +11,7 @@ import java.io.File;
 /*__
  * @author Dahmen Manuel
  */
-public class PlansVideo extends TestObjet {
+public class PlansVideo extends TestObjetStub {
     private 
         String avi1;
     private  String avi2;
@@ -34,18 +34,18 @@ public class PlansVideo extends TestObjet {
             f3 = args[2];
             f4 = args[3];
 
-        } else {*/
-
-            f1 = "empty3/resources/mov/VID_20200528_105353.mp4";
+        } else {
+*/
+            f1 = "resources/mov/VID_20200528_105353.mp4";
             f2 = f1; // "C:\\EmptyCanvas\\Textures\\Il embrasse sur la bouche.mp4";
             f3 = f1;//"C:\\EmptyCanvas\\Textures\\03.mkv";
             f4 = f1;//"C:\\EmptyCanvas\\Textures\\04.mkv";
-       // }
+       /*}
 
 
-        if (new File(f1).isFile() && new File(f2).isFile() && new File(f3).isFile() && new File(f4).isFile()) {
+       /* if (new File(f1).isFile() && new File(f2).isFile() && new File(f3).isFile() && new File(f4).isFile()) {
 
-            PlansVideo pc = new PlansVideo(f1, f2, f3, f4);
+            //PlansVideo pc = new PlansVideo(f1, f2, f3, f4);
 
             pc.loop(true);
 
@@ -55,7 +55,7 @@ public class PlansVideo extends TestObjet {
 
             System.err.println("Erreur un fichier ou l'autre n'existe pas");
 
-        }
+        }*/
     
 
     
