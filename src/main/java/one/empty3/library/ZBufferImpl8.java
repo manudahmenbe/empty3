@@ -92,7 +92,7 @@ class Data {
                           
         for(int j = 0; j<ha; j++) 
                for(int i= 0; i<la; i++) {
-                   dataP[13][j][i] = 9999999999.9; //Double.MAX_VALUE;
+                   dataP[13][j][i] = -9999999999.9; //Double.MAX_VALUE;
                    container[j][i] = ZBufferImpl8.INFINI;
                    dataP[9][j][i] = 1.0*i/la;
                    dataP[10][j][i] = 1.0*j/ha;  
@@ -151,7 +151,7 @@ class Data {
             x = (int) ce.getX();
             y = (int) ce.getY();
             if (x >= 0 & x < la & y >= 0 & y < ha
-                    && deep < dataP[13][y][x]) {
+                    && deep > ]dataP[13][y][x]) {
                 dataP[13][y][x] = deep;
                 return true;
                 
