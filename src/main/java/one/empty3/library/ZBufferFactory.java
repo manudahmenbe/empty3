@@ -34,10 +34,10 @@ package one.empty3.library;
 
 public class ZBufferFactory {
 
-    private static ZBuffer insta = null;
+    private static ZBufferImpl insta = null;
     private static int la = -1, ha = -1;
 
-    public static ZBuffer instance(int x, int y) {
+    public static ZBufferImpl instance(int x, int y) {
         if (la == x && ha == y && insta != null) {
             return insta;
         }
@@ -47,7 +47,7 @@ public class ZBufferFactory {
         return insta;
     }
 
-    public static ZBuffer instance(int x, int y, boolean D3) {
+    public static ZBufferImpl instance(int x, int y, boolean D3) {
         if (la == x && ha == y && insta != null)//&& (D3 && insta instanceof ZBuffer3D || !D3))
         {
             return insta;
@@ -63,9 +63,9 @@ public class ZBufferFactory {
         return insta;
     }
 
-    public static ZBuffer instance(int x, int y, Scene s) {
+    public static ZBufferImpl instance(int x, int y, Scene s) {
 
-        ZBuffer z = new ZBufferImpl8(x, y);
+        ZBufferImpl z = new ZBufferImpl8(x, y);
         z.scene(s);
         return z;
     }
