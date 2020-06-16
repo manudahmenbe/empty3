@@ -38,7 +38,7 @@ public class PlansVideo extends TestObjetSub {
             f1 = "empty3/resources/mov/VID_20200528_105353.mp4";
             f2 = f1; // "C:\\EmptyCanvas\\Textures\\Il embrasse sur la bouche.mp4";
             f3 = f1;//"C:\\EmptyCanvas\\Textures\\03.mkv";
-            f4 = f1;"C:\\EmptyCanvas\\Textures\\04.mkv";
+            f4 = f1;//"C:\\EmptyCanvas\\Textures\\04.mkv";
        // }
 
 
