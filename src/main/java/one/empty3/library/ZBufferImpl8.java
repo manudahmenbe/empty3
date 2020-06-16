@@ -984,9 +984,9 @@ public void predraw() {
                 if (n != null) {
                     if (displayType == DISPLAY_ALL)
 
-                        pFinal = rotate(n.calculerPoint3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
+                        pFinal = n.calculerPoint3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b);
                     else {
-                        pFinal = rotate(pFinal, n);
+                        pFinal = pFinal;
 
                     }
                 }
