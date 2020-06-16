@@ -93,7 +93,7 @@ class Data {
         for(int j = 0; j<ha; j++) 
                for(int i= 0; i<la; i++) {
                    dataP[13][j][i] = 9999999999.9; //Double.MAX_VALUE;
-                   container[j][i] = zBuffer;
+                   container[j][i] = INFINI;
                    dataP[9][j][i] = 1.0*i/la;
                    dataP[10][j][i] = 1.0*j/ha;  
                 
@@ -163,7 +163,8 @@ class Data {
                for(int i= 0; i<la; i++) {
  if((container[j][i]!=null)
    &&( container[j][i].texture()!=null)&&
-  (  dataP[9][j][i]!=null)&&(dataP[10][j][i]!=null))
+  (  dataP[9][j][i]!=null)&&(dataP[10][j][i]!=null)
+   )
              
                    c[i + la * j] = container[j] [i]. texture().getColorAt(
                           dataP[9][j][i], dataP[10][j][i]);
