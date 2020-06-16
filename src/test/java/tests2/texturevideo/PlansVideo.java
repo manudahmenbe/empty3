@@ -12,10 +12,11 @@ import java.io.File;
  * @author Dahmen Manuel
  */
 public class PlansVideo extends TestObjet {
-    private final String avi1;
-    private final String avi2;
-    private final String avi3;
-    private final String avi4;
+    private 
+        String avi1;
+    private  String avi2;
+    private  String avi3;
+    private  String avi4;
 
     public void ginit() {
         this.avi1 = avi1;
