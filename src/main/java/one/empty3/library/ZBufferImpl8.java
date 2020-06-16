@@ -120,8 +120,9 @@ class Data {
              dataP[9][y][x] = u;
              dataP[10][y][x] = v;
              dataP[11][y][x] = w;
-             if(r==null)
-                 r = new Point3D(px, py, pz);
+             if(r==null){
+                 r = zBuffer;
+                        }
              container[y][x] = r;
              System.out.println("x,y "+x+", "+y);
              return true;
