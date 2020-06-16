@@ -3,7 +3,7 @@ package tests2.texturevideo;
 import one.empty3.library.Camera;
 import one.empty3.library.Point3D;
 import one.empty3.library.TextureMov;
-import one.empty3.library.core.testing.TestObjetSub;
+import one.empty3.library.core.testing.TestObjet;
 import one.empty3.library.core.tribase.Plan3D;
 
 import java.io.File;
@@ -11,7 +11,7 @@ import java.io.File;
 /*__
  * @author Dahmen Manuel
  */
-public class PlansVideo extends TestObjetSub {
+public class PlansVideo extends TestObjet {
     private final String avi1;
     private final String avi2;
     private final String avi3;
@@ -55,11 +55,9 @@ public class PlansVideo extends TestObjetSub {
             System.err.println("Erreur un fichier ou l'autre n'existe pas");
 
         }
-    }
+    
 
-    @Override
-    public void testScene() throws Exception {
-
+    
         TextureMov tc1, tc2, tc3, tc4;
 
         tc1 = new TextureMov(f1);
