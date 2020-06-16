@@ -204,8 +204,6 @@ public class ZBufferImpl8 extends ZBufferImpl {
     protected double angleY = Math.PI / 3;
     protected ECBufferedImage bi;
     protected ImageMap ime;
-    protected int ha;
-    protected int la;
     public static Point3D INFINI = new Point3D(0d, 0d, INFINI_PROF);
     private Camera cameraC = new Camera();
     // PARAMETRES
