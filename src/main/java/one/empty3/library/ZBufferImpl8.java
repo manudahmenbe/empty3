@@ -151,7 +151,7 @@ class Data {
             x = (int) ce.getX();
             y = (int) ce.getY();
             if (x >= 0 & x < la & y >= 0 & y < ha
-                    && deep > ]dataP[13][y][x]) {
+                    && deep > dataP[13][y][x]) {
                 dataP[13][y][x] = deep;
                 return true;
                 
