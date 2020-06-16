@@ -142,8 +142,8 @@ class Data {
             if (x3d == null)
                 return null;
             Camera cam = zBuffer.scene().camera();
-            Point ce = cam.coordonneesPoint2D( x3d,
-                         //  cam.calculerPointDansRepere(x3d), 
+            Point ce = cam.coordonneesPoint2D(
+                           cam.calculerPointDansRepere(x3d), 
                            zBuffer);
             if (ce == null)
                 return null;
