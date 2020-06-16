@@ -126,7 +126,7 @@ class Data {
                  r = zBuffer;
                         }
              container[y][x] = r;
-             System.out.println("x,y "+x+", "+y);
+             //System.out.println("x,y "+x+", "+y);
              return true;
         }
         return false;
