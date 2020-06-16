@@ -164,7 +164,7 @@ private ManualVideoCompile compiler ;
     private AudioFormat audioFormat;
     private Resolution dimension = VGAZIZI;
     private String name;
-    protected ZBuffer z() {return z;}
+    protected ZBufferImpl z() {return z;}
     public TestObjet() {
 
         init();
