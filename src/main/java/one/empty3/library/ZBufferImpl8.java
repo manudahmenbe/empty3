@@ -108,8 +108,8 @@ class Data {
         Representable r) {
                Point p = null;
         if((p=testP(px, py, pz)) !=null) {
-             x=p.getX();
-             y=p.getY();
+             x=(int)p.getX();
+             y=(int)p.getY();
              dataP[0][y][x] = px;
              dataP[1][y][x] = py;
              dataP[2][y][x] = pz;
@@ -224,7 +224,7 @@ public class ZBufferImpl8 extends ZBufferImpl {
     private Scene currentScene;
     public Box2D box;
     private Point3D activeLight = new Point3D(-10d, 0d, 100d);
-    private int displayType = DISPLAY_TYPE;
+    private int displayType = DISPLAY_ALL;
     ZBufferImpl8 that;
     Data data1;
     public ZBufferImpl8() {
