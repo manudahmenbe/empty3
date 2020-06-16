@@ -67,9 +67,7 @@ class Data {
       * Representable surface line point3d
       */
     Double [][][] dataP;
-    int [] colors;
     Representable [][] container;
-    Camera camera ;
     ZBufferImpl8 zBuffer;
     int la;
     int ha;
@@ -156,9 +154,9 @@ class Data {
             return false;
         }
        public ECBufferedImage getBitmap() {
-            int [] c = colors;
+            int [] c = new int[la*ha];
             for(int j = 0; j<ha; j++) 
-               for(int i= 0; i<la; i++) 
+               for(int i= 0; i<la; i++) {
  if((container[j][i]!=null)
    &&( container[j][i].texture()!=null)&&
   (  dataP[9][j][i]!=null)&&(dataP[10][j][i]!=null))
@@ -167,7 +165,7 @@ class Data {
                           dataP[9][j][i], dataP[10][j][i]);
            else  
                 System.out.println("error point null getBitmap");
-                  
+                  }
             BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_ARGB);
         bi.setRGB(0, 0, la, ha, 
 c, 0, la);
