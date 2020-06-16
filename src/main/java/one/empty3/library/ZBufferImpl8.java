@@ -82,7 +82,7 @@ class Data {
         this.ha = h;
                
 
-          System.out.println("la,ha "+la", "+ha);         
+          System.out.println("la,ha "+la+", "+ha);         
                    
                   
     }
