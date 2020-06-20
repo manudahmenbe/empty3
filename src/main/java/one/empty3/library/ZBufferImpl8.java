@@ -175,7 +175,7 @@ class Data {
            else  
                 System.out.println("error texture null Data.getBitmap");
                  }
-            BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
         bi.setRGB(0, 0, la, ha, c, 0, la);
         return new ECBufferedImage(bi);
                      
