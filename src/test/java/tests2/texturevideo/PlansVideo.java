@@ -106,9 +106,4 @@ public class PlansVideo extends TestObjetStub {
                 )
         );
      }
-
-        
-
-
-    }
 }
