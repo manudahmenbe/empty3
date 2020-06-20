@@ -417,7 +417,7 @@ public void predraw() {
             // TODO Dessiner les bords
             for (double u = n.getStartU(); u <= n.getEndU(); u += n.getIncrU()) {
                 // System.out.println("(u,v) = ("+u+","+")");
-                for (double v = n.getStartU(); v <= n.getEndV(); v += n.getIncrV()) {
+                for (double v = n.getStartV(); v <= n.getEndV(); v += n.getIncrV()) {
                     /*
                      * draw(new TRI(n.calculerPoint3D(u, v), n.calculerPoint3D(u + n.getIncrU(), v),
                      * n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.texture()), n);
