@@ -415,9 +415,9 @@ public void predraw() {
             // System.out.println("Surface");
             ParametricSurface n = (ParametricSurface) r;
             // TODO Dessiner les bords
-            for (double u = n.getStartU(); u <= n.getEndU(); u += n.getIncrU()) {
+            for (double u = n.getStartU(); u <= n.getEndU()-n.getIncrU(); u += n.getIncrU()) {
                 // System.out.println("(u,v) = ("+u+","+")");
-                for (double v = n.getStartV(); v <= n.getEndV(); v += n.getIncrV()) {
+                for (double v = n.getStartV(); v <= n.getEndV()-n.getIncrV(); v += n.getIncrV()) {
                     /*
                      * draw(new TRI(n.calculerPoint3D(u, v), n.calculerPoint3D(u + n.getIncrU(), v),
                      * n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.texture()), n);
@@ -479,7 +479,7 @@ public void predraw() {
                     } else {
                         tracerQuad(rotate(p1, n), rotate(p2, n),
                                 rotate(p3, n), rotate(p4, n),
-                                n.texture(), u, u + n.getIncrU(), v + n.getIncrV(), v,  n);
+                                n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(),  n);
                     }
 
                     /*
@@ -966,7 +966,7 @@ public void predraw() {
     }
 
     public void tracerQuad(Point3D pp1, Point3D pp2, Point3D pp3, Point3D pp4, ITexture texture, double u0, double u1,
-                           double v1, double v0, ParametricSurface n) {
+                           double v0, double v1, ParametricSurface n) {
         Point p1, p2, p3, p4;
         p1 = camera().coordonneesPoint2D(pp1, this);
         p2 = camera().coordonneesPoint2D(pp2, this);
