@@ -19,8 +19,6 @@ public class PlansVideo extends TestObjetSub {
     private String avi4;
 
     public void ginit() {
-        setResx(1920);
-        setResy(1080);
         String f1;
         String f2;
         String f3;
