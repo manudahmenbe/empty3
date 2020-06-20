@@ -168,11 +168,12 @@ class Data {
  //  &&( container[j][i].texture()!=null)&&
  // (  dataP[9][j][i]!=null)&&(dataP[10][j][i]!=null)
  //  )
-             
+             if(dataP[9][j][i]!=null&&dataP[10][j][i]!=null)
                    c[i + la * j] = container[j] [i]. texture().getColorAt(
                           dataP[9][j][i], dataP[10][j][i]);
-  //         else  
-   //             System.out.println("error point null getBitmap");
+             
+           else  
+                System.out.println("error texture null Data.getBitmap");
                  }
             BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_ARGB);
         bi.setRGB(0, 0, la, ha, c, 0, la);
