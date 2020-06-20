@@ -136,8 +136,8 @@ scm:git:git://github.com/manuelddahmen/empty3.git
 <!--<argument>class=test3.waterfall_demo.Waterfall_Demo</argument>-->
     <!--  <argument>class=test3.QuadratureCercle</argument>-->
 <!-- <argument>class=test3.QuadratureCercle</argument>-->
-<argument>resx=640</argument>
-<argument>resy=480</argument>
+<argument>resx=1920</argument>
+<argument>resy=1080</argument>
 <argument>maxFrames=3000</argument>
                    </arguments>
 		<argLine>-Xms4000-Xmx4000m</argLine>
