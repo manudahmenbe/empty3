@@ -92,19 +92,22 @@ public class PlansVideo extends TestObjetStub {
         p4.pointOrigine(Point3D.O0);
         p4.pointXExtremite(Point3D.X.mult(-1d));
         p4.pointYExtremite(Point3D.Y.mult(-1d));
-
+        
+        scene().add(p1);
+        scene().add(p2);
+        scene().add(p3);
+        scene().add(p4);
+    }
+    public void finit() {
         scene().cameraActive(
                 new Camera(
                         new Point3D(0d, 0d, -1d),
                         Point3D.O0
                 )
         );
+     }
 
-
-        scene().add(p1);
-        scene().add(p2);
-        scene().add(p3);
-        scene().add(p4);
+        
 
 
     }
