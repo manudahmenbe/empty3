@@ -19,6 +19,8 @@ public class PlansVideo extends TestObjetSub {
     private String avi4;
 
     public void ginit() {
+        setResx(1920);
+        setResy(1080);
         String f1;
         String f2;
         String f3;
@@ -98,7 +100,7 @@ public class PlansVideo extends TestObjetSub {
 
         scene().cameraActive(
                 new Camera(
-                        new Point3D(0d, 0d, -10d),
+                        new Point3D(0d, 0d, -1.2d),
                         Point3D.O0
                 )
         );
