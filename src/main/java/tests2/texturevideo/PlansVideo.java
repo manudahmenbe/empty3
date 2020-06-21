@@ -95,7 +95,14 @@ public class PlansVideo extends TestObjetSub {
         p4.pointOrigine(Point3D.O0);
         p4.pointXExtremite(Point3D.X.mult(-1d));
         p4.pointYExtremite(Point3D.Y.mult(-1d));
-
+        p1.setIncrU(0.5);
+        p1.setIncrV(0.5);
+        p2.setIncrU(0.5);
+        p2.setIncrV(0.5);
+        p3.setIncrU(0.5);
+        p3.setIncrV(0.5); 
+        p4.setIncrU(0.5);
+        p4.setIncrV(0.5);
         scene().cameraActive(
                 new Camera(
                         new Point3D(0d, 0d, -1.2d),
