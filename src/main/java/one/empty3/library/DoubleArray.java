@@ -5,7 +5,7 @@ import java.util.*;
 * quand ils sont vides.
 */
 public class DoubleArray {
-    private int length = 1000*1000*1000;
+    private int length = 1000*1000;
     List<Double[]> doubles;
     List<Integer[]> index;
     int spaces;
