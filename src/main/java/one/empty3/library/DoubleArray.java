@@ -36,7 +36,7 @@ public class DoubleArray {
          }
     }
 
-    public boolean clearCalculus(int indexes) {
+    public boolean clearCalculus(int indexesOrigin, int indexesIntermediates, int indexesFinalResult) {
          return false;
     }
     public Double getDouble(int index) {
