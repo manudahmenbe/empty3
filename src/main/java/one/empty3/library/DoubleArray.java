@@ -35,6 +35,10 @@ public class DoubleArray {
              }
          }
     }
+
+    public boolean clearCalculus(int indexes) {
+         return false;
+    }
     public Double getDouble(int index) {
         return doubles.get(0)[this.index.get(0)[index]];
     }
