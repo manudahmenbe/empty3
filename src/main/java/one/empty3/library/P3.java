@@ -5,6 +5,10 @@ public class P3 {
      private int start;
      private int stop;
      private boolean disposable;
-
+     
+     public P3(double x, double y, double z) {
+          start = da.addDoubles(3);
+          da.setDoubles(start, x, y, z);
+     }
 
 }
