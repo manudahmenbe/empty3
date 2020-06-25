@@ -61,6 +61,14 @@ public class DoubleArray {
         return start;
         
     }
+    public int setDoubles(int start, Double... ds) {
+        for (int i = start; i<ds.length ; i++) {
+            doubles.get(0)[i] = ds[i-start];
+            max++;
+        }
+        return start;
+        
+    }
     public int addDoubles(int n) {
         int start = max;
         for (int i = 0; i<n ; i++) {
