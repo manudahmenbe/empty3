@@ -44,7 +44,7 @@ package one.empty3.library;
  * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class P {
-
+    public static Class<Representable> p;
     public static final Point3D n(double a, double b, double c) {
         return new Point3D(a, b, c);
     }
