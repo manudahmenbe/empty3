@@ -21,7 +21,7 @@ public class vec extends Representable {
          super();
          
          if(da==null)
-              da = new DoubleArray();
+              da = new DoubleArray(10, 10000);
          
      }
 
