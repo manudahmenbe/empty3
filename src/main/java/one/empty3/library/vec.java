@@ -40,7 +40,7 @@ public class vec extends Representable {
           da.setDoubles(start, x, y, z, t);
      }
      public vec(vec v1, double... c) {
-         this(v1.length+c.length);
+         this(v1.length()+c.length);
          int i; int j=0;
          for( i=start; i<start+n; i++)
              da.setDoubles(i, v1.get(j++));
