@@ -488,18 +488,18 @@ public vec mult(double d) {
 
     @Override
     public boolean ISdrawStructureDrawFastIMPLEMENTED(ZBuffer z) {
-        return super.ISdrawStructureDrawFastIMPLEMENTED(z); //To change body of generated methods, choose Tools | Templates.
+         return false;//To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void drawStructureDrawFast(ZBuffer z) {
 
-        z.testDeep(this, new Color(CFAST.getColorAt(0.5, 0.5)));
+      
 
     }
 
     public Point2D get2D() {
-        return new vec(get(0), get(1));
+        return new Point2D(get(0), get(1));
     }
 
     public void normalize() {
@@ -538,7 +538,7 @@ public vec mult(double d) {
 
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredDataStructure().put("coordArr/coordonnées", coordArr);
+        getDeclaredDataStructure().put("coordArr/coordonnées", null);
     }
 /*
     public Double get(int i) {
