@@ -8,24 +8,41 @@ public class vec extends Representable {
      public int length() {
          return n;
      }
+
+     private vec() {
+         
+         super();
+         
+         if(da==null)
+              da = new DoubleArray();
+         
+     }
      public vec(double x, double y, double z) {
+          this();
+          start = da.getDoubles(3);
           n = 3;
-          start = da.addDoubles(n);
           da.setDoubles(start, x, y, z);
      }
 
      public vec(double x, double y, double z,
          double t) {
+          this();
           n = 4;
           start = da.addDoubles(n);
          
           da.setDoubles(start, x, y, z, t);
      }
      public vec(vec v1, double... c) {
+         this();
+
      }
      public vec(vec... v) {
+         this();
+
      }
      public vec(double d, vec ... c) {
+         this();
+
      }
 
 
