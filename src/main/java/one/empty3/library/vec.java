@@ -479,6 +479,7 @@ public vec mult(double d) {
         s += " )\n\t("
                 + texture.toString()
                 + ")\n)\n";
+        return s;
     }
 
     @Override
