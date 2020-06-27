@@ -496,30 +496,29 @@ public vec mult(double d) {
     public vec statOp(vec p, char po, int length){
         switch(po) {
                 case '+':
-                for(int i=0; i<3; i++)
-             coordArr.setElem(i,coordArr.getElem(i)+p.get(i));
+                for(int i=0; i<n; i++)
+                     set(i,get(i)+p.get(i));
                 break;
                 case '-':
-                    for(int i=0; i<3; i++)
-              coordArr.setElem( coordArr.getElem(i)-p.get(i));
+                    for(int i=0; i<n; i++)
+                        set(i, coordArr.getElem(i)-p.get(i));
                 break;
                     case '*':
                         
-        for(int i=0; i<3; i++)
-              coordArr.setElem( i,  coordArr.getElem(i)*p.get(i));
+        for(int i=0; i<n; i++)
+              set( i,  get(i)*p.get(i));
                 break;
                     case '/':
                 
-        for(int i=0; i<3; i++)
-              coordArr.setElem(i,
-            coordArr.getElem(i)/p.get(i));
+        for(int i=0; i<n; i++)
+              set(i, get(i)/p.get(i));
                 break;
                 case '.':
                 double sum = 0.0;
-                for(int i=0; i<3; i++)
+                for(int i=0; i<n; i++)
               
-                  sum += coordArr.getElem(i)*p.get(i);
-                coordArr.setElem(0, sum);
+                  sum += get(i)*p.get(i);
+                   set(0, sum);
                 break;
                 }
            
