@@ -178,7 +178,7 @@ public class vec extends Representable {
     public vec(Double... x0) {
         int i=0;
         for(Double d : x0) {
-           set(d,i);
+           set(i, d);
            i++;
         }
     }
