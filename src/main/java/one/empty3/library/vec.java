@@ -32,7 +32,7 @@ package one.empty3.library;
  */
 import one.empty3.library.core.nurbs.ParametricCurve;
 import one.empty3.library.core.nurbs.ParametricSurface;
-import java.awt.*;
+import java.awt.Color;
 import java.util.*;
 
 
@@ -82,11 +82,11 @@ public class vec extends Representable {
      }
      public vec(vec... v) {
          this();
-
+         int i;
          int m = v.length;
-         for(int i=0; i<m; i++) 
+         for(i=0; i<m; i++) 
              n+= v[i].length();
-         da.addDoubles(n);
+         start = da.addDoubles(n);
          i=0;
          int j = 0;
          int k = 0;
@@ -470,8 +470,13 @@ public vec mult(double d) {
     }
 
     public String toLongString() {
-        //Color c = texture.toString();
-        return "p ( \n\t(" + coordArr.getElem(0) + " , " + coordArr.getElem(1)+ " , " + coordArr.getElem(2)+ " )\n\t("
+        String s = "p ( \n\t(";
+        for(int i = start; i<start+n; i++) {
+             s+= get(i);
+             if(i<start+n)
+                  s += ", ";
+        }
+        s += " )\n\t("
                 + texture.toString()
                 + ")\n)\n";
     }
