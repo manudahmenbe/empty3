@@ -46,13 +46,23 @@ public class vec extends Representable {
      }
      public vec(vec... v) {
          this();
-         int i;
-         for( i=start; i<start+n; i++)
-             da.setDoubles(start, i);
-     }
-     public vec(double d, vec ... c) {
-         this();
 
+         int m = v.length;
+         for(int i=0; i<m; i++) 
+             n+= v[i].length();
+         da.addDoubles(n);
+         i=0;
+         int j = 0;
+         int k = 0;
+         for(i=start; i<start+n; i++) {
+             da.setDoubles(i, v[j].get(k));
+             k++;
+             if(k>=v[j].length) {
+                 k=0;
+                 j++;
+             } else
+                 k++;
+         }
      }
 
 
@@ -181,7 +191,7 @@ public class vec extends Representable {
      * @param p0 point à copier
      */
     public vec(vec p0) {
-        this();
+        this(p0.length);
         for(int i=0; i<p0.length(); i++)
             set(i, p0.get(i));
         texture(p0.texture);
