@@ -107,11 +107,6 @@ public class vec extends Representable {
     public static final vec INFINI = new vec(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
     /*__
      * *
-     * Coordonnées (coordArr,y,z) du point
-     */
-    StructureMatrix<Double> coordArr = new StructureMatrix<>(1, Double.class);
-    /*__
-     * *
      * Pour le tracé de surface normale au point
      */
     protected vec normale;
@@ -495,12 +490,10 @@ public vec mult(double d) {
         this.coordArr = coordArr;
     }
 /*
-    public Point3D calculerPoint0dT(double t) {
-        return this;
-    }
     
     
-    public Point3D statOp(Point3D p, char po, int length){
+    
+    public vec statOp(vec p, char po, int length){
         switch(po) {
                 case '+':
                 for(int i=0; i<3; i++)
