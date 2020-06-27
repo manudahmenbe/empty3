@@ -441,7 +441,7 @@ public vec mult(double d) {
     }
 
     public Point2D get2D() {
-        return new Point2D(get(0), get(1));
+        return new vec(get(0), get(1));
     }
 
     public void normalize() {
@@ -462,7 +462,7 @@ public vec mult(double d) {
 
     public vec changeTo(vec dst) {
         for (int i = 0; i < 3; i++)
-            this.coordArr.setElem(dst.coordArr.getElem(i),i);
+            this.set(i, dst.get(i));
 
         texture(dst.texture());
         return this;
@@ -472,9 +472,6 @@ public vec mult(double d) {
         return new vec(i, i1, i2);
     }
 
-    public double getLength() {
-        return norme();
-    }
 
 
   
