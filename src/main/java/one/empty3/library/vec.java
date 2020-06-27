@@ -93,7 +93,7 @@ public class vec extends Representable {
          for(i=start; i<start+n; i++) {
              da.setDoubles(i, v[j].get(k));
              k++;
-             if(k>=v[j].length) {
+             if(k>=v[j].length()) {
                  k=0;
                  j++;
              } else
@@ -227,7 +227,7 @@ public class vec extends Representable {
      * @param p0 point à copier
      */
     public vec(vec p0) {
-        this(p0.length);
+        this(p0.length());
         for(int i=0; i<p0.length(); i++)
             set(i, p0.get(i));
         texture(p0.texture);
@@ -283,7 +283,7 @@ public static vec random(Double d, int n) {
 
     public Double get(int i) {
        // if(i>=0 && i<3 && coordArr.data1d.size()==3)
-            return da.getDoubles(start, i);
+            return da.getDouble(start+ i);
        /* else
             try {
                 throw new Throwable("vec coordArr out of bounds or array dim error\nValues="+coordArr.toString()+"\nSize="+coordArr.data1d.size());
