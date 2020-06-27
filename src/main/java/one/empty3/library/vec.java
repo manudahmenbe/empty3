@@ -506,7 +506,7 @@ public vec mult(double d) {
     public StructureMatrix<Double> getCoordArr() {
         StructureMatrix<Double> coordArr = new StructureMatrix<>(1, Double.class);
          for(int i= 0; i<n; i++)
-            coordArr.data1d.add(get(i)));
+            coordArr.data1d.add(get(i));
          return null;
     }
 
@@ -550,6 +550,6 @@ public vec mult(double d) {
         
         return this;
     }*/
-}
+
 
 }
