@@ -6,7 +6,7 @@ public class vec {
      private int n;
      private boolean disposable;
      public int length() {
-         return length;
+         return n;
      }
      public vec(double x, double y, double z) {
           n = 3;
