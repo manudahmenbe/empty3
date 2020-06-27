@@ -374,7 +374,7 @@ public static vec random(Double d, int n) {
         return p1;
  }
 public vec mult(double d) {
-        vec p1 = new Point3D(this);
+        vec p1 = new vec(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)*d);
         
