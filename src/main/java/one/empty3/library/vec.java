@@ -18,19 +18,19 @@ public class vec extends Representable {
               da = new DoubleArray();
          
      }
+
+     public vec(int n) {
+          start = da.addDoubles(n);
+          this.n = n;
+     }
      public vec(double x, double y, double z) {
-          this();
-          start = da.getDoubles(3);
-          n = 3;
+          this(3);
           da.setDoubles(start, x, y, z);
      }
 
      public vec(double x, double y, double z,
          double t) {
-          this();
-          n = 4;
-          start = da.addDoubles(n);
-         
+          this(4);
           da.setDoubles(start, x, y, z, t);
      }
      public vec(vec v1, double... c) {
