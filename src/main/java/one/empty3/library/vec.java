@@ -2,8 +2,9 @@ package one.empty3.library;
 
 import one.empty3.library.core.nurbs.ParametricCurve;
 import one.empty3.library.core.nurbs.ParametricSurface;
-
 import java.awt.*;
+import java.util.*;
+
 
 public class vec extends Representable {
      protected vec normale;
