@@ -128,7 +128,7 @@ public class vec extends Representable {
      */
     public vec(Double x0, Double y0, Double z0) {
         super();
-        setElem( 0, z0);
+        set( 0, z0);
         set(1, y0);
         set(2, z0);
  }
@@ -153,15 +153,15 @@ public class vec extends Representable {
     public vec(Double... x0) {
         int i=0;
         for(Double d : x0) {
-         coordArr.setElem(d,i);
-         i++;
+           set(d,i);
+           i++;
         }
     }
 
     public vec(Double[] x0, ITexture t) {
         int i=0;
         for(Double d : x0) {
-         coordArr.setElem(d,i);
+         set(i, d);
          i++;
         }
         texture(t);
