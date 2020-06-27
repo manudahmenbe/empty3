@@ -465,7 +465,7 @@ public vec mult(double d) {
     }
 
     public void set(int i, Double d) {
-        da.getDoubles(start, i);
+        da.setDoubles(start+ i, d);
 
     }
 
@@ -483,7 +483,7 @@ public vec mult(double d) {
 
     @Override
     public String toString() {
-        return "\n\tp3( " + (Double) (coordArr.getElem(0)) + " , " + (Double) (coordArr.getElem(1)) + " , " + (Double) (coordArr.getElem(2)) + " ) ";
+        return toLongString();
     }
 
     @Override
