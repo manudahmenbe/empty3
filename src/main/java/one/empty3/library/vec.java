@@ -83,27 +83,27 @@ public class vec extends Representable {
      * *
      * axe X vector
      */
-    public static final vec X = new Point3D(1d, 0d, 0d);
+    public static final vec X = new vec(1d, 0d, 0d);
     /*__
      * *
      * axe Y vector
      */
-    public static final vec Y = new Point3D(0d, 1d, 0d);
+    public static final vec Y = new vec(0d, 1d, 0d);
     /*__
      * *
      * axe Z vector
      */
-    public static final vec Z = new Point3D(0d, 0d, 1d);
+    public static final vec Z = new vec(0d, 0d, 1d);
     /*__
      * *
      * O0 origin
      */
-    public static final vec O0 = new Point3D(0d, 0d, 0d);
+    public static final vec O0 = new vec(0d, 0d, 0d);
     /*__
      * *
      * Point "Infinite" limite pour Z-Buffer
      */
-    public static final vec INFINI = new Point3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
+    public static final vec INFINI = new vec(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
     /*__
      * *
      * Coordonnées (coordArr,y,z) du point
@@ -198,9 +198,9 @@ public class vec extends Representable {
      * @param p2 Point2
      * @return
      */
-    public static Double distance(Point3D p1, Point3D p2) {
+    public static Double distance(vec p1, vec p2) {
         double d = 0.0;
-        for(int i=0; i<p1.getCoordArr().getData1d().size(); i++)
+        for(int i=0; i<p1.length(); i++)
             d+=(p1.get(i)-p2.get(i))*(p1.get(i)*p2.get(i));
         return Math.sqrt(d);
    }
@@ -208,11 +208,11 @@ public class vec extends Representable {
 
 
     public static vec random(Double d) {
-        return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
+        return new vec(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
 public static vec random(Double d, int n) {
         
-        return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
+        return new vec(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
     public static vec r(Double d) {
         return random(d);
@@ -225,15 +225,15 @@ public static vec random(Double d, int n) {
 
     @Override
     public Object clone() {
-        return new Point3D(coordArr);
+        return new vec(this);
     }
 
     public Double get(int i) {
        // if(i>=0 && i<3 && coordArr.data1d.size()==3)
-            return coordArr.getElem(i);
+            return da.getDoubles(start, i);
        /* else
             try {
-                throw new Throwable("point3D coordArr out of bounds or array dim error\nValues="+coordArr.toString()+"\nSize="+coordArr.data1d.size());
+                throw new Throwable("vec coordArr out of bounds or array dim error\nValues="+coordArr.toString()+"\nSize="+coordArr.data1d.size());
             } catch (Throwable throwable) {
                 throwable.printStackTrace();
             }
@@ -242,13 +242,16 @@ public static vec random(Double d, int n) {
     public vec scale() {
         if(scale==null)
         {
-            return Point3D.n(1.,1.,1.);
+            return this;
         }
-         return new Point3D (get(0)*scale.get(1),get(1)*scale.get(1),get(2)*scale.get(2));
+         return new vec(get(0)*scale.get(1),get(1)*scale.get(1),get(2)*scale.get(2));
     }
 
     public List<Double> getDoubleArray() {
-        return coordArr.getData1d();
+        List<Double> coordArr = new ArrayList<>();
+        for(int i = 0; i<n; i++)
+            coordArr.add(get(i));
+        return coordArr;
     }
 
 
@@ -261,34 +264,34 @@ public static vec random(Double d, int n) {
     }
 
     public Double getY() {
-        return coordArr.getElem(1);
+        return get(1);
     }
 
     public void setY(Double x0) {
-        coordArr.setElem(x0, 1);
+        set( 1, x0);
 
     }
     public Double getZ() {
-        return coordArr.getElem(2);
+        return get(2);
     }
 
     public void setZ(Double x0) {
-        coordArr.setElem(x0, 2);
+        set(2, x0);
 
     }
     public Double getX() {
-        return coordArr.getElem(0);
+        return get(0);
     }
 
     public void setX(Double x0) {
-        coordArr.setElem(x0, 0);
+        set(0, x0);
 
     }
 
 
-    public Point3D plus(vec p){
+    public vec plus(vec p){
         vec p1 = new vec(this);
-        for(int i=0;i<coordArr.data1d.size(); i++)
+        for(int i=0;i<n; i++)
             p1.set(i, get(i)+p.get(i));
         
         return p1;
@@ -296,7 +299,7 @@ public static vec random(Double d, int n) {
     
     public vec moins(vec p) {
         vec p1 = new vec(this);
-        for(int i=0;i<coordArr.data1d.size(); i++)
+        for(int i=0;i<n; i++)
             p1.set(i, get(i)-p.get(i));
         
         return p1;
@@ -312,14 +315,14 @@ public static vec random(Double d, int n) {
 
     public vec mult(Point3D p) {
         vec p1 = new vec(this);
-        for(int i=0;i<coordArr.data1d.size(); i++)
+        for(int i=0;i<n; i++)
             p1.set(i, get(i)*p.get(i));
         
         return p1;
  }
 public vec mult(double d) {
         vec p1 = new Point3D(this);
-        for(int i=0;i<coordArr.data1d.size(); i++)
+        for(int i=0;i<n; i++)
             p1.set(i, get(i)*d);
         
         return p1;
@@ -336,7 +339,7 @@ public vec mult(double d) {
      */
     public Double norme() {
         double n = 0.0;
-        for(int i=0; i<coordArr.getData1d().size(); i++)
+        for(int i=0; i<n; i++)
             n+= get(i)*get(i);
         return Math.sqrt(n);
     }
@@ -360,7 +363,7 @@ public vec mult(double d) {
      */
     public vec plus(Double d) {
         vec p = new vec(this);
-        for(int i=0; i<coordArr.getData1d().size(); i++)
+        for(int i=0; i<n; i++)
             p.set(i, get(i)+d);
         return p;
     }
@@ -377,8 +380,8 @@ public vec mult(double d) {
     public Double prodScalaire(vec p2) {
         double s = 0.0;
         if(p2!=null) {
-            for(int i=0; i<coordArr.getData1d().size(); i++)
-            s +=coordArr.getElem(0) * p2.getX() + coordArr.getElem(1) * p2.getY() + coordArr.getElem(2) * p2.getZ();
+            for(int i=0; i<n; i++)
+            s +=get(i) * p2.get(i);
         }
         else
             throw new NullPointerException("Exception prodScalre p2==null");
@@ -403,13 +406,13 @@ public vec mult(double d) {
      * @return
      */
     public vec prodVect(vec p1) {
-        return new Point3D(p1.getY() * getZ() + -p1.getZ() * getY(), p1.getZ()
+        return new vec(p1.getY() * getZ() + -p1.getZ() * getY(), p1.getZ()
                 * getX() - p1.getX() * getZ(), p1.getX() * getY() - p1.getY()
                 * getX());
     }
 
     public void set(int i, Double d) {
-        coordArr.setElem(d, i);
+        da.getDoubles(start, i);
 
     }
 
@@ -438,12 +441,12 @@ public vec mult(double d) {
     }
 
     public Point2D get2D() {
-        return new Point2D(coordArr.getElem(0), coordArr.getElem(1));
+        return new Point2D(get(0), get(1));
     }
 
     public void normalize() {
         Double n = norme();
-        for (int i = 0; i < coordArr.getData1d().size(); i++)
+        for (int i = 0; i < n; i++)
             set(i, get(i) / n);
     }
 
@@ -452,7 +455,7 @@ public vec mult(double d) {
     }
 
     public Double NormeCarree() {
-        return coordArr.getElem(0)* coordArr.getElem(0)+ coordArr.getElem(1)* coordArr.getElem(1)+ coordArr.getElem(2)* coordArr.getElem(2);
+        return norme()*norme();
     }
 
 
