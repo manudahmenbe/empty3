@@ -37,6 +37,7 @@ import java.util.*;
 
 
 public class vec extends Representable {
+     
      public static DoubleArray da;
      private int arrayNo;
      private int start;
