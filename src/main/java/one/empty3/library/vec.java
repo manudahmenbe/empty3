@@ -34,12 +34,21 @@ public class vec extends Representable {
           da.setDoubles(start, x, y, z, t);
      }
      public vec(vec v1, double... c) {
-         this();
-
+         this(v1.length+c.length);
+         int i;
+         for( i=start; i<start+n; i++)
+             da.setDoubles(start, i);
+         for(double d : c) {
+             da.setDoubles(i, d);
+             i++;
+         }
+             
      }
      public vec(vec... v) {
          this();
-
+         int i;
+         for( i=start; i<start+n; i++)
+             da.setDoubles(start, i);
      }
      public vec(double d, vec ... c) {
          this();
