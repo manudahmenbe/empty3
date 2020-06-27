@@ -128,9 +128,9 @@ public class vec extends Representable {
      */
     public vec(Double x0, Double y0, Double z0) {
         super();
-        coordArr.setElem(x0, 0);
-        coordArr.setElem(y0, 1);
-        coordArr.setElem(z0, 2);
+        setElem( 0, z0);
+        set(1, y0);
+        set(2, z0);
  }
     /*__
      * *
