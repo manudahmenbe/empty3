@@ -1,5 +1,6 @@
 package one.empty3.library;
 public class vec extends Representable {
+     protected vec normale;
      public static DoubleArray da;
      private int arrayNo;
      private int start;
