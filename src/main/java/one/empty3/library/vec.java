@@ -199,8 +199,8 @@ public class vec extends Representable {
 
     public vec(StructureMatrix<Double> coordArr) {
         this(coordArr.data1d.size());
-        for(int i= 0; i<n; i)
-            set(i, coordArr.data1d.get(i))
+        for(int i= 0; i<n; i++)
+            set(i, coordArr.data1d.get(i));
     }
 
     public static vec n(Double a, Double b, Double c) {
