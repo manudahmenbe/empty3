@@ -172,14 +172,16 @@ public class vec extends Representable {
      * @param p0 point à copier
      */
     public vec(vec p0) {
-        super();
-        for(int i=0; i<p0.getCoordArr().data1d.size(); i++)
-            coordArr.setElem(p0.get(i), i);
+        this();
+        for(int i=0; i<p0.length(); i++)
+            set(i, p0.get(i));
         texture(p0.texture);
     }
 
     public vec(StructureMatrix<Double> coordArr) {
-        this(coordArr.getElem(0), coordArr.getElem(1), coordArr.getElem(2));
+        this(coordArr.data1d.size());
+        for(int i= 0; i<n; i)
+            set(i, coordArr.data1d.get(i))
     }
 
     public static vec n(Double a, Double b, Double c) {
