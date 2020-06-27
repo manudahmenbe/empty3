@@ -504,11 +504,11 @@ public vec mult(double d) {
         return i<coordArr.data1d.size()?coordArr.getElem(i):Double.NaN;
     }*/
     public StructureMatrix<Double> getCoordArr() {
-        return coordArr;
+        return null;
     }
 
     public void setCoordArr(StructureMatrix<Double> coordArr) {
-        this.coordArr = coordArr;
+        
     }
 /*
     
