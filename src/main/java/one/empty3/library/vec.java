@@ -53,7 +53,9 @@ public class vec extends Representable {
          
          if(da==null)
               da = new DoubleArray(10, 10000);
-         
+         n = 3;
+         start = da.addDoubles(n);
+          this.n = n;
      }
 
      public vec(int n) {
