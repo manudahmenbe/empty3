@@ -44,7 +44,7 @@ public class Rotation implements MatrixPropertiesObject
     protected boolean unmodified = true;
     public Rotation() {
             rot.setElem(new Matrix33(Matrix33.I));
-            centreRot.setElem(Point3D.O0);
+            centreRot.setElem(new Poinr3D(Point3D.O0));
     }
     public Rotation(Matrix33 rot, Point3D centreRot) {
         this.rot.setElem(rot);
