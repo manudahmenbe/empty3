@@ -73,7 +73,7 @@ public Point3D(int n) {
         super(coordArr);
     }
 
-    public static vec n(Double a, Double b, Double c) {
+    public static Point3D n(Double a, Double b, Double c) {
         return new Point3D(a, b, c);
     }
 }
