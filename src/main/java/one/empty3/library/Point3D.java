@@ -315,7 +315,7 @@ public class Point3D extends Representable {
         return normale;
     }
 
-    public void setNormale(vec normale) {
+    public void setNormale(Point3D normale) {
         this.normale = normale;
     }
 
@@ -345,7 +345,7 @@ public class Point3D extends Representable {
     }
 
 
-    public Point3D plus(vec p){
+    public Point3D plus(Poin3D p){
         Point3D p1 = new vec(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)+p.get(i));
@@ -353,7 +353,7 @@ public class Point3D extends Representable {
         return p1;
     }
     
-    public Point3D moins(vec p) {
+    public Point3D moins(Point3D p) {
         Point3D p1 = new Point3D(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)-p.get(i));
@@ -375,8 +375,8 @@ public class Point3D extends Representable {
             p1.set(i, get(i)*p.get(i));
         
         return p1;
- }
-public Point3D mult(double d) {
+    }
+     public Point3D mult(double d) {
         Point3D p1 = new vec(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)*d);
