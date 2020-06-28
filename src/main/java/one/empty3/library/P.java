@@ -49,6 +49,6 @@ public class P {
         return new Point3D(a, b, c);
     }
     public static final Point3D n(int a, int b, int c) {
-        return new Point3D(a, b, c);
+        return new Point3D.n(a, b, c);
     }
 }
