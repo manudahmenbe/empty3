@@ -62,7 +62,7 @@ public Point3D(int n) {
     public Point3D(Point3D p0) {
         super(3);
         for(int i=0; i<n; i++)
-            set(i, p0.get(i);
+            set(i, p0.get(i));
     }
 
     public Point3D(StructureMatrix<Double> coordArr) {
