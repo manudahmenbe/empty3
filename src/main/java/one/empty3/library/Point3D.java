@@ -348,7 +348,7 @@ public class Point3D extends Representable {
 
 
     public Point3D plus(Point3D p){
-        Point3D p1 = new vec(this);
+        Point3D p1 = new Point3D(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)+p.get(i));
         
@@ -379,7 +379,7 @@ public class Point3D extends Representable {
         return p1;
     }
      public Point3D mult(double d) {
-        Point3D p1 = new vec(this);
+        Point3D p1 = new Point3D(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)*d);
         
@@ -420,7 +420,7 @@ public class Point3D extends Representable {
      * @return
      */
     public Point3D plus(Double d) {
-        Point3D p = new vec(this);
+        Point3D p = new Point3D(this);
         for(int i=0; i<n; i++)
             p.set(i, get(i)+d);
         return p;
@@ -464,7 +464,7 @@ public class Point3D extends Representable {
      * @return
      */
     public Point3D prodVect(Point3D p1) {
-        return new vec(p1.getY() * getZ() + -p1.getZ() * getY(), p1.getZ()
+        return new Point3D(p1.getY() * getZ() + -p1.getZ() * getY(), p1.getZ()
                 * getX() - p1.getX() * getZ(), p1.getX() * getY() - p1.getY()
                 * getX());
     }
@@ -476,9 +476,9 @@ public class Point3D extends Representable {
 
     public String toLongString() {
         String s = "p ( \n\t(";
-        for(int i = start; i<start+n; i++) {
+        for(int i = 0; i<n; i++) {
              s+= get(i);
-             if(i<start+n)
+             if(i<n-1)
                   s += ", ";
         }
         s += " )\n\t("
