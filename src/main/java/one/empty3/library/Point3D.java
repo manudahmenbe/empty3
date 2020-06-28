@@ -30,8 +30,6 @@ package one.empty3.library;
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
-import one.empty3.library.core.nurbs.ParametricCurve;
-import one.empty3.library.core.nurbs.ParametricSurface;
 import java.awt.Color;
 import java.util.*;
 
