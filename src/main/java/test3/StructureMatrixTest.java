@@ -107,7 +107,7 @@ public class StructureMatrixTest {
             }
 
     }
-*\
+*/
     @Test
     public void point3D()
     {
