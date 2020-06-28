@@ -141,27 +141,27 @@ public class Point3D extends Representable {
      * *
      * axe X vector
      */
-    public static final Point3D X = new vec(1d, 0d, 0d);
+    public static final Point3D X = new Poin3D(1d, 0d, 0d);
     /*__
      * *
      * axe Y vector
      */
-    public static final Point3D Y = new vec(0d, 1d, 0d);
+    public static final Point3D Y = new Point3D(0d, 1d, 0d);
     /*__
      * *
      * axe Z vector
      */
-    public static final Point3D Z = new vec(0d, 0d, 1d);
+    public static final Point3D Z = new Point3D(0d, 0d, 1d);
     /*__
      * *
      * O0 origin
      */
-    public static final Point3D O0 = new vec(0d, 0d, 0d);
+    public static final Point3D O0 = new Point3D(0d, 0d, 0d);
     /*__
      * *
      * Point "Infinite" limite pour Z-Buffer
      */
-    public static final Point3D INFINI = new vec(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
+    public static final Point3D INFINI = new Point3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
     /*__
      * *
      * Pour le tracé de surface normale au point
@@ -345,7 +345,7 @@ public class Point3D extends Representable {
     }
 
 
-    public Point3D plus(Poin3D p){
+    public Point3D plus(Point3D p){
         Point3D p1 = new vec(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)+p.get(i));
@@ -524,7 +524,7 @@ public Point3D ord(int x, int y, int z) {
 
 
 
-    public Point3D changeTo(vec dst) {
+    public Point3D changeTo(Point3D dst) {
         for (int i = 0; i < 3; i++)
             this.set(i, dst.get(i));
 
