@@ -84,6 +84,7 @@ public class StructureMatrixTest {
     @Test
     public void addRow() throws Exception {
     }
+    /*
     @Test
     public void array2d() throws Exception
     {
@@ -106,7 +107,7 @@ public class StructureMatrixTest {
             }
 
     }
-
+*\
     @Test
     public void point3D()
     {
