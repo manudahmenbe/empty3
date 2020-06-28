@@ -69,11 +69,11 @@ public class SurfaceParametriquePolynomialeBezier extends ParametricSurface impl
         new Point3D[][]
                 {
 
-                        {Point3D.P.n(2., -2d, 0d), Point3D.P.n(2, -1, 0), Point3D.P.n(2, 0, 0), Point3D.P.n(2, 1, 0), Point3D.P.n(2, 2, 0)},
-                        {Point3D.P.n(1d, -2d, 0d), Point3D.P.n(1d, -1d, 0d), Point3D.P.n(1, 0, 0), Point3D.P.n(1, 1, 0), Point3D.P.n(1, 2, 0)},
-                        {Point3D.P.n(0d, -2d, 0d), Point3D.P.n(0d, -1d, 0d), Point3D.P.n(0, 0, 0), Point3D.P.n(0, 1, 0), Point3D.P.n(0, 2, 0)},
-                        {Point3D.P.n(-1d, -2d, 0d), Point3D.P.n(-1d, -1d, 0d), Point3D.P.n(-1, 0, 0), Point3D.P.n(-1, 1, 0), Point3D.P.n(-1, 2, 0)},
-                        {Point3D.P.n(-2d, -2d, 0d), Point3D.P.n(-2d, -1d, 0d), Point3D.P.n(-2, 0, 0), Point3D.P.n(-2, 1, 0), Point3D.P.n(-2, 2, 0)}
+                        {Point3D.n(2d, -2d, 0d), Point3D.n(2, -1, 0), Point3D.n(2, 0, 0), Point3D.n(2, 1, 0), Point3D.n(2, 2, 0)},
+                        {Point3D.n(1d, -2d, 0d), Point3D.n(1d, -1d, 0d), Point3D.n(1, 0, 0), Point3D.n(1, 1, 0), Point3D.n(1, 2, 0)},
+                        {Point3D.n(0d, -2d, 0d), Point3D.n(0d, -1d, 0d), Point3D.n(0, 0, 0), Point3D.n(0, 1, 0), Point3D.n(0, 2, 0)},
+                        {Point3D.n(-1d, -2d, 0d), Point3D.n(-1d, -1d, 0d), Point3D.n(-1, 0, 0), Point3D.n(-1, 1, 0), Point3D.n(-1, 2, 0)},
+                        {Point3D.n(-2d, -2d, 0d), Point3D.n(-2d, -1d, 0d), Point3D.n(-2, 0, 0), Point3D.n(-2, 1, 0), Point3D.n(-2, 2, 0)}
 
                 });
         power1.setElem(coefficients.getData2d().size());
