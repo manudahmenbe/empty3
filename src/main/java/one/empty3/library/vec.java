@@ -530,16 +530,6 @@ public vec mult(double d) {
         return this;
     }
 
-    public static vec n(double i, double i1, double i2) {
-        return new vec(i, i1, i2);
-    }
-
-
-
-  
-
-
-
     public void declareProperties() {
         super.declareProperties();
         getDeclaredDataStructure().put("coordArr/coordonnées", null);
