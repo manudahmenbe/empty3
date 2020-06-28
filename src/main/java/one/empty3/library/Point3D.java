@@ -184,7 +184,7 @@ public class Point3D extends Representable {
      * @param y0 y-coordonnée
      * @param z0 z-coordonnée
      */
-    public vec(Double x0, Double y0, Double z0) {
+    public Point3D(Double x0, Double y0, Double z0) {
         super();
         set( 0, z0);
         set(1, y0);
@@ -197,8 +197,9 @@ public class Point3D extends Representable {
      * @param y0 y-coordonnée
      * @param z0 z-coordonnée
      */
-    public vec(Double x0, Double y0, Double z0, ITexture t) {
-        this(x0, y0, z0);
+    public Point3D(Double x0, Double y0, Double z0, ITexture t) {
+        this();
+         this(x0, y0, z0);
         texture(t);
     }
 
@@ -208,7 +209,7 @@ public class Point3D extends Representable {
      *
      * @param x0 coordonnées (>3)
      */
-    public vec(Double... x0) {
+    public Point3D(Double... x0) {
         int i=0;
         for(Double d : x0) {
            set(i, d);
@@ -216,7 +217,7 @@ public class Point3D extends Representable {
         }
     }
 
-    public vec(Double[] x0, ITexture t) {
+    public Point3D(Double[] x0, ITexture t) {
         int i=0;
         for(Double d : x0) {
          set(i, d);
@@ -243,7 +244,7 @@ public class Point3D extends Representable {
     }
 
     public static Point3D n(Double a, Double b, Double c) {
-        return new vec(a, b, c);
+        return new Point3D(a, b, c);
     }
 
     /*__
@@ -266,7 +267,7 @@ public class Point3D extends Representable {
     public static Point3D random(Double d) {
         return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
-public static Point3D random(Double d, int n) {
+    public static Point3D random(Double d, int n) {
         
         return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
@@ -295,7 +296,7 @@ public static Point3D random(Double d, int n) {
             }
         return Double.NaN;*/
     }
-    public vec scale() {
+    public Point3D scale() {
         if(scale==null)
         {
             return this;
@@ -376,7 +377,7 @@ public static Point3D random(Double d, int n) {
         
         return p1;
  }
-public vec mult(double d) {
+public Point3D mult(double d) {
         Point3D p1 = new vec(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)*d);
