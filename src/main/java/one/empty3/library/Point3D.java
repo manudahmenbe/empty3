@@ -37,7 +37,7 @@ import java.util.*;
 
 
 public class Point3D extends Representable {
-     
+     protected Point3D normale;
      public static DoubleArray da;
      private int arrayNo;
      private int start;
