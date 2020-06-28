@@ -234,6 +234,6 @@ public class LineSegment extends ParametricCurve implements CurveElem {
     }
     public Double getLength()
     {
-        return getOrigine().moins(getExtremite()).getLength();
+        return getOrigine().moins(getExtremite()).norme();
     }
 }
