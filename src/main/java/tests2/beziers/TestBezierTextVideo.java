@@ -12,6 +12,7 @@ package tests2.beziers;
 
 import one.empty3.library.EOFVideoException;
 import one.empty3.library.Point3D;
+import one.empty3.library.P;
 import one.empty3.library.TextureMov;
 import one.empty3.library.core.nurbs.SurfaceParametricPolygonalBezier;
 import one.empty3.library.core.testing.TestObjetSub;
