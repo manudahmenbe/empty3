@@ -232,7 +232,6 @@ public class LineSegment extends ParametricCurve implements CurveElem {
         getDeclaredDataStructure().put("extremite/point extremite", extremite);
 
     }
-    @Override
     public Double getLength()
     {
         return getOrigine().moins(getExtremite()).getLength();
