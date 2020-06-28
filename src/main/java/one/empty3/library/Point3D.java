@@ -12,12 +12,6 @@ public Point3D(int n) {
          double t) {
           super(x,y,z, t);
      }
-     public Point3D(vec v1, double... c) {
-         super(v1, c);
-     }
-     public Point3D(vec... v) {
-         super(v);
-     }
 
 
     /*__
@@ -65,8 +59,10 @@ public Point3D(int n) {
      *
      * @param p0 point à copier
      */
-    public Point3D(vec p0) {
-        super(p0);
+    public Point3D(Point3D p0) {
+        super(3);
+        for(int i=0; i<n; i++)
+            set(i, p0.get(i);
     }
 
     public Point3D(StructureMatrix<Double> coordArr) {
