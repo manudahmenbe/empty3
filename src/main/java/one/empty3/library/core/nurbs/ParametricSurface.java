@@ -117,7 +117,7 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
 
     public Point3D calculerPoint3D(double u, double v)
     {
-        return new Point3D();
+        return new Point3D(0d,0d,0d);
     }
 
     public Point3D calculerVitesse3D(double u, double v) {
