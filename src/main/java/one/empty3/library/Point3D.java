@@ -61,6 +61,7 @@ public class Point3D extends Representable {
           start = da.addDoubles(n);
           this.n = n;
      }
+     /*
      public Point3D(double x, double y, double z) {
           this(3);
           da.setDoubles(start, x, y, z);
@@ -70,7 +71,7 @@ public class Point3D extends Representable {
          double t) {
           this(4);
           da.setDoubles(start, x, y, z, t);
-     }
+     }*/
      public Point3D(Point3D v1, double... c) {
          this(v1.length()+c.length);
          int i; int j=0;
