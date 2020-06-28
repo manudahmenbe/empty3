@@ -1,6 +1,6 @@
 package one.empty3.library;
 
-public class Point3D extends Representable {
+public class Point3D extends vec {
 public Point3D(int n) {
           super(n);
      }
