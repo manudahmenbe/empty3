@@ -36,7 +36,7 @@ import java.awt.Color;
 import java.util.*;
 
 
-public class vec extends Representable {
+public class Point3D extends Representable {
      
      public static DoubleArray da;
      private int arrayNo;
@@ -47,7 +47,7 @@ public class vec extends Representable {
          return n;
      }
 
-     private vec() {
+     private Point3D() {
          
          super();
          
@@ -58,21 +58,21 @@ public class vec extends Representable {
           this.n = n;
      }
 
-     public vec(int n) {
+     public Point3D(int n) {
           start = da.addDoubles(n);
           this.n = n;
      }
-     public vec(double x, double y, double z) {
+     public Point3D(double x, double y, double z) {
           this(3);
           da.setDoubles(start, x, y, z);
      }
 
-     public vec(double x, double y, double z,
+     public Point3D(double x, double y, double z,
          double t) {
           this(4);
           da.setDoubles(start, x, y, z, t);
      }
-     public vec(vec v1, double... c) {
+     public Point3D(Point3D v1, double... c) {
          this(v1.length()+c.length);
          int i; int j=0;
          for( i=start; i<start+n; i++)
@@ -83,7 +83,7 @@ public class vec extends Representable {
          }
              
      }
-     public vec(vec... v) {
+     public Point3D(Point3D... v) {
          this();
          int i;
          int m = v.length;
@@ -142,32 +142,32 @@ public class vec extends Representable {
      * *
      * axe X vector
      */
-    public static final vec X = new vec(1d, 0d, 0d);
+    public static final Point3D X = new vec(1d, 0d, 0d);
     /*__
      * *
      * axe Y vector
      */
-    public static final vec Y = new vec(0d, 1d, 0d);
+    public static final Point3D Y = new vec(0d, 1d, 0d);
     /*__
      * *
      * axe Z vector
      */
-    public static final vec Z = new vec(0d, 0d, 1d);
+    public static final Point3D Z = new vec(0d, 0d, 1d);
     /*__
      * *
      * O0 origin
      */
-    public static final vec O0 = new vec(0d, 0d, 0d);
+    public static final Point3D O0 = new vec(0d, 0d, 0d);
     /*__
      * *
      * Point "Infinite" limite pour Z-Buffer
      */
-    public static final vec INFINI = new vec(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
+    public static final Point3D INFINI = new vec(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
     /*__
      * *
      * Pour le tracé de surface normale au point
      */
-    protected vec normale;
+    protected Point3D normale;
     /*__
      * *
      * id
@@ -229,20 +229,20 @@ public class vec extends Representable {
      *
      * @param p0 point à copier
      */
-    public vec(vec p0) {
+    public Point3D(Point3D p0) {
         this(p0.length());
         for(int i=0; i<p0.length(); i++)
             set(i, p0.get(i));
         texture(p0.texture);
     }
 
-    public vec(StructureMatrix<Double> coordArr) {
+    public Point3D(StructureMatrix<Double> coordArr) {
         this(coordArr.data1d.size());
         for(int i= 0; i<n; i++)
             set(i, coordArr.data1d.get(i));
     }
 
-    public static vec n(Double a, Double b, Double c) {
+    public static Point3D n(Double a, Double b, Double c) {
         return new vec(a, b, c);
     }
 
@@ -254,7 +254,7 @@ public class vec extends Representable {
      * @param p2 Point2
      * @return
      */
-    public static Double distance(vec p1, vec p2) {
+    public static Double distance(Point3D p1, Point3D p2) {
         double d = 0.0;
         for(int i=0; i<p1.length(); i++)
             d+=(p1.get(i)-p2.get(i))*(p1.get(i)*p2.get(i));
@@ -263,25 +263,25 @@ public class vec extends Representable {
 
 
 
-    public static vec random(Double d) {
-        return new vec(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
+    public static Point3D random(Double d) {
+        return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
-public static vec random(Double d, int n) {
+public static Point3D random(Double d, int n) {
         
-        return new vec(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
+        return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
-    public static vec r(Double d) {
+    public static Point3D r(Double d) {
         return random(d);
     }
 
-    public static vec random2(Double d) {
+    public static Point3D random2(Double d) {
 
-        return new vec(((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d));
+        return new Point3D(((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d));
     }
 
     @Override
     public Object clone() {
-        return new vec(this);
+        return new Point3D(this);
     }
 
     public Double get(int i) {
@@ -300,7 +300,7 @@ public static vec random(Double d, int n) {
         {
             return this;
         }
-         return new vec(get(0)*scale.get(1),get(1)*scale.get(1),get(2)*scale.get(2));
+         return new Point3D(get(0)*scale.get(1),get(1)*scale.get(1),get(2)*scale.get(2));
     }
 
     public List<Double> getDoubleArray() {
@@ -311,7 +311,7 @@ public static vec random(Double d, int n) {
     }
 
 
-    public vec getNormale() {
+    public Point3D getNormale() {
         return normale;
     }
 
@@ -345,16 +345,16 @@ public static vec random(Double d, int n) {
     }
 
 
-    public vec plus(vec p){
-        vec p1 = new vec(this);
+    public Point3D plus(vec p){
+        Point3D p1 = new vec(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)+p.get(i));
         
         return p1;
     }
     
-    public vec moins(vec p) {
-        vec p1 = new vec(this);
+    public Point3D moins(vec p) {
+        Point3D p1 = new Point3D(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)-p.get(i));
         
@@ -369,15 +369,15 @@ public static vec random(Double d, int n) {
      * @return
      */
 
-    public vec mult(Point3D p) {
-        vec p1 = new vec(this);
+    public Point3D mult(Point3D p) {
+        Point3D p1 = new Point3D(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)*p.get(i));
         
         return p1;
  }
 public vec mult(double d) {
-        vec p1 = new vec(this);
+        Point3D p1 = new vec(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)*d);
         
@@ -406,7 +406,7 @@ public vec mult(double d) {
      *
      * @return Vecteur normalisé à 1
      */
-    public vec norme1() {
+    public Point3D norme1() {
         return mult(1 / norme());
     }
 
@@ -417,8 +417,8 @@ public vec mult(double d) {
      * @param i
      * @return
      */
-    public vec plus(Double d) {
-        vec p = new vec(this);
+    public Point3D plus(Double d) {
+        Point3D p = new vec(this);
         for(int i=0; i<n; i++)
             p.set(i, get(i)+d);
         return p;
@@ -433,7 +433,7 @@ public vec mult(double d) {
      * @param p2
      * @return
      */
-    public Double prodScalaire(vec p2) {
+    public Double prodScalaire(Point3D p2) {
         double s = 0.0;
         if(p2!=null) {
             for(int i=0; i<n; i++)
@@ -451,7 +451,7 @@ public vec mult(double d) {
      * @param p2
      * @return
      */
-    public Double dot(vec p2) {
+    public Double dot(Point3D p2) {
         return this.prodScalaire(p2);
     }
 
@@ -461,7 +461,7 @@ public vec mult(double d) {
      * @param p1
      * @return
      */
-    public vec prodVect(vec p1) {
+    public Point3D prodVect(Point3D p1) {
         return new vec(p1.getY() * getZ() + -p1.getZ() * getY(), p1.getZ()
                 * getX() - p1.getX() * getZ(), p1.getX() * getY() - p1.getY()
                 * getX());
@@ -505,7 +505,9 @@ public vec mult(double d) {
     public Point2D get2D() {
         return new Point2D(get(0), get(1));
     }
-
+public Point3D ord(int x, int y, int z) {
+        return new Point3D(get(x), get(y), get(z));
+    }
     public void normalize() {
         Double n = norme();
         for (int i = 0; i < n; i++)
@@ -522,7 +524,7 @@ public vec mult(double d) {
 
 
 
-    public vec changeTo(vec dst) {
+    public Point3D changeTo(vec dst) {
         for (int i = 0; i < 3; i++)
             this.set(i, dst.get(i));
 
