@@ -60,12 +60,12 @@ public class Point3D extends Representable {
           start = da.addDoubles(n);
           this.n = n;
      }
-     
+ /*    
      public Point3D(double x, double y, double z) {
           this(3);
           da.setDoubles(start, x, y, z);
      }
-/*
+
      public Point3D(double x, double y, double z,
          double t) {
           this(4);
