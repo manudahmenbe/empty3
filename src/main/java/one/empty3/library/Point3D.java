@@ -184,11 +184,11 @@ public class Point3D extends Representable {
      * @param z0 z-coordonnée
      */
     public Point3D(Double x0, Double y0, Double z0) {
-        super();
-        set( 0, z0);
+        this();
+        set(0, x0);
         set(1, y0);
         set(2, z0);
- }
+    }
     /*__
      * *
      *
