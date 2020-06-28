@@ -46,7 +46,7 @@ public class Point3D extends Representable {
          return n;
      }
 
-     private Point3D() {
+     public Point3D() {
          
          super();
          
@@ -246,6 +246,9 @@ public class Point3D extends Representable {
 
     public static Point3D n(Double a, Double b, Double c) {
         return new Point3D(a, b, c);
+    }
+public static Point3D n(int a, int b, int c) {
+        return new Point3D((double)a, (double)b, (double)c);
     }
 
     /*__
@@ -507,7 +510,7 @@ public class Point3D extends Representable {
     public Point2D get2D() {
         return new Point2D(get(0), get(1));
     }
-public Point3D ord(int x, int y, int z) {
+    public Point3D ord(int x, int y, int z) {
         return new Point3D(get(x), get(y), get(z));
     }
     public void normalize() {
