@@ -141,7 +141,7 @@ public class Point3D extends Representable {
      * *
      * axe X vector
      */
-    public static final Point3D X = new Poin3D(1d, 0d, 0d);
+    public static final Point3D X = new Point3D(1d, 0d, 0d);
     /*__
      * *
      * axe Y vector
@@ -197,7 +197,7 @@ public class Point3D extends Representable {
      * @param z0 z-coordonnée
      */
     public Point3D(Double x0, Double y0, Double z0, ITexture t) {
-        this();
+      
          this(x0, y0, z0);
         texture(t);
     }
@@ -209,11 +209,13 @@ public class Point3D extends Representable {
      * @param x0 coordonnées (>3)
      */
     public Point3D(Double... x0) {
+         this(x0.length);
         int i=0;
         for(Double d : x0) {
-           set(i, d);
-           i++;
+         set(i, d);
+         i++;
         }
+        
     }
 
     public Point3D(Double[] x0, ITexture t) {
