@@ -62,7 +62,7 @@ public class DoubleArray {
         
     }
     public int setDoubles(int start, Double... ds) {
-        for (int i = start; i<ds.length ; i++) {
+        for (int i = start; i<start+ds.length ; i++) {
             doubles.get(0)[i] = ds[i-start];
             max++;
         }
