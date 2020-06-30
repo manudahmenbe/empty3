@@ -485,7 +485,19 @@ public class Point3D extends Representable {
         return norme()*norme();
     }
 
-
+    public boolean equals(Object p) {
+         boolean e = true
+              
+             ;
+         if(p!=null && p instanceof Point3D) 
+              {
+              for(int i=0; i<n; i++) 
+                   e = e && (get(i) == p.get(i));
+             } 
+         else
+              e = false;
+         return e;
+        } 
 
     public Point3D changeTo(Point3D dst) {
         for (int i = 0; i < 3; i++)
