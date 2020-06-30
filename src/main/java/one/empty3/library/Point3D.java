@@ -60,17 +60,7 @@ public class Point3D extends Representable {
           start = da.addDoubles(n);
           this.n = n;
      }
- /*    
-     public Point3D(double x, double y, double z) {
-          this(3);
-          da.setDoubles(start, x, y, z);
-     }
 
-     public Point3D(double x, double y, double z,
-         double t) {
-          this(4);
-          da.setDoubles(start, x, y, z, t);
-     }*/
      public Point3D(Point3D v1, double... c) {
          this(v1.length()+c.length);
          int i; int j=0;
@@ -172,23 +162,7 @@ public class Point3D extends Representable {
      * id
      */
 
-    /*__
-     * *
-     * Constructeur Point Origine
-     */
-    /*__
-     * *
-     *
-     * @param x0 coordArr-coordonnée
-     * @param y0 y-coordonnée
-     * @param z0 z-coordonnée
-     */
-    public Point3D(Double x0, Double y0, Double z0) {
-        this();
-        set(0, x0);
-        set(1, y0);
-        set(2, z0);
-    }
+    
     /*__
      * *
      *
