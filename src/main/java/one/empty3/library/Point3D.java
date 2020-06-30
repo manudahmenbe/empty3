@@ -199,7 +199,7 @@ public class Point3D extends Representable {
          int i = 0;
          
          for(double d : x0) {
-              da.setDouble(start + i, d);
+              da.setDoubles(start + i, d);
               i++;
          }
     }
