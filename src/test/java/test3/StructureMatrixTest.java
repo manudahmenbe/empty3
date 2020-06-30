@@ -87,13 +87,21 @@ public class StructureMatrixTest {
     @Test
     public void array2d() throws Exception
     {
-        Point3D[][] coeff = new Point3D[][]{
-                {Point3D.n(2d, -2, 0), Point3D.n(2, -1, 0), Point3D.n(2, 0, 0), Point3D.n(2, 1, 0), Point3D.n(2, 2, 0)},
+        Point3D[][] coeff = new Point3D[5][5]
+        for(int x=-2
+; x<=2; x++) 
+            for(int y=-2; y<=3
+                ; y++) 
+     for(int z=-2; z<3; z++) {
+coeff[x+2][y+2] =      Point3D.n(2. -x, 2. -y, 0. );
+   } /*
+         coeff = new Point3D[x+2][y+2]{
+                , Point3D.n(2, -1, 0), Point3D.n(2, 0, 0), Point3D.n(2, 1, 0), Point3D.n(2, 2, 0)},
                 {Point3D.n(1, -2, 0), Point3D.n(1, -1, 0), Point3D.n(1, 0, 0), Point3D.n(1, 1, 0), Point3D.n(1, 2, 0)},
                 {Point3D.n(0, -2, 0), Point3D.n(0, -1, 0), Point3D.n(0, 0, 0), Point3D.n(0, 1, 0), Point3D.n(0, 2, 0)},
                 {Point3D.n(-1, -2, 0), Point3D.n(-1, -1, 0), Point3D.n(-1, 0, 0), Point3D.n(-1, 1, 0), Point3D.n(-1, 2, 0)},
                 {Point3D.n(-2, -2, 0), Point3D.n(-2, -1, 0), Point3D.n(-2, 0, 0), Point3D.n(-2, 1, 0), Point3D.n(-2, 2, 0)}
-        };
+        };*/
         StructureMatrix<Point3D> matrix = new StructureMatrix<>(2, Point3D.class);
         matrix.setAll(coeff);
         for(int i=0; i<coeff.length; i++)
