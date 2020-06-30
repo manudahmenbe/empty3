@@ -90,7 +90,7 @@ public class StructureMatrixTest {
         Point3D[][] coeff = new Point3D[5][5];
         for(int x=-2
 ; x<=2; x++) 
-            for(int y=-2; y<=3
+            for(int y=-2; y<=2
                 ; y++) 
      for(int z=-2; z<3; z++) {
 coeff[x+2][y+2] =      Point3D.n(2. -x, 2. -y, 0. );
