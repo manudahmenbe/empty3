@@ -23,10 +23,10 @@ public class StructureMatrixTest {
     @Test
     public void setElem() throws Exception {
         StructureMatrix<Double> tab1 = new StructureMatrix<>(1, Double.class);
-        tab1.setElem(0.0, 0);
-        tab1.setElem(1.0, 1);
-        tab1.setElem(2.0, 2);
-        assertTrue(tab1.getElem(0)==0.0 && tab1.getElem(1)==1.0&&tab1.getElem(2)==2.0);
+        tab1.setElem(0.3, 0);
+        tab1.setElem(1.3, 1);
+        tab1.setElem(2.3, 2);
+        assertTrue(tab1.getElem(0)==0.3 && tab1.getElem(1)==1.3&&tab1.getElem(2)==2.3);
     }
 
     @Test
@@ -88,7 +88,7 @@ public class StructureMatrixTest {
     public void array2d() throws Exception
     {
         Point3D[][] coeff = new Point3D[][]{
-                {Point3D.n(2, -2, 0), Point3D.n(2, -1, 0), Point3D.n(2, 0, 0), Point3D.n(2, 1, 0), Point3D.n(2, 2, 0)},
+                {Point3D.n(2d, -2, 0), Point3D.n(2, -1, 0), Point3D.n(2, 0, 0), Point3D.n(2, 1, 0), Point3D.n(2, 2, 0)},
                 {Point3D.n(1, -2, 0), Point3D.n(1, -1, 0), Point3D.n(1, 0, 0), Point3D.n(1, 1, 0), Point3D.n(1, 2, 0)},
                 {Point3D.n(0, -2, 0), Point3D.n(0, -1, 0), Point3D.n(0, 0, 0), Point3D.n(0, 1, 0), Point3D.n(0, 2, 0)},
                 {Point3D.n(-1, -2, 0), Point3D.n(-1, -1, 0), Point3D.n(-1, 0, 0), Point3D.n(-1, 1, 0), Point3D.n(-1, 2, 0)},
