@@ -3,6 +3,10 @@ import one.empty3.library.*;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+
 /*__
  * Created by manue on 11-09-19.
  */
