@@ -39,12 +39,15 @@ import java.util.HashMap;
  */
 public class Rotation implements MatrixPropertiesObject
 {
-    protected StructureMatrix<Matrix33> rot = new StructureMatrix<>(0, Matrix33.class);
-    protected StructureMatrix<Point3D> centreRot = new StructureMatrix<>(0, Point3D.class);
+    public static final StructureMatrix<Matrix33> rot1 = new StructureMatrix<>(0, Matrix33.class);
+    public static final StructureMatrix<Point3D> centreRot1 = new StructureMatrix<>(0, Point3D.class);
+   
+    protected StructureMatrix<Matrix33> rot = rot1
+    protected StructureMatrix<Point3D> centreRot = centreRot1;
     protected boolean unmodified = true;
     public Rotation() {
-            rot.setElem(new Matrix33(Matrix33.I));
-            centreRot.setElem(new Point3D(Point3D.O0));
+            
+            
     }
     public Rotation(Matrix33 rot, Point3D centreRot) {
         this.rot.setElem(rot);
