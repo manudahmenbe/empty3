@@ -164,7 +164,7 @@ public class Point3D extends Representable {
      *
      * @param x0 coordonnées (>3)
      */
-    public Point3D(Double ... x0) {
+  /*  public Point3D(Double ... x0) {
          this(x0.length);
         int i=0;
         for(Double d : x0) {
@@ -172,7 +172,7 @@ public class Point3D extends Representable {
          i++;
         }
         
-    }
+    }*/
 
     public Point3D(Double[] x0, ITexture t) {
         int i=0;
