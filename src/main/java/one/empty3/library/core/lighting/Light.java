@@ -27,9 +27,9 @@ public class Light {
               );//  (double)c.getAlpha());
 */
       
-          return new Point3D((double)cs[3],
+          return new Point3D((double)(cs[3]),
 
-              (double)cs[2],(double)cs[1] , (double)cs[0]);
+              (double)(cs[2]),(double)(cs[1]) , (double)(cs[0]));
       }
       public double level(double angle) {
            if(levels==null)
