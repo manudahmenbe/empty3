@@ -192,10 +192,10 @@ public class Point3D extends Representable {
 
     /*__
      * *
-     * Initialise à partir d'un vecteur
+     * Initialise à partir d'un tableau
      *
      * @param x0 coordonnées (>3)
-     */
+     *//*
     public Point3D(Double... x0) {
          this(x0.length);
         int i=0;
@@ -205,7 +205,7 @@ public class Point3D extends Representable {
         }
         
     }
-
+*/
     public Point3D(Double[] x0, ITexture t) {
         int i=0;
         for(Double d : x0) {
