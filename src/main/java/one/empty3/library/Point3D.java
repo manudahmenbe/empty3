@@ -484,20 +484,21 @@ public class Point3D extends Representable {
     public Double NormeCarree() {
         return norme()*norme();
     }
-
+    @Override
     public boolean equals(Object p) {
-         boolean e = true
+         if(this==p) 
+              return true;
+         boolean e = true;
               
-             ;
-         if(p!=null && p instanceof Point3D) 
-              {
+             
+         if(p!=null && p instanceof Point3D) {
               for(int i=0; i<n; i++) 
                    e = e && (get(i) == (((Point3D) p).get(i)) );
-             } 
+         } 
          else
               e = false;
          return e;
-        } 
+     } 
 
     public Point3D changeTo(Point3D dst) {
         for (int i = 0; i < 3; i++)
