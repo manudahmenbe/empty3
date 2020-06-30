@@ -197,8 +197,12 @@ public class Point3D extends Representable {
      * @param z0 z-coordonnée
      */
     public Point3D(double [] x0, ITexture t) {
-      
-         this(x0, y0, z0);
+         int i = 0;
+         this(x0.length);
+         for(double d : x0) {
+              da.setDouble(start + i, d);
+              i++;
+         }
         texture(t);
     }
 /*__
