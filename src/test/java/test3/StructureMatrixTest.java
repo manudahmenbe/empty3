@@ -87,7 +87,7 @@ public class StructureMatrixTest {
     @Test
     public void array2d() throws Exception
     {
-        Point3D[][] coeff = new Point3D[5][5]
+        Point3D[][] coeff = new Point3D[5][5];
         for(int x=-2
 ; x<=2; x++) 
             for(int y=-2; y<=3
