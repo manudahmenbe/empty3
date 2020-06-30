@@ -492,7 +492,7 @@ public class Point3D extends Representable {
          if(p!=null && p instanceof Point3D) 
               {
               for(int i=0; i<n; i++) 
-                   e = e && (get(i) == p.get(i));
+                   e = e && (get(i) == ((Point3D) p.get(i)) );
              } 
          else
               e = false;
