@@ -193,17 +193,15 @@ public class Point3D extends Representable {
      * *
      *
      * @param x0 coordArr-coordonnée
-     * @param y0 y-coordonnée
-     * @param z0 z-coordonnée
      */
-    public Point3D(double [] x0, ITexture t) {
-         int i = 0;
+    public Point3D(double... x0) {
          this(x0.length);
+         int i = 0;
+         
          for(double d : x0) {
               da.setDouble(start + i, d);
               i++;
          }
-        texture(t);
     }
 /*__
      * *
