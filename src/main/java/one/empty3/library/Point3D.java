@@ -514,9 +514,9 @@ public class Point3D extends Representable {
         return new Point3D(get(x), get(y), get(z));
     }
     public void normalize() {
-        Double n = norme();
+        Double norme = norme();
         for (int i = 0; i < n; i++)
-            set(i, get(i) / n);
+            set(i, get(i) / norme);
     }
 
     public Point2D to2DwoZ() {
