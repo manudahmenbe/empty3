@@ -8,8 +8,8 @@ import org.junit.Test;
 public class PointAlgebra {
     @Test
     public void testPoint3DInit() {
-      Double [] ds2 = new Double [] {1.4, 2.3. 3.1};
-      double [] ds1 = new Double [] {1.4, 2.3. 3.1};
+      Double [] ds2 = new Double [] {1.4, 2.3, 3.1};
+      double [] ds1 = new double [] {1.4, 2.3, 3.1};
       assertTrue(new Point3D(ds1).equals(new Point3D(ds2)));
       assertTrue(new Point3D(ds1).equals(new Point3D(1.4, 2.3, 3.1)));
       assertFalse(new Point3D(ds1).equals(Point3D.O0));
