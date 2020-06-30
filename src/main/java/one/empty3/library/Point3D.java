@@ -488,12 +488,16 @@ public class Point3D extends Representable {
     public boolean equals(Object p) {
          if(this==p) 
               return true;
+         
          boolean e = true;
               
              
          if(p!=null && p instanceof Point3D) {
+              Point3D p1 = ((Point3D) p).get(i);
+              if(this.length!=p1.length)
+                   return false;
               for(int i=0; i<n; i++) 
-                   e = e && (get(i) == (((Point3D) p).get(i)) );
+                   e = e && (get(i) == p1.get(i));
          } 
          else
               e = false;
