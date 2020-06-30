@@ -493,8 +493,8 @@ public class Point3D extends Representable {
               
              
          if(p!=null && p instanceof Point3D) {
-              Point3D p1 = ((Point3D) p).get(i);
-              if(this.length!=p1.length)
+              Point3D p1 = ((Point3D) p);
+              if(this.length()!=p1.length())
                    return false;
               for(int i=0; i<n; i++) 
                    e = e && (get(i) == p1.get(i));
