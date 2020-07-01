@@ -488,7 +488,9 @@ public class Point3D extends Representable {
               if(this.length()!=p1.length())
                    return false;
               for(int i=0; i<n; i++) 
-                   e = (e & get(i).equals( p1.get(i)))) ;
+                   e = (
+                       e & get(i).equals(p1.get(i)) 
+                   ) ;
          } 
          else
               e = false;
