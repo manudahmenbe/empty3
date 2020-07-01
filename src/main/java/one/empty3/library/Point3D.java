@@ -177,6 +177,7 @@ public class Point3D extends Representable {
     }*/
 
     public Point3D(Double[] x0, ITexture t) {
+         this(x0.length);
         int i=0;
         for(Double d : x0) {
          set(i, d);
