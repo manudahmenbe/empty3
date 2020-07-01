@@ -93,6 +93,8 @@ public class Point3D extends Representable {
                  j++;
              } else
                  k++;
+              if(j>=m)
+                   break;
          }
      }
 
