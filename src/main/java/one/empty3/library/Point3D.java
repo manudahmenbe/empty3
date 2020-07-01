@@ -493,7 +493,7 @@ public class Point3D extends Representable {
          boolean e = true;
               
              
-         if(p!=null && p instanceof Point3D) {
+         if((p!=null) && ( p instanceof Point3D)) {
               Point3D p1 = (Point3D) p;
               if(this.length()!=p1.length())
                    return false;
