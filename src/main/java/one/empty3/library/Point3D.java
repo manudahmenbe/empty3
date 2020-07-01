@@ -502,7 +502,8 @@ public class Point3D extends Representable {
          } 
          else
               e = false;
-         System.out.println("equals " + e);
+         System.out.println("equals " + e + "\np1: "
+                   +p1+"\np2: "+p2);
          return e;
      } 
 
