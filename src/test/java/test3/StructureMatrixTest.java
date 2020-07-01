@@ -127,6 +127,6 @@ coeff[x+2][y+2] =      Point3D.n(2. -x, 2. -y, 0. );
         assertTrue(p2.get(0)==d1&&p2.get(1)==d2&&p2.get(2)==d3);
         assertTrue(p1.equals(p1));
         assertTrue(p2.equals(p1));
-        assertTrue(p1.plus(p2).equals(p1.mult(2.0));
+        assertTrue(p1.plus(p2).equals(p1.mult(2.0)));
     }
 }
