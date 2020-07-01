@@ -47,7 +47,7 @@ public class Rotation implements MatrixPropertiesObject
     protected boolean unmodified = true;
     public Rotation() {
             rot  = rot1;
-            centreRot = centreRot1
+            centreRot = centreRot1;
             
     }
     public Rotation(Matrix33 rot, Point3D centreRot) {
