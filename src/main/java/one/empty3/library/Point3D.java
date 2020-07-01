@@ -185,17 +185,7 @@ public class Point3D extends Representable {
         }
         texture(t);
     }
-    /*__
-     *
-     *
-     * @param p0 point à copier
-     */
-    public Point3D(Point3D p0) {
-        this(p0.length());
-        for(int i=0; i<p0.length(); i++)
-            set(i, p0.get(i));
-        texture(p0.texture);
-    }
+  
 
     public Point3D(StructureMatrix<Double> coordArr) {
         this(coordArr.data1d.size());
