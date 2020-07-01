@@ -77,6 +77,7 @@ public class Point3D extends Representable {
      */
      public Point3D(Point3D... v) {
          super();
+         n = 0;
          int i;
          int m = v.length;
          for(i=0; i<m; i++) 
@@ -91,9 +92,8 @@ public class Point3D extends Representable {
              if(k>=v[j].length()) {
                  k=0;
                  j++;
-             } else
-                 k++;
-              if(j>=m)
+             }
+             if(j>=m)
                    break;
          }
      }
