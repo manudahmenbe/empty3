@@ -46,12 +46,13 @@ public class Rotation implements MatrixPropertiesObject
     protected StructureMatrix<Point3D> centreRot;
     protected boolean unmodified = true;
     public Rotation() {
-            rot  = rot1;
-            centreRot = centreRot1;
+            rot  = new StructureMatrix<>(0, Matrix33.class);
+            centreRot = new StructureMatrix<>(0, Point3D.class);;
             this.rot.setElem(Matrix33.I);
             this.centreRot.setElem(Point3D.O0);
     }
     public Rotation(Matrix33 rot, Point3D centreRot) {
+        this();
         if(rot==null)
            rot = Matrix33.I;
          if(centreRot==null)
