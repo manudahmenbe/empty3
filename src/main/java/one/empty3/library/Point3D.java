@@ -313,6 +313,8 @@ public class Point3D extends Representable {
     }
     
     public Point3D moins(Point3D p) {
+         if(p==null)
+              return this;
         Point3D p1 = new Point3D(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)-p.get(i));
@@ -329,6 +331,8 @@ public class Point3D extends Representable {
      */
 
     public Point3D mult(Point3D p) {
+         if(p==null)
+              return this;
         Point3D p1 = new Point3D(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)*p.get(i));
@@ -336,6 +340,8 @@ public class Point3D extends Representable {
         return p1;
     }
      public Point3D mult(double d) {
+          if(p==null)
+              return this;
         Point3D p1 = new Point3D(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)*d);
@@ -377,6 +383,7 @@ public class Point3D extends Representable {
      * @return
      */
     public Point3D plus(Double d) {
+         
         Point3D p = new Point3D(this);
         for(int i=0; i<n; i++)
             p.set(i, get(i)+d);
@@ -393,6 +400,8 @@ public class Point3D extends Representable {
      * @return
      */
     public Double prodScalaire(Point3D p2) {
+         if(p2==null)
+              return Double.NaN;
         double s = 0.0;
         if(p2!=null) {
             for(int i=0; i<n; i++)
