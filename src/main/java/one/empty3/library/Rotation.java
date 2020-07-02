@@ -72,6 +72,7 @@ public class Rotation implements MatrixPropertiesObject
            try {
                 return p.plus(centreRot.getElem()).plus(rot.getElem().mult(p.moins(centreRot.getElem())));
            } catch(NullPointerException ex) {
+                ex.printStackTrace();
            }
         }
         return p;
