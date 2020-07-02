@@ -303,6 +303,8 @@ public class Point3D extends Representable {
 
 
     public Point3D plus(Point3D p){
+         if(p==null)
+              return this;
         Point3D p1 = new Point3D(this);
         for(int i=0;i<n; i++)
             p1.set(i, get(i)+p.get(i));
