@@ -48,8 +48,8 @@ public class Rotation implements MatrixPropertiesObject
     public Rotation() {
             rot  = rot1;
             centreRot = centreRot1;
-            this.rot.setElem(rot1);
-            this.centreRot.setElem(centreRot1);
+            this.rot.setElem(Matrix33.I);
+            this.centreRot.setElem(Point3D.O0);
     }
     public Rotation(Matrix33 rot, Point3D centreRot) {
         if (rot==null)
