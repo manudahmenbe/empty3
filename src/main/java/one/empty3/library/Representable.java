@@ -31,7 +31,7 @@
  */
 
 /*
- * 2013 Manuel Dahmen
+ * 2013-2020 Manuel Dahmen
  */
 package one.empty3.library;
 
