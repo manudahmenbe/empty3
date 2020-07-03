@@ -42,9 +42,6 @@ public class DoubleArray {
     public Double getDouble(int index) {
         return doubles.get(0)[this.index.get(0)[index]];
     }
-    public Double getDouble(int index, int n) {
-        return doubles.get(0)[this.index.get(0)[index]+n];
-    }
     
     public int addDouble(Double d) {
         int start = max;
