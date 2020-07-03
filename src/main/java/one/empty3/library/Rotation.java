@@ -37,18 +37,13 @@ import java.util.HashMap;
 /*__
  * Created by Win on 26-01-16.
  */
-public class Rotation implements MatrixPropertiesObject
-{
-    public static final StructureMatrix<Matrix33> rot1;
-    public static final StructureMatrix<Point3D> centreRot1; 
-    
-   
+public class Rotation implements MatrixPropertiesObject  {
     protected StructureMatrix<Matrix33> rot;
     protected StructureMatrix<Point3D> centreRot;
     protected boolean unmodified = true;
     public Rotation() {
             rot  = new StructureMatrix<>(0, Matrix33.class);
-            centreRot = new StructureMatrix<>(0, Point3D.class);;
+            centreRot = new StructureMatrix<>(0, Point3D.class);
             this.rot.setElem(Matrix33.I);
             this.centreRot.setElem(Point3D.O0);
     }
