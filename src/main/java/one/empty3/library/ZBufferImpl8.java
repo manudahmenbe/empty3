@@ -332,7 +332,7 @@ public void predraw() {
 
         /* OBJECTS */
         if (r instanceof Point3D) {
-            Point3D p = rotate((Point3D) r, null);
+            Point3D p = (Point3D) r;
             add(p.get(0), p.get(1), p.get(2), null, null, null, null, null, null, 0.0, 0.0, 0.0, p);
         }
         if (r instanceof ThickSurface) {
