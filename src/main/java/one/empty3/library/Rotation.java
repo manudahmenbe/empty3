@@ -40,7 +40,7 @@ import java.util.HashMap;
 public class Rotation implements MatrixPropertiesObject
 {
     public static final StructureMatrix<Matrix33> rot1;
-    public static final StructureMatrix<Point3D> centreRot1 
+    public static final StructureMatrix<Point3D> centreRot1; 
     
    
     protected StructureMatrix<Matrix33> rot;
