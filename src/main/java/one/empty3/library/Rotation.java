@@ -53,10 +53,11 @@ public class Rotation implements MatrixPropertiesObject  {
            rot = Matrix33.I;
          if(centreRot==null)
              centreRot = Point3D.O0;    
-        if(this.rot==null||this.rot.getElem()==null)
+       /* if(this.rot==null||this.rot.getElem()==null)
             this.rot = rot1;
         if(this.centreRot==null||this.centreRot.getElem()==null)
             this.centreRot = centreRot1;
+            */
         this.rot.setElem(rot);
         this.centreRot.setElem(centreRot);
     }
