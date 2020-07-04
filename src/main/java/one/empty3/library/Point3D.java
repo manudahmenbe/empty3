@@ -357,10 +357,10 @@ public class Point3D extends Representable {
      * @return
      */
     public Double norme() {
-        double n = 0.0;
+        double an = 0.0;
         for(int i=0; i<n; i++)
-            n+= get(i)*get(i);
-        return Math.sqrt(n);
+            an+= get(i)*get(i);
+        return Math.sqrt(an);
     }
 
     /*__
