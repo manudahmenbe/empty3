@@ -82,8 +82,9 @@ public class DoubleArray {
         stack[current++] = start;
         return current<stack.length;
     }
-    public boolean addToStack(int start) {
+    public boolean removeFromStack(int start) {
         current--;
+        this.stack = stack[start];
         return current>=0;
     }
 }
