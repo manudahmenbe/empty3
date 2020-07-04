@@ -79,12 +79,13 @@ public class DoubleArray {
     
     public int current() {return stack[current]; }
     public boolean addToStack() {
-        stack[current++] = start;
+        stack[current++] = max;
+        
         return current<stack.length;
     }
     public boolean removeFromStack() {
         current--;
-        this.stack = stack[current];
+        this.max = stack[current];
         return current>=0;
     }
 }
