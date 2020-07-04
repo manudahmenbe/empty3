@@ -243,7 +243,7 @@ public class ZBufferImpl8 extends ZBufferImpl {
         this.ime = new ImageMap(la, ha);
         data1 = new Data(la, ha, this);
                
-        Point3D.start();
+        //Point3D.start();
     }
 
     public ZBufferImpl8(Resolution resolution) {
