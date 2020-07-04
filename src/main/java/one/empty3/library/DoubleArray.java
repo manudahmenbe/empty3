@@ -5,6 +5,8 @@ import java.util.*;
 * quand ils sont vides.
 */
 public class DoubleArray {
+    public int [] stack = new int [5];
+    public int current = 0;
     private int length = 1000*1000;
     List<Double[]> doubles;
     List<Integer[]> index;
@@ -73,5 +75,15 @@ public class DoubleArray {
             max++;
         }
         return start;
+    }
+    
+    public int current() {return stack[current]; }
+    public boolean addToStack(int start) {
+        stack[current++] = start;
+        return current<stack.length;
+    }
+    public boolean addToStack(int start) {
+        current--;
+        return current>=0;
     }
 }
