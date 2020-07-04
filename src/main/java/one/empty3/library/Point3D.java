@@ -49,7 +49,7 @@ public class Point3D extends Representable {
          super();
          
          if(da==null)
-              da = new DoubleArray(10, 1000000);
+              da = new DoubleArray(10, 100000000);
          n = 3;
          start = da.addDoubles(n);
           this.n = n;
