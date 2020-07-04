@@ -101,7 +101,7 @@ public class Point3D extends Representable {
      public static void start() {
          da.addToStack();
      }
-     public static void end(int deep) {
+     public static void end() {
          da.removeFromStack();
      }
      public static int [] stack() {
