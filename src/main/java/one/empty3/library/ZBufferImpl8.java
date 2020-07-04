@@ -234,12 +234,16 @@ public class ZBufferImpl8 extends ZBufferImpl {
 
     public ZBufferImpl8(int l, int h) {
         this();
+               
+        
         la = l;
         ha = h;
         dimx = la;
         dimy = ha;
         this.ime = new ImageMap(la, ha);
         data1 = new Data(la, ha, this);
+               
+        Point3D.start();
     }
 
     public ZBufferImpl8(Resolution resolution) {
@@ -300,6 +304,7 @@ public void predraw() {
     }
 
     public void draw(Representable r) {
+        Point3D.start();
         /*
          * if (r instanceof RepresentableType) { try { ((RepresentableType)
          * r).draw(this); } catch (Exception ex) { ex.printStackTrace(); } return; }
@@ -613,7 +618,7 @@ public void predraw() {
                 }
             }
         }
-
+        Point3D.end();
     }
 
 
