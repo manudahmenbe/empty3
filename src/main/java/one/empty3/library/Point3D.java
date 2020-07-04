@@ -39,7 +39,7 @@ public class Point3D extends Representable {
      private int arrayNo;
      private int start;
      private int n;
-     public int mem = 1000000;
+     public int mem = 10000000;
      private boolean disposable;
      public int length() {
          return n;
