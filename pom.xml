@@ -140,7 +140,7 @@ scm:git:git://github.com/manuelddahmen/empty3.git
 <argument>resy=480</argument>
 <argument>maxFrames=3000</argument>
                    </arguments>
-		<argLine>-Xms4000-Xmx4000m</argLine>
+		<argLine>-Xms4000m -Xmx4000m</argLine>
                 </configuration>
             </plugin>
         
