@@ -39,6 +39,7 @@ public class Point3D extends Representable {
      private int arrayNo;
      private int start;
      private int n;
+     public int mem = 10000000;
      private boolean disposable;
      public int length() {
          return n;
@@ -49,7 +50,7 @@ public class Point3D extends Representable {
          super();
          
          if(da==null)
-              da = new DoubleArray(10, 100000000);
+              da = new DoubleArray(10, mem);
          n = 3;
          start = da.addDoubles(n);
           this.n = n;
@@ -58,7 +59,7 @@ public class Point3D extends Representable {
      public Point3D(int n) {
           super();
           if(da==null)
-              da = new DoubleArray(10, 100000000);
+              da = new DoubleArray(10, mem);
           start = da.addDoubles(n);
           this.n = n;
      }
