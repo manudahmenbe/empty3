@@ -36,11 +36,9 @@ import java.util.*;
 
 public class Point3D extends Representable {
      public static DoubleArray da;
-     private int arrayNo;
      private int start;
      private int n;
-     public int mem = 10000000;
-     private boolean disposable;
+     public static final int mem = 10000000;
      public int length() {
          return n;
      }
@@ -546,31 +544,34 @@ public class Point3D extends Representable {
         for(int i= 0; i<n; i++)
             set(i, coordArr.data1d.get(i));
     }
-/*
+
     
     
-    
-    public vec statOp(vec p, char po, int length){
+    /***
+     * @param p double or array or matrix
+     * 
+    */
+    public static  op(String po, int... p1, int ... p2){
         switch(po) {
-                case '+':
+                case "+":
                 for(int i=0; i<n; i++)
                      set(i,get(i)+p.get(i));
                 break;
-                case '-':
+                case "-":
                     for(int i=0; i<n; i++)
                         set(i, coordArr.getElem(i)-p.get(i));
                 break;
-                    case '*':
+                    case "*":
                         
         for(int i=0; i<n; i++)
               set( i,  get(i)*p.get(i));
                 break;
-                    case '/':
+                    case "/":
                 
         for(int i=0; i<n; i++)
               set(i, get(i)/p.get(i));
                 break;
-                case '.':
+                case ".":
                 double sum = 0.0;
                 for(int i=0; i<n; i++)
               
@@ -581,7 +582,7 @@ public class Point3D extends Representable {
            
         
         return this;
-    }*/
+    }
 
 
 }
