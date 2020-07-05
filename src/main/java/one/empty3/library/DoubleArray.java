@@ -51,12 +51,14 @@ public class DoubleArray {
     
     public int addDouble(Double d) {
         int start = max;
+        dimensions.get(0)[this.index.get(0)[start]] = 1;
         doubles.get(0)[this.index.get(0)[max] = max] = d;
         max++;
         return start;
     }
     public int addDoubles(Double... ds) {
         int start = max;
+        dimensions.get(0)[this.index.get(0)[start]] = ds.length;
         for (int i = 0; i<ds.length ; i++) {
             doubles.get(0)[this.index.get(0)[max] = max] = ds[i];
             max++;
