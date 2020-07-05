@@ -1,14 +1,14 @@
 package one.empty3.library;
 public class RFactory {
     public static void loadConfig() {
-        Properties load;
+        
     }
     // get interfaces
     
-    public static Class getZBuffer() {
+    public static ZBuffer getZBuffer() {
         return ZBufferImpl8.class;
-        }
-    public static Class getPoint3D() {
+    }
+    public static vec getPoint3D() {
         return Point3D.class;
     }
 }
