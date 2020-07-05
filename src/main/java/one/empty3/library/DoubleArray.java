@@ -5,8 +5,7 @@ import java.util.*;
 * quand ils sont vides.
 */
 public class DoubleArray {
-    public int [] stack = new int [5];
-    public int 
+    private int [] stack = new int [5];
     public int current = 0;
     private int length = 1000*1000;
     List<Double[]> doubles;
