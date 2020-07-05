@@ -38,7 +38,7 @@ public class Point3D extends Representable {
      public static DoubleArray da;
      private int start;
      private int n;
-     public static final int mem = 50000000;
+     public static final int mem = 10000000;
      public int length() {
          return n;
      }
