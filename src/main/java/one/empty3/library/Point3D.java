@@ -550,10 +550,10 @@ public class Point3D extends Representable {
     /***
      * @param p double or array or matrix
      * copy<- * copy-> * add-> * <- mult .,* min max->
-     * exp div set <- sub get sum fx? 
-     * new start end
+     * exp div set <- sub div  get sum fx? 
+     * new start end 
     */
-    public static int[] op(String po, int... p1, int ... p2){
+    public static int[] op(String po, int... p1){
         switch(po) {
                 case "+":
                 for(int i=0; i<n; i++)
