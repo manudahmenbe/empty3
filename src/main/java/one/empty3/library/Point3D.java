@@ -102,10 +102,11 @@ public class Point3D extends Representable {
      public static void end() {
          da.removeFromStack();
      }
+     /*
      public static int [] stack() {
           return da.stack;
      }
-   
+   */
     /*__
      * *
      * axe X vector
@@ -552,7 +553,7 @@ public class Point3D extends Representable {
      * copy<- * copy-> * add-> * <- mult .,* min max->
      * exp div set <- sub div  get sum fx? 
      * new start end 
-    */
+    *//*
     public static int[] op(String po, int... p1){
         switch(po) {
                 case "+":
@@ -586,5 +587,5 @@ public class Point3D extends Representable {
         return this;
     }
 
-
+*/
 }
