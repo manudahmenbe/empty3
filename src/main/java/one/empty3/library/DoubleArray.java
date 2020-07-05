@@ -6,10 +6,12 @@ import java.util.*;
 */
 public class DoubleArray {
     public int [] stack = new int [5];
+    public int 
     public int current = 0;
     private int length = 1000*1000;
     List<Double[]> doubles;
     List<Integer[]> index;
+    List<Integer[]> dimensions;
     int spaces;
     boolean [] freeSpace;
     int max = 0;
@@ -20,6 +22,8 @@ public class DoubleArray {
         doubles.add(new Double[spaceLength]);
         index = new ArrayList<>();
         index.add(new Integer[spaceLength]);
+        dimensions = new ArrayList<>();
+        dimensions.add(new Integer[spaceLength]);
       //  location = new ArrayList<>()
     }
     public void clear() {
