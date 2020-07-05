@@ -6,9 +6,9 @@ public class RFactory {
     // get interfaces
     
     public static ZBuffer getZBuffer() {
-        return ZBufferImpl8.class;
+        return ZBufferImpl8;
     }
-    public static vec getPoint3D() {
-        return Point3D.class;
+    public static Vec getPoint3D() {
+        return Point3D;
     }
 }
