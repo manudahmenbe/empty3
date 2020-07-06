@@ -3,7 +3,7 @@ package one.empty3.library;
 import java.awt.Color;
 import java.util.*;
 
-public interface Vec {
+public class Vec extends Representable {
     
 /*
  *  This file is part of Empty3.
@@ -80,8 +80,8 @@ public interface Vec {
      * *
      * Pour le tracé de surface normale au point
      */
-    protected Point3D normale;
-    
+    protected Point3D getNormale();
+    protected void setNormale(Point3D n);
     public static Vec n(int a, int b, int c) ;
     public static Vec n() ;
     public static Vec n(int dim) ;
