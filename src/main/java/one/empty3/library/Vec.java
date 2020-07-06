@@ -45,11 +45,7 @@ public class Vec {
      
      
 
-     public Point3D() ;
-
-     public Point3D(int n) ;
-
-     public Point3D(Point3D... v) ;
+  
      public static void start() ;
          
      public static void end() ;
