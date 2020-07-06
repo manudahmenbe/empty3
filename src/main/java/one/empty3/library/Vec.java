@@ -81,15 +81,7 @@ public class Vec {
      * Pour le tracé de surface normale au point
      */
     protected Point3D normale;
-    /*__
-     * *
-     * id
-     */
-  
-
-    public Point3D(StructureMatrix<Double> coordArr) ;
     
-
     public static Point3D n(Double a, Double b, Double c) ;
     public static Point3D n(int a, int b, int c) ;
        
