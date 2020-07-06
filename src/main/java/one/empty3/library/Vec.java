@@ -1,8 +1,9 @@
 package one.empty3.library;
+import java.awt.Color;
+import java.util.*;
+
 public class Vec {
     
-}
-package one.empty3.library;
 /*
  *  This file is part of Empty3.
  *
@@ -34,83 +35,25 @@ package one.empty3.library;
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
-import java.awt.Color;
-import java.util.*;
 
 
 public class Point3D extends Representable {
-     public static DoubleArray da;
-     private int start;
-     private int n;
-     public static final int mem = 10000000;
-     public int length() {
-         return n;
-     }
-
-     public Point3D() {
+     
+     public int length() ;
          
-         super();
-         
-         if(da==null)
-              da = new DoubleArray(10, mem);
-         n = 3;
-         start = da.addDoubles(n);
-          this.n = n;
-     }
+     
+     
 
-     public Point3D(int n) {
-          super();
-          if(da==null)
-              da = new DoubleArray(10, mem);
-          start = da.addDoubles(n);
-          this.n = n;
-     }
-/*
-     public Point3D(Point3D v1, double... c) {
-         this(v1.length()+c.length);
-         int i; int j=0;
-         for( i=start; i<start+n; i++)
-             da.setDoubles(i, v1.get(j++));
-         for(double d : c) {
-             da.setDoubles(j++, d);
-             i++;
-         }
-             
-     }
-     */
-     public Point3D(Point3D... v) {
-         super();
-         n = 0;
-         int i;
-         int m = v.length;
-         for(i=0; i<m; i++) 
-             n+= v[i].length();
-         start = da.addDoubles(n);
-         i=0;
-         int j = 0;
-         int k = 0;
-         for(i=start; i<start+n; i++) {
-             da.setDoubles(i, v[j].get(k));
-             k++;
-             if(k>=v[j].length()) {
-                 k=0;
-                 j++;
-             }
-             if(j>=m)
-                   break;
-         }
-     }
-     public static void start() {
-         da.addToStack();
-     }
-     public static void end() {
-         da.removeFromStack();
-     }
-     /*
-     public static int [] stack() {
-          return da.stack;
-     }
-   */
+     public Point3D() ;
+
+     public Point3D(int n) ;
+
+     public Point3D(Point3D... v) ;
+     public static void start() ;
+         
+     public static void end() ;
+         
+  
     /*__
      * *
      * axe X vector
@@ -152,15 +95,7 @@ public class Point3D extends Representable {
      *
      * @param x0 coordArr-coordonnée
      */
-    public Point3D(double... x0) {
-         this(x0.length);
-         int i = 0;
-         
-         for(double d : x0) {
-              da.setDoubles(start + i, d);
-              i++;
-         }
-    }
+    public Point3D(double... x0) ;
 /*__
      * *
      *
@@ -168,51 +103,19 @@ public class Point3D extends Representable {
      * @param y0 y-coordonnée
      * @param z0 z-coordonnée
      */
-    public Point3D(Double x0, Double y0, Double z0, ITexture t) {
+    public Point3D(Double x0, Double y0, Double z0, ITexture t) ;
       
-         this(x0, y0, z0);
-        texture(t);
-    }
 
-    /*__
-     * *
-     * Initialise à partir d'un tableau
-     *
-     * @param x0 coordonnées (>3)
-     */
-  /*  public Point3D(Double ... x0) {
-         this(x0.length);
-        int i=0;
-        for(Double d : x0) {
-         set(i, d);
-         i++;
-        }
-        
-    }*/
 
-    public Point3D(Double[] x0, ITexture t) {
-         this(x0.length);
-        int i=0;
-        for(Double d : x0) {
-         set(i, d);
-         i++;
-        }
-        texture(t);
-    }
+    public Point3D(Double[] x0, ITexture t) ;
   
 
-    public Point3D(StructureMatrix<Double> coordArr) {
-        this(coordArr.data1d.size());
-        for(int i= 0; i<n; i++)
-            set(i, coordArr.data1d.get(i));
-    }
+    public Point3D(StructureMatrix<Double> coordArr) ;
+    
 
-    public static Point3D n(Double a, Double b, Double c) {
-        return new Point3D(a, b, c);
-    }
-    public static Point3D n(int a, int b, int c) {
-        return new Point3D((double)a, (double)b, (double)c);
-    }
+    public static Point3D n(Double a, Double b, Double c) ;
+    public static Point3D n(int a, int b, int c) ;
+       
 
     /*__
      * *
@@ -222,61 +125,27 @@ public class Point3D extends Representable {
      * @param p2 Point2
      * @return
      */
-    public static Double distance(Point3D p1, Point3D p2) {
-        double d = 0.0;
-        for(int i=0; i<p1.length(); i++)
-            d+=(p1.get(i)-p2.get(i))*(p1.get(i)*p2.get(i));
-        return Math.sqrt(d);
-   }
-
-
-
-    public static Point3D random(Double d) {
-        return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
-    }
-    public static Point3D random(Double d, int n) {
+    public static Double distance(Point3D p1, Point3D p2);
         
-        return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
-    }
-    public static Point3D r(Double d) {
-        return random(d);
-    }
 
-    public static Point3D random2(Double d) {
 
-        return new Point3D(((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d));
-    }
+    public static Point3D random(Double d);
+        
+    public static Point3D random(Double d, int n) ;
+        
+    public static Point3D random2(Double d);
 
+      
     @Override
     public Object clone() {
         return new Point3D(this);
     }
 
-    public Double get(int i) {
-       // if(i>=0 && i<3 && coordArr.data1d.size()==3)
-            return da.getDouble(start+ i);
-       /* else
-            try {
-                throw new Throwable("vec coordArr out of bounds or array dim error\nValues="+coordArr.toString()+"\nSize="+coordArr.data1d.size());
-            } catch (Throwable throwable) {
-                throwable.printStackTrace();
-            }
-        return Double.NaN;*/
-    }
-    public Point3D scale() {
-        if(scale==null)
-        {
-            return this;
-        }
-         return new Point3D(get(0)*scale.get(1),get(1)*scale.get(1),get(2)*scale.get(2));
-    }
+    public Double get(int i) {;
+       
+    public Point3D scale() 
 
-    public List<Double> getDoubleArray() {
-        List<Double> coordArr = new ArrayList<>();
-        for(int i = 0; i<n; i++)
-            coordArr.add(get(i));
-        return coordArr;
-    }
+    public List<Double> getDoubleArray() ;
 
 
     public Point3D getNormale() {
