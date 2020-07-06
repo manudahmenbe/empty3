@@ -1,4 +1,5 @@
 package one.empty3.library;
+
 import java.awt.Color;
 import java.util.*;
 
@@ -37,7 +38,7 @@ public class Vec {
  */
 
 
-public class Point3D extends Representable {
+
      
      public int length() ;
          
@@ -137,11 +138,9 @@ public class Point3D extends Representable {
 
       
     @Override
-    public Object clone() {
-        return new Point3D(this);
-    }
+    public Object clone();
 
-    public Double get(int i) {;
+    public Double get(int i);
        
     public Point3D scale() 
 
@@ -273,7 +272,7 @@ public class Point3D extends Representable {
     public boolean equals(Object p) ;
      }
 
-    public Point3D changeTo(Point3D dst) 
+    public Point3D changeTo(Point3D dst) ;
         
 
     public void declareProperties() ;
