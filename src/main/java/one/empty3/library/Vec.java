@@ -55,37 +55,40 @@ public class Vec {
      * *
      * axe X vector
      */
-    public static final Point3D X = new Point3D(1d, 0d, 0d);
+    public static final Vec X = new Point3D(1d, 0d, 0d);
     /*__
      * *
      * axe Y vector
      */
-    public static final Point3D Y = new Point3D(0d, 1d, 0d);
+    public static final Vec Y = new Point3D(0d, 1d, 0d);
     /*__
      * *
      * axe Z vector
      */
-    public static final Point3D Z = new Point3D(0d, 0d, 1d);
+    public static final Vec Z = new Point3D(0d, 0d, 1d);
     /*__
      * *
      * O0 origin
      */
-    public static final Point3D O0 = new Point3D(0d, 0d, 0d);
+    public static final Vec O0 = new Point3D(0d, 0d, 0d);
     /*__
      * *
      * Point "Infinite" limite pour Z-Buffer
      */
-    public static final Point3D INFINI = new Point3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
+    public static final Vec INFINI = new Point3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
     /*__
      * *
      * Pour le tracé de surface normale au point
      */
     protected Point3D normale;
     
-    public static Point3D n(Double a, Double b, Double c) ;
-    public static Point3D n(int a, int b, int c) ;
-       
-
+    public static Vec n(int a, int b, int c) ;
+    public static Vec n() ;
+    public static Vec n(int dim) ;
+    public static Vec n(double... d);
+    public static Vec n(Double... d);
+    
+    
     /*__
      * *
      * Distance cartésienne entre 2 points
