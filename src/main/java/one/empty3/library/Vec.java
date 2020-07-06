@@ -113,7 +113,7 @@ public abstract class Vec extends Representable {
 
     public Double get(int i);
        
-    public Point3D scale() 
+    public Point3D scale() ;
 
     public List<Double> getDoubleArray() ;
 
@@ -241,7 +241,7 @@ public abstract class Vec extends Representable {
     public Double NormeCarree()
     @Override
     public boolean equals(Object p) ;
-     }
+     
 
     public Point3D changeTo(Point3D dst) ;
         
