@@ -85,26 +85,6 @@ public class Vec {
      * *
      * id
      */
-
-    
-    /*__
-     * *
-     *
-     * @param x0 coordArr-coordonnée
-     */
-    public Point3D(double... x0) ;
-/*__
-     * *
-     *
-     * @param x0 coordArr-coordonnée
-     * @param y0 y-coordonnée
-     * @param z0 z-coordonnée
-     */
-    public Point3D(Double x0, Double y0, Double z0, ITexture t) ;
-      
-
-
-    public Point3D(Double[] x0, ITexture t) ;
   
 
     public Point3D(StructureMatrix<Double> coordArr) ;
