@@ -80,7 +80,7 @@ public abstract class Vec extends Representable {
      * *
      * Pour le tracé de surface normale au point
      */
-    protected Point3D getNormale();
+    protected Vec getNormale();
     protected void setNormale(Point3D n);
     public static Vec n(int a, int b, int c) ;
     public static Vec n() ;
@@ -118,7 +118,6 @@ public abstract class Vec extends Representable {
     public List<Double> getDoubleArray() ;
 
 
-    public Point3D getNormale();
        
     
 
