@@ -116,12 +116,6 @@ public abstract class Vec extends Representable {
     public Point3D scale() ;
 
     public List<Double> getDoubleArray() ;
-
-
-       
-    
-
-    public void setNormale(Point3D normale);
        
     
 
