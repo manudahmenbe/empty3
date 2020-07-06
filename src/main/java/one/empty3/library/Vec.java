@@ -148,59 +148,44 @@ public class Point3D extends Representable {
     public List<Double> getDoubleArray() ;
 
 
-    public Point3D getNormale() {
-        return normale;
-    }
-
-    public void setNormale(Point3D normale) {
-        this.normale = normale;
-    }
-
-    public Double getY() {
-        return get(1);
-    }
-
-    public void setY(Double x0) {
-        set( 1, x0);
-
-    }
-    public Double getZ() {
-        return get(2);
-    }
-
-    public void setZ(Double x0) {
-        set(2, x0);
-
-    }
-    public Double getX() {
-        return get(0);
-    }
-
-    public void setX(Double x0) {
-        set(0, x0);
-
-    }
-
-
-    public Point3D plus(Point3D p){
-         if(p==null)
-              return this;
-        Point3D p1 = new Point3D(this);
-        for(int i=0;i<n; i++)
-            p1.set(i, get(i)+p.get(i));
-        
-        return p1;
-    }
+    public Point3D getNormale();
+       
     
-    public Point3D moins(Point3D p) {
-         if(p==null)
-              return this;
-        Point3D p1 = new Point3D(this);
-        for(int i=0;i<n; i++)
-            p1.set(i, get(i)-p.get(i));
+
+    public void setNormale(Point3D normale);
+       
+    
+
+    public Double getY() ;
         
-        return p1;
-    }
+    
+
+    public void setY(Double x0) ;
+        
+
+    
+    public Double getZ() ;
+        
+    
+
+    public void setZ(Double x0) ;
+       
+
+    
+    public Double getX() ;
+        
+    
+
+    public void setX(Double x0) ;
+        
+
+    
+
+
+    public Point3D plus(Point3D p);
+         
+    
+    public Point3D moins(Point3D p);
 
     /*__
      * *
@@ -210,25 +195,10 @@ public class Point3D extends Representable {
      * @return
      */
 
-    public Point3D mult(Point3D p) {
-         if(p==null)
-              return this;
-        Point3D p1 = new Point3D(this);
-        for(int i=0;i<n; i++)
-            p1.set(i, get(i)*p.get(i));
-        
-        return p1;
-    }
-     public Point3D mult(double d) {
-        Point3D p1 = new Point3D(this);
-        for(int i=0;i<n; i++)
-            p1.set(i, get(i)*d);
-        
-        return p1;
-}
+    public Point3D mult(Point3D p);
+     public Point3D mult(double d) ;
     /*
-     public vec mult(vec point3D) {
-        return Matrix33.YZX.mult(Matrix33.ZXY.mult(Matrix33.XYZ.mult(point3D)));
+     public vec mult(vec point3D) ;
        }*/
     /*__
      * *
@@ -236,12 +206,7 @@ public class Point3D extends Representable {
      *
      * @return
      */
-    public Double norme() {
-        double an = 0.0;
-        for(int i=0; i<n; i++)
-            an+= get(i)*get(i);
-        return Math.sqrt(an);
-    }
+    public Double norme() ;
 
     /*__
      * *
@@ -249,9 +214,7 @@ public class Point3D extends Representable {
      *
      * @return Vecteur normalisé à 1
      */
-    public Point3D norme1() {
-        return mult(1 / norme());
-    }
+    public Point3D norme1() ;
 
     /*__
      * *
@@ -260,13 +223,7 @@ public class Point3D extends Representable {
      * @param i
      * @return
      */
-    public Point3D plus(Double d) {
-         
-        Point3D p = new Point3D(this);
-        for(int i=0; i<n; i++)
-            p.set(i, get(i)+d);
-        return p;
-    }
+    public Point3D plus(Double d) ;
 
    
 
@@ -277,18 +234,7 @@ public class Point3D extends Representable {
      * @param p2
      * @return
      */
-    public Double prodScalaire(Point3D p2) {
-         if(p2==null)
-              return Double.NaN;
-        double s = 0.0;
-        if(p2!=null) {
-            for(int i=0; i<n; i++)
-            s +=get(i) * p2.get(i);
-        }
-        else
-            throw new NullPointerException("Exception prodScalre p2==null");
-        return s;
-    }
+    public Double prodScalaire(Point3D p2) ;
 
     /*__/*__
      * *
@@ -297,128 +243,47 @@ public class Point3D extends Representable {
      * @param p2
      * @return
      */
-    public Double dot(Point3D p2) {
-        return this.prodScalaire(p2);
-    }
-
+    public Double dot(Point3D p2) ;
      /* *
      * produit vectoriel
      *
      * @param p1
      * @return
      */
-    public Point3D prodVect(Point3D p1) {
-        return new Point3D(p1.getY() * getZ() + -p1.getZ() * getY(), p1.getZ()
-                * getX() - p1.getX() * getZ(), p1.getX() * getY() - p1.getY()
-                * getX());
-    }
+    public Point3D prodVect(Point3D p1) ;
 
-    public void set(int i, Double d) {
-        da.setDoubles(start+ i, d);
+    public void set(int i, Double d);
 
-    }
-
-    public String toLongString() {
-        String s = "p ( \n\t(";
-        for(int i = 0; i<n; i++) {
-             s+= get(i);
-             if(i<n-1)
-                  s += ", ";
-        }
-        s += " )\n\t("
-                + texture.toString()
-                + ")\n)\n";
-        return s;
-    }
+    public String toLongString();
 
     @Override
-    public String toString() {
-        return toLongString();
-    }
+    public String toString() ;
+    
 
+    
+    public Point2D get2D() ;
+    public Point3D ord(int x, int y, int z) ;
+
+    public void normalize() ;
+
+    public Point2D to2DwoZ();
+
+    public Double NormeCarree()
     @Override
-    public boolean ISdrawStructureDrawFastIMPLEMENTED(ZBuffer z) {
-         return false;//To change body of generated methods, choose Tools | Templates.
-    }
+    public boolean equals(Object p) ;
+     }
 
-    @Override
-    public void drawStructureDrawFast(ZBuffer z) {
+    public Point3D changeTo(Point3D dst) 
+        
 
-      
+    public void declareProperties() ;
 
-    }
+    
+    public StructureMatrix<Double> getCoordArr() ;
+        
 
-    public Point2D get2D() {
-        return new Point2D(get(0), get(1));
-    }
-    public Point3D ord(int x, int y, int z) {
-        return new Point3D(get(x), get(y), get(z));
-    }
-    public void normalize() {
-        Double norme = norme();
-        for (int i = 0; i < n; i++)
-            set(i, get(i) / norme);
-    }
-
-    public Point2D to2DwoZ() {
-        return get2D();
-    }
-
-    public Double NormeCarree() {
-        return norme()*norme();
-    }
-    @Override
-    public boolean equals(Object p) {
-         if(this==p) 
-              return true;
-         
-         boolean e = true;
-              
-             
-         if((p!=null) && ( p instanceof Point3D)) {
-              Point3D p1 = (Point3D) p;
-              if(this.length()!=p1.length())
-                   return false;
-              for(int i=0; i<n; i++) 
-                   e = (
-                       e & get(i).equals(p1.get(i)) 
-                   ) ;
-         } 
-         else
-              e = false;
-         System.out.println("equals " + e + "\np1: "
-                   +this+"\np2: "+p);
-         return e;
-     } 
-
-    public Point3D changeTo(Point3D dst) {
-        for (int i = 0; i < 3; i++)
-            this.set(i, dst.get(i));
-
-        texture(dst.texture());
-        return this;
-    }
-
-    public void declareProperties() {
-        super.declareProperties();
-        getDeclaredDataStructure().put("coordArr/coordonnées", null);
-    }
-/*
-    public Double get(int i) {
-        return i<coordArr.data1d.size()?coordArr.getElem(i):Double.NaN;
-    }*/
-    public StructureMatrix<Double> getCoordArr() {
-        StructureMatrix<Double> coordArr = new StructureMatrix<>(1, Double.class);
-         for(int i= 0; i<n; i++)
-            coordArr.data1d.add(get(i));
-         return null;
-    }
-
-    public void setCoordArr(StructureMatrix<Double> coordArr) {
-        for(int i= 0; i<n; i++)
-            set(i, coordArr.data1d.get(i));
-    }
-
+    public void setCoordArr(StructureMatrix<Double> coordArr) ;
+        
     
     
     /***
@@ -426,39 +291,9 @@ public class Point3D extends Representable {
      * copy<- * copy-> * add-> * <- mult .,* min max->
      * exp div set <- sub div  get sum fx? 
      * new start end 
-    *//*
-    public static int[] op(String po, int... p1){
-        switch(po) {
-                case "+":
-                for(int i=0; i<n; i++)
-                     set(i,get(i)+p.get(i));
-                break;
-                case "-":
-                    for(int i=0; i<n; i++)
-                        set(i, coordArr.getElem(i)-p.get(i));
-                break;
-                    case "*":
-                        
-        for(int i=0; i<n; i++)
-              set( i,  get(i)*p.get(i));
-                break;
-                    case "/":
-                
-        for(int i=0; i<n; i++)
-              set(i, get(i)/p.get(i));
-                break;
-                case ".":
-                double sum = 0.0;
-                for(int i=0; i<n; i++)
-              
-                  sum += get(i)*p.get(i);
-                   set(0, sum);
-                break;
-                }
-           
+    */
+    public static int[] op(String po, int... p1);
         
-        return this;
-    }
+                
 
-*/
 }
