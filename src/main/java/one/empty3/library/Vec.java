@@ -3,7 +3,7 @@ package one.empty3.library;
 import java.awt.Color;
 import java.util.*;
 
-public class Vec extends Representable {
+public abstract class Vec extends Representable {
     
 /*
  *  This file is part of Empty3.
