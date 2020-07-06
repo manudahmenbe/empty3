@@ -238,7 +238,7 @@ public abstract class Vec extends Representable {
 
     public Point2D to2DwoZ();
 
-    public Double NormeCarree()
+    public Double NormeCarree();
     @Override
     public boolean equals(Object p) ;
      
