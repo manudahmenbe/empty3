@@ -40,15 +40,15 @@ public abstract class Vec extends Representable {
 
 
      
-     public int length() ;
+     public abstract int length() ;
          
      
      
 
   
-     public static void start() ;
+     public abstract  static void start() ;
          
-     public static void end() ;
+     public abstract  static void end() ;
          
   
     /*__
@@ -80,13 +80,13 @@ public abstract class Vec extends Representable {
      * *
      * Pour le tracé de surface normale au point
      */
-    protected Vec getNormale();
-    protected void setNormale(Point3D n);
-    public static Vec n(int a, int b, int c) ;
-    public static Vec n() ;
-    public static Vec n(int dim) ;
-    public static Vec n(double... d);
-    public static Vec n(Double... d);
+    protected abstract  Vec getNormale();
+    protected abstract  void setNormale(Point3D n);
+    public  abstract static Vec n(int a, int b, int c) ;
+    public  abstract static Vec n() ;
+    public  abstract static Vec n(int dim) ;
+    public abstract  static Vec n(double... d);
+    public  abstract static Vec n(Double... d);
     
     
     /*__
@@ -97,58 +97,58 @@ public abstract class Vec extends Representable {
      * @param p2 Point2
      * @return
      */
-    public static Double distance(Point3D p1, Point3D p2);
+    public  abstract static Double distance(Point3D p1, Point3D p2);
         
 
 
-    public static Point3D random(Double d);
+    public  abstract static Point3D random(Double d);
         
-    public static Point3D random(Double d, int n) ;
+    public abstract  static Point3D random(Double d, int n) ;
         
-    public static Point3D random2(Double d);
+    public  abstract static Point3D random2(Double d);
 
       
     @Override
-    public Object clone();
+    public  abstract Object clone();
 
-    public Double get(int i);
+    public abstract  Double get(int i);
        
-    public Point3D scale() ;
+    public  abstract Point3D scale() ;
 
-    public List<Double> getDoubleArray() ;
+    public  abstract List<Double> getDoubleArray() ;
        
     
 
-    public Double getY() ;
+    public  abstract Double getY() ;
         
     
 
-    public void setY(Double x0) ;
+    public abstract  void setY(Double x0) ;
         
 
     
-    public Double getZ() ;
+    public  abstract Double getZ() ;
         
     
 
-    public void setZ(Double x0) ;
+    public  abstract void setZ(Double x0) ;
        
 
     
-    public Double getX() ;
+    public  abstract Double getX() ;
         
     
 
-    public void setX(Double x0) ;
+    public  abstract void setX(Double x0) ;
         
 
     
 
 
-    public Point3D plus(Point3D p);
+    public abstract  Point3D plus(Point3D p);
          
     
-    public Point3D moins(Point3D p);
+    public abstract  Point3D moins(Point3D p);
 
     /*__
      * *
@@ -158,8 +158,8 @@ public abstract class Vec extends Representable {
      * @return
      */
 
-    public Point3D mult(Point3D p);
-     public Point3D mult(double d) ;
+    public  abstract Point3D mult(Point3D p);
+     public  abstract Point3D mult(double d) ;
     /*
      public vec mult(vec point3D) ;
        }*/
@@ -169,7 +169,7 @@ public abstract class Vec extends Representable {
      *
      * @return
      */
-    public Double norme() ;
+    public  abstract Double norme() ;
 
     /*__
      * *
@@ -177,7 +177,7 @@ public abstract class Vec extends Representable {
      *
      * @return Vecteur normalisé à 1
      */
-    public Point3D norme1() ;
+    public  abstract Point3D norme1() ;
 
     /*__
      * *
@@ -186,7 +186,7 @@ public abstract class Vec extends Representable {
      * @param i
      * @return
      */
-    public Point3D plus(Double d) ;
+    public  abstract Point3D plus(Double d) ;
 
    
 
@@ -197,7 +197,7 @@ public abstract class Vec extends Representable {
      * @param p2
      * @return
      */
-    public Double prodScalaire(Point3D p2) ;
+    public  abstract Double prodScalaire(Point3D p2) ;
 
     /*__/*__
      * *
@@ -206,46 +206,46 @@ public abstract class Vec extends Representable {
      * @param p2
      * @return
      */
-    public Double dot(Point3D p2) ;
+    public  abstract Double dot(Point3D p2) ;
      /* *
      * produit vectoriel
      *
      * @param p1
      * @return
      */
-    public Point3D prodVect(Point3D p1) ;
+    public  abstract Point3D prodVect(Point3D p1) ;
 
-    public void set(int i, Double d);
+    public  abstract void set(int i, Double d);
 
-    public String toLongString();
+    public abstract  String toLongString();
 
     @Override
-    public String toString() ;
+    public  abstract String toString() ;
     
 
     
-    public Point2D get2D() ;
-    public Point3D ord(int x, int y, int z) ;
+    public  abstract Point2D get2D() ;
+    public abstract  Point3D ord(int x, int y, int z) ;
 
-    public void normalize() ;
+    public  abstract void normalize() ;
 
-    public Point2D to2DwoZ();
+    public abstract  Point2D to2DwoZ();
 
-    public Double NormeCarree();
+    public  abstract Double NormeCarree();
     @Override
-    public boolean equals(Object p) ;
+    public  abstract boolean equals(Object p) ;
      
 
-    public Point3D changeTo(Point3D dst) ;
+    public  abstract Point3D changeTo(Point3D dst) ;
         
 
-    public void declareProperties() ;
+    public  abstract void declareProperties() ;
 
     
-    public StructureMatrix<Double> getCoordArr() ;
+    public  abstract StructureMatrix<Double> getCoordArr() ;
         
 
-    public void setCoordArr(StructureMatrix<Double> coordArr) ;
+    public  abstract void setCoordArr(StructureMatrix<Double> coordArr) ;
         
     
     
@@ -255,7 +255,7 @@ public abstract class Vec extends Representable {
      * exp div set <- sub div  get sum fx? 
      * new start end 
     */
-    public static int[] op(String po, int... p1);
+    public  abstract static int[] op(String po, int... p1);
         
                 
 
