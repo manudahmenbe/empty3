@@ -46,9 +46,9 @@ public abstract class Vec extends Representable {
      
 
   
-     public abstract  static void start() ;
+     public static abstract  void start() ;
          
-     public abstract  static void end() ;
+     public static abstract  void end() ;
          
   
     /*__
