@@ -55,27 +55,27 @@ public abstract class Vec extends Representable {
      * *
      * axe X vector
      */
-    public static final Vec X = new Point3D(1d, 0d, 0d);
+    public static final Point3D X = new Point3D(1d, 0d, 0d);
     /*__
      * *
      * axe Y vector
      */
-    public static final Vec Y = new Point3D(0d, 1d, 0d);
+    public static final Point3D Y = new Point3D(0d, 1d, 0d);
     /*__
      * *
      * axe Z vector
      */
-    public static final Vec Z = new Point3D(0d, 0d, 1d);
+    public static final Point3D Z = new Point3D(0d, 0d, 1d);
     /*__
      * *
      * O0 origin
      */
-    public static final Vec O0 = new Point3D(0d, 0d, 0d);
+    public static final Point3D O0 = new Point3D(0d, 0d, 0d);
     /*__
      * *
      * Point "Infinite" limite pour Z-Buffer
      */
-    public static final Vec INFINI = new Point3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
+    public static final Point3D INFINI = new Point3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
     /*__
      * *
      * Pour le tracé de surface normale au point
