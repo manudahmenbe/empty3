@@ -80,13 +80,13 @@ public abstract class Vec extends Representable {
      * *
      * Pour le tracé de surface normale au point
      */
-    protected abstract  Vec getNormale();
+    public abstract Vec getNormale();
     protected abstract  void setNormale(Point3D n);
-    public  abstract static Vec n(int a, int b, int c) ;
-    public  abstract static Vec n() ;
-    public  abstract static Vec n(int dim) ;
-    public abstract  static Vec n(double... d);
-    public  abstract static Vec n(Double... d);
+    public  abstract Vec n(int a, int b, int c) ;
+    public  abstract Vec n() ;
+    public  abstract Vec n(int dim) ;
+    public abstract  Vec n(double... d);
+    public  abstract Vec n(Double... d);
     
     
     /*__
