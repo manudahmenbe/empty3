@@ -3,7 +3,7 @@ package one.empty3.library;
 import java.awt.Color;
 import java.util.*;
 
-public abstract class Vec extends Representable {
+public class Vec extends Representable {
     
 /*
  *  This file is part of Empty3.
@@ -36,19 +36,23 @@ public abstract class Vec extends Representable {
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
-
+     protected int dim;
 
 
      
-     public abstract int length() ;
+     public int length() {
+         return dim;
+     }
+
          
      
      
 
   
-     public abstract  void start() ;
+     public static void start() {}
          
-     public abstract  void end() ;
+     public static  void end() 
+    {}
          
   
     /*__
