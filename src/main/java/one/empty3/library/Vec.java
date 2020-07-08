@@ -84,13 +84,13 @@ public class Vec extends Representable {
      * *
      * Pour le tracé de surface normale au point
      */
-    public abstract Vec getNormale();
-    protected abstract void setNormale(Point3D n);
-    public  abstract Vec n(int a, int b, int c) ;
-    public  abstract Vec n() ;
-    public  abstract Vec n(int dim) ;
-    public abstract  Vec n(double... d);
-    public  abstract Vec n(Double... d);
+    public static Vec getNormale();
+    protected static void setNormale(Point3D n);
+    public  static Vec n(int a, int b, int c) ;
+    public  static Vec n() ;
+    public  static Vec n(int dim) ;
+    public static  Vec n(double... d);
+    public  static Vec n(Double... d);
     
     
     /*__
@@ -101,7 +101,7 @@ public class Vec extends Representable {
      * @param p2 Point2
      * @return
      */
-    public  abstract Double distance(Point3D p1, Point3D p2);
+    public  static Double distance(Point3D p1, Point3D p2);
         
 
 
