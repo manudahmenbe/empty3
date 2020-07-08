@@ -255,7 +255,7 @@ public abstract class Vec extends Representable {
      * exp div set <- sub div  get sum fx? 
      * new start end 
     */
-    public  abstract static int[] op(String po, int... p1);
+    public  abstract int[] op(String po, int... p1);
         
                 
 
