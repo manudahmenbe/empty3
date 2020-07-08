@@ -85,12 +85,13 @@ public class Vec extends Representable {
      * Pour le tracé de surface normale au point
      */
     public static Vec getNormale();
-    protected static void setNormale(Point3D n);
-    public  static Vec n(int a, int b, int c) ;
-    public  static Vec n() ;
-    public  static Vec n(int dim) ;
-    public static  Vec n(double... d);
-    public  static Vec n(Double... d);
+    protected static void setNormale(Point3D n){}
+    public  static Vec n(int a, int b, int c) {}
+    public  static Vec n() {}
+    public  static Vec n(int dim) {}
+    
+    public static  Vec n(double... d){}
+    public  static Vec n(Double... d){}
     
     
     /*__
@@ -105,54 +106,56 @@ public class Vec extends Representable {
         
 
 
-    public  abstract Point3D random(Double d);
+    public  Point3D random(Double d){}
         
-    public abstract  Point3D random(Double d, int n) ;
+    public Point3D random(Double d, int n) {}
         
-    public  abstract Point3D random2(Double d);
+    public  Point3D random2(Double d)
+        {}
 
       
     @Override
-    public  abstract Object clone();
+    public  Object clone(){}
 
-    public abstract  Double get(int i);
+    public Double get(int i){}
+
        
-    public  abstract Point3D scale() ;
+    public  abstract Point3D scale() {}
 
-    public  abstract List<Double> getDoubleArray() ;
+    public  abstract List<Double> getDoubleArray() {}
        
     
 
-    public  abstract Double getY() ;
+    public  abstract Double getY() {}
         
     
 
-    public abstract  void setY(Double x0) ;
+    public abstract  void setY(Double x0) {}
         
 
     
-    public  abstract Double getZ() ;
+    public  abstract Double getZ() {}
         
     
 
-    public  abstract void setZ(Double x0) ;
+    public  abstract void setZ(Double x0) {}
        
 
     
-    public  abstract Double getX() ;
+    public  abstract Double getX() {}
         
     
 
-    public  abstract void setX(Double x0) ;
+    public  abstract void setX(Double x0) {}
         
 
     
 
 
-    public abstract  Point3D plus(Point3D p);
+    public abstract  Point3D plus(Point3D p){}
          
     
-    public abstract  Point3D moins(Point3D p);
+    public abstract  Point3D moins(Point3D p){}
 
     /*__
      * *
@@ -162,8 +165,8 @@ public class Vec extends Representable {
      * @return
      */
 
-    public  abstract Point3D mult(Point3D p);
-     public  abstract Point3D mult(double d) ;
+    public  abstract Point3D mult(Point3D p){}
+     public  abstract Point3D mult(double d) {}
     /*
      public vec mult(vec point3D) ;
        }*/
@@ -173,7 +176,7 @@ public class Vec extends Representable {
      *
      * @return
      */
-    public  abstract Double norme() ;
+    public  abstract Double norme() {}
 
     /*__
      * *
@@ -181,7 +184,7 @@ public class Vec extends Representable {
      *
      * @return Vecteur normalisé à 1
      */
-    public  abstract Point3D norme1() ;
+    public  abstract Point3D norme1() {}
 
     /*__
      * *
@@ -190,7 +193,7 @@ public class Vec extends Representable {
      * @param i
      * @return
      */
-    public  abstract Point3D plus(Double d) ;
+    public  abstract Point3D plus(Double d) {}
 
    
 
@@ -201,7 +204,7 @@ public class Vec extends Representable {
      * @param p2
      * @return
      */
-    public  abstract Double prodScalaire(Point3D p2) ;
+    public  abstract Double prodScalaire(Point3D p2) {}
 
     /*__/*__
      * *
@@ -210,46 +213,46 @@ public class Vec extends Representable {
      * @param p2
      * @return
      */
-    public  abstract Double dot(Point3D p2) ;
+    public  abstract Double dot(Point3D p2) {}
      /* *
      * produit vectoriel
      *
      * @param p1
      * @return
      */
-    public  abstract Point3D prodVect(Point3D p1) ;
+    public  abstract Point3D prodVect(Point3D p1) {}
 
-    public  abstract void set(int i, Double d);
+    public  abstract void set(int i, Double d){}
 
-    public abstract  String toLongString();
+    public abstract  String toLongString(){}
 
     @Override
-    public  abstract String toString() ;
+    public  abstract String toString() {}
     
 
     
-    public  abstract Point2D get2D() ;
-    public abstract  Point3D ord(int x, int y, int z) ;
+    public  abstract Point2D get2D() {}
+    public abstract  Point3D ord(int x, int y, int z) {}
 
-    public  abstract void normalize() ;
+    public  abstract void normalize() {}
 
-    public abstract  Point2D to2DwoZ();
+    public abstract  Point2D to2DwoZ(){}
 
-    public  abstract Double NormeCarree();
+    public  abstract Double NormeCarree(){}
     @Override
-    public  abstract boolean equals(Object p) ;
+    public  abstract boolean equals(Object p) {}
      
 
-    public  abstract Point3D changeTo(Point3D dst) ;
+    public  abstract Point3D changeTo(Point3D dst) {}
         
 
-    public  abstract void declareProperties() ;
+    public  abstract void declareProperties() {}
 
     
-    public  abstract StructureMatrix<Double> getCoordArr() ;
+    public  abstract StructureMatrix<Double> getCoordArr() {}
         
 
-    public  abstract void setCoordArr(StructureMatrix<Double> coordArr) ;
+    public  abstract void setCoordArr(StructureMatrix<Double> coordArr) {}
         
     
     
