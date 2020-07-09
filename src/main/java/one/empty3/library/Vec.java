@@ -86,12 +86,13 @@ public class Vec extends Representable {
      */
     public static Vec getNormale(){}
     protected static void setNormale(Point3D n){}
-    public  static Vec n(int a, int b, int c) {}
-    public  static Vec n() {}
-    public  static Vec n(int dim) {}
+    public  Vec(int a, int b, int c) {}
+    public  
+    Vec() {}
+    public  Vec(int dim) {}
     
-    public static  Vec n(double... d){}
-    public  static Vec n(Double... d){}
+    public Vec(double... d){}
+    public  Vec(Double... d){}
     
     
     /*__
