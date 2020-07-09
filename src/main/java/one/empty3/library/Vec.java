@@ -102,7 +102,7 @@ public class Vec extends Representable {
      * @param p2 Point2
      * @return
      */
-    public  static Double distance(Point3D p1, Point3D p2);
+    public  static Double distance(Vec p1, Vec p2);
         
 
 
