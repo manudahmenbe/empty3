@@ -146,16 +146,16 @@ public class Vec extends Representable {
         
     
 
-    public  abstract void setX(Double x0) {}
+    public void setX(Double x0) {}
         
 
     
 
 
-    public abstract  Point3D plus(Point3D p){}
+    public Point3D plus(Point3D p){}
          
     
-    public abstract  Point3D moins(Point3D p){}
+    public Point3D moins(Point3D p){}
 
     /*__
      * *
@@ -165,8 +165,8 @@ public class Vec extends Representable {
      * @return
      */
 
-    public  abstract Point3D mult(Point3D p){}
-     public  abstract Point3D mult(double d) {}
+    public Point3D mult(Point3D p){}
+     public Point3D mult(double d) {}
     /*
      public vec mult(vec point3D) ;
        }*/
@@ -176,7 +176,7 @@ public class Vec extends Representable {
      *
      * @return
      */
-    public  abstract Double norme() {}
+    public  Double norme() {}
 
     /*__
      * *
@@ -184,7 +184,7 @@ public class Vec extends Representable {
      *
      * @return Vecteur normalisé à 1
      */
-    public  abstract Point3D norme1() {}
+    public Point3D norme1() {}
 
     /*__
      * *
@@ -193,7 +193,7 @@ public class Vec extends Representable {
      * @param i
      * @return
      */
-    public  abstract Point3D plus(Double d) {}
+    public   Point3D plus(Double d) {}
 
    
 
@@ -204,7 +204,7 @@ public class Vec extends Representable {
      * @param p2
      * @return
      */
-    public  abstract Double prodScalaire(Point3D p2) {}
+    public Double prodScalaire(Point3D p2) {}
 
     /*__/*__
      * *
