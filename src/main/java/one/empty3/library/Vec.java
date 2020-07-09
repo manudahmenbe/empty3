@@ -213,46 +213,46 @@ public class Vec extends Representable {
      * @param p2
      * @return
      */
-    public  abstract Double dot(Point3D p2) {}
+    public  Double dot(Point3D p2) {}
      /* *
      * produit vectoriel
      *
      * @param p1
      * @return
      */
-    public  abstract Point3D prodVect(Point3D p1) {}
+    public Point3D prodVect(Point3D p1) {}
 
-    public  abstract void set(int i, Double d){}
+    public void set(int i, Double d){}
 
-    public abstract  String toLongString(){}
+    public String toLongString(){}
 
     @Override
-    public  abstract String toString() {}
+    public String toString() {}
     
 
     
-    public  abstract Point2D get2D() {}
-    public abstract  Point3D ord(int x, int y, int z) {}
+    public Point2D get2D() {}
+    public Point3D ord(int x, int y, int z) {}
 
-    public  abstract void normalize() {}
+    public  void normalize() {}
 
-    public abstract  Point2D to2DwoZ(){}
+    public Point2D to2DwoZ(){}
 
-    public  abstract Double NormeCarree(){}
+    public Double NormeCarree(){}
     @Override
-    public  abstract boolean equals(Object p) {}
+    public boolean equals(Object p) {}
      
 
-    public  abstract Point3D changeTo(Point3D dst) {}
+    public  Point3D changeTo(Point3D dst) {}
         
 
-    public  abstract void declareProperties() {}
+    public  void declareProperties() {}
 
     
-    public  abstract StructureMatrix<Double> getCoordArr() {}
+    public  StructureMatrix<Double> getCoordArr() {}
         
 
-    public  abstract void setCoordArr(StructureMatrix<Double> coordArr) {}
+    public  void setCoordArr(StructureMatrix<Double> coordArr) {}
         
     
     
