@@ -120,29 +120,29 @@ public class Vec extends Representable {
     public Double get(int i){}
 
        
-    public  abstract Point3D scale() {}
+    public Point3D scale() {}
 
-    public  abstract List<Double> getDoubleArray() {}
+    public List<Double> getDoubleArray() {}
        
     
 
-    public  abstract Double getY() {}
+    public  Double getY() {}
         
     
 
-    public abstract  void setY(Double x0) {}
+    public void setY(Double x0) {}
         
 
     
-    public  abstract Double getZ() {}
+    public  Double getZ() {}
         
     
 
-    public  abstract void setZ(Double x0) {}
+    public  void setZ(Double x0) {}
        
 
     
-    public  abstract Double getX() {}
+    public Double getX() {}
         
     
 
