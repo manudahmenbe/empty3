@@ -107,11 +107,11 @@ public class Vec extends Representable {
         
 
 
-    public  Point3D random(Double d){}
+    public static Point3D random(Double d){}
         
-    public Point3D random(Double d, int n) {}
+    public static Point3D random(Double d, int n) {}
         
-    public  Point3D random2(Double d)
+    public  static Point3D random2(Double d)
         {}
 
       
