@@ -924,6 +924,8 @@ compiler. init(avif.getAbsolutePath()
                         ex.printStackTrace();
                     }
                     
+                    
+                    
                     ri = z.image2();
 
                     afterRenderFrame();
@@ -967,6 +969,11 @@ compiler. init(avif.getAbsolutePath()
                         e.printStackTrace();
                     }
                 }
+            
+            
+                System.out.println(z.scene());
+            
+            
                 if ((generate & GENERATE_MODEL) > 0) {
                     try {
                         o.println("Start generating model");
