@@ -93,4 +93,8 @@ public class DoubleArray {
         this.max = stack[current];
         return current>=0;
     }
+    // copy to free memory disallocated space.
+    public static save(int start) {
+        
+    }
 }
