@@ -60,6 +60,7 @@ public class DoubleArray {
         dimensions.get(0)[this.index.get(0)[start]] = ds.length;
         for (int i = 0; i<ds.length ; i++) {
             doubles.get(0)[this.index.get(0)[max] = max] = ds[i];
+            dimensions.get(0)[this.index.get(0)[max]] = ds.length;
             max++;
         }
         return start;
@@ -77,7 +78,9 @@ public class DoubleArray {
         int start = max;
         for (int i = 0; i<n ; i++) {
             doubles.get(0)[this.index.get(0)[max] = max] = 0.0;
+            dimensions.get(0)[this.index.get(0)[max]] = n;
             max++;
+            
         }
         return start;
     }
@@ -94,7 +97,13 @@ public class DoubleArray {
         return current>=0;
     }
     // copy to free memory disallocated space.
-    public static save(int start) {
-        
+    public static save(int start0) {
+        int n = dimensions.get(0)[this.index.get(0)[start0]];
+        for(int i= 0; i<n; i++) {
+            doubles.get(0)[this.index.get(0)[max]]
+             = doubles.get(0)[this.index.get(0)[start0]];
+            dimensions.get(0)[this.index.get(0)[max]] = n;
+            start0++;
+        }
     }
 }
