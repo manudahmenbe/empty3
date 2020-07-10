@@ -304,7 +304,7 @@ public void predraw() {
     }
 
     public void draw(Representable r) {
-        Point3D.start();
+        //Point3D.start();
         /*
          * if (r instanceof RepresentableType) { try { ((RepresentableType)
          * r).draw(this); } catch (Exception ex) { ex.printStackTrace(); } return; }
@@ -618,7 +618,7 @@ public void predraw() {
                 }
             }
         }
-        Point3D.end();
+       //Point3D.end();
     }
 
 
