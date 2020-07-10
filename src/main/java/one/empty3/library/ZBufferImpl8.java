@@ -1015,7 +1015,7 @@ public void predraw() {
                 }
                 
                  Point3D.end();
-                 Point3D.save(pFinal);
+                 //Point3D.save(pFinal);
             }
             Point3D.end();
         }
