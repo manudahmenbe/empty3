@@ -165,18 +165,14 @@ class Data {
 
             int [] c = new int[4];
             for(int j = 0; j<ha; j++) 
-               for(int i= 0; i<la; i++) {
- //if((container[j][i]!=null)
- //  &&( container[j][i].texture()!=null)&&
- // (  dataP[9][j][i]!=null)&&(dataP[10][j][i]!=null)
- //  )
-         if(dataP[9][j][i]!=null&&dataP[10][j][i]!=null) {
-            c[0] = container[j] [i]. texture().getColorAt(
-                dataP[9][j][i], dataP[10][j][i]);
-             bi.setRGB(i, j, i, j, c, 0, la);
-         } 
-           else  
-                System.out.println("error texture null Data.getBitmap");
+               for(int i= 0; i<la; i++)
+                   if(dataP[9][j][i]!=null&&dataP[10][j][i]!=null) {
+                        c[0] = container[j] [i]. texture().getColorAt(
+                           dataP[9][j][i], dataP[10][j][i]);
+                        bi.setRGB(i, j, i, j, c, 0, la);
+                    } 
+                    else  
+                        System.out.println("error texture null Data.getBitmap");
                  
             
         
