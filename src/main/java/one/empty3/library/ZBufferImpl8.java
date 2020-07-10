@@ -325,14 +325,15 @@ public void predraw() {
             while (it.hasNext()) {
                 draw(it.next());
             }
-            return;
+            
+    
         } else if (r instanceof RepresentableConteneur) {
             RepresentableConteneur rc = (RepresentableConteneur) r;
             it = rc.iterator();
             while (it.hasNext()) {
                 draw(it.next());
             }
-            return;
+            
         }
 
         /* OBJECTS */
