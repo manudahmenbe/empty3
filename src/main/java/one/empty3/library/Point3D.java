@@ -34,7 +34,7 @@ import java.awt.Color;
 import java.util.*;
 
 
-public class Point3D extends Vec {
+public class Point3D extends Representable {
      public static DoubleArray da;
      private int start;
      private int n;
