@@ -170,13 +170,14 @@ class Data {
  //  &&( container[j][i].texture()!=null)&&
  // (  dataP[9][j][i]!=null)&&(dataP[10][j][i]!=null)
  //  )
-             if(dataP[9][j][i]!=null&&dataP[10][j][i]!=null)
-                   c[0] = container[j] [i]. texture().getColorAt(
-                          dataP[9][j][i], dataP[10][j][i]);
+         if(dataP[9][j][i]!=null&&dataP[10][j][i]!=null) {
+            c[0] = container[j] [i]. texture().getColorAt(
+                dataP[9][j][i], dataP[10][j][i]);
              bi.setRGB(i, j, i, j, c, 0, la);
+         } 
            else  
                 System.out.println("error texture null Data.getBitmap");
-                 }
+                 
             
         
         return new ECBufferedImage(bi);
