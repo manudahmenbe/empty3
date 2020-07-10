@@ -97,7 +97,7 @@ public class DoubleArray {
         return current>=0;
     }
     // copy to free memory disallocated space.
-    public static save(int start0) {
+    public void save(int start0) {
         int n = dimensions.get(0)[this.index.get(0)[start0]];
         for(int i= 0; i<n; i++) {
             doubles.get(0)[this.index.get(0)[max]]
