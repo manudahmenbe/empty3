@@ -986,11 +986,11 @@ public void predraw() {
         Point3D normale = triBas.normale();
         double inter = 1 / (maxDistance(p1, p2, p3, p4) + 1) / 3;
         for (double a = 0; a < 1.0; a += inter) {
-            Point3D.start();
+            //Point3D.start();
             Point3D pElevation1 = pp1.plus(pp1.mult(-1d).plus(pp2).mult(a));
             Point3D pElevation2 = pp4.plus(pp4.mult(-1d).plus(pp3).mult(a));
             for (double b = 0; b < 1.0; b += inter) {
-                Point3D.start();
+                //Point3D.start();
                 Point3D pFinal = (pElevation1.plus(pElevation1.mult(-1d).plus(pElevation2).mult(b)));
                 pFinal.setNormale(normale);
                 pFinal.texture(texture);
@@ -1011,9 +1011,9 @@ public void predraw() {
                     add(pFinal.get(0), pFinal.get(1), pFinal.get(2), null, null, null, normale.get(0), normale.get(1), normale.get(2), u0 + (u1 - u0) * a, v0 + (v1 - v0) * b, 0.0, n);
               
                 }
-                Point3D.end();
+                //Point3D.end();
             }
-            Point3D.end();
+            //Point3D.end();
         }
 
     }
