@@ -5,7 +5,7 @@ public class RFactory {
         
     }
     // get interfaces
-    
+    /*
     public static ZBuffer getZBufferInstance() {
         if(configName.equals("stable"))
             return new ZBufferImpl8();
@@ -16,4 +16,5 @@ public class RFactory {
             return new Point3Dbak();
         return new Point3D();
     }
+    */
 }
