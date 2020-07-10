@@ -1,5 +1,5 @@
 public class Config {
-    public static load(String propertyName) {
+    public static String load(String propertyName) {
          String key = "";
          return key;
     }
