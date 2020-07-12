@@ -239,7 +239,7 @@ public class ZBufferImpl8 extends ZBufferImpl {
         ha = h;
         dimx = la;
         dimy = ha;
-        this.ime = new ImageMap(la, ha);
+        //this.ime = new ImageMap(la, ha);
         data1 = new Data(la, ha, this);
                
         //Point3D.start();
@@ -333,13 +333,13 @@ public void predraw() {
                 draw(it.next());
             }
             
-        }
+        } else
 
         /* OBJECTS */
         if (r instanceof Point3D) {
             Point3D p = (Point3D) r;
             add(p.get(0), p.get(1), p.get(2), null, null, null, null, null, null, 0.0, 0.0, 0.0, p);
-        }
+        } else
         if (r instanceof ThickSurface) {
             // System.out.println("Surface");
             ThickSurface n = (ThickSurface) r;
@@ -391,7 +391,7 @@ public void predraw() {
                     }
                 }
             }
-        }
+        } else
         if (r instanceof TRI) {
             TRI tri = (TRI) r;
             switch (displayType) {
@@ -414,7 +414,7 @@ public void predraw() {
                     break;
 
             }
-        }
+        } else
         // GENERATORS
         if (r instanceof ParametricSurface) {
             // System.out.println("Surface");
@@ -512,16 +512,16 @@ public void predraw() {
                 }
 
             }
-        }
+        } else
         if (r instanceof TRIGenerable) {
             r = ((TRIGenerable) r).generate();
 
         } else if (r instanceof PGenerator) {
             r = ((PGenerator) r).generatePO();
-        }
+        } else
         if (r instanceof TRIConteneur) {
             r = ((TRIConteneur) r).getObj();
-        }
+        } else
 
         // OBJETS
         if (r instanceof TRIObject) {
