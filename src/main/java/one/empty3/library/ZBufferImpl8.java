@@ -482,7 +482,7 @@ public void predraw() {
                         ime.testDeep(rotate(p3, r));
                         ime.testDeep(rotate(p4, r));
                     } else {
-                        System.out.println("Surface"+n.getClass()+ " u,v = " + u+","+v);
+                        System.out.println("Surface"+n.getClass()+ " u,v,u1,v1 = " + u+","+v+" u1,v1 "+u1+" "+v1);
                         tracerQuad(rotate(p1, n), rotate(p2, n),
                                 rotate(p3, n), rotate(p4, n),
                                 n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(),  n);
