@@ -114,6 +114,19 @@ public class Point3D extends Representable {
      *
      * @param x0 coordonnées (>3)
      */
+    public Point3D(double [] x0) {
+        int i=0;
+        for(double d : x0) {
+         coordArr.setElem(d,i);
+         i++;
+        }
+    }
+/*__
+     * *
+     * Initialise à partir d'un vecteur
+     *
+     * @param x0 coordonnées (>3)
+     */
     public Point3D(Double... x0) {
         int i=0;
         for(Double d : x0) {
