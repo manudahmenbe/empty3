@@ -46,7 +46,7 @@ import java.util.List;
  * @author Manuel Dahmen
  */
 public class Point3D extends Representable {
-    public Point3Dbak() {
+    public Point3D() {
         super();
         coordArr.setElem(0d, 0);
         coordArr.setElem(0d, 1);
@@ -79,7 +79,7 @@ public Point3Dbak() {
      * *
      * Point "Infinite" limite pour Z-Buffer
      */
-    public static final INFINI = new Point3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
+    public static final Point3D INFINI = new Point3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
     /*__
      * *
      * Coordonnées (coordArr,y,z) du point
@@ -193,7 +193,6 @@ public static Point3D random(Double d, int n) {
     public static Point3D r(Double d) {
         return random(d);
     }
-Point3D
     public static Point3D random2(Double d) {
 
         return new Point3D(((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d));
