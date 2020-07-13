@@ -60,6 +60,7 @@ public Point3D() {
         coordArr.setElem(p.get(0), 0);
         coordArr.setElem(p.get(1), 1);
         coordArr.setElem(p.get(2), 2);
+    }
     /*__
      * *
      * axe X vector
