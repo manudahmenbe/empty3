@@ -59,7 +59,7 @@ public Point3Dbak() {
      * *
      * axe X vector
      */
-    public static final Vec X = new Point3D(1d, 0d, 0d);
+    public static final Point3D X = new Point3D(1d, 0d, 0d);
     /*__
      * *
      * axe Y vector
