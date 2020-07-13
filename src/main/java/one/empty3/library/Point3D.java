@@ -214,7 +214,7 @@ public static Point3D random(Double d, int n) {
             }
         return Double.NaN;*/
     }
-    public Vec scale() {
+    public Point3D scale() {
         if(scale==null)
         {
             return Vec.n(1.,1.,1.);
@@ -269,7 +269,7 @@ Point3D p1 = new Point3D(this);
         return p1;
     }
     
-    public Point3D moins(Vec p) {
+    public Point3D moins(Point3D p) {
         Point3D p1 = new Point3D(this);
         for(int i=0;i<coordArr.data1d.size(); i++)
             p1.set(i, get(i)-p.get(i));
@@ -285,7 +285,7 @@ Point3D p1 = new Point3D(this);
      * @return
      */
 
-    public Point3D mult(Vec p) {
+    public Point3D mult(Point3D p) {
         Point3D p1 = new Point3D(this);
         for(int i=0;i<coordArr.data1d.size(); i++)
             p1.set(i, get(i)*p.get(i));
@@ -449,7 +449,7 @@ public Point3D mult(double d) {
     }
 
 
-    public Vec changeTo(Vec dst) {
+    public Point3D changeTo(Point3D dst) {
         for (int i = 0; i < 3; i++)
             this.coordArr.setElem(dst.coordArr.getElem(i),i);
 
@@ -457,8 +457,8 @@ public Point3D mult(double d) {
         return this;
     }
 
-    public static Vec n(double i, double i1, double i2) {
-        return new Point3Dbak(i, i1, i2);
+    public static Point3D n(double i, double i1, double i2) {
+        return new Point3D(i, i1, i2);
     }
 
     public double getLength() {
