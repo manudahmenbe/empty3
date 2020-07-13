@@ -196,7 +196,7 @@ public class Point3D extends Representable {
     public static Point3D random(Double d) {
         return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
-public static Point3D random(Double d, int n) {
+    public static Point3D random(Double d, int n) {
         
         return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
@@ -272,7 +272,7 @@ public static Point3D random(Double d, int n) {
 
 
     public Point3D plus(Point3D p){
-Point3D p1 = new Point3D(this);
+        Point3D p1 = new Point3D(this);
         for(int i=0;i<coordArr.data1d.size(); i++)
             p1.set(i, get(i)+p.get(i));
         
@@ -364,7 +364,7 @@ public Point3D mult(double d) {
         double s = 0.0;
         if(p2!=null) {
             for(int i=0; i<coordArr.getData1d().size(); i++)
-            s +=coordArr.getElem(0) * p2.getX() + coordArr.getElem(1) * p2.getY() + coordArr.getElem(2) * p2.getZ();
+                s +=coordArr.getElem(i) * p2.get(i);
         }
         else
             throw new NullPointerException("Exception prodScalre p2==null");
