@@ -378,7 +378,7 @@ public Point3D mult(double d) {
      * @return
      */
     public Point3D prodVect(Point3D p1) {
-        return new Point3Dbak(p1.getY() * getZ() + -p1.getZ() * getY(), p1.getZ()
+        return new Point3D(p1.getY() * getZ() + -p1.getZ() * getY(), p1.getZ()
                 * getX() - p1.getX() * getZ(), p1.getX() * getY() - p1.getY()
                 * getX());
     }
