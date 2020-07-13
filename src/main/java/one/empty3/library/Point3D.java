@@ -216,8 +216,8 @@ public static Point3D random(Double d, int n) {
     public Point3D scale() {
         if(scale==null)
         {
-            return Point3D.n(this
-                          );
+            return new Point3D(this
+    );
         }
          return new Point3D (get(0)*scale.get(1),get(1)*scale.get(1),get(2)*scale.get(2));
     }
