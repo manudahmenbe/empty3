@@ -86,7 +86,7 @@ public class Serpentins2 extends TestObjetSub {
         for (int i = 0; i < 3; i++) {
             d[i] = (limitPlus - limitMinus) * Math.random() + limitMinus;
         }
-        return new Point3D(d);
+        return new Point3D(d[0], d[1], d[2]);
     }
 
     public void bounce(int i, int j) {
