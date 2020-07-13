@@ -45,7 +45,7 @@ import java.util.List;
  *
  * @author Manuel Dahmen
  */
-public class Point3Dbak extends Representable {
+public class Point3D extends Representable {
     public Point3Dbak() {
         super();
         coordArr.setElem(0d, 0);
@@ -64,22 +64,22 @@ public Point3Dbak() {
      * *
      * axe Y vector
      */
-    public static final Vec Y = new Point3D(0d, 1d, 0d);
+    public static final Point3D Y = new Point3D(0d, 1d, 0d);
     /*__
      * *
      * axe Z vector
      */
-    public static final Vec Z = new Point3D(0d, 0d, 1d);
+    public static final Point3D Z = new Point3D(0d, 0d, 1d);
     /*__
      * *
      * O0 origin
      */
-    public static final Vec O0 = new Point3D(0d, 0d, 0d);
+    public static final Point3D O0 = new Point3D(0d, 0d, 0d);
     /*__
      * *
      * Point "Infinite" limite pour Z-Buffer
      */
-    public static final Vec INFINI = new Point3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
+    public static final INFINI = new Point3D(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
     /*__
      * *
      * Coordonnées (coordArr,y,z) du point
@@ -89,7 +89,7 @@ public Point3Dbak() {
      * *
      * Pour le tracé de surface normale au point
      */
-    protected Vec normale;
+    protected Point3D normale;
     /*__
      * *
      * id
@@ -106,7 +106,7 @@ public Point3Dbak() {
      * @param y0 y-coordonnée
      * @param z0 z-coordonnée
      */
-    public Point3Dbak(Double x0, Double y0, Double z0) {
+    public Point3D(Double x0, Double y0, Double z0) {
         super();
         coordArr.setElem(x0, 0);
         coordArr.setElem(y0, 1);
@@ -119,7 +119,7 @@ public Point3Dbak() {
      * @param y0 y-coordonnée
      * @param z0 z-coordonnée
      */
-    public Point3Dbak(Double x0, Double y0, Double z0, ITexture t) {
+    public Point3D(Double x0, Double y0, Double z0, ITexture t) {
         this(x0, y0, z0);
         texture(t);
     }
@@ -130,7 +130,7 @@ public Point3Dbak() {
      *
      * @param x0 coordonnées (>3)
      */
-    public Point3Dbak(Double... x0) {
+    public Point3D(Double... x0) {
         int i=0;
         for(Double d : x0) {
          coordArr.setElem(d,i);
@@ -138,7 +138,7 @@ public Point3Dbak() {
         }
     }
 
-    public Point3Dbak(Double[] x0, ITexture t) {
+    public Point3D(Double[] x0, ITexture t) {
         int i=0;
         for(Double d : x0) {
          coordArr.setElem(d,i);
@@ -151,18 +151,18 @@ public Point3Dbak() {
      *
      * @param p0 point à copier
      */
-    public Point3Dbak(Point3D p0) {
+    public Point3D(Point3D p0) {
         super();
         for(int i=0; i<p0.getCoordArr().data1d.size(); i++)
             coordArr.setElem(p0.get(i), i);
         texture(p0.texture);
     }
 
-    public Point3Dbak(StructureMatrix<Double> coordArr) {
+    public Point3D(StructureMatrix<Double> coordArr) {
         this(coordArr.getElem(0), coordArr.getElem(1), coordArr.getElem(2));
     }
 
-    public static Vec n(Double a, Double b, Double c) {
+    public static Point3D n(Double a, Double b, Double c) {
         return new Point3D(a, b, c);
     }
 
@@ -183,25 +183,25 @@ public Point3Dbak() {
 
 
 
-    public static Vec random(Double d) {
+    public static Point3D random(Double d) {
         return new Point3Dbak(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
-public static Vec random(Double d, int n) {
+public static Point3D random(Double d, int n) {
         
         return new Point3Dbak(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
-    public static Vec r(Double d) {
+    public static Point3D r(Double d) {
         return random(d);
     }
+Point3D
+    public static Point3D random2(Double d) {
 
-    public static Vec random2(Double d) {
-
-        return new Point3Dbak(((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d));
+        return new Point3D(((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d));
     }
 
     @Override
     public Object clone() {
-        return new Point3Dbak(coordArr);
+        return new Point3D(coordArr);
     }
 
     public Double get(int i) {
@@ -220,7 +220,7 @@ public static Vec random(Double d, int n) {
         {
             return Vec.n(1.,1.,1.);
         }
-         return new Point3Dbak (get(0)*scale.get(1),get(1)*scale.get(1),get(2)*scale.get(2));
+         return new Point3D (get(0)*scale.get(1),get(1)*scale.get(1),get(2)*scale.get(2));
     }
 
     public List<Double> getDoubleArray() {
@@ -228,11 +228,11 @@ public static Vec random(Double d, int n) {
     }
 
 
-    public Vec getNormale() {
+    public Point3D getNormale() {
         return normale;
     }
 
-    public void setNormale(Vec normale) {
+    public void setNormale(Point3D normale) {
         this.normale = normale;
     }
 
@@ -262,16 +262,16 @@ public static Vec random(Double d, int n) {
     }
 
 
-    public Vec plus(Vec p){
-Point3D p1 = new Point3Dbak(this);
+    public Point3D plus(Point3D p){
+Point3D p1 = new Point3D(this);
         for(int i=0;i<coordArr.data1d.size(); i++)
             p1.set(i, get(i)+p.get(i));
         
         return p1;
     }
     
-    public Vec moins(Vec p) {
-        Point3Dbak p1 = new Point3D(this);
+    public Point3D moins(Vec p) {
+        Point3D p1 = new Point3D(this);
         for(int i=0;i<coordArr.data1d.size(); i++)
             p1.set(i, get(i)-p.get(i));
         
@@ -286,16 +286,16 @@ Point3D p1 = new Point3Dbak(this);
      * @return
      */
 
-    public Vec mult(Vec p) {
-        Point3Dbak p1 = new Point3D(this);
+    public Point3D mult(Vec p) {
+        Point3D p1 = new Point3D(this);
         for(int i=0;i<coordArr.data1d.size(); i++)
             p1.set(i, get(i)*p.get(i));
         
         return p1;
  }
-public Vec mult(double d) {
+public Point3D mult(double d) {
 
-        Vec p1 = new Point3Dbak(this);
+        Point3D p1 = new Point3D(this);
         for(int i=0;i<coordArr.data1d.size(); i++)
             p1.set(i, get(i)*d);
         
@@ -324,7 +324,7 @@ public Vec mult(double d) {
      *
      * @return Vecteur normalisé à 1
      */
-    public Vec norme1() {
+    public Point3D norme1() {
         return mult(1 / norme());
     }
 
@@ -335,8 +335,8 @@ public Vec mult(double d) {
      * @param i
      * @return
      */
-    public Vec plus(Double d) {
-        Point3Dbak p = new Point3Dbak(this);
+    public Point3D plus(Double d) {
+        Point3D p = new Point3D(this);
         for(int i=0; i<coordArr.getData1d().size(); i++)
             p.set(i, get(i)+d);
         return p;
@@ -351,7 +351,7 @@ public Vec mult(double d) {
      * @param p2
      * @return
      */
-    public Double prodScalaire(Vec p2) {
+    public Double prodScalaire(Point3D p2) {
         double s = 0.0;
         if(p2!=null) {
             for(int i=0; i<coordArr.getData1d().size(); i++)
@@ -369,7 +369,7 @@ public Vec mult(double d) {
      * @param p2
      * @return
      */
-    public Double dot(Vec p2) {
+    public Double dot(Point3D p2) {
         return this.prodScalaire(p2);
     }
 
@@ -379,7 +379,7 @@ public Vec mult(double d) {
      * @param p1
      * @return
      */
-    public Vec prodVect(Vec p1) {
+    public Point3D prodVect(Point3D p1) {
         return new Point3Dbak(p1.getY() * getZ() + -p1.getZ() * getY(), p1.getZ()
                 * getX() - p1.getX() * getZ(), p1.getX() * getY() - p1.getY()
                 * getX());
@@ -467,7 +467,7 @@ public Vec mult(double d) {
     }
 
 
-    public class P extends Point3Dbak {
+    public class P extends Point3D {
     }
 
     @Override
