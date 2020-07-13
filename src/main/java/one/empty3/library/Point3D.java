@@ -476,9 +476,8 @@ public Point3D mult(double d) {
 
         Point3D point3D = (Point3D) o;
 
-        if(point3D.coordArr.data1d.size()!=3)
-            return false;
-        if(this.coordArr.data1d.size()!=3)
+        if(point3D.coordArr.data1d.size()!=
+           this.coordArr.data1d.size())
             return false;
         for(int i=0; i<3; i++)
             if(!coordArr.getElem(i).equals(point3D.get(i)))
