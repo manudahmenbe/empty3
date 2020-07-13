@@ -165,6 +165,10 @@ public class Point3D extends Representable {
         return new Point3D(a, b, c);
     }
 
+
+    public static Point3D n(Point3D p) {
+        return new Point3D(p);
+    }
     /*__
      * *
      * Distance cartésienne entre 2 points
