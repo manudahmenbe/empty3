@@ -96,30 +96,6 @@ public class Point3D extends Representable {
      * *
      * id
      */
-
-    /*__
-     * *
-     * Constructeur Point Origine
-     */
-    /*__
-     * *
-     *
-     * @param x0 coordArr-coordonnée
-     * @param y0 y-coordonnée
-     * @param z0 z-coordonnée
-     */
-    public Point3D(Double x0, Double y0, Double z0) {
-        super();
-        coordArr.setElem(x0, 0);
-        coordArr.setElem(y0, 1);
-        coordArr.setElem(z0, 2);
-    }
-    public Point3D(double ... x) {
-        super();
-        for(int i=0; i<x.length; i++)
-        coordArr.setElem(x[i], i);
-
-    }
     /*__
      * *
      *
