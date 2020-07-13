@@ -184,11 +184,11 @@ public Point3Dbak() {
 
 
     public static Point3D random(Double d) {
-        return new Point3Dbak(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
+        return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
 public static Point3D random(Double d, int n) {
         
-        return new Point3Dbak(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
+        return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
     public static Point3D r(Double d) {
         return random(d);
