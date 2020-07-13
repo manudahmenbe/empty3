@@ -46,6 +46,9 @@ import java.util.List;
  * @author Manuel Dahmen
  */
 public class Point3D extends Representable {
+    public static void start() {}
+    public static void end() {}
+
     public Point3D() {
         super();
         coordArr.setElem(0d, 0);
