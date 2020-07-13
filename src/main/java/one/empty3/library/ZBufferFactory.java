@@ -43,7 +43,7 @@ public class ZBufferFactory {
         }
         la = x;
         ha = y;
-        insta = new ZBufferImpl8(x, y);
+        insta = new ZBufferImpl(x, y);
         return insta;
     }
 
@@ -57,7 +57,7 @@ public class ZBufferFactory {
         if (D3) {
             // insta = new ZBuffer3DImpl(coordArr, y);
         } else {
-            insta = new ZBufferImpl8(x, y);
+            insta = new ZBufferImpl(x, y);
         }
 
         return insta;
@@ -65,7 +65,7 @@ public class ZBufferFactory {
 
     public static ZBufferImpl instance(int x, int y, Scene s) {
 
-        ZBufferImpl z = new ZBufferImpl8(x, y);
+        ZBufferImpl z = new ZBufferImpl(x, y);
         z.scene(s);
         return z;
     }
