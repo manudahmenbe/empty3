@@ -264,6 +264,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         if (r instanceof ParametricSurface) {
             // System.out.println("Surface");
             ParametricSurface n = (ParametricSurface) r;
+            System.out.println("class" + n.getClass());
             // TODO Dessiner les bords
             for (double u = n.getStartU(); u <= n.getEndU(); u += n.getIncrU()) {
                 // System.out.println("(u,v) = ("+u+","+")");
@@ -327,7 +328,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                         ime.testDeep(rotate(p3, r));
                         ime.testDeep(rotate(p4, r));
                     } else {
-                        System.out.println("class u"+ u+" "+u +" "+ n.getIncrU()+" "+v+" "+ v +" "+ n.getIncrV());
+                     
                         tracerQuad(rotate(p1, n), rotate(p2, n),
                                 rotate(p3, n), rotate(p4, n),
                                 n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
