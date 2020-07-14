@@ -106,6 +106,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         ha = h;
         dimx = la;
         dimy = ha;
+        System.out.println("width,height(" + la + ", " + ha + ")");
         this.ime = new ImageMap(la, ha);
     }
 
