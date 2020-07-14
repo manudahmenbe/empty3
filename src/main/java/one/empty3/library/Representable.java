@@ -248,7 +248,7 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
         return declaredDataStructure;
     }
 
-    private Map<String, StructureMatrix> declaredLists = new HashMap<>();
+    private Map<String, StructureMatrix> declaredLists ;//= new HashMap<>();
 
     public Map<String, StructureMatrix> getDeclaredLists() {
         return declaredLists;
