@@ -327,7 +327,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                         ime.testDeep(rotate(p3, r));
                         ime.testDeep(rotate(p4, r));
                     } else {
-                        System.out.printf("%8f %8 %9 %8", u, u + n.getIncrU(), v, v + n.getIncrV());
+                        System.out.println("class u"+ u+" "+u +" "+ n.getIncrU()+" "+v+" "+ v +" "+ n.getIncrV());
                         tracerQuad(rotate(p1, n), rotate(p2, n),
                                 rotate(p3, n), rotate(p4, n),
                                 n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
