@@ -916,7 +916,8 @@ compiler. init(avif.getAbsolutePath()
                     }
                 }
 
-
+                System.out.println(z.scene());
+            
                 if ((generate & GENERATE_IMAGE) > 0) {
                     try {
                         z.draw();
@@ -971,7 +972,7 @@ compiler. init(avif.getAbsolutePath()
                 }
             
             
-                System.out.println(z.scene());
+                
             
             
                 if ((generate & GENERATE_MODEL) > 0) {
