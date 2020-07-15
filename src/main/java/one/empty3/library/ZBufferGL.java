@@ -111,6 +111,7 @@ public class ZBufferGL implements ZBuffer {
     
     @Override
     public boolean checkScreen(Point p1) {
+        return false;
     }
     @Override
     public Scene scene() {
