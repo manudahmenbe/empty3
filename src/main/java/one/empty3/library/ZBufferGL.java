@@ -108,7 +108,10 @@ public class ZBufferGL implements ZBuffer {
     public int resY() {
         return 0;
     }
-
+    
+    @Override
+    public boolean checkScreen(Point p1) {
+    }
     @Override
     public Scene scene() {
         return null;
