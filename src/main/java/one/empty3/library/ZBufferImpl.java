@@ -797,7 +797,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
     }
     @Override
-    public boolean checkScreen(Point2D p1) {
+    public boolean checkScreen(Point p1) {
         if(p1.getX()<0d || p1.getY()>=la 
           || p1.getY()<0d || p1.getY()>=ha)
             return false;
