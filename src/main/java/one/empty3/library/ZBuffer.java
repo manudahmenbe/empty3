@@ -199,7 +199,8 @@ public interface ZBuffer {
     int largeur();
 
     int hauteur();
-
+    
+    public boolean checkScreen(Point2D p1);
     public void setDimension(int width, int height);
 
     public Point3D clickAt(double x, double y);
