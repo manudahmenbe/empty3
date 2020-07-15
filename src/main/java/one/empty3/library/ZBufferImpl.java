@@ -796,15 +796,32 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             }
         }
     }
-
+    @Override
+    public boolean checkScreen(Point2D p1) {
+        if(p1.getX()<0d || p1.getY()>=la ||
+          || p1.getY()<0d || p1.getY()>=ha)
+            return false;
+        return true;
+    
+    }
     public void tracerQuad(Point3D pp1, Point3D pp2, Point3D pp3, Point3D pp4, ITexture texture, double u0, double u1,
                            double v0, double v1, ParametricSurface n) {
+       
+
+
         Point p1, p2, p3, p4;
         p1 = camera().coordonneesPoint2D(pp1, this);
         p2 = camera().coordonneesPoint2D(pp2, this);
         p3 = camera().coordonneesPoint2D(pp3, this);
         p4 = camera().coordonneesPoint2D(pp4, this);
-
+        if(!checkScreen(p1))
+             return;
+        if(!checkScreen(p2))
+             return;
+        if(!checkScreen(p3))
+             return;
+        if(!checkScreen(p4))
+             return;
         int col = texture.getColorAt(u0, v0);
 
         if (p1 == null || p2 == null || p3 == null || p4 == null)
