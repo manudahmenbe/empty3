@@ -182,7 +182,8 @@ public class ZBufferGL implements ZBuffer {
     public void setDimension(int width, int height) {
 
     }
-
+public void copyResourceFiles(File destDirectory){}
+ 
     @Override
     public Point3D clickAt(double x, double y) {
         return null;
