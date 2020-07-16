@@ -59,7 +59,7 @@ public interface ZBuffer {
 
     void couleurDeFond(ITexture couleurFond);
 
-
+    public void copyResourceFiles(File destDirectory);
     /*__
      * Dessine la scène complète
      */
