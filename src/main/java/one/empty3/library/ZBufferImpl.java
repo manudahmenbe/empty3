@@ -98,7 +98,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         that = this;
         texture(new TextureCol(Color.BLACK));
     }
-
+public void copyResourceFiles(File destDirectory) {
+    }
+ 
 
     public ZBufferImpl(int l, int h) {
         this();
