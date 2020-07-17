@@ -107,7 +107,9 @@ public class TextureMov extends ITexture {
     }
 
     
-
+    public String toString() {
+        return " texture ( \""+file.getAbsolutePath()+"\")";
+    }
     
     public MatrixPropertiesObject copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
         return null;
