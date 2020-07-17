@@ -17,16 +17,19 @@ public class TestRun {
 
         // P properties -< args.foreach.split
 Class cl; int resx; int resy; int maxFrames;
+        int i=0;
     for (String arg: args) {
+        
         System.out.println(arg);
          String [] kv = arg.split("=");
-        if(kv.length==2) {
-            System.out.println("argument : key=value;"+kv.length);
-            
-         
+        
          String key = kv[0];
          String value = kv[1];
 
+        if(kv.length==2) {
+            System.out.println("argument : key=value;\n (key=value) = ("+kv[0]+"; "+kv[1]+") " +(i++)+"/"+kv.length);
+            
+         
          p.setProperty(key, value);
 
 
