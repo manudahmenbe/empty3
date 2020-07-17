@@ -33,7 +33,7 @@
 package one.empty3.library;
 
 import java.awt.*;
-
+import java.io.File;
 /*__
  * Created by manue on 15-06-19.
  */
@@ -182,7 +182,7 @@ public class ZBufferGL implements ZBuffer {
     public void setDimension(int width, int height) {
 
     }
-public void copyResourceFiles(File destDirectory){}
+    public void copyResourceFiles(File destDirectory){}
  
     @Override
     public Point3D clickAt(double x, double y) {
