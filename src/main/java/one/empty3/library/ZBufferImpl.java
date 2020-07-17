@@ -514,7 +514,8 @@ public void copyResourceFiles(File destDirectory) {
         ha = height;
     }
 
-    public ECBufferedImage image() {
+    public ECBufferedImage image2() {
+        
         ECBufferedImage bi2 = new ECBufferedImage(la, ha, ECBufferedImage.TYPE_INT_RGB);
         for (int i = 0; i < la; i++) {
             for (int j = 0; j < ha; j++) {
@@ -527,11 +528,13 @@ public void copyResourceFiles(File destDirectory) {
         return bi2;
 
     }
-
-    public ECBufferedImage image2() {
+//??
+    public ECBufferedImage image() {
+        return image2();
+        /**
         BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
         bi.setRGB(0, 0, la, ha, getData(), 0, la);
-        return new ECBufferedImage(bi);
+        return new ECBufferedImage(bi);*/
     }
 
     public boolean isLocked() {
