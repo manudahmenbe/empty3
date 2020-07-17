@@ -39,7 +39,7 @@ package one.empty3.library;
 
 import one.empty3.library.core.nurbs.*;
 import one.empty3.pointset.PCont;
-
+import java.io.File;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Iterator;
@@ -93,7 +93,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     private Point3D activeLight = new Point3D(-10d, 0d, 100d);
     private int displayType = SURFACE_DISPLAY_TEXT_QUADS;
     ZBufferImpl that;
-
+    
     public ZBufferImpl() {
         that = this;
         texture(new TextureCol(Color.BLACK));
