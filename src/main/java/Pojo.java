@@ -33,7 +33,8 @@ String pr= it.next().toString();
                 setProperty(o, propName, getO(value));
             }
          return true;
-		    } catch(Exception zx) {
+		    } catch(Exception ex) {
+		        ex.printStackTrace();
 	    return false;
 	    }
     }
