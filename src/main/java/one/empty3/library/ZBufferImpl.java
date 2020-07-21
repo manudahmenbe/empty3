@@ -1454,5 +1454,10 @@ public void copyResourceFiles(File destDirectory) {
         this.displayType = displayType;
     }
 
-
+    public int id() {
+        return id;
+    }
+    public void idpp() {
+        id++;
+    }
 }
