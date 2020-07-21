@@ -54,7 +54,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     public static final int DISPLAY_ALL = 0;
     public static final int SURFACE_DISPLAY_TEXT_QUADS = 1;
-    private static final int SURFACE_DISPLAY_TEXT_TRI = 2;
+    public static final int SURFACE_DISPLAY_TEXT_TRI = 2;
     public static final int SURFACE_DISPLAY_COL_QUADS = 3;
     public static final int SURFACE_DISPLAY_COL_TRI = 4;
     public static final int SURFACE_DISPLAY_LINES = 5;
