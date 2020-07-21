@@ -204,4 +204,7 @@ public interface ZBuffer {
     public void setDimension(int width, int height);
 
     public Point3D clickAt(double x, double y);
+
+    public void idpp();
+    public int id();
 }
