@@ -38,7 +38,7 @@ import java.io.File;
  * Created by manue on 15-06-19.
  */
 public class ZBufferGL implements ZBuffer {
-    private int idz;
+    private int idImg;
 
     @Override
     public Camera camera() {
@@ -191,13 +191,12 @@ public class ZBufferGL implements ZBuffer {
         return null;
     }
 
-    @Override
-    public void idzpp() {
-        idz++;
-    }
 
     @Override
     public int idz() {
-        return idz;
+        return idImg;
+    }
+    public void idzpp() {
+        idImg++;
     }
 }
