@@ -81,7 +81,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     private boolean locked = false;
     private boolean firstRun = true;
     // VARIABLES
-    private long idImg = 1;
+    private int idImg = 1;
     private int dimx;
     private int dimy;
     private Point3D[][] Scordinate;
