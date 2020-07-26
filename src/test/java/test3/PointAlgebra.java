@@ -20,6 +20,8 @@ public class PointAlgebra {
       assertTrue(!new Point3D(ds1).equals(Point3D.O0));
       assertTrue(new Point3D().equals(Point3D.O0));
         assertTrue(new Point3D(3).equals(Point3D.O0));
+     assertTrue(new Point3D(1.0, 2.0, 3.0).mult(2.0).equals(new Point3D(2.0, 4.0, 6.0)));
+      
     }
 
     @Test
