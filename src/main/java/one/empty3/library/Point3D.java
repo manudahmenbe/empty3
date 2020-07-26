@@ -46,8 +46,11 @@ import java.util.List;
  * @author Manuel Dahmen
  */
 public class Point3D extends Representable {
-    public static void start() {}
-    public static void end() {}
+    public static void start() {
+    }
+
+    public static void end() {
+    }
 
     public Point3D() {
         super();
@@ -92,6 +95,7 @@ public class Point3D extends Representable {
      * Pour le tracé de surface normale au point
      */
     protected Point3D normale;
+
     /*__
      * *
      * id
@@ -114,35 +118,37 @@ public class Point3D extends Representable {
      *
      * @param x0 coordonnées (>3)
      */
-    public Point3D(double [] x0) {
-        int i=0;
-        for(double d : x0) {
-         coordArr.setElem(d,i);
-         i++;
+    public Point3D(double[] x0) {
+        int i = 0;
+        for (double d : x0) {
+            coordArr.setElem(d, i);
+            i++;
         }
     }
-/*__
-     * *
-     * Initialise à partir d'un vecteur
-     *
-     * @param x0 coordonnées (>3)
-     */
+
+    /*__
+         * *
+         * Initialise à partir d'un vecteur
+         *
+         * @param x0 coordonnées (>3)
+         */
     public Point3D(Double... x0) {
-        int i=0;
-        for(Double d : x0) {
-         coordArr.setElem(d,i);
-         i++;
+        int i = 0;
+        for (Double d : x0) {
+            coordArr.setElem(d, i);
+            i++;
         }
     }
 
     public Point3D(Double[] x0, ITexture t) {
-        int i=0;
-        for(Double d : x0) {
-         coordArr.setElem(d,i);
-         i++;
+        int i = 0;
+        for (Double d : x0) {
+            coordArr.setElem(d, i);
+            i++;
         }
         texture(t);
     }
+
     /*__
      *
      *
@@ -150,20 +156,22 @@ public class Point3D extends Representable {
      */
     public Point3D(int n) {
         super();
-        for(int i=0; i<n; i++)
+        for (int i = 0; i < n; i++)
             coordArr.setElem(0.0, i);
     }
-/*__
-     *
-     *
-     * @param p0 point à copier
-     */
+
+    /*__
+         *
+         *
+         * @param p0 point à copier
+         */
     public Point3D(Point3D p0) {
         super();
-        for(int i=0; i<p0.getCoordArr().data1d.size(); i++)
+        for (int i = 0; i < p0.getCoordArr().data1d.size(); i++)
             coordArr.setElem(p0.get(i), i);
         texture(p0.texture);
     }
+
     public Point3D(StructureMatrix<Double> coordArr) {
         this(coordArr.getElem(0), coordArr.getElem(1), coordArr.getElem(2));
     }
@@ -176,6 +184,7 @@ public class Point3D extends Representable {
     public static Point3D n(Point3D p) {
         return new Point3D(p);
     }
+
     /*__
      * *
      * Distance cartésienne entre 2 points
@@ -186,23 +195,25 @@ public class Point3D extends Representable {
      */
     public static Double distance(Point3D p1, Point3D p2) {
         double d = 0.0;
-        for(int i=0; i<p1.getCoordArr().getData1d().size(); i++)
-            d+=(p1.get(i)-p2.get(i))*(p1.get(i)*p2.get(i));
+        for (int i = 0; i < p1.getCoordArr().getData1d().size(); i++)
+            d += (p1.get(i) - p2.get(i)) * (p1.get(i) * p2.get(i));
         return Math.sqrt(d);
-   }
-
+    }
 
 
     public static Point3D random(Double d) {
         return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
+
     public static Point3D random(Double d, int n) {
-        
+
         return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }
+
     public static Point3D r(Double d) {
         return random(d);
     }
+
     public static Point3D random2(Double d) {
 
         return new Point3D(((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d), ((Math.random() - 0.5) * 2 * d));
@@ -214,8 +225,8 @@ public class Point3D extends Representable {
     }
 
     public Double get(int i) {
-       // if(i>=0 && i<3 && coordArr.data1d.size()==3)
-            return coordArr.getElem(i);
+        // if(i>=0 && i<3 && coordArr.data1d.size()==3)
+        return coordArr.getElem(i);
        /* else
             try {
                 throw new Throwable("point3D coordArr out of bounds or array dim error\nValues="+coordArr.toString()+"\nSize="+coordArr.data1d.size());
@@ -224,12 +235,12 @@ public class Point3D extends Representable {
             }
         return Double.NaN;*/
     }
+
     public Point3D scale() {
-        if(scale==null)
-        {
+        if (scale == null) {
             return this;
         }
-         return new Point3D (get(0)*scale.get(1),get(1)*scale.get(1),get(2)*scale.get(2));
+        return new Point3D(get(0) * scale.get(1), get(1) * scale.get(1), get(2) * scale.get(2));
     }
 
     public List<Double> getDoubleArray() {
@@ -253,6 +264,7 @@ public class Point3D extends Representable {
         coordArr.setElem(x0, 1);
 
     }
+
     public Double getZ() {
         return coordArr.getElem(2);
     }
@@ -261,6 +273,7 @@ public class Point3D extends Representable {
         coordArr.setElem(x0, 2);
 
     }
+
     public Double getX() {
         return coordArr.getElem(0);
     }
@@ -271,19 +284,19 @@ public class Point3D extends Representable {
     }
 
 
-    public Point3D plus(Point3D p){
+    public Point3D plus(Point3D p) {
         Point3D p1 = new Point3D(this);
-        for(int i=0;i<coordArr.data1d.size(); i++)
-            p1.set(i, get(i)+p.get(i));
-        
+        for (int i = 0; i < coordArr.data1d.size(); i++)
+            p1.set(i, get(i) + p.get(i));
+
         return p1;
     }
-    
+
     public Point3D moins(Point3D p) {
         Point3D p1 = new Point3D(this);
-        for(int i=0;i<coordArr.data1d.size(); i++)
-            p1.set(i, get(i)-p.get(i));
-        
+        for (int i = 0; i < coordArr.data1d.size(); i++)
+            p1.set(i, get(i) - p.get(i));
+
         return p1;
     }
 
@@ -297,19 +310,30 @@ public class Point3D extends Representable {
 
     public Point3D mult(Point3D p) {
         Point3D p1 = new Point3D(this);
-        for(int i=0;i<coordArr.data1d.size(); i++)
-            p1.set(i, get(i)*p.get(i));
-        
+        for (int i = 0; i < coordArr.data1d.size(); i++)
+            p1.set(i, get(i) * p.get(i));
+
         return p1;
- }
-public Point3D mult(double d) {
+    }
+
+    public Point3D mult(Double d) {
 
         Point3D p1 = new Point3D(this);
-        for(int i=0;i<coordArr.data1d.size(); i++)
-            p1.set(i, get(i)*d);
-        
+        for (int i = 0; i < coordArr.data1d.size(); i++)
+            p1.set(i, get(i) * d);
+
         return p1;
-}
+    }
+
+    public Point3D mult(double d) {
+
+        Point3D p1 = new Point3D(this);
+        for (int i = 0; i < coordArr.data1d.size(); i++)
+            p1.set(i, get(i) * d);
+
+        return p1;
+    }
+
     /*
      public Vec  mult(Vec point3D) {
         return Matrix33.YZX.mult(Matrix33.ZXY.mult(Matrix33.XYZ.mult(point3D)));
@@ -322,8 +346,8 @@ public Point3D mult(double d) {
      */
     public Double norme() {
         double n = 0.0;
-        for(int i=0; i<coordArr.getData1d().size(); i++)
-            n+= get(i)*get(i);
+        for (int i = 0; i < coordArr.getData1d().size(); i++)
+            n += get(i) * get(i);
         return Math.sqrt(n);
     }
 
@@ -346,12 +370,11 @@ public Point3D mult(double d) {
      */
     public Point3D plus(Double d) {
         Point3D p = new Point3D(this);
-        for(int i=0; i<coordArr.getData1d().size(); i++)
-            p.set(i, get(i)+d);
+        for (int i = 0; i < coordArr.getData1d().size(); i++)
+            p.set(i, get(i) + d);
         return p;
     }
 
-   
 
     /*__
      * *
@@ -362,11 +385,10 @@ public Point3D mult(double d) {
      */
     public Double prodScalaire(Point3D p2) {
         double s = 0.0;
-        if(p2!=null) {
-            for(int i=0; i<coordArr.getData1d().size(); i++)
-                s +=coordArr.getElem(i) * p2.get(i);
-        }
-        else
+        if (p2 != null) {
+            for (int i = 0; i < coordArr.getData1d().size(); i++)
+                s += coordArr.getElem(i) * p2.get(i);
+        } else
             throw new NullPointerException("Exception prodScalre p2==null");
         return s;
     }
@@ -382,12 +404,12 @@ public Point3D mult(double d) {
         return this.prodScalaire(p2);
     }
 
-     /* *
-     * produit vectoriel
-     *
-     * @param p1
-     * @return
-     */
+    /* *
+    * produit vectoriel
+    *
+    * @param p1
+    * @return
+    */
     public Point3D prodVect(Point3D p1) {
         return new Point3D(p1.getY() * getZ() + -p1.getZ() * getY(), p1.getZ()
                 * getX() - p1.getX() * getZ(), p1.getX() * getY() - p1.getY()
@@ -401,7 +423,7 @@ public Point3D mult(double d) {
 
     public String toLongString() {
         //Color c = texture.toString();
-        return "p ( \n\t(" + coordArr.getElem(0) + " , " + coordArr.getElem(1)+ " , " + coordArr.getElem(2)+ " )\n\t("
+        return "p ( \n\t(" + coordArr.getElem(0) + " , " + coordArr.getElem(1) + " , " + coordArr.getElem(2) + " )\n\t("
                 + texture.toString()
                 + ")\n)\n";
     }
@@ -438,7 +460,7 @@ public Point3D mult(double d) {
     }
 
     public Double NormeCarree() {
-        return coordArr.getElem(0)* coordArr.getElem(0)+ coordArr.getElem(1)* coordArr.getElem(1)+ coordArr.getElem(2)* coordArr.getElem(2);
+        return coordArr.getElem(0) * coordArr.getElem(0) + coordArr.getElem(1) * coordArr.getElem(1) + coordArr.getElem(2) * coordArr.getElem(2);
     }
 
     @Override
@@ -461,7 +483,7 @@ public Point3D mult(double d) {
 
     public Point3D changeTo(Point3D dst) {
         for (int i = 0; i < 3; i++)
-            this.coordArr.setElem(dst.coordArr.getElem(i),i);
+            this.coordArr.setElem(dst.coordArr.getElem(i), i);
 
         texture(dst.texture());
         return this;
@@ -486,11 +508,11 @@ public Point3D mult(double d) {
 
         Point3D point3D = (Point3D) o;
 
-        if(point3D.coordArr.data1d.size()!=
-           this.coordArr.data1d.size())
+        if (point3D.coordArr.data1d.size() !=
+                this.coordArr.data1d.size())
             return false;
-        for(int i=0; i<3; i++)
-            if(!coordArr.getElem(i).equals(point3D.get(i)))
+        for (int i = 0; i < 3; i++)
+            if (!coordArr.getElem(i).equals(point3D.get(i)))
                 return false;
 
         return true;
@@ -501,10 +523,11 @@ public Point3D mult(double d) {
         super.declareProperties();
         getDeclaredDataStructure().put("coordArr/coordonnées", coordArr);
     }
-/*
-    public Double get(int i) {
-        return i<coordArr.data1d.size()?coordArr.getElem(i):Double.NaN;
-    }*/
+
+    /*
+        public Double get(int i) {
+            return i<coordArr.data1d.size()?coordArr.getElem(i):Double.NaN;
+        }*/
     public StructureMatrix<Double> getCoordArr() {
         return coordArr;
     }

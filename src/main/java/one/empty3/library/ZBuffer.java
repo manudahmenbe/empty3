@@ -205,6 +205,6 @@ public interface ZBuffer {
 
     public Point3D clickAt(double x, double y);
 
-    public void idpp();
-    public int id();
+    public void idzpp();
+    public int idz();
 }

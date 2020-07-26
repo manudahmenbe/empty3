@@ -65,7 +65,7 @@ public class TextureMov extends ITexture {
     {
         this.file = new File(filename);
         defs = VideoDecoderFactory.createInstance(file, this);
-        defs.start();
+        //defs.start();
     }
 
 

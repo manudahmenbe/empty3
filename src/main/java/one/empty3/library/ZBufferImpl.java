@@ -81,7 +81,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     private boolean locked = false;
     private boolean firstRun = true;
     // VARIABLES
-    private long idImg = 1;
+    private int idImg = 0;
     private int dimx;
     private int dimy;
     private Point3D[][] Scordinate;
@@ -139,7 +139,7 @@ public void copyResourceFiles(File destDirectory) {
         this.scene().cameraActive(c);
     }
 
-    public void draw() {
+    public synchronized void draw() {
         scene().lumieres().clear();
         for (int i = 0; i < scene().getObjets().data1d.size(); i++)
             if (scene().getObjets().getElem(i).getClass().isAssignableFrom(Lumiere.class))
@@ -152,7 +152,7 @@ public void copyResourceFiles(File destDirectory) {
         draw(scene());
     }
 
-    public void draw(Representable r) {
+    public synchronized void draw(Representable r) {
         /*
          * if (r instanceof RepresentableType) { try { ((RepresentableType)
          * r).draw(this); } catch (Exception ex) { ex.printStackTrace(); } return; }
@@ -166,9 +166,7 @@ public void copyResourceFiles(File destDirectory) {
         Iterator<Representable> it;
         if (r instanceof Scene) {
             Scene scene = (Scene) r;
-            idpp();
             this.setTexture(scene.texture() == null ? this.texture() : scene.texture());
-
             it = scene.iterator();
             while (it.hasNext()) {
                 draw(it.next());
@@ -514,7 +512,7 @@ public void copyResourceFiles(File destDirectory) {
         ha = height;
     }
 
-    public ECBufferedImage image2() {
+    public ECBufferedImage image() {
         
         ECBufferedImage bi2 = new ECBufferedImage(la, ha, ECBufferedImage.TYPE_INT_RGB);
         for (int i = 0; i < la; i++) {
@@ -529,12 +527,12 @@ public void copyResourceFiles(File destDirectory) {
 
     }
 //??
-    public ECBufferedImage image() {
-        return image2();
-        /**
+    public ECBufferedImage image2() {
+        //return image2();
+
         BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
         bi.setRGB(0, 0, la, ha, getData(), 0, la);
-        return new ECBufferedImage(bi);*/
+        return new ECBufferedImage(bi);
     }
 
     public boolean isLocked() {
@@ -1454,10 +1452,10 @@ public void copyResourceFiles(File destDirectory) {
         this.displayType = displayType;
     }
 
-    public int id() {
+    public int idz() {
         return idImg;
     }
-    public void idpp() {
+    public void idzpp() {
         idImg++;
     }
 }

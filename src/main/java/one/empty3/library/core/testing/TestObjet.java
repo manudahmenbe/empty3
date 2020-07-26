@@ -37,6 +37,7 @@
  * 2013-2020 Manuel Dahmen
  */
 package one.empty3.library.core.testing;
+
 import ru.sbtqa.monte.media.avi.AVIWriter;
 import ru.sbtqa.monte.media.Format;
 import ru.sbtqa.monte.media.FormatKeys;
@@ -72,11 +73,11 @@ import java.util.logging.Logger;
  * @author Manuel DAHMEN
  */
 public abstract class TestObjet implements Test, Runnable {
-    public static Resolution PAL    = new Resolution(1280, 720);
-    public static Resolution HD720  = new Resolution(1280, 720);
+    public static Resolution PAL = new Resolution(1280, 720);
+    public static Resolution HD720 = new Resolution(1280, 720);
     public static Resolution HD1080 = new Resolution(1920, 1080);
-    public static Resolution UHD    = new Resolution(1920*2, 1080*2);
-    public static Resolution VGAZIZI= new Resolution(640, 480);
+    public static Resolution UHD = new Resolution(1920 * 2, 1080 * 2);
+    public static Resolution VGAZIZI = new Resolution(640, 480);
 
     public static final int GENERATE_NOTHING = 0;
     public static final int GENERATE_IMAGE = 1;
@@ -158,13 +159,17 @@ public abstract class TestObjet implements Test, Runnable {
     private int audioTrackNo;
     private int videoTrackNo;
     private int fps = 25;
-   //private Buffer buf;
-private ManualVideoCompile compiler ;
-   private boolean isVBR;
+    //private Buffer buf;
+    private ManualVideoCompile compiler;
+    private boolean isVBR;
     private AudioFormat audioFormat;
     private Resolution dimension = VGAZIZI;
     private String name;
-    protected ZBufferImpl z() {return z;}
+
+    protected ZBufferImpl z() {
+        return z;
+    }
+
     public TestObjet() {
 
         init();
@@ -183,9 +188,11 @@ private ManualVideoCompile compiler ;
         } else {
         }
     }
-public void setProperties ( Properties p) {
+
+    public void setProperties(Properties p) {
         this.getClass();
     }
+
     public static void main(String[] args) {
         TestObjet gui = new TestObjetSub();
         gui.loop(true);
@@ -210,54 +217,54 @@ public void setProperties ( Properties p) {
         setResy(y);
         dimension = new Resolution(x, y);
     }
+
     public BufferedImage img() {
-        return ri ;
+        return ri;
     }
+
     public void startNewMovie() {
-idxFilm++;
+        idxFilm++;
         avif = new File(this.dir.getAbsolutePath() + File.separator
-+ sousdossier + this.getClass().getName() + "__" + filmName + idxFilm + ".AVI");
-   
+                + sousdossier + this.getClass().getName() + "__" + filmName + idxFilm + ".AVI");
+
         if ((generate & GENERATE_MOVIE) > 0) {
-                 
-        if(encoder==1) {
-   
-                     if(compiler!=null && frame>0)
-    compiler.end();
-initCompiler();
-           } 
-      
-else {
-    if (isAviOpen()) {
-                try {
-                    aw.finish();
-                    aw.close();
-                    aw = null;
-                    aviOpen = false;
-                } catch (IOException e) {
-                    o.println("Can't close or flush movie" + runtimeInfoSucc());
+
+            if (encoder == 1) {
+
+                if (compiler != null && frame > 0)
+                    compiler.end();
+                initCompiler();
+            } else {
+                if (isAviOpen()) {
+                    try {
+                        aw.finish();
+                        aw.close();
+                        aw = null;
+                        aviOpen = false;
+                    } catch (IOException e) {
+                        o.println("Can't close or flush movie" + runtimeInfoSucc());
+                    }
+
+
+                    //aw = null;
                 }
-            
-    
-             //aw = null;
-        }
-        int track = -1;
-        try {
-            aw = new AVIWriter(avif);
+                int track = -1;
+                try {
+                    aw = new AVIWriter(avif);
 
-            Properties properties = new Properties();
-            // TODO ADD PROPERTIES
-            Format format = new Format(
-                    FormatKeys.MediaTypeKey, MediaType.VIDEO, FormatKeys.EncodingKey,
-                    VideoFormatKeys.ENCODING_AVI_MJPG, FormatKeys.FrameRateKey,
-                    new Rational(25, 1), VideoFormatKeys.WidthKey, resx,
-                    VideoFormatKeys.HeightKey, resy, VideoFormatKeys.DepthKey,
-                    24);
+                    Properties properties = new Properties();
+                    // TODO ADD PROPERTIES
+                    Format format = new Format(
+                            FormatKeys.MediaTypeKey, MediaType.VIDEO, FormatKeys.EncodingKey,
+                            VideoFormatKeys.ENCODING_AVI_MJPG, FormatKeys.FrameRateKey,
+                            new Rational(25, 1), VideoFormatKeys.WidthKey, resx,
+                            VideoFormatKeys.HeightKey, resy, VideoFormatKeys.DepthKey,
+                            24);
 
-            videoTrackNo = aw.addTrack(format);
-            // new Format(properties));
-            // Determine audio format
-            audioIn = null;
+                    videoTrackNo = aw.addTrack(format);
+                    // new Format(properties));
+                    // Determine audio format
+                    audioIn = null;
 /*
             if (audioTrack != null) {
                 if (audioTrack.getName().toLowerCase().endsWith(".mp3")) {
@@ -273,21 +280,22 @@ else {
                 buf = new Buffer();
             }
             */
-            aviOpen = true;
-        //} catch (UnsupportedAudioFileException e) {
-        //    e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+                    aviOpen = true;
+                    //} catch (UnsupportedAudioFileException e) {
+                    //    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-     } 
-   }
-}
+    }
+
     private boolean unterminable() {
         return unterminable;
     }
 
     public boolean isAviOpen() {
-        return (compiler!=null&&encoder==1)||(aviOpen&&encoder==0);
+        return (compiler != null && encoder == 1) || (aviOpen && encoder == 0);
     }
 
     public void setAviOpen(boolean aviOpen) {
@@ -484,24 +492,22 @@ else {
         try {
             config.load(new FileInputStream(System.getProperty("user.home")
                     + File.separator + "empty3.config"));
-        
-            
-            }
-            catch(Exception ex)
-              {
-                config.setProperty("folderoutput", "./EmptyCanvasTests");
-              System.out.println("userHome/empty3.config not found use default");
-          }
-                         //          try {
-            if (config.getProperty("folderoutput") != null) {
-                dir1 = new File(config.getProperty("folderoutput"));
-            } else {
-                dir1 = new File("./"
-                        + File.separator + "EmptyCanvas");
-            }
-       // } catch (IOException ex) {
-         //   o.println(ex.getLocalizedMessage());
-      //  }
+
+
+        } catch (Exception ex) {
+            config.setProperty("folderoutput", "./EmptyCanvasTests");
+            System.out.println("userHome/empty3.config not found use default");
+        }
+        //          try {
+        if (config.getProperty("folderoutput") != null) {
+            dir1 = new File(config.getProperty("folderoutput"));
+        } else {
+            dir1 = new File("./"
+                    + File.separator + "EmptyCanvas");
+        }
+        // } catch (IOException ex) {
+        //   o.println(ex.getLocalizedMessage());
+        //  }
         dir1.mkdirs();
 
         this.dir = new File(dir1.getAbsolutePath() + File.separator
@@ -529,7 +535,7 @@ else {
         setMaxFrames(100);
         loop(true);
 
-compiler = new ManualVideoCompile () ;
+        compiler = new ManualVideoCompile();
     }
 
     private String dateForFilename(Date date) {
@@ -613,9 +619,9 @@ compiler = new ManualVideoCompile () ;
             while (file == null || file.exists()) {
                 serie++;
 
-                String sub = (name==null?sousdossier:name);
-                if(!(sub.endsWith("/")||sub.endsWith("\\")||sub.endsWith(File.separator)))
-                    sub = sub+File.separator;
+                String sub = (name == null ? sousdossier : name);
+                if (!(sub.endsWith("/") || sub.endsWith("\\") || sub.endsWith(File.separator)))
+                    sub = sub + File.separator;
 
                 file = new File(this.dir.getAbsolutePath() + File.separator
                         + sub + "__SERID_" + (serie)
@@ -643,8 +649,6 @@ compiler = new ManualVideoCompile () ;
     }
 
     public boolean nextFrame2UnknownDiplicate() {
-        frame++;
-
         if (D3()) {
             fileG = new File(this.dir.getAbsolutePath() + File.separator
                     + sousdossier + File.separator + "GAUCHE" + File.separator
@@ -709,7 +713,7 @@ compiler = new ManualVideoCompile () ;
     }
 
     public void publishResult() {
-        if (publish) {
+        if (getPublish()) {
 
             str = new ShowTestResult(ri);
             str.setImageContainer(biic);
@@ -786,19 +790,21 @@ compiler = new ManualVideoCompile () ;
     public void addAudioFile(File audio) {
         this.audioTrack = audio;
     }
-public void initCompiler() {
 
-compiler. init(avif.getAbsolutePath()
-,resx,resy,fps , 0) ;
-} 
+    public void initCompiler() {
+
+        compiler.init(avif.getAbsolutePath()
+                , resx, resy, fps, 0);
+    }
+
     public void run() {
-        if(!initialise)
+        if (!initialise)
             init();
 
 
         z = ZBufferFactory.instance(resx, resy, D3);
         z.scene(scene);
-        z.next();
+        //z.next();
         timeStart = System.nanoTime();
         lastInfoEllapsedMillis = System.nanoTime();
         if ((generate & GENERATE_OPENGL) > 0) {
@@ -852,8 +858,7 @@ compiler. init(avif.getAbsolutePath()
         while ((nextFrame() || unterminable()) && !stop) {
 
 
-
-            byte [] audioBuffer = null;
+            byte[] audioBuffer = null;
             // Advance audio to movie time + 1 second (audio must be ahead of video by 1 second)
             while (audioTrack != null && !isAudioDone /*&& aw.getDuration(audioTrackNo).doubleValue() < 1.0
             *frame() / fps*/) {
@@ -864,7 +869,7 @@ compiler. init(avif.getAbsolutePath()
                 }
                 int asSize = audioFormat.getFrameSize();
                 int asDuration = (int) (audioFormat.getSampleRate() / audioFormat.getFrameRate());
-                if (audioBuffer==null||audioBuffer.length < asSize) {
+                if (audioBuffer == null || audioBuffer.length < asSize) {
                     audioBuffer = new byte[asSize];
                 }
                 int len = 0;
@@ -876,65 +881,64 @@ compiler. init(avif.getAbsolutePath()
                 if (len == -1) {
                     isAudioDone = true;
                 } else {
-                   // try {
-                       // aw.writeSamples(audioTrackNo, len, audioBuffer, 0, len, true);
-                  //  } catch (IOException e) {
-                 //       e.printStackTrace();
-              //      }
+                    // try {
+                    // aw.writeSamples(audioTrackNo, len, audioBuffer, 0, len, true);
+                    //  } catch (IOException e) {
+                    //       e.printStackTrace();
+                    //      }
                 }
             }
 
 
-            
-                pauseActive = true;
-                while (isPause()) {
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-                pauseActive = false;
-
-
+            pauseActive = true;
+            while (isPause()) {
                 try {
-                    finit();
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            pauseActive = false;
+
+
+            try {
+                finit();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                reportException(ex);
+            }
+            if ((generate & GENERATE_OPENGL) > 0) {
+                o.println("No OpenGL");
+            } else {
+                try {
+                    testScene();
+
+                } catch (Exception e1) {
+                    reportException(e1);
+                    return;
+                }
+            }
+
+            //System.out.println(z.scene());
+
+            if ((generate & GENERATE_IMAGE) > 0) {
+                try {
+                    z.draw();
+                    z.idzpp();
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    reportException(ex);
-                }
-                if ((generate & GENERATE_OPENGL) > 0) {
-                    o.println("No OpenGL");
-                } else {
-                    try {
-                        testScene();
-
-                    } catch (Exception e1) {
-                        reportException(e1);
-                        return;
-                    }
                 }
 
-                System.out.println(z.scene());
-            
-                if ((generate & GENERATE_IMAGE) > 0) {
-                    try {
-                        z.draw();
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                    
-                    
-                    
-                    ri = z.image2();
 
-                    afterRenderFrame();
+                ri = z.image2();
 
-                   // ri.getGraphics().drawString(description, 0, 0);
+                afterRenderFrame();
 
-                    if ((generate & GENERATE_MOVIE) > 0 && isAviOpen()) {
-                      if(encoder==ENCODER_MONTE) {
+                // ri.getGraphics().drawString(description, 0, 0);
+
+                if ((generate & GENERATE_MOVIE) > 0 && isAviOpen()) {
+                    if (encoder == ENCODER_MONTE) {
                         try {
 
                             aw.write(videoTrackNo, ri, 1);
@@ -944,55 +948,52 @@ compiler. init(avif.getAbsolutePath()
                             reportException(e);
                             return;
                         }
-                      } else if(encoder==ENCODER_HUMBLE) {
-                        compiler.frame((BufferedImage)ri);
-                      }
-                    } else {
-                        o.println(
-                                "No file open for avi writing");
-
+                    } else if (encoder == ENCODER_HUMBLE) {
+                        compiler.frame((BufferedImage) ri);
                     }
-                    ecrireImage(ri, type, file);
-
-                    biic.setImage(ri != null ? ri : (frame % 2 == 0 ? riG : riD));
-                    biic.setStr("" + frame);
-                }
-                if (isSaveBMood()) {
-                    try {
-                        File foutm = new File(this.dir.getAbsolutePath()
-                                + File.separator + filename + ".bmood");
-                        new Loader().saveBin(foutm, scene);
-                        dataWriter.writeFrameData(frame(), "Save bin: " + foutm.getAbsolutePath());
-                    } catch (VersionNonSupporteeException ex) {
-                        o.println(ex.getLocalizedMessage());
-                        reportException(ex);
-                    } catch (ExtensionFichierIncorrecteException e) {
-                        e.printStackTrace();
-                    }
-                }
-            
-            
-                
-            
-            
-                if ((generate & GENERATE_MODEL) > 0) {
-                    try {
-                        o.println("Start generating model");
-                        String filename = "export-" + frame + ".STL";
-                        exportFrame("export", filename);
-                        dataWriter.writeFrameData(frame(), "Export model: " + filename);
-                        o.println("End generating model");
-                    } catch (FileNotFoundException ex) {
-                        o.println(ex.getLocalizedMessage());
-                    } catch (IOException ex) {
-                        o.println(ex.getLocalizedMessage());
-                    } catch (Exception ex) {
-                        o.println("Other exception in generating model" + ex);
-                        ex.printStackTrace();
-                    }
+                } else {
+                    o.println(
+                            "No file open for avi writing");
 
                 }
-            z.next();
+                ecrireImage(ri, type, file);
+
+                biic.setImage(ri != null ? ri : (frame % 2 == 0 ? riG : riD));
+                biic.setStr("" + frame);
+            }
+            if (isSaveBMood()) {
+                try {
+                    File foutm = new File(this.dir.getAbsolutePath()
+                            + File.separator + filename + ".bmood");
+                    new Loader().saveBin(foutm, scene);
+                    dataWriter.writeFrameData(frame(), "Save bin: " + foutm.getAbsolutePath());
+                } catch (VersionNonSupporteeException ex) {
+                    o.println(ex.getLocalizedMessage());
+                    reportException(ex);
+                } catch (ExtensionFichierIncorrecteException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            if ((generate & GENERATE_MODEL) > 0) {
+                try {
+                    o.println("Start generating model");
+                    String filename = "export-" + frame + ".STL";
+                    exportFrame("export", filename);
+                    dataWriter.writeFrameData(frame(), "Export model: " + filename);
+                    o.println("End generating model");
+                } catch (FileNotFoundException ex) {
+                    o.println(ex.getLocalizedMessage());
+                } catch (IOException ex) {
+                    o.println(ex.getLocalizedMessage());
+                } catch (Exception ex) {
+                    o.println("Other exception in generating model" + ex);
+                    ex.printStackTrace();
+                }
+
+            }
+            frame++;
 
         }
 
@@ -1009,21 +1010,21 @@ compiler. init(avif.getAbsolutePath()
             }
         }
         if ((generate & GENERATE_MOVIE) > 0 && true) {
-             if(encoder==ENCODER_MONTE) {
-                  try {
-                      aw.finish();
-                      aw.close();
+            if (encoder == ENCODER_MONTE) {
+                try {
+                    aw.finish();
+                    aw.close();
 
-                   } catch (IOException e) {
-                       o.println("Can't close or flush movie" + runtimeInfoSucc());
-                   }
-        
-              } else {
-             
-                  compiler.end();
-              }
-         }
-            
+                } catch (IOException e) {
+                    o.println("Can't close or flush movie" + runtimeInfoSucc());
+                }
+
+            } else {
+
+                compiler.end();
+            }
+        }
+
         String cmd;
 
         if (loop() && avif != null) {
@@ -1057,8 +1058,8 @@ compiler. init(avif.getAbsolutePath()
         o.println("Quit run method " + runtimeInfoSucc());
 
     }
-    
-        
+
+
     public void saveBMood(boolean b) {
         saveTxt = b;
     }
@@ -1131,14 +1132,14 @@ compiler. init(avif.getAbsolutePath()
 
         }
         if (isAviOpen()) {
-         //   try {
-               // aw.finish();
-           // //    aw.close();
-             //   aw = null;
-                aviOpen = false;
-         //   } catch (IOException e) {
-             //   o.println("Can't close or flush movie" + runtimeInfoSucc());
-          //  }
+            //   try {
+            // aw.finish();
+            // //    aw.close();
+            //   aw = null;
+            aviOpen = false;
+            //   } catch (IOException e) {
+            //   o.println("Can't close or flush movie" + runtimeInfoSucc());
+            //  }
         }
 
     }
@@ -1208,8 +1209,8 @@ compiler. init(avif.getAbsolutePath()
     }
 
     public void setDimension(Resolution dimension) {
-        this.resx= dimension.x();
-        this.resy= dimension.y();
+        this.resx = dimension.x();
+        this.resy = dimension.y();
     }
 
     public Resolution getDimension() {
@@ -1219,7 +1220,16 @@ compiler. init(avif.getAbsolutePath()
     public void setName(String name) {
         this.name = name;
     }
+
     public Color v2main() {
         return null;
+    }
+
+    public Boolean getPublish() {
+        return publish;
+    }
+
+    public void setPublish(Boolean publish) {
+        this.publish = publish;
     }
 }
