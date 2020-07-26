@@ -166,7 +166,7 @@ public void copyResourceFiles(File destDirectory) {
         Iterator<Representable> it;
         if (r instanceof Scene) {
             Scene scene = (Scene) r;
-            idpp();
+            idzpp();
             this.setTexture(scene.texture() == null ? this.texture() : scene.texture());
 
             it = scene.iterator();
@@ -1454,10 +1454,10 @@ public void copyResourceFiles(File destDirectory) {
         this.displayType = displayType;
     }
 
-    public int id() {
+    public int idz() {
         return idImg;
     }
-    public void idpp() {
+    public void idzpp() {
         idImg++;
     }
 }
