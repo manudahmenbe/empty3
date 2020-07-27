@@ -7,9 +7,9 @@ import java.util.function.Consumer;
 public class Pojo {
     public static boolean parseBoolean(String s) {
         Boolean b =  ((s != null) && s.equalsIgnoreCase("true"));
-        if(s!=null && !s.equalsIgnoreCase("false"))
+        if(!b && (s==null || !s.equalsIgnoreCase("false")))
             throw new NumberFormatException("Boolean illegal string");
-        return false;
+        return b;
     }
     public static Object getO(String so) {
 

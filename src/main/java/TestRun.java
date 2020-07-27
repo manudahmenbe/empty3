@@ -36,8 +36,6 @@ public class TestRun {
                 System.out.println("argument : key=value;\n (key=value) = (" + kv[0] + "; " + kv[1] + ") " + (i++) + "/" + kv.length);
 
 
-
-
                 switch (key) {
                     case "class":
                         try {
@@ -50,7 +48,7 @@ public class TestRun {
                             ex.printStackTrace();
                         }
                         break;
-
+/*
     case "resx":
          resx = Integer.parseInt(value);
          break;
@@ -77,17 +75,18 @@ public class TestRun {
                      }
          break;
 
-
-default:
-    p.setProperty(key, value);
-    break;
+*/
+                    default:
+                        p.setProperty(key, value);
+                        break;
                 }
             }
-            // if(cl instanceof TestObjet) {
-            if (t != null)
-                runTest((TestObjet) t, p);
+        }
+        // if(cl instanceof TestObjet) {
+        if (t != null)
+            runTest((TestObjet) t, p);
 //    }
 
-        }
+        
     }
 } 
