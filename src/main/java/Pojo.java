@@ -11,24 +11,30 @@ public class Pojo {
             throw new NumberFormatException("Boolean illegal string");
         return b;
     }
-    public static Object getO(String so) {
+    public static void getO(Object o, String propName, String value) {
 
         Double d;
         Integer i = 0;
         Boolean b = false;
         try {
-            d = Double.parseDouble(so);
-            return d;
+            i = (int) Integer.parseInt(value);
+            setProperty(o, propName, i, Integer.class);
         } catch (Exception ex) {
             try {
-                i = Integer.parseInt(so);
-                return i;
+                d = (double) Double.parseDouble(value);
+                setProperty(o, propName, d, Double.class);
             } catch (Exception ex1) {
                 try {
-                    b = parseBoolean(so);
-                    return b;
-                } catch (NumberFormatException ex2) {
-                    return so;
+                    b = (boolean) parseBoolean(value);
+                    setProperty(o, propName, b, Boolean.class);
+                } catch (Exception ex2) {
+                    try {
+                        if(value!=null && !"".equals(value))
+                            setProperty(o, propName, value, String.class);
+                    } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e1) {
+                        //e1.printStackTrace();
+                    }
+                    //ex2.printStackTrace();
                 }
             }
         }
@@ -40,9 +46,8 @@ public class Pojo {
 
             while (it.hasNext()) {
                 String pr = it.next().toString();
-                String propName = pr;
                 String value = p.getProperty(pr);
-                setProperty(o, propName, getO(value));
+                getO(o, pr, value);
             }
             return true;
         } catch (Exception ex) {
@@ -65,10 +70,10 @@ public class Pojo {
         return propertyGetter.getReturnType();
     }
 
-    public static void setProperty(Object o, String propertyName, Object value) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    public static void setProperty(Object o, String propertyName, Object value
+       , Class cl) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
-
-        propertySetter = o.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), value.getClass());
+        propertySetter = o.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), cl);
         propertySetter.invoke(o, value);
         System.out.println("RType : " + o.getClass().getName() + " Property: " + propertyName + " New Value set " + getProperty(o, propertyName));
     }
