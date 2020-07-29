@@ -6,6 +6,12 @@ import java.awt.*;
 import one.empty3.library.core.nurbs.*;
 import java.awt.image.*;
 import java.util.*;
+
+/***
+ *
+ * proximity. bezier _curve_ ie.
+ *
+ */
 public class TestVoronoi extends TestObjetSub {
 public int pointsSize = 3;
    private CourbeParametriquePolynomialeBezier[] curves = new CourbeParametriquePolynomialeBezier[pointsSize];
