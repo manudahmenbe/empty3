@@ -28,7 +28,7 @@ public class E3ja {
                try {
                    AlgebricTree tree = new AlgebricTree(formula);
                    tree.construct();
-                   Pojo.setProperty(o, propertyName, (Object) tree, tree.gwrClass());
+                   Pojo.setProperty(o, propertyName, (Object) tree, tree.getClass());
                } catch(Exception ex ) {
                     
                    ex.printStackTrace();
