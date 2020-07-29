@@ -129,7 +129,7 @@
                 <configuration>
                     <mainClass>TestRun</mainClass>
                     <arguments>
-                        <argument>class=tests2.texturevideo.PlansVideo</argument>
+                        <argument>class=test3.TestVoronoiPlus.java</argument>
                         <!--<argument>class=test3.waterfall_demo.Waterfall_Demo</argument>-->
                         <!--  <argument>class=test3.QuadratureCercle</argument>-->
                         <!-- <argument>class=test3.QuadratureCercle</argument>-->
