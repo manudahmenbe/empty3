@@ -30,7 +30,6 @@ public class E3ja {
                    tree.construct();
                    Pojo.setProperty(o, propertyName, (Object) tree, tree.getClass());
                } catch(Exception | AlgebraicFormulaSyntaxException ex ) {
-                    
                    ex.printStackTrace();
                }
 

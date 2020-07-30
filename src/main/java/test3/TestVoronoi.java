@@ -6,13 +6,19 @@ import java.awt.*;
 import one.empty3.library.core.nurbs.*;
 import java.awt.image.*;
 import java.util.*;
+
+/***
+ *
+ * proximity. bezier _curve_ ie.
+ *
+ */
 public class TestVoronoi extends TestObjetSub {
-public int pointsSize = 3;
+public int pointsSize = 20;
    private CourbeParametriquePolynomialeBezier[] curves = new CourbeParametriquePolynomialeBezier[pointsSize];
   // private Double [][][] distancesSum;
    //private ArrayList<Point3D> pointsList;
    private Double maxDist;
-   private int nPointsDist = 2;
+   private int nPointsDist = 1;
    ///private double[][][] pointDist;
   // private int[][][] pointNo;
    private int[][] colorsArr;
@@ -34,7 +40,7 @@ public int pointsSize = 3;
       
       
       //pointDist = new double[getResx()][getResy()][pointsSize];
-        maxDist = 0.0;
+        
       //  distancesSum = new Double [getResx()][getResy()][pointsSize];
    //  pointNo = new int[getResx()][getResy()][pointsSize];
   //  cds = new ColorDist[getResx()][getResy()][pointsSize];
@@ -58,7 +64,7 @@ public int pointsSize = 3;
    public void finit() {
       ColorDist [] cds = new ColorDist[pointsSize];
       double dist = 0.0;
-        maxDist = 0.0;
+        
         for(int i= 0;i<getResx(); i++)
              for(int j= 0;j<getResy(); j++) {
 
@@ -68,38 +74,21 @@ public int pointsSize = 3;
                 int pointNoIjk = 0;
                    double [] distMin = new double [nPointsDist];
                  // distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
-                    for(int k=0; k<pointsSize; k++) {
-                cds[k] = new ColorDist();
-                       cds[k].dist=Double.MAX_VALUE;
-                      // if(k<nPointsDist) {
-                     // pointDist[i][j][k] = dist;
-                    // distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
-                            /*distancesSum[i][j][k] */dist= Point3D.distance(p, curves[k].calculerPoint3D(((double)frame())/25.0/1.0));
-                       if(dist/*distancesSum[i][j][k]*/>maxDist)
-                           maxDist = dist;// distancesSum[i][j][k];
-                 //    pointNo[i][j][k] = k;
-             cds[k].dist = dist;
-                      //    }
-                 cds[k].color = colors[k];
-                  /*
-                
-                      if(distMin[k]>dist) {
-                         distMin[k] = dist;
-                         pointNoIjk = k+1;
-                     }*/
-                  }
+                     maxDist = 0.0;
+                for(int k=0; k<pointsSize; k++) {
+                     cds[k] = new ColorDist();
+                     cds[k].dist=Double.MAX_VALUE;
+                     if(dist>maxDist)
+                          maxDist = dist;
+                     cds[k].dist = dist;
+                     cds[k].color = colors[k];
+                }
                 
                 ColorDist.sort(cds);
-               // for(int c = 0 ; c<pointsSize; c++) {
-                   Color z =  Colors.proxymity(cds, 1.0, nPointsDist);
-                   z = new Color(z.getRed(), z.getGreen(), z.getBlue());
-                   
-                   colorsArr[i][j] = z.getRGB();
-                //}
-                     
-                  
-                  
-             }
+                Color z =  Colors.mean(cds, 1.0, nPointsDist);
+                z = new Color(z.getRed(), z.getGreen(), z.getBlue());
+                colorsArr[i][j] = z.getRGB();
+        }
         for(int i= 0;i<getResx(); i++)
              for(int j= 0;j<getResy(); j++) {
                   //distancesSum[i][j][] /= maxDist;
