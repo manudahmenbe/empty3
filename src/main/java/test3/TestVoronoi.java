@@ -59,7 +59,7 @@ public int pointsSize = 20;
          
       }
       colorsArr = new int[getResx()][getResy()];
-      //colors[0] = Color.BLACK;
+      nPointsDist = pointsSize;
    }
    public void finit() {
       ColorDist [] cds = new ColorDist[pointsSize];
