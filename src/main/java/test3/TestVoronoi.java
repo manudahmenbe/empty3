@@ -13,12 +13,12 @@ import java.util.*;
  *
  */
 public class TestVoronoi extends TestObjetSub {
-public int pointsSize = 3;
+public int pointsSize = 20;
    private CourbeParametriquePolynomialeBezier[] curves = new CourbeParametriquePolynomialeBezier[pointsSize];
   // private Double [][][] distancesSum;
    //private ArrayList<Point3D> pointsList;
    private Double maxDist;
-   private int nPointsDist = 2;
+   private int nPointsDist = 3;
    ///private double[][][] pointDist;
   // private int[][][] pointNo;
    private int[][] colorsArr;
