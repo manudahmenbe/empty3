@@ -77,7 +77,7 @@ public int pointsSize = 20;
                      maxDist = 0.0;
                 for(int k=0; k<pointsSize; k++) {
                      cds[k] = new ColorDist();
-                     cds[k].dist=Double.MAX_VALUE;
+                     cds[k].dist=Point3D.distance(p, curves[i].calculerPoint3D(frame()/20.5));
                      if(dist>maxDist)
                           maxDist = dist;
                      cds[k].dist = dist;
