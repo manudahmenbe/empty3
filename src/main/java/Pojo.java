@@ -57,7 +57,9 @@ public class Pojo {
     }
 
     /***
-     * not implemented
+     * @param o Pojo object
+     * @param p Properties list String (name), String (scalar value b|d|i)
+     * @return properties getter list value
      */
     public static Properties getProperties(Object o, Properties p) {
 

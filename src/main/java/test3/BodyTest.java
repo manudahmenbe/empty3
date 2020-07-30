@@ -7,6 +7,6 @@ import one.empty3.library.Representable;
  */
 public class BodyTest {
     class Hair extends Representable{
-        
+
     }
 }

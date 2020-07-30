@@ -144,7 +144,8 @@ public class Colors {
     /***
      * True colors results
      * @param norm 1.0
-     * @param cd dist sorted array 
+     * @param cd dist sorted array
+     * @param n number of effective computed values from array index 0
      * @return interpoled color.
       */
     public static Color proxymity(ColorDist[] cd, double norm,  int n) {
@@ -185,7 +186,8 @@ public class Colors {
      * True colors results
      * @param norm 1.0
      * @param cd dist sorted array 
-     * @return interpoled color.
+     * @return interpoled color
+     * @param n number of effective computed values from array index 0
       */
     public static Color mean(ColorDist[] cd, double norm, int n) {
       int compNo = 4;

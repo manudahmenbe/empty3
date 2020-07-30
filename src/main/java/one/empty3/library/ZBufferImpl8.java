@@ -49,138 +49,140 @@ import java.util.function.Consumer;
 /***
  * * Classe de rendu graphique
 
-           P2 écran 2 int
-           P3 x y z 
-           Tgt x y z
-           N x y z 
-           Tex u v w TextId [12 double 1 int
-               (1 double)imeid 1 ref. ]
-           T
-           Representable container 
+ P2 écran 2 int
+ P3 x y z
+ Tgt x y z
+ N x y z
+ Tex u v w TextId [12 double 1 int
+ (1 double)imeid 1 ref. ]
+ T
+ Representable container
 
  */
 class Data {
-    
+
     /**
-      * Point x y z t x y z n x y z t u v w
-      * Int textId int4 out rgba
-      * Representable surface line point3d
-      */
-    Double [][][] dataP;
-    Representable [][] container;
+     * Point x y z t x y z n x y z t u v w
+     * Int textId int4 out rgba
+     * Representable surface line point3d
+     */
+    Double[][][] dataP;
+    Representable[][] container;
     ZBufferImpl8 zBuffer;
     int la;
     int ha;
-   
+
     public Data(int w, int h, ZBufferImpl8 zBuffer) {
         dataP = new Double[16][h][w];
-       
-        container = new Representable [h][w];
+
+        container = new Representable[h][w];
         this.zBuffer = zBuffer;
         this.la = w;
-               
-        this.ha = h;
-               
 
-          System.out.println("la,ha "+la+", "+ha);         
-                   
-                  
+        this.ha = h;
+
+
+        System.out.println("la,ha " + la + ", " + ha);
+
+
     }
-           
+
     public void clear() {
-           
-                          
-        for(int j = 0; j<ha; j++) 
-               for(int i= 0; i<la; i++) {
-                   dataP[13][j][i] = 9999999999.9; //Double.MAX_VALUE;
-                   container[j][i] = ZBufferImpl8.INFINI;
-                   dataP[9][j][i] = 1.0*i/la;
-                   dataP[10][j][i] = 1.0*j/ha;  
-                
-               }
-                  
-                   
-    } 
+
+
+        for (int j = 0; j < ha; j++)
+            for (int i = 0; i < la; i++) {
+                dataP[13][j][i] = 9999999999.9; //Double.MAX_VALUE;
+                container[j][i] = ZBufferImpl8.INFINI;
+                dataP[9][j][i] = 1.0 * i / la;
+                dataP[10][j][i] = 1.0 * j / ha;
+
+            }
+
+
+    }
+
     public boolean addData(Double px, Double py, Double pz,
-        Double tx, Double ty, Double tz, 
-                           Double nx, Double ny, Double nz, 
+                           Double tx, Double ty, Double tz,
+                           Double nx, Double ny, Double nz,
                            Double u, Double v, Double w,
-        Representable r) {
-               Point p = null;
-        if((p=testP(px, py, pz)) !=null) {
-             int x=(int)p.getX();
-             int y=(int)p.getY();
-             dataP[0][y][x] = px;
-             dataP[1][y][x] = py;
-             dataP[2][y][x] = pz;
-             dataP[3][y][x] = tx;
-             dataP[4][y][x] = ty;
-             dataP[5][y][x] = tz;
-             dataP[6][y][x] = nx;
-             dataP[7][y][x] = ny;
-             dataP[8][y][x] = nz;
-             dataP[9][y][x] = u;
-             dataP[10][y][x] = v;
-             dataP[11][y][x] = w;
+                           Representable r) {
+        Point p = null;
+        if ((p = testP(px, py, pz)) != null) {
+            int x = (int) p.getX();
+            int y = (int) p.getY();
+            dataP[0][y][x] = px;
+            dataP[1][y][x] = py;
+            dataP[2][y][x] = pz;
+            dataP[3][y][x] = tx;
+            dataP[4][y][x] = ty;
+            dataP[5][y][x] = tz;
+            dataP[6][y][x] = nx;
+            dataP[7][y][x] = ny;
+            dataP[8][y][x] = nz;
+            dataP[9][y][x] = u;
+            dataP[10][y][x] = v;
+            dataP[11][y][x] = w;
              /*if(r==null){
                  r = zBuffer;
                         }(*/
-             container[y][x] = r;
-             //System.out.println("x,y "+x+", "+y+" u,v : " + u+" "+v+" r " +r.getClass());
-             return true;
+            container[y][x] = r;
+            //System.out.println("x,y "+x+", "+y+" u,v : " + u+" "+v+" r " +r.getClass());
+            return true;
         }
         return false;
     }
+
     public Point testP(Double px, Double py, Double pz) {
-        if(px==null || py==null || pz==null)
-                   return null;
+        if (px == null || py == null || pz == null)
+            return null;
         return testDeep(new Point3D(px, py, pz));
     }
 
 
     public Point testDeep(Point3D x3d) {
-            if (x3d == null)
-                return null;
-            Camera cam = zBuffer.scene().camera();
-            Point ce = cam.coordonneesPoint2D(
-                           cam.calculerPointDansRepere(x3d), 
-                           zBuffer);
-            if (ce == null)
-                return null;
-            double deep = zBuffer.camera().distanceCamera(x3d);
-
-            
-            int x = (int) ce.getX();
-            int y = (int) ce.getY();
-            if ((x >= 0) & (x < la) & (y >= 0) & (y < ha)
-                    && (deep < dataP[13][y][x])) {
-                dataP[13][y][x] = deep;
-                return ce;
-                
-            }
+        if (x3d == null)
             return null;
-        }
-       public ECBufferedImage getBitmap() {
-            BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
+        Camera cam = zBuffer.scene().camera();
+        Point ce = cam.coordonneesPoint2D(
+                cam.calculerPointDansRepere(x3d),
+                zBuffer);
+        if (ce == null)
+            return null;
+        double deep = zBuffer.camera().distanceCamera(x3d);
 
-            int [] c = new int[4];
-            for(int j = 0; j<ha; j++) 
-               for(int i= 0; i<la; i++)
-                   if(dataP[9][j][i]!=null&&dataP[10][j][i]!=null) {
-                        c[0] = container[j] [i]. texture().getColorAt(
-                           dataP[9][j][i], dataP[10][j][i]);
-                        bi.setRGB(i, j, i, j, c, 0, la);
-                    } 
-                    else  
-                        System.out.println("error texture null Data.getBitmap");
-                 
-            
-        
+
+        int x = (int) ce.getX();
+        int y = (int) ce.getY();
+        if ((x >= 0) & (x < la) & (y >= 0) & (y < ha)
+                && (deep < dataP[13][y][x])) {
+            dataP[13][y][x] = deep;
+            return ce;
+
+        }
+        return null;
+    }
+
+    public ECBufferedImage getBitmap() {
+        BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
+
+        int[] c = new int[4];
+        for (int j = 0; j < ha; j++)
+            for (int i = 0; i < la; i++)
+                if (dataP[9][j][i] != null && dataP[10][j][i] != null) {
+                    c[0] = container[j][i].texture().getColorAt(
+                            dataP[9][j][i], dataP[10][j][i]);
+                    bi.setRGB(i, j, i, j, c, 0, la);
+                } else
+                    System.out.println("error texture null Data.getBitmap");
+
+
         return new ECBufferedImage(bi);
-                     
-       } 
+
+    }
 
 }
+
 public class ZBufferImpl8 extends ZBufferImpl {
 
 
@@ -224,8 +226,9 @@ public class ZBufferImpl8 extends ZBufferImpl {
     private int displayType = DISPLAY_ALL;
     ZBufferImpl8 that;
     Data data1;
+
     public ZBufferImpl8() {
-        
+
         that = this;
         texture(new TextureCol(Color.BLACK));
     }
@@ -233,15 +236,15 @@ public class ZBufferImpl8 extends ZBufferImpl {
 
     public ZBufferImpl8(int l, int h) {
         this();
-               
-        
+
+
         la = l;
         ha = h;
         dimx = la;
         dimy = ha;
         //this.ime = new ImageMap(la, ha);
         data1 = new Data(la, ha, this);
-               
+
         //Point3D.start();
     }
 
@@ -271,25 +274,28 @@ public class ZBufferImpl8 extends ZBufferImpl {
         this.cameraC = c;
         this.scene().cameraActive(c);
     }
-/***
- *
- * Draw buffer with data
- * Iterate on objects
-*/
-public void predraw() {
-      draw() ;
-}
-/**
- * Textures and lights
- *
-*/
-    public BufferedImage finishDraw() {
-               return null;
-        
+
+    /***
+     *
+     * Draw buffer with data
+     * Iterate on objects
+     */
+    public void predraw() {
+        draw();
     }
+
+    /**
+     * Textures and lights
+     * @return image null
+     */
+    public BufferedImage finishDraw() {
+        return null;
+
+    }
+
     public void draw() {
-               
-         data1.clear() ;
+
+        data1.clear();
         scene().lumieres().clear();
         for (int i = 0; i < scene().getObjets().data1d.size(); i++)
             if (scene().getObjets().getElem(i).getClass().isAssignableFrom(Lumiere.class))
@@ -307,7 +313,7 @@ public void predraw() {
         /*
          * if (r instanceof RepresentableType) { try { ((RepresentableType)
          * r).draw(this); } catch (Exception ex) { ex.printStackTrace(); } return; }
-         * 
+         *
          * if (r.getPainter() != null) { try { r.paint(); } catch (Exception ex) {
          * ex.printStackTrace(); } }
          */
@@ -324,305 +330,301 @@ public void predraw() {
             while (it.hasNext()) {
                 draw(it.next());
             }
-            
-    
+
+
         } else if (r instanceof RepresentableConteneur) {
             RepresentableConteneur rc = (RepresentableConteneur) r;
             it = rc.iterator();
             while (it.hasNext()) {
                 draw(it.next());
             }
-            
+
         } else
 
-        /* OBJECTS */
-        if (r instanceof Point3D) {
-            Point3D p = (Point3D) r;
-            add(p.get(0), p.get(1), p.get(2), null, null, null, null, null, null, 0.0, 0.0, 0.0, p);
-        } else
-        if (r instanceof ThickSurface) {
-            // System.out.println("Surface");
-            ThickSurface n = (ThickSurface) r;
-            // TODO Dessiner les bords
+            /* OBJECTS */
+            if (r instanceof Point3D) {
+                Point3D p = (Point3D) r;
+                add(p.get(0), p.get(1), p.get(2), null, null, null, null, null, null, 0.0, 0.0, 0.0, p);
+            } else if (r instanceof ThickSurface) {
+                // System.out.println("Surface");
+                ThickSurface n = (ThickSurface) r;
+                // TODO Dessiner les bords
 
-            for (double u = n.getStartU(); u <= n.getEndU(); u += n.getIncrU()) {
-                // System.out.println("(u,v) = ("+u+","+")");
-                for (double v = n.getStartU(); v <= n.getEndV(); v += n.getIncrV()) {
-                    Point3D p1, p2, p3, p4;
+                for (double u = n.getStartU(); u <= n.getEndU(); u += n.getIncrU()) {
+                    // System.out.println("(u,v) = ("+u+","+")");
+                    for (double v = n.getStartU(); v <= n.getEndV(); v += n.getIncrV()) {
+                        Point3D p1, p2, p3, p4;
 
-                    p1 = rotate(n.calculerPoint3D(u, v), n);
-                    p2 = rotate(n.calculerPoint3D(u + n.getIncrU(), v), n);
-                    p3 = rotate(n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n);
-                    p4 = rotate(n.calculerPoint3D(u, v + n.getIncrV()), n);
-                    switch (displayType) {
-                        case DISPLAY_ALL:
-                        case SURFACE_DISPLAY_COL_QUADS:
-                        case SURFACE_DISPLAY_TEXT_QUADS:
-                            tracerQuad(p1, p2, p3, p4, n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
-                            break;
-                        case SURFACE_DISPLAY_COL_TRI:
-                        case SURFACE_DISPLAY_TEXT_TRI:
-                            tracerTriangle(
-                                    n.calculerPoint3D(u, v),
-                                    n.calculerPoint3D(u + n.getIncrU(), v),
-                                    n.calculerPoint3D(u + n.getIncrU(),
-                                            v + n.getIncrV()),
-                                    n.texture(),
-                                    u,
-                                    v, u + n.getIncrU(), v + n.getEndV());
-                            tracerTriangle(n.calculerPoint3D(u, v),
-                                    n.calculerPoint3D(u, v + n.getIncrV()),
-                                    n.calculerPoint3D(u + n.getIncrU(),
-                                            v + n.getIncrV()),
-                                    n.texture(),
-                                    u,
-                                    v, u + n.getIncrU(), v + n.getEndV());
+                        p1 = rotate(n.calculerPoint3D(u, v), n);
+                        p2 = rotate(n.calculerPoint3D(u + n.getIncrU(), v), n);
+                        p3 = rotate(n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n);
+                        p4 = rotate(n.calculerPoint3D(u, v + n.getIncrV()), n);
+                        switch (displayType) {
+                            case DISPLAY_ALL:
+                            case SURFACE_DISPLAY_COL_QUADS:
+                            case SURFACE_DISPLAY_TEXT_QUADS:
+                                tracerQuad(p1, p2, p3, p4, n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
+                                break;
+                            case SURFACE_DISPLAY_COL_TRI:
+                            case SURFACE_DISPLAY_TEXT_TRI:
+                                tracerTriangle(
+                                        n.calculerPoint3D(u, v),
+                                        n.calculerPoint3D(u + n.getIncrU(), v),
+                                        n.calculerPoint3D(u + n.getIncrU(),
+                                                v + n.getIncrV()),
+                                        n.texture(),
+                                        u,
+                                        v, u + n.getIncrU(), v + n.getEndV());
+                                tracerTriangle(n.calculerPoint3D(u, v),
+                                        n.calculerPoint3D(u, v + n.getIncrV()),
+                                        n.calculerPoint3D(u + n.getIncrU(),
+                                                v + n.getIncrV()),
+                                        n.texture(),
+                                        u,
+                                        v, u + n.getIncrU(), v + n.getEndV());
 
-                            break;
-                        case SURFACE_DISPLAY_LINES:
-                            tracerLines(p1, p2, p3, p4, n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
-                            break;
-                        case SURFACE_DISPLAY_POINTS:
-                            ime.testDeep(p1);
-                            ime.testDeep(p2);
-                            ime.testDeep(p3);
-                            ime.testDeep(p4);
-                            break;
+                                break;
+                            case SURFACE_DISPLAY_LINES:
+                                tracerLines(p1, p2, p3, p4, n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
+                                break;
+                            case SURFACE_DISPLAY_POINTS:
+                                ime.testDeep(p1);
+                                ime.testDeep(p2);
+                                ime.testDeep(p3);
+                                ime.testDeep(p4);
+                                break;
+                        }
                     }
                 }
-            }
-        } else
-        if (r instanceof TRI) {
-            TRI tri = (TRI) r;
-            switch (displayType) {
-                case SURFACE_DISPLAY_LINES:
-                    for (int i = 0; i < 3; i++)
-                        line(rotate(tri.getSommet().getElem(i), r),
-                                rotate(tri.getSommet().getElem((i + 1) % 3), r)
-                                , tri.texture);
-                    break;
-                case SURFACE_DISPLAY_POINTS:
-                    for (int i = 0; i < 3; i++)
-                        ime.testDeep(rotate(tri.getSommet().getElem(i), r)
-                                , tri.texture);
-                    break;
-                default:
-                    tracerTriangle(rotate(tri.getSommet().getElem(0), r),
-                            rotate(tri.getSommet().getElem(1), r),
-                            rotate(tri.getSommet().getElem(2), r)
-                            , tri.texture());
-                    break;
-
-            }
-        } else
-        // GENERATORS
-        if (r instanceof ParametricSurface) {
-            // System.out.println("Surface");
-            ParametricSurface n = (ParametricSurface) r;
-            // TODO Dessiner les bords
-            for (double u = n.getStartU(); u <= n.getEndU()-n.getIncrU(); u += n.getIncrU()) {
-                // System.out.println("(u,v) = ("+u+","+")");
-                for (double v = n.getStartV(); v <= n.getEndV()-n.getIncrV(); v += n.getIncrV()) {
-                    /*
-                     * draw(new TRI(n.calculerPoint3D(u, v), n.calculerPoint3D(u + n.getIncrU(), v),
-                     * n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.texture()), n);
-                     * draw(new TRI(n.calculerPoint3D(u, v), n.calculerPoint3D(u, v + n.getIncrV()),
-                     * n. calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.texture()), n);
-                     */
-                    /*
-                     * tracerTriangle(n.calculerPoint3D(u, v), n.calculerPoint3D(u + n.getIncrU(),
-                     * v), n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), new
-                     * Color(n.texture().getColorAt(0.5,0.5))); tracerTriangle(n.calculerPoint3D(u,
-                     * v), n.calculerPoint3D(u, v + n.getIncrV()), n.calculerPoint3D(u +
-                     * n.getIncrU(), v + n.getIncrV()), new Color(n.texture().getColorAt(0.5,0.5)));
-                     *//*
-                        * tracerTriangle(n.calculerPoint3D(u, v), n.calculerPoint3D(u + n.getIncrU(),
-                        * v), n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.texture());
-                        * tracerTriangle(n.calculerPoint3D(u, v), n.calculerPoint3D(u, v +
-                        * n.getIncrV()), n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
-                        * n.texture());
-                        * 
-                        */
-                    /*
-                     * Point3D[][] point3DS = {{n.calculerPoint3D(u, v), n.calculerPoint3D(u +
-                     * n.getIncrU(), v)}, {n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
-                     * n.calculerPoint3D(u, v + n.getIncrV())}};
-                     * 
-                     * SurfaceParametricPolygonalBezier surfaceParametriquePolynomialeBezier = new
-                     * SurfaceParametricPolygonalBezier(point3DS);
-                     * draw(surfaceParametriquePolynomialeBezier, n);
-                     */
-                    Point3D p1, p2, p3, p4;
-                    p1 = n.calculerPoint3D(u, v);
-                    p2 = n.calculerPoint3D(u + n.getIncrU(), v);
-                    p3 = n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV());
-                    p4 = n.calculerPoint3D(u, v + n.getIncrV());
-                    if (n instanceof HeightMapSurface) {
-                        Point3D n1, n2, n3, n4;
-                        HeightMapSurface h = (HeightMapSurface) n;
-                        n1 = n.calculerNormale3D(u, v);
-                        n2 = n.calculerNormale3D(u + n.getIncrU(), v);
-                        n3 = n.calculerNormale3D(u + n.getIncrU(), v + n.getIncrV());
-                        n4 = n.calculerNormale3D(u, v + n.getIncrV());
-                        p1 = p1.plus(n1.norme1().mult(h.height(u, v)));
-                        p2 = p2.plus(n2.norme1().mult(h.height(u + n.getIncrU(), v)));
-                        p3 = p3.plus(n3.norme1().mult(h.height(u + n.getIncrU(), v + n.getIncrV())));
-                        p4 = p4.plus(n4.norme1().mult(h.height(u, v + n.getIncrV())));
-                    }
-                    if (displayType == SURFACE_DISPLAY_LINES) {
-                        tracerLines(p1
-                                , p2,
-                                p3,
-                                p4,
-                                n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
+            } else if (r instanceof TRI) {
+                TRI tri = (TRI) r;
+                switch (displayType) {
+                    case SURFACE_DISPLAY_LINES:
+                        for (int i = 0; i < 3; i++)
+                            line(rotate(tri.getSommet().getElem(i), r),
+                                    rotate(tri.getSommet().getElem((i + 1) % 3), r)
+                                    , tri.texture);
                         break;
-                    } else if (displayType == SURFACE_DISPLAY_POINTS) {
-                        ime.testDeep(rotate(p1, r));
-                        ime.testDeep(rotate(p2, r));
-                        ime.testDeep(rotate(p3, r));
-                        ime.testDeep(rotate(p4, r));
-                    } else {
-                        System.out.println("Surface"+n.getClass()+ " u,v,u1,v1 = " + u+","+v+" u1,v1 "
-                                           + (u + n.getIncrU())+" "+ ( v + n.getIncrV()));
-                        tracerQuad(rotate(p1, n), rotate(p2, n),
-                                rotate(p3, n), rotate(p4, n),
-                                n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(),  n);
-                         
+                    case SURFACE_DISPLAY_POINTS:
+                        for (int i = 0; i < 3; i++)
+                            ime.testDeep(rotate(tri.getSommet().getElem(i), r)
+                                    , tri.texture);
+                        break;
+                    default:
+                        tracerTriangle(rotate(tri.getSommet().getElem(0), r),
+                                rotate(tri.getSommet().getElem(1), r),
+                                rotate(tri.getSommet().getElem(2), r)
+                                , tri.texture());
+                        break;
+
+                }
+            } else
+                // GENERATORS
+                if (r instanceof ParametricSurface) {
+                    // System.out.println("Surface");
+                    ParametricSurface n = (ParametricSurface) r;
+                    // TODO Dessiner les bords
+                    for (double u = n.getStartU(); u <= n.getEndU() - n.getIncrU(); u += n.getIncrU()) {
+                        // System.out.println("(u,v) = ("+u+","+")");
+                        for (double v = n.getStartV(); v <= n.getEndV() - n.getIncrV(); v += n.getIncrV()) {
+                            /*
+                             * draw(new TRI(n.calculerPoint3D(u, v), n.calculerPoint3D(u + n.getIncrU(), v),
+                             * n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.texture()), n);
+                             * draw(new TRI(n.calculerPoint3D(u, v), n.calculerPoint3D(u, v + n.getIncrV()),
+                             * n. calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.texture()), n);
+                             */
+                            /*
+                             * tracerTriangle(n.calculerPoint3D(u, v), n.calculerPoint3D(u + n.getIncrU(),
+                             * v), n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), new
+                             * Color(n.texture().getColorAt(0.5,0.5))); tracerTriangle(n.calculerPoint3D(u,
+                             * v), n.calculerPoint3D(u, v + n.getIncrV()), n.calculerPoint3D(u +
+                             * n.getIncrU(), v + n.getIncrV()), new Color(n.texture().getColorAt(0.5,0.5)));
+                             *//*
+                             * tracerTriangle(n.calculerPoint3D(u, v), n.calculerPoint3D(u + n.getIncrU(),
+                             * v), n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.texture());
+                             * tracerTriangle(n.calculerPoint3D(u, v), n.calculerPoint3D(u, v +
+                             * n.getIncrV()), n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                             * n.texture());
+                             *
+                             */
+                            /*
+                             * Point3D[][] point3DS = {{n.calculerPoint3D(u, v), n.calculerPoint3D(u +
+                             * n.getIncrU(), v)}, {n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                             * n.calculerPoint3D(u, v + n.getIncrV())}};
+                             *
+                             * SurfaceParametricPolygonalBezier surfaceParametriquePolynomialeBezier = new
+                             * SurfaceParametricPolygonalBezier(point3DS);
+                             * draw(surfaceParametriquePolynomialeBezier, n);
+                             */
+                            Point3D p1, p2, p3, p4;
+                            p1 = n.calculerPoint3D(u, v);
+                            p2 = n.calculerPoint3D(u + n.getIncrU(), v);
+                            p3 = n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV());
+                            p4 = n.calculerPoint3D(u, v + n.getIncrV());
+                            if (n instanceof HeightMapSurface) {
+                                Point3D n1, n2, n3, n4;
+                                HeightMapSurface h = (HeightMapSurface) n;
+                                n1 = n.calculerNormale3D(u, v);
+                                n2 = n.calculerNormale3D(u + n.getIncrU(), v);
+                                n3 = n.calculerNormale3D(u + n.getIncrU(), v + n.getIncrV());
+                                n4 = n.calculerNormale3D(u, v + n.getIncrV());
+                                p1 = p1.plus(n1.norme1().mult(h.height(u, v)));
+                                p2 = p2.plus(n2.norme1().mult(h.height(u + n.getIncrU(), v)));
+                                p3 = p3.plus(n3.norme1().mult(h.height(u + n.getIncrU(), v + n.getIncrV())));
+                                p4 = p4.plus(n4.norme1().mult(h.height(u, v + n.getIncrV())));
+                            }
+                            if (displayType == SURFACE_DISPLAY_LINES) {
+                                tracerLines(p1
+                                        , p2,
+                                        p3,
+                                        p4,
+                                        n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
+                                break;
+                            } else if (displayType == SURFACE_DISPLAY_POINTS) {
+                                ime.testDeep(rotate(p1, r));
+                                ime.testDeep(rotate(p2, r));
+                                ime.testDeep(rotate(p3, r));
+                                ime.testDeep(rotate(p4, r));
+                            } else {
+                                System.out.println("Surface" + n.getClass() + " u,v,u1,v1 = " + u + "," + v + " u1,v1 "
+                                        + (u + n.getIncrU()) + " " + (v + n.getIncrV()));
+                                tracerQuad(rotate(p1, n), rotate(p2, n),
+                                        rotate(p3, n), rotate(p4, n),
+                                        n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
+
+                            }
+
+                            /*
+                             * line(n.calculerPoint3D(u, v), n.calculerPoint3D(u + n.getIncrU(), v),
+                             * n.texture, u); line( n.calculerPoint3D(u + n.getIncrU(), v),
+                             * n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.texture, v); line(
+                             * n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.calculerPoint3D(u, v
+                             * + n.getIncrV()), n.texture, u); line( n.calculerPoint3D(u, v + n.getIncrV()),
+                             * n.calculerPoint3D(u, v), n.texture, v);
+                             */
+
+                            //
+                            //
+                            // draw(new TRI(n.calculerPoint3D(u, v),
+                            // n.calculerPoint3D(u + n.getIncrU(), v),
+                            // n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                            // n.texture()), n, u, v);
+                            // draw(new TRI(n.calculerPoint3D(u, v),
+                            // n.calculerPoint3D(u, v + n.getIncrV()),
+                            // n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                            // n.texture()), n, u, v);
+                            //
+                        }
+
                     }
+                } else if (r instanceof TRIGenerable) {
+                    r = ((TRIGenerable) r).generate();
 
-                    /*
-                     * line(n.calculerPoint3D(u, v), n.calculerPoint3D(u + n.getIncrU(), v),
-                     * n.texture, u); line( n.calculerPoint3D(u + n.getIncrU(), v),
-                     * n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.texture, v); line(
-                     * n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.calculerPoint3D(u, v
-                     * + n.getIncrV()), n.texture, u); line( n.calculerPoint3D(u, v + n.getIncrV()),
-                     * n.calculerPoint3D(u, v), n.texture, v);
-                     */
+                } else if (r instanceof PGenerator) {
+                    r = ((PGenerator) r).generatePO();
+                } else if (r instanceof TRIConteneur) {
+                    r = ((TRIConteneur) r).getObj();
+                } else
 
-                    //
-                    //
-                    // draw(new TRI(n.calculerPoint3D(u, v),
-                    // n.calculerPoint3D(u + n.getIncrU(), v),
-                    // n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
-                    // n.texture()), n, u, v);
-                    // draw(new TRI(n.calculerPoint3D(u, v),
-                    // n.calculerPoint3D(u, v + n.getIncrV()),
-                    // n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
-                    // n.texture()), n, u, v);
-                    //
-                }
+                    // OBJETS
+                    if (r instanceof TRIObject) {
+                        TRIObject o = (TRIObject) r;
+                        for (TRI t : o.getTriangles()) {
+                            // System.out.println("Triangle suivant");
 
-            }
-        } else
-        if (r instanceof TRIGenerable) {
-            r = ((TRIGenerable) r).generate();
+                            draw(t);
 
-        } else if (r instanceof PGenerator) {
-            r = ((PGenerator) r).generatePO();
-        } else
-        if (r instanceof TRIConteneur) {
-            r = ((TRIConteneur) r).getObj();
-        } else
+                        }
+                    } else if (r instanceof Point3DS) {
+                        Point3D p = ((Point3DS) r).calculerPoint3D(0);
+                        ime.testDeep(rotate(p, r), r.texture());
+                    } else if (r instanceof LineSegment) {
+                        LineSegment s = (LineSegment) r;
+                        Point3D pO = s.getOrigine();
+                        Point3D pE = s.getExtremite();
+                        line(rotate(pO, r), rotate(pE, r), s.texture());
+                    } else if (r instanceof BezierCubique) {
+                        BezierCubique b = (BezierCubique) r;
+                        int nt = largeur() / 10;
+                        Point3D p0 = b.calculerPoint3D(0.0);
+                        for (double t = 0; t < 1.0; t += 1.0 / nt) {
+                            try {
+                                Point3D p1 = b.calculerPoint3D(t);
+                                line(rotate(p0, r), rotate(p1, r), b.texture());
+                                p0 = p1;
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                    } else if (r instanceof BezierCubique2D) {
+                        BezierCubique2D b = (BezierCubique2D) r;
+                        int i1 = BezierCubique2D.DIM1, i2 = BezierCubique2D.DIM2;
+                        for (int i = 0; i < i1; i++) {
+                            for (int j = 0; j < i2; j++) {
+                                draw(new one.empty3.library.Polygon(new Point3D[]{
+                                        rotate(b.calculerPoint3D((i - 1 < 0 ? 0 : i - 1) * 1d / i1, (j) * 1d / i2), r),
+                                        rotate(b.calculerPoint3D((i) * 1d / i1, (j) * 1d / i2), r),
+                                        rotate(b.calculerPoint3D((i) * 1d / i1, (j - 1 < 0 ? 0 : j - 1) * 1d / i2), r),
+                                        rotate(b.calculerPoint3D((i - 1 < 0 ? 0 : i - 1) * 1d / i1, (j - 1 < 0 ? 0 : j - 1) * 1d / i2), r)},
+                                        b.texture()));
+                            }
+                        }
+                    } else if (r instanceof PCont) {
+                        PCont b = (PCont) r;
+                        b.getPoints().forEach(new Consumer() {
+                            @Override
+                            public void accept(Object o) {
+                                ime.testDeep(rotate((Point3D) o, b)
+                                        , ((Point3D) o).texture().getColorAt(0, 0));
+                            }
+                        });
+                    } else if (r instanceof POConteneur) {
+                        POConteneur c = (POConteneur) r;
+                        for (Point3D p : c.iterable()) {
+                            {
+                                ime.testDeep(rotate(p, r), p.texture());
+                            }
+                        }
+                    } else if (r instanceof TRIConteneur) {
+                        for (TRI t : ((TRIConteneur) r).iterable()) {
+                            {
+                                draw(t);
+                            }
+                        }
 
-        // OBJETS
-        if (r instanceof TRIObject) {
-            TRIObject o = (TRIObject) r;
-            for (TRI t : o.getTriangles()) {
-                // System.out.println("Triangle suivant");
+                    } else if (r instanceof ParametricCurve) {
+                        ParametricCurve n = (ParametricCurve) r;
+                        double incr = n.getIncrU().getData0d();
+                        for (double u = n.start(); u <= n.endU(); u += incr) {
+                            if (n.isConnected() && displayType != SURFACE_DISPLAY_POINTS) {
+                                line(
+                                        n.calculerPoint3D(u),
+                                        n.calculerPoint3D(u + incr),
+                                        n.texture(), u, u + incr, n);
+                            } else {
+                                ime.testDeep(rotate(n.calculerPoint3D(u), r)
+                                        , n.texture().getColorAt(0.5, 0.5));
+                            }
+                        }
 
-                draw(t);
+                    } else if (r instanceof Polygon) {
+                        Polygon p = (Polygon) r;
+                        List<Point3D> points = p.getPoints().getData1d();
+                        int length = points.size();
+                        Point3D centre = Point3D.O0;
+                        for (int i = 0; i < points.size(); i++)
+                            centre = centre.plus(points.get(i));
+                        centre = centre.mult(1.0 / points.size());
+                        for (int i = 0; i < length; i++) {
+                            if (getDisplayType() <= SURFACE_DISPLAY_COL_TRI) {
+                                draw(new TRI(points.get(i), points.get((i + 1) % points.size()), centre, p.texture()));
+                            } else {
+                                line(rotate(points.get((i % length)), p), rotate(points.get((i + 1) % length), p), p.texture);
+                            }
+                        }
+                    }
+        Point3D.end();
 
-            }
-        } else if (r instanceof Point3DS) {
-            Point3D p = ((Point3DS) r).calculerPoint3D(0);
-            ime.testDeep(rotate(p, r), r.texture());
-        } else if (r instanceof LineSegment) {
-            LineSegment s = (LineSegment) r;
-            Point3D pO = s.getOrigine();
-            Point3D pE = s.getExtremite();
-            line(rotate(pO, r), rotate(pE, r), s.texture());
-        } else if (r instanceof BezierCubique) {
-            BezierCubique b = (BezierCubique) r;
-            int nt = largeur() / 10;
-            Point3D p0 = b.calculerPoint3D(0.0);
-            for (double t = 0; t < 1.0; t += 1.0 / nt) {
-                try {
-                    Point3D p1 = b.calculerPoint3D(t);
-                    line(rotate(p0, r), rotate(p1, r), b.texture());
-                    p0 = p1;
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        } else if (r instanceof BezierCubique2D) {
-            BezierCubique2D b = (BezierCubique2D) r;
-            int i1 = BezierCubique2D.DIM1, i2 = BezierCubique2D.DIM2;
-            for (int i = 0; i < i1; i++) {
-                for (int j = 0; j < i2; j++) {
-                    draw(new one.empty3.library.Polygon(new Point3D[]{
-                            rotate(b.calculerPoint3D((i - 1 < 0 ? 0 : i - 1) * 1d / i1, (j) * 1d / i2), r),
-                            rotate(b.calculerPoint3D((i) * 1d / i1, (j) * 1d / i2), r),
-                            rotate(b.calculerPoint3D((i) * 1d / i1, (j - 1 < 0 ? 0 : j - 1) * 1d / i2), r),
-                            rotate(b.calculerPoint3D((i - 1 < 0 ? 0 : i - 1) * 1d / i1, (j - 1 < 0 ? 0 : j - 1) * 1d / i2), r)},
-                            b.texture()));
-                }
-            }
-        } else if (r instanceof PCont) {
-            PCont b = (PCont) r;
-            b.getPoints().forEach(new Consumer() {
-                @Override
-                public void accept(Object o) {
-                    ime.testDeep(rotate((Point3D) o, b)
-                            , ((Point3D) o).texture().getColorAt(0, 0));
-                }
-            });
-        } else if (r instanceof POConteneur) {
-            POConteneur c = (POConteneur) r;
-            for (Point3D p : c.iterable()) {
-                {
-                    ime.testDeep(rotate(p, r), p.texture());
-                }
-            }
-        } else if (r instanceof TRIConteneur) {
-            for (TRI t : ((TRIConteneur) r).iterable()) {
-                {
-                    draw(t);
-                }
-            }
-
-        } else if (r instanceof ParametricCurve) {
-            ParametricCurve n = (ParametricCurve) r;
-            double incr = n.getIncrU().getData0d();
-            for (double u = n.start(); u <= n.endU(); u += incr) {
-                if (n.isConnected() && displayType != SURFACE_DISPLAY_POINTS) {
-                    line(
-                            n.calculerPoint3D(u),
-                            n.calculerPoint3D(u + incr),
-                            n.texture(), u, u + incr, n);
-                } else {
-                    ime.testDeep(rotate(n.calculerPoint3D(u), r)
-                            , n.texture().getColorAt(0.5, 0.5));
-                }
-            }
-
-        } else if (r instanceof Polygon) {
-            Polygon p = (Polygon) r;
-            List<Point3D> points = p.getPoints().getData1d();
-            int length = points.size();
-            Point3D centre = Point3D.O0;
-            for (int i = 0; i < points.size(); i++)
-                centre = centre.plus(points.get(i));
-            centre = centre.mult(1.0 / points.size());
-            for (int i = 0; i < length; i++) {
-                if (getDisplayType() <= SURFACE_DISPLAY_COL_TRI) {
-                    draw(new TRI(points.get(i), points.get((i + 1) % points.size()), centre, p.texture()));
-                } else {
-                    line(rotate(points.get((i % length)), p), rotate(points.get((i + 1) % length), p), p.texture);
-                }
-            }
-        }
-       Point3D.end();
-       
     }
 
 
@@ -686,7 +688,7 @@ public void predraw() {
     }
 
     public ECBufferedImage image2() {
-        return data1. getBitmap();
+        return data1.getBitmap();
 
 
     }
@@ -724,7 +726,7 @@ public void predraw() {
             Point3D p = p1.plus(p2.moins(p1).mult(i / itere));
             p.texture(t);
             add(p.get(0), p.get(1), p.get(2), null, null, null,
-              null, null, null, i/itere, 0.0, 0.0, p);
+                    null, null, null, i / itere, 0.0, 0.0, p);
         }
 
     }
@@ -741,10 +743,10 @@ public void predraw() {
             Point3D p = p1.plus(p2.moins(p1).mult(i / itere));
             if (curve != null)
                 p = rotate(curve.calculerPoint3D(u + i / itere * (u1 - u)), curve);
-            
-        
+
+
             add(p.get(0), p.get(1), p.get(2), null, null, null,
-              null, null, null, i/itere, 0.0, 0.0, curve);
+                    null, null, null, i / itere, 0.0, 0.0, curve);
         }
     }
 
@@ -768,7 +770,7 @@ public void predraw() {
 
             }
             add(p.get(0), p.get(1), p.get(2), null, null, null,
-              null, null, null,u + i / itereU * (u1 - u), v + i / itereV * (v1 - v), 0.0, surface);
+                    null, null, null, u + i / itereU * (u1 - u), v + i / itereV * (v1 - v), 0.0, surface);
         }
     }
 
@@ -863,14 +865,15 @@ public void predraw() {
     public void setColoration(boolean a) {
         this.colorationActive = a;
     }
-/*
-    public void next() {
-        if (texture() instanceof TextureMov) {
-            ((TextureMov) texture()).nextFrame();
+
+    /*
+        public void next() {
+            if (texture() instanceof TextureMov) {
+                ((TextureMov) texture()).nextFrame();
+            }
+            idImg++;
         }
-        idImg++;
-    }
-*/
+    */
     @Override
     public void testDeep(Point3D p, Color c) {
 
@@ -918,17 +921,18 @@ public void predraw() {
     }
 
     public boolean add(Double px, Double py, Double pz, Double
-          tx, Double ty, Double tz, Double nx, Double ny, Double nz, 
+            tx, Double ty, Double tz, Double nx, Double ny, Double nz,
                        Double u, Double v, Double w, Representable r) {
-      //  rotate(p);
-      // ime.testDeep(new Point3D(px, py, pz), new Point3D(nx, ny, nz), r.texture().getColorAt(u, v));
-      if( data1.addData(px, py, pz,
-        tx, ty, tz, nx, ny, nz, u, v, w, r)) {
-          //System.out.println(":");
-          return true;
-      }
-      return false;
-}
+        //  rotate(p);
+        // ime.testDeep(new Point3D(px, py, pz), new Point3D(nx, ny, nz), r.texture().getColorAt(u, v));
+        if (data1.addData(px, py, pz,
+                tx, ty, tz, nx, ny, nz, u, v, w, r)) {
+            //System.out.println(":");
+            return true;
+        }
+        return false;
+    }
+
     public void tracerLumineux() {
         throw new UnsupportedOperationException("Not supported yet."); // To
         // change
@@ -965,8 +969,8 @@ public void predraw() {
                     if (displayType <= SURFACE_DISPLAY_TEXT_TRI) {
                         add(p.get(0), p.get(1), p.get(2), null, null, null, null, null, null, u0 + a * (u1 - u0), v0 + b * (v1 - v0), 0.0, p);
                     } else if (displayType == SURFACE_DISPLAY_COL_TRI)
-                          add(p.get(0), p.get(1), p.get(2), null, null, null, null, null, null, u0 + a * (u1 - u0), v0 + b * (v1 - v0), 0.0, p);
-                    
+                        add(p.get(0), p.get(1), p.get(2), null, null, null, null, null, null, u0 + a * (u1 - u0), v0 + b * (v1 - v0), 0.0, p);
+
                     else ;
                     // LINES, POINTS;
                 }
@@ -1013,11 +1017,11 @@ public void predraw() {
                 } else {
 
                     add(pFinal.get(0), pFinal.get(1), pFinal.get(2), null, null, null, normale.get(0), normale.get(1), normale.get(2), u0 + (u1 - u0) * a, v0 + (v1 - v0) * b, 0.0, n);
-              
+
                 }
-                
-                 Point3D.end();
-                 //Point3D.save(pFinal);
+
+                Point3D.end();
+                //Point3D.save(pFinal);
             }
             Point3D.end();
         }
@@ -1044,7 +1048,7 @@ public void predraw() {
                 p.setNormale(n);
                 p.texture(c);
                 add(p.get(0), p.get(1), p.get(2), null, null, null, n.get(0), n.get(1), n.get(2), a, b, 0.0, p);
-              
+
             }
         }
     }
@@ -1318,8 +1322,8 @@ public void predraw() {
         }
     }
 
-    public void preprocessor () {
-        if(data1==null) 
+    public void preprocessor() {
+        if (data1 == null)
             data1 = new Data(la, ha, this);
         predraw();
         finishDraw();
@@ -1397,8 +1401,8 @@ public void predraw() {
             int y = (int) ce.getY();
             if (x >= 0 & x < la & y >= 0 & y < ha
                     && (deep < ime.getElementProf(x, y) /*
-                                                         * || ime.getElementID(coordArr, y) != idImg
-                                                         */) /* && (((cc>>24)&0xff) == 0) */) {
+             * || ime.getElementID(coordArr, y) != idImg
+             */) /* && (((cc>>24)&0xff) == 0) */) {
                 if (scene().lumiereActive() != null) {
                     cc = scene().lumiereTotaleCouleur(c, x3d, x3d.getNormale());
 
