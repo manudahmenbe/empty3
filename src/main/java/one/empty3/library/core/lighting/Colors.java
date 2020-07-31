@@ -209,7 +209,7 @@ public class Colors {
       // besoin de distMin pour faire partiviper les autres?
       float proxymityTerm = (float)(cd[i].dist/n);
             
-            sum += (float)cd[cd.length-1].dist;
+            sum += (float)cd[i].dist;
         cd[i].color.getRGBComponents(f);
             for (int j=0; j <compNo; j++) 
                 r[j] += (float)(f[j]*proxymityTerm*norm);
