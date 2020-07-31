@@ -190,13 +190,17 @@ public class Colors {
         for (int i = 0; i < n; i++) {
             sum += (float) cd[i].dist;
         }
-        for (int i = 0; i < n; i++) {
-
-            float proximityTerm = (float) (1.0 * cd[i].dist);
-
-            cd[i].color.getRGBComponents(f);
-            for (int j = 0; j < compNo; j++)
-                r[j] += (float) (f[j] * proximityTerm * norm);
+       // float sum=0f;
+      for(int i = 0; i<n; i++)
+{
+      
+      // besoin de distMin pour faire partiviper les autres?
+      float proxymityTerm = (float)(cd[i].dist);
+            
+            sum += (float)cd[i].dist;
+        cd[i].color.getRGBComponents(f);
+            for (int j=0; j <compNo; j++) 
+                r[j] += (float)(f[j]*proxymityTerm*norm/n);
         }
         return getColor(compNo, r, sum);
     }
