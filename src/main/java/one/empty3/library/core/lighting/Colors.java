@@ -38,6 +38,7 @@
 package one.empty3.library.core.lighting;
 
 import java.awt.*;
+import java.util.Random;
 
 /*__
  * @author Manuel Dahmen _manuel.dahmen@gmx.com_
@@ -58,17 +59,18 @@ public class Colors {
     }
     */
     public static Color TRANSPARENT = new Color(1f, 0f, 0f, .5f);
+    private static final Random random = new Random();
 
     public static Color random() {
         return new Color(
-                (float) Math.random(),
-                (float) Math.random(),
-                (float) Math.random()
+                (float) random.nextDouble(),
+                (float) random.nextDouble(),
+                (float) random.nextDouble()
         );
     }
 
 
-    public abstract class FArrayElem {
+    public abstract static class FArrayElem {
         public abstract double op(double d);
     }
 
@@ -186,26 +188,24 @@ public class Colors {
         for (int j = 0; j < compNo; j++)
             r[j] = 0f;
         for (int i = 0; i < n; i++) {
-
+            sum += (float) cd[i].dist;
         }
-        // float sum=0f;
         for (int i = 0; i < n; i++) {
 
-            float proxymityTerm = (float) (cd[i].dist / n);
+            float proximityTerm = (float) (1.0 * cd[i].dist);
 
-            sum += (float) cd[i].dist;
             cd[i].color.getRGBComponents(f);
             for (int j = 0; j < compNo; j++)
-                r[j] += (float) (f[j] * proxymityTerm * norm);
+                r[j] += (float) (f[j] * proximityTerm * norm);
         }
         return getColor(compNo, r, sum);
     }
 
     private static Color getColor(int compNo, float[] r, float sum) {
         for (int i = 0; i < compNo; i++) {
-            r[i] /= sum;
+            //r[i] /= sum;
             if (Float.isNaN(r[i]) || Float.isInfinite(r[i]))
-                r[i] = 1f;
+                r[i] /= sum;
         }
         return new Color(r[0], r[1], r[2]);
     }

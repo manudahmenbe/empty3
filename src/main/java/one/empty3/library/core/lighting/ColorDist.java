@@ -28,7 +28,7 @@ class SortbyDist implements Comparator<ColorDist>
 
     { 
 
-      return a.dist<b.dist?-1:(a.dist==b.dist?0:1);
+      return Double.compare(a.dist, b.dist);
 
 
     } 
