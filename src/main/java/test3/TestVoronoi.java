@@ -17,80 +17,72 @@ import java.util.*;
  *
  */
 public class TestVoronoi extends TestObjetSub {
-public int pointsSize = 20;
-   private CourbeParametriquePolynomialeBezier[] curves = new CourbeParametriquePolynomialeBezier[pointsSize];
-  // private Double [][][] distancesSum;
-   //private ArrayList<Point3D> pointsList;
-   private Double maxDist;
-   private int nPointsDist = 1;
-   ///private double[][][] pointDist;
-  // private int[][][] pointNo;
-   private int[][] colorsArr;
-  // private ColorDist [][][] cds;
-    
+    public final int pointsSize = 20;
+    private final CourbeParametriquePolynomialeBezier[] curves = new CourbeParametriquePolynomialeBezier[pointsSize];
+    // private Double [][][] distancesSum;
+    //private ArrayList<Point3D> pointsList;
+    private Double maxDist;
+    private final int nPointsDist = 1;
+    ///private double[][][] pointDist;
+    // private int[][][] pointNo;
+    private int[][] colorsArr;
+    // private ColorDist [][][] cds;
 
-   protected void addRand(CourbeParametriquePolynomialeBezier c) {
-       c.getCoefficients().add(new Point3D(Math.random()*getResx(),
-                                  Math.random()*getResy(),
-                                  0.0));
 
-}
-   
-   private Color [] colors = new Color[pointsSize];
-   public void ginit() {
- // mettre les distances dans l ordre
-      // regarder a 1 ou 2 pixels près 
-      // non
-      
-      
-      //pointDist = new double[getResx()][getResy()][pointsSize];
-        
-      //  distancesSum = new Double [getResx()][getResy()][pointsSize];
-   //  pointNo = new int[getResx()][getResy()][pointsSize];
-  //  cds = new ColorDist[getResx()][getResy()][pointsSize];
-    for(int i = 0; i<pointsSize; i++) {
-          //pointsList.add(new Point3D(Math.random()*getResx(),
-          //                        Math.random()*getResy(),
-          //                        0.0));
-          curves[i] = new CourbeParametriquePolynomialeBezier();
-         curves[i].getCoefficients().data1d.clear();
-          for(int p=0;p<4;p++) {
-              addRand(curves[i]);
-          }
-         colors[i] = Colors.random();
-         
-         curves[i].declareProperties();
-         
-      }
-      colorsArr = new int[getResx()][getResy()];
-     
-   }
-   public void finit() {
-      ColorDist [] cds = new ColorDist[pointsSize];
-      double dist = 0.0;
-        
-        for(int i= 0;i<getResx(); i++)
-             for(int j= 0;j<getResy(); j++) {
+    Random random = new Random();
+    private double distRes;
 
-                  //distancesSum [i][j][] = 0.0;
-                  Point3D p = new Point3D((double)i, (double)j, 0.0);
+    protected void addRand(CourbeParametriquePolynomialeBezier c) {
+        c.getCoefficients().add(new Point3D(random.nextDouble() * getResx(),
+                random.nextDouble() * getResy(),
+                0.0));
 
-                int pointNoIjk = 0;
-                   double [] distMin = new double [nPointsDist];
-                 // distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
-                     maxDist = 0.0;
-                for(int k=0; k<pointsSize; k++) {
-                     cds[k] = new ColorDist();
-                     cds[k].dist=Point3D.distance(p, curves[k].calculerPoint3D(frame()/20.5));
-                     if(dist>maxDist)
-                          maxDist = dist;
-                     cds[k].dist = dist;
-                     cds[k].color = colors[k];
+    }
+
+    private final Color[] colors = new Color[pointsSize];
+    ColorDist[] cds = new ColorDist[pointsSize];
+
+    public void ginit() {
+        distRes = Math.max(getResx(), getResy());
+        // mettre les distances dans l ordre
+        // regarder a 1 ou 2 pixels près
+        // non
+
+
+        //pointDist = new double[getResx()][getResy()][pointsSize];
+
+        //  distancesSum = new Double [getResx()][getResy()][pointsSize];
+        //  pointNo = new int[getResx()][getResy()][pointsSize];
+        //  cds = new ColorDist[getResx()][getResy()][pointsSize];
+        for (int i = 0; i < pointsSize; i++) {
+            //pointsList.add(new Point3D(Math.random()*getResx(),
+            //                        Math.random()*getResy(),
+            //                        0.0));
+            curves[i] = new CourbeParametriquePolynomialeBezier();
+            curves[i].getCoefficients().data1d.clear();
+            for (int p = 0; p < 4; p++) {
+                addRand(curves[i]);
+            }
+            colors[i] = Colors.random();
+            curves[i].declareProperties();
+            cds[i] = new ColorDist();
+            cds[i].color = colors[i];
+
+        }
+        colorsArr = new int[getResx()][getResy()];
+    }
+
+    public void finit() {
+        for (int i = 0; i < getResx(); i++)
+            for (int j = 0; j < getResy(); j++) {
+                Point3D p = new Point3D((double) i, (double) j, 0.0);
+                for (int k = 0; k < pointsSize; k++) {
+                    double d = Point3D.distance(p, curves[k].calculerPoint3D(frame() / 20.5 / 4.0));
+                    cds[k].dist = Math.min(d, distRes);
+                    cds[k].color = colors[k];
                 }
-
                 ColorDist.sort(cds);
                 Color z = Colors.mean(cds, 1.0, nPointsDist);
-                //z = new Color(z.getRed(), z.getGreen(), z.getBlue());
                 colorsArr[i][j] = z.getRGB();
             }
     }

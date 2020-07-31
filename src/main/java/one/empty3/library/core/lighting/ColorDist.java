@@ -26,9 +26,15 @@ class SortbyDist implements Comparator<ColorDist>
 
     public int compare(ColorDist a, ColorDist b) 
 
-    { 
+    {
 
-      return Double.compare(a.dist, b.dist);
+        int compare1 = Double.compare(a.dist, b.dist);
+        int compareR = Double.compare(b.dist, a.dist);
+        if(Math.signum(compare1)==-Math.signum(compareR))
+            return (int) Math.signum(compare1);
+        else
+            throw new NullPointerException("Error comparator ColorDist c!=-c");
+
 
 
     } 
