@@ -57,7 +57,8 @@ public class Colors {
         }
     }
     */
-    public static Color TRANSPARENT = new Color(1f,0f,0f,.5f );
+    public static Color TRANSPARENT = new Color(1f, 0f, 0f, .5f);
+
     public static Color random() {
         return new Color(
                 (float) Math.random(),
@@ -65,161 +66,148 @@ public class Colors {
                 (float) Math.random()
         );
     }
-    
-    
+
+
     public abstract class FArrayElem {
         public abstract double op(double d);
     }
+
     /***
      * @param c color array
      * @param d factor array
      * @param norm summary totally normal verse
      * @return moyenne ponderee in bloom
-      */
+     */
     public static Color mean(Color[] c, double[] d, double norm) {
-      int compNo = 4;
-        if(c==null || d==null || c.length!=d.length)
+        int compNo = 4;
+        if (c == null || d == null || c.length != d.length)
             throw new NullPointerException("index not equals or null");
-        float [] r = new float[compNo];
-        float [] f = new float[compNo];
+        float[] r = new float[compNo];
+        float[] f = new float[compNo];
         float sum = 0f;
-          for (int j=0; j <compNo; j++) 
-              r[j] = 0f;
-        for(int i = 0; i<c.length; i++)
-{
-            float proximityTerm = ((float)d[i]);
+        for (int j = 0; j < compNo; j++)
+            r[j] = 0f;
+        for (int i = 0; i < c.length; i++) {
+            float proximityTerm = ((float) d[i]);
             sum += proximityTerm;
-        c[i].getRGBComponents(f);
-            for (int j=0; j <compNo; j++) 
-                r[j] += (float)(f[j]*proximityTerm*norm);
+            c[i].getRGBComponents(f);
+            for (int j = 0; j < compNo; j++)
+                r[j] += (float) (f[j] * proximityTerm * norm);
         }
-        for(int i = 0 ; i<compNo; i++) {
-            r[i] /= sum;
-            if (Float.isNaN(r[i])||Float.isInfinite(r[i]))
-                r[i] = 1f;
-            }
-            return new Color(r[0], r[1], r[2]);
+        return getColor(compNo, r, sum);
     }
-     /***
+
+    /***
      * @param c color array
      * @param d factor array
      * @param norm summary totally normal verse
      * @return spec funk house gouse in bloom
-      */
+     */
     public static Color proxymity(Color[] c, double[] d, double norm) {
-      int compNo = 4;
-        if(c==null || d==null || c.length!=d.length)
+        int compNo = 4;
+        if (c == null || d == null || c.length != d.length)
             throw new NullPointerException("index not equals or null");
-        float [] r = new float[compNo];
-        float [] f = new float[compNo];
+        float[] r = new float[compNo];
+        float[] f = new float[compNo];
         float sum = 0f;
-          for (int j=0; j <compNo; j++) 
-              r[j] = 0f;
-        for(int i = 0; i<c.length; i++)
-{
-        
+        for (int j = 0; j < compNo; j++)
+            r[j] = 0f;
+        for (int i = 0; i < c.length; i++) {
+
         }
-       // float sum=0f;
-      for(int i = 0; i<c.length; i++)
-{
-      
-      // besoin de distMin pour faire partiviper les autres?
-      float proxymityTerm = (float)Math.exp(-((float)d[i])/(1f+(float)d[i]));
-            
+        // float sum=0f;
+        for (int i = 0; i < c.length; i++) {
+
+            // besoin de distMin pour faire partiviper les autres?
+            float proxymityTerm = (float) Math.exp(-((float) d[i]) / (1f + (float) d[i]));
+
             sum += proxymityTerm;
-        c[i].getRGBComponents(f);
-            for (int j=0; j <compNo; j++) 
-                r[j] += (float)(f[j]*proxymityTerm*norm);
+            c[i].getRGBComponents(f);
+            for (int j = 0; j < compNo; j++)
+                r[j] += (float) (f[j] * proxymityTerm * norm);
         }
-        for(int i = 0 ; i<compNo; i++) {
-            r[i] /= sum;
-            if (Float.isNaN(r[i])||Float.isInfinite(r[i]))
-                r[i] = 1f;
-            }
-            return new Color(r[0], r[1], r[2]);
+        return getColor(compNo, r, sum);
     }
-    
-    
-    
+
+
     /***
      * True colors results
      * @param norm 1.0
      * @param cd dist sorted array
      * @param n number of effective computed values from array index 0
      * @return interpoled color.
-      */
-    public static Color proxymity(ColorDist[] cd, double norm,  int n) {
-      int compNo = 4;
-        if(cd==null)
+     */
+    public static Color proxymity(ColorDist[] cd, double norm, int n) {
+        int compNo = 4;
+        if (cd == null)
             throw new NullPointerException("index not equals or null");
-        float [] r = new float[compNo];
-        float [] f = new float[compNo];
+        float[] r = new float[compNo];
+        float[] f = new float[compNo];
         float sum = 0f;
-          for (int j=0; j <compNo; j++) 
-              r[j] = 0f;
-        for(int i = 0; i<cd.length; i++)
-{
-        
+        for (int j = 0; j < compNo; j++)
+            r[j] = 0f;
+        for (int i = 0; i < cd.length; i++) {
+
         }
-       // float sum=0f;
-      for(int i = 0; i<n; i++)
-{
-      
-      // besoin de distMin pour faire partiviper les autres?
-      float proxymityTerm = (float)Math.exp(-(float)(1f*cd[i].dist/cd[cd.length-1].dist));
-            
+        // float sum=0f;
+        for (int i = 0; i < n; i++) {
+
+            // besoin de distMin pour faire partiviper les autres?
+            float proxymityTerm = (float) Math.exp(-(float) (1f * cd[i].dist / cd[cd.length - 1].dist));
+
             sum += proxymityTerm;
-        cd[i].color.getRGBComponents(f);
-            for (int j=0; j <compNo; j++) 
-                r[j] += (float)(f[j]*proxymityTerm*norm/n);
+            cd[i].color.getRGBComponents(f);
+            for (int j = 0; j < compNo; j++)
+                r[j] += (float) (f[j] * proxymityTerm * norm / n);
         }
-        for(int i = 0 ; i<compNo; i++) {
-            r[i] /=(float) Math.exp(0.0);// ces malafes qui nous gouvernent en vrai.
-            if (Float.isNaN(r[i])||Float.isInfinite(r[i]))
+        for (int i = 0; i < compNo; i++) {
+            r[i] /= (float) Math.exp(0.0);// ces malafes qui nous gouvernent en vrai.
+            if (Float.isNaN(r[i]) || Float.isInfinite(r[i]))
                 r[i] = 1f;
-            }
-            return new Color(r[0], r[1], r[2]);
+        }
+        return new Color(r[0], r[1], r[2]);
     }
-    
-    
-        /***
+
+
+    /***
      * True colors results
      * @param norm 1.0
      * @param cd dist sorted array 
      * @return interpoled color
      * @param n number of effective computed values from array index 0
-      */
+     */
     public static Color mean(ColorDist[] cd, double norm, int n) {
-      int compNo = 4;
-        if(cd==null)
+        int compNo = 4;
+        if (cd == null)
             throw new NullPointerException("index not equals or null");
-        float [] r = new float[compNo];
-        float [] f = new float[compNo];
+        float[] r = new float[compNo];
+        float[] f = new float[compNo];
         float sum = 0f;
-          for (int j=0; j <compNo; j++) 
-              r[j] = 0f;
-        for(int i = 0; i<n; i++)
-{
-        
+        for (int j = 0; j < compNo; j++)
+            r[j] = 0f;
+        for (int i = 0; i < n; i++) {
+
         }
-       // float sum=0f;
-      for(int i = 0; i<n; i++)
-{
-      
-      // besoin de distMin pour faire partiviper les autres?
-      float proxymityTerm = (float)(cd[i].dist/n);
-            
-            sum += (float)cd[cd.length-1].dist;
-        cd[i].color.getRGBComponents(f);
-            for (int j=0; j <compNo; j++) 
-                r[j] += (float)(f[j]*proxymityTerm*norm);
+        // float sum=0f;
+        for (int i = 0; i < n; i++) {
+
+            float proxymityTerm = (float) (cd[i].dist / n);
+
+            sum += (float) cd[i].dist;
+            cd[i].color.getRGBComponents(f);
+            for (int j = 0; j < compNo; j++)
+                r[j] += (float) (f[j] * proxymityTerm * norm);
         }
-        for(int i = 0 ; i<compNo; i++) {
-            r[i] /= sum;
-            if (Float.isNaN(r[i])||Float.isInfinite(r[i]))
-                r[i] = 1f;
-            }
-            return new Color(r[0], r[1], r[2]);
+        return getColor(compNo, r, sum);
     }
-    
+
+    private static Color getColor(int compNo, float[] r, float sum) {
+        for (int i = 0; i < compNo; i++) {
+            r[i] /= sum;
+            if (Float.isNaN(r[i]) || Float.isInfinite(r[i]))
+                r[i] = 1f;
+        }
+        return new Color(r[0], r[1], r[2]);
+    }
+
 }

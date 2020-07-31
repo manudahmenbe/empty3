@@ -72,14 +72,10 @@ public int pointsSize = 20;
                   Point3D p = new Point3D((double)i, (double)j, 0.0);
 
                 int pointNoIjk = 0;
-                   double [] distMin = new double [nPointsDist];
-                 // distMin[k] = Double.MAX_VALUE; //Math.max(getResx(),getResy());
                      maxDist = 0.0;
                 for(int k=0; k<pointsSize; k++) {
                      cds[k] = new ColorDist();
                      cds[k].dist=Double.MAX_VALUE;
-                     if(dist>maxDist)
-                          maxDist = dist;
                      cds[k].dist = dist;
                      cds[k].color = colors[k];
                 }
