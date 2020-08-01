@@ -27,8 +27,19 @@ public class ExtrusionB1B1 extends ExtrusionCurveCurve {
     private StructureMatrix<CourbeParametriquePolynomialeBezier> base = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
     private StructureMatrix<CourbeParametriquePolynomialeBezier> path = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
 
+    public ExtrusionB1B1() {
+        base.setElem(new CourbeParametriquePolynomialeBezier());
+        path.setElem(new CourbeParametriquePolynomialeBezier());
+    }
+
+
     @Override
     public Point3D calculerPoint3D(double u, double v) {
         return base.getElem().calculerPoint3D(u).plus(path.getElem().calculerPoint3D(v));
+    }
+    public void declareProperties()
+    {
+        getDeclaredDataStructure().put("base/courbe a extruder", base);
+        getDeclaredDataStructure().put("path/courbe normale d'extrusion", path);
     }
 }
