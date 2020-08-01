@@ -31,6 +31,7 @@
  */
 package one.empty3.library;
 
+import one.empty3.library.core.nurbs.Fct1D_1D;
 import one.empty3.library.core.nurbs.ParametricCurve;
 import one.empty3.library.core.nurbs.ParametricSurface;
 
@@ -199,8 +200,14 @@ public class Point3D extends Representable {
             d += (p1.get(i) - p2.get(i)) * (p1.get(i) - p2.get(i));
         return Math.sqrt(d);
     }
-
-
+    /*
+    public static Double distance(Point3D p1, Point3D p2, Fct1D_1D f) {
+        double d = 0.0;
+        for (int i = 0; i < p1.getCoordArr().getData1d().size(); i++)
+            d += (f.result(p1.get(i) - p2.get(i))) * f.result((p1.get(i) - p2.get(i)));
+        return Math.sqrt(d);
+    }
+*/
     public static Point3D random(Double d) {
         return new Point3D(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).mult(d * 2);
     }

@@ -163,7 +163,7 @@ public abstract class TestObjet implements Test, Runnable {
     private ManualVideoCompile compiler;
     private boolean isVBR;
     private AudioFormat audioFormat;
-    private Resolution dimension = VGAZIZI;
+    private Resolution dimension = HD1080;
     private String name;
 
     protected ZBufferImpl z() {

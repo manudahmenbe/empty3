@@ -138,8 +138,8 @@
                         <!-- <argument>class=test3.QuadratureCercle</argument>-->
                         <argument>publish=false</argument>
 <!--                        <argument>resx=640</argument>
-                        <argument>resy=480</argument>-->
-                        <argument>maxFrames=3000</argument>
+                        <argument>resy=480</argument>
+                        <argument>maxFrames=3000</argument>-->
                         <argument>-Xms4000m</argument>
                         <argument>-Xmx4000m</argument>
                     </arguments>
