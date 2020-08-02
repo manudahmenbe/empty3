@@ -4,7 +4,11 @@ public class Volume {
      /* Comment dessiner un volume?
         Cas particulier dessiner un volume
         en parcourant un autre volume donné
-        incrémenter passer tracer conditions
+        incrémenter passer selon 
+             Camera.vectorUnit(P3 position)
+           Ou camera.volumeUnits(P3.…)
+          Remplir le vide ?
+        tracer conditions
      */
 
 }
