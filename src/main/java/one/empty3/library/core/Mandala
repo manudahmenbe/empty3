@@ -1,0 +1,11 @@
+package one.empty3.library.core;
+/***
+* curve. rotation. straight, curved. turtle
+* motif repeat at angle, copy paste
+* 
+  
+  
+*/
+public class Mandala extends RepresentableConteneur{
+    
+}
