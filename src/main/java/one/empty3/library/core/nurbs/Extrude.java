@@ -24,8 +24,8 @@ import one.empty3.library.StructureMatrix;
  * Created by manue on 29-12-19.
  */
 public class Extrude extends ExtrusionCurveCurve {
-    private StructureMatrix<ParametricSurface> base = new StructureMatrix<>(0, ParametricSurface.class);
-    private StructureMatrix<ParametricSurface> path = new StructureMatrix<>(0, ParametricSurface.class);
+    private StructureMatrix<ParametricSurface> base = new StructureMatrix<>(0, ParametricCurve.class);
+    private StructureMatrix<ParametricSurface> path = new StructureMatrix<>(0, ParametricCurve.class);
 
     public Extrude() {
         base.setElem(new CourbeParametriquePolynomialeBezier());
