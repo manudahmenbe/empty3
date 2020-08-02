@@ -9,6 +9,10 @@ public class Volume {
            Ou camera.volumeUnits(P3.…)
           Remplir le vide ?
         tracer conditions
+        Définition
+        1 ensemble de points (stream)
+
+        2 fonction 3 variables
      */
 
 }
