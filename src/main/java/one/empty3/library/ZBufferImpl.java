@@ -1423,24 +1423,13 @@ public void copyResourceFiles(File destDirectory) {
 
     /*__
      *
-     * @param x Coordonnées dans le composant
-     * @param y Coordonnées dans le composant
-     * @param orig point 3D à inverser dans le repère de la caméra
+     * @param p point 3D à inverser dans le repère de la caméra
      * @param camera Caméra où calculer. null="this.camera()"
-     * @return axe p1: camera.axe, p3 à dist.
+     * @return point3d inversion
      */
-    public Point3D invert(int x, int y, Point3D orig, Camera camera) {
-        x = (x - largeur() / 2);
-        y = (y - hauteur() / 2);
-        double dist = orig.moins(camera.getEye()).norme();
-
-        double pX = Math.cos(camera.getAngleX()) * dist;
-        double pY = Math.cos(camera.getAngleY()) * dist;
-
-        return camera.getMatrice().tild().mult(new Point3D(
-                pX * 2.0 * x / largeur(),
-                -pY * 2.0 * y / hauteur(), dist
-        ));
+    public Point3D invert(Point3D p, Camera camera) {
+        return camera.getMatrice().tild()
+                .mult(p).moins(camera.getEye());
     }
 
 

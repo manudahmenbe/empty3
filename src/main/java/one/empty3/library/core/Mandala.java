@@ -1,4 +1,9 @@
 package one.empty3.library.core;
+
+import one.empty3.library.Representable;
+import one.empty3.library.core.nurbs.ParametricCurve;
+import one.empty3.library.core.nurbs.ParametricSurface;
+
 /***
 * curve. rotation. straight, curved. turtle
 * motif repeat at angle, copy paste
@@ -7,16 +12,19 @@ package one.empty3.library.core;
   
   
 */
-public class Mandala extends ITexture {
+public class Mandala extends Representable {
+    private final double resX;
+    private final double resY;
     private ParametricSurface p;
-    public Mandala(double resX, double resY) {
+
+    public Mandala(ParametricSurface plan, double resX, double resY) {
         this.p = plan;
         this.resX = resX;
         this.resY = resY;
     }
     public void addCurveX0_1__Y0_1(
-             ParametricCurve pc, double radius1,
-             double radius2, double angleRepeatDegree) {
+            ParametricCurve pc, double radius1,
+            double radius2, double angleRepeatDegree) {
         
     }
 }

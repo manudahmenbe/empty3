@@ -1,4 +1,4 @@
-package one.empty3.library.core.*;
+package one.empty3.library.core;
 
 public class Volume {
      /* Comment dessiner un volume?

@@ -24,8 +24,8 @@ import one.empty3.library.StructureMatrix;
  * Created by manue on 29-12-19.
  */
 public class Extrude extends ExtrusionCurveCurve {
-    private StructureMatrix<ParametricSurface> base = new StructureMatrix<>(0, ParametricCurve.class);
-    private StructureMatrix<ParametricSurface> path = new StructureMatrix<>(0, ParametricCurve.class);
+    private StructureMatrix<CourbeParametriquePolynomialeBezier> base = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
+    private StructureMatrix<CourbeParametriquePolynomialeBezier> path = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
 
     public Extrude() {
         base.setElem(new CourbeParametriquePolynomialeBezier());
@@ -35,7 +35,7 @@ public class Extrude extends ExtrusionCurveCurve {
 
     @Override
     public Point3D calculerPoint3D(double u, double v) {
-        return base.getElem().calculerPoint3D(u).plus(path.getElem().calculerPoint3D(v).moins(path.calculerPoint3D(0.0)));
+        return base.getElem().calculerPoint3D(u).plus(path.getElem().calculerPoint3D(v).moins(path.getElem().calculerPoint3D(0.0)));
     }
     public void declareProperties()
     {

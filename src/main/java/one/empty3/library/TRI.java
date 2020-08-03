@@ -48,9 +48,9 @@ public class TRI extends Representable {
 
     public TRI() {
         super();
-        sommet.add(1, Point3D.O0);
-        sommet.add(1, Point3D.O0);
-        sommet.add(1, Point3D.O0);
+        sommet.setElem(Point3D.X, 1);
+        sommet.setElem(Point3D.Y, 1);
+        sommet.setElem(Point3D.O0, 2);
     }
 
     public TRI(Point3D coordPoint3D, Point3D coordPoint3D0, Point3D coordPoint3D1) {
@@ -59,17 +59,17 @@ public class TRI extends Representable {
 
     public TRI(Point3D point3d, Point3D point3d2, Point3D point3d3,
                Color red) {
-        sommet.add(1,point3d);
-        sommet.add(1,point3d2);
-        sommet.add(1,point3d3);
+        sommet.setElem(point3d, 0);
+        sommet.setElem(point3d2, 1);
+        sommet.setElem(point3d3, 2);
         this.texture(new TextureCol(red));
     }
 
     public TRI(Point3D point3d, Point3D point3d2, Point3D point3d3,
                ITexture red) {
-        sommet.add(1,point3d);
-        sommet.add(1,point3d2);
-        sommet.add(1,point3d3);
+        sommet.setElem(point3d, 0);
+        sommet.setElem(point3d2, 1);
+        sommet.setElem(point3d3, 2);
         this.texture = red;
     }
 
