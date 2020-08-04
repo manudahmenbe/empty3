@@ -1,8 +1,8 @@
 # empty3
 empty3.one
 Rendering engine. Shapes: surfaces, math-related
-Drawings, curves, textures with pictures, images,
-or colors. 
+Drawings, curves, textures with pictures, movies
+or colors.
 
 #In progress or not:
 - Lighting model. 
