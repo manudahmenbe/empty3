@@ -11,7 +11,7 @@
 
     <groupId>one.empty3</groupId>
     <artifactId>empty3-library-3d</artifactId>
-    <version>2020.3.8.2-SNAPSHOT</version><!-- -SNAPSHOT-->
+    <version>2020.3.9-SNAPSHOT</version><!-- -SNAPSHOT-->
     <description>3D rendering engine. Plus modelling. expected glsl textures 3d and 2d rendering</description>
     <packaging>jar</packaging>
     <url>https://github.com/manuelddahmen/empty3</url>
