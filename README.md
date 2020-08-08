@@ -26,3 +26,8 @@ me. It would not be fair 😃.
 
 You can delete the sign clause and replace by yours
 or nope.
+
+If you miss a property check this
+https://maven.apache.org/guides/introduction/introduction-to-profiles.html
+
+Or make a new issue.
