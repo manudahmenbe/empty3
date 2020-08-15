@@ -228,12 +228,8 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/target/</outputDirectory>
+                            <outputDirectory>${basedir}/target/classes</outputDirectory>
                             <resources>
-                                <resource>
-                                    <directory>runscripts/</directory>
-                                    <filtering>true</filtering>
-                                </resource>
                             </resources>
                         </configuration>
                     </execution>
@@ -243,10 +239,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>1.6</version>
+
                 <executions>
                     <execution>
                         <configuration>
                             <keyname>22EE55E4</keyname>
+                            <ascDirectory>C:\Users\manue\gpg</ascDirectory>
                         </configuration>
                         <id>sign-artifacts</id>
                         <phase>verify</phase>

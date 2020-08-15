@@ -581,4 +581,15 @@ public class Point3D extends Representable {
         
         return this;
     }*/
+
+    public Color toColor() {
+        return new Color((float)(double)(get(0)), (float)(double)(get(1)), (float)(double)(get(2)));
+    }
+    public static Point3D fromColor(Color color) {
+        float[] colorComponents = color.getColorComponents(new float[3]);
+        Point3D point3D = new Point3D(3);
+        for(int i=0; i< colorComponents.length; i++)
+            point3D.set(i, (double)colorComponents[i]);
+        return point3D;
+    }
 }
