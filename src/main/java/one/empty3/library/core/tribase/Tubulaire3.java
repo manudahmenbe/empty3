@@ -58,6 +58,7 @@ public class Tubulaire3 extends ParametricSurface {
         super();
         soulCurve.setElem(new CourbeParametriquePolynomialeBezier());
         diameterFunction.setElem(new FctXY());
+        declareProperties();
     }
 
     public Tubulaire3(CourbeParametriquePolynomialeBezier soulCurve, FctXY diameterCurve) {
