@@ -63,3 +63,4 @@ $RECYCLE.BIN/
 /build/
 *.ini
 /.settings/.idea/misc.xml
+gpg/*

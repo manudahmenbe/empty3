@@ -801,8 +801,8 @@ public void copyResourceFiles(File destDirectory) {
     }
     @Override
     public boolean checkScreen(Point p1) {
-        if(p1.getX()<0d || p1.getY()>=la 
-          || p1.getY()<0d || p1.getY()>=ha)
+        if(p1 !=null && (p1.getX()<0d || p1.getY()>=la
+          || p1.getY()<0d || p1.getY()>=ha))
             return false;
         return true;
     

@@ -53,12 +53,13 @@ public class Camera extends CameraBox {
 
     protected StructureMatrix<Boolean> imposerMatrice = new StructureMatrix<>(0, Point3D.class);
     protected StructureMatrix<Matrix33> matrice = new StructureMatrix<>(0, Matrix33.class);
-    private StructureMatrix<Point3D> verticale  =new StructureMatrix<>(0, Point3D.class);
+    private StructureMatrix<Point3D> verticale = new StructureMatrix<>(0, Point3D.class);
 
     {
 
-    matrice.setElem(Matrix33.I);
-}
+        matrice.setElem(Matrix33.I);
+    }
+
     private Barycentre position;
 
     public Camera() {
@@ -86,17 +87,16 @@ public class Camera extends CameraBox {
 
     }
 
-    protected void rotateMatrixXaxis(double angle)
-    {
-           matrice.setElem(Matrix33.rotationX(angle).mult(matrice.getElem()));
+    protected void rotateMatrixXaxis(double angle) {
+        matrice.setElem(Matrix33.rotationX(angle).mult(matrice.getElem()));
     }
-    protected void rotateMatrixYaxis(double angle)
-    {
+
+    protected void rotateMatrixYaxis(double angle) {
         matrice.setElem(Matrix33.rotationY(angle).mult(matrice.getElem()));
 
     }
-    protected void rotateMatrixZaxis(double angle)
-    {
+
+    protected void rotateMatrixZaxis(double angle) {
         matrice.setElem(Matrix33.rotationZ(angle).mult(matrice.getElem()));
 
     }
@@ -106,6 +106,7 @@ public class Camera extends CameraBox {
         Point3D z = senseAxeCamera.norme1();
         return Point3D.Y.prodVect(z).prodVect(z).mult(-1d).norme1();
     }
+
     protected Point3D calculerHorizontaParDefaut(Point3D senseAxeCamera) {
         Point3D z = senseAxeCamera.norme1();
         return z.prodVect(Point3D.X).prodVect(z).norme1();
@@ -126,7 +127,7 @@ public class Camera extends CameraBox {
         for (int j = 0; j < 3; j++) {
             m.set(j, 1, y.get(j));
         }
-        this.matrice .setElem(m.tild());
+        this.matrice.setElem(m.tild());
     }
 
     public void calculerMatrice(Point3D verticale) {
@@ -186,9 +187,6 @@ public class Camera extends CameraBox {
     }
 
 
-
-
-
     @Override
     public String toString() {
         return "camera (\n\t" + eye.toString() + "\n\t" + lookat.toString()
@@ -217,13 +215,13 @@ public class Camera extends CameraBox {
 
     }
 
-    Point coordonneesPointEcranPerspective(Point3D x3d, int la, int ha) {
+    public Point coordonneesPointEcranPerspective(Point3D x3d, int la, int ha) {
 
-       
- if (x3d.getZ() > 0 && -getAngleX() < Math.atan(x3d.getX() / x3d.getZ())
-                && Math.atan(x3d.getX() / x3d.getZ()) < getAngleX()&& -getAngleY() < Math.atan(x3d.getY() / x3d.getZ())
+
+        if (x3d.getZ() > 0 && -getAngleX() < Math.atan(x3d.getX() / x3d.getZ())
+                && Math.atan(x3d.getX() / x3d.getZ()) < getAngleX() && -getAngleY() < Math.atan(x3d.getY() / x3d.getZ())
                 && Math.atan(x3d.getY() / x3d.getZ()) < getAngleY()) {
-       
+
             double scale = (1.0 / (x3d.getZ()));
             return new Point((int) (x3d.getX() * scale * la + la / 2), (int) (-x3d.getY() * scale * ha + ha / 2));
         }
@@ -243,7 +241,6 @@ public class Camera extends CameraBox {
     }
 
 
-
     public Point coordonneesPoint2D(Point3D p, ZBufferImpl impl) {
         switch (type_perspective) {
             case PERSPECTIVE_ISOM:
@@ -258,6 +255,7 @@ public class Camera extends CameraBox {
     public Point3D coordonneesPoint3D(Point3D p) {
         return calculerPointDansRepere(p);
     }
+
     public double distanceCamera(Point3D x3d) {
         switch (type_perspective) {
             case PERSPECTIVE_ISOM:
