@@ -46,6 +46,8 @@ import one.empty3.library.Point3D;
 import one.empty3.library.StructureMatrix;
 import one.empty3.library.core.nurbs.*;
 
+import java.util.Iterator;
+
 public class Tubulaire3 extends ParametricSurface {
     public  double TAN_FCT_INCR = 0.000001;
     public double NORM_FCT_INCR = 0.000001;
@@ -58,6 +60,7 @@ public class Tubulaire3 extends ParametricSurface {
         super();
         soulCurve.setElem(new CourbeParametriquePolynomialeBezier());
         diameterFunction.setElem(new FctXY());
+        declareProperties();
     }
 
     public Tubulaire3(CourbeParametriquePolynomialeBezier soulCurve, FctXY diameterCurve) {
@@ -156,10 +159,10 @@ public class Tubulaire3 extends ParametricSurface {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredDataStructure().put("soulCurve/ame de la courbe", soulCurve);
         soulCurve.getElem().declareProperties();
-        getDeclaredDataStructure().put("diameterFunction/ fonction de la longueur du diamètre", diameterFunction);
         diameterFunction.getElem().declareProperties();
+        getDeclaredDataStructure().put("soulCurve/ame de la courbe", soulCurve);
+        getDeclaredDataStructure().put("diameterFunction/ fonction de la longueur du diamètre", diameterFunction);
 
     }
 
@@ -178,4 +181,6 @@ public class Tubulaire3 extends ParametricSurface {
     public void setDiameterFunction(StructureMatrix<FctXY> diameterFunction) {
         this.diameterFunction = diameterFunction;
     }
+
+
 }

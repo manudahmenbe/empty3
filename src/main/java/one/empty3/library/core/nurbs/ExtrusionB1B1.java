@@ -42,4 +42,12 @@ public class ExtrusionB1B1 extends ExtrusionCurveCurve {
         getDeclaredDataStructure().put("base/courbe a extruder", base);
         getDeclaredDataStructure().put("path/courbe normale d'extrusion", path);
     }
+
+    @Override
+    public String toString() {
+        String s = "extrudeB1b1 (\n\t(\n\tbase :"
+                + base.toString();
+        s += "\n\n" + base.toString() + "\n\tpath : " + path+"\n)\ntexture : "+ texture().toString() + "\n)\n";
+        return s;
+    }
 }
