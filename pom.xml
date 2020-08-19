@@ -247,7 +247,6 @@
                     <execution>
                         <configuration>
                             <keyname>22EE55E4</keyname>
-                            <ascDirectory>C:\Users\manue\gpg</ascDirectory>
                         </configuration>
                         <id>sign-artifacts</id>
                         <phase>verify</phase>
