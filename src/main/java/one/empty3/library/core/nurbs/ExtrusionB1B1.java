@@ -26,7 +26,7 @@ import one.empty3.library.StructureMatrix;
 public class ExtrusionB1B1 extends ExtrusionCurveCurve {
     private StructureMatrix<CourbeParametriquePolynomialeBezier> base = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
     private StructureMatrix<CourbeParametriquePolynomialeBezier> path = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
-    private StructureMatrix<Point3D> path0ref;
+    private StructureMatrix<Point3D> path0ref = new StructureMatrix<>();
 
     public ExtrusionB1B1() {
         base.setElem(new CourbeParametriquePolynomialeBezier());
