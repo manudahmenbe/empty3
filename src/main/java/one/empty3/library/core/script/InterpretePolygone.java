@@ -38,9 +38,8 @@
 package one.empty3.library.core.script;
 
 
-import one.empty3.library.Point3D;
-import one.empty3.library.Polygon;
-import one.empty3.library.TextureCol;
+import one.empty3.library.*;
+import one.empty3.library.core.lighting.Colors;
 
 import java.util.ArrayList;
 
@@ -99,9 +98,14 @@ public class InterpretePolygone implements Interprete {
         ib.compile(pattern);
         ib.read(text, pos);
         pos = ib.getPosition();
-        InterpreteTColor pc = new InterpreteTColor();
-        TextureCol c = (TextureCol) pc.interprete(text, pos);
-        pos = pc.getPosition();
+        ITexture c;
+        try {
+            InterpreteTexture pc = new InterpreteTexture();
+            c = (ITexture) pc.interprete(text, pos);
+            pos = pc.getPosition();
+        }catch (InterpreteException ex) {
+            c = new ColorTexture(Colors.random());
+        }
         ib = new InterpretesBase();
         pattern = new ArrayList<Integer>();
         pattern.add(ib.BLANK);
@@ -113,7 +117,8 @@ public class InterpretePolygone implements Interprete {
         this.pos = pos;
 
         Polygon p = new Polygon();
-        p.setPoints(points.toArray(new Point3D[points.size()]));
+        StructureMatrix<Object> objectStructureMatrix = new StructureMatrix<>(1, Point3D.class);
+        p.getPoints().data1d.addAll(points);
         p.texture(c);
         return p;
     }

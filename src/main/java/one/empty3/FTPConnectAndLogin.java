@@ -1,4 +1,6 @@
- /* import java.io.IOException;
+package one.empty3;
+
+import java.io.IOException;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
@@ -16,14 +18,14 @@ public class FTPConnectAndLogin {
         // SET THESE TO MATCH YOUR FTP SERVER //
         String server = "www.server.com";
         int port = 21;
-        String user = "username"
-        String pass = "password"
+        String user = "username";
+        String pass = "password";
 
-        FTPClient ftp = new FTPClient
+        FTPClient ftp = new FTPClient();
         try {
-            ftp.connect(server, port)
+            ftp.connect(server, port);
             showServerReply(ftp);
-            int replyCode = ftpClient.getReplyCode();
+            int replyCode = ftp.getReplyCode();
             if (!FTPReply.isPositiveCompletion(replyCode)) {
                 System.out.println("Operation failed. Server reply code: " + replyCode);
                 return;
@@ -32,7 +34,6 @@ public class FTPConnectAndLogin {
             showServerReply(ftp);
             if (!success) {
                 System.out.println("Failed to log into the server");
-                return;
             } else {
                 System.out.println("LOGGED IN SERVER");
             }
@@ -42,4 +43,4 @@ public class FTPConnectAndLogin {
         }
     }
 }
-*/
+

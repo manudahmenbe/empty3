@@ -751,12 +751,11 @@ public class Loader implements SceneLoader {
                     Logger.getLogger(Loader.class.getName()).log(Level.SEVERE,
                             null, ex);
                 }
-                continue;
             }
 
         }
 
-        sc.flushImports();
+        //sc.flushImports();
         return !failed;
     }
 
