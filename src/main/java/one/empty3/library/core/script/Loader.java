@@ -737,7 +737,7 @@ public class Loader implements SceneLoader {
                     interpreteH.interpreteBlank();
                     String ido = interpreteH.interpreteIdentifier();
                     interpreteH.interpreteBlank();
-                    TextureCol tc = interpreteH.interpreteTColor();
+                    ITexture tc = interpreteH.interpreteTColor();
                     interpreteH.interpreteBlank();
 
                     Representable r = sc.find(ido);

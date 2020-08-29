@@ -98,14 +98,7 @@ public class InterpretePolygone implements Interprete {
         ib.compile(pattern);
         ib.read(text, pos);
         pos = ib.getPosition();
-        ITexture c;
-        try {
-            InterpreteTexture pc = new InterpreteTexture();
-            c = (ITexture) pc.interprete(text, pos);
-            pos = pc.getPosition();
-        }catch (InterpreteException ex) {
-            c = new ColorTexture(Colors.random());
-        }
+
         ib = new InterpretesBase();
         pattern = new ArrayList<Integer>();
         pattern.add(ib.BLANK);
@@ -119,7 +112,7 @@ public class InterpretePolygone implements Interprete {
         Polygon p = new Polygon();
         StructureMatrix<Object> objectStructureMatrix = new StructureMatrix<>(1, Point3D.class);
         p.getPoints().data1d.addAll(points);
-        p.texture(c);
+        //p.texture(c);
         return p;
     }
 

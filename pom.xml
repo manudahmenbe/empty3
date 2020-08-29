@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
          xmlns="http://maven.apache.org/POM/4.0.0">
@@ -11,7 +10,7 @@
 
     <groupId>one.empty3</groupId>
     <artifactId>empty3-library-3d</artifactId>
-    <version>2020.3.9.2-SNAPSHOT</version><!-- -SNAPSHOT-->
+    <version>2020.4-SNAPSHOT</version><!-- -SNAPSHOT-->
     <description>3D rendering engine. Plus modelling. expected glsl textures 3d and 2d rendering</description>
     <packaging>jar</packaging>
     <url>https://github.com/manuelddahmen/empty3</url>
@@ -26,15 +25,6 @@
             <id>ossrh</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
-        <!--
-
-        <repository>
-                    <id>if2</id>
-                    <name>empty3.one</name>
-                    <url>ftp://ftp.empty3.one/downloads/.m2</url>
-        </repository>
-        -->
-
     </distributionManagement>
 
     <licenses>
@@ -246,7 +236,8 @@
                 <executions>
                     <execution>
                         <configuration>
-                            <keyname>22EE55E4</keyname>
+                            <keyname>22EE55E4</keyname><!--ED0DB26D5F0BDADD1CB2BC079B7BFF1322EE55E4-->
+                            <ascDirectory>C:\Users\manue\gpg</ascDirectory>
                         </configuration>
                         <id>sign-artifacts</id>
                         <phase>verify</phase>
