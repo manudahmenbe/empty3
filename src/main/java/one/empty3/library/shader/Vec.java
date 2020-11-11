@@ -17,6 +17,12 @@ private StructureMatrix <Vec> vec
     public Vec(Vec... comps) {
         for(Vec v : comps)
             vec.add(1, v);
+
+public Vec(Vec... vs) {}
+        for(Vec v : vs)
+for(Double d   :
+vec.coordArray)
+            vec.add(1,d);
             
 } 
 public Vec() {} 
