@@ -57,8 +57,10 @@ getElem(i).toString()+", ";
 s+=")";
 return s;
 }
-    public Vec eval() {
-   return null;
+    public Vec norme() {
+double d =0.0;
+       d+=vecVal.data1d.get(i)*vecVal.data1d.get(i);
+return Math.sqrt(d);
 } 
 
    public Double value(int i, int j) {
