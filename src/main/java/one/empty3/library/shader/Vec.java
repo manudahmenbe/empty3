@@ -10,7 +10,7 @@ private StructureMatrix <Vec> vec
     = new StructureMatrix (1, Vec.class);
     public Vec(Point3D p) {
 for(int i = 0; i<3; i++) {
-      vec.add(new Vec());
+      
       vecVal.add(p.get(i));
 }
         }
@@ -18,7 +18,7 @@ for(int i = 0; i<3; i++) {
        //  Vec v = new Vec() ;
          for(Double d : comps) {
              vecVal.add(1, d);
-             vec.add(1, d)
+             vl
 }
 } 
     public Vec(Vec... comps) {
