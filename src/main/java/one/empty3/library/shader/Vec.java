@@ -25,7 +25,7 @@ for(int i = 0; i<3; i++) {
          for(Vec v : comps){
        for(Double d : v){
             vecVal.add(1, v.value());
-            
+            }
 }
     }
 
