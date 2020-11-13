@@ -22,7 +22,7 @@ for(int i = 0; i<3; i++) {
              }
     } 
     public Vec(Vec... comps) {
-         for(Vec v : comps){
+         for(Vec v : comps.data1){
        for(Double d : v){
             vecVal.add(1, v.value());
             }
@@ -66,7 +66,7 @@ return Math.sqrt(d);
    public Double value(int i, int j) {
         if(i>=0 && i<j && j<= getDims() )
              return new Vec(i,j);
-        return vecVal.get(i);
+        return vecVal.data1.get(i);
 } 
 
     public Double[] value() {
