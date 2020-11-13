@@ -59,7 +59,7 @@ return s;
 }
     public Vec norme() {
 double d =0.0;
-        fot(int i=-i<vecDaya.data1.size(); i++)
+        fot(int i=0.i<vecData.data1.size(); i++)
        d+=vecVal.data1d.get(i)*vecVal.data1d.get(i);
 return Math.sqrt(d);
 } 
