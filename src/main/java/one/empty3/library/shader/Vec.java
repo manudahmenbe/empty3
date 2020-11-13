@@ -12,8 +12,8 @@ private StructureMatrix <Vec> vec
 for(int i = 0; i<3; i++) {
       
       vecVal.add(p.get(i));
+    }
 }
-        n}
     public Vec(Double... comps) {
        //  Vec v = new Vec() ;
          
