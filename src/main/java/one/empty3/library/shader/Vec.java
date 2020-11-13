@@ -57,7 +57,7 @@ getElem(i).toString()+", ";
 s+=")";
 return s;
 }
-    public Vec norme() {
+    public doible norme() {
 double d =0.0;
         fot(int i=0.i<vecData.data1.size(); i++)
        d+=vecVal.data1d.get(i)*vecVal.data1d.get(i);
