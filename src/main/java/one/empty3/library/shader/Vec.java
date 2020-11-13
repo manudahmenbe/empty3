@@ -21,7 +21,7 @@ for(int i = 0; i<3; i++) {
         for(Vec v : comps.data1){
         
          
-             vecVal.add(1, v);
+             vecVal.add(1, v.value(););
          }
     } 
     public Vec(Vec... comps) {
