@@ -27,7 +27,7 @@ for(int i = 0; i<3; i++) {
     
 
 
-=
+
     public int getDims() {
         int dims =0;
         if(vecVal.data1d.size()>0) {
