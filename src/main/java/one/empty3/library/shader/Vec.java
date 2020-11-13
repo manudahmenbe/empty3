@@ -13,14 +13,13 @@ for(int i = 0; i<3; i++) {
       
       vecVal.add(p.get(i));
 }
-        }
+        n}
     public Vec(Double... comps) {
        //  Vec v = new Vec() ;
-         for(Double d : comps) {
+         
              vecVal.add(1, d);
-             vl
-}
-} 
+             
+    } 
     public Vec(Vec... comps) {
         for(Vec v : comps){
             vec.add(1, v);
