@@ -63,10 +63,8 @@ return Math.sqrt(d);
 
    public Double value(int i, int j) {
         if(i>=0 && i<j && j<= getDims() )
-             return null;
-else return vecVal.get(i);
-
-} return null;
+             return new Vec(i,j);
+        return vecVal.get(i);
 } 
 
     public Double[] value() {
