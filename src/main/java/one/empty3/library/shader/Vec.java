@@ -15,10 +15,9 @@ for(int i = 0; i<3; i++) {
     }
 }
     public Vec(Double... comps) {
-        vec.add(1, v);
-       //  Vec v = new Vec() ;
-         for(Vec v : comps){
-             vecVal.add(1, v.value());
+        
+         for(Double v : comps){
+             vecVal.add(1 d);
              }
     } 
     public Vec(Vec... comps) {
@@ -70,6 +69,7 @@ return Math.sqrt(d);
 } 
 
     public Double[] value() {
+        return valVec.data1.get(i);/*
         Double [] da;
         if(vecVal.data1d.size()>0) {
             da = new Double[getDims() ];
@@ -94,7 +94,7 @@ return Math.sqrt(d);
                 } 
 
             } 
-        } 
+        } */
     return da;
     } 
 } 
