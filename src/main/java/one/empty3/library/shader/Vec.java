@@ -8,7 +8,7 @@ private StructureMatrix <Double> vecVal
     
 private StructureMatrix <Vec> vec
     = new StructureMatrix (1, Vec.class);
-    publiv Vec(Point3D p) {
+    public Vec(Point3D p) {
 for(int i = 0. i<3; i++) {
       vec.add(1, p.get(i));
       vecVal.add(p.get(i));
