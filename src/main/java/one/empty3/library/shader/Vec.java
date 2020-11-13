@@ -18,10 +18,10 @@ for(int i = 0; i<3; i++) {
         vecVal.data1.add(d);
     }
     public Vec(Double... comps) {
+        for(Vec v : comps.data1){
         
-         for(int i=0;i<comps.length;i++){
-           
-             vecVal.add(1, comps[i]);
+         
+             vecVal.add(1, v);
          }
     } 
     public Vec(Vec... comps) {
