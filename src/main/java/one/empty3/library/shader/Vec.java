@@ -15,14 +15,16 @@ for(int i = 0; i<3; i++) {
     }
 }
     public Vec(Double... comps) {
+        vec.add(1, v);
        //  Vec v = new Vec() ;
-         
-             vecVal.add(1, d);
+         for(Vec v : comps){
+             vecVal.add(1, v.value());
              
     } 
     public Vec(Vec... comps) {
         for(Vec v : comps){
-            vec.add(1, v);
+            
+            
 vecVal.add(1, v);
 }}
 
