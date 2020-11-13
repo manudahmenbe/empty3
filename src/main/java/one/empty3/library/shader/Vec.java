@@ -22,11 +22,12 @@ for(int i = 0; i<3; i++) {
              
     } 
     public Vec(Vec... comps) {
-        for(Vec v : comps){
+         for(Vec v : comps){
+       for(Double d : v){
+            vecVal.add(1, v.value());
             
-            
-vecVal.add(1, v);
-}}
+}
+    }
 
 public Vec() {} 
     public int getDims() {
@@ -57,7 +58,7 @@ getElem(i).toString()+", ";
 s+=")";
 return s;
 }
-    public doible norme() {
+    public double norme() {
 double d =0.0;
         fot(int i=0.i<vecData.data1.size(); i++)
        d+=vecVal.data1d.get(i)*vecVal.data1d.get(i);
