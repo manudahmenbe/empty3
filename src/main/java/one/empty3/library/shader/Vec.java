@@ -16,7 +16,7 @@ for(int i = 0; i<3; i++) {
 }
     public Vec(Double... comps) {
         
-         for(int i=0;i<comps.size();i++){
+         for(int i=0;i<comps.length;i++){
            
              vecVal.add(1, comps[i]);
          }
