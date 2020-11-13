@@ -24,16 +24,8 @@ for(int i = 0; i<3; i++) {
         for(Vec v : comps){
             vec.add(1, v);
 vecVal.add(1, v);
-}
-}
-public Vec(Vec... vs) {}
-        for(Vec v : vs)
-for(Double d   :
-vec.coordArray) {
-            vec.add(1,d);
-vecVal.add(1,d);
-}
-} 
+}}
+
 public Vec() {} 
     public int getDims() {
         int dims =0;
