@@ -14,7 +14,7 @@ for(int i = 0; i<3; i++) {
       vecVal.add(p.get(i));
     }
 }
-    public Vrc(Double d) {
+    public Vec(Double d) {
         vecVal.data1.add(d);
     }
     public Vec(Double... comps) {
