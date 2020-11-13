@@ -69,7 +69,7 @@ return Math.sqrt(d);
 } 
 
     public Double[] value() {
-        return valVec.data1.get(i);/*
+        return vecVal.data1.get(i);/*
         Double [] da;
         if(vecVal.data1d.size()>0) {
             da = new Double[getDims() ];
