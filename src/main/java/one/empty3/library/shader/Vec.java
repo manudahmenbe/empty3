@@ -58,7 +58,7 @@ return s;
 }
     public double norme() {
 double d =0.0;
-        for(int i=0.i<vecVal.data1.size(); i++)
+        for(int i=0. i<vecVal.data1.size(); i++)
        d+=vecVal.data1d.get(i)*vecVal.data1d.get(i);
 return Math.sqrt(d);
 } 
