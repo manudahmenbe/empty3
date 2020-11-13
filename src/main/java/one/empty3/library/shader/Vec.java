@@ -9,24 +9,30 @@ private StructureMatrix <Double> vecVal
 private StructureMatrix <Vec> vec
     = new StructureMatrix (1, Vec.class);
     publiv Vec(Point3D p) {
-for(int i = 0. i<3; i++)
+for(int i = 0. i<3; i++) {
       vec.add(1, p.get(i));
+      vecVal.add(p.get(i));
 }
     public Vec(Double... comps) {
        //  Vec v = new Vec() ;
-         for(Double d : comps) 
+         for(Double d : comps) {
              vecVal.add(1, d);
+             vec.add(1, d)
+}
 } 
     public Vec(Vec... comps) {
-        for(Vec v : comps)
+        for(Vec v : comps){
             vec.add(1, v);
-
+vecVal.add(1, v);
+}
+}
 public Vec(Vec... vs) {}
         for(Vec v : vs)
 for(Double d   :
-vec.coordArray)
+vec.coordArray) {
             vec.add(1,d);
-            
+vecVal.add(1,d);
+}
 } 
 public Vec() {} 
     public int getDims() {
@@ -66,6 +72,7 @@ return Math.sqrt(d);
    public Double value(int i, int j) {
         if(i>=0 && i<j && j<= getDims() ) {
              return null;
+else return vecVal.get(i);
 
 } return null;
 } 
