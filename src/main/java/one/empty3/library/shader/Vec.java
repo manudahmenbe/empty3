@@ -19,7 +19,7 @@ for(int i = 0; i<3; i++) {
        //  Vec v = new Vec() ;
          for(Vec v : comps){
              vecVal.add(1, v.value());
-             
+             }
     } 
     public Vec(Vec... comps) {
          for(Vec v : comps){
@@ -29,7 +29,7 @@ for(int i = 0; i<3; i++) {
 }
     }
 
-public Vec() {} 
+
     public int getDims() {
         int dims =0;
         if(vecVal.data1d.size()>0) {
@@ -60,7 +60,7 @@ return s;
 }
     public double norme() {
 double d =0.0;
-        fot(int i=0.i<vecData.data1.size(); i++)
+        for(int i=0.i<vecData.data1.size(); i++)
        d+=vecVal.data1d.get(i)*vecVal.data1d.get(i);
 return Math.sqrt(d);
 } 
