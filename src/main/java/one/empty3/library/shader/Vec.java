@@ -33,14 +33,12 @@ for(int i = 0; i<3; i++) {
     public int getDims() {
         int dims =0;
         if(vecVal.data1d.size()>0) {
-            this.dims =vecVal.data1d.size();
+            this.dims +=vecVal.data1d.size();
+            }
             return dims;
-}
-        if(vec.data1d.size()>0)
-            for(int i=0;i<vec.data1d.size();i++)
-                dims += vec.data1d.size();
           
-         return dims;
+       
+        
 } 
     public String toString() {
         String s = "vec" +getDims() + 
@@ -60,7 +58,7 @@ return s;
 }
     public double norme() {
 double d =0.0;
-        for(int i=0.i<vecData.data1.size(); i++)
+        for(int i=0.i<vecVal.data1.size(); i++)
        d+=vecVal.data1d.get(i)*vecVal.data1d.get(i);
 return Math.sqrt(d);
 } 
