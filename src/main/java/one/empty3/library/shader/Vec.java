@@ -21,9 +21,9 @@ for(int i = 0; i<3; i++) {
         for(int i=0; i<comps.length; i++) {
             Double d =comps[i];
              vecVal.add(1, d);
-            }
-         }
-    } 
+        }
+    }
+    
     
 
 
