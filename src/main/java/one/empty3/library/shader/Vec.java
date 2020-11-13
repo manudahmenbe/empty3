@@ -18,10 +18,10 @@ for(int i = 0; i<3; i++) {
         vecVal.data1.add(d);
     }
     public Vec(Double... comps) {
-        for(Vec v : comps.data1){
+        for(Double d : comps){
         
          
-             vecVal.add(1, v.value(););
+             vecVal.add(1, d);
          }
     } 
     public Vec(Vec... comps) {
@@ -32,7 +32,7 @@ for(int i = 0; i<3; i++) {
 }
     }
 
-
+=
     public int getDims() {
         int dims =0;
         if(vecVal.data1d.size()>0) {
