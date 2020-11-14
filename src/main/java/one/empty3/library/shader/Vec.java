@@ -41,13 +41,13 @@ for(int i = 0; i<3; i++) {
     public String toString() {
         String s = "vec" +getDims() + 
            "(";
-        if(vecVal.data1d.size()>0) 
-            for(int i=0;i<vecVal.data1d.size();
+        if(vecVal.getData1d().size()>0) 
+            for(int i=0;i<vecVal.getData1d().size();
                  i++)
                 s+=vecVal.
 getElem(i)+", ";
         else
-for(int i=0;i<vec.data1d.size();
+for(int i=0;i<vec.getdata1d().size();
                  i++)
                 s+= vec.
 getElem(i).toString()+", ";
@@ -67,13 +67,13 @@ return Math.sqrt(d);
         return vecVal.data1.get(i);
 } 
 
-    public Double[] value() {
+    public Double value() {
         return vecVal.data1.get(i);/*
         Double [] da;
         if(vecVal.data1d.size()>0) {
             da = new Double[getDims() ];
             int i = 0;
-            for(i=0;i<vecVal.data1d.get(i); i++) {
+            for(i=0;i<vecVal.data1d().get(i); i++) {
                 Double a = vecVal.getElem(i);
                 da[i] = a;
                 i++;
@@ -84,7 +84,7 @@ return Math.sqrt(d);
             int i = 0; // TODO
             int j = 0;
 
-//Double [] d = new Double[ vec. data1d. size()] ;
+//Double [] d = new Double[ vec. getData1d. size()] ;
             for(i=0; i<vec.data1d.size(); i++) {
              Double [] d = (Double[] )( vec.getElem(i).value()) ;
                 for(Double a : d) {
