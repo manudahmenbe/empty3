@@ -23,6 +23,56 @@ for(int i = 0; i<3; i++) {
              vecVal.add(1, d);
         }
     }
+   public Vec(Vec ... comps){
+        for(int i=0; i<comps.length; i++) {
+            vec.add(comps[i]);
+           
+            for(Double d : comps[i]) {
+        
+             vecVal.add(1, d);
+        }
+             vecVal.add(1, d);
+        }
+    }public Vec(Double... comps) {
+        for(int i=0; i<comps.length; i++) {
+            Double d =comps[i];
+             vecVal.add(1, d);
+        }
+    }ublic Vec(Double... comps) {
+        for(int i=0; i<comps.length; i++) {
+            Double d =comps[i];
+             vecVal.add(1, d);
+        }
+    }public Vec(Double... comps) {
+        for(int i=0; i<comps.length; i++) {
+            Double d =comps[i];
+             vecVal.add(1, d);
+        }
+    }public Vec(Double... comps) {
+        for(int i=0; i<comps.length; i++) {
+            Double d =comps[i];
+             vecVal.add(1, d);
+        }
+    }comps[i]);
+            forb( Double d :comps[i])
+             vecVal.add(1, d);
+        }
+    }public Vec(Double... comps) {
+        for(int i=0; i<comps.length; i++) {
+            Double d =comps[i];
+             vecVal.add(1, d);
+        }
+    }
+        for(int i=0; i<comps.length; i++) {
+            Double d =comps[i];
+             vecVal.add(1, d);
+        }
+    }public Vec(Double... comps... comps) {
+        for(int i=0; i<comps.length; i++) {
+            Double d =comps[i];
+             vecVal.add(1, d);
+        }
+    }
     
     
 
