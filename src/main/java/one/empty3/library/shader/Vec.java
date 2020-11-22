@@ -97,7 +97,7 @@ return s;
 }
     public double norme() {
 double d =0.0;
-        for(int i=0; i<vecVal.gettData1d().size(); i++)
+        for(int i=0; i<vecVal.getData1d().size(); i++)
        d+=vecVal.getData1d().get(i)*vecVal.getData1d().get(i);
 return Math.sqrt(d);
 } 
@@ -111,7 +111,7 @@ return Math.sqrt(d);
     public Double value() {
         return vecVal.getData1d().get(i);
         Double [] da;
-        if(vecVal.data1d.size()>0) {
+        if(vecVal.getDta1d().size()>0) {
             da = new Double[getDims() ];
             int i = 0;
             for(i=0;i<vecVal.getData1d().get(i); i++) {
@@ -126,7 +126,7 @@ return Math.sqrt(d);
             int j = 0;
 
 //Double [] d = new Double[ vec. getData1d. size()] ;
-            for(i=0; i<vec.getDta1d().size(); i++) {
+            for(i=0; i<vec.getData1d().size(); i++) {
              Double [] d = (Double[] )( vec.getElem(i).value()) ;
                 for(Double a : d) {
                     da[j] = a;
