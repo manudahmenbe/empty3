@@ -86,7 +86,8 @@ return Math.sqrt(d);
     public Double values(int i) {
         return vecVal.getData1d().get(i);
         }
-    public Double values() {
+    /*
+    public Double value() {
         
         Double [] da;
         if(vecVal.getData1d().size()>0) {
@@ -105,7 +106,7 @@ return Math.sqrt(d);
 
 //Double [] d = new Double[ vec. getData1d. size()] ;
             for(i=0; i<vec.getData1d().size(); i++) {
-             Double [] d = (Double[] )( vec.getElem(i).value()) ;
+             Double [] d = (Double[] )( vec.getElem(i)) ;
                 for(Double a : d) {
                     da[j] = a;
                     j++;
@@ -115,6 +116,7 @@ return Math.sqrt(d);
         } 
     return da;
     } 
+    */
     public int size() {
         return vecVal.getData1d().size();
     }
