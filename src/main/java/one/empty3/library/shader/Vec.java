@@ -83,10 +83,13 @@ return Math.sqrt(d);
         return vecVal.getData1d().get(i);
 } 
 */
-    public Double value() {
+    public Double values(int i) {
         return vecVal.getData1d().get(i);
+        }
+    public Double values() {
+        
         Double [] da;
-        if(vecVal.getDta1d().size()>0) {
+        if(vecVal.getData1d().size()>0) {
             da = new Double[getDims() ];
             int i = 0;
             for(i=0;i<vecVal.getData1d().get(i); i++) {
