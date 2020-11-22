@@ -17,6 +17,10 @@ for(int i = 0; i<3; i++) {
     public Vec(Double d) {
         vecVal.getData1d().add(d);
     }
+    public Vec(int d) {
+        for(int i=0;i<d;d++)
+            vecVal.getData1d().add(0.0);
+    }
     public Vec(Double... comps) {
         for(int i=0; i<comps.length; i++) {
             Double d =comps[i];
