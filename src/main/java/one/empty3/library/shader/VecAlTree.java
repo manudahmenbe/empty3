@@ -6,7 +6,7 @@ public class VecAlTree extends Vec {
 private boolean invalidTree = true;
     public VecAlTree(String formula, int dim) {
         super(dim);
-        String formulas = formula.split(",");
+        String [] formulas = formula.split(",");
         
             
 this.formula = formula;
