@@ -62,14 +62,6 @@ for(int i = 0; i<3; i++) {
              vecVal.add(1, d);
         }
     }
-  
-    }
-public Vec(Double... comps... comps) {
-        for(int i=0; i<comps.length; i++) {
-            Double d =comps[i];
-             vecVal.add(1, d);
-        }
-    }
     
     
 
