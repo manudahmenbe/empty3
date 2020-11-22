@@ -18,8 +18,8 @@ public class VecStack extends VecAlTree {
 * @param out out() [i : int]
 * @param formula f(in, out) 
 */
-    public VecStack(String formula) {
-        super(formula) ;
+    public VecStack(String formula, int dim) {
+        super(formula, dim) ;
 } 
 public StructureMatrix <Integer> getVecIn() {
      return numsIn;
