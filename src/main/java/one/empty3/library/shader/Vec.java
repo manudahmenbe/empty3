@@ -29,9 +29,9 @@ for(int i = 0; i<3; i++) {
            
             for(Double d : comps[i]) {
         
-             vecVal.add(1, d);
-        }
-             vecVal.add(1, d);
+                vecVal.add(1, d);
+            }
+        
         }
     }
     /*
