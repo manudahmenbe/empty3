@@ -4,8 +4,9 @@ public class VecAlTree extends Vec {
     protected String formula;
     AlgebricTree tree;
 private boolean invalidTree = true;
-    public VecAlTree(String formula) {
-    
+    public VecAlTree(String formula, int dim) {
+        String formulas = formula.split(",");
+        
             
 this.formula = formula;
         
