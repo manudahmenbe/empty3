@@ -76,13 +76,13 @@ double d =0.0;
        d+=vecVal.getData1d().get(i)*vecVal.getData1d().get(i);
 return Math.sqrt(d);
 } 
-
+/*
    public Double value(int i, int j) {
         if(i>=0 && i<j && j<= getDims() )
              return new Vec(i,j);
         return vecVal.getData1d().get(i);
 } 
-
+*/
     public Double value() {
         return vecVal.getData1d().get(i);
         Double [] da;
