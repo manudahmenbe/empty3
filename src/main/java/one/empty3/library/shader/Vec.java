@@ -27,9 +27,9 @@ for(int i = 0; i<3; i++) {
         for(int i=0; i<comps.length; i++) {
             vec.add(comps[i]);
            
-            for(Double d : comps[i]) {
+            for(int j=0; j<comps[i].size(); j++) {
         
-                vecVal.add(1, d);
+                vecVal.add(1, comps[i].get(j));
             }
         
         }
@@ -137,4 +137,7 @@ return Math.sqrt(d);
         } 
     return da;
     } 
+    public int size() {
+        return vecVal.getData1d().size();
+    }
 } 
