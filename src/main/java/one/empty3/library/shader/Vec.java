@@ -15,7 +15,7 @@ for(int i = 0; i<3; i++) {
     }
 }
     public Vec(Double d) {
-        vecVal.getData1().add(d);
+        vecVal.getData1d().add(d);
     }
     public Vec(Double... comps) {
         for(int i=0; i<comps.length; i++) {
@@ -71,8 +71,8 @@ for(int i = 0; i<3; i++) {
 
     public int getDims() {
         int dims =0;
-        if(vecVal.data1d.size()>0) {
-            this.dims +=vecVal.data1d.size();
+        if(vecVal.getData1d().size()>0) {
+            this.dims +=vecVal.getData1d().size();
             }
             return dims;
           
@@ -88,7 +88,7 @@ for(int i = 0; i<3; i++) {
                 s+=vecVal.
 getElem(i)+", ";
         else
-for(int i=0;i<vec.getdata1d().size();
+for(int i=0;i<vec.getData1d().size();
                  i++)
                 s+= vec.
 getElem(i).toString()+", ";
@@ -97,24 +97,24 @@ return s;
 }
     public double norme() {
 double d =0.0;
-        for(int i=0; i<vecVal.hetData1d.size(); i++)
-       d+=vecVal.data1d.get(i)*vecVal.getData1d.get(i);
+        for(int i=0; i<vecVal.gettData1d().size(); i++)
+       d+=vecVal.getData1d().get(i)*vecVal.getData1d().get(i);
 return Math.sqrt(d);
 } 
 
    public Double value(int i, int j) {
         if(i>=0 && i<j && j<= getDims() )
              return new Vec(i,j);
-        return vecVal.getData1d.get(i);
+        return vecVal.getData1d().get(i);
 } 
 
     public Double value() {
-        return vecVal.getData1d().get(i);/*
+        return vecVal.getData1d().get(i);
         Double [] da;
         if(vecVal.data1d.size()>0) {
             da = new Double[getDims() ];
             int i = 0;
-            for(i=0;i<vecVal.data1d().get(i); i++) {
+            for(i=0;i<vecVal.getData1d().get(i); i++) {
                 Double a = vecVal.getElem(i);
                 da[i] = a;
                 i++;
@@ -126,7 +126,7 @@ return Math.sqrt(d);
             int j = 0;
 
 //Double [] d = new Double[ vec. getData1d. size()] ;
-            for(i=0; i<vec.data1d.size(); i++) {
+            for(i=0; i<vec.getDta1d().size(); i++) {
              Double [] d = (Double[] )( vec.getElem(i).value()) ;
                 for(Double a : d) {
                     da[j] = a;
@@ -134,7 +134,7 @@ return Math.sqrt(d);
                 } 
 
             } 
-        } */
+        } 
     return da;
     } 
 } 
