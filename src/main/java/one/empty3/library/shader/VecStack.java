@@ -32,9 +32,10 @@ public String getFormula() {
      return formula;
 } 
 
-public Double value() {
+public Double value() {/*
     for(int i=0;i<numsIn.getData1d().size(); i++) 
-    tree.setParameter("in("+i+ ") ", super.value()[i]) ;
-    return super.value();
+       tree.setParam("in("+i+ ") ", super.value()[i]) ;
+    return tree.eval();*/
+    return 0.0;
 } 
 } 
