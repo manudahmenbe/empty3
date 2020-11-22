@@ -5,6 +5,7 @@ public class VecAlTree extends Vec {
     AlgebricTree tree;
 private boolean invalidTree = true;
     public VecAlTree(String formula, int dim) {
+        super(dim);
         String formulas = formula.split(",");
         
             
