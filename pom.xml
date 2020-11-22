@@ -123,9 +123,9 @@
                     <mainClass>TestRun</mainClass>
                     <arguments>
                                                    
-<argument>class=tests2.ver.Serpentins</argument>
-                       <!-- 
-<argument>class=test3.TestVoronoi</argument>-->
+<!--<argument>class=tests2.ver.Serpentins</argument>-->
+                       
+<argument>class=test3.TestVoronoi</argument>
                         <!--<argument>class=test3.waterfall_demo.Waterfall_Demo</argument>-->
                         <!--  <argument>class=test3.QuadratureCercle</argument>-->
                         <!-- <argument>class=test3.QuadratureCercle</argument>-->
@@ -228,7 +228,7 @@
                     </execution>
                 </executions>
             </plugin>
-       <!--     <plugin>
+         <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>1.6</version>
@@ -237,7 +237,7 @@
                     <execution>
                         <configuration>
                             <keyname>22EE55E4</keyname><!--ED0DB26D5F0BDADD1CB2BC079B7BFF1322EE55E4-->
-                            <ascDirectory>C:\Users\manue\gpg</ascDirectory>
+                           
                         </configuration>
                         <id>sign-artifacts</id>
                         <phase>verify</phase>
@@ -246,26 +246,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>-->
-<plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jarsigner-plugin</artifactId>
-        <version>3.0.0</version>
-        <executions>
-          <execution>
-            <id>sign</id>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>verify</id>
-            <goals>
-              <goal>verify</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+            </plugin>
             <plugin>
                 <groupId>com.github.github</groupId>
                 <artifactId>site-maven-plugin</artifactId>
