@@ -980,14 +980,14 @@ public void copyResourceFiles(File destDirectory) {
                         test(t.getSommet().getElem(0));
                         test(t.getSommet().getElem(1));
                         test(t.getSommet().getElem(2));
-                    } else if (r instanceof BSpline) {
+                    } /*else if (r instanceof BSpline) {
                         BSpline b = (BSpline) r;
                         Iterator<Point3D> ts = b.iterator();
                         while (ts.hasNext()) {
                             Point3D p = ts.next();
                             test(p);
                         }
-                    } else if (r instanceof BezierCubique) {
+                    }(*/ else if (r instanceof BezierCubique) {
                         BezierCubique b = (BezierCubique) r;
                         Iterator<Point3D> ts = b.iterator();
                         while (ts.hasNext()) {
