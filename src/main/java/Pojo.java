@@ -58,12 +58,12 @@ public class Pojo {
                     break;
                 default:
                     break;
-               
-                if(o!=null) {
+         }
+         if(o!=null) {
                     
-                    setProperty(p, propName, o,
+              setProperty(p, propName, o,
                                c);
-                }
+         }
         }
     }
 
