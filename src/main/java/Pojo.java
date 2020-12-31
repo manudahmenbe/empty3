@@ -39,7 +39,7 @@ public class Pojo {
             }
         }
     }
-    public static void setP(Object o, String propName, String vType, String value) {
+    public static void setP(Object p, String propName, String vType, String value) {
         
         Object o;
         Class c = Class.forName(vType);
@@ -61,7 +61,8 @@ public class Pojo {
                
                 if(o!=null) {
                     
-                    setProperty();
+                    setProperty(p, propName, o,
+                               c);
                 }
         }
     }
