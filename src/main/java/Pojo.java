@@ -54,7 +54,7 @@ public class Pojo {
                     break;
                 case "boolean":
                 case "Boolean":
-                    o = Boolean.parseBoolean(value);
+                    o = parseBoolean(value);
                     break;
                 default:
                     break;
