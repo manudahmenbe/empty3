@@ -39,6 +39,10 @@ public class Pojo {
             }
         }
     }
+    public static void setP(Object o, String propName, String type, String value) {
+
+    }
+
 
     public static boolean setProperties(Object o, Properties p) {
         try {
