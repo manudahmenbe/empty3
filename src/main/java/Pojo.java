@@ -39,8 +39,19 @@ public class Pojo {
             }
         }
     }
-    public static void setP(Object o, String propName, String type, String value) {
-
+    public static void setP(Object o, String propName, String vType, String value) {
+        switch(vType) {
+                case "double":
+                case "Double":
+                    break;
+                case "int":
+                case "Integer":
+                    break;
+                case "boolean":
+                case "Boolean":
+                    break;
+                    
+        }
     }
 
 
