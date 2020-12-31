@@ -40,17 +40,29 @@ public class Pojo {
         }
     }
     public static void setP(Object o, String propName, String vType, String value) {
+        
+        Object o;
+        Class c = Class.forName(vType);
         switch(vType) {
                 case "double":
                 case "Double":
+                o = Double.parseDouble(value);
                     break;
                 case "int":
                 case "Integer":
+                o = Integer.parseInteger(value);
                     break;
                 case "boolean":
                 case "Boolean":
+                    o = Boolean.parseBoolean(value);
                     break;
+                default:
+                    break;
+               
+                if(o!=null) {
                     
+                    setProperty();
+                }
         }
     }
 
