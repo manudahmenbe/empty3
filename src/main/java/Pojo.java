@@ -51,7 +51,7 @@ public class Pojo {
                     break;
                 case "int":
                 case "Integer":
-                o = Integer.parseInteger(value);
+                o = Integer.parseInt(value);
                     break;
                 case "boolean":
                 case "Boolean":
