@@ -38,6 +38,7 @@ public class Pojo {
                 }
             }
         }
+        
     }
     public static void setP(Object p, String propName, 
                             String vType, String value) {
