@@ -81,7 +81,7 @@ public class Pojo {
             while (it.hasNext()) {
                 String pr = it.next().toString();
                 String value = p.getProperty(pr);
-                getO(o, pr, value);
+                setO(o, pr, value);
             }
             return true;
         } catch (Exception ex) {
