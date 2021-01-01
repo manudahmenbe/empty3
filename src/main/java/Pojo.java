@@ -11,7 +11,7 @@ public class Pojo {
             throw new NumberFormatException("Boolean illegal string");
         return b;
     }
-    public static void getO(Object o, String propName, String value) {
+    public static void setO(Object o, String propName, String value) {
 
         Double d;
         Integer i = 0;
