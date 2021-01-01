@@ -41,8 +41,8 @@ public class Pojo {
     }
     public static void setP(Object p, String propName, 
                             String vType, String value) {
-        
-        Object o;
+        try {
+        Object o = null;
         Class c = Class.forName(vType);
         switch(vType) {
                 case "double":
@@ -65,7 +65,9 @@ public class Pojo {
               setProperty(p, propName, o,
                                c);
          }
-        
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
    }
 
 
