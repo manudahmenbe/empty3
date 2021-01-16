@@ -124,4 +124,8 @@ public class TextureMov extends ITexture {
     public void setTransparent(Color black) {
         this.transparent = black.getRGB();
     }
+
+    public BufferedImage getImage() {
+        return image;
+    }
 }
