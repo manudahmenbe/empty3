@@ -11,7 +11,7 @@ import java.io.File;
 /*__
  * @author Dahmen Manuel
  */
-public class PlansVideo extends TestObjetSub {
+public class PlanVideo extends TestObjetSub {
     
     private String avi1;
     private String avi2;
