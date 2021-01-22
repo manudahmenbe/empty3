@@ -124,7 +124,7 @@
                     <arguments>
                                                    
 <!--<argument>class=tests2.ver.Serpentins</argument>-->
-<argument>class=tests2.texturevideo.PlansVideos</argument>
+<argument>class=tests2.texturevideo.PlansVideo</argument>
 <!--<argument>class=test3.TestVoronoi</argument>-->
                         <!--<argument>class=test3.waterfall_demo.Waterfall_Demo</argument>-->
                         <!--  <argument>class=test3.QuadratureCercle</argument>-->
