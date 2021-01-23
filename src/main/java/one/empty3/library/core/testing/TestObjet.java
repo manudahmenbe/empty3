@@ -460,6 +460,7 @@ public abstract class TestObjet implements Test, Runnable {
     @Deprecated
     public void setResx(int resx) {
         this.resx = resx;
+        dimension = new Resolution(resx, resy);
         z = ZBufferFactory.instance(resx, resy, D3);
     }
 
@@ -470,6 +471,7 @@ public abstract class TestObjet implements Test, Runnable {
     @Deprecated
     public void setResy(int resy) {
         this.resy = resy;
+        dimension = new Resolution(resx, resy);
         z = ZBufferFactory.instance(resx, resy, D3);
     }
 
