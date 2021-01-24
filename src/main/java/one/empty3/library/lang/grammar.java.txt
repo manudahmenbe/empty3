@@ -1,4 +1,4 @@
-BNF rules of JAVA
+
 compilation_unit  = 
  [ package_statement ] 
  < import_statement > 
@@ -281,9 +281,3 @@ string  =
 
 identifier  =
   "a..z,$,_"  <  "a..z,$,_,0..9,unicode character over 00C0"  >  . 
-Index général - Index concepts - Règles BNF
-© 1996, DIP Genève, Alexandre Maret & Jacques Guyot
-page générée Thu Jun 20 11:52:01 MET DST 1996
-Index général - Index concepts - Règles BNF
-© 1996, DIP Genève, Alexandre Maret & Jacques Guyot
-page générée Fri Jun 21 15:40:26 MET DST 1996
