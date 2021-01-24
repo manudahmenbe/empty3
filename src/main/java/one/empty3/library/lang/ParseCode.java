@@ -17,14 +17,16 @@ public class ParseCode {
         Token t = new Token();
         return true;
     }
-    public void removeComments(String brut) {
+    int i=0;
+    String brut;
+    public void removeComments() {
         StringBuilder sb = new StringBuilder();
                 // Caractère par caractère
         int comm = 0;
         // Si /* sauter jusqu'à */
         // Si // sauter jusqu'à ¶
       
-        for(int i=0; i<brut.length; i++) {
+        for( i=0; i<brut.length; i++) {
             if(comm==0 && brut.charAt(i)=='"') {
                 comm =3; i++;
             }
@@ -62,12 +64,35 @@ public class ParseCode {
                && brut.charAt(i+1)=='/') {
                 comm = 0; i+=2;
             }
-            if(comm==0)
+           
+            if(comm==0) {
+                parseSpace(brut, i);
+                parseSpecialChar(brut, i);
+                parseKeyword(brut, i);
+                parseName(brut, i);
+                parseLiteral(brut, i);
                 sb.append(brut.charAt(i));
             i++;
+            }
         }
             
     }
+
+     public boolean parseSpace(brut, i) {
+         return false;
+     }
+     public boolean parseSpecialChar(brut, i){
+         return false
+     }
+     public boolean parseKeyword(brut, i){
+         return false
+     }
+     public boolean parseName(brut, i){
+         return false
+     }
+     public boolean parseLiteral(brut, i){
+         return false
+     }
     public void block() {
     }
     public void tree() {
