@@ -105,7 +105,6 @@ public class ParseCode {
                return i+j;
          }
          return i;
-       }
      }
     
      public int parseName(){
