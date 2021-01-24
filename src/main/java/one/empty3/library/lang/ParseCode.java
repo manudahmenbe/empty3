@@ -104,7 +104,7 @@ public class ParseCode {
     public boolean isWhitespace(String uncomm,
                                 int pos) {
         char a = uncomm.charAt(pos);
-        if(a==' '||a=='\n'||a=='\t'||a--'\r') {
+        if(a==' '||a=='\n'||a=='\t'||a=='\r') {
             i++;
             return true;
         }
