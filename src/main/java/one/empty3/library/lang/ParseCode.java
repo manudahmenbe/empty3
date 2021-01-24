@@ -84,16 +84,16 @@ public class ParseCode {
          return false;
      }
      public boolean parseSpecialChar(){
-         return false
+         return false;
      }
      public boolean parseKeyword(){
-         return false
+         return false;
      }
      public boolean parseName(){
-         return false
+         return false;
      }
      public boolean parseLiteral(){
-         return false
+         return false;
      }
     public void block() {
     }
