@@ -16,7 +16,24 @@ public class ParseCode {
         int comm = 0;
         // Si /* sauter jusqu'à */
         // Si // sauter jusqu'à ¶
+      
         for(int i=0; i<brut.length; i++) {
+            if(comm==0 && brut.charAt(i)=='"') {
+                comm =3; i++;
+            }
+            if(comm=3 && brut.charAt(i)=='"') {
+                comm = 0; i++;
+            if(comm==3 &&brut.charAt(i)=='\\') {
+                i+=2;
+           }
+           if(comm=0 && brut.charAt(i)==''') {
+                comm =4; i++;
+            }
+            if(comm==4 && brut.charAt(i)==''') {
+                comm = 0; i++;
+            if(comm==4 &&brut.charAt(i)=='\\') {
+                i+=2;
+           }
             if(comm==0 && brut.charAt(i)=='/'
                && i<brut.length-1
                && brut.charAt(i+1)=='*')
