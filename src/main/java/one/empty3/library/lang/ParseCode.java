@@ -90,6 +90,7 @@ public class ParseCode {
      public boolean parseKeyword(){
          return false;
      }
+    
      public boolean parseName(){
          char a = uncomm.charAt(i);
          int j=0;
@@ -105,10 +106,32 @@ public class ParseCode {
                                 int pos) {
         char a = uncomm.charAt(pos);
         if(a==' '||a=='\n'||a=='\t'||a=='\r') {
-            i++;
+            i=i+j;
             return true;
         }
         return false;
+    }
+    public int nextWhitespace(String uncomm,
+                                int pos) {
+        boolean b = false;
+        do {
+            char a = uncomm.charAt(pos);
+            if(a==' '||a=='\n'||a=='\t'||a=='\r') {
+                pos++;
+                b = true;
+            }
+        } while(!b && pos<uncomm.length());
+        return pos;
+    }
+    public int nextChar(String uncomm,
+                                int pos) {
+        
+            char a = uncomm.charAt(pos);
+            while((a==' '||a=='\n'||a=='\t'||a=='\r')) {
+                pos++;
+            }
+        } 
+        return pos;
     }
      public boolean parseLiteral(){
          return false;
