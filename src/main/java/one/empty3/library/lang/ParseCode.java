@@ -106,7 +106,7 @@ public class ParseCode {
                                 int pos) {
         char a = uncomm.charAt(pos);
         if(a==' '||a=='\n'||a=='\t'||a=='\r') {
-            i=i+j;
+            i=i+pos;
             return true;
         }
         return false;
