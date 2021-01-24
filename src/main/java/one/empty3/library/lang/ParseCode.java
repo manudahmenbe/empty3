@@ -4,7 +4,7 @@ public class ParseCode {
     public enum TokenType {Name, Keyword, StringLiteral,
        FloatLiteral, DoubleLiteral, CharLiteral, Comment, JavadocComment
        };
-    String[] tokenType = new String [] {
+    String[] keywords = new String [] {
        ""
     };
     String code;
@@ -87,11 +87,21 @@ public class ParseCode {
      public boolean parseSpecialChar(){
          return false;
      }
-     public boolean parseKeyword(){
-         return false;
+     public int parseKeyword(){
+         char a = uncomm.charAt(i);
+         int j=0;
+         while(Character.isLetter(a)) {
+             j++;
+             a = uncomm.charAt(i+j);
+         }
+         String k =uncomm.substring(i, i+j);
+         if(k.length()>0&&keywords.contains(k))
+             return i+j;
+         else return i;
+      
      }
     
-     public boolean parseName(){
+     public int parseName(){
          char a = uncomm.charAt(i);
          int j=0;
          while(Character.isLetter(a)||(j>0
@@ -100,7 +110,7 @@ public class ParseCode {
              j++;
              a = uncomm.charAt(i+j);
          }
-         return isWhitespace(uncomm, i+j);
+         return i+j;
      }
     public boolean isWhitespace(String uncomm,
                                 int pos) {
