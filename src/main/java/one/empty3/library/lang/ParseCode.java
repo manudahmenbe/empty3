@@ -119,14 +119,13 @@ public class ParseCode {
          }
          return i+j;
      }
-    public boolean isWhitespace(String uncomm,
+public boolean isSpecialChar(String uncomm,
                                 int pos) {
         char a = uncomm.charAt(pos);
-        if(a==' '||a=='\n'||a=='\t'||a=='\r') {
-            i=i+pos;
-            return true;
-        }
-        return false;
+    public boolean isWhitespace(String uncomm,
+                                int pos) {
+        return special.contains(uncomm.charAt(pos));
+        
     }
     public int nextWhitespace(String uncomm,
                                 int pos) {
