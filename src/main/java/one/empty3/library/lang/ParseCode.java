@@ -130,7 +130,7 @@ public class ParseCode {
             while((a==' '||a=='\n'||a=='\t'||a=='\r')) {
                 pos++;
             }
-        } 
+        
         return pos;
     }
      public boolean parseLiteral(){
