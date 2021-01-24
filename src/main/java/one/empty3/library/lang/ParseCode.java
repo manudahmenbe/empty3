@@ -1,5 +1,6 @@
 package one.empty3.library.lang;
 
+import java.util.*;
 public class ParseCode {
     public enum TokenType {Name, Keyword, StringLiteral,
        FloatLiteral, DoubleLiteral, CharLiteral, Comment, JavadocComment
