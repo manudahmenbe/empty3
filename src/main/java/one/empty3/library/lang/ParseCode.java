@@ -19,6 +19,7 @@ public class ParseCode {
     }
     int i=0;
     String brut;
+    String uncomm;
     public void removeComments() {
         StringBuilder sb = new StringBuilder();
                 // Caractère par caractère
