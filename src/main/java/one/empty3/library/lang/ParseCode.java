@@ -66,11 +66,11 @@ public class ParseCode {
             }
            
             if(comm==0) {
-                parseSpace(brut, i);
-                parseSpecialChar(brut, i);
-                parseKeyword(brut, i);
-                parseName(brut, i);
-                parseLiteral(brut, i);
+                parseSpace();
+                parseSpecialChar();
+                parseKeyword();
+                parseName();
+                parseLiteral();
                 sb.append(brut.charAt(i));
             i++;
             }
@@ -78,19 +78,19 @@ public class ParseCode {
             
     }
 
-     public boolean parseSpace(brut, i) {
+     public boolean parseSpace() {
          return false;
      }
-     public boolean parseSpecialChar(brut, i){
+     public boolean parseSpecialChar(){
          return false
      }
-     public boolean parseKeyword(brut, i){
+     public boolean parseKeyword(){
          return false
      }
-     public boolean parseName(brut, i){
+     public boolean parseName(){
          return false
      }
-     public boolean parseLiteral(brut, i){
+     public boolean parseLiteral(){
          return false
      }
     public void block() {
