@@ -120,7 +120,7 @@ public class ParseCode {
      }
 public boolean isSpecialChar(String uncomm,
                                 int pos) {
-        return special.contains(uncomm.charAt(pos));
+        return special.indexOf(uncomm.charAt(pos))>=0;
 
     }
     public boolean isWhitespace(String uncomm,
