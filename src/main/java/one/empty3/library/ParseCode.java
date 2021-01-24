@@ -13,6 +13,10 @@ public class ParseCode {
         tree = new Tree();
         // separer en tokens typés
     }
+    public boolean addToken() {
+        Token t = new Token();
+        return true;
+    }
     public void removeComments(String brut) {
         StringBuilder sb = new StringBuilder();
                 // Caractère par caractère
@@ -29,12 +33,12 @@ public class ParseCode {
             if(comm==3 &&brut.charAt(i)=='\\') {
                 i+=2;
            }
-           if(comm=0 && brut.charAt(i)==''') {
+           if(comm=0 && brut.charAt(i)=='\'') {
                 comm =4; i++;
-            }
-            if(comm==4 && brut.charAt(i)==''') {
+           }
+           if(comm==4 && brut.charAt(i)=='\'') {
                 comm = 0; i++;
-            if(comm==4 &&brut.charAt(i)=='\\') {
+           if(comm==4 &&brut.charAt(i)=='\\') {
                 i+=2;
            }
             if(comm==0 && brut.charAt(i)=='/'
