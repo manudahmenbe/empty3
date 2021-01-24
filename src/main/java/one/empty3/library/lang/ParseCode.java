@@ -121,12 +121,12 @@ public class ParseCode {
      }
 public boolean isSpecialChar(String uncomm,
                                 int pos) {
-        char a = uncomm.charAt(pos);
+        return special.contains(uncomm.charAt(pos));
+
+    }
     public boolean isWhitespace(String uncomm,
                                 int pos) {
-        return special.contains(uncomm.charAt(pos));
-        
-    }
+        }
     public int nextWhitespace(String uncomm,
                                 int pos) {
         boolean b = false;
