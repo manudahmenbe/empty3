@@ -96,13 +96,16 @@ public class ParseCode {
              j++;
              a = uncomm.charAt(i+j);
          }
-         List<String> list = Arrays.asList(keywords);
+         if(isSpecialChar(uncomm, i+j)||
+               isWhitespace(uncomm, i+j)) {
+           List<String> list = Arrays.asList(keywords);
         
-         String k =uncomm.substring(i, i+j);
-         if(k.length()>0&&list.contains(k))
-             return i+j;
-         else return i;
-      
+           String k =uncomm.substring(i, i+j);
+           if(k.length()>0&&list.contains(k))
+               return i+j;
+         }
+         return i;
+       }
      }
     
      public int parseName(){
