@@ -4,7 +4,7 @@ public class ParseCode {
     public enum TokenType {Name, Keyword, StringLiteral,
        FloatLiteral, DoubleLiteral, CharLiteral, Comment, JavadocComment
        };
-    String tokenType = new String [] {
+    String[] tokenType = new String [] {
        ""
     };
     String code;
@@ -46,11 +46,11 @@ public class ParseCode {
                 i+=2;
            }
             if(comm==0 && brut.charAt(i)=='/'
-               && i<brut.length-1
+               && i<brut.length()-1
                && brut.charAt(i+1)=='*')
                 comm = 1;
             if(comm==0 && brut.charAt(i)=='/'
-               && i<brut.length-1
+               && i<brut.length()-1
                && brut.charAt(i+1)=='/') {
     
                 comm = 2;
