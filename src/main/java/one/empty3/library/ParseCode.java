@@ -1,10 +1,10 @@
 package one.empty3.library;
-
+import one.empty3.library.lang.*;
 public class ParseCode {
     String code;
-    //Tree tree;
+    Tree tree;
     public ParseCode() {
-        //tree = new Tree();
+        tree = new Tree();
     }
     public void removeComments() {
     }
