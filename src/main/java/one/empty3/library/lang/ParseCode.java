@@ -5,6 +5,7 @@ public class ParseCode {
     public enum TokenType {Name, Keyword, StringLiteral,
        FloatLiteral, DoubleLiteral, CharLiteral, Comment, JavadocComment
        };
+    String special = "!%*&()+\\|/[]{}<>:,;?'\"";
     String[] keywords = new String [] {
        ""
     };
