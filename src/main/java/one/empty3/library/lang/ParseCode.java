@@ -126,7 +126,14 @@ public boolean isSpecialChar(String uncomm,
     }
     public boolean isWhitespace(String uncomm,
                                 int pos) {
+       char a = uncomm.charAt(pos);
+        if(a==' '||a=='\n'||a=='\t'||a=='\r') {
+           // i=i+j;
+          //  i=i+pos;
+            return true;
         }
+        return false;
+    }
     public int nextWhitespace(String uncomm,
                                 int pos) {
         boolean b = false;
