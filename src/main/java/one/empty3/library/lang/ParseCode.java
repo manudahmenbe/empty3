@@ -90,8 +90,25 @@ public class ParseCode {
          return false;
      }
      public boolean parseName(){
-         return false;
+         char a = uncomm.charAt(i);
+         int j=0;
+         while(Character.isLetter(a)||(j>0
+                     &&(Character.isLetter(a)||
+                      a=='_'))) {
+             j++;
+             a = uncomm.charAt(i+j);
+         }
+         return isWhitespace(uncomm, i+j);
      }
+    public boolean isWhitespace(String uncomm,
+                                int pos) {
+        char a = uncomm.charAt(pos);
+        if(a==' '||a=='\n'||a=='\t'||a--'\r') {
+            i++;
+            return true;
+        }
+        return false;
+    }
      public boolean parseLiteral(){
          return false;
      }
