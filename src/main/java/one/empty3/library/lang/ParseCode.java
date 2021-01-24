@@ -41,6 +41,7 @@ public class ParseCode {
            }
            if(comm==4 && brut.charAt(i)=='\'') {
                 comm = 0; i++;
+           }
            if(comm==4 &&brut.charAt(i)=='\\') {
                 i+=2;
            }
