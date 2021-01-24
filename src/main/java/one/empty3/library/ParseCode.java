@@ -42,7 +42,6 @@ public class ParseCode {
                 sb.append(brut.charAt(i));
             i++;
         }
-}
             
     }
     public void block() {
