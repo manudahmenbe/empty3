@@ -5,13 +5,15 @@ import java.util.*;
 
 public class Node {
 
-    Node parent;
-    List<Node> children = new ArrayList();
-
     public static final int declaration = 1;
     public static final int instruction = 2;
     public static final int assignement = 4:
+
+    int dec;
+    Node parent;
+    List<Node> children = new ArrayList();
     TokenType tt;
+
     public enum TokenType {Name, Keyword,  Comment, JavadocComment
         Literal};
     public enum Literal {StringLiteral,
