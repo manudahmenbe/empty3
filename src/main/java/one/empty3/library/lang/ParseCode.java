@@ -176,4 +176,7 @@ public boolean isSpecialChar(String uncomm,
     }
     public void result() {
     }
+
+    public static void main(String [] args) {
+    }
 }
