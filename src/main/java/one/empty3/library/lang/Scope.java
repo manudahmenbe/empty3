@@ -1,6 +1,8 @@
 package one.empty3.library.lang;
 
+import java.util.*;
 public class Scope {
+    
     public static final int declaration = 1;
     public static final int instruction = 2;
     public static final int assignement = 4;
