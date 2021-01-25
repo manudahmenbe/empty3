@@ -7,5 +7,6 @@ public class Tree {
     }
 
     public boolean add(Token token) {
+        return false;
     }
 }
