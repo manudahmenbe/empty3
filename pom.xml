@@ -10,7 +10,7 @@
 
     <groupId>one.empty3</groupId>
     <artifactId>empty3-library-3d</artifactId>
-    <version>2021.1.3-SNAPSHOT</version><!-- -SNAPSHOT-->
+    <version>2021.1.4-SNAPSHOT</version><!-- -SNAPSHOT-->
     <description>3D rendering engine. Plus modelling. expected glsl textures 3d and 2d rendering</description>
     <packaging>jar</packaging>
     <url>https://github.com/manuelddahmen/empty3</url>
@@ -54,8 +54,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>14</maven.compiler.source>
-        <maven.compiler.target>14</maven.compiler.target>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
     </properties>
 
     <build>
