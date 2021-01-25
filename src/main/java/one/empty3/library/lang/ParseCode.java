@@ -111,12 +111,17 @@ public class ParseCode {
          char a = uncomm.charAt(i);
          int j=0;
          while(Character.isLetter(a)||(j>0
-                     &&(Character.isLetter(a)||
+                     &&(Character.isLetterOrDigit(a)||
                       a=='_'))) {
              j++;
              a = uncomm.charAt(i+j);
          }
-         return i+j;
+         List<String> list = Arrays.asList(keywords);
+        
+           String k =uncomm.substring(i, i+j);
+           if(k.length()>0&&!list.contains(k))
+               return i+j;
+         return i;
      }
 public boolean isSpecialChar(String uncomm,
                                 int pos) {
