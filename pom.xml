@@ -54,8 +54,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>15</maven.compiler.source>
-        <maven.compiler.target>15</maven.compiler.target>
+        <maven.compiler.source>14</maven.compiler.source>
+        <maven.compiler.target>14</maven.compiler.target>
     </properties>
 
     <build>
@@ -110,8 +110,8 @@
                 <version>3.6.2</version>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
-                    <source>15</source>
-                    <target>15</target>
+                    <source>14</source>
+                    <target>14</target>
                 </configuration>
 
             </plugin>
