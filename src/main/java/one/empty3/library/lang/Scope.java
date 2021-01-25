@@ -3,7 +3,7 @@ package one.empty3.library.lang;
 public class Scope {
     public static final int declaration = 1;
     public static final int instruction = 2;
-    public static final int assignement = 4:
+    public static final int assignement = 4;
 
     public enum TokenType {Name, Keyword,  Comment, JavadocComment
        };
