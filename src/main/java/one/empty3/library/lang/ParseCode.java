@@ -2,6 +2,7 @@ package one.empty3.library.lang;
 
 import java.util.*;
 public class ParseCode {
+    List<Node> nodes = new ArrayList(); 
     String special = "!%*&()+\\|/[]{}<>:,;?'\"";
     String[] keywords = new String [] {
        ""
