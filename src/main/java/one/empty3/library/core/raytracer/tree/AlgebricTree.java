@@ -50,7 +50,7 @@ public class AlgebricTree extends Tree {
     Map<String, Double> parametersValues = new HashMap<>();
     private Tree t;
     private TreeNode root;
-    private List<Classes.Objet> classes;
+    private List<Objet> classes;
     public AlgebricTree(String formula) throws AlgebraicFormulaSyntaxException {
         this.formula = formula;
     }
