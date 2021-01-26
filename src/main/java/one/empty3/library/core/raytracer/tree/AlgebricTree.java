@@ -37,6 +37,8 @@ import one.empty3.library.core.raytracer.tree.functions.MathFunctionTreeNodeType
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+
 
 import one.empty3.library.lang.*;
 /*__
