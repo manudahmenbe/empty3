@@ -429,6 +429,8 @@ fParamString, parametersValues
      * examples
      * a = new Point(0.0, y/this.getResY());
      * b.x >= p.plus(p2.mult(3.0).add(p3)).getY();
+     
+     * ajouter {; , .}
      */
     
     public boolean addMethodCall(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
