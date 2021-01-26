@@ -1,6 +1,7 @@
 package one.empty3.library.lang;
 public class Classes {
-  private static Objet classes;
+  private static List<Objet> classes;
+  private 
   class Objet {
       Class clazz;
       Object instance;
