@@ -421,6 +421,60 @@ fParamString, parametersValues
         return t.getChildren().size() > 0;
     }
 
+    /***
+     * add method calls
+     * examples
+     * a = new Point(0.0, y/this.getResY());
+     * b.x >= p.plus(p2.mult(3.0).add(p3)).getY();
+     */
+    
+    public boolean addMethodCall(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
+        int i = 1;
+        boolean isNewFactor = false;
+        int count = 0;
+        int newFactorPos = 0;
+        int oldFactorPos = 0;
+        char newFactor = 0;
+        int countLetters = 0;
+
+        while (i < values.length()) {
+            if (Character.isLetter(values.charAt(0)) && Character.isLetterOrDigit(values.charAt(i)) && count == 0) {
+                countLetters++;
+            } else if (values.charAt(i) == '(') {
+                if (count == 0) {
+                    newFactorPos = i + 1;
+                }
+                count++;
+            } else if (values.charAt(i) == ')') {
+                count--;
+            }
+
+
+            if ( count == 0 && values.charAt(i) == ')') {
+
+
+                String fName = values.substring(oldFactorPos, newFactorPos - 1);
+                String fParamString = values.substring(newFactorPos, i);
+
+
+                MathFunctionTreeNodeType mathFunctionTreeNodeType = new MathFunctionTreeNodeType(
+fParamString, parametersValues
+);
+
+                TreeNode t2 = new TreeNode(t, new Object[]{fName}, mathFunctionTreeNodeType);
+                add(t2, fParamString);
+
+                t.getChildren().add(t2);
+
+            }
+
+
+            i++;
+
+        }
+
+        return t.getChildren().size() > 0;
+    }
     public boolean addBracedExpression(TreeNode t, String values) throws AlgebraicFormulaSyntaxException {
         int i = 1;
         int count = 0;
