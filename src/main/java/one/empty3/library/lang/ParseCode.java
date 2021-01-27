@@ -94,7 +94,7 @@ public class ParseCode {
                 
                 //sb.append(brut.charAt(i));
                 
-                
+                }
                 
                 
                 
@@ -114,11 +114,11 @@ public class ParseCode {
                 b = true;
             }
         } while(!b && i<uncomm.length());
-         if(b) {
+        if(b) {
              tokens.add(new Token("space", 
                      uncomm.substring(i, pos)));
              i = pos;
-         }
+        }
         return i;
      }
      public boolean parseSpecialChar(){
@@ -152,7 +152,7 @@ public class ParseCode {
          return i;
      }
     
-     public int parseName(){
+     public boolean parseName(){
          char a = uncomm.charAt(i);
          int j=0;
          while(Character.isLetter(a)||(j>0
@@ -167,9 +167,10 @@ public class ParseCode {
            if(k.length()>0&&!list.contains(k)) {
                tokens.add(new Token("name",
                                    k));
-               return i+j;
+               i=i+j;
+               return true;
            }
-         return i;
+         return false;
      }
 public boolean isSpecialChar(String uncomm,
                                 int pos) {
