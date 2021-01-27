@@ -11,6 +11,7 @@ public class ParseCode {
     Tree tree;
     public ParseCode() {
         tree = new Tree();
+        removeComments();
         // separer en tokens typés
     }
     public boolean addToken() {
@@ -209,7 +210,19 @@ public boolean isSpecialChar(String uncomm,
         return pos;
     }
      public boolean parseLiteral(){
-         //tokens.add(new Token("float|double|string|int|char|boolean|long",
+         int pos=i;
+         // bool
+         if(uncomm.substring(i, i+"false".length).equals("false"))
+             tokens.add(new Token("boolean:false", 
+                  uncomm.substring(i, i+"false".length));
+       
+          if(uncomm.substring(i, i+"true".length).equals("true"))
+             tokens.add(new Token("boolean:true", 
+                  uncomm.substring(i, i+"true".length));
+          
+          
+                        
+                        //tokens.add(new Token("float|double|string|int|char|boolean|long",
                                   // k));
          return false;
      }
