@@ -14,10 +14,11 @@ public class ParseCode {
         //removeComments();
         // separer en tokens typés
     }
-    public boolean addToken() {
+    /* public boolean addToken() {
         Token t = new Token();
         return true;
     }
+    */
     int i=0;
     String brut;
     String uncomm;
@@ -115,11 +116,12 @@ public class ParseCode {
             }
         } while(!b && i<uncomm.length());
         if(b) {
-             tokens.add(new Token("space", 
+            tokens.add(new Token("space", 
                      uncomm.substring(i, pos)));
-             i = pos;
+            pos = i;
+            return true
         }
-        return i;
+        return false;
      }
      public boolean parseSpecialChar(){
          boolean b = false;
