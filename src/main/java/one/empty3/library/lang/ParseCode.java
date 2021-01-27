@@ -82,9 +82,31 @@ public class ParseCode {
     }
 
      public boolean parseSpace() {
-         return false;
+         int pos = i;
+         boolean b = false;
+        do {
+            char a = uncomm.charAt(pos);
+            if(a==' '||a=='\n'||a=='\t'||a=='\r') {
+                pos++;
+                b = true;
+            }
+        } while(!b && i<uncomm.length());
+         if(b) {
+             tokens.add(new Token("space", 
+                     uncomm.substring(i, pos)));
+             i = pos;
+         }
+        return i;
      }
      public boolean parseSpecialChar(){
+         boolean b = false;
+         while(isSpecialChar(uncomm, i)) {
+             char special = uncomm.charAt(i);
+             i++;
+             b = true;
+         }
+         if(b)
+             return true;
          return false;
      }
      public int parseKeyword(){
@@ -119,8 +141,11 @@ public class ParseCode {
          List<String> list = Arrays.asList(keywords);
         
            String k =uncomm.substring(i, i+j);
-           if(k.length()>0&&!list.contains(k))
+           if(k.length()>0&&!list.contains(k)) {
+               tokens.add(new Token("name",
+                                   k));
                return i+j;
+           }
          return i;
      }
 public boolean isSpecialChar(String uncomm,
@@ -134,6 +159,7 @@ public boolean isSpecialChar(String uncomm,
         if(a==' '||a=='\n'||a=='\t'||a=='\r') {
            // i=i+j;
           //  i=i+pos;
+           
             return true;
         }
         return false;
@@ -161,6 +187,8 @@ public boolean isSpecialChar(String uncomm,
         return pos;
     }
      public boolean parseLiteral(){
+         //tokens.add(new Token("float|double|string|int|char|boolean|long",
+                                  // k));
          return false;
      }
     public void block() {
