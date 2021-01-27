@@ -3,7 +3,7 @@ import java.util.*;
 public class ParseCode {
     List<> tokens = new ArrayList();
     List<Node> nodes = new ArrayList(); 
-    String special = "!%*&()+\\|/[]{}<>:,;?'\"";
+    String special = "!%*&()+\\|/[]{}<>=:,;?'\"";
     String[] keywords = new String [] {
        ""
     };
