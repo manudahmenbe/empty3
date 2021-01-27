@@ -20,6 +20,7 @@ public class ParseCode {
     int i=0;
     String brut;
     String uncomm;
+    int start, end;
     public void removeComments() {
         StringBuilder sb = new StringBuilder();
                 // Caractère par caractère
@@ -67,12 +68,22 @@ public class ParseCode {
                && brut.charAt(i+1)=='/') {
                 comm = 0; i+=2;
             }
+            
+            if(comm>0)
+
+                end++;
+
+            if(comm==0) {
+
+                start = i;
+                end = i;
+            }
             if(comm==0) {
             
             
-            
-            String forbidden = "\"\'\n\r/";
-            
+           // String forbidden = "\"\'\n\r/";
+                uncomm = brut.substring
+                    (start, end);
                 parseSpace();
                 parseSpecialChar();
                 parseKeyword();
