@@ -119,7 +119,7 @@ public class ParseCode {
             tokens.add(new Token("space", 
                      uncomm.substring(i, pos)));
             pos = i;
-            return true
+            return true;
         }
         return false;
      }
