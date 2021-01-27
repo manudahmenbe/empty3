@@ -215,11 +215,11 @@ public boolean isSpecialChar(String uncomm,
          // bool
          if(uncomm.substring(i, i+"false".length).equals("false"))
              tokens.add(new Token("boolean:false", 
-                  uncomm.substring(i, i+"false".length));
+                  uncomm.substring(i, i+"false".length)));
        
           if(uncomm.substring(i, i+"true".length).equals("true"))
              tokens.add(new Token("boolean:true", 
-                  uncomm.substring(i, i+"true".length));
+                  uncomm.substring(i, i+"true".length)));
           
           
                         
