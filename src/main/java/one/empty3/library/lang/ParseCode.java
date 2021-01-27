@@ -84,14 +84,20 @@ public class ParseCode {
            // String forbidden = "\"\'\n\r/";
                 uncomm = brut.substring
                     (start, end);
-                parseSpace();
-                parseSpecialChar();
-                parseKeyword();
-                parseName();
+                parseSpace()||
+                parseSpecialChar()||
+                parseKeyword()||
+                parseName()||
                 parseLiteral();
-                sb.append(brut.charAt(i));
-                i++;
-        }
+                
+                
+                //sb.append(brut.charAt(i));
+                
+                
+                
+                
+                
+        i++;
        }
         
             
