@@ -67,8 +67,12 @@ public class ParseCode {
                && brut.charAt(i+1)=='/') {
                 comm = 0; i+=2;
             }
-           
             if(comm==0) {
+            
+            
+            
+            String forbidden = "\"\'\n\r/";
+            
                 parseSpace();
                 parseSpecialChar();
                 parseKeyword();
@@ -76,8 +80,9 @@ public class ParseCode {
                 parseLiteral();
                 sb.append(brut.charAt(i));
                 i++;
-            }
         }
+       }
+        
             
     }
 
