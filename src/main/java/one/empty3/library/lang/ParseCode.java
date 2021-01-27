@@ -1,7 +1,7 @@
 package one.empty3.library.lang;
 import java.util.*;
 public class ParseCode {
-    List<> tokens = new ArrayList();
+    List<Token> tokens = new ArrayList();
     List<Node> nodes = new ArrayList(); 
     String special = "!%*&()+\\|/[]{}<>=:,;?'\"";
     String[] keywords = new String [] {
