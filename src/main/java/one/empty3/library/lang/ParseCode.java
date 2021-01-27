@@ -11,7 +11,7 @@ public class ParseCode {
     Tree tree;
     public ParseCode() {
         tree = new Tree();
-        removeComments();
+        //removeComments();
         // separer en tokens typés
     }
     public boolean addToken() {
@@ -132,7 +132,7 @@ public class ParseCode {
              return true;
          return false;
      }
-     public int parseKeyword(){
+     public boolean parseKeyword(){
          char a = uncomm.charAt(i);
          int j=0;
          while(Character.isLetter(a)) {
@@ -147,9 +147,9 @@ public class ParseCode {
            if(k.length()>0&&list.contains(k))
                tokens.add(new Token("keyword",
                                    k));
-               return i+j;
+               return true;
          }
-         return i;
+         return false;
      }
     
      public boolean parseName(){
