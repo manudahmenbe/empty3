@@ -85,7 +85,7 @@ public class ParseCode {
            // String forbidden = "\"\'\n\r/";
                 uncomm = brut.substring
                     (start, end);
-                parseSpace()||
+                boolean passed = parseSpace()||
                 parseSpecialChar()||
                 parseKeyword()||
                 parseName()||
@@ -213,15 +213,17 @@ public boolean isSpecialChar(String uncomm,
      public boolean parseLiteral(){
          int pos=i;
          // bool
-         if(uncomm.substring(i, i+"false".length).equals("false"))
+         if(uncomm.substring(i, i+"false".length).equals("false")) {
              tokens.add(new Token("boolean:false", 
                   uncomm.substring(i, i+"false".length)));
        
-          if(uncomm.substring(i, i+"true".length).equals("true"))
+             return true;
+         }
+          if(uncomm.substring(i, i+"true".length).equals("true")) {
              tokens.add(new Token("boolean:true", 
                   uncomm.substring(i, i+"true".length)));
-          
-          
+             return true;
+          }
                         
                         //tokens.add(new Token("float|double|string|int|char|boolean|long",
                                   // k));
