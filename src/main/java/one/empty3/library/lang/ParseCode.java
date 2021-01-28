@@ -72,7 +72,7 @@ public class ParseCode {
                 comm = 0; i+=2;
             }
             
-            for(int brace=0; brace<braces.length/2; brace++) {
+            for(int brace=0; brace<braces.length()/2; brace++) {
                 if(braces.charAt(brace*2)==brut.charAt(i)) {
                     //! lastBrace 
                     comm = comm+(brace+1)*5;
