@@ -8,6 +8,7 @@ public class ParseCode {
        ""
     };
     String braces = "[](){}";
+    String bracesCurrentQueue="";
     String code;
     Tree tree;
     public ParseCode() {
@@ -75,11 +76,20 @@ public class ParseCode {
             for(int brace=0; brace<braces.length()/2; brace++) {
                 if(braces.charAt(brace*2)==brut.charAt(i)) {
                     //! lastBrace 
-                    comm = comm+(brace+1)*5;
+                    bracesCurrentQueue
+                        = bracesCurrentQueue + brut.charAt(i);
                 }
-                if(braces.charAt(brace*2)==brut.charAt(i)) {
+                if(braces.charAt(brace*2+1)==brut.charAt(i)) {
                     //! lastBrace
-                    comm = comm-(brace+1)*5;
+                    if( bracesCurrentQueue.length()<=1) {
+                        bracesCurrentQueue
+                            = "";
+                    else {
+                        bracesCurrentQueue
+                            = bracesCurrentQueue.substring
+                            (0, bracesCurrentQueue.length()-1);
+                    }
+               
                 }
             }
             
