@@ -84,6 +84,7 @@ public class ParseCode {
                     if( bracesCurrentQueue.length()<=1) {
                         bracesCurrentQueue
                             = "";
+                    }
                     else {
                         bracesCurrentQueue
                             = bracesCurrentQueue.substring
