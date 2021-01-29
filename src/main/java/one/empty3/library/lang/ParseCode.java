@@ -72,7 +72,7 @@ public class ParseCode {
                && brut.charAt(i+1)=='/') {
                 comm = 0; i+=2;
             }
-            ifcomm==0)
+            if(comm==0)
               for(int brace=0; brace<braces.length()/2; brace++) {
                 if(braces.charAt(brace*2)==brut.charAt(i)) {
                     //! lastBrace 
