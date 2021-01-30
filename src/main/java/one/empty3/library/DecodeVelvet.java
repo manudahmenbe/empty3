@@ -29,7 +29,7 @@ public class DecodeVelvet extends VideoDecoder {
 	init();
 
    }
-   public void init() {
+   public void run() {
 	IVelvetVideoLib lib = VelvetVideoLib().getInstance();
 	try (IDemuxer demuxer = lib.demuxer(new File(file))) {
 	    IDecoderVideoStream videoStream = demuxer.videoStream(0);
