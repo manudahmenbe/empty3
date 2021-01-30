@@ -26,6 +26,7 @@ public class DecodeVelvet extends VideoDecoder {
 */
     public VideoDecoder(File file, TextureMov refTextureMov) {
         super(file, refTextureMov);
+	init();
 
    }
    public void init() {
