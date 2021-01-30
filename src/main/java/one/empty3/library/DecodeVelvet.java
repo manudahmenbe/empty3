@@ -35,7 +35,8 @@ public class DecodeVelvet extends VideoDecoder {
 	    IFrame videoFrame;
 	    while ((videoFrame = videoStream.nextFrame()) != null) {
 	   	    BufferedImage image = videoFrame.image();
-	   	    // Use image as needed...
+	   	    imgBuf. add(new ECBufferedImage(image) );
+
 	    }
 	}      
     }
