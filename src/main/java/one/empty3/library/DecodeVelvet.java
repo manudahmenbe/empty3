@@ -39,7 +39,7 @@ public class DecodeVelvet extends VideoDecoder {
 	   	    imgBuf. add(new ECBufferedImage(image) );
                     while(imgBuf.size()>4/*MAX_SIZE*/)
 		    try {
-			    Thread.sleep();20
+			    Thread.sleep(200);
 	            } catch(Exception ex) {
 	            }
 			  
