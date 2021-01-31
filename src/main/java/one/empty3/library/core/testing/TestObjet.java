@@ -995,7 +995,6 @@ public abstract class TestObjet implements Test, Runnable {
                 }
 
             }
-            frame++;
 
         }
 
