@@ -448,12 +448,5 @@
     <artifactId>velvet-video</artifactId>
     <version>0.5.1</version>
 </dependency>
-
-<dependency>
-  <groupId>com.github.zakgof</groupId>
-  <artifactId>velvet-video-natives</artifactId>
-  <version>0.5.1</version>
-  <type>pom</type>
-</dependency>
     </dependencies>
 </project>
