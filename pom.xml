@@ -93,8 +93,8 @@
                     <forkMode>once</forkMode>
                     <argLine>-Xms2000m -Xmx2000m</argLine>
           <additionalClasspathElements>
-            <additionalClasspathElement>path/to/additional/resources</additionalClasspathElement>
-            <additionalClasspathElement>path/to/additional/jar</additionalClasspathElement>
+           
+            <additionalClasspathElement>.velvet-video-native/velvet-video-native-0.0.1-full.jar</additionalClasspathElement>
           </additionalClasspathElements>
                 </configuration>
             </plugin>
