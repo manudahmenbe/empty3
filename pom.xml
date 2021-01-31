@@ -92,6 +92,10 @@
                     <skipTests>false</skipTests>
                     <forkMode>once</forkMode>
                     <argLine>-Xms2000m -Xmx2000m</argLine>
+          <additionalClasspathElements>
+            <additionalClasspathElement>path/to/additional/resources</additionalClasspathElement>
+            <additionalClasspathElement>path/to/additional/jar</additionalClasspathElement>
+          </additionalClasspathElements>
                 </configuration>
             </plugin>
             <plugin>
