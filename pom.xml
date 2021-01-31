@@ -143,6 +143,10 @@
                         <argument>-Xms4000m</argument>
                         <argument>-Xmx4000m</argument>
                     </arguments>
+<additionalClasspathElements>
+           
+            <additionalClasspathElement>.velvet-video-native/velvet-video-native-0.0.1.full.jar</additionalClasspathElement>
+          </additionalClasspathElements>
                 </configuration>
             </plugin>
 
