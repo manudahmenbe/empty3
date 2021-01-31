@@ -94,7 +94,7 @@
                     <argLine>-Xms2000m -Xmx2000m</argLine>
           <additionalClasspathElements>
            
-            <additionalClasspathElement>.velvet-video-natives/velvet-video-native-0.5.1-SNAPSHOT.jar</additionalClasspathElement>
+            <additionalClasspathElement>.velvet-video-natives/velvet-video-native-0.1.0.jar</additionalClasspathElement>
           </additionalClasspathElements>
                 </configuration>
             </plugin>
