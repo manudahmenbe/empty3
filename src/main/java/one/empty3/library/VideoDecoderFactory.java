@@ -9,7 +9,7 @@ public class VideoDecoderFactory {
      */
      public static VideoDecoder createInstance(File f, TextureMov m)
       {
-          VideoDecoder decode = new DecodeAndCaptureFramesXuggle(f, m);
+          VideoDecoder decode = new DecodeVelvet(f, m);
           decode.start();
           return decode;
       }
