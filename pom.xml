@@ -290,7 +290,7 @@
         <repository>
             <id>mvn-r</id>
             <name>mvn r</name>
-            <url>http://mvnrepository.com/maven</url>
+            <url>http://mvnrepository.com</url>
         </repository>
         <repository>
             <id>spring io</id>
