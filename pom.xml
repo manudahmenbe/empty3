@@ -305,8 +305,8 @@
             <url>http://bits.netbeans.org/maven2/</url>
         </repository>
 <repository>
-        <id>dcm4che repository</id>
-        <url>http://www.dcm4che.org/maven2/</url>
+        <id>jcentre bintray</id>
+        <url>https://jcenter.bintray.com/</url>
     </repository>
 
     </repositories>
