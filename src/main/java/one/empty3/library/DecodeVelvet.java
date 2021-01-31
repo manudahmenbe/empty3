@@ -24,7 +24,7 @@ public class DecodeVelvet extends VideoDecoder {
 * @param file video to draw on surface
 * @param refTextureMov texture to apply
 */
-    public VideoDecoder(File file, TextureMov refTextureMov) {
+    public DecodeVelvet(File file, TextureMov refTextureMov) {
         super(file, refTextureMov);
 	init();
 
@@ -37,7 +37,12 @@ public class DecodeVelvet extends VideoDecoder {
 	    while ((videoFrame = videoStream.nextFrame()) != null) {
 	   	    BufferedImage image = videoFrame.image();
 	   	    imgBuf. add(new ECBufferedImage(image) );
-
+                    while(imgBuf.size()>4/*MAX_SIZE*/)
+		    try {
+			    Thread.sleep();20
+	            } catch(Exception ex) {
+	            }
+			  
 	    }
 	}      
     }
