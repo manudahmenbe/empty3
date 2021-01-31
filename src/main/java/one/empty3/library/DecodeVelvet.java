@@ -7,14 +7,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import javax.sound.sampled.AudioFormat;
 
-import com.zakgof.velvetvideo.IAudioDecoderStream;
-import com.zakgof.velvetvideo.IAudioEncoderStream;
-import com.zakgof.velvetvideo.IAudioFrame;
-import com.zakgof.velvetvideo.IDecodedPacket;
-import com.zakgof.velvetvideo.IDemuxer;
-import com.zakgof.velvetvideo.IMuxer;
-import com.zakgof.velvetvideo.IVelvetVideoLib;
-import com.zakgof.velvetvideo.MediaType;
+import com.zakgof.velvetvideo.*;
 import com.zakgof.velvetvideo.impl.VelvetVideoLib;
 
 public class DecodeVelvet extends VideoDecoder {
