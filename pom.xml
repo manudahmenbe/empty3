@@ -145,7 +145,7 @@
                     </arguments>
 <additionalClasspathElements>
            
-            <additionalClasspathElement>/home/cabox/workspace/empty3/.velvet-video-natives/velvet-video-natives-0.0.1.full.jar</additionalClasspathElement>
+            <additionalClasspathElement>/home/cabox/workspace/empty3/.velvet-video-natives/velvet-video-natives-0.5.1-SNAPSHOT.jar</additionalClasspathElement>
           </additionalClasspathElements>
                 </configuration>
             </plugin>
