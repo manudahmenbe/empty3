@@ -452,7 +452,7 @@
 <dependency>
   <groupId>com.github.zakgof</groupId>
   <artifactId>velvet-video-natives</artifactId>
-  <version>0.2.6.full</version>
+  <version>0.5.1-SNAPSHOT</version>
   <type>pom</type>
 </dependency>
     </dependencies>
