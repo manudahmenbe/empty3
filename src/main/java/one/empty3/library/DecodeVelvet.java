@@ -19,11 +19,10 @@ public class DecodeVelvet extends VideoDecoder {
 */
     public DecodeVelvet(File file, TextureMov refTextureMov) {
         super(file, refTextureMov);
-	init();
 
    }
    public void run() {
-	IVelvetVideoLib lib = VelvetVideoLib().getInstance();
+	IVelvetVideoLib lib = VelvetVideoLib.getInstance();
 	try (IDemuxer demuxer = lib.demuxer(file)) {
 	    IDecoderVideoStream videoStream = demuxer.videoStream(0);
 	    IFrame videoFrame;
