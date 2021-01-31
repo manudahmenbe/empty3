@@ -531,10 +531,10 @@ public abstract class TestObjet implements Test, Runnable {
 //        new File(directory.getAbsolutePath() + File.separator + "GAUCHE").mkdir();
 //        new File(directory.getAbsolutePath() + File.separator + "DROITE").mkdir();
 
-        setResolution(dimension.x(), dimension.y());
+        ///setResolution(dimension.x(), dimension.y());
         initialise = true;
-        publishResult(false);
-        setMaxFrames(100);
+        ///publishResult(false);
+        ///setMaxFrames(100);
         loop(true);
 
         compiler = new ManualVideoCompile();
