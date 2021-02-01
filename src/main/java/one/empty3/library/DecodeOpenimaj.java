@@ -52,7 +52,8 @@ public void run ()
    
     
     for(MBFImage i : video) {
-       imgBuf.add( ImageUtilities.createBufferedImage(i));
+       imgBuf.add(new ?ECBufferedmage(
+           ImageUtilities.createBufferedImage(i)));
       
     }
 
