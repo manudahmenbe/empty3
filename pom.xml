@@ -316,8 +316,11 @@
         <id>jcentre bintray</id>
         <url>https://jcenter.bintray.com/</url>
     </repository>
-
-    </repositories>
+<repository>
+        <id>openimaj</id>
+        <url>http://maven.ecs.soton.ac.uk/content/repositories/openimaj-releases/</url>
+  </repository>
+	</repositories>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
