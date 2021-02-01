@@ -19,6 +19,7 @@ public class DecodeOpenimaj extends VideoDecoder {
 * @param refTextureMov texture to apply
 */
     public DecodeOpenimaj(File file, TextureMov refTextureMov) {
+        super(file, refTextureMov);
         this.file = file;
         this.text = refTextureMov;
         start();
@@ -38,7 +39,7 @@ public class DecodeOpenimaj extends VideoDecoder {
  
  }
 
-public boolean run ()
+public void run ()
 {
 
     Video<MBFImage> video;
