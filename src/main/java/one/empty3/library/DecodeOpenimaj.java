@@ -1,8 +1,8 @@
 package one.empty3.library;
-
+import org.openimaj.video.*;
 public class DecodeOpenimaj {
-
-/*
+public boolean process ()
+{
 Video<MBFImage> video;
 video = new XuggleVideo(new File("/path/to/keyboardcat.flv"));
 VideoDisplay<MBFImage> display = VideoDisplay.createVideoDisplay(video)
@@ -16,5 +16,5 @@ display.addVideoListener(
     public void afterUpdate(VideoDisplay<MBFImage> display) {
     }
   });
-*/
+}
 }
