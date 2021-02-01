@@ -3,7 +3,7 @@ import org.openimaj.video.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.io.File;
-
+import org.openimaj.image.*;
 public class DecodeOpenimaj extends VideoDecoder {
     protected boolean eof = false;
     protected TextureMov text;
@@ -40,11 +40,22 @@ public class DecodeOpenimaj extends VideoDecoder {
 
 public boolean run ()
 {
-Video<MBFImage> video;
-video = new XuggleVideo(file);
-VideoDisplay<MBFImage> display = VideoDisplay.createVideoDisplay(video)
-//VideoDisplay<MBFImage> display = VideoDisplay.createVideoDisplay(video);
-display.addVideoListener(
+
+    Video<MBFImage> video;
+
+    video = new XuggleVideo(file);
+
+    //VideoDisplay<MBFImage> display = VideoDisplay.createVideoDisplay(video);
+   
+    
+    for(MBFImage i : video) {
+        
+    
+    }
+
+    //VideoDisplay<MBFImage> display = VideoDisplay.createVideoDisplay(video);
+
+    /*display.addVideoListener(
   new VideoDisplayListener<MBFImage>() {
     public void beforeUpdate(MBFImage frame) {
         frame.processInplace(new CannyEdgeDetector());
@@ -52,6 +63,6 @@ display.addVideoListener(
 
     public void afterUpdate(VideoDisplay<MBFImage> display) {
     }
-  });
+  });*/
 }
 }
