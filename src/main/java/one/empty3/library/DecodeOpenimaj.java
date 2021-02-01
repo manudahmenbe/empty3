@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.io.File;
 import org.openimaj.image.*;
 import org.openimaj.video.xuggle.XuggleVideo;
+import org.openimaj.image.ImageUtilities;
 public class DecodeOpenimaj extends VideoDecoder {
     protected boolean eof = false;
     protected TextureMov text;
@@ -51,8 +52,8 @@ public void run ()
    
     
     for(MBFImage i : video) {
-        
-    
+       imgBuf.add( ImageUtilities.createBufferedImage(i));
+      
     }
 
     //VideoDisplay<MBFImage> display = VideoDisplay.createVideoDisplay(video);
