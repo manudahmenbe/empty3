@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.io.File;
 
-public abstract class VideoDecoder extends Thread {
+public class DecodeOpenimaj extends VideoDecoder {
     protected boolean eof = false;
     protected TextureMov text;
     protected File file;
@@ -18,10 +18,10 @@ public abstract class VideoDecoder extends Thread {
 * @param file video to draw on surface
 * @param refTextureMov texture to apply
 */
-    public VideoDecoder(File file, TextureMov refTextureMov) {
+    public DecodeOpenimaj(File file, TextureMov refTextureMov) {
         this.file = file;
         this.text = refTextureMov;
-       // start();
+        start();
 
    }
  public int size() {
@@ -38,10 +38,10 @@ public abstract class VideoDecoder extends Thread {
  
  }
 
-public boolean process ()
+public boolean run ()
 {
 Video<MBFImage> video;
-video = new XuggleVideo(new File("/path/to/keyboardcat.flv"));
+video = new XuggleVideo(file);
 VideoDisplay<MBFImage> display = VideoDisplay.createVideoDisplay(video)
 //VideoDisplay<MBFImage> display = VideoDisplay.createVideoDisplay(video);
 display.addVideoListener(
