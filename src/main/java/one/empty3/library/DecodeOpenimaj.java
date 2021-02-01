@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.io.File;
 import org.openimaj.image.*;
+import org.openimaj.video.xuggle.XuggleVideo;
 public class DecodeOpenimaj extends VideoDecoder {
     protected boolean eof = false;
     protected TextureMov text;
