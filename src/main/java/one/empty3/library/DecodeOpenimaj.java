@@ -24,7 +24,7 @@ public class DecodeOpenimaj extends VideoDecoder {
         super(file, refTextureMov);
         this.file = file;
         this.text = refTextureMov;
-        start();
+        //start();
 
    }
  public int size() {
