@@ -54,7 +54,12 @@ public void run ()
     for(MBFImage i : video) {
        imgBuf.add(new ECBufferedImage(
            ImageUtilities.createBufferedImage(i)));
-      
+           while(imgBuf.size()>4) {
+               try {
+                   Thread.sleep(50);
+               } catch(Exception ex) {
+               }
+           }
     }
 
     //VideoDisplay<MBFImage> display = VideoDisplay.createVideoDisplay(video);
