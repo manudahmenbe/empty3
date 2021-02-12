@@ -14,7 +14,7 @@ Crée des formes de base!
 Point3D tete = new Point3D(0.,0.,0. ); //tête 
 Point3D queue = new Point3D(1.,0.,1.); // queue
 Sphere tetes = new Sphere(tete, 0.4); //sphère 
-new Paralellipiped(tete,
+new Parallelepiped(tete,
    tete.plus(new Point3D(0,0,0.5)), 
    tete.plus(new Point3D( 1,0,0,0.5)),
    tete.plus(new Point3D(0,0,0.5 )));//parallel polyèdres largeur y 0.5
