@@ -1,6 +1,8 @@
 package test4;
 
 import one.empty3.library.*;
+import one.empty3.library.core.tribase.*;
+import one.empty3.library.core.testing.*;
 public class TestChien {
 /*
     public void ginit() {
