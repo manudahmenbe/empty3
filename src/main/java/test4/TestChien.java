@@ -36,13 +36,7 @@ scene().add(corps);
 scene().add(tetes);
     for(int i=0;i<4; i++) {
 scenes().add(patte[i]);
+
+   
 }
-    }
-
-    Point3D ps = new Point3D[] {
-        P.n(0.,0.,0.),
-        P.n(1.,0.,1.),
-
-      };
-    }
 }
