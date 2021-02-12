@@ -31,7 +31,7 @@ patte[2].add(P.n(1,0.25,1)); //patte arrière #1
 patte[3].add(P.n(1,-0.25,0));
 patte[3].add(P.n(1,-0.25,1));// patte avant #2
 //1,0,0 //etx queue.
-    }
+    
 scene().add(corps);
 scene().add(tetes);
     for(int i=0;i<4; i++) {
