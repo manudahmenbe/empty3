@@ -16,7 +16,9 @@ public class TestChien extends TestObjetSub {
        Parallelepiped corps = new Parallelepiped(tete,
    new Point3D(0.,0.,0.5), 
    new Point3D( 1.,0.,0.5),
-   new Point3D(0.,0.,0.5 ));//parallel polyèdres largeur y 0.5
+   new Point3D(0.,0.,0.5 ),
+            new TextureCol(Color.RED)
+                   );//parallel polyèdres largeur y 0.5
    for(int i=0;i<4; i++) {
        patte[i] = new Tubulaire3();
        }
