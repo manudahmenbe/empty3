@@ -22,18 +22,18 @@ public class TestChien extends TestObjetSub {
        patte[i] = new Tubulaire3();
        }
 
-       patte[0].add(new Point3D(0.,0.25,0.));
-       patte[0].add(new Point3D(0.,0.25,1.)); //patte avant 
-patte[1].add(new Point3D(0.,-0.25,0.));
-patte[1].add(new Point3D(0.,-0.25,1.));// patte avant #2
-patte[2].add(new Point3D(1,0.25,0));
-patte[2].add(new Point3D(1,0.25,1)); //patte arrière #1 
-patte[3].add(new Point3D(1.,-0.25,0.));
-patte[3].add(new Point3D(1.,-0.25,1.));// patte avant #2
+       patte[0].getSoulCurve().add(new Point3D(0.,0.25,0.));
+       patte[0].getSoulCurve().add(new Point3D(0.,0.25,1.)); //patte avant 
+patte[1].getSoulCurve().add(new Point3D(0.,-0.25,0.));
+patte[1].getSoulCurve().add(new Point3D(0.,-0.25,1.));// patte avant #2
+patte[2].getSoulCurve().add(new Point3D(1,0.25,0));
+patte[2].getSoulCurve().add(new Point3D(1,0.25,1)); //patte arrière #1 
+patte[3].getSoulCurve().add(new Point3D(1.,-0.25,0.));
+patte[3].getSoulCurve().add(new Point3D(1.,-0.25,1.));// patte avant #2
 //1,0,0 //etx queue.
     
-scene().add(corps);
-scene().add(tetes);
+scene().getSoulCurve().add(corps);
+scene().getSoulCurve().add(tetes);
     for(int i=0;i<4; i++) {
 scenes().add(patte[i]);
 
