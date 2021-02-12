@@ -60,10 +60,20 @@ import one.empty3.library.TextureCol;
  * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class Parallelepiped extends RepresentableConteneur {
-
+Point3D [] p0 ;
     private double a = 1, b = 1, c = 1;
-public Parallelepiped(Point3D base, Point3D a, Point3D b, Point3D c, ITexture texture) {
-}
+    public Parallelepiped(Point3D base, Point3D a, Point3D b, Point3D c, ITexture texture) {
+         p0 = new Point3D[] {base, a, b, c};
+         
+         
+         for(int face = 0; face<6; face++) {
+             int dim0 = face%6;
+             int dim1 = (dim0+1)%3;
+             int dim2 = (dim1+1)%3;
+             
+             add( new Quad(p0[0], p0[1], p0[2], p0[3]));
+         }
+    }
     public Parallelepiped(double a, double b, double c, TextureCol texture) {
         this.a = a;
         this.b = b;
@@ -72,7 +82,7 @@ public Parallelepiped(Point3D base, Point3D a, Point3D b, Point3D c, ITexture te
         Point3D[] p = new Point3D[4];
         for (int x = -1; x <= 1; x++) {
 
-            p[0] = new Point3D(x * a, -1 * b, -1 * c);
+            p[0] = new Point3D(x * a, -1 * c);
             p[1] = new Point3D(x * a, 1 * b, -1 * c);
             p[2] = new Point3D(x * a, 1 * b, 1 * c);
             p[3] = new Point3D(x * a, -1 * b, 1 * c);
@@ -119,5 +129,8 @@ public Parallelepiped(Point3D base, Point3D a, Point3D b, Point3D c, ITexture te
 
     public void setC(double c) {
         this.c = c;
+    }
+    Point3D p(Point3D p0, double a, Point3D p1) {
+        return p0.plus(p1.moins(p0).mult(a));
     }
 }
