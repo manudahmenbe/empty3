@@ -1,5 +1,6 @@
 package test4;
 
+import one.empty3.library.*;
 public class TestChien {
 /*
     public void ginit() {
