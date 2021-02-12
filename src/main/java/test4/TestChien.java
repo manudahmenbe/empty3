@@ -4,17 +4,17 @@ import one.empty3.library.*;
 import one.empty3.library.core.tribase.*;
 import one.empty3.library.core.testing.*;
 
-public class TestChien {
+public class TestChien extends TestObjet{
 
     public void ginit() {
        Tubulaire3 [] patte = new Tubulaire3[4];
        ts[0] =
-Artifact : empty3-library-3d-gui ...
-Crée des formes de base!
-Point3D tete = new Point3D(0.,0.,0. ); //tête 
-Point3D queue = new Point3D(1.,0.,1.); // queue
-Sphere tetes = new Sphere(tete, 0.4); //sphère 
-Parallelipiped corps = new Parallelepiped(tete,
+//Artifact : empty3-library-3d-gui ...
+//Crée des formes de base!
+       Point3D tete = new Point3D(0.,0.,0. ); //tête 
+       Point3D queue = new Point3D(1.,0.,1.); // queue
+       Sphere tetes = new Sphere(tete, 0.4); //sphère 
+       Parallelipiped corps = new Parallelepiped(tete,
    new Point3D(0,0,0.5), 
    new Point3D( 1,0,0,0.5),
    new Point3D(0,0,0.5 ));//parallel polyèdres largeur y 0.5
