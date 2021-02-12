@@ -64,16 +64,22 @@ Point3D [] p0 ;
     private double a = 1, b = 1, c = 1;
     public Parallelepiped(Point3D base, Point3D a, Point3D b, Point3D c, ITexture texture) {
          p0 = new Point3D[] {base, a, b, c};
-         
+         p1 = new Point3D[]{base}
          
          for(int face = 0; face<6; face++) {
              int dim0 = face/2;
              int dim1 = (dim0+1)%3;
              int dim2 = (dim1+1)%3;
-
-            // p1[0] = p0[
+double [] cof = new double[] {(dim0==0)?1:-1,
+(dim1==1)?1:-1,(dim2==2)?1:-1};
+               p1 = new Point3D[]{}
+             add( new Quad(
+            p1[0], p(p1[0], cof[dim0], p0[1]),
+            p(p1[0], cof[dim1], p0[2]),
+            p(p1[0], cof[dim2], p0[2])); 
+            p1[0] = p(p1[0], cof[dim1], p0[2]);
          }
-         add( new Quad(p0[0], p0[1], p0[2], p0[3]));
+        // add( new Quad(p0[0], p0[1], p0[2], p0[3]));
 
     }
     public Parallelepiped(double a, double b, double c, TextureCol texture) {
