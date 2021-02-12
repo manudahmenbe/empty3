@@ -73,10 +73,11 @@ Point3D [] p0 ;
 double [] cof = new double[] {(dim0==0)?1:-1,
 (dim1==1)?1:-1,(dim2==2)?1:-1};
               
-             add( new Polygon(
+             add( new Polygon( new Point3D[] {
             p1[0], p(p1[0], cof[dim0], p0[1]),
             p(p1[0], cof[dim1], p0[2]),
-            p(p1[0], cof[dim2], p0[2]))); 
+            p(p1[0], cof[dim2], p0[2])}
+                )); 
             p1[0] = p(p1[0], cof[dim1], p0[2]);
          }
         // add( new Quad(p0[0], p0[1], p0[2], p0[3]));
