@@ -185,6 +185,8 @@ public abstract class TestObjet implements Test, Runnable {
             init();
             setResx(dimension.x());
             setResy(dimension.y());
+            z = ZBufferFactory.instance(resx, resy, D3);
+
         } else {
         }
     }
@@ -1212,6 +1214,7 @@ public abstract class TestObjet implements Test, Runnable {
     public void setDimension(Resolution dimension) {
         this.resx = dimension.x();
         this.resy = dimension.y();
+        this.dimension = dimension;
     }
 
     public Resolution getDimension() {
