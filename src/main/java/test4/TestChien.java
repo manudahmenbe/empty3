@@ -15,8 +15,8 @@ public class TestChien extends TestObjetSub {
        Sphere tetes = new Sphere(tete, 0.4); //sphère 
        Parallelepiped corps = new Parallelepiped(new Point3D[]{tete,
    new Point3D(0.,0.,0.5), 
-   new Point3D( 1.,0,0.,0.5),
-   new Point3D(0.,0.,0.5 )}, new TextuteCol(Color.RED));//parallel polyèdres largeur y 0.5
+   new Point3D( 1.,0.,0.5),
+   new Point3D(0.,0.,0.5 ));//parallel polyèdres largeur y 0.5
    for(int i=0;i<4; i++) {
        patte[i] = new Tubulaire3();
        }
@@ -25,8 +25,8 @@ public class TestChien extends TestObjetSub {
        patte[0].getSoulCurve().getElem().getCoefficients().add(new Point3D(0.,0.25,1.)); //patte avant 
 patte[1].getSoulCurve().getElem().getCoefficients().add(new Point3D(0.,-0.25,0.));
 patte[1].getSoulCurve().getElem().getCoefficients().add(new Point3D(0.,-0.25,1.));// patte avant #2
-patte[2].getSoulCurve().getElem().getCoefficients().add(new Point3D(1,0.25,0));
-patte[2].getSoulCurve().getElem().getCoefficients().add(new Point3D(1,0.25,1)); //patte arrière #1 
+patte[2].getSoulCurve().getElem().getCoefficients().add(new Point3D(1.,0.25,0.));
+patte[2].getSoulCurve().getElem().getCoefficients().add(new Point3D(1.,0.25,1.)); //patte arrière #1 
 patte[3].getSoulCurve().getElem().getCoefficients().add(new Point3D(1.,-0.25,0.));
 patte[3].getSoulCurve().getElem().getCoefficients().add(new Point3D(1.,-0.25,1.));// patte avant #2
 //1,0,0 //etx queue.
@@ -34,7 +34,7 @@ patte[3].getSoulCurve().getElem().getCoefficients().add(new Point3D(1.,-0.25,1.)
 scene().add(corps);
 scene().add(tetes);
     for(int i=0;i<4; i++) {
-scenes().add(patte[i]);
+scene().add(patte[i]);
 
   } 
 }
