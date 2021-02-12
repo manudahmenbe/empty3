@@ -34,9 +34,9 @@ public class Pojo {
                         if(value!=null && !"".equals(value))
                             setProperty(o, propName, value, String.class);
                     } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e1) {
-                        //e1.printStackTrace();
+                        e1.printStackTrace();
                     }
-                    //ex2.printStackTrace();
+                    ex2.printStackTrace();
                 }
             }
         }
