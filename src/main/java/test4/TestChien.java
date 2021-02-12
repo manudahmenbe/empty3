@@ -37,6 +37,6 @@ scene().add(tetes);
     for(int i=0;i<4; i++) {
 scenes().add(patte[i]);
 
-   
+  } 
 }
 }
