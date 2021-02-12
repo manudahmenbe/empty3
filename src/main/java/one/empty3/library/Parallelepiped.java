@@ -76,7 +76,7 @@ double [] cof = new double[] {(dim0==0)?1:-1,
              add( new Polygon( new Point3D[] {
             p1[0], p(p1[0], cof[dim0], p0[1]),
             p(p1[0], cof[dim1], p0[2]),
-            p(p1[0], cof[dim2], p0[2])}
+            p(p1[0], cof[dim2], p0[2])}, texture()
                 )); 
             p1[0] = p(p1[0], cof[dim1], p0[2]);
          }
