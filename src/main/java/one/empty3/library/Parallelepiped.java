@@ -67,12 +67,14 @@ Point3D [] p0 ;
          
          
          for(int face = 0; face<6; face++) {
-             int dim0 = face%6;
+             int dim0 = face/2;
              int dim1 = (dim0+1)%3;
              int dim2 = (dim1+1)%3;
-             
-             add( new Quad(p0[0], p0[1], p0[2], p0[3]));
+
+            // p1[0] = p0[
          }
+         add( new Quad(p0[0], p0[1], p0[2], p0[3]));
+
     }
     public Parallelepiped(double a, double b, double c, TextureCol texture) {
         this.a = a;
