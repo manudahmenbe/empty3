@@ -3,10 +3,11 @@ package test4;
 import one.empty3.library.*;
 import one.empty3.library.core.tribase.*;
 import one.empty3.library.core.testing.*;
+
 public class TestChien {
 /*
     public void ginit() {
-       TubulaireCC2 ts = new TubulaireCC2[4];
+       Tubulaire3 ts = new Tubulaire3[4];
        ts[0] =
 Artifact : empty3-library-3d-gui ...
 Crée des formes de base!
