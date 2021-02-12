@@ -64,7 +64,7 @@ Point3D [] p0 ;
     private double a = 1, b = 1, c = 1;
     public Parallelepiped(Point3D base, Point3D a, Point3D b, Point3D c, ITexture texture) {
          p0 = new Point3D[] {base, a, b, c};
-         p1 = new Point3D[]{base}
+         Point3D [] p1 = new Point3D[]{base}
          
          for(int face = 0; face<6; face++) {
              int dim0 = face/2;
