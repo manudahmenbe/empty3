@@ -62,7 +62,8 @@ import one.empty3.library.TextureCol;
 public class Parallelepiped extends RepresentableConteneur {
 
     private double a = 1, b = 1, c = 1;
-
+public Parallelepiped(Point3D base, Point3D a, Point3D b, Point3D c, ITexture texture) {
+}
     public Parallelepiped(double a, double b, double c, TextureCol texture) {
         this.a = a;
         this.b = b;
