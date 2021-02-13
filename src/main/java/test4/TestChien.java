@@ -42,6 +42,6 @@ scene().add(tetes);
 scene().add(patte[i]);
 
   } 
-        scene().cameraActive().getEye().setZ(-2.);
+        scene().cameraActive().getEye().setZ(-4.);
 }
 }
