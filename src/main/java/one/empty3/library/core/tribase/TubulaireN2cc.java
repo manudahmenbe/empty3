@@ -66,7 +66,9 @@ public class TubulaireN2cc extends ParametricSurface {
             }
         };
     }
-
+    public ParametricCurve getSoulCurve() {
+        return soulCurve;
+   }
     public TubulaireN2cc(ParametricCurve soulCurve, Fct1D_1D diameterCurve) {
         this();
         this.soulCurve = soulCurve;
