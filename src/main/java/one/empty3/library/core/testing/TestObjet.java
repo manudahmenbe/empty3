@@ -144,11 +144,11 @@ public abstract class TestObjet implements Test, Runnable {
     private File fileD;
     private boolean pause = false;
     private boolean pauseActive = false;
-    private ITexture couleurFond;
+    protected ITexture couleurFond;
     private File directory;
     private ZipWriter zip;
     private boolean stop = false;
-    private ZBufferImpl z;
+    protected ZBufferImpl z;
     private RegisterOutput o = new RegisterOutput();
     private int onTextureEnds = ON_TEXTURE_ENDS_STOP;
     private int onMaxFrameEvent = ON_MAX_FRAMES_STOP;
