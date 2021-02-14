@@ -5,7 +5,7 @@ import one.empty3.library.core.tribase.*;
 import one.empty3.library.core.nurbs.*;
 import one.empty3.library.core.testing.*;
 import java.awt.Color;
-
+import one.empty3.library.core.move.Trajectoires;
 
 public class TestChien extends TestObjetSub {
 
