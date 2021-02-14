@@ -29,18 +29,20 @@ public class TestChien extends TestObjetSub {
        }
 
        ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())). getCoefficients().add(new Point3D(0.,0.25,0.));
-       ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())).getCoefficients().add(new Point3D(0.,0.25,1.)); //patte avant 
-((CourbeParametriquePolynomialeBezier)(patte[1].getSoulCurve().getElem())).getCoefficients().add(new Point3D(0.,-0.25,0.));
-((CourbeParametriquePolynomialeBezier)(patte[1].getSoulCurve().getElem())).getCoefficients().add(new Point3D(0.,-0.25,1.));// patte avant #2
+       ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())).getCoefficients().add(new Point3D(0.,0.25,1.)); //patte avant
+        ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())).getCoefficients().add(new Point3D(0.,-0.25,1.));
+        ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())).getCoefficients().add(new Point3D(0.,-0.25,0.));
+// patte avant #2
 ((CourbeParametriquePolynomialeBezier)(patte[2].getSoulCurve().getElem())).getCoefficients().add(new Point3D(1.,0.25,0.));
 ((CourbeParametriquePolynomialeBezier)(patte[2].getSoulCurve().getElem())).getCoefficients().add(new Point3D(1.,0.25,1.)); //patte arrière #1 
-((CourbeParametriquePolynomialeBezier)(patte[3].getSoulCurve().getElem())).getCoefficients().add(new Point3D(1.,-0.25,0.));
-((CourbeParametriquePolynomialeBezier)(patte[3].getSoulCurve().getElem())).getCoefficients().add(new Point3D(1.,-0.25,1.));// patte avant #2
-//1,0,0 //etx queue.
+
+((CourbeParametriquePolynomialeBezier)(patte[2].getSoulCurve().getElem())).getCoefficients().add(new Point3D(1.,-0.25,1.));// patte avant #2
+((CourbeParametriquePolynomialeBezier)(patte[2].getSoulCurve().getElem())).getCoefficients().add(new Point3D(1.,-0.25,0.));
+        //1,0,0 //etx queue.
     
 //scene().add(corps);
 scene().add(tetes);
-    for(int i=0;i<4; i++) {
+    for(int i=0;i<4; i+2) {
 scene().add(patte[i]);
 
   } 
