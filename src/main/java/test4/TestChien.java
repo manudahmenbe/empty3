@@ -27,13 +27,13 @@ public class TestChien extends TestObjetSub {
        }
 
        ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())). getCoefficients().getElem()).add(new Point3D(0.,0.25,0.));
-       ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem()))).getCoefficients().getElem()).add(new Point3D(0.,0.25,1.)); //patte avant 
-((CourbeParametriquePolynomialeBezier)(patte[1].getSoulCurve().getElem()))).getCoefficients().getElem()).add(new Point3D(0.,-0.25,0.));
-((CourbeParametriquePolynomialeBezier)(patte[1].getSoulCurve().getElem()))).getCoefficients().getElem()).add(new Point3D(0.,-0.25,1.));// patte avant #2
-((CourbeParametriquePolynomialeBezier)(patte[2].getSoulCurve().getElem()))).getCoefficients().getElem()).add(new Point3D(1.,0.25,0.));
-((CourbeParametriquePolynomialeBezier)(patte[2].getSoulCurve().getElem()))).getCoefficients().getElem()).add(new Point3D(1.,0.25,1.)); //patte arrière #1 
-((CourbeParametriquePolynomialeBezier)(patte[3].getSoulCurve().getElem()))).getCoefficients().getElem()).add(new Point3D(1.,-0.25,0.));
-((CourbeParametriquePolynomialeBezier)(patte[3].getSoulCurve().getElem()))).getCoefficients().getElem()).add(new Point3D(1.,-0.25,1.));// patte avant #2
+       ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())).getCoefficients().getElem()).add(new Point3D(0.,0.25,1.)); //patte avant 
+((CourbeParametriquePolynomialeBezier)(patte[1].getSoulCurve().getElem())).getCoefficients().getElem()).add(new Point3D(0.,-0.25,0.));
+((CourbeParametriquePolynomialeBezier)(patte[1].getSoulCurve().getElem())).getCoefficients().getElem()).add(new Point3D(0.,-0.25,1.));// patte avant #2
+((CourbeParametriquePolynomialeBezier)(patte[2].getSoulCurve().getElem())).getCoefficients().getElem()).add(new Point3D(1.,0.25,0.));
+((CourbeParametriquePolynomialeBezier)(patte[2].getSoulCurve().getElem())).getCoefficients().getElem()).add(new Point3D(1.,0.25,1.)); //patte arrière #1 
+((CourbeParametriquePolynomialeBezier)(patte[3].getSoulCurve().getElem())).getCoefficients().getElem()).add(new Point3D(1.,-0.25,0.));
+((CourbeParametriquePolynomialeBezier)(patte[3].getSoulCurve().getElem())).getCoefficients().getElem()).add(new Point3D(1.,-0.25,1.));// patte avant #2
 //1,0,0 //etx queue.
     
 //scene().add(corps);
