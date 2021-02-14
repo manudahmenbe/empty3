@@ -46,4 +46,10 @@ scene().add(patte[i]);
   } 
         scene().cameraActive().getEye().setZ(-10.);
 }
+    public void finit() {
+    Point3D sphere = Trajectoires.sphere(1.0 * frame() / getMaxFrames(),
+                0.0, 4.0);
+        scene().cameras().clear();
+        scene().cameraActive(new Camera(sphere, Point3D.O0));
+    }
 }
