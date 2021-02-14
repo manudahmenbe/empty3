@@ -10,7 +10,7 @@ import java.awt.Color;
 public class TestChien extends TestObjetSub {
 
     public void ginit() {
-        z.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_TRI);
+        z.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_COL_TRI);
         scene().cameraActive().eye().changeTo(new Point3D(4., 0., 0.));
        Tubulaire3 [] patte = new Tubulaire3[4];
       // ts[0] =
