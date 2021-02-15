@@ -43,7 +43,7 @@ public class TestChien extends TestObjetSub {
     
 //scene().add(corps);
 scene().add(tetes);
-    for(int i=0;i<4; i+2) {
+    for(int i=0;i<4; i+=2) {
 scene().add(patte[i]);
 
   } 
