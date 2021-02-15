@@ -10,6 +10,7 @@ import one.empty3.library.core.move.Trajectoires;
 public class TestChien extends TestObjetSub {
 
     public void ginit() {
+        setMaxFrames(180);
         z.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_COL_TRI);
         scene().cameraActive().eye().changeTo(new Point3D(4., 0., 0.));
        Tubulaire3 [] patte = new Tubulaire3[4];
