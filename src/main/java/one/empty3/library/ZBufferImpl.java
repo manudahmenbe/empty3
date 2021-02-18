@@ -75,7 +75,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     protected int ha;
     protected int la;
     public static Point3D INFINI = new Point3D(0d, 0d, INFINI_PROF);
-    private Camera cameraC = new Camera();
+    //private Camera cameraC = new Camera();
     // PARAMETRES
     private float zoom = 1.05f;
     private boolean locked = false;
@@ -135,12 +135,12 @@ public void copyResourceFiles(File destDirectory) {
     }
 
     public void camera(Camera c) {
-        this.cameraC = c;
+        //this.cameraC = c;
         this.scene().cameraActive(c);
     }
 
     public synchronized void draw() {
-        camera(scene().cameraActive());
+        //camera(scene().cameraActive());
         scene().lumieres().clear();
         for (int i = 0; i < scene().getObjets().data1d.size(); i++)
             if (scene().getObjets().getElem(i).getClass().isAssignableFrom(Lumiere.class))
