@@ -41,18 +41,19 @@ public class TestChien extends TestObjetSub {
 ((CourbeParametriquePolynomialeBezier)(patte[2].getSoulCurve().getElem())).getCoefficients().add(new Point3D(1.,-0.25,0.));
         //1,0,0 //etx queue.
     
-//scene().add(corps);
-scene().add(tetes);
-    for(int i=0;i<4; i+=2) {
-scene().add(patte[i]);
+        //scene().add(corps);
+        scene().add(tetes);
+        for(int i=0;i<4; i+=2) {
+            scene().add(patte[i]);
 
-  } 
-        scene().cameraActive().getEye().setZ(-10.);
-}
+        } 
+        scene().cameraActive().getEye().setZ(-10.)
+    }
     public void finit() {
-    Point3D sphere = Trajectoires.sphere(1.0 * frame() / getMaxFrames(),
+        Point3D sphere = Trajectoires.sphere(1.0 * frame() / getMaxFrames(),
                 0.0, 4.0);
         scene().cameras().clear();
-        scene().cameraActive(new Camera(sphere, Point3D.O0));
+        Camera c = new Camera(sphere, Point3D.O0, Point3D.Y);
+        scene().cameraActive(c));
     }
 }
