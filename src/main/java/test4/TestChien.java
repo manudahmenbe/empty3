@@ -47,7 +47,7 @@ public class TestChien extends TestObjetSub {
             scene().add(patte[i]);
 
         } 
-        scene().cameraActive().getEye().setZ(-10.)
+//        scene().cameraActive().getEye().setZ(-10.)
     }
     public void finit() {
         Point3D sphere = Trajectoires.sphere(1.0 * frame() / getMaxFrames(),
