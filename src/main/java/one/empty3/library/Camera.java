@@ -206,6 +206,10 @@ public class Camera extends CameraBox {
         return matrice.getElem();
     }
 
+    public Matrix33 getMatrix() {
+        return matrice.getElem();
+    }
+
     public void setMatrice(Matrix33 matrice) {
         this.matrice.setElem(matrice);
     }
