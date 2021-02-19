@@ -140,12 +140,13 @@ public void copyResourceFiles(File destDirectory) {
     }
 
     public synchronized void draw() {
-        scene().cameraActive().calculerMatrice();
-        scene().lumieres().clear();
+        //scene().cameraActive().calculerMatrice();
+        /*:scene().lumieres().clear();
         for (int i = 0; i < scene().getObjets().data1d.size(); i++)
             if (scene().getObjets().getElem(i).getClass().isAssignableFrom(Lumiere.class))
                 scene().lumieres().add((Lumiere) scene().getObjets().getElem(i));
-        if (firstRun && ime == null) {
+       */
+         if (firstRun && ime == null) {
             ime = new ImageMap(la, ha);
             firstRun = false;
         }
