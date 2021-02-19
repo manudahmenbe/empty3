@@ -55,6 +55,7 @@ public class TestChien extends TestObjetSub {
         scene().cameras().clear();
         Camera c = new Camera(sphere, Point3D.O0, Point3D.Y);
         c.setMatrix(Matrix33.ZXY.mult(c.getMatrix()));
+        c.declareProperties();
         scene().cameraActive(c);
     }
 }
