@@ -131,11 +131,7 @@ public class Camera extends CameraBox {
     }
     public void setMatrix(Matrix33 m) {
         // Z SORT DE L4ECRAN
-        for (int j = 0; j < 3; j++) {
-          for (int i = 0; i < 3; i++) {
-            m.set(j, i, m.get(j, i));
-          }
-        }
+       
         this.matrice.setElem(m.tild());
     }
 
