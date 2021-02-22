@@ -1321,7 +1321,7 @@ public void copyResourceFiles(File destDirectory) {
 
         public int getElementCouleur(int x, int y) {
             if (checkCordinates(x, y)
-                && getElementID(x, y) == idImg() ) 
+                && getElementID(x, y) == idImg()  
                 && Simeprof[x][y] < INFINI.getZ()) {
                 return getRGBInt(Scolor, x, y);
             } else {
