@@ -146,9 +146,9 @@ public void copyResourceFiles(File destDirectory) {
             if (scene().getObjets().getElem(i).getClass().isAssignableFrom(Lumiere.class))
                 scene().lumieres().add((Lumiere) scene().getObjets().getElem(i));
        */
-         if (firstRun && ime == null) {
+         if (firstRun || ime == null) {
             ime = new ImageMap(la, ha);
-            firstRun = false;
+           // firstRun = false;
         }
 
         draw(scene());
