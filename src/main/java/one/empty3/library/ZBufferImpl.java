@@ -148,7 +148,7 @@ public void copyResourceFiles(File destDirectory) {
        */
          if (firstRun && ime == null) {
             ime = new ImageMap(la, ha);
-            firstRun = false;
+            //firstRun = false;
         }
 
         draw(scene());
