@@ -51,7 +51,7 @@ public class TestChien extends TestObjetSub {
     }
     public void finit() {
         Point3D sphere = Trajectoires.sphere(1.0 * frame() / getMaxFrames(),
-                0.0, 4.0);
+                0.0, 16.0);
         scene().cameras().clear();
         Camera c = new Camera(sphere, Point3D.O0, Point3D.Y);
         c.setMatrix(Matrix33.ZXY.mult(c.getMatrix()));
