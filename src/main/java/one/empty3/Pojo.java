@@ -20,7 +20,7 @@ public class Pojo {
         Double d;
         Integer i = 0;
         Boolean b = false;
-        System.out.println("Pojo.setO. "
+        System.out.println("Pojo.before.setO. "
             +"\t"+o
             +"\t"+propName+"\t"+value);
         try {
@@ -58,6 +58,9 @@ System.out.println(": " + b.getClass());
                     ex2.printStackTrace();
                 }
             }
+            System.out.println("Pojo.after.setO. "
+            +"\t"+o
+            +"\t"+propName+"\t"+value);
         }
         
     }
