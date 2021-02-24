@@ -55,7 +55,7 @@ System.out.println(": " + b.getClass());
                       System.out.println("string not set");
   e1.printStackTrace();
                     }
-                    ex2.printStackTrace();
+                    //ex2.printStackTrace();
                 }
             }
             System.out.println("Pojo.after.setO. "
