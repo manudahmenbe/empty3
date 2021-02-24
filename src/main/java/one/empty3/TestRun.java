@@ -51,11 +51,11 @@ public class TestRun {
                         }
                         break;
 }
-p.add(key, value);
+p.setProperty(key, value);
             }
         }
 
-         Pojo.setProperties((Object)t, key, value);
+         Pojo.setProperties((Object)t, p);
         // if(cl instanceof TestObjet) {
         if (t != null)
             runTest((TestObjet) t, p);
