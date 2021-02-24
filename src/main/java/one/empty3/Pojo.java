@@ -136,7 +136,7 @@ System.out.println("property "+propName+" is set to "+i);
         Method propertySetter = null;
         propertySetter = o.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), cl);
         if(propertySetter==null) {
-Class vType = cl.getName();
+           String vType = cl.getName();
 
 switch(vType) {
                 case "double":
