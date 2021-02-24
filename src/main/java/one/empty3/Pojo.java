@@ -27,18 +27,18 @@ public class Pojo {
             i = new Integer(value);
             setProperty(o, propName, i, Integer.class);
             
-        } catch (Exception ex) {
+        } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException ex) {
                      System.out.println("integer not set");
            try {
                 d = (double) Double.parseDouble(value);
                 setProperty(o, propName, d, Double.class);
-            } catch (Exception ex1) {
+            } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException ex1) {
                 System.out.println("double not set");
 
                 try {
                     b = (boolean) parseBoolean(value);
                     setProperty(o, propName, b, Boolean.class);
-                } catch (Exception ex2) {
+                } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException ex2) {
                     System.out.println("boolean not set");
 
                     try {
