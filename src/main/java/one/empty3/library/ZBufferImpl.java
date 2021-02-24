@@ -330,6 +330,26 @@ public void copyResourceFiles(File destDirectory) {
                         ime.testDeep(rotate(p2, r));
                         ime.testDeep(rotate(p3, r));
                         ime.testDeep(rotate(p4, r));
+                        
+                    } else if (displayType== SURFACE_DISPLAY_COL_TRI||
+                       displayType ==SURFACE_DISPLAY_TEXT_TRI) {
+                            tracerTriangle(
+                                    n.calculerPoint3D(u, v),
+                                    n.calculerPoint3D(u + n.getIncrU(), v),
+                                    n.calculerPoint3D(u + n.getIncrU(),
+                                            v + n.getIncrV()),
+                                    n.texture(),
+                                    u,
+                                    v, u + n.getIncrU(), v + n.getEndV());
+                            tracerTriangle(n.calculerPoint3D(u, v),
+                                    n.calculerPoint3D(u, v + n.getIncrV()),
+                                    n.calculerPoint3D(u + n.getIncrU(),
+                                            v + n.getIncrV()),
+                                    n.texture(),
+                                    u,
+                                    v, u + n.getIncrU(), v + n.getEndV());
+
+                            
                     } else {
                      
                         tracerQuad(rotate(p1, n), rotate(p2, n),
