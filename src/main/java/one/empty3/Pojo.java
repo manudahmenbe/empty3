@@ -112,7 +112,7 @@ public class Pojo {
     public static void setProperty(Object o, String propertyName, Object value
        , Class cl) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
-        propertySetter = o.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), cl);
+        propertySetter = o.getClass().getDeclaredMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), cl);
         propertySetter.invoke(o, value);
         System.out.println("RType : " + o.getClass().getName() + " Property: " + propertyName + " New Value set " + getProperty(o, propertyName));
     }
