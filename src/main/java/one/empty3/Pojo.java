@@ -11,7 +11,7 @@ public class Pojo {
         Boolean b =  ((s != null) && s.equalsIgnoreCase("true"));
         if(b)
             return true;
-        if(!b && (s.equalsIgnoreCase("false")))
+        if(!b && ((s!=null) && s.equalsIgnoreCase("false")))
             return false;
         throw new NumberFormatException("Boolean illegal string");
     }
