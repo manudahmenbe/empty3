@@ -29,7 +29,7 @@ public class Pojo {
             System.out.println(": " + i.getClass());
             
         } catch (NumberFormatException|InvocationTargetException | IllegalAccessException | NoSuchMethodException ex) {
-                     System.out.println("integer not set");
+           System.out.println("integer not set");
            try {
                 d = (double) Double.parseDouble(value);
                 setProperty(o, propName, d, Double.class);
@@ -41,7 +41,7 @@ public class Pojo {
                 try {
                     b = (boolean) parseBoolean(value);
                     setProperty(o, propName, b, Boolean.class);
-System.out.println(": " + b.getClass());
+                    System.out.println(": " + b.getClass());
           
                 } catch (NumberFormatException|InvocationTargetException | IllegalAccessException | NoSuchMethodException ex2) {
                     System.out.println("boolean not set");
@@ -53,7 +53,7 @@ System.out.println(": " + b.getClass());
                           }
                     } catch (NumberFormatException|InvocationTargetException | IllegalAccessException | NoSuchMethodException e1) {
                       System.out.println("string not set");
-  e1.printStackTrace();
+                      //e1.printStackTrace();
                     }
                     //ex2.printStackTrace();
                 }
