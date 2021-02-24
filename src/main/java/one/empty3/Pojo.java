@@ -134,8 +134,11 @@ System.out.println("property "+propName+" is set to "+i);
     public static void setProperty(Object o, String propertyName, Object value
        , Class cl) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
-        propertySetter = o.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), cl);
-        if(propertySetter==null) {
+        try {
+            propertySetter = o.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), cl);
+        } catch(Exception ex) {}
+            
+            if(propertySetter==null) {
            String vType = cl.getName();
 
 switch(vType) {
