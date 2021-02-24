@@ -1233,7 +1233,7 @@ public abstract class TestObjet implements Test, Runnable {
         return publish;
     }
 
-    public void setPublish(Boolean publish) {
+    public void setPublish(boolean publish) {
         this.publish = publish;
     }
 }
