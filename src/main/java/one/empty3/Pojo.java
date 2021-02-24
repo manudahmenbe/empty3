@@ -25,11 +25,13 @@ public class Pojo {
             +"\t"+propName+"\t"+value);
         try {
             i = new Integer(value);
+System.out.println("int value: "+i);
             setProperty(o, propName, i, Integer.class);
+System.out.println("property "+propName+" is set to "+i);
             System.out.println(": " + i.getClass());
             
         } catch (NumberFormatException|InvocationTargetException | IllegalAccessException | NoSuchMethodException ex) {
-           System.out.println("integer not set");
+           System.out.println("integer not set/nreason "+ex.getClass());
            try {
                 d = (double) Double.parseDouble(value);
                 setProperty(o, propName, d, Double.class);
