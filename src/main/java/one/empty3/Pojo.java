@@ -18,6 +18,9 @@ public class Pojo {
         Double d;
         Integer i = 0;
         Boolean b = false;
+        System.out.println("Pojo.setO. "
+            +"\t"+o
+            +"\t"+propName+"\t"+value);
         try {
             i = (int) Integer.parseInt(value);
             setProperty(o, propName, i, Integer.class);
