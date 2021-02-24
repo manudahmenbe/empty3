@@ -79,7 +79,7 @@ public class TestRun {
 
 */
                     default:
-                        p.setProperty(key, value);
+                        p.setP(key, value);
                         break;
                 }
             }
