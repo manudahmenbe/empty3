@@ -26,9 +26,10 @@ public class Pojo {
         try {
             i = (int) Integer.parseInt(value);
             setProperty(o, propName, i, Integer.class);
-            System.out.println("integer not set");
+            
         } catch (Exception ex) {
-            try {
+                     System.out.println("integer not set");
+           try {
                 d = (double) Double.parseDouble(value);
                 setProperty(o, propName, d, Double.class);
             } catch (Exception ex1) {
