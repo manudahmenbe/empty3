@@ -135,7 +135,30 @@ System.out.println("property "+propName+" is set to "+i);
        , Class cl) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Method propertySetter = null;
         propertySetter = o.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), cl);
-        propertySetter.invoke(o, value);
+        if(propertySetter==null) {
+Class vType = cl.getName();
+
+switch(vType) {
+                case "double":
+                case "Double":
+                propertySetter = o.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), double.class);
+      
+                    break;
+                case "int":
+                case "Integer":
+                propertySetter = o.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), int.class);
+      
+                    break;
+                case "boolean":
+                case "Boolean":
+                    propertySetter = o.getClass().getMethod("set" + ("" + propertyName.charAt(0)).toUpperCase() + (propertyName.substring(1)), boolean.class);
+      
+                    break;
+                default:
+                    break;
+         }
+} 
+       propertySetter.invoke(o, value);
         System.out.println("type : " + o.getClass().getName() + " Property: " + propertyName + " New Value set " + getProperty(o, propertyName));
     }
 
