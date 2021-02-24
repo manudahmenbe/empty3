@@ -24,7 +24,7 @@ public class Pojo {
             +"\t"+o
             +"\t"+propName+"\t"+value);
         try {
-            i = (int) Integer.parseInt(value);
+            i = new Integer(value);
             setProperty(o, propName, i, Integer.class);
             
         } catch (Exception ex) {
