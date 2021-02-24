@@ -9,9 +9,11 @@ import java.util.function.Consumer;
 public class Pojo {
     public static boolean parseBoolean(String s) {
         Boolean b =  ((s != null) && s.equalsIgnoreCase("true"));
-        if(!b && (s==null || !s.equalsIgnoreCase("false")))
-            throw new NumberFormatException("Boolean illegal string");
-        return b;
+        if(b)
+            return true;
+        if(!b && (!s.equalsIgnoreCase("false")))
+            return false;
+        throw new NumberFormatException("Boolean illegal string");
     }
     public static void setO(Object o, String propName, String value) {
 
