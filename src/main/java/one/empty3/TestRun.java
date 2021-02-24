@@ -50,38 +50,8 @@ public class TestRun {
                             ex.printStackTrace();
                         }
                         break;
-/*
-    case "resx":
-         resx = Integer.parseInt(value);
-         break;
-    case "resy":
-         resy = Integer.parseInt(value);
-         break;
-    case "maxFrames":
-         maxFrames = Integer.parseInt(value);
-         break;
-   case "p":
-         String k2 = kv[1];
-         String v2 = kv[2];
-         
-         
-         break;
-    case "file":
-                 try {
-         FileInputStream fis = new FileInputStream(
-              new File(value));
-         p.load(fis);
-             } catch(IOException ex)
-                     {
-                     ex.printStackTrace();
-                     }
-         break;
-
-*/
-                    default:
-                    
-                        break;
-                }
+}
+p.add(key, value);
             }
         }
 
