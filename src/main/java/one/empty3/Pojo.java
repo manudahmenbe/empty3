@@ -26,20 +26,26 @@ public class Pojo {
         try {
             i = (int) Integer.parseInt(value);
             setProperty(o, propName, i, Integer.class);
+            System.out.println("integer not set");
         } catch (Exception ex) {
             try {
                 d = (double) Double.parseDouble(value);
                 setProperty(o, propName, d, Double.class);
             } catch (Exception ex1) {
+                System.out.println("double not set");
+
                 try {
                     b = (boolean) parseBoolean(value);
                     setProperty(o, propName, b, Boolean.class);
                 } catch (Exception ex2) {
+                    System.out.println("boolean not set");
+
                     try {
                         if(value!=null && !"".equals(value))
                             setProperty(o, propName, value, String.class);
                     } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e1) {
-                        e1.printStackTrace();
+                      System.out.println("string not set");
+  e1.printStackTrace();
                     }
                     ex2.printStackTrace();
                 }
