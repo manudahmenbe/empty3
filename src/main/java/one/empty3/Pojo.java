@@ -26,7 +26,7 @@ public class Pojo {
         try {
             i = new Integer(value);
 System.out.println("int value: "+i);
-            setProperty(o, propName, i, Integer.class);
+            setProperty(o, propName, i, int.class);
 System.out.println("property "+propName+" is set to "+i);
             System.out.println(": " + i.getClass());
             
@@ -34,7 +34,7 @@ System.out.println("property "+propName+" is set to "+i);
            System.out.println("integer not set/nreason "+ex.getClass());
            try {
                 d = (double) Double.parseDouble(value);
-                setProperty(o, propName, d, Double.class);
+                setProperty(o, propName, d, double.class);
   System.out.println(": " + d.getClass());
           
             } catch (NumberFormatException|InvocationTargetException | IllegalAccessException | NoSuchMethodException ex1) {
@@ -42,7 +42,7 @@ System.out.println("property "+propName+" is set to "+i);
 
                 try {
                     b = (boolean) parseBoolean(value);
-                    setProperty(o, propName, b, Boolean.class);
+                    setProperty(o, propName, b, boolean.class);
                     System.out.println(": " + b.getClass());
           
                 } catch (NumberFormatException|InvocationTargetException | IllegalAccessException | NoSuchMethodException ex2) {
