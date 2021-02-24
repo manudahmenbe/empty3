@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.function.Consumer;
 
 public class Pojo {
-    public static boolean parseBoolean(String s) {
+    public static boolean parseBoolean(String s) throws NumberFormatException{
         Boolean b =  ((s != null) && s.equalsIgnoreCase("true"));
         if(b)
             return true;
@@ -28,14 +28,14 @@ public class Pojo {
             setProperty(o, propName, i, Integer.class);
             System.out.println(": " + i.getClass());
             
-        } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException ex) {
+        } catch (NumberFormatException|InvocationTargetException | IllegalAccessException | NoSuchMethodException ex) {
                      System.out.println("integer not set");
            try {
                 d = (double) Double.parseDouble(value);
                 setProperty(o, propName, d, Double.class);
   System.out.println(": " + d.getClass());
           
-            } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException ex1) {
+            } catch (NumberFormatException|InvocationTargetException | IllegalAccessException | NoSuchMethodException ex1) {
                 System.out.println("double not set");
 
                 try {
@@ -43,7 +43,7 @@ public class Pojo {
                     setProperty(o, propName, b, Boolean.class);
 System.out.println(": " + b.getClass());
           
-                } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException ex2) {
+                } catch (NumberFormatException|InvocationTargetException | IllegalAccessException | NoSuchMethodException ex2) {
                     System.out.println("boolean not set");
 
                     try {
@@ -51,7 +51,7 @@ System.out.println(": " + b.getClass());
                             setProperty(o, propName, value, String.class);
                             System.out.println(": " + value.getClass());
                           }
-                    } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e1) {
+                    } catch (NumberFormatException|InvocationTargetException | IllegalAccessException | NoSuchMethodException e1) {
                       System.out.println("string not set");
   e1.printStackTrace();
                     }
