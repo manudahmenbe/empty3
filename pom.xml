@@ -255,7 +255,7 @@
                         <goals>
                             <goal>sign</goal>
                         </goals>
-                        <useAgent>false</useAgent>
+                        <!--<useAgent>false</useAgent>-->
                     </execution>
                 </executions>
             </plugin>
