@@ -1234,7 +1234,7 @@ public void copyResourceFiles(File destDirectory) {
             double deep = camera().distanceCamera(x3d);
             Point3D n = x3d.getNormale();
             if(n==null||n.norme()==0)
-                n = x3d.moins(scene().cameraActive());
+                n = x3d.moins(scene().cameraActive().getEye());
             int x = (int) ce.getX();
             int y = (int) ce.getY();
             if (x >= 0 & x < la & y >= 0 & y < ha
