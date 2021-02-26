@@ -51,7 +51,7 @@ double minThreshold=0.0, maxThreshold=1.0;
 
     private StructureMatrix<ITexture> couleurLumiere = new StructureMatrix<>(0, ITexture.class);
     private StructureMatrix<Point3D> position = new StructureMatrix<>(0, Point3D.class);
-    private double r0 = 11;
+    private double r0 = 1.0;
     private StructureMatrix<Boolean> directional = new StructureMatrix<>(0, Boolean.class);
 
     public LumierePonctuelle() {
@@ -69,7 +69,7 @@ double minThreshold=0.0, maxThreshold=1.0;
     public int getCouleur(int base, Point3D p, Point3D n) {
         if(n==null)
             n = Point3D.O0;
-        double x = p.moins(position.getElem()).dot(n).norme()/n.norme();
+        double x = p.moins(position.getElem()).dot(n)/n.norme();
         double r = 0.0;
         if (directional.getElem()) {
             r = 1 - 1 * x*r0
