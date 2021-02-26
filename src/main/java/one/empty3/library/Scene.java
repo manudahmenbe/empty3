@@ -234,6 +234,10 @@ public class Scene extends Representable implements Serializable {
     }
 
     public int lumiereTotaleCouleur(int c, Point3D p, Point3D n) {
+        if(n==null) {
+             return c;
+        }
+        }
         if (lumieres.getData1d().isEmpty()) {
             return c;
         }
