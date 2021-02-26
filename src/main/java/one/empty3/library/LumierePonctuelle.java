@@ -72,11 +72,11 @@ double minThreshold=0.1, maxThreshold=0.9;
         double x = p.moins(position.getElem()).dot(n)/n.norme();
         double r = 0.0;
         if (directional.getElem()) {
-            r = 1 * x*r0
-                    / (Math.acos(Math.abs(x) / Math.PI * 2))/x;
+            r = 1 * x*r0/x;
+                    //* (Math.cos(Math.abs(x) / Math.PI * 2 / ));
         } else {
-            r = 1 * r0
-                    / (Math.acos(Math.abs(x) / Math.PI * 2/ p.moins(position.getElem()).norme()))/x;
+            r = 1 * r0 /x;
+                    //* (Math.cos(Math.abs(x) / Math.PI * 2/ p.moins(position.getElem()).norme()))/x;
         }
         if (r < minThreshold) {
             r = minThreshold;
