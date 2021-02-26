@@ -60,6 +60,7 @@ public final class LumierePonctuelle extends Lumiere {
     public LumierePonctuelle(Point3D pos, Color couleurLumiere) {
         this.position .setElem(pos);
         this.couleurLumiere.setElem(new ColorTexture(couleurLumiere));
+        directional.setElem(false);
     }
 
     @Override
