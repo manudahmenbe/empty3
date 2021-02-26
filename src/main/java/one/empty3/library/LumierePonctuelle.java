@@ -68,11 +68,11 @@ public final class LumierePonctuelle extends Lumiere {
         double x = p.moins(position.getElem()).norme();
         double r = 0.0;
         if (directional.getElem()) {
-            r = 1 - 1 / (directional.getElem() ? 1.0 : x) * r0
-                    / (Math.acos(Math.abs(position.getElem().prodScalaire(n)) / position.getElem().norme() / n.norme() / Math.PI * 2));
+            r = 1 - 1 * x*r0
+                    / (Math.acos(Math.abs(x) / x / n.norme() / Math.PI * 2));
         } else {
-            r = 1 - 1 / (directional.getElem() ? 1.0 : x) * r0
-                    / (Math.acos(Math.abs(x) / position.getElem().moins(p).norme() / n.norme() / Math.PI * 2));
+            r = 1 - 1 * r0
+                    / (Math.acos(Math.abs(x) / x / n.norme() / Math.PI * 2));
         }
         if (r < 0) {
             r = 0;
