@@ -47,7 +47,7 @@ import java.awt.*;
  */
 public final class LumierePonctuelle extends Lumiere {
 
-double minThreshold=0.0, maxThreshold=1.0;
+double minThreshold=0.1, maxThreshold=0.9;
 
     private StructureMatrix<ITexture> couleurLumiere = new StructureMatrix<>(0, ITexture.class);
     private StructureMatrix<Point3D> position = new StructureMatrix<>(0, Point3D.class);
@@ -72,11 +72,11 @@ double minThreshold=0.0, maxThreshold=1.0;
         double x = p.moins(position.getElem()).dot(n)/n.norme();
         double r = 0.0;
         if (directional.getElem()) {
-            r = 1 - 1 * x*r0
-                    / (Math.acos(Math.abs(x) / Math.PI * 2));
+            r = 1 * x*r0
+                    / (Math.acos(Math.abs(x) / Math.PI * 2))/x;
         } else {
-            r = 1 - 1 * r0
-                    / (Math.acos(Math.abs(x) / Math.PI * 2/ p.moins(position.getElem()).norme()));
+            r = 1 * r0
+                    / (Math.acos(Math.abs(x) / Math.PI * 2/ p.moins(position.getElem()).norme()))/x;
         }
         if (r < minThreshold) {
             r = minThreshold;
