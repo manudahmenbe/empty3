@@ -799,7 +799,7 @@ public void copyResourceFiles(File destDirectory) {
         if (p1 == null || p2 == null || p3 == null) {
             return;
         }
-
+        Point3D n = pp1.moins(pp2).prodVect(pp3.moins(pp2)).norme1();
         int col = t.getColorAt(u0, v0);
 
         double iteres1 = 1.0 / (Math.abs(p1.getX() - p2.getX()) + Math.abs(p1.getY() - p2.getY()));
@@ -810,6 +810,7 @@ public void copyResourceFiles(File destDirectory) {
                 double iteres2 = 1.0 / (Math.abs(pp.getX() - p3.getX()) + Math.abs(pp.getY() - p3.getY()));
                 for (double b = 0; b < 1.0; b += iteres2) {
                     Point3D p = p3d.plus(p3d.mult(-1d).plus(pp3).mult(b));
+                    p.setNormale(n);
                     // Point p22 = coordonneesPoint2D(p);
                     if (displayType <= SURFACE_DISPLAY_TEXT_TRI) {
                         ime.testDeep(p, t.getColorAt(u0 + a * (u1 - u0), v0 + b * (v1 - v0)));
