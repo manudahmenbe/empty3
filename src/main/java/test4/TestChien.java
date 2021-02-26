@@ -6,7 +6,7 @@ import one.empty3.library.core.nurbs.*;
 import one.empty3.library.core.testing.*;
 import java.awt.Color;
 import one.empty3.library.core.move.Trajectoires;
-
+import java.awt.Color;
 public class TestChien extends TestObjetSub {
 
     public void ginit() {
@@ -48,7 +48,7 @@ public class TestChien extends TestObjetSub {
 
         } 
 //        scene().cameraActive().getEye().setZ(-10.)
-scene().lumieres().add(new LumierePonctuelle(new Point3D(0.,0.2.))) ;
+scene().lumieres().add(new LumierePonctuelle(new Point3D(0.,0.2.), Color.RED)) ;
    }
     public void finit() {
         Point3D sphere = Trajectoires.sphere(1.0 * frame() / getMaxFrames(),
