@@ -1232,7 +1232,9 @@ public void copyResourceFiles(File destDirectory) {
             if (ce == null)
                 return;
             double deep = camera().distanceCamera(x3d);
-
+            Point3D n = x3d.getNormale();
+            if(n==null||n.norme()==0)
+                n = x3d.moins(scene().cameraActive());
             int x = (int) ce.getX();
             int y = (int) ce.getY();
             if (x >= 0 & x < la & y >= 0 & y < ha
@@ -1240,7 +1242,7 @@ public void copyResourceFiles(File destDirectory) {
                                                          * || ime.getElementID(coordArr, y) != idImg
                                                          */) /* && (((cc>>24)&0xff) == 0) */) {
                 if (scene().lumiereActive() != null) {
-                    cc = scene().lumiereTotaleCouleur(c, x3d, x3d.getNormale());
+                    cc = scene().lumiereTotaleCouleur(c, x3d, n);
 
                 }
                 ime.setElementID(x, y, idImg);
