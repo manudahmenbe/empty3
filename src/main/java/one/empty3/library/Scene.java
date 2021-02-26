@@ -31,7 +31,7 @@
  */
 
 /*
- * 2013 Manuel Dahmen
+ * 2013 2021 Manuel Dahmen
  */
 package one.empty3.library;
 
@@ -237,7 +237,7 @@ public class Scene extends Representable implements Serializable {
         if(n==null) {
              return c;
         }
-        if(Point3D.INFINI.equals(p)) {
+        if(Point3D.INFINI==p) {
              return c;     
             
         }
