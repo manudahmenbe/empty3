@@ -237,7 +237,6 @@ public class Scene extends Representable implements Serializable {
         if(n==null) {
              return c;
         }
-        }
         if (lumieres.getData1d().isEmpty()) {
             return c;
         }
