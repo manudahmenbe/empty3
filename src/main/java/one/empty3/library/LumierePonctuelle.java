@@ -69,10 +69,10 @@ double minThreshold=0.1, maxThreshold=0.9;
     public int getCouleur(int base, Point3D p, Point3D n) {
         if(n==null)
             n = Point3D.O0;
-        double x = p.moins(position.getElem()).dot(n)/n.norme();
+        double x = p.moins(position.getElem()).dot(n);
         double r = 0.0;
         if (directional.getElem()) {
-            r = 1 * x*r0/x;
+            r = 1*r0/x;
                     //* (Math.cos(Math.abs(x) / Math.PI * 2 / ));
         } else {
             r = 1 * r0 /x;
