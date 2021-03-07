@@ -97,7 +97,7 @@ double minThreshold=0.0, maxThreshold=1.0;
         double[] Lsa = getRgb(Ls);
         double[] Laa = getRgb(La);
         for (int i=0;i<3;i++) {
-            res[i] =  minmaxc((Lsa[i] ())*(couleurObjet[i])  + color[i]* ( Laa[i].getBlue())/(Lsa[i]+Laa[i]));
+            res[i] =  minmaxc((Lsa[i] )*(couleurObjet[i])  + color[i]* ( Laa[i])/(Lsa[i]+Laa[i]));
                    
         }
         return new Color( res[0],res[1],res[2]  ).getRGB();
