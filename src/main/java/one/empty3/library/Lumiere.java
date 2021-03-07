@@ -31,12 +31,12 @@
  */
 
 package one.empty3.library;
-
+import java.awt.Color;
 /*__
  * @author Atelier
  */
 public abstract class Lumiere  extends Representable{
-   protected Color La=1.0,Ls=1.0, Ld=1.0;
+   protected Color La=Color.WHITE,Ls=Color.WHITE, Ld=Color.WHITE;
 
     public abstract int getCouleur(int base, Point3D p, Point3D n);
     public double getLa() {return La.getRed();}
