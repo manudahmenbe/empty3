@@ -38,4 +38,7 @@ package one.empty3.library;
 public abstract class Lumiere  extends Representable{
 
     public abstract int getCouleur(int base, Point3D p, Point3D n);
+    public double getLa() {return 1.0;}
+    public double getLs() {return 1.0;}
+    public double getLd() {return 1.0;}
 }
