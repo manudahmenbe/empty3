@@ -45,4 +45,8 @@ public abstract class Lumiere  extends Representable{
     public int getLa() {return La.getRGB();}
     public int getLs() {return Ls.getRGB();}
     public int getLd() {return Ld.getRGB();}
+
+    public double getRgb(Color c) {
+       return new double[] {c.getRed(),c.getGreen(),c.getBlue()};
+    }
 }
