@@ -72,6 +72,11 @@ double minThreshold=0.1, maxThreshold=0.9;
             n = Point3D.O0;
         double x = p.moins(position.getElem()).dot(n);
         double r = 0.0;
+        if(r<=0.0)
+            r = - r;
+// if(r>=1.0)
+//            return Color.WHITE.getRGB();
+
         if (directional.getElem()) {
             r = 1*r0/x;
                     //* (Math.cos(Math.abs(x) / Math.PI * 2 / ));
@@ -89,9 +94,9 @@ double minThreshold=0.1, maxThreshold=0.9;
         Color couleurObjet = new Color(base);
         Color color = new Color(couleurLumiere.getElem().getColorAt(0, 0));
         return new Color(
-                 minmaxc((r-La.getRed()*S)*(couleurObjet.getRed()) * r + (color.getRed()) * (1 - r)),
-                minmaxc((r-La.getGreen()*S)*(couleurObjet.getGreen() ) * r + (color.getGreen()) * (1 - r)),
-                 minmaxc((r-La.getBlue()*S)*(couleurObjet.getBlue()) * r + (color.getBlue()) * (1 - r))).getRGB();
+                 minmaxc((Ls.getRed())*(couleurObjet.getRed()) + (color.getRed())) * ( r)),
+                minmaxc((Ls.getGreen())*(couleurObjet.getGreen() ) + (color.getGreen())) * (r)),
+                 minmaxc((Ls.getBlue())*(couleurObjet.getBlue()) + (color.getBlue())) * ( r))).getRGB();
     }
 
     public void intensite(int r0) {
