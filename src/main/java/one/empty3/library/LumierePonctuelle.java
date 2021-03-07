@@ -70,7 +70,7 @@ double minThreshold=0.0, maxThreshold=1.0;
     public int getCouleur(int base, Point3D p, Point3D n) {
         if(n==null)
             n = Point3D.X;
-        double x = p.moins(position.getElem()).dot(n);
+        double x = Math.acos(p.moins(position.getElem()).norme1().dot(n.norme1()))/2/Math.PI;
    double d= p.moins(position.getElem()).norme();
         double r = 0.0;
         if(x<=0.0)
@@ -79,10 +79,10 @@ double minThreshold=0.0, maxThreshold=1.0;
 //            return Color.WHITE.getRGB();
 
         if (directional.getElem()) {
-            r = 1*r0/d;
+            r = 1*r0;
                     //* (Math.cos(Math.abs(x) / Math.PI * 2 / ));
         } else {
-            r = 1 * r0 /d;
+            r = 1 * r0 /d*x;
                     //* (Math.cos(Math.abs(x) / Math.PI * 2/ p.moins(position.getElem()).norme()))/x;
         }
         if (r < minThreshold) {
