@@ -71,6 +71,7 @@ double minThreshold=0.0, maxThreshold=1.0;
         if(n==null)
             n = Point3D.X;
         double x = p.moins(position.getElem()).dot(n);
+   double d= p.moins(position.getElem()).norme();
         double r = 0.0;
         if(x<=0.0)
             x = - x;
@@ -78,10 +79,10 @@ double minThreshold=0.0, maxThreshold=1.0;
 //            return Color.WHITE.getRGB();
 
         if (directional.getElem()) {
-            r = 1*r0/x;
+            r = 1*r0/d;
                     //* (Math.cos(Math.abs(x) / Math.PI * 2 / ));
         } else {
-            r = 1 * r0 /x;
+            r = 1 * r0 /d;
                     //* (Math.cos(Math.abs(x) / Math.PI * 2/ p.moins(position.getElem()).norme()))/x;
         }
         if (r < minThreshold) {
