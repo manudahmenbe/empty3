@@ -39,7 +39,7 @@ public abstract class Lumiere  extends Representable{
    protected Color La=Color.WHITE,Ls=Color.WHITE, Ld=Color.WHITE, S=0.5;
 
     public abstract int getCouleur(int base, Point3D p, Point3D n);
-    public int getLa() {return La.getRgb();}
-    public int getLs() {return Ls.getRgb();}
-    public int getLd() {return Ld.getRgb();}
+    public int getLa() {return La.getRGB();}
+    public int getLs() {return Ls.getRGB();}
+    public int getLd() {return Ld.getRGB();}
 }
