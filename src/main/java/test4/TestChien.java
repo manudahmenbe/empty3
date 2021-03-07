@@ -49,7 +49,7 @@ public class TestChien extends TestObjetSub {
         } 
 //        scene().cameraActive().getEye().setZ(-10.)
 
-        scene().lumieres().add(new LumierePonctuelle(new Point3D(0.,0.,2.), Color.YELOW)) ;
+        scene().lumieres().add(new LumierePonctuelle(new Point3D(0.,0.,2.), Color.YELLOW)) ;
    }
     public void finit() {
         Point3D sphere = Trajectoires.sphere(1.0 * frame() / getMaxFrames(),
