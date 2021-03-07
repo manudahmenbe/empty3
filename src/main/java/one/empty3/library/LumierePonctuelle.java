@@ -89,9 +89,9 @@ double minThreshold=0.1, maxThreshold=0.9;
         Color couleurObjet = new Color(base);
         Color color = new Color(couleurLumiere.getElem().getColorAt(0, 0));
         return new Color(
-                 minmaxc((r-La.getRed())*(couleurObjet.getRed()) * r + (color.getRed()) * (1 - r)),
-                minmaxc((r-La.getGreen())*(couleurObjet.getGreen() / 256.0) * r + (color.getGreen()) * (1 - r)),
-                 minmaxc((r-La.getBlue())*(couleurObjet.getBlue() / 256.0) * r + (color.getBlue()) * (1 - r))).getRGB();
+                 minmaxc((r-La.getRed()*S)*(couleurObjet.getRed()) * r + (color.getRed()) * (1 - r)),
+                minmaxc((r-La.getGreen()*S)*(couleurObjet.getGreen() ) * r + (color.getGreen()) * (1 - r)),
+                 minmaxc((r-La.getBlue()*S)*(couleurObjet.getBlue()) * r + (color.getBlue()) * (1 - r))).getRGB();
     }
 
     public void intensite(int r0) {
