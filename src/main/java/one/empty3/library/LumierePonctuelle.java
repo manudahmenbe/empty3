@@ -72,8 +72,8 @@ double minThreshold=0.1, maxThreshold=0.9;
             n = Point3D.O0;
         double x = p.moins(position.getElem()).dot(n);
         double r = 0.0;
-        if(r<=0.0)
-            r = - r;
+        if(x<=0.0)
+            x = - x;
 // if(r>=1.0)
 //            return Color.WHITE.getRGB();
 
