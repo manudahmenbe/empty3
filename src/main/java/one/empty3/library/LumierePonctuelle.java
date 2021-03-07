@@ -59,10 +59,11 @@ double minThreshold=0.1, maxThreshold=0.9;
         this.couleurLumiere.setElem(new ColorTexture(Color.WHITE));
         directional.setElem(Boolean.FALSE);
     }
-    public LumierePonctuelle(Point3D pos, Color couleurLumiere) {
+    public LumierePonctuelle(Point3D pos, Color couleurLumiere, double r0) {
         this.position .setElem(pos);
         this.couleurLumiere.setElem(new ColorTexture(couleurLumiere));
         directional.setElem(false);
+        this.r0 = r0;
     }
 
     @Override
