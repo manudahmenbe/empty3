@@ -37,7 +37,7 @@ import java.awt.Color;
  */
 public abstract class Lumiere  extends Representable{
   // ambient specular diffuse shinyness
-   protected Color La=Color.WHITE,Ls=Color.WHITE, Ld=Color.WHITE;
+   protected Color La=Color.BLACK,Ls=Color.WHITE, Ld=Color.WHITE;
    
    protected double S=0.5;
 
