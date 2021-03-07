@@ -23,7 +23,7 @@ public class TestChien extends TestObjetSub {
    new Point3D(0.,0.,0.5), 
    new Point3D( 1.,0.,0.5),
    new Point3D(0.,0.,0.5 ),
-            new TextureCol(Color.RED)
+            new TextureCol(Color.BLUE)
                    );*///parallel polyèdres largeur y 0.5
    for(int i=0;i<4; i++) {
        patte[i] = new Tubulaire3();
@@ -49,7 +49,7 @@ public class TestChien extends TestObjetSub {
         } 
 //        scene().cameraActive().getEye().setZ(-10.)
 
-        scene().lumieres().add(new LumierePonctuelle(new Point3D(0.,0.,2.), Color.RED)) ;
+        scene().lumieres().add(new LumierePonctuelle(new Point3D(0.,0.,2.), Color.YELOW)) ;
    }
     public void finit() {
         Point3D sphere = Trajectoires.sphere(1.0 * frame() / getMaxFrames(),
