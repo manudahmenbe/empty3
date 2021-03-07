@@ -237,7 +237,7 @@ public class Scene extends Representable implements Serializable {
         if(n==null) {
              return c;
         }
-        if(Point3D.INFINI==p) {
+        if(Point3D.INFINI.equals(p)) {
              return c;     
             
         }
@@ -261,7 +261,7 @@ public class Scene extends Representable implements Serializable {
 
             t[2] += color.getBlue() / 256.0;
 
-            t[3] += color.getAlpha() / 256.0;
+            //t[3] += color.getAlpha() / 256.0;
 
             cpt++;
         }
@@ -270,7 +270,7 @@ public class Scene extends Representable implements Serializable {
             t[i] /= cpt;
         }
 
-        return new Color(t[0], t[1], t[2], t[3]).getRGB();
+        return new Color(t[0], t[1], t[2]).getRGB();
     }
 
     public Representable place(MODObjet aThis) {
