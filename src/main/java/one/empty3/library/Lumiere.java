@@ -46,13 +46,13 @@ public abstract class Lumiere  extends Representable{
     public int getLs() {return Ls.getRGB();}
     public int getLd() {return Ld.getRGB();}
 
-    public double [] getRgb(Color c) {
+    public static double [] getRgb(Color c) {
        return new double[] {(c.getRed()/256f),
           (float)(c.getGreen()/256f),
           (float)(c.getBlue()/256f)};
     }
   
-  public int  getInt(double [] d) {
+  public static int  getInt(double [] d) {
        int res = 0;
     for(int i=0 ;i<3;i++) {
         res += ((int)(float)(d[i]*256))<<(i*8);
@@ -60,7 +60,7 @@ public abstract class Lumiere  extends Representable{
     return res+0xFF000000;
   }
 
-   public double[] getDoubles(int c) {
+   public static double[] getDoubles(int c) {
        double [] res = new double[3];
        for(int i=0 ;i<3;i++) {
         res[i] = ((c&(256<<(i*8)))>>(i*8))/256.;
