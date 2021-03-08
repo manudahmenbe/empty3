@@ -30,8 +30,8 @@ queue.texture(new TextureCol(Color.BLUE));
                    );*///parallel polyèdres largeur y 0.5
    for(int i=0;i<4; i++) {
        patte[i] = new Tubulaire3();
-patte[].texture(new TextureCol(Color.BLUE));
-       }
+       patte[i].texture(new TextureCol(Color.BLUE));
+   }
 
        ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())). getCoefficients().add(new Point3D(0.,0.25,0.));
        ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())).getCoefficients().add(new Point3D(0.,0.25,1.)); //patte avant
