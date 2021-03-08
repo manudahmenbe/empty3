@@ -51,4 +51,12 @@ public abstract class Lumiere  extends Representable{
           (float)(c.getGreen()/256f),
           (float)(c.getBlue()/256f)};
     }
+  
+  public int  getInt(double [] d) {
+       int res = 0;
+    for(int i=0 ;i<3;i++) {
+        res += ((int)(float)(d[i]*255))<<(i*8);
+    }
+    return res;
+  }
 }
