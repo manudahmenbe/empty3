@@ -94,7 +94,7 @@ double minThreshold=0.0, maxThreshold=1.0;
 
         double[] couleurObjet = getRgb( new Color(base));
         double [] color = getRgb(new Color(couleurLumiere.getElem().getColorAt(0, 0)));
-        float[] res = new float[3];
+        double[] res = new double[3];
         double[] Lsa = getRgb(Ls);
         double[] Laa = getRgb(La);
         for (int i=0;i<3;i++) {
