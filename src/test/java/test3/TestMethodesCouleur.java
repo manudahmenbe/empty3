@@ -4,7 +4,7 @@ import one.empty3.library.*;
 import org.junit.Test;
 import java.awt.Color;
 
-public class TestMethodesCouleur extends TestCase {
+public class TestMethodesCouleur {
     @Test
     public void testColorIdent() {
         assertTrue(
