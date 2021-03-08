@@ -68,6 +68,6 @@ public abstract class Lumiere  extends Representable{
        return res;  
     }
     public static Color getColorD(double[] d) {
-        return new Color((float)(d[0]), (float)(d[1]),(float)(d[2]));
+        return new Color((float)(d[2]), (float)(d[1]),(float)(d[0]));
     }
 }
