@@ -12,7 +12,7 @@ public class TestMethodesCouleur {
         Color col = Colors.random();
         Color col1 =  new Color(           Lumiere.getInt(            Lumiere.getRgb(             col            )           )          );
         Color col2 =  Lumiere.getColorD(Lumiere.getDoubles(col.getRGB()))       ;
-            
+            System.out.println("col"+col+"\ncol1 "+col1+"\ncol2"+col2);
             assertTrue(col1.
          equals(
           col
