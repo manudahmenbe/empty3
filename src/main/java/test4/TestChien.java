@@ -19,7 +19,10 @@ public class TestChien extends TestObjetSub {
        Point3D tete = new Point3D(0.,0.,0. ); //tête 
        Point3D queue = new Point3D(1.,0.,1.); // queue
        Sphere tetes = new Sphere(tete, 0.4); //sphère 
-       /*Parallelepiped corps = new Parallelepiped(tete,
+tetes.texture(new TextureCol(Color.BLUE));
+queue.texture(new TextureCol(Color.BLUE));
+
+/*Parallelepiped corps = new Parallelepiped(tete,
    new Point3D(0.,0.,0.5), 
    new Point3D( 1.,0.,0.5),
    new Point3D(0.,0.,0.5 ),
@@ -27,6 +30,7 @@ public class TestChien extends TestObjetSub {
                    );*///parallel polyèdres largeur y 0.5
    for(int i=0;i<4; i++) {
        patte[i] = new Tubulaire3();
+patte[].texture(new TextureCol(Color.BLUE));
        }
 
        ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())). getCoefficients().add(new Point3D(0.,0.25,0.));
@@ -49,7 +53,7 @@ public class TestChien extends TestObjetSub {
         } 
 //        scene().cameraActive().getEye().setZ(-10.)
 
-        //scene().lumieres().add(new LumierePonctuelle(new Point3D(0.,0.,2.), Color.YELLOW)) ;
+        scene().lumieres().add(new LumierePonctuelle(new Point3D(0.,0.,2.), Color.YELLOW)) ;
    }
     public void finit() {
         Point3D sphere = Trajectoires.sphere(1.0 * frame() / getMaxFrames(),
