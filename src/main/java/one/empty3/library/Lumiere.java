@@ -67,4 +67,7 @@ public abstract class Lumiere  extends Representable{
        }
        return res;  
     }
+    public Color getColorD(double[] d) {
+        return new Color
+    }
 }
