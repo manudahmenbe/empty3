@@ -3,8 +3,9 @@ package test3;
 import one.empty3.library.*;
 import org.junit.Test;
 import java.awt.Color;
-
-public class TestMethodesCouleur {
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue; 
+public class TestMethodesCouleur extends TestCase {
     @Test
     public void testColorIdent() {
         assertTrue(
