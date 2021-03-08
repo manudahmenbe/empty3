@@ -101,7 +101,7 @@ double minThreshold=0.0, maxThreshold=1.0;
             res[i] =  minmaxc((Lsa[i] )*(couleurObjet[i])  + color[i]* ( Laa[i])/(Lsa[i]+Laa[i]));
                    
         }
-        return new Color( (int)(res[0]*255),(int)(res[1]*255),(int)(res[2]*255)  ).getRGB();
+        return getInt(res);
     }
 
     public void intensite(int r0) {
