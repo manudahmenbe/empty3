@@ -1241,10 +1241,10 @@ public void copyResourceFiles(File destDirectory) {
                     && (deep < ime.getElementProf(x, y) /*
                                                          * || ime.getElementID(coordArr, y) != idImg
                                                          */) /* && (((cc>>24)&0xff) == 0) */) {
-                if (scene().lumiereActive() != null) {
-                    cc = scene().lumiereTotaleCouleur(c, x3d, n);
+                //if (scene().lumiereActive() != null) {
+                cc = scene().lumiereTotaleCouleur(c, x3d, n);
 
-                }
+                //}
                 ime.setElementID(x, y, idImg);
                 ime.setElementCouleur(x, y, cc);
                 ime.setDeep(x, y, deep);
