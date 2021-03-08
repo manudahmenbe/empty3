@@ -10,20 +10,16 @@ public class TestMethodesCouleur {
     public void testColorIdent() {
        for(int c=0; c<5; c++) {
         Color col = Colors.random();
-        assertTrue(
-         new Color(
-          Lumiere.getInt(
-           Lumiere.getRgb(
-            col
-           )
-          )
-         ).equals(
+        Color col1 =  new Color(           Lumiere.getInt(            Lumiere.getRgb(             col            )           )          );
+        Color col2 =  Lumiere.getColorD(Lumiere.getDoubles(col.getRGB()))       ;
+            
+            assertTrue(col1.
+         equals(
           col
          )
         );
         assertTrue(
-         Lumiere.getColorD(Lumiere.getDoubles(col.getRGB()))
-         .equals(col)
+          col2 .equals(col)
         );          
        }
     }
