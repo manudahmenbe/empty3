@@ -23,7 +23,7 @@ public class TestMethodesCouleur {
         );
         assertTrue(
          Lumiere.getColorD(Lumiere.getDoubles(col.getRGB()))
-         .equals(col));
+         .equals(col)
         );          
        }
     }
