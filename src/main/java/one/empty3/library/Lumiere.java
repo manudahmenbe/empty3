@@ -64,5 +64,7 @@ public abstract class Lumiere  extends Representable{
        double [] res = new double[3];
        for(int i=0 ;i<3;i++) {
         res[i] += (c&(256>>(i*8)))/256.;
+       }
+       return res;  
     }
 }
