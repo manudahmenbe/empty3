@@ -2,9 +2,11 @@ package test3;
 
 import one.empty3.library.*;
 import org.junit.Test;
+import java awt.Color;
+
 public class TestMethodesCouleur extends TestCase {
     @Test
     public void testColorIdent() {
-        Lumiere.getRgb(Color.WHITE);
+        new Color(Lumiere.getInt(Lumiere.getRgb(Color.WHITE)));
     }
 }
