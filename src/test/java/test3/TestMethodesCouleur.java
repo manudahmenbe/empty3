@@ -7,6 +7,16 @@ import java awt.Color;
 public class TestMethodesCouleur extends TestCase {
     @Test
     public void testColorIdent() {
-        assertTrue(new Color(Lumiere.getInt(Lumiere.getRgb(Color.WHITE))).equals(Color.WHITE));
+        assertTrue(
+         new Color(
+          Lumiere.getInt(
+           Lumiere.getRgb(
+            Color.WHITE
+           )
+          )
+         ).equals(
+          Color.WHITE
+          )
+         );
     }
 }
