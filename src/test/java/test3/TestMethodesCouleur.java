@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.awt.Color;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue; 
-public class TestMethodesCouleur extends TestCase {
+public class TestMethodesCouleur {
     @Test
     public void testColorIdent() {
         assertTrue(
