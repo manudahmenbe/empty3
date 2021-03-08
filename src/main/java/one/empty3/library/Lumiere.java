@@ -55,7 +55,7 @@ public abstract class Lumiere  extends Representable{
   public static int  getInt(double [] d) {
        int res = 0;
     for(int i=0 ;i<3;i++) {
-        res += ((int)(float)(d[i]*256))<<((3-i)*8);
+        res += ((int)(float)(d[i]*256))<<((2-i)*8);
     }
     return res|0xFF000000;
   }
@@ -63,7 +63,7 @@ public abstract class Lumiere  extends Representable{
    public static double[] getDoubles(int c) {
        double [] res = new double[3];
        for(int i=0 ;i<3;i++) {
-        res[i] = ((c&(256<<((3-i)*8)) )>>((3-i)*8))/256.;
+        res[i] = ((c&(256<<((2-i)*8)) )>>((2-i)*8))/256.;
        }
        return res;  
     }
