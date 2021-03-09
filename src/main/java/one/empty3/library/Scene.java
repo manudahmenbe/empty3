@@ -249,7 +249,7 @@ public class Scene extends Representable implements Serializable {
 
             
 double tadd = Lumiere.getDoubles(cP);
-for(j=0;j<3;j++)
+for(int j=0;j<3;j++)
             t[j] += tadd[j];
 
             cpt++;
@@ -259,7 +259,7 @@ for(j=0;j<3;j++)
             t[i] /= cpt;
         }
 
-        return new Color(t[0], t[1], t[2]).getRGB();
+        return Lumiere.getColorD(t);
     }
 
     public Representable place(MODObjet aThis) {
