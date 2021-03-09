@@ -37,8 +37,6 @@ package one.empty3.library.core.move;
 import one.empty3.library.*;
 
 public class Trajectoires {
-
-    @Deprecated
     public static Point3D sphere(double longpc, double latpc, double radius) {
         return new Point3D(
                 Math.cos(longpc * Math.PI) * Math.cos(Math.PI * (latpc)),
@@ -47,15 +45,13 @@ public class Trajectoires {
         ).mult(radius);
 
     }
-
-   @Deprecated
-    public static Point3D sphere(Point3D center, Point3D axe, double longpc, double latpc, double radius) {
+    public static Point3D sphere(Point3D center, Point3D oo00, Point3D axe, double longpc, double latpc, double radius) {
         Point3D base = new Point3D(
                 Math.cos(longpc * Math.PI) * Math.cos(Math.PI * (latpc)),
                 Math.sin(longpc * Math.PI) * Math.cos(Math.PI * (latpc)),
                 Math.sin(Math.PI * (latpc))
         ).mult(radius);
-        Point3D x = axe.prodVect(base).norme1();
+        Point3D x = axe.prodVect(oo00).norme1();
         Matrix33 matrix = new Matrix33(new Point3D[]{
           x, axe.prodVect(x), axe}
            
