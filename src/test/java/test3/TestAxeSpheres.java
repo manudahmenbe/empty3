@@ -29,5 +29,14 @@ public class TestAxeSpheres {
             Point3D.Z, r,
                1.0, 0
             ).equals(P.n(r, 1., 0.));
+  assertTrue(Trajectoires.sphere(Point3D.Y,
+            Point3D.Z, r,
+               0.25, 0
+            ).equals(P.n(0., 1.+r, 0.));
+    }
+  assertTrue(Trajectoires.sphere(Point3D.Y,
+            Point3D.Z, r,
+               0.75, 0
+            ).equals(P.n(0., 1.-r, 0.));
     }
 }
