@@ -53,7 +53,7 @@ public class Trajectoires {
         ).mult(radius);
         Point3D x = axe.prodVect(oo00).norme1();
         Matrix33 matrix = new Matrix33(new Point3D[]{
-          x, axe.prodVect(x), axe}
+          oo00, axe.prodVect(oo00), axe}
            
         );
 
