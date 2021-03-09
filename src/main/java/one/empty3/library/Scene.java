@@ -238,7 +238,7 @@ public class Scene extends Representable implements Serializable {
             return c;
         }
 
-        float[] t = new float[]{0, 0, 0, 0};
+        double[] t = new double[]{0., 0., 0., 0.};
 
         int cpt = 0;
 
@@ -247,14 +247,10 @@ public class Scene extends Representable implements Serializable {
 
             int cP = l.getCouleur(c, p, n);
 
-            Color color = new Color(cP);
-            t[0] += color.getRed() / 256.0;
-
-            t[1] += color.getGreen() / 256.0;
-
-            t[2] += color.getBlue() / 256.0;
-
-            //t[3] += color.getAlpha() / 256.0;
+            
+double tadd = Lumiere.getDoubles(cP);
+for(j=0;j<3;j++)
+            t[j] += tadd[j];
 
             cpt++;
         }
