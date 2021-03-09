@@ -59,7 +59,7 @@ public class Trajectoires {
         Matrix33 matrix = new Matrix33(new Point3D[]{
           x, axe.prodVect(x), axe}
            
-        );
+        ).tild();
 
         return matrix.mult(base).plus(center);
     }
