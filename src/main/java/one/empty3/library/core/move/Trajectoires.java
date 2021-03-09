@@ -47,5 +47,20 @@ public class Trajectoires {
         ).mult(radius);
 
     }
+
+   @Deprecated
+    public static Point3D sphere(Point3D axe, double longpc, double latpc, double radius) {
+        Point3D base = new Point3D(
+                Math.cos(longpc * Math.PI) * Math.cos(Math.PI * (latpc)),
+                Math.sin(longpc * Math.PI) * Math.cos(Math.PI * (latpc)),
+                Math.sin(Math.PI * (latpc))
+        ).mult(radius);
+        Matrix33 matrix = new Matrix33(
+           Point3D.X, axe.mult(Point3D.X), axe
+           
+        );
+
+        return matrix.mult(base);
+    }
 }
  
