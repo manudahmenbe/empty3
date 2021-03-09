@@ -248,7 +248,7 @@ public class Scene extends Representable implements Serializable {
             int cP = l.getCouleur(c, p, n);
 
             
-double tadd = Lumiere.getDoubles(cP);
+double[] tadd = Lumiere.getDoubles(cP);
 for(int j=0;j<3;j++)
             t[j] += tadd[j];
 
