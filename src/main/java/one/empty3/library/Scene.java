@@ -259,7 +259,7 @@ for(int j=0;j<3;j++)
             t[i] /= cpt;
         }
 
-        return Lumiere.getColorD(t);
+        return Lumiere.getInt(t);
     }
 
     public Representable place(MODObjet aThis) {
