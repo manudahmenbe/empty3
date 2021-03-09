@@ -9,7 +9,8 @@ public class TestAxeSpheres {
     @Test
     public void testSphereTrajectoire() {
         for(int i=0; i<10; i++) {
-         double r= =Math.random()*100.  ;
+         double r =
+             Math.random()*100.  ;
             Point3D pr;
          assertTrue(Trajectoires.sphere(Point3D.O0,
             Point3D.random(10.).norme1(), Math.random(), Math.random(), r
@@ -37,8 +38,8 @@ public class TestAxeSpheres {
             ).equals(P.n(0., 1.+r, 0.)));
     
   assertTrue(Trajectoires.sphere(Point3D.Y,
-            Point3D.Z, r,
-               0.75, 0
+            Point3D.Z,
+               0.75, 0, r
             ).equals(P.n(0., 1.-r, 0.)));
         }
     }
