@@ -10,7 +10,7 @@ public class TestAxeSpheres {
     public void testSphereTrajectoire() {
          double r;
          assertTrue(Trajectoires.sphere(Point3D.O0,
-            Point3D.random().norme1(), Math.random(), Math.random(), r=Math.random()*100.,
+            Point3D.random().norme1(), Math.random(), Math.random(), r=Math.random()*100.
                
             ).norme()==r);
   assertTrue(Trajectoires.sphere(Point3D.X,
