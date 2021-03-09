@@ -49,7 +49,7 @@ public class Trajectoires {
     }
 
    @Deprecated
-    public static Point3D sphere(Point3D axe, double longpc, double latpc, double radius) {
+    public static Point3D sphere(Point3D center, Point3D axe, double longpc, double latpc, double radius) {
         Point3D base = new Point3D(
                 Math.cos(longpc * Math.PI) * Math.cos(Math.PI * (latpc)),
                 Math.sin(longpc * Math.PI) * Math.cos(Math.PI * (latpc)),
@@ -61,7 +61,7 @@ public class Trajectoires {
            
         );
 
-        return matrix.mult(base);
+        return matrix.mult(base).plus(center);
     }
 }
  
