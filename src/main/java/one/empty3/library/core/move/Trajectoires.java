@@ -56,7 +56,7 @@ public class Trajectoires {
                 Math.sin(Math.PI * (latpc))
         ).mult(radius);
         Matrix33 matrix = new Matrix33(
-           Point3D.X, axe.cross(Point3D.X), axe
+           Point3D.X, axe.prodVect(Point3D.X), axe
            
         );
 
