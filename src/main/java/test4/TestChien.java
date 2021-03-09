@@ -56,7 +56,7 @@ queue.texture(new TextureCol(Color.BLUE));
 //        scene().lumieres().add(new LumierePonctuelle(new Point3D(0.,0.,2.), Color.BLUE/*.YELLOW*/)) ;
    }
     public void finit() {
-        Point3D sphere = Trajectoires.sphere(Point3D.Z, 1.0 * frame() / getMaxFrames(),
+        Point3D sphere = Trajectoires.sphere(Point3D.O0, Point3D.Z, 1.0 * frame() / getMaxFrames(),
                 0.0, 16.0);
         scene().cameras().clear();
         Camera c = new Camera(sphere, Point3D.O0, Point3D.Y);
