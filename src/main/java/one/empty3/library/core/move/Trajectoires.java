@@ -51,9 +51,9 @@ public class Trajectoires {
                 Math.sin(longpc * Math.PI) * Math.cos(Math.PI * (latpc)),
                 Math.sin(Math.PI * (latpc))
         ).mult(radius);
-        Point3D x = axe.prodVect(oo00).norme1().prodVect(axe);
+        Point3D x =axe.prodVect(oo00).norme1().prodVect(axe).norme1();
         Matrix33 matrix = new Matrix33(new Point3D[]{
-          x, axe.prodVect(oo00).norme1(), axe.norme1()}
+          x, axe.prodVect(x), axe}
            
         );
 
