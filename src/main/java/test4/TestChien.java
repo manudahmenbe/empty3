@@ -31,7 +31,7 @@ queue.texture(new TextureCol(Color.BLACK));
    for(int i=0;i<4; i++) {
        patte[i] = new Tubulaire3();
        patte[i].texture(new TextureCol(Color.ORANGE));
-       patte[i].getDiameterCurve().setFormulaX("0.6");
+       patte[i].getDiameterFunction().setFormulaX("0.6");
    }
   corp = new Tubulaire3();
        corp.texture(new TextureCol(Color.ORANGE));
