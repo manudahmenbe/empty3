@@ -33,6 +33,7 @@ queue.texture(new TextureCol(Color.BLACK));
        patte[i].texture(new TextureCol(Color.ORANGE));
       ((FctXY)( patte[i].getDiameterFunction())).setFormulaX("0.6");
    }
+Tubulaire3 corp;
   corp = new Tubulaire3();
        corp.texture(new TextureCol(Color.ORANGE));
         ((FctXY)( corp.getDiameterFunction())).setFormulaX("0.6");
