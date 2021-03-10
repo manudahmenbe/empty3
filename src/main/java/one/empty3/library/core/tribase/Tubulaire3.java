@@ -112,7 +112,7 @@ public class Tubulaire3 extends ParametricSurface {
         refs[2] = new Point3D(0d, 1d, 0d);
 
         tangente = tangente.norme1();
-        Point3D normale = calculerNormale(t);
+        Point3D normale = calculerNormale(t).norme1();
 
         double[] maxs = new double[3];
 
