@@ -141,7 +141,7 @@ double min = 3;
             if(minI<min) {
                 min = minI;
                 j = i;
-
+            }
         }
 
         /*int j = 0;
