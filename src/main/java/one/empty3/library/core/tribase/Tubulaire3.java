@@ -161,7 +161,7 @@ double min = 3;
         Point3D[] vectPerp = vectPerp(u);
         return soulCurve.getElem().calculerPoint3D(u).plus(
                 vectPerp[1].mult(diameterFunction.getElem().result(u)*Math.cos(2 * Math.PI * v))).plus(
-                        vectPerp[2].mult(diameterFunction.getElem().result()*Math.sin(2 * Math.PI * v)));
+                        vectPerp[2].mult(diameterFunction.getElem().result(u)*Math.sin(2 * Math.PI * v)));
     }
 
     @Override
