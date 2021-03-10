@@ -6,6 +6,7 @@ import java.awt.Color;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue; 
 public class TestAxeSpheres {
+/*
     @Test
     public void testSphereTrajectoire() {
         for(int i=0; i<10; i++) {
@@ -44,4 +45,5 @@ Math.random(), Math.random(), r
             ).equals(P.n(0., 1.-r, 0.)));
         }
     }
+*/
 }
