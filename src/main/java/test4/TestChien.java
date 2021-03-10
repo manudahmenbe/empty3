@@ -31,11 +31,11 @@ queue.texture(new TextureCol(Color.BLACK));
    for(int i=0;i<4; i++) {
        patte[i] = new Tubulaire3();
        patte[i].texture(new TextureCol(Color.ORANGE));
-       patte[i].getDiameterFunction().setFormulaX("0.6");
+      ((FctXY)( patte[i].getDiameterFunction())).setFormulaX("0.6");
    }
   corp = new Tubulaire3();
        corp.texture(new TextureCol(Color.ORANGE));
-       corp.setFormulaX("0.6");
+        ((FctXY)( corp)).setFormulaX("0.6");
        ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())). getCoefficients().setElem(new Point3D(0.,0.25,0.), 0);
        ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())).getCoefficients().setElem( new Point3D(0.,0.25,1.), 1); //patte avant
         ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())).getCoefficients().setElem( new Point3D(0.,-0.25,1.), 2);
