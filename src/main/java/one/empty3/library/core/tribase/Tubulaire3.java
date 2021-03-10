@@ -117,7 +117,9 @@ public class Tubulaire3 extends ParametricSurface {
         double[] maxs = new double[3];
 
 
-        for(int i=0; i<3; i++)
+ int j=0;
+double min = 3;
+       for(int i=0; i<3; i++)
         {
             Point3D px = tangente.prodVect(normale.prodVect(refs[i])).norme1();
 
@@ -127,16 +129,22 @@ public class Tubulaire3 extends ParametricSurface {
             vecteurs[i][0] = tangente;
             vecteurs[i][1] = px;
             vecteurs[i][2] = py;
-
+/*
             maxs[i] = vecteurs[i][0].
                     prodVect(vecteurs[i][1])
             .norme()+
                     vecteurs[i][0]
                             .prodVect(vecteurs[i][2])
                             .norme();
+*/
+            double minI = Math.abs(tangente.plus(px).plus(py).norme()-Math.sqrt(3));
+            if(minI<min) {
+                min = minI;
+                j = i;
+
         }
 
-        int j = 0;
+        /*int j = 0;
 
         double max = 0.0;
         for (int i = 0; i < 3; i++) {
@@ -144,7 +152,7 @@ public class Tubulaire3 extends ParametricSurface {
                 max = maxs[i];
                 j = i;
             }
-        }
+        }*/
         return vecteurs[j];
     }
 
