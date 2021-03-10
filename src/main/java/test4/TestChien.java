@@ -58,8 +58,10 @@ queue.texture(new TextureCol(Color.BLACK));
         Point3D sphere = Trajectoires.sphere(/*Point3D.O0, Point3D.Z, Point3D.X,*/
           1.0 * frame() / getMaxFrames(),
                 0.0, 16.0);
+        Point3D circlePoint = P.n(Math.cos(1.0 * frame() / getMaxFrames()),
+            Math.sin(1.0 * frame() / getMaxFrames()), 0.0);
         scene().cameras().clear();
-        Camera c = new Camera(sphere, Point3D.O0, Point3D.Y);
+        Camera c = new Camera(circlePoint, Point3D.O0, Point3D.Y);
         //c.setMatrix();
         c.declareProperties();
         scene().cameraActive(c);
