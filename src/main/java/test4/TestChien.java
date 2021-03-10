@@ -35,7 +35,7 @@ queue.texture(new TextureCol(Color.BLACK));
    }
   corp = new Tubulaire3();
        corp.texture(new TextureCol(Color.ORANGE));
-        ((FctXY)( corp)).getDiameterFunction())).setFormulaX("0.6");
+        ((FctXY)( corp.getDiameterFunction())).setFormulaX("0.6");
        ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())). getCoefficients().setElem(new Point3D(0.,0.25,0.), 0);
        ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())).getCoefficients().setElem( new Point3D(0.,0.25,1.), 1); //patte avant
         ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())).getCoefficients().setElem( new Point3D(0.,-0.25,1.), 2);
