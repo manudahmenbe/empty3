@@ -56,7 +56,7 @@ Tubulaire3 corp;
         } 
 //        scene().cameraActive().getEye().setZ(-10.)
 
-//        scene().lumieres().add(new LumierePonctuelle(new Point3D(0.,0.,2.), Color.BLUE/*.YELLOW*/)) ;
+        scene().lumieres().add(new LumierePonctuelle(new Point3D(0.,0.,2.), Color.BLUE/*.YELLOW*/)) ;
    }
     public void finit() {
         Point3D sphere = Trajectoires.sphere(/*Point3D.O0, Point3D.Z, Point3D.X,*/
@@ -65,7 +65,7 @@ Tubulaire3 corp;
         Point3D circlePoint = P.n(Math.cos(1.0 * frame() / getMaxFrames()),
             Math.sin(1.0 * frame() / getMaxFrames()), 0.0).mult(12.);
         scene().cameras().clear();
-        Camera c = new Camera(circlePoint, Point3D.O0, Point3D.Y);
+        Camera c = new Camera(circlePoint, Point3D.O0, Point3D.Z);
         //c.setMatrix();
         c.declareProperties();
         scene().cameraActive(c);
