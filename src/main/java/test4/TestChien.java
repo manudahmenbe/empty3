@@ -48,7 +48,7 @@ queue.texture(new TextureCol(Color.BLACK));
         //scene().add(corps);
         scene().add(tetes);
         for(int i=0;i<4; i+=2) {
-            scene().add(patte[i]);
+            //scene().add(patte[i]);
 
         } 
 //        scene().cameraActive().getEye().setZ(-10.)
