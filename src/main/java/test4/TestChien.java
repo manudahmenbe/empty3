@@ -63,7 +63,7 @@ Tubulaire3 corp;
           1.0 * frame() / getMaxFrames(),
                 0.0, 16.0);
         Point3D circlePoint = P.n(Math.cos(1.0 * frame() / getMaxFrames()),
-            Math.sin(1.0 * frame() / getMaxFrames()), 0.0);
+            Math.sin(1.0 * frame() / getMaxFrames()), 0.0).mult(12');
         scene().cameras().clear();
         Camera c = new Camera(circlePoint, Point3D.O0, Point3D.Y);
         //c.setMatrix();
