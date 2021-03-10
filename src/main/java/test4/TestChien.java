@@ -19,8 +19,8 @@ public class TestChien extends TestObjetSub {
        Point3D tete = new Point3D(0.,0.,0. ); //tête 
        Point3D queue = new Point3D(1.,0.,1.); // queue
        Sphere tetes = new Sphere(tete, 0.4); //sphère 
-tetes.texture(new TextureCol(Color.BLUE));
-queue.texture(new TextureCol(Color.BLUE));
+tetes.texture(new TextureCol(Color.RED));
+queue.texture(new TextureCol(Color.BLACK));
 
 /*Parallelepiped corps = new Parallelepiped(tete,
    new Point3D(0.,0.,0.5), 
@@ -30,7 +30,7 @@ queue.texture(new TextureCol(Color.BLUE));
                    );*///parallel polyèdres largeur y 0.5
    for(int i=0;i<4; i++) {
        patte[i] = new Tubulaire3();
-       patte[i].texture(new TextureCol(Color.BLUE));
+       patte[i].texture(new TextureCol(Color.ORANGE));
    }
 
        ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())). getCoefficients().add(new Point3D(0.,0.25,0.));
