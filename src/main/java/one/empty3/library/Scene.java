@@ -255,7 +255,7 @@ public class Scene extends Representable implements Serializable {
             cpt++;
         }
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             t[i] /= cpt;
         }
 
