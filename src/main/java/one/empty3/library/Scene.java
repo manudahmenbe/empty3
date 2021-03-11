@@ -108,17 +108,6 @@ public class Scene extends Representable implements Serializable {
 
     }
 
-    public int calculerCouleurLumiere(int t, Point3D point, Point3D normale) {
-        int size = lumieres().size();
-        int[] cs = new int[size];
-        for (int i = 0; i < size; i++) {
-
-            cs[i] = lumieres().get(i).getCouleur(t, point, normale);
-
-        }
-        return colorAdd(cs);
-    }
-
     @Deprecated
     public Camera camera() {
         return cameraActive();
