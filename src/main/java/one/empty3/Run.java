@@ -5,6 +5,7 @@ import java.io.*;
 
 public class Run {
     public static void main(String [] args) {
+        try {
         List<String> args2 = new ArrayList<>();
         Properties properties = new Properties();
         properties.load(new FileInputStream("runtestobjetsub.txt"));
@@ -25,5 +26,8 @@ public class Run {
         for(int i=0; i<args2.size(); i++)
             args[i] = args2.get(i);
         TestRun.main(args);
+        } catch(IOException|FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
     }
 }
