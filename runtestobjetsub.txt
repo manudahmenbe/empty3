@@ -1,4 +1,5 @@
 resx=640
 resy=480
-publish=false #gui
+publish=false
+#gui
 classname=test4.TestChien2
