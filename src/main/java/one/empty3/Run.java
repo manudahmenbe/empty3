@@ -17,7 +17,7 @@ public class Run {
             
             if(s.length()>0) {
                args2.add(line[0]+"="+s);
-               properties.put(key, s);
+               properties.replace(key, s);
             }
         });
         properties.store(new FileOutputStream("runtestobjetsub.txt"),
