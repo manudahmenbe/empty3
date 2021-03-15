@@ -741,7 +741,6 @@ public void copyResourceFiles(File destDirectory) {
     @Override
     public void testDeep(Point3D p, int c) {
         ime.testDeep(p, c);
-        ime.testDeep(p, c);
 
     }
 
