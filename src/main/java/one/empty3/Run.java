@@ -7,7 +7,7 @@ public class Run {
     public static void main(String [] args) {
         List<String> args2 = new ArrayList<>();
         Properties properties = new Properties(new File("runtestobjetsub.txt"));
-        for((key, value ) -> {
+        properties.forEach((key, value ) -> {
             String line = new String [] [] {properties(), properties.getValue()};
             System.scanf("Input : "+line[0]+"\ndefault value : " +line[1]+"\n", s);
             if(s.length()>0) {
