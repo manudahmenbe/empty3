@@ -20,7 +20,7 @@ public class Run {
         properties.save(new FileOutputStream("runtestobjetsub.txt"));
         args = new String [args2.size()];
         for(int i=0; i<args2.size(); i++)
-            args[] = args2.get(i);
+            args[i] = args2.get(i);
         TestRun.main(args);
     }
 }
