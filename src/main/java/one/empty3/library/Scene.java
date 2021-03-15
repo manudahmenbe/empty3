@@ -231,15 +231,15 @@ public class Scene extends Representable implements Serializable {
 
         int cpt = 0;
 
-        for (int i = 0; i < lumieres.getData1d().size(); i++) {
-            Lumiere l = lumieres.getElem(i);
+        for (Lumiere l : lumieres.getData1d()) {
+            
 
             int cP = l.getCouleur(c, p, n);
 
             
-        double[] tadd = Lumiere.getDoubles(cP);
-        for(int j=0;j<3;j++)
-            t[j] += tadd[j];
+            double[] tadd = Lumiere.getDoubles(cP);
+            for(int j=0;j<3;j++)
+                t[j] += tadd[j];
 
             cpt++;
         }
