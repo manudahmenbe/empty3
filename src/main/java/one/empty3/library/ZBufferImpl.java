@@ -734,28 +734,27 @@ public void copyResourceFiles(File destDirectory) {
 
     @Override
     public void testDeep(Point3D p, Color c) {
-
+        ime.testDeep(p, c);
         ime.testDeep(p, c);
     }
 
     @Override
     public void testDeep(Point3D p, int c) {
         ime.testDeep(p, c);
+        ime.testDeep(p, c);
 
     }
 
     public void testDeep(Point3D p) {
         if (p != null && p.texture() != null) {
-            ime.testDeep(p, p.texture());
+            ime.testDeep(p, p.texture().colorAt(0.,0.));
         }
     }
 
     public void testPoint(Point3D p, Color c) {
         int cc = c.getRGB();
-
-        if (scene().lumiereActive() != null) {
-            cc = scene().lumiereActive().getCouleur(c.getRGB(), p, p.getNormale());
-        }
+        cc = scene().lumiereActive().getCouleur(c.getRGB(), p, p.getNormale());
+        ime.testDeep(p, cc);
         ime.testDeep(p, cc);
     }
 
