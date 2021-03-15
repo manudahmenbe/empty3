@@ -18,15 +18,15 @@ public class Run {
 
             s = scanIn.nextLine(); 
 
-             args2.add(line[0]+"="+s);
+             
 
             if(s.length()>0 && !s.equals("\n")) {
-              
+              args2.add(line[0]+"="+value);
                properties.replace(key, s);
 
-            } else if(delete){
-               //args2.add(line[0]+"="+value);
-               properties.remove(key);
+            } else {
+               args2.add(line[0]+"="+value);
+               properties.replace(key, value);
             }
         });
         properties.store(new FileOutputStream("runtestobjetsub.txt"),
