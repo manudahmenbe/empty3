@@ -16,7 +16,7 @@ public class Run {
 System.out.println("var "+key+"\n\tdefault:\t"+value+"\n\tchange ? \t");
             s = scanIn.nextLine(); 
             
-            if(s.length()>0) {
+            if(s.length()>0 && !s.equals("\n")) {
                args2.add(line[0]+"="+s);
                properties.replace(key, s);
             }
