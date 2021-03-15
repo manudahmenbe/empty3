@@ -9,7 +9,8 @@ public class Run {
         List<String> args2 = new ArrayList<>();
         Properties properties = new Properties();
         properties.load(new FileInputStream("runtestobjetsub.txt"));
-        Scanner scanIn = new Scanner(System.in);                  
+        Scanner scanIn = new Scanner(System.in);      
+        boolean delete = false;            
         properties.forEach((key, value ) -> {
             String [] line = new String []{(String)key, (String)value};
             String s;
