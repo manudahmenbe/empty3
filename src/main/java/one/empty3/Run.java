@@ -13,6 +13,7 @@ public class Run {
         properties.forEach((key, value ) -> {
             String [] line = new String []{(String)key, (String)value};
             String s;
+System.out.println("var "+key+"\n\tdefault:\t"+value+"\n\tchange ? ":\y);
             s = scanIn.nextLine(); 
             
             if(s.length()>0) {
