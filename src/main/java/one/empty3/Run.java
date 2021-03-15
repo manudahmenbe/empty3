@@ -12,7 +12,6 @@ public class Run {
         properties.forEach((key, value ) -> {
             String [] line = new String []{(String)key, (String)value};
             String s;
-            Scanner scanIn = new Scanner(System.in);        
             s = scanIn.nextLine(); 
             
             if(s.length()>0) {
@@ -23,7 +22,7 @@ public class Run {
         properties.save(new FileOutputStream("runtestobjetsub.txt"));
         args = new String [args2.size()];
         for(int i=0; i<args2.size(); i++)
-            args[] = args2.get(i);
+            args[i] = args2.get(i);
         TestRun.main(args);
     }
 }
