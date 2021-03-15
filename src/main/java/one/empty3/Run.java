@@ -17,10 +17,13 @@ public class Run {
             System.out.println("var "+key+"\n\tdefault:\t"+value+"\n\tchange ? \t");
 
             s = scanIn.nextLine(); 
-            
+
+             args2.add(line[0]+"="+s);
+
             if(s.length()>0 && !s.equals("\n")) {
-               args2.add(line[0]+"="+s);
+              
                properties.replace(key, s);
+
             } else if(delete){
                //args2.add(line[0]+"="+value);
                properties.remove(key);
