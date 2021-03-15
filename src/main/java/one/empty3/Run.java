@@ -9,7 +9,7 @@ public class Run {
         Properties properties = new Properties();
         properties.load(new FileInputStream("runtestobjetsub.txt"));
         properties.forEach((key, value ) -> {
-            String [] line = new String [] [] {key, value};
+            String [] line = new String [] [] {(String)key, (String)value};
             String s;
             s = System.in.scanf("Input : "+line[0]+"\ndefault value : " +line[1]+"\n");
             if(s.length()>0) {
@@ -18,6 +18,9 @@ public class Run {
             }
         });
         properties.save(new FileOutputStream("runtestobjetsub.txt"));
+        args = new String [args2.size()];
+        for(int i=0; i<args2.size(); i++)
+            args[] = args2.get(i);
         TestRun.main(args2.toArray());
     }
 }
