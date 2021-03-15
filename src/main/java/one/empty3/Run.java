@@ -1,4 +1,4 @@
-package one.empty3.Run;
+package one.empty3;
 
 import java.util.Properties;
 import java.io.*;
