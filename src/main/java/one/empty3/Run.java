@@ -19,8 +19,9 @@ System.out.println("var "+key+"\n\tdefault:\t"+value+"\n\tchange ? \t");
             if(s.length()>0 && !s.equals("\n")) {
                args2.add(line[0]+"="+s);
                properties.replace(key, s);
-            } else {
-               args2.add(line[0]+"="+value);
+            } else if(delete){
+               //args2.add(line[0]+"="+value);
+               properties.remove(key);
             }
         });
         properties.store(new FileOutputStream("runtestobjetsub.txt"),
