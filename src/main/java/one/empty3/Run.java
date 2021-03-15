@@ -15,7 +15,6 @@ public class Run {
             Scanner scanIn = new Scanner(System.in);        
             s = scanIn.nextLine(); 
             
-            s = System.in.scanf("Input : "+line[0]+"\ndefault value : " +line[1]+"\n");
             if(s.length()>0) {
                args2.add(line[0]+"="+s);
                properties.put(key, s);
