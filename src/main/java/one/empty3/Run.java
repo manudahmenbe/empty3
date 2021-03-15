@@ -8,8 +8,8 @@ public class Run {
         List<String> args2 = new ArrayList<>();
         Properties properties = new Properties(new File("runtestobjetsub.txt"));
         properties.forEach((key, value ) -> {
-            String line = new String [] [] {properties(), properties.getValue()};
-            System.scanf("Input : "+line[0]+"\ndefault value : " +line[1]+"\n", s);
+            String line = new String [] [] {key, value};
+            System.in.scanf("Input : "+line[0]+"\ndefault value : " +line[1]+"\n", s);
             if(s.length()>0) {
                args2.add(line[0]+"="+s);
                properties.put(key, s);
