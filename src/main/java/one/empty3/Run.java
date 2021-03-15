@@ -8,9 +8,13 @@ public class Run {
         List<String> args2 = new ArrayList<>();
         Properties properties = new Properties();
         properties.load(new FileInputStream("runtestobjetsub.txt"));
+        Scanner scanIn = new Scanner(System.in);                  
         properties.forEach((key, value ) -> {
             String [] line = new String []{(String)key, (String)value};
             String s;
+            Scanner scanIn = new Scanner(System.in);        
+            s = scanIn.nextLine(); 
+            
             s = System.in.scanf("Input : "+line[0]+"\ndefault value : " +line[1]+"\n");
             if(s.length()>0) {
                args2.add(line[0]+"="+s);
@@ -20,7 +24,7 @@ public class Run {
         properties.save(new FileOutputStream("runtestobjetsub.txt"));
         args = new String [args2.size()];
         for(int i=0; i<args2.size(); i++)
-            args[i] = args2.get(i);
+            args[] = args2.get(i);
         TestRun.main(args);
     }
 }
