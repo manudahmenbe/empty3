@@ -26,7 +26,7 @@ public class Run {
         for(int i=0; i<args2.size(); i++)
             args[i] = args2.get(i);
         TestRun.main(args);
-        } catch(IOException|FileNotFoundException ex) {
+        } catch(IOException ex) {
             ex.printStackTrace();
         }
     }
