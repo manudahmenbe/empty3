@@ -19,7 +19,7 @@ public class Run {
                properties.put(key, s);
             }
         });
-        properties.save(new FileOutputStream("runtestobjetsub.txt"));
+        properties.store(new FileOutputStream("runtestobjetsub.txt"));
         args = new String [args2.size()];
         for(int i=0; i<args2.size(); i++)
             args[i] = args2.get(i);
