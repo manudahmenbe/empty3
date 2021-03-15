@@ -747,7 +747,7 @@ public void copyResourceFiles(File destDirectory) {
 
     public void testDeep(Point3D p) {
         if (p != null && p.texture() != null) {
-            ime.testDeep(p, p.texture().colorAt(0.,0.));
+            ime.testDeep(p, p.texture().getColorAt(0.,0.));
         }
     }
 
