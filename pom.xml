@@ -126,7 +126,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                    <mainClass>one.empty3.TestRun</mainClass>
+                    <mainClass>one.empty3.Run</mainClass>
                     <arguments>
                                                    
 <!--<argument>class=tests2.ver.Serpentins</argument>-->
