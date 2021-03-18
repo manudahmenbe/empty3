@@ -322,7 +322,7 @@ public class Point3D extends Representable {
 
         return p1;
     }
-    public Point3D multDot(Point3D p1) 
+    public Point3D multDot(Point3D p1) {
         return mult(p1);
     }
     public Point3D mult(Double d) {
