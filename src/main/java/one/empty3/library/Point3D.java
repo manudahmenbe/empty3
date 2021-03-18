@@ -322,11 +322,8 @@ public class Point3D extends Representable {
 
         return p1;
     }
-    public Point3D multDot(Point3D p1) {
-        for (int i=0; i < coordArr.data1d.size(); i++) {
-            set(i, get(i)*p1.get(i));
-        }
-        return p1;
+    public Point3D multDot(Point3D p1) 
+        return mult(p1);
     }
     public Point3D mult(Double d) {
 
