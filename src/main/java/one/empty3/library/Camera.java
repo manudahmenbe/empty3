@@ -150,7 +150,7 @@ public class Camera extends CameraBox {
     }
 
     public Point3D calculerPointDansRepere(Point3D p) {
-        Point3D p2 = matrice.getElem().mult(p.moins(getEye()));
+        Point3D p2 = p.plus(matrice.getElem().mult(p.moins(getEye())));
         p2.texture(p.texture());
         return p2;
     }
