@@ -1227,6 +1227,9 @@ public void copyResourceFiles(File destDirectory) {
         public void testDeep(Point3D x3d, int c) {
             if (x3d == null)
                 return;
+            x3d = camera().calculerPointDansRepere(x3d);
+            if (x3d == null)
+                return;
             int cc = c;
             Point ce = camera().coordonneesPoint2D(x3d, that);
             if (ce == null)
@@ -1234,7 +1237,7 @@ public void copyResourceFiles(File destDirectory) {
             double deep = camera().distanceCamera(x3d);
             Point3D n = x3d.getNormale();
             if(n==null||n.norme()==0)
-                n = x3d.moins(scene().cameraActive().getEye());
+                n = x3d.moins(camera().getEye());
             int x = (int) ce.getX();
             int y = (int) ce.getY();
             if (x >= 0 & x < la & y >= 0 & y < ha
