@@ -3,3 +3,5 @@ resy=480
 publish=false
 #gui
 class=test4.TestChien2
+maxFrames=360
+
