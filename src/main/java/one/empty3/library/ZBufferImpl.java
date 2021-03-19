@@ -140,7 +140,8 @@ public void copyResourceFiles(File destDirectory) {
     }
 
     public synchronized void draw() {
-        //scene().cameraActive().calculerMatrice();
+        
+        scene().cameraActive().calculerMatrice();
         /*:scene().lumieres().clear();
         for (int i = 0; i < scene().getObjets().data1d.size(); i++)
             if (scene().getObjets().getElem(i).getClass().isAssignableFrom(Lumiere.class))
