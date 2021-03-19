@@ -154,7 +154,7 @@ public void copyResourceFiles(File destDirectory) {
         draw(scene());
     }
     public Point3D rotate(Point3D p0, Representable ref) {
-        camera().calculerPointDansRepere(super.rotate(p0, ref));
+        return camera().calculerPointDansRepere(super.rotate(p0, ref));
     }
     public synchronized void draw(Representable r) {
         /*
