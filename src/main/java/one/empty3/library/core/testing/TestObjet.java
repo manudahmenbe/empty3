@@ -329,11 +329,11 @@ public abstract class TestObjet implements Test, Runnable {
     }
 
     public Camera camera() {
-        return c;
+        return scene().cameraActive ();
     }
 
     public void camera(Camera c) {
-        this.c = c;
+        scene(). cameraActive (c);
     }
 
     public boolean D3() {
