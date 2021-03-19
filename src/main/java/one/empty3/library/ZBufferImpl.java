@@ -864,11 +864,11 @@ public void copyResourceFiles(File destDirectory) {
                 pFinal.setNormale(normale);
                 pFinal.texture(texture);
                 if (n != null) {
-                    if (displayType == DISPLAY_ALL)
+                    if (displayType == DISPLAY_ALL) {
 pFinal = rotate(n.calculerPoint3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
                pFinal.setNormale(normale);
                 pFinal.texture(texture);
-                
+                    }
                              else {
  pFinal = rotate(pFinal, n);
 
