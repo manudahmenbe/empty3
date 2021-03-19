@@ -865,16 +865,21 @@ public void copyResourceFiles(File destDirectory) {
                 pFinal.texture(texture);
                 if (n != null) {
                     if (displayType == DISPLAY_ALL)
+pFinal = rotate(n.calculerPoint3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
+               pFinal.setNormale(normale);
+                pFinal.texture(texture);
+                
+                             else {
+ pFinal = rotate(pFinal, n);
 
-                        pFinal = rotate(n.calculerPoint3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
-                    else {
-                        pFinal = rotate(pFinal, n);
-
+ pFinal.setNormale(normale);
+                pFinal.texture(texture);
+                                      
                     }
                 }
                 if (displayType <= SURFACE_DISPLAY_TEXT_QUADS) {
                     Point3D point3D = n.calculerNormale3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b);
-                    ime.testDeep(pFinal, point3D, texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
+                    ime.testDeep(pFinal, texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
                 } else {
                     ime.testDeep(pFinal, col);
                     //ime.testDeep(pFinal, texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
@@ -1228,7 +1233,7 @@ public void copyResourceFiles(File destDirectory) {
         public void testDeep(Point3D x3d, int c) {
             if (x3d == null)
                 return;
-            x3d = camera().calculerPointDansRepere(x3d);
+            //x3d = camera().calculerPointDansRepere(x3d);
             if (x3d == null)
                 return;
             int cc = c;
