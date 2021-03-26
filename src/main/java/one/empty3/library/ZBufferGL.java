@@ -32,6 +32,9 @@
 
 package one.empty3.library;
 
+import one.empty3.library.core.nurbs.ParametricVolume;
+import one.empty3.library.core.nurbs.RPv;
+
 import java.awt.*;
 import java.io.File;
 /*__
@@ -196,6 +199,14 @@ public class ZBufferGL implements ZBuffer {
     public int idz() {
         return idImg;
     }
+
+    @Override
+    public void drawElementVolume(Representable representable, ParametricVolume volume) {
+
+        throw new UnsupportedOperationException("Not implemented");//return null;
+    }
+
+
     public void idzpp() {
         idImg++;
     }

@@ -35,6 +35,8 @@
  */
 package one.empty3.library;
 
+import java.awt.*;
+
 public class Point2D {
 
     public double x;
@@ -53,6 +55,11 @@ public class Point2D {
     public Point2D(Point2D p1) {
         x = p1.getX();
         y = p1.getY();
+    }
+
+    public Point2D(java.awt.Point coordonneesPoint2D) {
+        x = coordonneesPoint2D.getX();
+        y = coordonneesPoint2D.getY();
     }
 
     public static double dist(Point2D p0, Point2D plus) {

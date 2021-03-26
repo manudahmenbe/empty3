@@ -178,11 +178,8 @@
                         </goals>
 
                         <configuration>
-                            <doctitle>My API for ${project.name} ${project.version}
-                            </doctitle> <!-- Used by javadoc:javadoc goal -->
-                            <windowtitle>My API for ${project.name} ${project.version}
-                            </windowtitle> <!-- Used by javadoc:javadoc goal -->
-                            <source>1.8</source>
+                            <doctitle>My API for ${project.name} ${project.version}</doctitle> <!-- Used by javadoc:javadoc goal -->
+                            <windowtitle>My API for ${project.name} ${project.version}</windowtitle> <!-- Used by javadoc:javadoc goal -->
                         </configuration>
 
                     </execution>
@@ -248,7 +245,7 @@
                 <executions>
                     <execution>
                         <configuration>
-                            <keyname>A8820AE7</keyname><!--ED0DB26D5F0BDADD1CB2BC079B7BFF1322EE55E4-->
+                            <keyname>22EE55E4</keyname><!--ED0DB26D5F0BDADD1CB2BC079B7BFF1322EE55E4-->
                         </configuration>
                         <id>sign-artifacts</id>
                         <phase>verify</phase>

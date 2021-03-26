@@ -40,8 +40,14 @@
  */
 package one.empty3.library;
 
+import one.empty3.library.core.nurbs.ParametricCurve;
+import one.empty3.library.core.nurbs.ParametricSurface;
+import one.empty3.library.core.nurbs.ParametricVolume;
+import one.empty3.library.core.nurbs.RPv;
+
 import java.awt.*;
 import java.io.File;
+
 /*__
  * *
  * Rendu graphique
@@ -60,6 +66,7 @@ public interface ZBuffer {
     void couleurDeFond(ITexture couleurFond);
 
     public void copyResourceFiles(File destDirectory);
+
     /*__
      * Dessine la scène complète
      */
@@ -177,6 +184,7 @@ public interface ZBuffer {
     void testDeep(Point3D p, Color c);
 
     void testDeep(Point3D p, int c);
+
     void tracerLumineux();
 
     /*__
@@ -194,17 +202,24 @@ public interface ZBuffer {
     void zoom(float z);
 
     public ITexture backgroundTexture();
+
     public void backgroundTexture(ITexture iTexture);
 
     int largeur();
 
     int hauteur();
-    
+
     public boolean checkScreen(Point p1);
+
     public void setDimension(int width, int height);
 
     public Point3D clickAt(double x, double y);
 
     public void idzpp();
+
     public int idz();
+
+    public void drawElementVolume(Representable representable, ParametricVolume volume);
+
+
 }

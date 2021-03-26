@@ -1,7 +1,6 @@
-resx=640
-resy=480
-publish=false
-#gui
-class=test4.TestChien2
+#Fri Mar 26 13:35:48 CET 2021
 maxFrames=360
-
+publish=false
+resy=480
+resx=640
+class=test4.TestChien2
