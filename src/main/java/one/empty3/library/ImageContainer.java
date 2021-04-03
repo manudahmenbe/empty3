@@ -58,6 +58,8 @@ public class ImageContainer extends Representable implements ResourceLoader {
         getDeclaredDataStructure().put("image/Instance of BufferedImage", image);
         getDeclaredDataStructure().put("url/URL of BufferedImage", url);
         getDeclaredDataStructure().put("path/Local path or filesystem path of BufferedImage", path);
+        getDeclaredDataStructure().put("videoUrl/URL of mp4/avi", videoUrl);
+        getDeclaredDataStructure().put("videoPath/Local path or filesystem path of mp4/avi", videoPath);
 
         load();
     }
@@ -78,12 +80,14 @@ public class ImageContainer extends Representable implements ResourceLoader {
     public void load() {
         if (hasChanged(url.getElem()) && url.getElem() != null) {
             loadImage(url.getElem());
+            isMovie = false;
         } else if (hasChanged(path.getElem()) && path.getElem() != null) {
             loadImage(path.getElem());
+            isMovie = false;
         } else if (hasChanged(videoUrl.getElem())) {
-            loadVideo(url.getElem());
+            loadVideo(videoUrl.getElem());
         } else if (hasChanged(videoPath.getElem())) {
-            loadVideo(path.getElem());
+            loadVideo(videoPath.getElem());
         }
         if(isMovie) {
         nanos = System.nanoTime();
@@ -107,7 +111,6 @@ public class ImageContainer extends Representable implements ResourceLoader {
     }
 
     private void loadImage(URL url) {
-        this.isMovie = isMovie;
         if (url != null) {
             try {
                 image.setElem(ImageIO.read(url));
