@@ -545,6 +545,9 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
         return null;
     }
 
+    public void setPosition(Point3D calcCposition) {
+        getRotation().getElem().getCentreRot().setElem(calcCposition);
+    }
 }
 
 

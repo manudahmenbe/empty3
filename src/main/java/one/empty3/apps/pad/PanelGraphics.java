@@ -45,6 +45,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /*__
@@ -110,9 +111,9 @@ public class PanelGraphics extends JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    // Generated using JFormDesigner Evaluation license - Manuel Dahmen
+    // Generated using JFormDesigner Evaluation license - unknown
     private void initComponents() {
-        ResourceBundle bundle = ResourceBundle.getBundle("one.empty3.apps.pad.Bundle");
+        ResourceBundle bundle = ResourceBundle.getBundle("one.empty3.apps.pad.Bundle", Locale.ENGLISH);
         jLabel1 = new JLabel();
         jLabel2 = new JLabel();
         jTextFieldNom = new JTextField();
@@ -136,7 +137,7 @@ public class PanelGraphics extends JDialog {
                 formWindowClosed(e);
             }
         });
-        Container contentPane = getContentPane();
+        var contentPane = getContentPane();
 
         //---- jLabel1 ----
         jLabel1.setFont(new Font("Parchment", Font.PLAIN, 48));
@@ -196,7 +197,10 @@ public class PanelGraphics extends JDialog {
         jButton1.setForeground(new Color(51, 0, 255));
         jButton1.setText(bundle.getString("PanelGraphics.jButton1.text"));
         jButton1.setName("jButton1");
-        jButton1.addActionListener(e -> jButton1ActionPerformed(e));
+        jButton1.addActionListener(e -> {
+			jButton1ActionPerformed(e);
+			jButton1ActionPerformed(e);
+		});
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -255,7 +259,7 @@ public class PanelGraphics extends JDialog {
         setLocationRelativeTo(null);
 
         //---- buttonGroupGraphics ----
-        ButtonGroup buttonGroupGraphics = new ButtonGroup();
+        var buttonGroupGraphics = new ButtonGroup();
         buttonGroupGraphics.add(jRadioButtonECGraph);
         buttonGroupGraphics.add(jRadioButtonOGLGraph);
     }// </editor-fold>//GEN-END:initComponents
@@ -293,7 +297,7 @@ public class PanelGraphics extends JDialog {
         df.setGame(game);
 
         df.setLevel(loadClass, game.getLocalPlayer());
-        df.setVisible(true);
+        //df.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosed(WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -343,7 +347,7 @@ public class PanelGraphics extends JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Manuel Dahmen
+    // Generated using JFormDesigner Evaluation license - unknown
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JTextField jTextFieldNom;

@@ -32,6 +32,8 @@
 
 package one.empty3.apps.pad;
 
+import one.empty3.apps.pad.menu.ToggleMenu;
+
 import javax.swing.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -89,11 +91,14 @@ public final class DarkFortressGUI extends JFrame {
 
             drawer.setLogic(mover);
             drawer.setPlotter3D(plotter3D);
+            drawer.setToggleMenu(new ToggleMenu());
             drawer.setLevel(sol);
 
-            addKeyListener(gameKeyListener);
-            addKeyListener(plotter3D);
+            //addKeyListener(gameKeyListener);
+            //addKeyListener(plotter3D);
 
+
+            setVisible(true);
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(DarkFortressGUI.class.getName()).log(Level.SEVERE, null, ex);
         }

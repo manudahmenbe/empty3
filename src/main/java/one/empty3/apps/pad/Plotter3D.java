@@ -124,10 +124,8 @@ public class Plotter3D implements KeyListener, Runnable {
 
     {
         Point3D point3D = getTerrain().hauteur(position.getX() + deplacement.getX(), position.getY() + deplacement.getY(), position.getZ());
-
         plottee.setPosition(point3D);
-
-        getScene().add((Representable) plottee);
+        getScene().add(plottee);
         return true;
     }
 
