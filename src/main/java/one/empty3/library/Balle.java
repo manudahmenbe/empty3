@@ -60,7 +60,7 @@ public class Balle extends HeightMapSphere
 
     public Balle(Axe axe, double radius) {
 
-        super(axe, radius);
+        super(axe, radius, null);
 
         s = new Point3D[nbrPoints];
         v = new Point3D[nbrPoints];
@@ -79,7 +79,7 @@ public class Balle extends HeightMapSphere
     }
 
     @Override
-    public double height(double u, double v) {
+    public Point3D height(double u, double v) {
         double h0 = 20;
         double h = 0;
         for (int i = 0; i < nbrPoints; i++) {
@@ -101,7 +101,7 @@ public class Balle extends HeightMapSphere
                         h += fctCustom.result(u, v);
             }
         }
-        return h;
+        return surface.data0d.calculerPoint3D(u,v).mult(h);
     }
 
 

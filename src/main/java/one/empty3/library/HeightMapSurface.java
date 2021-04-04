@@ -32,9 +32,26 @@
 
 package one.empty3.library;
 
+import one.empty3.library.core.nurbs.ParametricSurface;
+
+import java.awt.image.BufferedImage;
+
 /*__
  * Created by manue on 17-03-19.
  */
-public interface HeightMapSurface {
-    public double height(double u, double v);
+public class HeightMapSurface extends ParametricSurface {
+    protected StructureMatrix<ImageContainer> image = new StructureMatrix<>(0, ImageContainer.class);
+    protected StructureMatrix<ParametricSurface> surface = new StructureMatrix<>(0, ParametricSurface.class);
+
+    public HeightMapSurface(ParametricSurface ps, BufferedImage image) {
+        this.image.setElem(new ImageContainer(image));
+        this.surface.setElem(ps);
+    }
+
+    public Point3D height(double u, double v) {
+        BufferedImage elem = image.getElem().getImage().getElem();
+        return surface.getElem().calculerPoint3D(u, v).plus(
+                surface.getElem().calculerTangenteU(u,v).prodVect(surface.getElem().calculerTangenteV(u,v)
+                ).norme1().mult(elem.getRGB((int)(u*elem.getWidth()), (int)(v*elem.getHeight()))));
+    }
 }

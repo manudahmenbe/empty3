@@ -154,5 +154,53 @@ public class ImageContainer extends Representable implements ResourceLoader {
             }
         }
     }
+
+    public StructureMatrix<BufferedImage> getImage() {
+        return image;
+    }
+
+    public void setImage(StructureMatrix<BufferedImage> image) {
+        this.image = image;
+    }
+
+    public StructureMatrix<URL> getUrl() {
+        return url;
+    }
+
+    public void setUrl(StructureMatrix<URL> url) {
+        this.url = url;
+    }
+
+    public StructureMatrix<File> getPath() {
+        return path;
+    }
+
+    public void setPath(StructureMatrix<File> path) {
+        this.path = path;
+    }
+
+    public StructureMatrix<VideoDecoder> getVd() {
+        return vd;
+    }
+
+    public void setVd(StructureMatrix<VideoDecoder> vd) {
+        this.vd = vd;
+    }
+
+    public StructureMatrix<URL> getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(StructureMatrix<URL> videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public StructureMatrix<File> getVideoPath() {
+        return videoPath;
+    }
+
+    public void setVideoPath(StructureMatrix<File> videoPath) {
+        this.videoPath = videoPath;
+    }
 }
 

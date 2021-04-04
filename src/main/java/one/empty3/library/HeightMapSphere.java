@@ -39,26 +39,15 @@ import java.awt.image.BufferedImage;
 /*__
  * Created by manue on 22-06-19.
  */
-public class HeightMapSphere extends Sphere implements HeightMapSurface {
+public class HeightMapSphere extends HeightMapSurface {
     private double axis;
     private ITexture heightMap;
     private double radius;
 
-    public HeightMapSphere(Axe axe, double radius) {
-        super(axe, radius);
+    public HeightMapSphere(Axe axe, double radius, BufferedImage height) {
+        super(new Sphere(axe, radius), height);
     }
 
-    public void setHeightMap(BufferedImage bufferedImage) {
-        if (bufferedImage != null)
-            this.heightMap = new TextureOpSphere(new TextureImg(new ECBufferedImage(bufferedImage)));
-        else
-            this.heightMap = new TextureOpSphere(new TextureImg(new ECBufferedImage(new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB))));
 
-
-    }
-
-    public double height(double u, double v) {
-        return radius + heightMap.getColorAt(u, v);
-    }
 }
 

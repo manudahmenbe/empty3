@@ -45,13 +45,13 @@ import java.util.ArrayList;
 /*__
  * @author Se7en
  */
-public class BalleClous extends Sphere implements HeightMapSurface{
+public class BalleClous extends HeightMapSurface{
 
     private ArrayList<Point2D> points = new ArrayList<Point2D>();
     private double d;
 
     public BalleClous(Point3D c, double r) {
-        super(c, r);
+        super(new Sphere(c, r), null);
     }
 
     public void addPoint(Point2D p) {
@@ -92,7 +92,7 @@ public class BalleClous extends Sphere implements HeightMapSurface{
         return super.calculerPoint3D(u, v);
     }
 
-    public double height(double u, double v) {
+    public Point3D height(double u, double v) {
         Point2D p0 = new Point2D(u, v);
 
         double mult = 1.0;
@@ -103,7 +103,7 @@ public class BalleClous extends Sphere implements HeightMapSurface{
 
         }
 
-        return mult / points.size();
+        return surface.data0d.calculerPoint3D(u, v).mult(mult / points.size());
 
     }
 }

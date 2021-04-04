@@ -53,24 +53,24 @@ public class TestSoS extends TestObjetSub {
     private int planetNo;
     private boolean quadrillage;
 
-    class HeightMapSurfaceSphere extends Sphere implements HeightMapSurface {
+    class HeightMapSurfaceSphere extends  HeightMapSurface {
         ITexture heightMap;
 
-        public HeightMapSurfaceSphere(Axe axe, double radius) {
-            super(axe, radius);
+        public HeightMapSurfaceSphere(Axe axe, double radius, BufferedImage bi) {
+            super(new Sphere(axe, radius), bi);
         }
 
-        public void setHeightMap(BufferedImage bufferedImage) {
-            if (bufferedImage != null)
-                this.heightMap = new TextureOpSphere(new TextureImg(new ECBufferedImage(bufferedImage)));
-            else
-                this.heightMap = new TextureOpSphere(new TextureImg(new ECBufferedImage(new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB))));
+        public Point3D height(double u, double v) {
+            Point3D mult = surface.getElem().calculerPoint3D(u, v).moins(((Sphere) surface.getElem()).getCircle().getCenter()).norme1().
+                    mult(
+                            new Color(
+                                            image.getElem().getImage().getElem().getRGB((int) (u * image.getElem().getImage().getElem().getWidth()),
+                                                    (int) (v * image.getElem().getImage().getElem().getHeight())))
+                            .getRed() / 256.0);
+            return mult
 
 
-        }
-
-        public double height(double u, double v) {
-            return new Color(heightMap.getColorAt(u, v)).getBlue() / 256. * HEIGHT_MAX;
+                    ;
         }
     }
 
@@ -105,19 +105,19 @@ public class TestSoS extends TestObjetSub {
 
             scene().getObjets().data1d.clear();
 
-            heightMapSurfaceSphere = new HeightMapSurfaceSphere(new Axe(sphereOrig.moins(Point3D.X),
-                    sphereOrig.plus(Point3D.X)), RADIUS);
             BufferedImage bufferedImageHeightMap = null;
             BufferedImage bufferedImageTexture = null;
-            heightMapSurfaceSphere.texture(colorTextureSurface);
             try {
-                //bufferedImageHeightMap = ImageIO.read(new File("res/img/gebco_08_rev_elev_21600x10800.png"));
+                bufferedImageHeightMap = ImageIO.read(new File("res/img/gebco_08_rev_elev_21600x10800.png"));
                 bufferedImageTexture = ImageIO.read(new File("res/img/planets/" + list[planetNo++]));
 
-                heightMapSurfaceSphere.setHeightMap(bufferedImageHeightMap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            heightMapSurfaceSphere = new HeightMapSurfaceSphere(new Axe(sphereOrig.moins(Point3D.X),
+                    sphereOrig.plus(Point3D.X)), RADIUS, bufferedImageHeightMap);
+            heightMapSurfaceSphere.texture(colorTextureSurface);
+
             TextureImg textureImg = new TextureImg(new ECBufferedImage(bufferedImageTexture));
             TextureOpSphere textureOpSphere = new TextureOpSphere(textureImg);
             heightMapSurfaceSphere.setIncrU(0.1);
