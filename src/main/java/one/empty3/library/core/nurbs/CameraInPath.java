@@ -54,10 +54,15 @@ public class CameraInPath extends Camera {
     }
 
     private StructureMatrix<ParametricCurve> courbe = new StructureMatrix<>(0, ParametricCurve.class);
-    private StructureMatrix <Double> t;
+    private final StructureMatrix <Double> t = new StructureMatrix (0, Double.class) ;
+
+    public CameraInPath() {
+        super();
+        t.setElem(0.0);
+    }
 
     public CameraInPath(ParametricCurve maCourbe) {
-        this.t = new StructureMatrix (0, Double.class) ;
+
         t.setElem(0.0) ;
         this.courbe.setElem(maCourbe);
     }
@@ -72,14 +77,26 @@ public class CameraInPath extends Camera {
 
 
     public void calculerMatriceT(Point3D verticale) {
-double t = this. t. getElem() ;
-
-        setEye(courbe.getElem().calculerPoint3D(t));
+        double t = this.t.getElem() ;
+        Point3D eye = courbe.getElem().calculerPoint3D(t);
         setLookat(courbe.getElem().calculerPoint3D(t+ t* 1.001));
-        Point3D dt1 = getLookat().moins(getEye()).norme1();
-        Point3D dt2 = getEye().moins(courbe.getElem().calculerPoint3D(t - t * 0.001)).norme1();
+        Point3D dt1 = getLookat().moins(eye).norme1();
+        Point3D dt2 = eye.moins(courbe.getElem().calculerPoint3D(t - t * 0.001)).norme1();
         Point3D n = dt2.moins(dt1).norme1();
-        super.calculerMatrice(verticale == null ? n : verticale);
+        super.calculerMatrice(getVerticale().getElem() == null ? n :getVerticale().getElem());
+    }
+
+    @Override
+    public Point3D eye() {
+
+        calculerMatriceT(getVerticale().getElem());
+        return super.eye();
+    }
+
+    @Override
+    public Point3D getEye() {
+        calculerMatriceT(getVerticale().getElem());
+        return super.getEye();
     }
 
     @Override

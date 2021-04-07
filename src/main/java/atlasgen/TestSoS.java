@@ -49,30 +49,10 @@ import java.io.IOException;
  */
 public class TestSoS extends TestObjetSub {
     private CameraInPath camera;
-    protected String[] list;
+    protected String[] list = new String[]{"2k_neptune.jpg", "2k_uranus.jpg", "8k_jupiter.jpg", "8k_mars.jpg",
+            "8k_mercury.jpg", "8k_saturn.jpg", "8k_saturn_ring_alpha.png", "8k_venus_atmosphere.jpg", "8k_venus_surface.jpg"};
     private int planetNo;
-    private boolean quadrillage;
-
-    class HeightMapSurfaceSphere extends  HeightMapSurface {
-        ITexture heightMap;
-
-        public HeightMapSurfaceSphere(Axe axe, double radius, BufferedImage bi) {
-            super(new Sphere(axe, radius), bi);
-        }
-
-        public Point3D height(double u, double v) {
-            Point3D mult = surface.getElem().calculerPoint3D(u, v).moins(((Sphere) surface.getElem()).getCircle().getCenter()).norme1().
-                    mult(
-                            new Color(
-                                            image.getElem().getImage().getElem().getRGB((int) (u * image.getElem().getImage().getElem().getWidth()),
-                                                    (int) (v * image.getElem().getImage().getElem().getHeight())))
-                            .getRed() / 256.0);
-            return mult
-
-
-                    ;
-        }
-    }
+    protected boolean quadrillage = true;
 
     protected static final double RADIUS = 6371000;
     private static final double HEIGHT_MAX_ALT = 8.870;
@@ -90,99 +70,96 @@ public class TestSoS extends TestObjetSub {
     private Point3D sphereDest = Point3D.Y;
     ITexture colorTextureSurface = new TextureCol(Color.GREEN);
     private double segemntSize = 1;
-
+    private BufferedImage bufferedImageHeightMap;
+    private BufferedImage bufferedImageTexture;
+    TextureOpSphere textureOpSphere;
     public void ginit() {
         list = new File("res/img/planets").list();
         planetNo = 0;
+        assert list != null;
         setMaxFrames(360 * list.length);
+        try {
+            bufferedImageHeightMap = ImageIO.read(new File("res/img/gebco_08_rev_elev_21600x10800.png"));
+            bufferedImageTexture = ImageIO.read(new File("res/img/planets/" + list[planetNo]));
+            TextureImg textureImg = new TextureImg(new ECBufferedImage(bufferedImageTexture));
+             textureOpSphere = new TextureOpSphere(textureImg);
+
+            if(frame()%361==360)
+                planetNo++;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
     public void finit() {
 
+        scene().getObjets().data1d.clear();
 
-        if ((frame() % (360)) == 1) {
+        heightMapSurfaceSphere = new HeightMapSurfaceSphere(new Axe(sphereOrig.moins(Point3D.X),
+                sphereOrig.plus(Point3D.X)), RADIUS, bufferedImageHeightMap);
+        heightMapSurfaceSphere.texture(colorTextureSurface);
 
-            scene().getObjets().data1d.clear();
-
-            BufferedImage bufferedImageHeightMap = null;
-            BufferedImage bufferedImageTexture = null;
-            try {
-                bufferedImageHeightMap = ImageIO.read(new File("res/img/gebco_08_rev_elev_21600x10800.png"));
-                bufferedImageTexture = ImageIO.read(new File("res/img/planets/" + list[planetNo++]));
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            heightMapSurfaceSphere = new HeightMapSurfaceSphere(new Axe(sphereOrig.moins(Point3D.X),
-                    sphereOrig.plus(Point3D.X)), RADIUS, bufferedImageHeightMap);
-            heightMapSurfaceSphere.texture(colorTextureSurface);
-
-            TextureImg textureImg = new TextureImg(new ECBufferedImage(bufferedImageTexture));
-            TextureOpSphere textureOpSphere = new TextureOpSphere(textureImg);
-            heightMapSurfaceSphere.setIncrU(0.1);
-            heightMapSurfaceSphere.setIncrV(0.1);
-            heightMapSurfaceSphere.texture(textureOpSphere);
+        heightMapSurfaceSphere.setIncrU(0.1);
+        heightMapSurfaceSphere.setIncrV(0.1);
+        heightMapSurfaceSphere.texture(textureOpSphere);
 
 
-            scene().add(representableConteneur);
+        representableConteneur = new RepresentableConteneur();
 
+        scene().add(representableConteneur);
+        if (heightMapSurfaceSphere != null)
             scene().add(heightMapSurfaceSphere);
 
-            if (isQuadrillage()) {
-                for (int s = 0; s < NSEG;
-                     s++) {
+        if (isQuadrillage()) {
+            for (int s = 0; s < NSEG;
+                 s++) {
 
-                    pointsA = new Point3D(0d, 1.0 * s / NSEG, 0d);
-                    pointsB = new Point3D(1d, 1.0 * s / NSEG, 0d);
-                    LineSegment segmentDroite = new LineSegment(pointsA, pointsB);
-                    segmentDroite.texture(textureCol);
-                    pointsA.texture(textureCol);
-                    pointsB.texture(textureCol);
+                pointsA = new Point3D(0d, 1.0 * s / NSEG, 0d);
+                pointsB = new Point3D(1d, 1.0 * s / NSEG, 0d);
+                LineSegment segmentDroite = new LineSegment(pointsA, pointsB);
+                segmentDroite.texture(textureCol);
+                pointsA.texture(textureCol);
+                pointsB.texture(textureCol);
 
-                    PcOnPs pcOnPs = new PcOnPs(heightMapSurfaceSphere, segmentDroite);
-                    pcOnPs.getParameters().setIncrU(0.0001);
-                    representableConteneur.add(pcOnPs);
+                PcOnPs pcOnPs = new PcOnPs(heightMapSurfaceSphere, segmentDroite);
+                pcOnPs.getParameters().setIncrU(0.0001);
+                representableConteneur.add(pcOnPs);
 
-                }
-                for (int s = 0; s < NSEG2;
-                     s++) {
-
-                    pointsA = new Point3D(1.0 * s / NSEG2, 0d, 0d);
-                    pointsB = new Point3D(1.0 * s / NSEG2, 1d, 0d);
-                    LineSegment segmentDroite = new LineSegment(pointsA, pointsB);
-                    segmentDroite.texture(textureCol);
-                    pointsA.texture(textureCol);
-                    pointsB.texture(textureCol);
-
-                    PcOnPs pcOnPs = new PcOnPs(heightMapSurfaceSphere, segmentDroite);
-                    pcOnPs.getParameters().setIncrU(0.0001);
-                    representableConteneur.add(pcOnPs);
-
-                }
             }
-        /*
-        PcOnPs circleEquator = new SegmentsOnSurface(
-                new Sphere(heightMapSurfaceSphere.getAxe(), RADIUS*3)
-                , new LineSegment(
-                new Point3D(0.0, 0.5, 0), new Point3D(1.0, 0.5, 0)));
-*/
-            camera = new CameraInPath(new Circle(
-                    new Axe(Point3D.O0.plus(Point3D.X), Point3D.O0.moins(Point3D.X)), RADIUS * 4));
-            scene().add(camera);
+            for (int s = 0; s < NSEG2;
+                 s++) {
 
-//        camera = new CameraInPath(circleEquator);
-            scene().cameraActive(camera);
-        }
+                pointsA = new Point3D(1.0 * s / NSEG2, 0d, 0d);
+                pointsB = new Point3D(1.0 * s / NSEG2, 1d, 0d);
+                LineSegment segmentDroite = new LineSegment(pointsA, pointsB);
+                segmentDroite.texture(textureCol);
+                pointsA.texture(textureCol);
+                pointsB.texture(textureCol);
 
-        double t = 1.0 * frame() / (getMaxFrames() / list.length);
+                PcOnPs pcOnPs = new PcOnPs(heightMapSurfaceSphere, segmentDroite);
+                pcOnPs.getParameters().setIncrU(0.0001);
+                representableConteneur.add(pcOnPs);
+
+            }
+         }
+        camera = new CameraInPath(new Circle(
+                new Axe(Point3D.O0.plus(Point3D.X), Point3D.O0.moins(Point3D.X)), RADIUS * 4));
+
+        camera.setT(0.0);
+
+        scene().cameraActive(camera);
+
+        double t = 1.0 * frame() / (double) (getMaxFrames() / list.length);
         camera.setT(t);
 
         Point3D z = Point3D.O0.moins(camera.getCourbe().calculerPoint3D(t)).norme1();
         Point3D x = camera.getCourbe().tangente(t).norme1().mult(-1d);
         Point3D y = x.prodVect(z).norme1();
-        camera.setMatrix(x, y, z);
+        //camera.setMatrix(x, y, z);
         //camera.calculerMatrice(y);
+
+        System.out.println("Nombre d'objet: " + scene().getObjets().getData1d().size());
     }
 
     private boolean isQuadrillage() {

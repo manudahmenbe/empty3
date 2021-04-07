@@ -138,10 +138,10 @@ public class Camera extends CameraBox {
     public void calculerMatrice(Point3D verticale) {
         if (!imposerMatrice.getElem()) {
             if (verticale == null)
-                verticale = calculerVerticaleParDefaut(getLookat().moins(getEye()));
+                verticale = calculerVerticaleParDefaut(getLookat().moins(eye.getElem()));
 
 
-            Point3D z = getLookat().moins(getEye()).norme1();
+            Point3D z = getLookat().moins(eye.getElem()).norme1();
             Point3D x = z.prodVect(verticale/* Y */).norme1();
             Point3D y = verticale;
 

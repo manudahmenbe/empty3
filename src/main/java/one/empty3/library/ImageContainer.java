@@ -11,15 +11,15 @@ public class ImageContainer extends Representable implements ResourceLoader {
     private StructureMatrix<BufferedImage> image = new StructureMatrix<>(0, BufferedImage.class);
     private StructureMatrix<URL> url = new StructureMatrix<>(0, URL.class);
     private StructureMatrix<File> path = new StructureMatrix<>(0, File.class);
-    ;
+    private StructureMatrix<URL> videoUrl= new StructureMatrix<>(0, URL.class);
+    private StructureMatrix<File> videoPath = new StructureMatrix<>(0, File.class);
+     ;
     private URL oldUrl = null;
     private File oldPath = null;
     private boolean isMovie = false;
     private StructureMatrix<VideoDecoder> vd;
     private double nanos;
     private double oldNanos;
-    private StructureMatrix<URL> videoUrl;
-    private StructureMatrix<File> videoPath;
 
 
     public ImageContainer(File path, boolean isMovie) {
@@ -78,15 +78,15 @@ public class ImageContainer extends Representable implements ResourceLoader {
 
     @Override
     public void load() {
-        if (hasChanged(url.getElem()) && url.getElem() != null) {
+        if (url!=null && hasChanged(url.getElem()) && url.getElem() != null) {
             loadImage(url.getElem());
             isMovie = false;
-        } else if (hasChanged(path.getElem()) && path.getElem() != null) {
+        } else if (path!=null &&hasChanged(path.getElem()) && path.getElem() != null) {
             loadImage(path.getElem());
             isMovie = false;
-        } else if (hasChanged(videoUrl.getElem())) {
+        } else if (videoUrl!=null&&hasChanged(videoUrl.getElem())) {
             loadVideo(videoUrl.getElem());
-        } else if (hasChanged(videoPath.getElem())) {
+        } else if (videoPath!=null&&hasChanged(videoPath.getElem())) {
             loadVideo(videoPath.getElem());
         }
         if(isMovie) {

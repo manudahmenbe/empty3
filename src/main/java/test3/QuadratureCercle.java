@@ -41,7 +41,7 @@ public class QuadratureCercle extends TestObjetSub {
     public static void main(String[] args) {
         QuadratureCercle quadratureCercle = new QuadratureCercle();
         quadratureCercle.loop(true);
-        quadratureCercle.setMaxFrames(10000);
+        quadratureCercle.setMaxFrames(200);
         new Thread(quadratureCercle).start();
     }
 
@@ -88,7 +88,7 @@ public class QuadratureCercle extends TestObjetSub {
         
         scene().remove(spheres[i]);
         spheres[i] = new Sphere(new Axe(p2[i].plus(speed[i]),
-                p2[i].plus(speed[i])),
+                p2[i].moins(speed[i])),
                 radius);
         scene().add(spheres[i]);
 
@@ -124,16 +124,14 @@ public class QuadratureCercle extends TestObjetSub {
     public void finit() throws Exception {
         CameraInPath camera = new CameraInPath(new Circle(
                 new Axe(Point3D.O0.plus(Point3D.X), Point3D.O0.moins(Point3D.X)), 800d));
-        scene().add(camera);
         scene().cameraActive(camera);
         double t = 1.0 * frame() / (getMaxFrames());
-        camera.setT(0.0);
+        camera.setT(t);
 
         Point3D z = Point3D.O0.moins(camera.getCourbe().calculerPoint3D(t)).norme1();
         Point3D x = camera.getCourbe().tangente(t).norme1().mult(-1d);
         Point3D y = x.prodVect(z).norme1();
         camera.setMatrix(x, y, z);
-        scene().cameraActive(camera);
         for (int j = 0; j < framesItere; j++)
             for (int i = 0; i < pointCount; i++)
                 bounce(i);
