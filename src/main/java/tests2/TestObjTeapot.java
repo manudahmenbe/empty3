@@ -23,6 +23,7 @@ public class TestObjTeapot extends TestObjetSub {
     }
 
     public void finit() {
+        z.idzpp();
         cameraInPath.setT(1.0*frame()/getMaxFrames());
         Point3D eye = cameraInPath.getEye();
         //scene().cameraActive().setEye(eye);
@@ -30,7 +31,6 @@ public class TestObjTeapot extends TestObjetSub {
         eye = scene().cameraActive().eye();
         System.out.println(eye);
         System.out.println(cameraInPath.getLookat());
-        z.idzpp();
     }
 
     public static void main(String [] args) {

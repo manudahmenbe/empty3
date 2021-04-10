@@ -533,9 +533,11 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         ECBufferedImage bi2 = new ECBufferedImage(la, ha, ECBufferedImage.TYPE_INT_RGB);
         for (int i = 0; i < la; i++) {
             for (int j = 0; j < ha; j++) {
-                int elementCouleur = ime.ime.getElementCouleur(i, j);
-                bi2.setRGB(i, j, elementCouleur);
-
+                int elementCouleur = getData()[j*la+ i];
+                if(Simeid[i][j]==(long)(idImg())) {
+                    bi2.setRGB(i, j, elementCouleur);
+                }
+                else bi2.setRGB(i, j, texture().getColorAt(1.0*i/la, 1.0*j/ha));
             }
         }
         this.bi = bi2;
@@ -550,6 +552,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         BufferedImage bi = new BufferedImage(la, ha, BufferedImage.TYPE_INT_RGB);
         bi.setRGB(0, 0, la, ha, getData(), 0, la);
         return new ECBufferedImage(bi);
+//        return image();
+
     }
 
     public boolean isLocked() {
@@ -1515,6 +1519,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             sc[x + y * la] = rgb;
         }
 
+        public void setElementProf(int i, int j, double pr) {
+            Simeprof[i][j] = pr;
+        }
     }
 
     public Point3D clickAt(double x, double y) {
@@ -1684,5 +1691,14 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     public void idzpp() {
         idImg++;
+        for(int i=0;i<la; i++)
+            for(int j=0;j<ha; j++) {
+                Scolor[j * la + i] = texture().getColorAt(1. * i / la, 1. * j / ha);
+                ime.ime.setElementPoint(i, j, Point3D.INFINI);
+                ime.ime.setDeep(i, j, INFINITY_DEEP);
+                ime.ime.setElementID(i, j, idImg());
+                ime.ime.setElementCouleur(i, j, Scolor[j*la+i]);
+                ime.ime.setElementProf(i, j, Double.MAX_VALUE);
+            }
     }
 }

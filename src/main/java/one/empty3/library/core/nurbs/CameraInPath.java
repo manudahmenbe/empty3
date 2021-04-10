@@ -90,8 +90,9 @@ public class CameraInPath extends Camera {
 
         Point3D dir = getLookat().moins(eye).norme1();
         Point3D tan = eye.moins(courbe.getElem().calculerPoint3D(t - 0.001)).norme1();
-        Point3D vert = tan.prodVect(dir).norme1();
-        matrice.setElem(new Matrix33(new Point3D[] {vert, dir, tan}));
+        Point3D vert = /*getVerticale().getElem()==null?*/(tan.prodVect(dir).norme1());//:getVerticale().data0d;
+        matrice.setElem(new Matrix33(new Point3D[] { tan, dir.prodVect(tan).norme1(), dir}));
+        System.out.println("Matrice "+matrice.getElem().toString());
         setEye(eye);
 
     }
