@@ -103,8 +103,8 @@ public class Circle extends ParametricCurve {
             Point3D mult = axis.getElem().getVector().norme1().prodVect(axis.getElem().getVector().norme1().prodVect(pRef).norme1());
             double d = mult.prodScalaire(pRef);
             vectY = axis.getElem().getVector().norme1();
-            vectX = mult.norme1();
-            vectZ = vectX.prodVect(vectY);
+            vectZ = mult.norme1();
+            vectX = vectY.prodVect(vectZ);
             if (mult.norme() > 0.8 || d >0.8) {
                 success = true;
                 break;

@@ -62,7 +62,7 @@ public class E3Model extends RepresentableConteneur{
     public Double farpoint;
     public Double nearpoint;
     private String mtl_path;
-
+    Color color = new Color(169, 169, 212);
     //THIS CLASS LOADS THE MODELS
     public E3Model(BufferedReader ref, boolean centerit, String path) {
 
@@ -87,6 +87,7 @@ public class E3Model extends RepresentableConteneur{
         numpolys = faces.size();
         //cleanup();
         opene3drawtolist();
+
     }
 
     private void cleanup() {
@@ -300,7 +301,7 @@ public class E3Model extends RepresentableConteneur{
                 nextmatname = nextmatnamearray[0];
                 nextmat = Integer.parseInt(nextmatnamearray[1]);
             }
-            Color pointCol = new Color(255, 0, 0);
+            Color pointCol = color;
 
 
             for (int i = 0; i < faces.size(); i++) {
