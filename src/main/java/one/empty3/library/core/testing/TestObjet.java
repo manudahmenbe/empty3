@@ -821,7 +821,10 @@ public abstract class TestObjet implements Test, Runnable {
 
         this.biic = new ImageContainer();
 
-        publishResult();
+        if(getPublish()) {
+            publishResult();
+
+        }
 
         File zipf = new File(this.dir.getAbsolutePath() + File.separator
                 + sousdossier + File.separator + filename + ".ZIP");
@@ -929,7 +932,6 @@ public abstract class TestObjet implements Test, Runnable {
             if ((generate & GENERATE_IMAGE) > 0) {
                 try {
                     z.draw();
-                    z.idzpp();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -987,8 +989,6 @@ public abstract class TestObjet implements Test, Runnable {
                     exportFrame("export", filename);
                     dataWriter.writeFrameData(frame(), "Export model: " + filename);
                     o.println("End generating model");
-                } catch (FileNotFoundException ex) {
-                    o.println(ex.getLocalizedMessage());
                 } catch (IOException ex) {
                     o.println(ex.getLocalizedMessage());
                 } catch (Exception ex) {
@@ -997,6 +997,17 @@ public abstract class TestObjet implements Test, Runnable {
                 }
 
             }
+
+/*
+            if(publish) {
+                ImageContainer imageContainer = new ImageContainer();
+                biic.setImage(ri);
+                imageContainer.setImage(biic.getImage());
+
+                str.setImageContainer(imageContainer);
+            }
+  */
+            z.idzpp();
 
         }
 

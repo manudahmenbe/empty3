@@ -2,11 +2,14 @@ package tests2;
 
 import one.empty3.library.Axe;
 import one.empty3.library.Circle;
+import one.empty3.library.ColorTexture;
 import one.empty3.library.Point3D;
 import one.empty3.library.core.nurbs.CameraInPath;
 import one.empty3.library.core.testing.TestObjetSub;
 import one.empty3.library.objloader.E3Model;
 import one.empty3.library.objloader.ModelLoaderOBJ;
+
+import java.awt.*;
 
 public class TestObjTeapot extends TestObjetSub {
     private CameraInPath cameraInPath;
@@ -14,17 +17,16 @@ public class TestObjTeapot extends TestObjetSub {
     public void ginit() {
         E3Model modelLoaderOBJ = ModelLoaderOBJ.LoadModelE3("resources/teapot.obj", "");
         scene().add(modelLoaderOBJ);
-        camera().getEye().setZ(-5.);
-        setPublish(true);
-        setMaxFrames(100);
-        cameraInPath = new CameraInPath(new Circle(new Axe(Point3D.Z, Point3D.Z.mult(-1.)), 10.), Point3D.Z);
-
+        //camera().getEye().setZ(-5.);
+        setMaxFrames(120);
+        frame = 30;
+        cameraInPath = new CameraInPath(new Circle(new Axe(Point3D.Y, Point3D.Y.mult(-1.)), 10./*, Point3D.Y*/));
+        z().texture(new ColorTexture(Color.YELLOW));
         scene().cameraActive(cameraInPath);
     }
 
     public void finit() {
-        z.idzpp();
-        cameraInPath.setT(1.0*frame()/getMaxFrames());
+        cameraInPath.setT(1.0 * frame() / getMaxFrames());
         Point3D eye = cameraInPath.getEye();
         //scene().cameraActive().setEye(eye);
         System.out.println(eye);
@@ -33,8 +35,9 @@ public class TestObjTeapot extends TestObjetSub {
         System.out.println(cameraInPath.getLookat());
     }
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         TestObjTeapot testObjTeapot = new TestObjTeapot();
+        testObjTeapot.setPublish(true);
         new Thread(testObjTeapot).start();
     }
 }

@@ -51,7 +51,7 @@ public class CameraInPath extends Camera {
     }*/
 
     private StructureMatrix<ParametricCurve> courbe = new StructureMatrix<>(0, ParametricCurve.class);
-    private final StructureMatrix <Double> t = new StructureMatrix (0, Double.class) ;
+    private final StructureMatrix<Double> t = new StructureMatrix(0, Double.class);
 
     public CameraInPath() {
         super();
@@ -61,13 +61,14 @@ public class CameraInPath extends Camera {
 
     public CameraInPath(ParametricCurve maCourbe) {
 
-        t.setElem(0.0) ;
+        t.setElem(0.0);
         this.courbe.setElem(maCourbe);
         calculerMatriceT(Point3D.Y);
     }
+
     public CameraInPath(ParametricCurve maCourbe, Point3D vectVert) {
 
-        t.setElem(0.0) ;
+        t.setElem(0.0);
         this.courbe.setElem(maCourbe);
         this.getVerticale().setElem(vectVert);
         calculerMatriceT(vectVert);
@@ -81,9 +82,24 @@ public class CameraInPath extends Camera {
         this.courbe.setElem(maCourbe);
     }
 
+    /*
+        public void calculerMatriceT(Point3D verticale) {
+            double t = this.t.getElem() ;
+            Point3D eye = courbe.getElem().calculerPoint3D(t);
+            //TODO DEV
+            //setLookat(courbe.getElem().calculerPoint3D(t+ t* 1.001));
 
+            Point3D dir = getLookat().moins(eye).norme1();
+            Point3D tan = eye.moins(courbe.getElem().calculerPoint3D(t - 0.001)).norme1();
+            Point3D vert = getVerticale().getElem()==null?(tan.prodVect(dir).norme1());//:getVerticale().data0d;
+            matrice.setElem(new Matrix33(new Point3D[] { tan, tan.prodVect(dir).norme1(),  dir }));
+            System.out.println("Matrice "+matrice.getElem().toString());
+            setEye(eye);
+
+        }
+    */
     public void calculerMatriceT(Point3D verticale) {
-        double t = this.t.getElem() ;
+        double t = this.t.getElem();
         Point3D eye = courbe.getElem().calculerPoint3D(t);
         //TODO DEV
         //setLookat(courbe.getElem().calculerPoint3D(t+ t* 1.001));
@@ -91,10 +107,10 @@ public class CameraInPath extends Camera {
         Point3D dir = getLookat().moins(eye).norme1();
         Point3D tan = eye.moins(courbe.getElem().calculerPoint3D(t - 0.001)).norme1();
         Point3D vert = /*getVerticale().getElem()==null?*/(tan.prodVect(dir).norme1());//:getVerticale().data0d;
-        matrice.setElem(new Matrix33(new Point3D[] { tan, dir.prodVect(tan).norme1(), dir}));
-        System.out.println("Matrice "+matrice.getElem().toString());
-        setEye(eye);
+        matrice.setElem(new Matrix33(new Point3D[]{tan, vert, dir}));
 
+        System.out.println("Matrice (tan, vert, dir)" + matrice.getElem().toString());
+        setEye(eye);
     }
 
     @Override
@@ -108,16 +124,18 @@ public class CameraInPath extends Camera {
     }
 
     @Override
-    public Point3D calculerCurveT( double u, double t) {
+    public Point3D calculerCurveT(double u, double t) {
         this.t.setElem((Double) t);
         calculerMatrice(null);
-        return courbe.getElem().calculerPoint3D((Double) t) ;
+        return courbe.getElem().calculerPoint3D((Double) t);
     }
+
     @Override
     public Point3D calculerPointDansRepere(Point3D p) {
         Point3D p2 = matrice.getElem().mult(p.moins(getEye()));
         p2.texture(p.texture());
-        return p2;    }
+        return p2;
+    }
 
     @Override
     public void declareProperties() {

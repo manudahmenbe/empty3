@@ -62,7 +62,7 @@ public class E3Model extends RepresentableConteneur{
     public Double farpoint;
     public Double nearpoint;
     private String mtl_path;
-    Color color = new Color(169, 169, 212);
+    Color color = new Color(0, 0, 255);
     //THIS CLASS LOADS THE MODELS
     public E3Model(BufferedReader ref, boolean centerit, String path) {
 
