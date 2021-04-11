@@ -55,6 +55,8 @@ public class E3Model extends RepresentableConteneur{
     private ArrayList<String[]> mattimings;
     private MtlLoader materials;
     private int numpolys;
+    private Double[][][] surfacesDegrees;
+    private Double[][][] surfacesVertex;
     public Double toppoint;
     public Double bottompoint;
     public Double leftpoint;
