@@ -20,8 +20,11 @@ public class TestObjTeapot extends TestObjetSub {
         //camera().getEye().setZ(-5.);
         setMaxFrames(120);
         frame = 30;
-        cameraInPath = new CameraInPath(new Circle(new Axe(Point3D.Y, Point3D.Y.mult(-1.)), 10./*, Point3D.Y*/));
-        z().texture(new ColorTexture(Color.YELLOW));
+        Circle circle = new Circle(new Axe(Point3D.Y, Point3D.Y.mult(-1.)), 10.);
+        circle.texture(new ColorTexture(Color.BLACK));
+        cameraInPath = new CameraInPath(circle, Point3D.Y);
+        scene().add(circle);
+        scene().texture(new ColorTexture(Color.YELLOW));
         scene().cameraActive(cameraInPath);
     }
 
