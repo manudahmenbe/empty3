@@ -33,7 +33,6 @@
 package one.empty3.library.objloader;
 
 import one.empty3.library.*;
-import one.empty3.library.Polygon;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -55,6 +54,8 @@ public class E3Model extends RepresentableConteneur{
     private ArrayList<String[]> mattimings;
     private MtlLoader materials;
     private int numpolys;
+    private StructureMatrix< Double[]> surfacesDegrees;
+    private StructureMatrix< Double[]> surfacesVertex;
     public Double toppoint;
     public Double bottompoint;
     public Double leftpoint;
