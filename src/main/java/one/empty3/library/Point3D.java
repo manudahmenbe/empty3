@@ -47,6 +47,10 @@ import java.util.List;
  * @author Manuel Dahmen
  */
 public class Point3D extends Representable {
+    private Double tempz;
+    private Double tempy;
+    private Double tempx;
+
     public static void start() {
     }
 
@@ -506,6 +510,12 @@ public class Point3D extends Representable {
         return norme();
     }
 
+    public void textureIndex(Double tempx, Double tempy, Double tempz) {
+        this.tempx = tempx;
+        this.tempy = tempy;
+        this.tempz = tempz;
+    }
+
 
     public class P extends Point3D {
     }
@@ -593,5 +603,29 @@ public class Point3D extends Representable {
         for(int i=0; i< colorComponents.length; i++)
             point3D.set(i, (double)colorComponents[i]);
         return point3D;
+    }
+
+    public Double getTempz() {
+        return tempz;
+    }
+
+    public void setTempz(Double tempz) {
+        this.tempz = tempz;
+    }
+
+    public Double getTempy() {
+        return tempy;
+    }
+
+    public void setTempy(Double tempy) {
+        this.tempy = tempy;
+    }
+
+    public Double getTempx() {
+        return tempx;
+    }
+
+    public void setTempx(Double tempx) {
+        this.tempx = tempx;
     }
 }

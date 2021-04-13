@@ -525,6 +525,7 @@ public class E3Model extends RepresentableConteneur {
 
                     Point3D point3D = new Point3D(tempx, tempy, tempz);
                     point3D.texture(new TextureCol(pointCol));
+                    point3D.textureIndex(tempx, tempy, tempz);
                     point3D.setNormale(norm);
                     if (quad instanceof TRI) {
                         if (quad instanceof TRI) {
