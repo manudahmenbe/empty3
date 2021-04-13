@@ -448,4 +448,5 @@ public class StructureMatrix<T> {
         return null;
 
     }
+
 }
