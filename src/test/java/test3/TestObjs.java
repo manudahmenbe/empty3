@@ -5,6 +5,7 @@ import one.empty3.library.objloader.E3Model;
 import one.empty3.library.objloader.ModelLoaderOBJ;
 
 import java.io.File;
+import java.util.Locale;
 
 public class TestObjs extends TestObjetSub {
     String directory = "resources/models/samples/";
@@ -22,9 +23,13 @@ public class TestObjs extends TestObjetSub {
 
             File file = new File(directory + list[i]);
 
-            E3Model e3Model = ModelLoaderOBJ.LoadModelE3(file.getAbsolutePath(), file.getAbsolutePath());
+            if(file.exists()&&file.getAbsolutePath().toLowerCase().endsWith(".obj")) {
 
-            scene().add(e3Model);
+                E3Model e3Model = ModelLoaderOBJ.LoadModelE3(file.getAbsolutePath(), file.getAbsolutePath());
+
+                scene().add(e3Model);
+
+            }
         }
 
     }
