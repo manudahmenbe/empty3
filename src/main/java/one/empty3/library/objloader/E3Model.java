@@ -34,10 +34,7 @@ package one.empty3.library.objloader;
 
 import one.empty3.library.*;
 import one.empty3.library.Polygon;
-import one.empty3.library.core.nurbs.CourbeParametriquePolynomiale;
-import one.empty3.library.core.nurbs.ParametricCurve;
-import one.empty3.library.core.nurbs.ParametricSurface;
-import one.empty3.library.core.nurbs.SurfaceParametricPolygonalBezier;
+import one.empty3.library.core.nurbs.*;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -80,6 +77,8 @@ public class E3Model extends RepresentableConteneur {
     private ParametricCurve curve = null;
     private StructureMatrix<Point3D> s;
     private StructureMatrix<Double> k;
+    private double[] knotV;
+    private double[] knotU;
 
     //THIS CLASS LOADS THE MODELS
     public E3Model(BufferedReader ref, boolean centerit, String path) {
@@ -372,19 +371,25 @@ public class E3Model extends RepresentableConteneur {
 
                                             switch (csDim) {
                                                 case 2:
+                                                    surface = null;
                                                     switch (cstype) {
                                                     case "bezier":
                                                         surface = new SurfaceParametricPolygonalBezier(getArray2(s));
                                                         break;
                                                     case "bspline":
+                                                        surface = new SurfaceParametriquePolynomialeBSpline(knotU, knotV, getArray2(s), degU, degV);
                                                         break;
                                                     case "basis":
+                                                        surface = new PolygonalSurface(s);
                                                         break;
+                                                        //case//Cardinal, Taylor,
                                                 }
+                                                if(surface!=null)
+                                                    add(surface);
                                                 break;
                                                 case 1:
                                                     switch(cstype) {
-                                                        case "bezier":
+                                                        case "basis":
                                                             curve = new CourbeParametriquePolynomiale(getArray1(s));
                                                             break;
                                                     }
