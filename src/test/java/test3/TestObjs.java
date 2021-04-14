@@ -5,7 +5,6 @@ import one.empty3.library.objloader.E3Model;
 import one.empty3.library.objloader.ModelLoaderOBJ;
 
 import java.io.File;
-import java.util.Locale;
 
 public class TestObjs extends TestObjetSub {
     String directory = "resources/models/samples/";
@@ -13,25 +12,32 @@ public class TestObjs extends TestObjetSub {
 
     }
 
-    public void ginit() {
+    public void finit() {
         testObjs();
     }
 
     public void testObjs() {
         String[] list = new File(directory).list();
-        for(int i=0; i<list.length; i++) {
-
+        assert list != null;
+        setMaxFrames(list.length);
+        System.out.println("Obj directory. Number of files : " + list.length);
+        scene().getObjets().getData1d().clear();
+        int i = frame();
+        if(i<list.length) {
             File file = new File(directory + list[i]);
 
-            if(file.exists()&&file.getAbsolutePath().toLowerCase().endsWith(".obj")) {
+            if (file.exists() && file.getAbsolutePath().toLowerCase().endsWith(".obj")) {
 
                 E3Model e3Model = ModelLoaderOBJ.LoadModelE3(file.getAbsolutePath(), file.getAbsolutePath());
 
                 scene().add(e3Model);
 
+                System.out.println("Obj file added. "+file.getName());
+            }
+            else {
+                System.out.println("Not a obj file");
             }
         }
-
     }
     public static void main(String [] args) {
         TestObjs testObjs = new TestObjs();

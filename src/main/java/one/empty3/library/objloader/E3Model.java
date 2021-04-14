@@ -35,6 +35,7 @@ package one.empty3.library.objloader;
 import one.empty3.library.*;
 import one.empty3.library.Polygon;
 import one.empty3.library.core.nurbs.*;
+import org.apache.regexp.RE;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -67,18 +68,17 @@ public class E3Model extends RepresentableConteneur {
     private String mtl_path;
     Color color = new Color(0, 0, 255);
     private int csDim;
-    private int vCount;
-    private int uCount;
     private boolean rat;
     private String cstype;
-    private int degU;
-    private int degV;
+    private int degU = 0;
+    private int degV = 0;
     private ParametricSurface surface = null;
     private ParametricCurve curve = null;
     private StructureMatrix<Point3D> s;
     private StructureMatrix<Double> k;
     private double[] knotV;
     private double[] knotU;
+    private RepresentableConteneur objects = new RepresentableConteneur();
 
     //THIS CLASS LOADS THE MODELS
     public E3Model(BufferedReader ref, boolean centerit, String path) {
@@ -126,8 +126,9 @@ public class E3Model extends RepresentableConteneur {
                 linecounter++;
                 if (newline.length() > 0) {
                     newline = newline.trim();
-
-                    //LOADS VERTEX COORDINATES
+                    if (newline.length() == 0) {
+                        continue;
+                    }
                     if (newline.startsWith("v ")) {
                         Double coords[] = new Double[4];
                         String coordstext[] = new String[4];
@@ -158,105 +159,93 @@ public class E3Model extends RepresentableConteneur {
                         if (coords[2] < farpoint)
                             farpoint = coords[2];
                         vertexsets.add(coords);
+                    } else if (newline.startsWith("vt")) {
+                        Double coords[] = new Double[4];
+                        String coordstext[] = new String[4];
+                        newline = newline.substring(3, newline.length());
+                        StringTokenizer st = new StringTokenizer(newline, " ");
+                        for (int i = 0; st.hasMoreTokens(); i++)
+                            coords[i] = Double.parseDouble(st.nextToken());
+
+                        vertexsetstexs.add(coords);
+                    } else if (newline.startsWith("vn")) {
+                        Double coords[] = new Double[4];
+                        String coordstext[] = new String[4];
+                        newline = newline.substring(3, newline.length());
+                        StringTokenizer st = new StringTokenizer(newline, " ");
+                        for (int i = 0; st.hasMoreTokens(); i++)
+                            coords[i] = Double.parseDouble(st.nextToken());
+
+                        vertexsetsnorms.add(coords);
+                    } else if (newline.startsWith("f ")) {
+                        facecounter++;
+                        newline = newline.substring(2, newline.length());
+                        StringTokenizer st = new StringTokenizer(newline, " ");
+                        int count = st.countTokens();
+                        int v[] = new int[count];
+                        int vt[] = new int[count];
+                        int vn[] = new int[count];
+                        for (int i = 0; i < count; i++) {
+                            char chars[] = st.nextToken().toCharArray();
+                            StringBuffer sb = new StringBuffer();
+                            char lc = 'x';
+                            for (int k = 0; k < chars.length; k++) {
+                                if (chars[k] == '/' && lc == '/')
+                                    sb.append('0');
+                                lc = chars[k];
+                                sb.append(lc);
+                            }
+
+                            StringTokenizer st2 = new StringTokenizer
+                                    (sb.toString(), "/");
+                            int num = st2.countTokens();
+                            v[i] = Integer.parseInt(st2.nextToken());
+                            if (num > 1)
+                                vt[i] = Integer.parseInt(st2.nextToken());
+                            else
+                                vt[i] = 0;
+                            if (num > 2)
+                                vn[i] = Integer.parseInt(st2.nextToken());
+                            else
+                                vn[i] = 0;
+                        }
+
+                        faces.add(v);
+                        facestexs.add(vt);
+                        facesnorms.add(vn);
+                    } else if (newline.charAt(0) == 'm' && newline.charAt(1) == 't' && newline.charAt(2) == 'l' && newline.charAt(3) == 'l' && newline.charAt(4) == 'i' && newline.charAt(5) == 'b') {
+                        String[] coordstext = new String[3];
+                        coordstext = newline.split("\\s+");
+                        if (mtl_path != null)
+                            loadmaterials();
                     } else
+                        //USES MATELIALS
+                        if (newline.charAt(0) == 'u' && newline.charAt(1) == 's' && newline.charAt(2) == 'e' && newline.charAt(3) == 'm' && newline.charAt(4) == 't' && newline.charAt(5) == 'l') {
+                            String[] coords = new String[2];
+                            String[] coordstext = new String[3];
+                            coordstext = newline.split("\\s+");
+                            coords[0] = coordstext[1];
+                            coords[1] = facecounter + "";
+                            mattimings.add(coords);
+                            //System.out.println(coords[0] + ", " + coords[1]);
+                        } else if (newline.startsWith("bmat")) {
+                            String[] split = newline.substring("bmat ".length()).split("\\s+");
 
-                        //LOADS VERTEX TEXTURE COORDINATES
-                        if (newline.startsWith("vt")) {
-                            Double coords[] = new Double[4];
-                            String coordstext[] = new String[4];
-                            newline = newline.substring(3, newline.length());
-                            StringTokenizer st = new StringTokenizer(newline, " ");
-                            for (int i = 0; st.hasMoreTokens(); i++)
-                                coords[i] = Double.parseDouble(st.nextToken());
+                            if (newline.charAt(1) == 'u') {
 
-                            vertexsetstexs.add(coords);
-                        } else
+                            } else if (newline.charAt(0) == 'v') {
 
-                            //LOADS VERTEX NORMALS COORDINATES
-                            if (newline.startsWith("vn")) {
-                                Double coords[] = new Double[4];
-                                String coordstext[] = new String[4];
-                                newline = newline.substring(3, newline.length());
-                                StringTokenizer st = new StringTokenizer(newline, " ");
-                                for (int i = 0; st.hasMoreTokens(); i++)
-                                    coords[i] = Double.parseDouble(st.nextToken());
-
-                                vertexsetsnorms.add(coords);
-                            } else
-
-                                //LOADS FACES COORDINATES
-                                if (newline.startsWith("f ")) {
-                                    facecounter++;
-                                    newline = newline.substring(2, newline.length());
-                                    StringTokenizer st = new StringTokenizer(newline, " ");
-                                    int count = st.countTokens();
-                                    int v[] = new int[count];
-                                    int vt[] = new int[count];
-                                    int vn[] = new int[count];
-                                    for (int i = 0; i < count; i++) {
-                                        char chars[] = st.nextToken().toCharArray();
-                                        StringBuffer sb = new StringBuffer();
-                                        char lc = 'x';
-                                        for (int k = 0; k < chars.length; k++) {
-                                            if (chars[k] == '/' && lc == '/')
-                                                sb.append('0');
-                                            lc = chars[k];
-                                            sb.append(lc);
-                                        }
-
-                                        StringTokenizer st2 = new StringTokenizer
-                                                (sb.toString(), "/");
-                                        int num = st2.countTokens();
-                                        v[i] = Integer.parseInt(st2.nextToken());
-                                        if (num > 1)
-                                            vt[i] = Integer.parseInt(st2.nextToken());
-                                        else
-                                            vt[i] = 0;
-                                        if (num > 2)
-                                            vn[i] = Integer.parseInt(st2.nextToken());
-                                        else
-                                            vn[i] = 0;
-                                    }
-
-                                    faces.add(v);
-                                    facestexs.add(vt);
-                                    facesnorms.add(vn);
-                                } else
-
-                                    //LOADS MATERIALS
-                                    if (newline.charAt(0) == 'm' && newline.charAt(1) == 't' && newline.charAt(2) == 'l' && newline.charAt(3) == 'l' && newline.charAt(4) == 'i' && newline.charAt(5) == 'b') {
-                                        String[] coordstext = new String[3];
-                                        coordstext = newline.split("\\s+");
-                                        if (mtl_path != null)
-                                            loadmaterials();
-                                    } else
-                                        //USES MATELIALS
-                                        if (newline.charAt(0) == 'u' && newline.charAt(1) == 's' && newline.charAt(2) == 'e' && newline.charAt(3) == 'm' && newline.charAt(4) == 't' && newline.charAt(5) == 'l') {
-                                            String[] coords = new String[2];
-                                            String[] coordstext = new String[3];
-                                            coordstext = newline.split("\\s+");
-                                            coords[0] = coordstext[1];
-                                            coords[1] = facecounter + "";
-                                            mattimings.add(coords);
-                                            //System.out.println(coords[0] + ", " + coords[1]);
-                                        } else if (newline.startsWith("bmat")) {
-                                            String[] split = newline.substring("bmat ".length()).split("\\s+");
-
-                                            if (newline.charAt(1) == 'u') {
-
-                                            } else if (newline.charAt(0) == 'v') {
-
-                                            }
-                                            if(csDim == 1) degV =1;
-                                            for (int i = 4; i < degU; i++) {
-                                                for (int j = 4; j < degV; j++) {
-                                                    double x = Double.parseDouble(split[0]);
-                                                    double y = Double.parseDouble(split[1]);
-                                                    double z = Double.parseDouble(split[2]);
-                                                    double w = Double.parseDouble(split[3]);
-                                                    s.setElem(P.n(x, y, z), i,  j);
-                                                }
-                                            }
+                            }
+                            if (csDim == 1) degV = 1;
+                            for (int i = 4; i < degU; i++) {
+                                for (int j = 4; j < degV; j++) {
+                                    double x = Double.parseDouble(split[0]);
+                                    double y = Double.parseDouble(split[1]);
+                                    double z = Double.parseDouble(split[2]);
+                                    double w = Double.parseDouble(split[3]);
+                                    s.setElem(P.n(x, y, z), i, j);
+                                }
+                            }
 
 
 /**
@@ -269,19 +258,19 @@ public class E3Model extends RepresentableConteneur {
  *     trim 0.0 2.0 1
  *     end
  */
-                                        } else if (newline.startsWith("cstype")) {
-                                            surface = null;
-                                            curve = null;
+                        } else if (newline.startsWith("cstype")) {
+                            surface = null;
+                            curve = null;
 
-                                            String[] split = newline.substring("cstype ".length()).split("\\s+");
-                                            int index = 0;
-                                            if (split.length == 2) {
-                                                index = 1;
-                                                rat = true;
-                                            } else
-                                                rat = false;
+                            String[] split = newline.substring("cstype ".length()).split("\\s+");
+                            int index = 0;
+                            if (split.length == 2) {
+                                index = 1;
+                                rat = true;
+                            } else
+                                rat = false;
 
-                                            cstype = split[index];
+                            cstype = split[index];
                                     /*
                                         Bezier
                                         o       basis matrix
@@ -289,120 +278,130 @@ public class E3Model extends RepresentableConteneur {
                                         o       Cardinal
                                         o       Taylor
                                     */
-                                            switch (cstype) {
+                            switch (cstype) {
 
-                                                case "bmatrix":
-                                                    s = new StructureMatrix<Point3D>(2, Point3D.class);
-                                                    break;
-                                                case "bezier":
-                                                    s = new StructureMatrix<Point3D>(2, Point3D.class);
-                                                    break;
-                                                case "bspline":
-                                                    k = new StructureMatrix<Double>(2, Double.class);
-                                                    s = new StructureMatrix<Point3D>(2, Point3D.class);
-                                                    break;
-                                                case "cardinal":
-                                                    break;
-                                                case "taylor":
-                                                    break;
-                                            }
-                                        } else if (newline.startsWith("deg")) {
-                                            String[] split = newline.substring("deg ".length()).split("\\s+");
-                                            degU = Integer.parseInt(split[0]);
-                                            if (split.length == 1) {
-                                                csDim = 1;
+                                case "bmatrix":
+                                    s = new StructureMatrix<Point3D>(2, Point3D.class);
+                                    break;
+                                case "bezier":
+                                    s = new StructureMatrix<Point3D>(2, Point3D.class);
+                                    break;
+                                case "bspline":
+                                    k = new StructureMatrix<Double>(2, Double.class);
+                                    s = new StructureMatrix<Point3D>(2, Point3D.class);
+                                    break;
+                                case "cardinal":
+                                    break;
+                                case "taylor":
+                                    break;
+                            }
+                        } else if (newline.startsWith("deg")) {
+                            String[] split = newline.substring("deg ".length()).split("\\s+");
+                            degU = Integer.parseInt(split[0]);
+                            if (split.length == 1) {
+                                csDim = 1;
 
-                                            }
-                                            else if (split.length == 2) {
-                                                csDim = 2;
-                                                degV = Integer.parseInt(split[1]);
-                                            }
-                                            switch (cstype) {
+                            } else if (split.length == 2) {
+                                csDim = 2;
+                                degV = Integer.parseInt(split[1]);
+                            }
+                            switch (cstype) {
 
-                                                case "bmatrix":
+                                case "bmatrix":
 
-                                                    break;
-                                                case "bezier":
-                                                    break;
-                                                case "bspline":
-                                                    break;
-                                                case "cardinal":
-                                                    if(csDim==2)
-                                                        degV = 3;
-                                                    degU = 3;
-                                                    break;
-                                                case "taylor":
-                                                    break;
-                                            }
+                                    break;
+                                case "bezier":
+                                    break;
+                                case "bspline":
+                                    break;
+                                case "cardinal":
+                                    if (csDim == 2)
+                                        degV = 3;
+                                    degU = 3;
+                                    break;
+                                case "taylor":
+                                    break;
+                            }
 
-                                        } else if (newline.startsWith("curv")) {
-                                            csDim = 1;
-                                        } else if (newline.startsWith("curv2")) {
-                                            csDim = 1;
-                                        } else if (newline.startsWith("surf")) {
-                                            csDim = 2;
+                        } else if (newline.startsWith("curv")) {
+                            csDim = 1;
+                        } else if (newline.startsWith("curv2")) {
+                            csDim = 1;
+                        } else if (newline.startsWith("surf")) {
+                            csDim = 2;
 
-                                            String[] split = newline.substring(4).split("\\s+");
-                                            double u0 = Double.parseDouble(split[0]);
-                                            double u1 = Double.parseDouble(split[1]);
-                                            double v0 = Double.parseDouble(split[2]);
-                                            double v1 = Double.parseDouble(split[3]);
-                                            for (int c = 4; c < split.length; c++) {
-                                                String[] vertexRef = split[c].split("/");
+                            String[] split = newline.substring(4).split("\\s+");
+                            double u0 = Double.parseDouble(split[0]);
+                            double u1 = Double.parseDouble(split[1]);
+                            double v0 = Double.parseDouble(split[2]);
+                            double v1 = Double.parseDouble(split[3]);
+                            for (int c = 4; c < split.length; c++) {
+                                String[] vertexRef = split[c].split("/");
 
-                                            }
-                                        } else if (newline.startsWith("parm")) {
-                                            String[] split = newline.substring(5).split("\\s+");
-                                            if(csDim == 1) degV =1;
-                                            for (int i = 4; i < degU; i++) {
-                                                for (int j = 4; j < degV; j++) {
-                                                    double x = Double.parseDouble(split[0]);
-                                                    double y = Double.parseDouble(split[1]);
-                                                    double z = Double.parseDouble(split[2]);
-                                                    double w = Double.parseDouble(split[3]);
-                                                    s.setElem(P.n(x, y, z), i,  j);
-                                                }
-                                                }
+                            }
+                        } else if (newline.startsWith("parm")) {
+                            String[] split = newline.substring(5).split("\\s+");
+                            if (csDim == 1) degV = 1;
+                            for (int i = 4; i < degU; i++) {
+                                for (int j = 4; j < degV; j++) {
+                                    double x = Double.parseDouble(split[0]);
+                                    double y = Double.parseDouble(split[1]);
+                                    double z = Double.parseDouble(split[2]);
+                                    double w = Double.parseDouble(split[3]);
+                                    s.setElem(P.n(x, y, z), i, j);
+                                }
+                            }
 
 
-                                        } else if (newline.startsWith("trim")) {
+                        } else if (newline.startsWith("trim")) {
 
-                                        } else if (newline.startsWith("end")) {
+                        } else if (newline.startsWith("end")) {
 
-                                            switch (csDim) {
-                                                case 2:
-                                                    surface = null;
-                                                    switch (cstype) {
-                                                    case "bezier":
-                                                        surface = new SurfaceParametricPolygonalBezier(getArray2(s));
-                                                        break;
-                                                    case "bspline":
-                                                        surface = new SurfaceParametriquePolynomialeBSpline(knotU, knotV, getArray2(s), degU, degV);
-                                                        break;
-                                                    case "basis":
-                                                        surface = new PolygonalSurface(s);
-                                                        break;
-                                                        //case//Cardinal, Taylor,
-                                                }
-                                                if(surface!=null)
-                                                    add(surface);
-                                                break;
-                                                case 1:
-                                                    switch(cstype) {
-                                                        case "basis":
-                                                            curve = new CourbeParametriquePolynomiale(getArray1(s));
-                                                            break;
-                                                    }
-                                                    break;
-                                            }
-                                        }
+                            switch (csDim) {
+                                case 2:
+                                    surface = null;
+                                    switch (cstype) {
+                                        case "bezier":
+                                            surface = new SurfaceParametricPolygonalBezier(getArray2(s));
+                                            break;
+                                        case "bspline":
+                                            surface = new SurfaceParametriquePolynomialeBSpline(knotU, knotV, getArray2(s), degU, degV);
+                                            break;
+                                        case "basis":
+                                            surface = new PolygonalSurface(s);
+                                            objects.add(surface);
+                                            break;
+                                        //case//Cardinal, Taylor,
+                                    }
+                                    if (surface != null)
+                                        add(surface);
+                                    surface = null;
+                                    break;
+                                case 1:
+                                    switch (cstype) {
+                                        case "basis":
+                                            curve = new CourbeParametriquePolynomiale(getArray1(s));
+
+                                            break;
+                                    }
+                                    if (curve != null)
+                                        objects.add(curve);
+                                    curve = null;
+                                    break;
+                            }
+                        }
                 }
             }
+
+            if (objects != null)
+                add(objects);
         } catch (IOException e) {
             System.out.println("Failed to read file: " + br.toString());
         } catch (NumberFormatException e) {
             System.out.println("Malformed OBJ file: " + br.toString() + "\r \r" + e.getMessage());
         }
+
+
     }
 
     private void loadmaterials() {
@@ -554,19 +553,19 @@ public class E3Model extends RepresentableConteneur {
     }
 
 
-
     public Point3D[][] getArray2(StructureMatrix<Point3D> s) {
 
-        Point3D [][] t = new Point3D[s.data2d.size()][s.data2d.get(0).size()];
-        for(int j=0; j<s.data2d.size(); j++)
-            for(int i=0; i<s.data2d.get(0).size(); i++)
+        Point3D[][] t = new Point3D[s.data2d.size()][s.data2d.get(0).size()];
+        for (int j = 0; j < s.data2d.size(); j++)
+            for (int i = 0; i < s.data2d.get(0).size(); i++)
                 t[j][i] = s.data2d.get(j).get(i);
-            return t;
+        return t;
     }
+
     public Point3D[] getArray1(StructureMatrix<Point3D> s) {
 
-        Point3D [] t = new Point3D[s.data1d.size()];
-        for(int j=0; j<s.data1d.size(); j++)
+        Point3D[] t = new Point3D[s.data1d.size()];
+        for (int j = 0; j < s.data1d.size(); j++)
             t[j] = s.data1d.get(j);
         return t;
     }

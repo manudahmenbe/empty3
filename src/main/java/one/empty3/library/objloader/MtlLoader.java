@@ -65,7 +65,7 @@ public class MtlLoader {
 		float returnfloat = 1f;
 		for (int i=0; i < Materials.size(); i++) {
 			mtl tempmtl = (mtl)Materials.get(i);
-			if (tempmtl.name.matches(namepass)) {
+			if (tempmtl.name!=null && tempmtl.name.matches(namepass)) {
 				returnfloat = tempmtl.d;
 			}
 		}
@@ -76,7 +76,7 @@ public class MtlLoader {
 		float[] returnfloat = new float[3];
 		for (int i=0; i < Materials.size(); i++) {
 			mtl tempmtl = (mtl)Materials.get(i);
-			if (tempmtl.name.matches(namepass)) {
+			if (tempmtl.name!=null && tempmtl.name.matches(namepass)) {
 				returnfloat = tempmtl.Ka;
 			}
 		}
@@ -87,7 +87,7 @@ public class MtlLoader {
 		float[] returnfloat = new float[3];
 		for (int i=0; i < Materials.size(); i++) {
 			mtl tempmtl = (mtl)Materials.get(i);
-			if (tempmtl.name.matches(namepass)) {
+			if (tempmtl.name!=null && tempmtl.name.matches(namepass)) {
 				returnfloat = tempmtl.Kd;
 			}
 		}
@@ -98,7 +98,7 @@ public class MtlLoader {
 		float[] returnfloat = new float[3];
 		for (int i=0; i < Materials.size(); i++) {
 			mtl tempmtl = (mtl)Materials.get(i);
-			if (tempmtl.name.matches(namepass)) {
+			if (tempmtl.name!=null && tempmtl.name.matches(namepass)) {
 				returnfloat = tempmtl.Ks;
 			}
 		}
