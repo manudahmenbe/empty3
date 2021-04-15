@@ -132,7 +132,7 @@ public class E3Model extends RepresentableConteneur {
                     if (newline.startsWith("v ")) {
                         Double coords[] = new Double[4];
                         String coordstext[] = new String[4];
-                        newline = newline.substring(2, newline.length());
+                        newline = newline.substring(2);
                         StringTokenizer st = new StringTokenizer(newline, " ");
                         for (int i = 0; st.hasMoreTokens(); i++)
                             coords[i] = Double.parseDouble(st.nextToken());

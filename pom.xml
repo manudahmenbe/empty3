@@ -241,6 +241,7 @@
                     <execution>
                         <configuration>
                             <keyname>22EE55E4</keyname><!--ED0DB26D5F0BDADD1CB2BC079B7BFF1322EE55E4-->
+                            <skip>true</skip>
                         </configuration>
                         <id>sign-artifacts</id>
                         <phase>verify</phase>
