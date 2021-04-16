@@ -10,8 +10,10 @@
 
     <groupId>one.empty3</groupId>
     <artifactId>empty3-library-3d-android</artifactId>
-    <version>2021.4.6-SNAPSHOT</version><!-- -SNAPSHOT -->
-    <description>3D rendering engine. Plus modelling. Expected glsl textures 3d and 2d rendering</description>
+    <version>2021.4.7</version><!-- -SNAPSHOT -->
+    <description>3D rendering engine. Plus modelling. Expected glsl textures 3d and 2d rendering. ANDROID VERSION.
+        2021
+    </description>
     <packaging>jar</packaging>
     <url>https://github.com/manuelddahmen/empty3</url>
 

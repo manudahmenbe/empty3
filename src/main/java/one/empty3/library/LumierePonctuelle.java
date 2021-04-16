@@ -47,11 +47,11 @@ import java.awt.*;
  */
 public final class LumierePonctuelle extends Lumiere {
 
-double minThreshold=0.0, maxThreshold=1.0;
+    double minThreshold = 0.0, maxThreshold = 1.0;
 
     private StructureMatrix<ITexture> couleurLumiere = new StructureMatrix<>(0, ITexture.class);
     private StructureMatrix<Point3D> position = new StructureMatrix<>(0, Point3D.class);
-    private double r0 = 1.0;
+    private double r0 = 100.0;
     private StructureMatrix<Boolean> directional = new StructureMatrix<>(0, Boolean.class);
 
     public LumierePonctuelle() {
@@ -59,31 +59,32 @@ double minThreshold=0.0, maxThreshold=1.0;
         this.couleurLumiere.setElem(new ColorTexture(Color.YELLOW));
         directional.setElem(Boolean.FALSE);
     }
+
     public LumierePonctuelle(Point3D pos, Color couleurLumiere) {
-        this.position .setElem(pos);
+        this.position.setElem(pos);
         this.couleurLumiere.setElem(new ColorTexture(couleurLumiere));
-        directional.setElem(false);
-        
+        this.Ls = couleurLumiere;
+        directional.setElem(Boolean.FALSE);
+
     }
 
     @Override
     public int getCouleur(int base, Point3D p, Point3D n) {
-        if(n==null)
+        if (n == null)
             return base;
-        double x = Math.asin(p.moins(position.getElem()).norme1().dot(n.norme1()))/2/Math.PI;
-   double d= p.moins(position.getElem()).norme();
+        //double x = Math.asin(p.moins(position.getElem()).norme1().dot(n.norme1())) / 2 / Math.PI;
+        Point3D l = p.moins(position.getElem()).norme1();
+
+        Double dot = l.dot(p.norme1());
+        double angle = Math.acos(dot)/Math.PI;
         double r = 0.0;
-        if(x<=0.0)
-            x = - x;
-// if(r>=1.0)
-//            return Color.WHITE.getRGB();
 
         if (directional.getElem()) {
-            r = 1*r0;
-                    //* (Math.cos(Math.abs(x) / Math.PI * 2 / ));
+            r = r0;
+            //* (Math.cos(Math.abs(x) / Math.PI * 2 / ));
         } else {
-            r = 1 * r0 /d*x;
-                    //* (Math.cos(Math.abs(x) / Math.PI * 2/ p.moins(position.getElem()).norme()))/x;
+            r = angle;
+            //* (Math.cos(Math.abs(x) / Math.PI * 2/ p.moins(position.getElem()).norme()))/x;
         }
         if (r < minThreshold) {
             r = minThreshold;
@@ -93,13 +94,12 @@ double minThreshold=0.0, maxThreshold=1.0;
         }
 
         double[] couleurObjet = getDoubles(base);
-        double [] color = getDoubles(couleurLumiere.getElem().getColorAt(0, 0));
         double[] res = new double[3];
         double[] Lsa = getRgb(Ls);
         double[] Laa = getRgb(La);
-        for (int i=0;i<3;i++) {
-            res[i] =  minmaxc((Lsa[i] )*(couleurObjet[i])  + color[i]* ( Laa[i])/(Lsa[i]+Laa[i]));
-                   
+        for (int i = 0; i < 3; i++) {
+            res[i] = minmaxc(((couleurObjet[i] +Laa[i]) *(1-angle) * (Lsa[i])) / (Lsa[i] + couleurObjet[i]));
+
         }
         return getInt(res);
     }
@@ -119,12 +119,12 @@ double minThreshold=0.0, maxThreshold=1.0;
     public void setR0(double r0) {
         this.r0 = r0;
     }
-   float minmaxc(double c){
-       return (float)Math.max(1.0, Math.min(0.0, c));
-   }
 
-    public void declareProperties()
-    {
+    float minmaxc(double c) {
+        return (float) Math.max(1.0, Math.min(0.0, c));
+    }
+
+    public void declareProperties() {
         getDeclaredDataStructure().put("position/Position de la provenace lumineuse", position);
         getDeclaredDataStructure().put("color/Couleur de la lumière", couleurLumiere);
         getDeclaredDataStructure().put("directinal/isDirectional rayons parallèle et sphèrique", directional);

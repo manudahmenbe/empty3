@@ -44,7 +44,7 @@ public class LumierePointSimple extends LumierePoint {
     float[] f = new float[3];
     private Color couleur;
     private Point3D point;
-    private double intensite;
+    private double intensite = 1.0;
     private float[] comp = new float[3];
 
     public LumierePointSimple(Color c, Point3D pl, double intensite) {

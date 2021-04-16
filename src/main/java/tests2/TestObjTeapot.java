@@ -1,9 +1,6 @@
 package tests2;
 
-import one.empty3.library.Axe;
-import one.empty3.library.Circle;
-import one.empty3.library.ColorTexture;
-import one.empty3.library.Point3D;
+import one.empty3.library.*;
 import one.empty3.library.core.nurbs.CameraInPath;
 import one.empty3.library.core.testing.TestObjetSub;
 import one.empty3.library.objloader.E3Model;
@@ -26,6 +23,10 @@ public class TestObjTeapot extends TestObjetSub {
         scene().add(circle);
         scene().texture(new ColorTexture(Color.YELLOW));
         scene().cameraActive(cameraInPath);
+
+        LumierePonctuelle lumierePonctuelle = new LumierePonctuelle(Point3D.O0, Color.WHITE);
+        scene().lumieres().add(lumierePonctuelle);
+
     }
 
     public void finit() {
