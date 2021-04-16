@@ -53,9 +53,9 @@ public abstract class Lumiere  extends Representable{
     }
   
   public static int  getInt(double [] d) {
-       int res = 0;
+       int res = 0xFF000000;
     for(int i=0 ;i<3;i++) {
-        res += ((int)(float)(d[i]*255))<<((2-i)*8);
+        res += ((int)(float)(d[i]*0xff))<<((2-i)*8);
     }
     return res;//|0xFF000000;
   }

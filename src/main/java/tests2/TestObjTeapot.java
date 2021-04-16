@@ -6,12 +6,14 @@ import one.empty3.library.core.testing.TestObjetSub;
 import one.empty3.library.objloader.E3Model;
 import one.empty3.library.objloader.ModelLoaderOBJ;
 
+import javax.swing.text.ZoneView;
 import java.awt.*;
 
 public class TestObjTeapot extends TestObjetSub {
     private CameraInPath cameraInPath;
 
     public void ginit() {
+        z.setDisplayType(ZBufferImpl.DISPLAY_ALL);
         E3Model modelLoaderOBJ = ModelLoaderOBJ.LoadModelE3("resources/teapot.obj", "");
         scene().add(modelLoaderOBJ);
         //camera().getEye().setZ(-5.);
@@ -24,7 +26,7 @@ public class TestObjTeapot extends TestObjetSub {
         scene().texture(new ColorTexture(Color.YELLOW));
         scene().cameraActive(cameraInPath);
 
-        LumierePonctuelle lumierePonctuelle = new LumierePonctuelle(Point3D.O0, Color.WHITE);
+        LumierePonctuelle lumierePonctuelle = new LumierePonctuelle(Point3D.O0, Color.YELLOW);
         scene().lumieres().add(lumierePonctuelle);
 
     }

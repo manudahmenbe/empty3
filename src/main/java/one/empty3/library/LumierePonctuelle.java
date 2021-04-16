@@ -75,30 +75,26 @@ public final class LumierePonctuelle extends Lumiere {
         //double x = Math.asin(p.moins(position.getElem()).norme1().dot(n.norme1())) / 2 / Math.PI;
         Point3D l = p.moins(position.getElem()).norme1();
 
-        Double dot = l.dot(p.norme1());
-        double angle = Math.acos(dot)/Math.PI;
-        double r = 0.0;
+        Double dot = l.dot(n.norme1());
+        double angle = Math.cos(dot);
 
-        if (directional.getElem()) {
-            r = r0;
-            //* (Math.cos(Math.abs(x) / Math.PI * 2 / ));
-        } else {
-            r = angle;
-            //* (Math.cos(Math.abs(x) / Math.PI * 2/ p.moins(position.getElem()).norme()))/x;
-        }
-        if (r < minThreshold) {
-            r = minThreshold;
-        }
-        if (r > maxThreshold) {
-            r = maxThreshold;
-        }
 
         double[] couleurObjet = getDoubles(base);
         double[] res = new double[3];
         double[] Lsa = getRgb(Ls);
         double[] Laa = getRgb(La);
         for (int i = 0; i < 3; i++) {
-            res[i] = minmaxc(((couleurObjet[i] +Laa[i]) *(1-angle) * (Lsa[i])) / (Lsa[i] + couleurObjet[i]));
+            double x = (1-angle)*couleurObjet[i]
+                    + (angle) * Lsa[i];
+            res[i] = Math.exp(-x*x*2);
+
+            if (res[i] < minThreshold) {
+                res[i] = minThreshold;
+                res[i] = couleurObjet[i];
+            }
+            if (res[i] > maxThreshold) {
+                res[i] = Lsa[i];
+            }
 
         }
         return getInt(res);

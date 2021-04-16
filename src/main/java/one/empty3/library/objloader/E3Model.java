@@ -77,7 +77,7 @@ public class E3Model extends RepresentableConteneur {
     private StructureMatrix<Double> k;
     private double[] knotV;
     private double[] knotU;
-    private RepresentableConteneur objects = new RepresentableConteneur();
+    private final RepresentableConteneur objects = new RepresentableConteneur();
 
     //THIS CLASS LOADS THE MODELS
     public E3Model(BufferedReader ref, boolean centerit, String path) {
@@ -506,7 +506,7 @@ public class E3Model extends RepresentableConteneur {
                         Double normtempx = ((Double[]) vertexsetsnorms.get(tempfacesnorms[w] - 1))[0];
                         Double normtempy = ((Double[]) vertexsetsnorms.get(tempfacesnorms[w] - 1))[1];
                         Double normtempz = ((Double[]) vertexsetsnorms.get(tempfacesnorms[w] - 1))[2];
-                        norm.changeTo(new Point3D(normtempx, normtempy, normtempz));
+                        norm = new Point3D(normtempx, normtempy, normtempz);
                     }
 
                     if (tempfacestexs[w] != 0) {
@@ -524,12 +524,10 @@ public class E3Model extends RepresentableConteneur {
                     Point3D point3D = new Point3D(tempx, tempy, tempz);
                     point3D.texture(new TextureCol(pointCol));
                     point3D.textureIndex(tempx, tempy, tempz);
-                    point3D.setNormale(norm);
+                    //point3D.setNormale(norm);
                     if (quad instanceof TRI) {
-                        if (quad instanceof TRI) {
-                            ((TRI) quad).getSommet().setElem(point3D, w);
+                        ((TRI) quad).getSommet().setElem(point3D, w);
 
-                        }
                     }
                     if (quad instanceof Quads) {
                         ((Quads) quad).add(point3D);
