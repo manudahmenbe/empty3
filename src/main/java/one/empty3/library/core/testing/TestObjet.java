@@ -160,7 +160,7 @@ public abstract class TestObjet implements Test, Runnable {
     private int videoTrackNo;
     private int fps = 25;
     //private Buffer buf;
-    private ManualVideoCompile compiler;
+    //private ManualVideoCompile compiler;
     private boolean isVBR;
     private AudioFormat audioFormat;
     private Resolution dimension = HD1080;
@@ -233,9 +233,9 @@ public abstract class TestObjet implements Test, Runnable {
 
             if (encoder == 1) {
 
-                if (compiler != null && frame > 0)
+                /*if (compiler != null && frame > 0)
                     compiler.end();
-                initCompiler();
+                initCompiler();*/
             } else {
                 if (isAviOpen()) {
                     try {
@@ -297,7 +297,7 @@ public abstract class TestObjet implements Test, Runnable {
     }
 
     public boolean isAviOpen() {
-        return (compiler != null && encoder == 1) || (aviOpen && encoder == 0);
+        return (/*compiler != null && encoder == 1*/false) || (aviOpen && encoder == 0);
     }
 
     public void setAviOpen(boolean aviOpen) {
@@ -539,7 +539,7 @@ public abstract class TestObjet implements Test, Runnable {
         ///setMaxFrames(100);
         loop(true);
 
-        compiler = new ManualVideoCompile();
+        //compiler = new ManualVideoCompile();
     }
 
     private String dateForFilename(Date date) {
@@ -797,8 +797,8 @@ public abstract class TestObjet implements Test, Runnable {
 
     public void initCompiler() {
 
-        compiler.init(avif.getAbsolutePath()
-                , resx, resy, fps, 0);
+       /* compiler.init(avif.getAbsolutePath()
+                , resx, resy, fps, 0);*/
     }
 
     public void run() {
@@ -955,7 +955,7 @@ public abstract class TestObjet implements Test, Runnable {
                             return;
                         }
                     } else if (encoder == ENCODER_HUMBLE) {
-                        compiler.frame((BufferedImage) ri);
+                        //compiler.frame((BufferedImage) ri);
                     }
                 } else {
                     o.println(
@@ -1035,7 +1035,7 @@ public abstract class TestObjet implements Test, Runnable {
 
             } else {
 
-                compiler.end();
+                //compiler.end();
             }
         }
 

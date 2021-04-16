@@ -6,10 +6,10 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Empty3</name>
+    <name>empty3-android</name>
 
     <groupId>one.empty3</groupId>
-    <artifactId>empty3-library-3d</artifactId>
+    <artifactId>empty3-library-3d-android</artifactId>
     <version>2021.4.6-SNAPSHOT</version><!-- -SNAPSHOT -->
     <description>3D rendering engine. Plus modelling. Expected glsl textures 3d and 2d rendering</description>
     <packaging>jar</packaging>
@@ -403,38 +403,32 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/xuggle/xuggle-xuggler -->
 
-        <!--
-                <dependency>
-                    <groupId>xuggle</groupId>
-                    <artifactId>xuggle-xuggler</artifactId>
-                    <version>5.4</version>
-                </dependency>
-                --><dependency>
-                    <groupId>com.github.dexecutor</groupId>
-                    <artifactId>dexecutor-core</artifactId>
-                    <version>2.1.1</version>
-                </dependency>
-                <dependency>
-                    <groupId>one.empty3</groupId>
-                    <artifactId>montemedia</artifactId>
-                    <version>0.0.7-2</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.jcodec</groupId>
-                    <artifactId>jcodec</artifactId>
-                    <version>0.2.3</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.jcodec</groupId>
-                    <artifactId>jcodec-javase</artifactId>
-                    <version>0.2.3</version>
-                </dependency>
-                <dependency>
-                    <groupId>commons-net</groupId>
-                    <artifactId>commons-net</artifactId>
-                    <version>3.5</version>
-                </dependency>
-                <!-- https://mvnrepository.com/artifact/com.github.zakgof/velvet-video -->
+        <dependency>
+            <groupId>com.github.dexecutor</groupId>
+            <artifactId>dexecutor-core</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>one.empty3</groupId>
+            <artifactId>montemedia</artifactId>
+            <version>0.0.7-2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jcodec</groupId>
+            <artifactId>jcodec</artifactId>
+            <version>0.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jcodec</groupId>
+            <artifactId>jcodec-javase</artifactId>
+            <version>0.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.zakgof/velvet-video -->
         <dependency>
             <groupId>com.github.zakgof</groupId>
             <artifactId>velvet-video</artifactId>
@@ -444,22 +438,6 @@
             <groupId>com.googlecode.netlib-java</groupId>
             <artifactId>netlib-java</artifactId>
             <version>1.1</version>
-        </dependency>
-        <dependency>
-
-            <artifactId>video-processing</artifactId>
-
-            <groupId>org.openimaj</groupId>
-
-            <version>1.3.10</version>
-
-
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.openimaj/xuggle-video -->
-        <dependency>
-            <groupId>org.openimaj</groupId>
-            <artifactId>xuggle-video</artifactId>
-            <version>1.3.10</version>
         </dependency>
         <dependency>
             <groupId>org.burningwave</groupId>
