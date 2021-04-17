@@ -32,3 +32,9 @@ If you miss a property check this
 https://maven.apache.org/guides/introduction/introduction-to-profiles.html
 
 Or make a new issue.
+
+Downloaded as maven artifact.
+Maven.org
+g:one.empty3
+a: empty3-library-3d
+v:2021.4.4
