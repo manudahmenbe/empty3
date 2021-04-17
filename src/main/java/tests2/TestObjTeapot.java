@@ -16,7 +16,6 @@ public class TestObjTeapot extends TestObjetSub {
         z.setDisplayType(ZBufferImpl.DISPLAY_ALL);
         E3Model modelLoaderOBJ = ModelLoaderOBJ.LoadModelE3("resources/teapot.obj", "");
         scene().add(modelLoaderOBJ);
-        //camera().getEye().setZ(-5.);
         setMaxFrames(120);
         frame = 30;
         Circle circle = new Circle(new Axe(Point3D.Y, Point3D.Y.mult(-1.)), 10.);
@@ -26,7 +25,7 @@ public class TestObjTeapot extends TestObjetSub {
         scene().texture(new ColorTexture(Color.YELLOW));
         scene().cameraActive(cameraInPath);
 
-        LumierePonctuelle lumierePonctuelle = new LumierePonctuelle(Point3D.O0, Color.YELLOW);
+        LumierePonctuelle lumierePonctuelle = new LumierePonctuelle(Point3D.Z.mult(100.), Color.YELLOW);
         scene().lumieres().add(lumierePonctuelle);
 
     }
@@ -34,15 +33,13 @@ public class TestObjTeapot extends TestObjetSub {
     public void finit() {
         cameraInPath.setT(1.0 * frame() / getMaxFrames());
         Point3D eye = cameraInPath.getEye();
-        //scene().cameraActive().setEye(eye);
-        System.out.println(eye);
-        eye = scene().cameraActive().eye();
         System.out.println(eye);
         System.out.println(cameraInPath.getLookat());
     }
 
     public static void main(String[] args) {
         TestObjTeapot testObjTeapot = new TestObjTeapot();
+        testObjTeapot.setResolution(Resolution.HD1080RESOLUTION.x(), Resolution.HD1080RESOLUTION.y());
         testObjTeapot.setPublish(true);
         new Thread(testObjTeapot).start();
     }

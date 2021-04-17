@@ -51,30 +51,22 @@ public class Circle extends ParametricCurve {
     private boolean isCalculerRepere1 = false;
     private Point3D center;
 
-    public Circle()
-    {
+    public Circle() {
         axis.setElem(new Axe());
         radius.setElem(10.0);
     }
 
     public Circle(Axe axis, double radius) {
-        this.axis.setElem( axis);
+        this.axis.setElem(axis);
         this.radius.setElem(radius);
 
     }
 
-    /*
-        public Circle(Point3D center, Point3D vAxis, double radius) {
 
-            this.vAxis = vAxis.norme1();
-            this.axis = new Axe(
-                    center.plus(vAxis),
-                    center.moins(vAxis)
-            );
-            this.radius = radius;
-            calculerRepere2();
+        public Circle(Point3D center, Point3D vAxis, double radius) {
+            this(new Axe(center.plus(vAxis.norme1()), center.moins(vAxis.norme1())),
+                    radius);
         }
-    */
 /*
     private void calculerRepere2() {
 
@@ -96,36 +88,39 @@ public class Circle extends ParametricCurve {
 */
     public void calculerRepere1() {
         boolean success = false;
-        int i=0;
-        while (!success && i<3) {
+        int i = 0;
+        while (!success && i < 3) {
             Point3D pRef = new Point3D(i == 0 ? 1d : 0d, i == 1 ? 1d : 0d, i == 2 ? 1d : 0d);
 
-            Point3D mult = axis.getElem().getVector().norme1().prodVect(axis.getElem().getVector().norme1().prodVect(pRef).norme1());
+            Point3D mult = axis.getElem().getVector().norme1()
+                    .prodVect(axis.getElem().getVector().norme1()
+                            .prodVect(pRef).norme1());
             double d = mult.prodScalaire(pRef);
             vectY = axis.getElem().getVector().norme1();
             vectZ = mult.norme1();
             vectX = vectY.prodVect(vectZ);
-            if (mult.norme() > 0.8 || d >0.8) {
-                success = true;
+            success = (vectX.norme() > 0.8)
+                    && (vectY.norme() > 0.8)
+                    && (vectZ.norme() > 0.8);
+            if (success)
                 break;
-            }
             i++;
+
         }
-        if(!success)
-        {
+        if (!success) {
             isCalculerRepere1 = false;
             throw new NullPointerException("Cannot compute axis");
         }
         isCalculerRepere1 = true;
     }
-    public boolean isCalculerRepere1()
-    {
+
+    public boolean isCalculerRepere1() {
         return isCalculerRepere1;
     }
 
     @Override
     public Point3D calculerPoint3D(double t) {
-        if(!isCalculerRepere1())
+        if (!isCalculerRepere1())
             calculerRepere1();
         return getCenter().plus(
                 (
@@ -196,7 +191,7 @@ public class Circle extends ParametricCurve {
 
     @Override
     public String toString() {
-        return "circle (\n"+axis.toString()+"\n";
+        return "circle (\n" + axis.toString() + "\n";
     }
 
     public void setCenter(Point3D center) {
