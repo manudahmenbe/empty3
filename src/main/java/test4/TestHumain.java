@@ -64,21 +64,21 @@ public class TestHumain extends TestObjetSub {
                 scene().add(patte[i]);
 
             }
-            scene().lumieres().add(new LumierePonctuelle(new Point3D(0., 0., 2.), Color.BLUE/*.YELLOW*/));
+            scene().lumieres().add(new LumierePonctuelle(new Point3D(10., 10., 2.), Color.BLUE));
         }
 
         public void finit() {
             scene().cameras().clear();
-            Camera c = new Camera(Point3D.Z.mult(-20.), Point3D.O0, Point3D.Y);
+            Camera c = new Camera(Point3D.Z.mult(-40.), Point3D.O0, Point3D.Y);
             scene().cameras().add(c);
             c.declareProperties();
             scene().cameraActive(c);
         }
 
         public static void main(String [] args) {
-            TestHumain testChien = new TestHumain();
-            testChien.setPublish(true);
-            new Thread(testChien).start();
+            TestHumain testHumain = new TestHumain();
+            testHumain.setPublish(true);
+            new Thread(testHumain).start();
         }
 
     }
