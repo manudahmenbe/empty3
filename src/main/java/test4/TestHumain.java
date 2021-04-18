@@ -21,6 +21,7 @@ public class TestHumain extends TestObjetSub {
 
     public void finit() {
         scene().cameras().clear();
+        scene().getObjets().getData1d().clear();
         Camera c = new Camera(Point3D.Z.mult(-40.), Point3D.O0, Point3D.Y);
         scene().cameras().add(c);
         c.declareProperties();

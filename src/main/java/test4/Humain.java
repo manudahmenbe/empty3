@@ -2,6 +2,7 @@ package test4;
 
 import one.empty3.library.*;
 import one.empty3.library.core.nurbs.FctXY;
+import one.empty3.library.core.nurbs.ParametricSurface;
 import one.empty3.library.core.tribase.Tubulaire3;
 
 import java.awt.*;
@@ -22,6 +23,13 @@ public class Humain extends RepresentableConteneur {
             tubulaire3.getSoulCurve().getElem().getCoefficients().getData1d().set(i, mult);
             System.out.print("i:" + i+" p:" + mult);
         }
+    }
+
+    /**
+     * Marche move0
+     */
+    public void move0(ParametricSurface parametricSurface, double u0, double v0, double pas0, double u1, double v1) {
+
     }
     public void tubeAddPoint(Tubulaire3 tube, Point3D p) {
         tube.getSoulCurve().getElem().getCoefficients().getData1d().add(p);
