@@ -4,70 +4,71 @@ import one.empty3.library.*;
 import one.empty3.library.core.tribase.*;
 import one.empty3.library.core.nurbs.*;
 import one.empty3.library.core.testing.*;
+
 import java.awt.Color;
+
 import one.empty3.library.core.move.Trajectoires;
+
 import java.awt.Color;
+
 public class TestChien extends TestObjetSub {
 
     public void ginit() {
         setMaxFrames(18);
-        z.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_COL_TRI);
-     //   scene().cameraActive().eye().changeTo(new Point3D(16., 0., 0.));
-       Tubulaire3 [] patte = new Tubulaire3[4];
-      // ts[0] =
-//Artifact : empty3-library-3d-gui ...
-       Point3D tete = new Point3D(0.,0.,0. ); //tête 
-       Point3D queue = new Point3D(1.,0.,1.); // queue
-       Sphere tetes = new Sphere(tete, 0.4); //sphère 
-tetes.texture(new TextureCol(Color.RED));
-queue.texture(new TextureCol(Color.BLACK));
+        z.setDisplayType(ZBufferImpl.DISPLAY_ALL);
+        Tubulaire3[] patte = new Tubulaire3[4];
+        Point3D tete = new Point3D(0., 1., 0.); //tête
+        Point3D queue = new Point3D(1., 0., 1.); // queue
+        Sphere tetes = new Sphere(tete, 0.8); //sphère
+        tetes.texture(new TextureCol(Color.RED));
+        queue.texture(new TextureCol(Color.BLACK));
 
-/*Parallelepiped corps = new Parallelepiped(tete,
-   new Point3D(0.,0.,0.5), 
-   new Point3D( 1.,0.,0.5),
-   new Point3D(0.,0.,0.5 ),
-            new TextureCol(Color.BLUE)
-                   );*///parallel polyèdres largeur y 0.5
-   for(int i=0;i<4; i++) {
-       patte[i] = new Tubulaire3();
-       patte[i].texture(new TextureCol(Color.ORANGE));
-      ((FctXY)( patte[i].getDiameterFunction().getElem())).setFormulaX("0.6");
-   }
-Tubulaire3 corp;
-  corp = new Tubulaire3();
-       corp.texture(new TextureCol(Color.ORANGE));
-        ((FctXY)( corp.getDiameterFunction().getElem())).setFormulaX("0.6");
-       ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())). getCoefficients().setElem(new Point3D(0.,0.25,0.), 0);
-       ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())).getCoefficients().setElem( new Point3D(0.,0.25,1.), 1); //patte avant
-        ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())).getCoefficients().setElem( new Point3D(0.,-0.25,1.), 2);
-        ((CourbeParametriquePolynomialeBezier)(patte[0].getSoulCurve().getElem())).getCoefficients().setElem( new Point3D(0.,-0.25,0.), 3);
-// patte avant #2
-((CourbeParametriquePolynomialeBezier)(patte[2].getSoulCurve().getElem())).getCoefficients().setElem( new Point3D(1.,0.25,0.), 0);
-((CourbeParametriquePolynomialeBezier)(patte[2].getSoulCurve().getElem())).getCoefficients().setElem( new Point3D(1.,0.25,1.), 1); //patte arrière #1 
-((CourbeParametriquePolynomialeBezier)(patte[2].getSoulCurve().getElem())).getCoefficients().setElem( new Point3D(1.,-0.25,1.), 2);// patte avant #2
-((CourbeParametriquePolynomialeBezier)(patte[2].getSoulCurve().getElem())).getCoefficients().setElem(new Point3D(1.,-0.25,0.), 3);
+        for (int i = 0; i < 4; i++) {
+            patte[i] = new Tubulaire3();
+            patte[i].getSoulCurve().getElem().getCoefficients().getData1d().clear();
+            patte[i].texture(new TextureCol(Color.ORANGE));
+            ((FctXY) (patte[i].getDiameterFunction().getElem())).setFormulaX("0.6");
+        }
+        Tubulaire3 corps;
+        corps = new Tubulaire3();
+        corps.getSoulCurve().getElem().getCoefficients().getData1d().clear();
+        corps.getSoulCurve().getElem().getCoefficients().setElem(P.n(0.,1.,0.));
+        corps.getSoulCurve().getElem().getCoefficients().setElem(P.n(1.,1.,0.));
+        corps.texture(new TextureCol(Color.ORANGE));
+        ((FctXY) (corps.getDiameterFunction().getElem())).setFormulaX("1.5");
+// patte AVANT
+// §1
+        ((CourbeParametriquePolynomialeBezier) (patte[0].getSoulCurve().getElem())).getCoefficients().setElem(new Point3D(0., -1.,  0.), 0);
+        ((CourbeParametriquePolynomialeBezier) (patte[0].getSoulCurve().getElem())).getCoefficients().setElem(new Point3D(0., 1.,   0.), 1); //patte avant
+        ((CourbeParametriquePolynomialeBezier) (patte[0].getSoulCurve().getElem())).getCoefficients().setElem(new Point3D(0., 1.,  -1.), 2);
+        ((CourbeParametriquePolynomialeBezier) (patte[0].getSoulCurve().getElem())).getCoefficients().setElem(new Point3D(0., -1., -1.), 3);
+// patte arrière
+// §2
+        ((CourbeParametriquePolynomialeBezier) (patte[2].getSoulCurve().getElem())).getCoefficients().setElem(new Point3D(1., -1.,  0.), 0);
+        ((CourbeParametriquePolynomialeBezier) (patte[2].getSoulCurve().getElem())).getCoefficients().setElem(new Point3D(1.,  1.,  0.), 1); //patte arrière #1
+        ((CourbeParametriquePolynomialeBezier) (patte[2].getSoulCurve().getElem())).getCoefficients().setElem(new Point3D(1.,  1., -1.), 2);// patte avant #2
+        ((CourbeParametriquePolynomialeBezier) (patte[2].getSoulCurve().getElem())).getCoefficients().setElem(new Point3D(1., -1., -1.), 3);
         //1,0,0 //etx queue.
-    
-        //scene().add(corps);
+
+        scene().add(corps);
         scene().add(tetes);
-        for(int i=0;i<4; i+=2) {
+        for (int i = 0; i < 4; i += 2) {
             scene().add(patte[i]);
 
-        } 
-//        scene().cameraActive().getEye().setZ(-10.)
+        }
+        scene().lumieres().add(new LumierePonctuelle(new Point3D(0., 0., 2.), Color.BLUE/*.YELLOW*/));
+    }
 
-         scene().lumieres().add(new LumierePonctuelle(new Point3D(0.,0.,2.), Color.BLUE/*.YELLOW*/)) ;
-   }
     public void finit() {
-        Point3D sphere = Trajectoires.sphere(/*Point3D.O0, Point3D.Z, Point3D.X,*/
-          1.0 * frame() / getMaxFrames(),
-                0.0, 16.0);
-        Point3D circlePoint = P.n(Math.cos(1.0 * frame() / getMaxFrames()),
-            Math.sin(1.0 * frame() / getMaxFrames()), 0.0).mult(12.);
         scene().cameras().clear();
-        Camera c = new Camera(circlePoint, Point3D.O0, Point3D.Z);
-        //c.setMatrix();
+        Camera c = new Camera(Point3D.Z.mult(-4.), Point3D.O0, Point3D.Y);
+        scene().cameras().add(c);
         c.declareProperties();
         scene().cameraActive(c);
     }
+
+    public static void main(String [] args) {
+        new Thread(new TestChien()).start();
+    }
+
 }
