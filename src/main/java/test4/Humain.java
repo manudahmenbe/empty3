@@ -3,9 +3,13 @@ package test4;
 import one.empty3.library.*;
 import one.empty3.library.core.nurbs.FctXY;
 import one.empty3.library.core.nurbs.ParametricSurface;
+import one.empty3.library.core.raytracer.tree.AlgebraicFormulaSyntaxException;
+import one.empty3.library.core.raytracer.tree.AlgebricTree;
+import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
 import one.empty3.library.core.tribase.Tubulaire3;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.function.Predicate;
 
 public class Humain extends RepresentableConteneur {
@@ -71,7 +75,7 @@ public class Humain extends RepresentableConteneur {
             tubeAddPoint(patte[i], new Point3D(0., 15., 0.));
             tubeAddPoint(patte[i], new Point3D(0., 20., 0.));
             tubeAddPoint(patte[i], new Point3D(0., 21., 0.));
-            rotateZ(patte[i], 5, 0, Math.signum(i - 0.5), t);
+            rotateZ(patte[i], 3, 0, Math.signum(i - 0.5), Math.sin(2.*Math.PI*2*t)/8.);
 
         }
         for (int i = 0; i < 2; i++) {
@@ -80,7 +84,7 @@ public class Humain extends RepresentableConteneur {
             tubeAddPoint(patte[i+2], new Point3D(0., 15., 2. * (2 * i - 1)));
             tubeAddPoint(patte[i+2], new Point3D(0., 10., 2. * (2 * i - 1)));
             tubeAddPoint(patte[i+2], new Point3D(0., 9., 2. * (2 * i - 1)));
-            rotateZ(patte[i+2], 1, 4, Math.signum(i - 0.5), t);
+            rotateZ(patte[i+2], 1, 4, Math.signum(i - 0.5), Math.sin(2.*Math.PI*2*t)/8.);
         }
         add(corps);
         add(tetes);

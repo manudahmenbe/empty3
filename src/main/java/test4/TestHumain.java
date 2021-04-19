@@ -14,7 +14,7 @@ public class TestHumain extends TestObjetSub {
     }
 
     public void ginit() {
-        setMaxFrames(18);
+        setMaxFrames(180);
         z.setDisplayType(ZBufferImpl.DISPLAY_ALL);
         scene().lumieres().add(new LumierePonctuelle(new Point3D(10., 10., 2.), Color.BLUE));
     }
@@ -22,14 +22,14 @@ public class TestHumain extends TestObjetSub {
     public void finit() {
         scene().cameras().clear();
         scene().getObjets().getData1d().clear();
-        Camera c = new Camera(Point3D.Z.mult(-40.), Point3D.O0, Point3D.Y);
+        Camera c = new Camera(Point3D.Z.mult(-80.), Point3D.O0, Point3D.Y);
         scene().cameras().add(c);
         c.declareProperties();
         scene().cameraActive(c);
 
         Humain humain = new Humain();
         scene().add(humain);
-        humain.setT(1.0*frame()/getMaxFrames());
+        humain.setT(frame()/25.);
         humain.init();
     }
 
