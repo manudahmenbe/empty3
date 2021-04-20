@@ -392,16 +392,18 @@ public class StructureMatrix<T> {
     }
 
     private T cloneElement(T t) throws IllegalAccessException, CopyRepresentableError, InstantiationException {
-        T t1 = t;
-        if (t instanceof StructureMatrix)
+        T t1 = null;
+        if (t instanceof StructureMatrix) {
             t1 = (T) ((StructureMatrix) t).copy();
-        if (t instanceof MatrixPropertiesObject)
-            t1 = (T) ((Representable) t).copy();
+        }
+        if (t instanceof MatrixPropertiesObject) {
+            t1 = (T) ((MatrixPropertiesObject) t).copy();
+        }
         return t1;
     }
 
     public StructureMatrix<T> copy() throws IllegalAccessException, CopyRepresentableError, InstantiationException {
-        StructureMatrix<T> tStructureMatrix = new StructureMatrix<>();
+        StructureMatrix<T> tStructureMatrix = new StructureMatrix<T>();
         tStructureMatrix.setDim(getDim());
         switch (getDim()) {
             case 0:

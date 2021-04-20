@@ -1,12 +1,9 @@
 package test4;
 
 import one.empty3.library.*;
-import one.empty3.library.core.nurbs.FctXY;
-import one.empty3.library.core.nurbs.ParametricSurface;
-import one.empty3.library.core.raytracer.tree.AlgebraicFormulaSyntaxException;
-import one.empty3.library.core.raytracer.tree.AlgebricTree;
-import one.empty3.library.core.raytracer.tree.TreeNodeEvalException;
-import one.empty3.library.core.tribase.Tubulaire3;
+import one.empty3.library.core.nurbs.*;
+import one.empty3.library.core.raytracer.tree.*;
+import one.empty3.library.core.tribase.*;
 
 import java.awt.*;
 import java.util.HashMap;
