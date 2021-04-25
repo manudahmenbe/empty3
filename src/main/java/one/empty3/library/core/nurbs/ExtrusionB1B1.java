@@ -36,11 +36,11 @@ public class ExtrusionB1B1 extends ExtrusionCurveCurve {
 
     @Override
     public Point3D calculerPoint3D(double u, double v) {
-        path0ref.setElem( path.getElem().calculerPoint3D((double)path.getElem().start()));
-        return base.getElem().calculerPoint3D(u).plus(path.getElem().calculerPoint3D(v).moins(path0ref.getElem()));
+        return super.calculerPoint3D(u, v);
     }
     public void declareProperties()
     {
+        super.declareProperties();
         getDeclaredDataStructure().put("base/courbe a extruder", base);
         getDeclaredDataStructure().put("path/courbe normale d'extrusion", path);
     }

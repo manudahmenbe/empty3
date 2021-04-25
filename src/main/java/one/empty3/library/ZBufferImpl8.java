@@ -807,7 +807,7 @@ public class ZBufferImpl8 extends ZBufferImpl {
                 Point.distance(p3.x, p3.y, p1.x, p1.y));
     }
 
-    private double maxDistance(Point p1, Point p2, Point p3, Point p4) {
+    public double maxDistance(Point p1, Point p2, Point p3, Point p4) {
         return Math
                 .max(Math.max(Math.max(Point.distance(p1.x, p1.y, p2.x, p2.y), Point.distance(p2.x, p2.y, p3.x, p3.y)),
                         Point.distance(p3.x, p3.y, p4.x, p4.y)), Point.distance(p4.x, p4.y, p1.x, p1.y));

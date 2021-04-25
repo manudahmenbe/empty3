@@ -250,12 +250,12 @@ public class Camera extends CameraBox {
     }
 
 
-    public Point coordonneesPoint2D(Point3D p, ZBufferImpl impl) {
+    public Point coordonneesPoint2D(Point3D p, ZBuffer impl) {
         switch (type_perspective) {
             case PERSPECTIVE_ISOM:
-                return coordonneesPointEcranIsometrique(coordonneesPoint3D(p), impl.box, impl.la, impl.ha);
+                //return coordonneesPointEcranIsometrique(coordonneesPoint3D(p), impl.box, impl.la, impl.ha);
             case PERSPECTIVE_OEIL:
-                return coordonneesPointEcranPerspective(coordonneesPoint3D(p), impl.la, impl.ha);
+                return coordonneesPointEcranPerspective(coordonneesPoint3D(p), impl.la(), impl.ha());
             default:
                 throw new UnsupportedOperationException("Type de perspective non reconnu");
         }

@@ -222,4 +222,13 @@ public interface ZBuffer {
     public void drawElementVolume(Representable representable, ParametricVolume volume);
 
 
+    int getDisplayType();
+
+    double maxDistance(Point p1, Point p2, Point p3, Point p4);
+
+    void testDeep(Point3D pFinal, ITexture texture, double u, double v, ParametricSurface n);
+
+    int la();
+
+    int ha();
 }
