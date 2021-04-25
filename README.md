@@ -36,5 +36,11 @@ Or make a new issue.
 Downloaded as maven artifact.
 Maven.org
 g:one.empty3
-a: empty3-library-3d
+a:empty3-library-3d
 v:2021.4.4
+
+Work with TestObjetSub class:
+If the program is interrupted, try :
+ffmpeg -i /storage/emulated/0/Download/FICHIERS_2021-02-21-13-01-16/__SERID_0__frame100%4d.JPG   /storage/emulated/0/Download/vid.avi
+
+Build exe and jvm container with jpackage:
