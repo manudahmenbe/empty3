@@ -680,6 +680,16 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         ime.testDeep(pFinal, texture, u, v, n);
     }
 
+    @Override
+    public int la() {
+        return la;
+    }
+
+    @Override
+    public int ha() {
+        return ha;
+    }
+
 
     public void itereMaxDist(List<Double> points, ParametricCurve pc, double pStart, double pEnd, ParametricVolume v) {
         Point3D p2start = v.calculerPoint3D(pc.calculerPoint3D(pStart));

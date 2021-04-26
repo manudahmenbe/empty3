@@ -16,9 +16,6 @@ public class Camera2Quad extends Camera {
         this.near.setElem(near);
         this.far.setElem(far);
         this.z = z;
-        Quad2Volume quad2Volume = new Quad2Volume();
-        quad2Volume.getPolygons().setElem(near, 0);
-        quad2Volume.getPolygons().setElem(far, 1);
 
         init();
     }

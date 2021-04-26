@@ -48,8 +48,8 @@ import one.empty3.library.StructureMatrix;
  * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class ParametricCurve extends Representable {
-    private double INCR_TAN = 0.00001;
-    private double INCR_NOR = 0.0000001;
+    public final double INCR_TAN = 0.00001;
+    public final double INCR_NOR = 0.0000001;
 
     private double incrTAN;
 

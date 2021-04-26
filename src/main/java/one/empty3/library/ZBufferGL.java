@@ -32,6 +32,7 @@
 
 package one.empty3.library;
 
+import one.empty3.library.core.nurbs.ParametricSurface;
 import one.empty3.library.core.nurbs.ParametricVolume;
 import one.empty3.library.core.nurbs.RPv;
 
@@ -204,6 +205,31 @@ public class ZBufferGL implements ZBuffer {
     public void drawElementVolume(Representable representable, ParametricVolume volume) {
 
         throw new UnsupportedOperationException("Not implemented");//return null;
+    }
+
+    @Override
+    public int getDisplayType() {
+        return 0;
+    }
+
+    @Override
+    public double maxDistance(Point p1, Point p2, Point p3, Point p4) {
+        return 0;
+    }
+
+    @Override
+    public void testDeep(Point3D pFinal, ITexture texture, double u, double v, ParametricSurface n) {
+
+    }
+
+    @Override
+    public int la() {
+        return resX();
+    }
+
+    @Override
+    public int ha() {
+        return resY();
     }
 
 
