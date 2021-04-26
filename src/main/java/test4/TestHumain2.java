@@ -23,16 +23,16 @@ public class TestHumain2 extends TestObjetSub {
         scene().getObjets().getData1d().clear();
         Camera c = new Camera2Quad(
                 z(), new Polygon(new Point3D[]{
-                        new Point3D(-5., -5., -4.),
-                        new Point3D(5.,  -5., -4.),
-                        new Point3D(5., 5., -4.),
-                        new Point3D(-5.,  5., -4.)},
+                        new Point3D(-5., -5., -80.),
+                        new Point3D(5.,  -5., -80.),
+                        new Point3D(5., 5., -80.),
+                        new Point3D(-5.,  5., -80.)},
                         Color.BLUE),
                 new Polygon(new Point3D[]{
-                        new Point3D(-5., -5., -0.),
-                        new Point3D(5.,  -5., -0.),
-                        new Point3D(5., 5., -0.),
-                        new Point3D(-5.,  5., -0.)},
+                        new Point3D(-50., -50., 0.),
+                        new Point3D(50.,  -50., 0.),
+                        new Point3D(50., 50., 0.),
+                        new Point3D(-50.,  50., 0.)},
                         Color.BLUE)
         );
         scene().cameras().add(c);
