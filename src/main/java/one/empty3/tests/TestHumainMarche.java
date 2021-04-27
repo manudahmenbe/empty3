@@ -1,4 +1,4 @@
-package test4;
+package one.empty3.tests;
 
 import one.empty3.library.*;
 import one.empty3.library.Polygon;
@@ -7,7 +7,7 @@ import one.empty3.library.core.tribase.Tubulaire3;
 
 import java.awt.*;
 
-public class TestHumain2 extends TestObjetSub {
+public class TestHumainMarche extends TestObjetSub {
     public void tubeAddPoint(Tubulaire3 tube, Point3D p) {
         tube.getSoulCurve().getElem().getCoefficients().getData1d().add(p);
     }
@@ -39,14 +39,14 @@ public class TestHumain2 extends TestObjetSub {
         c.declareProperties();
         scene().cameraActive(c);
 
-        Humain humain = new Humain();
-        scene().add(humain);
-        humain.setT(frame()/25.);
-        humain.init();
+        HumainMarche humainMarche = new HumainMarche();
+        scene().add(humainMarche);
+        humainMarche.setT(frame()/25.);
+        humainMarche.init();
     }
 
     public static void main(String[] args) {
-        TestHumain2 testHumain = new TestHumain2();
+        TestHumainMarche testHumain = new TestHumainMarche();
         testHumain.setPublish(true);
         new Thread(testHumain).start();
     }

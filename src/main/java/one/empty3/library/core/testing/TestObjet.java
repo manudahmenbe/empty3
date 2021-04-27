@@ -38,6 +38,7 @@
  */
 package one.empty3.library.core.testing;
 
+import one.empty3.library.objloader.ModelLoaderOBJ;
 import ru.sbtqa.monte.media.avi.AVIWriter;
 import ru.sbtqa.monte.media.Format;
 import ru.sbtqa.monte.media.FormatKeys;
@@ -77,7 +78,8 @@ public abstract class TestObjet implements Test, Runnable {
     public static Resolution HD720 = new Resolution(1280, 720);
     public static Resolution HD1080 = new Resolution(1920, 1080);
     public static Resolution UHD = new Resolution(1920 * 2, 1080 * 2);
-    public static Resolution VGAZIZI = new Resolution(640, 480);
+    public static Resolution VGA = new Resolution(640, 480);
+    public static Resolution VGAZIZI = new Resolution(320, 200);
 
     public static final int GENERATE_NOTHING = 0;
     public static final int GENERATE_IMAGE = 1;
@@ -381,11 +383,11 @@ public abstract class TestObjet implements Test, Runnable {
     public void exportFrame(String format, String filename) throws IOException {
 
         STLExport.save(
-                new File(directory.getAbsolutePath() + File.separator + filename + ".stl"),
+                new File(directory.getAbsolutePath() + File.separator +"stlExportFormatTXT"+ filename + ".stl"),
                 scene(),
                 false);
         ObjExport.save(
-                new File(directory.getAbsolutePath() + File.separator + filename + ".obj"),
+                new File(directory.getAbsolutePath() + File.separator + "objExportFormatTXT"+filename + ".obj"),
                 scene(),
                 false);
     }
@@ -985,7 +987,7 @@ public abstract class TestObjet implements Test, Runnable {
             if ((generate & GENERATE_MODEL) > 0) {
                 try {
                     o.println("Start generating model");
-                    String filename = "export-" + frame + ".STL";
+                    String filename = "export-" + frame;
                     exportFrame("export", filename);
                     dataWriter.writeFrameData(frame(), "Export model: " + filename);
                     o.println("End generating model");

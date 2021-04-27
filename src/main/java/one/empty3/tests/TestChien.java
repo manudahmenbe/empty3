@@ -1,4 +1,4 @@
-package test4;
+package one.empty3.tests;
 
 import one.empty3.library.*;
 import one.empty3.library.core.tribase.*;

@@ -1,4 +1,4 @@
-package test4;
+package one.empty3.tests;
 
 import one.empty3.library.*;
 import one.empty3.library.core.nurbs.*;
@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.function.Predicate;
 
-public class Humain extends RepresentableConteneur {
+public class HumainMarche extends RepresentableConteneur {
     protected double t;
     public void rotateZ(Tubulaire3 tubulaire3, int index0, int indexP, double angle, double fract) {
         Point3D elem0 = tubulaire3.getSoulCurve().getElem().getCoefficients().getElem(index0);
@@ -36,7 +36,7 @@ public class Humain extends RepresentableConteneur {
         tube.getSoulCurve().getElem().getCoefficients().getData1d().add(p);
     }
 
-    public Humain() {
+    public HumainMarche() {
     }
     public void init() {
         getListRepresentable().clear();

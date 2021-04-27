@@ -71,7 +71,7 @@ public class ObjExport {
 
     public static void save(File file, Scene scene, boolean override)
             throws IOException {
-        if (!file.exists() || file.exists() && override) {
+        if (!file.exists() || (file.exists() && override)) {
             file.createNewFile();
             PrintWriter pw = new PrintWriter(new FileOutputStream(file));
 
@@ -93,8 +93,8 @@ public class ObjExport {
     private static void traite(Polygon r, PrintWriter pw) {
         for (int s = 0; s < r.getPoints().getData1d().size(); s++) {
             write("v ", pw);
-            for (int c = 0; c < 3; c++) {
-                double A = r.getPoints().getData1d().get(s).get(c);
+            for (int i = 0; i < 3; i++) {
+                double A = r.getPoints().getData1d().get(s).get(i);
                 if (Double.isNaN(A)) {
                     A = 0;
                 }
@@ -115,7 +115,11 @@ public class ObjExport {
         write("", pw);
 
         if (r instanceof RepresentableConteneur) {
-            traite((RepresentableConteneur) r, pw);
+            for(Representable representable : ((RepresentableConteneur) r).getListRepresentable())
+                traite(representable, pw);
+        }
+        if(r instanceof Polygon) {
+            traite((Polygon) r, pw);
         }
         if (r instanceof ParametricSurface) {
             traite((ParametricSurface) r, pw);

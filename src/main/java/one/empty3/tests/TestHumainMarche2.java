@@ -1,14 +1,12 @@
-package test4;
+package one.empty3.tests;
 
 import one.empty3.library.*;
-import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
-import one.empty3.library.core.nurbs.FctXY;
 import one.empty3.library.core.testing.TestObjetSub;
 import one.empty3.library.core.tribase.Tubulaire3;
 
 import java.awt.*;
 
-public class TestHumain extends TestObjetSub {
+public class TestHumainMarche2 extends TestObjetSub {
     public void tubeAddPoint(Tubulaire3 tube, Point3D p) {
         tube.getSoulCurve().getElem().getCoefficients().getData1d().add(p);
     }
@@ -27,14 +25,14 @@ public class TestHumain extends TestObjetSub {
         c.declareProperties();
         scene().cameraActive(c);
 
-        Humain humain = new Humain();
-        scene().add(humain);
-        humain.setT(frame()/25.);
-        humain.init();
+        HumainMarche humainMarche = new HumainMarche();
+        scene().add(humainMarche);
+        humainMarche.setT(frame()/25.);
+        humainMarche.init();
     }
 
     public static void main(String[] args) {
-        TestHumain testHumain = new TestHumain();
+        TestHumainMarche2 testHumain = new TestHumainMarche2();
         testHumain.setPublish(true);
         new Thread(testHumain).start();
     }

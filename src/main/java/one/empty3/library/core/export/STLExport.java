@@ -56,7 +56,7 @@ public class STLExport {
 
     public static void save(File file, Scene scene, boolean override)
             throws IOException {
-        if (!file.exists() || file.exists() && override) {
+        if (!file.exists() || (file.exists() && override)) {
             file.createNewFile();
             PrintWriter pw = new PrintWriter(new FileOutputStream(file));
 
@@ -90,7 +90,9 @@ public class STLExport {
         write("", pw);
 
         if (r instanceof RepresentableConteneur) {
-            traite((RepresentableConteneur) r, pw);
+            for(Representable representable : ((RepresentableConteneur)r).getListRepresentable()) {
+                traite(representable, pw);
+            }
         }
         if (r instanceof ParametricSurface) {
             traite((ParametricSurface) r, pw);

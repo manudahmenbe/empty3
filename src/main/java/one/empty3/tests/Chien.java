@@ -1,4 +1,4 @@
-package test4;
+package one.empty3.tests;
 
 import one.empty3.library.*;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
@@ -54,7 +54,7 @@ public class Chien extends RepresentableConteneur {
     }
 
     public static void main(String[] args) {
-        new Thread(new test4.TestChien()).start();
+        new Thread(new one.empty3.tests.TestChien()).start();
     }
 
 }
