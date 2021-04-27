@@ -75,7 +75,7 @@ public class ObjExport {
             file.createNewFile();
             PrintWriter pw = new PrintWriter(new FileOutputStream(file));
 
-            pw.println("o " + scene.description);
+            pw.println("o scene_" + scene.getDescription()+"");
 
             Iterator<Representable> it = scene.iterator();
 
@@ -230,6 +230,6 @@ public class ObjExport {
     }
 
     public static void write(String flowElement, PrintWriter pw) {
-        pw.write(flowElement);
+        pw.println(flowElement);
     }
 }

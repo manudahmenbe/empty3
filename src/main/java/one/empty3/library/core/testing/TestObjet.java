@@ -398,23 +398,6 @@ public abstract class TestObjet implements Test, Runnable {
         return frame;
     }
 
-    public TestInstance.Parameter getDynParameter(String name) {
-        Iterator<TestInstance.Parameter> prms = dynParams.iterator();
-
-        while (prms.hasNext()) {
-            TestInstance.Parameter prm = prms.next();
-
-            if (name.equals(prm.name)) {
-                return prm;
-            }
-        }
-        return null;
-    }
-
-    public ArrayList<TestInstance.Parameter> getDynParameters() {
-        return dynParams;
-    }
-
     ArrayList<TestInstance.Parameter> getDynParams() {
         return this.dynParams;
     }
@@ -437,11 +420,6 @@ public abstract class TestObjet implements Test, Runnable {
 
     public void setGenerate(int generate) {
         this.generate = generate;
-    }
-
-    public ArrayList<TestInstance.Parameter> getInitParameters() {
-        return initParams;
-
     }
 
     public ArrayList<TestInstance.Parameter> getInitParams() {

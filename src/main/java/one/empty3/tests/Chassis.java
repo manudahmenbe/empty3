@@ -18,6 +18,7 @@ public class Chassis extends RepresentableConteneur {
 
     public Chassis(Voiture voiture) {
         this.voiture = voiture;
+        init();
     }
 
     public void init() {
@@ -72,11 +73,4 @@ public class Chassis extends RepresentableConteneur {
                 P.n(espacementRoues/2-Voiture.LARGEUR_ROUE-voiture.getEspacementRoues(), 0., largeur-voiture.getEpaisseurRoue())}, Color.BLACK));
     }
 
-    public static void main(String [] args) {
-        TestObjetSub testObjetSub = new TestObjetSub();
-        testObjetSub.scene().add(new Voiture());
-        testObjetSub.setGenerate(testObjetSub.GENERATE_MODEL|testObjetSub.getGenerate());
-        testObjetSub.setPublish(true);
-        new Thread(testObjetSub).start();
-    }
 }
