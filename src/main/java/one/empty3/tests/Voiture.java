@@ -4,14 +4,13 @@ import one.empty3.library.RepresentableConteneur;
 
 public class Voiture extends RepresentableConteneur {
         public static final double LARGEUR_ROUE = 60.0;
-        RoueVoiture roueVoiture = new RoueVoiture();
+        RoueVoiture roueVoiture;
         Chassis chassis;
         Coque coque = new Coque();
         PorteAvant porteAvant = new PorteAvant();
         PorteArriere porteArrieres = new PorteArriere();
         Coffre coffre = new Coffre();
-        PhareCroisement phareCroisements = new PhareCroisement();
-        PhareGros  phareGros = new PhareGros();
+        PhareAvant phareGros = new PhareAvant();
         PhareArriere phareArriere =  new PhareArriere();
         SiegeAvant siegeAvant = new SiegeAvant();
         SiegeArriere siegeArriere = new SiegeArriere();
@@ -25,6 +24,7 @@ public class Voiture extends RepresentableConteneur {
         public Voiture() {
             super();
             chassis = new Chassis(this);
+            roueVoiture = new RoueVoiture(this);
             add(chassis);
         }
 
