@@ -66,6 +66,11 @@ public class Mesh extends ParametricSurface {
 
     private StructureMatrix<Point3D> pAdd = new StructureMatrix<>(1, Point3D.class);
 
+    @Override
+    public Point3D calculerPoint3D(double u, double v) {
+        throw new UnsupportedOperationException("Calculer point du polygone");
+    }
+
     public Mesh() {}
 
     @Override

@@ -34,7 +34,6 @@ public class ExtrusionCurveCurve extends ParametricSurface {
     }
 
 
-
     public Point3D calculerPoint3D(double u, double v) {
 
         Point3D Op, T, NX, NY, pO;
@@ -78,5 +77,19 @@ public class ExtrusionCurveCurve extends ParametricSurface {
         getDeclaredDataStructure().put("path/Chemin d'extrusion", path);
     }
 
+    public StructureMatrix<ParametricCurve> getBase() {
+        return base;
+    }
 
+    public void setBase(StructureMatrix<ParametricCurve> base) {
+        this.base = base;
+    }
+
+    public StructureMatrix<ParametricCurve> getPath() {
+        return path;
+    }
+
+    public void setPath(StructureMatrix<ParametricCurve> path) {
+        this.path = path;
+    }
 }

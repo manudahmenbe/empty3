@@ -52,8 +52,8 @@ public class Tubulaire3 extends ParametricSurface {
     public  double TAN_FCT_INCR = 0.000001;
     public double NORM_FCT_INCR = 0.000001;
 
-    private StructureMatrix<CourbeParametriquePolynomialeBezier> soulCurve = new StructureMatrix<>();
-    private StructureMatrix<FctXY> diameterFunction = new StructureMatrix<>();
+    private final StructureMatrix<CourbeParametriquePolynomialeBezier> soulCurve = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
+    private final StructureMatrix<FctXY> diameterFunction = new StructureMatrix<>(0, FctXY.class);
 
     public Tubulaire3()
     {
@@ -63,19 +63,13 @@ public class Tubulaire3 extends ParametricSurface {
         declareProperties();
     }
 
-    public Tubulaire3(CourbeParametriquePolynomialeBezier soulCurve, FctXY diameterCurve) {
-        this();
-        this.soulCurve.setElem(soulCurve);
-        this.diameterFunction.setElem(diameterCurve);
-    }
-
     public Point3D calculerNormale(double t) {
         return calculerTangente(t + NORM_FCT_INCR).moins(calculerTangente(t)).mult(1.0/NORM_FCT_INCR);
     }
 
     public Point3D calculerTangente(double t) {
-        return soulCurve.getElem().calculerPoint3D(t + TAN_FCT_INCR).moins(soulCurve.getElem().calculerPoint3D(t)).
-                mult(1.0/TAN_FCT_INCR);
+        return getSoulCurve().getElem().calculerPoint3D(t + TAN_FCT_INCR).moins(
+                getSoulCurve().getElem().calculerPoint3D( t)).mult(1.0/TAN_FCT_INCR);
     }
 
     public void nbrAnneaux(int n) {
@@ -178,17 +172,11 @@ double min = 3;
         return soulCurve;
     }
 
-    public void setSoulCurve(StructureMatrix<CourbeParametriquePolynomialeBezier> soulCurve) {
-        this.soulCurve = soulCurve;
-    }
 
     public StructureMatrix<FctXY> getDiameterFunction() {
         return diameterFunction;
     }
 
-    public void setDiameterFunction(StructureMatrix<FctXY> diameterFunction) {
-        this.diameterFunction = diameterFunction;
-    }
 
 
 }

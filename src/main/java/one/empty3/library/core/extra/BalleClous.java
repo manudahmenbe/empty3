@@ -89,7 +89,8 @@ public class BalleClous extends HeightMapSurface{
 
     public Point3D calculerPoint3D(double u, double v)
     {
-        return super.calculerPoint3D(u, v);
+        throw new UnsupportedOperationException("Calculer point de la sphere + bitmap ou fonction");
+//        return super.calculerPoint3D(u, v);
     }
 
     public Point3D height(double u, double v) {

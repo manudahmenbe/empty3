@@ -3,7 +3,7 @@ package one.empty3.library.core.nurbs;
 import one.empty3.library.Point3D;
 import one.empty3.library.StructureMatrix;
 
-public class SurfaceParametriquePolynomiale extends ParametricSurface{
+public abstract class SurfaceParametriquePolynomiale extends ParametricSurface{
 
     protected StructureMatrix<Point3D> coefficients = new StructureMatrix<>(2, Point3D.class);;
     protected StructureMatrix<Integer> power1 =new StructureMatrix<>(0, Integer.class);
@@ -17,6 +17,7 @@ public class SurfaceParametriquePolynomiale extends ParametricSurface{
         power1.setElem(coefficients.length);
         power2.setElem(coefficients[0].length);
     }
+
     public SurfaceParametriquePolynomiale()
     {
         this.coefficients = new StructureMatrix<>(2, Point3D.class);

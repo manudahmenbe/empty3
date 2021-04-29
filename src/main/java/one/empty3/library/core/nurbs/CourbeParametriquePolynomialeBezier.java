@@ -56,11 +56,9 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
 
     @Override
     public Point3D calculerPoint3D(double t) {
-        Point3D sum = Point3D.O0;
+        Point3D sum = new Point3D();
         int N = coefficients.getData1d().size();
-        //double bSum = 0.0;
         for (int i = 0; i < N; i++) {
-            //bSum += B(i, N, t);
             sum = sum.plus(coefficients.getElem(i).mult(B(i, N - 1, t)));
         }
         return sum;
@@ -68,7 +66,7 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
 
     @Override
     public Point3D calculerVitesse3D(double t) {
-        throw new UnsupportedOperationException("pas encore implanté");
+        return super.calculerVitesse3D(t);
     }
 
     protected double factorielle(int n) {

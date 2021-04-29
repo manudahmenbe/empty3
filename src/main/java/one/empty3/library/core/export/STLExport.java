@@ -109,9 +109,9 @@ public class STLExport {
         if (r instanceof TRI) {
             traite((TRI) r, pw);
         }
-        if (r instanceof TRIObjetGenerateur) {
-            traite((TRIObjetGenerateur) r, pw);
-        }
+//        if (r instanceof TRIObjetGenerateur) {
+//            traite((TRIObjetGenerateur) r, pw);
+//        }
         if (r instanceof TRIConteneur) {
             traite((TRIConteneur) r, pw);
         }
@@ -185,7 +185,7 @@ public class STLExport {
         }
     }
 
-    private static void traite(TRIObjetGenerateur r, PrintWriter pw) {
+    /*private static void traite(TRIObjetGenerateur r, PrintWriter pw) {
         String s = "";
         int x = r.getMaxX();
         int y = r.getMaxY();
@@ -198,7 +198,7 @@ public class STLExport {
 
             }
         }
-    }
+    }*/
 
     public static void write(String flowElement, PrintWriter pw) {
         pw.write(flowElement);

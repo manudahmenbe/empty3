@@ -8,6 +8,11 @@ import java.awt.image.BufferedImage;
 class HeightMapSurfaceSphere extends HeightMapSurface {
     ITexture heightMap;
 
+    @Override
+    public Point3D calculerPoint3D(double u, double v) {
+        throw new UnsupportedOperationException("Calculer point de la sphere + bitmap");
+    }
+
     public HeightMapSurfaceSphere() {
         super();
     }

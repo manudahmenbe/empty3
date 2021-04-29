@@ -94,7 +94,7 @@ public class Point3D extends Representable {
      * *
      * Coordonnées (coordArr,y,z) du point
      */
-    StructureMatrix<Double> coordArr = new StructureMatrix<>(1, Double.class);
+    final StructureMatrix<Double> coordArr = new StructureMatrix<>(1, Double.class);
     /*__
      * *
      * Pour le tracé de surface normale au point
@@ -552,7 +552,8 @@ public class Point3D extends Representable {
     }
 
     public void setCoordArr(StructureMatrix<Double> coordArr) {
-        this.coordArr = coordArr;
+        for(int i=0; i<3; i++)
+            this.coordArr.setElem(coordArr.getElem(i), i);
     }
 
     public Point3D calculerPoint0dT(double t) {

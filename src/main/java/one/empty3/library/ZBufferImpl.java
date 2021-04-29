@@ -259,9 +259,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             }
         }
         // GENERATORS
-        if (r instanceof ParametricSurface) {
+        if (r instanceof ParametricSurface n) {
             // System.out.println("Surface");
-            ParametricSurface n = (ParametricSurface) r;
             System.out.println("class" + n.getClass());
             // TODO Dessiner les bords
             for (double u = n.getStartU(); u <= n.getEndU(); u += n.getIncrU()) {

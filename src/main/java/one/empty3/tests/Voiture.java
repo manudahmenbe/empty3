@@ -168,4 +168,8 @@ public class Voiture extends RepresentableConteneur {
         public void setRayonRoue(double rayonRoue) {
                 this.rayonRoue = rayonRoue;
         }
+
+        public Double getHauteurPorte() {
+                return 150.;
+        }
 }

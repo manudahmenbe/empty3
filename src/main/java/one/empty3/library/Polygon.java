@@ -35,6 +35,8 @@
  */
 package one.empty3.library;
 
+import one.empty3.library.core.nurbs.ParametricCurve;
+import one.empty3.library.core.nurbs.ParametricSurface;
 import one.empty3.library.core.nurbs.SurfaceElem;
 
 import java.awt.*;
@@ -42,7 +44,7 @@ import java.awt.*;
 /*__
  * @author Manuel
  */
-public class Polygon extends Representable implements SurfaceElem, ClosedCurve {
+public class Polygon extends ParametricCurve implements SurfaceElem, ClosedCurve {
 
     /*__
      *
@@ -148,5 +150,16 @@ public class Polygon extends Representable implements SurfaceElem, ClosedCurve {
 
     }
 
-
+    @Override
+    public Point3D calculerPoint3D(double t) {
+        int size = points.getData1d().size();
+        int i = (int) t * size;
+        if (i >= size)
+            i = size - 1;
+        int j = (i + 1) >= size? i : i + 1;
+        Point3D p1 = points.getData1d().get(i);
+        Point3D p2 = points.getData1d().get(j);
+        double d = t - 1.0 * i / size;
+        return p1.plus(p2.moins(p1).mult(1 - d));
+    }
 }

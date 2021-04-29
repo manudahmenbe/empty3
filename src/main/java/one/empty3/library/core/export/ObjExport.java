@@ -136,9 +136,7 @@ public class ObjExport {
         if (r instanceof TRI) {
             traite((TRI) r, pw);
         }
-        if (r instanceof TRIObjetGenerateur) {
-            traite((TRIObjetGenerateur) r, pw);
-        }
+//        }
         if (r instanceof TRIConteneur) {
             traite((TRIConteneur) r, pw);
         }
@@ -220,20 +218,20 @@ public class ObjExport {
         }
     }
 
-    private static void traite(TRIObjetGenerateur r, PrintWriter pw) {
-        String s = "";
-        int x = r.getMaxX();
-        int y = r.getMaxY();
-        TRI[] tris = new TRI[2];
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                r.getTris(i, j, tris);
-                traite(tris[0], pw);
-                traite(tris[1], pw);
-
-            }
-        }
-    }
+//    private static void traite(TRIObjetGenerateur r, PrintWriter pw) {
+//        String s = "";
+//        int x = r.getMaxX();
+//        int y = r.getMaxY();
+//        TRI[] tris = new TRI[2];
+//        for (int i = 0; i < x; i++) {
+//            for (int j = 0; j < y; j++) {
+//                r.getTris(i, j, tris);
+//                traite(tris[0], pw);
+//                traite(tris[1], pw);
+//
+//            }
+//        }
+//    }
 
     public static void write(String flowElement, PrintWriter pw) {
         pw.println(flowElement);

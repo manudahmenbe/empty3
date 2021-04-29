@@ -48,7 +48,7 @@ import one.empty3.library.core.tribase.TRIObjetGenerateurAbstract;
 /*__
  * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
-public class ParametricSurface extends TRIObjetGenerateurAbstract {
+public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
 
 
 
@@ -115,10 +115,7 @@ public class ParametricSurface extends TRIObjetGenerateurAbstract {
     }
 
 
-    public Point3D calculerPoint3D(double u, double v)
-    {
-        return new Point3D(0d,0d,0d);
-    }
+    public abstract Point3D calculerPoint3D(double u, double v);
 
     public Point3D calculerVitesse3D(double u, double v) {
         Point3D moins = calculerPoint3D(u + incrVitesse.getElem(), v).moins(calculerPoint3D(u, v));

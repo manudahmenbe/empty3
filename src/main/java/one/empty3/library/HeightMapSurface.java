@@ -41,7 +41,7 @@ import java.awt.image.BufferedImage;
  * Created by manue on 17-03-19.
  * Update 2021.
  */
-public class HeightMapSurface extends ParametricSurface {
+public abstract class HeightMapSurface extends ParametricSurface {
     protected StructureMatrix<ImageContainer> image = new StructureMatrix<>(0, ImageContainer.class);
     protected StructureMatrix<ParametricSurface> surface = new StructureMatrix<>(0, ParametricSurface.class);
 
