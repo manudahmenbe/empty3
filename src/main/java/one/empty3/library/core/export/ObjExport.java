@@ -146,12 +146,18 @@ public class ObjExport {
 
     private static void traite(ParametricSurface r, PrintWriter pw) {
         write("", pw);
-        for (double u = 0; u < r.getEndU(); u += r.incr1())
-            for (double v = 0; v < r.getEndV(); v += r.incr2())
+        int countU = (int) ((r.getStartU() - r.getEndU()) / r.getIncrU());
+        int countV = (int) ((r.getStartV() - r.getEndV()) / r.getIncrV());
+        for (int i = 0; i < countU; i++) {
+            for (int j = 0; j < countV; j++) {
+                double u = 1.0 * (1.0 * i / countU) * (r.getEndU() - r.getStartU()) + r.getStartU();
+                double v = 1.0 * (1.0 * i / countV) * (r.getEndV() - r.getStartV()) + r.getStartV();
                 traite(r.getElementSurface(u,
-                        u + r.getIncrU(),
-                        v, v + r.getIncrV()), pw);
+                        r.getIncrU(),
+                        v, r.getIncrV()), pw);
+            }
 
+        }
     }
 
     private static void traite(RepresentableConteneur r, PrintWriter pw) {

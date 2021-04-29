@@ -3,7 +3,6 @@ package one.empty3.tests;
 import one.empty3.library.RepresentableConteneur;
 
 public class Voiture extends RepresentableConteneur {
-        public static final double LARGEUR_ROUE = 60.0;
         RoueVoiture roueVoiture;
         Chassis chassis;
         Coque coque = new Coque();
@@ -17,15 +16,17 @@ public class Voiture extends RepresentableConteneur {
         PareChoc pareChoc = new PareChoc();
         PareBrise pareBrise =  new PareBrise();
         Mecanique mecanique = new Mecanique();
-        private double largeur;
-        private double longueur;
+        private double largeur = 300.0;
+        private double longueur = 500.0;
         private double espacementRoues = 10.;
+        private double rayonRoue = 30.;
 
         public Voiture() {
             super();
             chassis = new Chassis(this);
             roueVoiture = new RoueVoiture(this);
             add(chassis);
+            add(roueVoiture);
         }
 
         public double getLargeur() {
@@ -42,5 +43,129 @@ public class Voiture extends RepresentableConteneur {
 
         public double getEpaisseurRoue() {
                 return 40;
+        }
+
+        public Chassis getChassis() {
+                return chassis;
+        }
+
+        public void setChassis(Chassis chassis) {
+                this.chassis = chassis;
+        }
+
+        public double getRayonRoue() {
+                return rayonRoue;
+        }
+
+        public RoueVoiture getRoueVoiture() {
+                return roueVoiture;
+        }
+
+        public void setRoueVoiture(RoueVoiture roueVoiture) {
+                this.roueVoiture = roueVoiture;
+        }
+
+        public Coque getCoque() {
+                return coque;
+        }
+
+        public void setCoque(Coque coque) {
+                this.coque = coque;
+        }
+
+        public PorteAvant getPorteAvant() {
+                return porteAvant;
+        }
+
+        public void setPorteAvant(PorteAvant porteAvant) {
+                this.porteAvant = porteAvant;
+        }
+
+        public PorteArriere getPorteArrieres() {
+                return porteArrieres;
+        }
+
+        public void setPorteArrieres(PorteArriere porteArrieres) {
+                this.porteArrieres = porteArrieres;
+        }
+
+        public Coffre getCoffre() {
+                return coffre;
+        }
+
+        public void setCoffre(Coffre coffre) {
+                this.coffre = coffre;
+        }
+
+        public PhareAvant getPhareGros() {
+                return phareGros;
+        }
+
+        public void setPhareGros(PhareAvant phareGros) {
+                this.phareGros = phareGros;
+        }
+
+        public PhareArriere getPhareArriere() {
+                return phareArriere;
+        }
+
+        public void setPhareArriere(PhareArriere phareArriere) {
+                this.phareArriere = phareArriere;
+        }
+
+        public SiegeAvant getSiegeAvant() {
+                return siegeAvant;
+        }
+
+        public void setSiegeAvant(SiegeAvant siegeAvant) {
+                this.siegeAvant = siegeAvant;
+        }
+
+        public SiegeArriere getSiegeArriere() {
+                return siegeArriere;
+        }
+
+        public void setSiegeArriere(SiegeArriere siegeArriere) {
+                this.siegeArriere = siegeArriere;
+        }
+
+        public PareChoc getPareChoc() {
+                return pareChoc;
+        }
+
+        public void setPareChoc(PareChoc pareChoc) {
+                this.pareChoc = pareChoc;
+        }
+
+        public PareBrise getPareBrise() {
+                return pareBrise;
+        }
+
+        public void setPareBrise(PareBrise pareBrise) {
+                this.pareBrise = pareBrise;
+        }
+
+        public Mecanique getMecanique() {
+                return mecanique;
+        }
+
+        public void setMecanique(Mecanique mecanique) {
+                this.mecanique = mecanique;
+        }
+
+        public void setLargeur(double largeur) {
+                this.largeur = largeur;
+        }
+
+        public void setLongueur(double longueur) {
+                this.longueur = longueur;
+        }
+
+        public void setEspacementRoues(double espacementRoues) {
+                this.espacementRoues = espacementRoues;
+        }
+
+        public void setRayonRoue(double rayonRoue) {
+                this.rayonRoue = rayonRoue;
         }
 }

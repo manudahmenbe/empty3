@@ -1,5 +1,6 @@
 package one.empty3.tests;
 
+import one.empty3.library.core.testing.TestObjet;
 import one.empty3.library.core.testing.TestObjetSub;
 
 public class TestVoiture extends TestObjetSub {
@@ -14,7 +15,7 @@ public class TestVoiture extends TestObjetSub {
     }
     public static void main(String [] args) {
         TestVoiture testVoiture = new TestVoiture();
-        testVoiture.setGenerate(GENERATE_MODEL | testVoiture.GENERATE_IMAGE|GENERATE_MOVIE);
+        testVoiture.setGenerate(GENERATE_MODEL | GENERATE_IMAGE|GENERATE_MOVIE);
         testVoiture.setPublish(true);
         new Thread(testVoiture).start();
     }
