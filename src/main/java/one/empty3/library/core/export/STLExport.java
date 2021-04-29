@@ -109,9 +109,6 @@ public class STLExport {
         if (r instanceof TRI) {
             traite((TRI) r, pw);
         }
-//        if (r instanceof TRIObjetGenerateur) {
-//            traite((TRIObjetGenerateur) r, pw);
-//        }
         if (r instanceof TRIConteneur) {
             traite((TRIConteneur) r, pw);
         }
@@ -119,12 +116,12 @@ public class STLExport {
 
     private static void traite(ParametricSurface r, PrintWriter pw) {
         write("", pw);
-        int countU = (int) ((r.getStartU() - r.getEndU()) / r.getIncrU());
-        int countV = (int) ((r.getStartV() - r.getEndV()) / r.getIncrV());
+        int countU = (int) ((r.getEndU() - r.getStartU()) / r.getIncrU());
+        int countV = (int) ((r.getEndV() - r.getStartV()) / r.getIncrV());
         for (int i = 0; i < countU;  i++) {
             for (int j = 0; j < countV; j++) {
-                double u = 1.0*(1.0*i/countU)*(r.getEndU()-r.getStartU())+r.getStartU();
-                double v = 1.0*(1.0*i/countV)*(r.getEndV()-r.getStartV())+r.getStartV();
+                double u = (1.0*i/countU)*(r.getEndU()-r.getStartU())+r.getStartU();
+                double v = (1.0*j/countV)*(r.getEndV()-r.getStartV())+r.getStartV();
                 traite(r.getElementSurface(u,
                         r.getIncrU(),
                         v, r.getIncrV()), pw);
