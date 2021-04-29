@@ -59,11 +59,7 @@ public class Point3D extends Representable {
 
     public Point3D() {
         super();
-        coordArr.setElem(0d, 0);
-        coordArr.setElem(0d, 1);
-        coordArr.setElem(0d, 2);
     }
-
 
     /*__
      * *
@@ -95,6 +91,13 @@ public class Point3D extends Representable {
      * Coordonnées (coordArr,y,z) du point
      */
     final StructureMatrix<Double> coordArr = new StructureMatrix<>(1, Double.class);
+
+    {
+        coordArr.setElem(0d, 0);
+        coordArr.setElem(0d, 1);
+        coordArr.setElem(0d, 2);
+
+    }
     /*__
      * *
      * Pour le tracé de surface normale au point
@@ -125,6 +128,8 @@ public class Point3D extends Representable {
      */
     public Point3D(double[] x0) {
         int i = 0;
+        if(x0.length<3)
+            throw new UnsupportedOperationException("x0.length<3");
         for (double d : x0) {
             coordArr.setElem(d, i);
             i++;
@@ -139,6 +144,8 @@ public class Point3D extends Representable {
          */
     public Point3D(Double... x0) {
         int i = 0;
+        if(x0.length<3)
+            throw new UnsupportedOperationException("x0.length<3");
         for (Double d : x0) {
             coordArr.setElem(d, i);
             i++;
@@ -147,6 +154,8 @@ public class Point3D extends Representable {
 
     public Point3D(Double[] x0, ITexture t) {
         int i = 0;
+        if(x0.length<3)
+            throw new UnsupportedOperationException("x0.length<3");
         for (Double d : x0) {
             coordArr.setElem(d, i);
             i++;
@@ -172,7 +181,7 @@ public class Point3D extends Representable {
          */
     public Point3D(Point3D p0) {
         super();
-        for (int i = 0; i < p0.getCoordArr().data1d.size(); i++)
+        for (int i = 0; i < 3; i++)
             coordArr.setElem(p0.get(i), i);
         texture(p0.texture);
     }
@@ -443,7 +452,8 @@ public class Point3D extends Representable {
 
     @Override
     public String toString() {
-        return "\n\tp3( " + (Double) (coordArr.getElem(0)) + " , " + (Double) (coordArr.getElem(1)) + " , " + (Double) (coordArr.getElem(2)) + " ) ";
+        String s = "\n\tp3( " + (Double) (coordArr.getElem(0)) + " , " + (Double) (coordArr.getElem(1)) + " , " + (Double) (coordArr.getElem(2)) + " ) ";
+        return s;
     }
 
     @Override

@@ -41,7 +41,6 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
 
     public CourbeParametriquePolynomialeBezier()
     {
-
         super();
     }
     public CourbeParametriquePolynomialeBezier(Point3D[] coefficients) {

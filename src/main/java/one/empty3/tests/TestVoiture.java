@@ -12,6 +12,7 @@ public class TestVoiture extends TestObjetSub {
     @Override
     public void finit() throws Exception {
         super.finit();
+        System.out.println(scene());
     }
     public static void main(String [] args) {
         TestVoiture testVoiture = new TestVoiture();
