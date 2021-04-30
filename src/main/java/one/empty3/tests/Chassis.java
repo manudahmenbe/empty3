@@ -92,7 +92,7 @@ public class Chassis extends RepresentableConteneur {
 
 
         ExtrusionCurveCurve extrusionCurveCurve = new ExtrusionCurveCurve();
-        extrusionCurveCurve.getBase().setElem(new Polygon(new Point3D[]{
+        extrusionCurveCurve.getBase().setElem(new PolyLine(new Point3D[]{
                 new Point3D(-10., voiture.getHauteurPorte()+20., voiture.getLargeur()-20.),
                 new Point3D(10., voiture.getHauteurPorte()+20., voiture.getLargeur()-20.),
                 new Point3D(10., voiture.getHauteurPorte()+20., voiture.getLargeur()),
@@ -100,13 +100,14 @@ public class Chassis extends RepresentableConteneur {
         }, Colors.random()));
         CourbeParametriquePolynomialeBezier courbeParametriquePolynomialeBezier = new CourbeParametriquePolynomialeBezier();
         courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., 0., 0.), 0);
-        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., voiture.getHauteurPorte(), 30.), 1);
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., voiture.getHauteurPorte()/2, -15.), 1);
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., voiture.getHauteurPorte(), -30.), 1);
         extrusionCurveCurve.getPath().setElem(courbeParametriquePolynomialeBezier);
         add(extrusionCurveCurve);
 
 
         extrusionCurveCurve = new ExtrusionCurveCurve();
-        extrusionCurveCurve.getBase().setElem(new Polygon(new Point3D[]{
+        extrusionCurveCurve.getBase().setElem(new PolyLine(new Point3D[]{
                 new Point3D(-10., voiture.getHauteurPorte()+20., -voiture.getLargeur()+20.),
                 new Point3D(10., voiture.getHauteurPorte()+20., -voiture.getLargeur()+20.),
                 new Point3D(10., voiture.getHauteurPorte()+20., -voiture.getLargeur()),
@@ -114,8 +115,72 @@ public class Chassis extends RepresentableConteneur {
         }, Colors.random()));
         courbeParametriquePolynomialeBezier = new CourbeParametriquePolynomialeBezier();
         courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., 0., 0.), 0);
-        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., voiture.getHauteurPorte(), -30.), 1);
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., voiture.getHauteurPorte()/2, 15.), 1);
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., voiture.getHauteurPorte(), 30.), 1);
         extrusionCurveCurve.getPath().setElem(courbeParametriquePolynomialeBezier);
         add(extrusionCurveCurve);
+
+        // Montant avant
+    extrusionCurveCurve = new ExtrusionCurveCurve();
+        extrusionCurveCurve.getBase().setElem(new PolyLine(new Point3D[]{
+        new Point3D(voiture.getEspacementRoues()/2., voiture.getHauteurPorte()/2., voiture.getLargeur()-20.),
+                new Point3D(voiture.getEspacementRoues()/2+20., voiture.getHauteurPorte()/2., voiture.getLargeur()-20.),
+                new Point3D(voiture.getEspacementRoues()/2+20., voiture.getHauteurPorte()/2., voiture.getLargeur()),
+                new Point3D(voiture.getEspacementRoues()/2., voiture.getHauteurPorte()/2., voiture.getLargeur()),
+    }, Colors.random()));
+    courbeParametriquePolynomialeBezier = new CourbeParametriquePolynomialeBezier();
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., 0., 0.), 0);
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., voiture.getHauteurPorte()/3, -10.), 1);
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., voiture.getHauteurPorte()/2, -30.), 1);
+        extrusionCurveCurve.getPath().setElem(courbeParametriquePolynomialeBezier);
+    add(extrusionCurveCurve);
+
+
+    extrusionCurveCurve = new ExtrusionCurveCurve();
+        extrusionCurveCurve.getBase().setElem(new PolyLine(new Point3D[]{
+                new Point3D(voiture.getEspacementRoues()/2., voiture.getHauteurPorte()/2., -voiture.getLargeur()+20.),
+                new Point3D(voiture.getEspacementRoues()/2+20., voiture.getHauteurPorte()/2., -voiture.getLargeur()+20.),
+                new Point3D(voiture.getEspacementRoues()/2+20., voiture.getHauteurPorte()/2., -voiture.getLargeur()),
+                new Point3D(voiture.getEspacementRoues()/2., voiture.getHauteurPorte()/2., -voiture.getLargeur()),
+    }, Colors.random()));
+    courbeParametriquePolynomialeBezier = new CourbeParametriquePolynomialeBezier();
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., 0., 0.), 0);
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., voiture.getHauteurPorte()/3, 10.), 1);
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., voiture.getHauteurPorte()/2, 30.), 1);
+        extrusionCurveCurve.getPath().setElem(courbeParametriquePolynomialeBezier);
+    add(extrusionCurveCurve);
+
+        // Montant arrière
+        extrusionCurveCurve = new ExtrusionCurveCurve();
+        extrusionCurveCurve.getBase().setElem(new PolyLine(new Point3D[]{
+                new Point3D(-voiture.getEspacementRoues()/2., voiture.getHauteurPorte()/2., voiture.getLargeur()-20.),
+                new Point3D(-voiture.getEspacementRoues()/2+20., voiture.getHauteurPorte()/2., voiture.getLargeur()-20.),
+                new Point3D(-voiture.getEspacementRoues()/2+20., voiture.getHauteurPorte()/2., voiture.getLargeur()),
+                new Point3D(-voiture.getEspacementRoues()/2., voiture.getHauteurPorte()/2., voiture.getLargeur()),
+        }, Colors.random()));
+        courbeParametriquePolynomialeBezier = new CourbeParametriquePolynomialeBezier();
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., 0., 0.), 0);
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., voiture.getHauteurPorte()/3, -10.), 1);
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., voiture.getHauteurPorte()/2, -30.), 1);
+        extrusionCurveCurve.getPath().setElem(courbeParametriquePolynomialeBezier);
+        add(extrusionCurveCurve);
+
+
+        extrusionCurveCurve = new ExtrusionCurveCurve();
+        extrusionCurveCurve.getBase().setElem(new PolyLine(new Point3D[]{
+                new Point3D(-voiture.getEspacementRoues()/2., voiture.getHauteurPorte()/2., -voiture.getLargeur()+20.),
+                new Point3D(-voiture.getEspacementRoues()/2+20., voiture.getHauteurPorte()/2., -voiture.getLargeur()+20.),
+                new Point3D(-voiture.getEspacementRoues()/2+20., voiture.getHauteurPorte()/2., -voiture.getLargeur()),
+                new Point3D(-voiture.getEspacementRoues()/2., voiture.getHauteurPorte()/2., -voiture.getLargeur()),
+        }, Colors.random()));
+        courbeParametriquePolynomialeBezier = new CourbeParametriquePolynomialeBezier();
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., 0., 0.), 0);
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., voiture.getHauteurPorte()/3, 10.), 1);
+        courbeParametriquePolynomialeBezier.getCoefficients().setElem(new Point3D(0., voiture.getHauteurPorte()/2, 30.), 1);
+        extrusionCurveCurve.getPath().setElem(courbeParametriquePolynomialeBezier);
+        add(extrusionCurveCurve);
+
     }
+
+
 }

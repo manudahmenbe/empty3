@@ -44,7 +44,7 @@ import java.awt.*;
 /*__
  * @author Manuel
  */
-public class Polygon extends ParametricCurve implements SurfaceElem, ClosedCurve {
+public class Polygon extends Representable implements SurfaceElem, ClosedCurve {
 
     /*__
      *
@@ -149,7 +149,7 @@ public class Polygon extends ParametricCurve implements SurfaceElem, ClosedCurve
         getDeclaredDataStructure().put("points/point 0 à N du Polygone", points);
 
     }
-
+/*
     @Override
     public Point3D calculerPoint3D(double t) {
         int size = points.getData1d().size();
@@ -162,4 +162,5 @@ public class Polygon extends ParametricCurve implements SurfaceElem, ClosedCurve
         double d = t - 1.0 * i / size;
         return p1.plus(p2.moins(p1).mult(1 - d));
     }
+*/
 }

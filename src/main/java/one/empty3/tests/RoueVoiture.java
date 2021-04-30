@@ -18,8 +18,8 @@ public class RoueVoiture extends RepresentableConteneur {
         Tubulaire3 t = new Tubulaire3();
         t.texture(new ColorTexture(Colors.random()));
         t.getDiameterFunction().setElem(fctXY);
-        t.getSoulCurve().getElem().getCoefficients().setElem(new Point3D(- voiture.getEspacementRoues()/2, voiture.getRayonRoue(), voiture.getLargeur() - voiture.getEpaisseurRoue()),0);
-        t.getSoulCurve().getElem().getCoefficients().setElem(new Point3D(- voiture.getEspacementRoues()/2, voiture.getRayonRoue(), voiture.getLargeur()),1);
+        t.getSoulCurve().getElem().getCoefficients().setElem(new Point3D(-voiture.getEspacementRoues()/2, voiture.getRayonRoue(), voiture.getLargeur() - voiture.getEpaisseurRoue()),0);
+        t.getSoulCurve().getElem().getCoefficients().setElem(new Point3D(-voiture.getEspacementRoues()/2, voiture.getRayonRoue(), voiture.getLargeur()),1);
 
         add(t);
 
@@ -28,7 +28,7 @@ public class RoueVoiture extends RepresentableConteneur {
         t2.texture(new ColorTexture(Colors.random()));
         t2.getDiameterFunction().setElem(fctXY);
         t2.getSoulCurve().getElem().getCoefficients().setElem(new Point3D(-voiture.getEspacementRoues()/2, voiture.getRayonRoue(), -voiture.getLargeur() + voiture.getEpaisseurRoue()),0);
-        t2.getSoulCurve().getElem().getCoefficients().setElem(new Point3D(-voiture.getEspacementRoues()/2, -voiture.getRayonRoue(), -voiture.getLargeur()),1);
+        t2.getSoulCurve().getElem().getCoefficients().setElem(new Point3D(-voiture.getEspacementRoues()/2, voiture.getRayonRoue(), -voiture.getLargeur()),1);
         add(t2);
 
 

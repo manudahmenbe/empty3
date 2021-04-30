@@ -34,6 +34,7 @@ package one.empty3.library;
 
 import one.empty3.library.core.nurbs.ParametricCurve;
 
+import java.awt.*;
 import java.util.List;
 
 /*__
@@ -44,9 +45,19 @@ public class PolyLine extends ParametricCurve {
 
     public PolyLine() {
         super();
+    }
 
-        points.add(1, Point3D.random(1d));
-        points.add(1, Point3D.random(1d));
+    public PolyLine(Point3D[] point3DS, Color random) {
+        for (Point3D point3D : point3DS) {
+            add(point3D);
+        }
+        texture(new ColorTexture(random));
+    }
+    public PolyLine(Point3D[] point3DS, ITexture random) {
+        for (Point3D point3D : point3DS) {
+            points.add(point3D);
+        }
+        texture(random);
     }
 
     public List<Point3D> getPoints() {
@@ -73,16 +84,10 @@ public class PolyLine extends ParametricCurve {
     }
 
     public void add(Point3D point3D) {
-        int newLength;
         if (points == null)
             points = new StructureMatrix<>(1, Point3D.class);
         else {
-            newLength = points.getData1d().size()+ 1;
-            List<Point3D> tmp = points.getData1d();
-            points = new StructureMatrix<>();
-            for (int i = 0; i < tmp.size(); i++)
-                points.add(i, tmp.get(i));
-            points.add(1, point3D);
+            points.getData1d().add(point3D);
         }
     }
 

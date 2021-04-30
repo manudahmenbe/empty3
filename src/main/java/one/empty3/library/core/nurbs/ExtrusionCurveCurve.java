@@ -33,7 +33,9 @@ public class ExtrusionCurveCurve extends ParametricSurface {
         path.setElem(new CourbeParametriquePolynomialeBezier());
     }
 
-
+/***
+ * Problème : path à partir de P(0,0,0)
+ * *//*
     public Point3D calculerPoint3D(double u, double v) {
 
         Point3D Op, T, NX, NY, pO;
@@ -43,30 +45,28 @@ public class ExtrusionCurveCurve extends ParametricSurface {
         T = path.getElem().tangente(u);
 
 
-        /*__
-         * Plan normal pour le chemin
-         *
-         */
+        // Plan normal pour le chemin
         Point3D normale = path.getElem().calculerNormale(u);
-        /*if ((normale.norme() < 0.001 || normale.prodVect(T).norme() < 0.001)) {
-            if (normaleFixe == null) {
-                normaleFixe = T.prodVect(Point3D.r(1));
-            }
-            NX = normaleFixe.norme1();
-        } else {
-            NX = normale.norme1();
-        }//*/
         T = T.norme1();
         NX = normale.norme1();
         NY = NX.prodVect(T).norme1();
-/*
-        System.err.println("\nT "+T );
-        System.err.println("NX"+NX);
-        System.err.println("NY"+NY);
- */
         pO = Op.plus(NX.mult(base.getElem().calculerPoint3D(v))).plus(NY.mult(base.getElem().calculerPoint3D(v)));
         return pO;
 
+    }*/
+    public Point3D calculerPoint3D(double u, double v) {
+        Point3D T, NX, NY;
+        T = path.getElem().tangente(u);
+        // Plan normal pour le chemin
+        Point3D normale = path.getElem().calculerNormale(u);
+        T = T.norme1();
+        NX = normale.norme1();
+        NY = NX.prodVect(T).norme1();
+
+        return base.getElem().calculerPoint3D(v).plus(
+                path.getElem().calculerPoint3D(u).mult(NX)).
+            plus(
+                path.getElem().calculerPoint3D(u).mult(NY));
     }
 
 

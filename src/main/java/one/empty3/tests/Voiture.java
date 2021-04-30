@@ -5,7 +5,7 @@ import one.empty3.library.RepresentableConteneur;
 public class Voiture extends RepresentableConteneur {
         RoueVoiture roueVoiture;
         Chassis chassis;
-        Coque coque = new Coque();
+        Coque coque ;
         PorteAvant porteAvant = new PorteAvant();
         PorteArriere porteArrieres = new PorteArriere();
         Coffre coffre = new Coffre();
@@ -16,17 +16,19 @@ public class Voiture extends RepresentableConteneur {
         PareChoc pareChoc = new PareChoc();
         PareBrise pareBrise =  new PareBrise();
         Mecanique mecanique = new Mecanique();
-        private double largeur = 300.0;
+        private double largeur = 280.0;
         private double longueur = 500.0;
-        private double espacementRoues = 10.;
+        private double espacementRoues = 300.;
         private double rayonRoue = 30.;
 
         public Voiture() {
             super();
             chassis = new Chassis(this);
             roueVoiture = new RoueVoiture(this);
+            coque = new Coque(this);
             add(chassis);
             add(roueVoiture);
+            add(coque);
         }
 
         public double getLargeur() {
@@ -171,5 +173,13 @@ public class Voiture extends RepresentableConteneur {
 
         public Double getHauteurPorte() {
                 return 150.;
+        }
+
+        public double getHauteurBasCaisse() {
+                return 20.;
+        }
+
+        public double getHauteurCoffre() {
+                return 100;
         }
 }
