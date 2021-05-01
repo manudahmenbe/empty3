@@ -70,7 +70,7 @@ public class CourbeParametriquePolynomialeBezier extends CourbeParametriquePolyn
 
     protected double factorielle(int n) {
         double sum = 1;
-        for (int i = 1; i <= n; i++) {
+        for (int i = 2; i <= n; i++) {
             sum *= i;
         }
         return sum;

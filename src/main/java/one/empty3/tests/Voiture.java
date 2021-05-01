@@ -17,7 +17,7 @@ public class Voiture extends RepresentableConteneur {
         PareBrise pareBrise =  new PareBrise();
         Mecanique mecanique = new Mecanique();
         private double largeur = 280.0;
-        private double longueur = 500.0;
+        private double longueur = 600.0;
         private double espacementRoues = 300.;
         private double rayonRoue = 30.;
 
@@ -172,7 +172,7 @@ public class Voiture extends RepresentableConteneur {
         }
 
         public Double getHauteurPorte() {
-                return 150.;
+                return 200.;
         }
 
         public double getHauteurBasCaisse() {

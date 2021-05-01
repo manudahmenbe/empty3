@@ -44,7 +44,7 @@ package one.empty3.library.core.export;
 
 import one.empty3.library.*;
 import one.empty3.library.core.nurbs.ParametricSurface;
-import one.empty3.library.core.tribase.TRIObjetGenerateur;
+import one.empty3.library.exporters.obj.Exporter;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -52,7 +52,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
 
-public class STLExport {
+public class STLExport extends Exporter {
 
     public static void save(File file, Scene scene, boolean override)
             throws IOException {
@@ -87,7 +87,7 @@ public class STLExport {
     }
 
     private static void traite(Representable r, PrintWriter pw) {
-        write("", pw);
+        print("", pw);
 
         if (r instanceof RepresentableConteneur) {
             for(Representable representable : ((RepresentableConteneur)r).getListRepresentable()) {
@@ -115,7 +115,7 @@ public class STLExport {
     }
 
     private static void traite(ParametricSurface r, PrintWriter pw) {
-        write("", pw);
+        print("", pw);
         int countU = (int) ((r.getEndU() - r.getStartU()) / r.getIncrU());
         int countV = (int) ((r.getEndV() - r.getStartV()) / r.getIncrV());
         for (int i = 0; i < countU;  i++) {
@@ -131,7 +131,7 @@ public class STLExport {
     }
 
     private static void traite(RepresentableConteneur r, PrintWriter pw) {
-        write("", pw);
+        print("", pw);
         Iterator<Representable> it = r.iterator();
         while (it.hasNext()) {
             Representable next = it.next();
@@ -140,25 +140,26 @@ public class STLExport {
     }
 
     private static void traite(TRI r, PrintWriter pw) {
-        write("facet normal 0 0 0 \n" + "outer loop\n", pw);
+        Point3D normale = r.normale();
+        print("facet normal "+normale.get(0)+" "+normale.get(1)+" "+normale.get(2)+"\n" + "outer loop\n", pw);
         for (int s = 0; s < 3; s++) {
-            write("vertex ", pw);
+            print("vertex ", pw);
             for (int c = 0; c < 3; c++) {
                 double A = r.getSommet().getElem(s).get(c);
                 if (Double.isNaN(A)) {
                     A = 0;
                 }
-                write(A + " ", pw);
+                print(A + " ", pw);
             }
-            write("\n", pw);
+            print("\n", pw);
         }
-        write("endloop\n", pw);
-        write("endfacet\n", pw);
+        print("endloop\n", pw);
+        print("endfacet\n", pw);
 
     }
 
     public static void traite(TRIConteneur TC, PrintWriter pw) {
-        write("", pw);
+        print("", pw);
 
         Iterator<TRI> it = TC.iterable().iterator();
 
@@ -197,7 +198,8 @@ public class STLExport {
         }
     }*/
 
-    public static void write(String flowElement, PrintWriter pw) {
-        pw.write(flowElement);
+    public static void print(String flowElement, PrintWriter pw) {
+
+        pw.print(flowElement);
     }
 }
