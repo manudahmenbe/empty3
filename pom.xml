@@ -10,7 +10,7 @@
 
     <groupId>one.empty3</groupId>
     <artifactId>empty3-library-3d-android</artifactId>
-    <version>2021.4.7</version><!-- -SNAPSHOT -->
+    <version>2021.5-SNAPSHOT</version><!-- -SNAPSHOT -->
     <description>3D rendering engine. Plus modelling. Expected glsl textures 3d and 2d rendering. ANDROID VERSION.
         2021
     </description>
@@ -55,8 +55,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
     <build>
@@ -111,8 +111,8 @@
                 <version>3.6.2</version>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
 
             </plugin>
@@ -243,7 +243,7 @@
                     <execution>
                         <configuration>
                             <keyname>22EE55E4</keyname><!--ED0DB26D5F0BDADD1CB2BC079B7BFF1322EE55E4-->
-                            <skip>true</skip>
+                           <!-- <skip>true</skip>-->
                         </configuration>
                         <id>sign-artifacts</id>
                         <phase>verify</phase>
