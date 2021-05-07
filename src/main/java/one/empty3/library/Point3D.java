@@ -380,6 +380,8 @@ public class Point3D extends Representable {
      * @return Vecteur normalisé à 1
      */
     public Point3D norme1() {
+        if(norme()==0.0)
+            return Point3D.O0;
         return mult(1 / norme());
     }
 

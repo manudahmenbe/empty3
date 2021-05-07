@@ -46,7 +46,7 @@ import java.util.List;
  *         <p>
  *         17 nov. 2011
  */
-public class Matrix33 extends  Representable {
+public class Matrix33 extends Representable {
 
     public static final Matrix33 XYZ;
     public static final Matrix33 YZX;
@@ -64,6 +64,8 @@ public class Matrix33 extends  Representable {
     }
 
     private StructureMatrix<Double> d = new StructureMatrix<>(1, Double.class);
+    private int dim1;
+    private int dim2;
 
     public Matrix33(Matrix33 copy) {
         this();
@@ -72,26 +74,30 @@ public class Matrix33 extends  Representable {
 
     public Matrix33() {
         d = new StructureMatrix<>(1, Double.class);
-        d.setAll(new Double[] { 1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0});
+        d.setAll(new Double[]{1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0});
+        dim1 = dim2 = (int) Math.sqrt(d.getData1d().size());
 
     }
 
     public Matrix33(Double[] d) {
+        dim1 = dim2 = (int) Math.sqrt(d.length);
         if (d.length != 9) {
             System.out.println("Erreur dans Matrix33 . 9 éléments requis");
-            throw new IndexOutOfBoundsException("Matrix33 9 "+d.length);
+            throw new IndexOutOfBoundsException("Matrix33 9 " + d.length);
         }
         this.d.setAll(d);
     }
-public Matrix33(double[] d) {
+
+    public Matrix33(double[] d) {
         if (d.length != 9) {
             System.out.println("Erreur dans Matrix33 . 9 éléments requis");
-            throw new IndexOutOfBoundsException("Matrix33 9 "+d.length);
+            throw new IndexOutOfBoundsException("Matrix33 9 " + d.length);
         }
+        dim1 = dim2 = (int) Math.sqrt(d.length);
         Double[] D = new Double[9];
-        for(int i=0;i<9;i++){
-D[i] = d[i];
-	}
+        for (int i = 0; i < 9; i++) {
+            D[i] = d[i];
+        }
         this.d.setAll(D);
     }
 
@@ -103,6 +109,13 @@ D[i] = d[i];
 
                 d.setElem(p[i].get(j), i * 3 + j);
             }
+        }
+        dim1 = dim2 = (int) Math.sqrt(p.length);
+    }
+
+    public Matrix33(int columns, int lines) {
+        for(int i=0; i<columns*lines; i++) {
+            d.setElem(0.0, i);
         }
     }
 
@@ -143,11 +156,12 @@ D[i] = d[i];
     }
 
     public Double[] getDoubleArray1e() {
-        Double [] d2 = new Double [9];
-        for(int i=0;i<9; i++)
+        Double[] d2 = new Double[9];
+        for (int i = 0; i < 9; i++)
             d2[i] = d.getElem(i);
         return d2;
     }
+
     public Double[][] getDoubleArray() {
         Double[][] d2 = new Double[3][3];
         for (int i = 0; i < 3; i++) {
@@ -185,7 +199,7 @@ D[i] = d[i];
 
         for (int i = 0; i < d.getData1d().size(); i++) {
             Double value = mres.d.getElem(i);
-            mres.d.setElem(value*f, i);
+            mres.d.setElem(value * f, i);
         }
         return mres;
     }
@@ -195,7 +209,7 @@ D[i] = d[i];
 
         for (int i = 0; i < d.getData1d().size(); i++) {
             double value = mres.d.getElem(i);
-            mres.d.setElem(d.getElem(i)+value);
+            mres.d.setElem(d.getElem(i) + value);
         }
         return mres;
     }
@@ -205,14 +219,14 @@ D[i] = d[i];
 
         for (int i = 0; i < d.getData1d().size(); i++) {
             double value = mres.d.getElem(i);
-            mres.d.setElem(d.getElem(i)-value);
+            mres.d.setElem(d.getElem(i) - value);
         }
         return mres;
     }
 
     public Point3D rotation(Point3D p) {
         Point3D pa = new Point3D();
-        if(p!=null) {
+        if (p != null) {
             for (int i = 0; i < 3; i++) {
                 double d0 = 0;
                 for (int j = 0; j < 3; j++) {
@@ -221,8 +235,7 @@ D[i] = d[i];
                 pa.set(i, d0);
             }
             return pa;
-        }
-        else return Point3D.O0;
+        } else return Point3D.O0;
     }
 
     public void set(int i, int j, double d0) {
@@ -292,6 +305,7 @@ D[i] = d[i];
     public List<Double> getDoubles() {
         return d.getData1d();
     }
+
     @Override
     public void declareProperties() {
         super.declareProperties();
@@ -303,29 +317,75 @@ D[i] = d[i];
         return d;
     }
 
-    public void setD(Double [] d1) {
+    public void setD(Double[] d1) {
         d = new StructureMatrix<>(1, Double.class);
         d.setAll(d1);
     }
 
 
     public Point3D[] getColVectors() {
-        Point3D [] colVectors = new Point3D[3];
-        for(int c=0; c<3; c++)
-        {
-            Point3D p = new Point3D(d.getElem( c), d.getElem(3+ c),d.getElem(6+ c));
+        Point3D[] colVectors = new Point3D[3];
+        for (int c = 0; c < 3; c++) {
+            Point3D p = new Point3D(d.getElem(c), d.getElem(3 + c), d.getElem(6 + c));
             colVectors[c] = p;
         }
         return colVectors;
     }
 
     public Point3D[] getRowVectors() {
-        Point3D [] rowVectors = new Point3D[3];
-        for(int l=0; l<3; l++)
-        {
-            Point3D p = new Point3D(d.getElem(l*3), d.getElem(l*3+1),d.getElem(l*3+2));
+        Point3D[] rowVectors = new Point3D[3];
+        for (int l = 0; l < 3; l++) {
+            Point3D p = new Point3D(d.getElem(l * 3), d.getElem(l * 3 + 1), d.getElem(l * 3 + 2));
             rowVectors[l] = p;
         }
         return rowVectors;
+    }
+
+    public double determinant() {
+        double det = 0.0;
+        for(int i=0; i<getDim1(); i++)
+            for(int j=0; j<getDim2(); j++) {
+                det += cofactor(i, j).determinant()*(d.getElem(j*getDim1()+j));
+            }
+        return determinant();
+    }
+
+    private Matrix33 subMatrice(int i, int j) {
+        return null;
+    }
+
+    private Matrix33 cofactor(int i, int j) {
+        if(getDim1()==2&&getDim2()==2)
+            return new Matrix33( new double[] {
+                    get((i-1)%3,((j-1)%3)),
+                    get((i-1)%3,((j+1)%3)),
+                    get((i+1)%3,((j+1)%3)),
+                    get((i-1)%3,((j+1)%3)) });
+        else if(dim1==1&&dim2==1){
+            return new Matrix33(new double[] {get(0, 0)});
+        }
+        Matrix33 matrix33 = new Matrix33(dim1 - 1, dim2 - 1);
+        int row=0, column=0;
+        for(int r=0; r<dim1; r++) {
+            for(int c=0; c<dim2; c++) {
+                if(r!=i && c!=j) {
+                    matrix33.set(column, row, d.getElem(dim1 - 1) * row + column);
+                } else {
+
+                }
+                column++;
+            }
+            column=0;
+            row++;
+        }
+        return matrix33;
+    }
+
+    private int getDim1() {
+        return dim1;
+    }
+
+    private int getDim2() {
+        return dim2;
     }
 }

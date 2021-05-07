@@ -62,13 +62,10 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     public static final int DISPLAY_ALL = 0;
     public static final int SURFACE_DISPLAY_TEXT_QUADS = 1;
     public static final int SURFACE_DISPLAY_TEXT_TRI = 2;
-    public static final int SURFACE_DISPLAY_COL_QUADS = 3;
-    public static final int SURFACE_DISPLAY_COL_TRI = 4;
-    public static final int SURFACE_DISPLAY_LINES = 5;
-    public static final int SURFACE_DISPLAY_POINTS = 6;
-    /*__
-     * Couleur de fond (texture: couleur, image, vidéo, ...
-     */
+    public static final int SURFACE_DISPLAY_COL_QUADS = 4;
+    public static final int SURFACE_DISPLAY_COL_TRI = 8;
+    public static final int SURFACE_DISPLAY_LINES = 16;
+    public static final int SURFACE_DISPLAY_POINTS = 32;
     // DEFINITIONS
     public static double INFINITY_DEEP = Double.MAX_VALUE;
     protected boolean colorationActive = false;
@@ -136,16 +133,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     }
 
     public synchronized void draw() {
-
-        //scene().cameraActive().calculerMatrice();
-        /*:scene().lumieres().clear();
-        for (int i = 0; i < scene().getObjets().data1d.size(); i++)
-            if (scene().getObjets().getElem(i).getClass().isAssignableFrom(Lumiere.class))
-                scene().lumieres().add((Lumiere) scene().getObjets().getElem(i));
-       */
-
-
-        draw(scene());
+        draw(currentScene);
     }
 
     public Point3D rotate(Point3D p0, Representable ref) {
@@ -157,14 +145,6 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     }
 
     public synchronized void draw(Representable r) {
-        /*
-         * if (r instanceof RepresentableType) { try { ((RepresentableType)
-         * r).draw(this); } catch (Exception ex) { ex.printStackTrace(); } return; }
-         *
-         * if (r.getPainter() != null) { try { r.paint(); } catch (Exception ex) {
-         * ex.printStackTrace(); } }
-         */
-        // COLLECTION
         if(r == null)
         {
             System.out.println("r is null return");
@@ -232,19 +212,16 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                                     n.texture(),
                                     u,
                                     v, u + n.getIncrU(), v + n.getEndV());
-
+                            break;
                         case SURFACE_DISPLAY_LINES:
                             tracerLines(p1, p2, p3, p4, n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
                             break;
                         case SURFACE_DISPLAY_POINTS:
-                            {
                             ime.testDeep(p1);
                             ime.testDeep(p2);
                             ime.testDeep(p3);
                             ime.testDeep(p4);
-
-                        }
-                        break;
+                            break;
                     }
                 }
             }
