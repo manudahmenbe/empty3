@@ -3,6 +3,7 @@ package one.empty3.library;
 import one.empty3.library.*;
 import one.empty3.library.Polygon;
 import one.empty3.library.core.gdximports.gdx_BSplineCurve;
+import org.slf4j.helpers.MarkerIgnoringBase;
 
 import javax.swing.*;
 import java.awt.*;
@@ -356,6 +357,33 @@ public class EyeBallRoll extends JPanel {
         return new Point2D((int) (size * Math.atan(y / x)), (int) (size * Math.sqrt(1 - x * x - y * y)));
     }
 
+    public void clickAt(int x, int y) {
+
+    }
+
+
+
+    public void updateRotation(Matrix33 matrix, Point3D p) {
+
+    }
+
+    public void addPoint(int x, int y) {
+
+    }
+    public void updatePoint(int x, int y) {
+
+    }
+    public void deletePoint(int x, int y) {
+
+    }
+    public void newPoly(int x, int y) {
+
+    }
+    public void endPoly(int x, int y) {
+
+    }
+
+
     public static void main(String[] args) {
         EyeBallRoll panelSphereMove = new EyeBallRoll();
         panelSphereMove.initComputeArea();
@@ -363,7 +391,33 @@ public class EyeBallRoll extends JPanel {
         JFrame frame = new JFrame("EyeRoll");
         //frame.setLayout(new MigLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(panelSphereMove);
+
+        JSplitPane jLayeredPane = new JSplitPane();
+
+        jLayeredPane.setRightComponent(panelSphereMove);
+
+        JPanel jPanel = new JPanel();
+
+       jPanel.setLayout(new GridLayout(10, 1));
+
+        jPanel.add(new JButton("Rotate scene's camera"));
+        jPanel.add(new JButton("Move"));
+        jPanel.add(new JButton("Begin polygon"));
+        jPanel.add(new JButton("Edit polygon"));
+        jPanel.add(new JButton("Add point"));
+        jPanel.add(new JButton("Move point"));
+        jPanel.add(new JButton("Rotate point"));
+        jPanel.add(new JButton("Delete point"));
+        jPanel.add(new JButton("Close polygon"));
+
+
+        jLayeredPane.setLeftComponent(jPanel);
+
+        frame.setContentPane(jLayeredPane);
+
+
+
+
         frame.setSize(new Dimension(1000+RES,800+ RES));
         frame.setResizable(false);
         frame.setVisible(true);

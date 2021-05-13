@@ -150,7 +150,7 @@ public class Camera extends CameraBox {
     }
 
     public Point3D calculerPointDansRepere(Point3D p) {
-        Point3D p2 = p.plus(matrice.getElem().tild().mult(p.moins(getEye())));
+        Point3D p2 =matrice.getElem().mult(p).moins(getEye());
         p2.texture(p.texture());
         return p2;
     }
@@ -232,8 +232,7 @@ public class Camera extends CameraBox {
                 && Math.atan(x3d.getY() / x3d.getZ()) < getAngleY()) {
 
             double scale = (1.0 / (x3d.getZ()));
-            return new Point((int) (x3d.getX() * scale * la + la / 2), (int) (-x3d.getY() * scale * ha + ha / 2));
-        }
+            return new Point((int) (x3d.getX() * scale * la + la / 2), (int) (-x3d.getY() * scale * ha + ha / 2));        }
         return null;
 
     }
@@ -255,14 +254,10 @@ public class Camera extends CameraBox {
             case PERSPECTIVE_ISOM:
                 //return coordonneesPointEcranIsometrique(coordonneesPoint3D(p), impl.box, impl.la, impl.ha);
             case PERSPECTIVE_OEIL:
-                return coordonneesPointEcranPerspective(coordonneesPoint3D(p), impl.la(), impl.ha());
+                return coordonneesPointEcranPerspective(calculerPointDansRepere(p), impl.la(), impl.ha());
             default:
                 throw new UnsupportedOperationException("Type de perspective non reconnu");
         }
-    }
-
-    public Point3D coordonneesPoint3D(Point3D p) {
-        return calculerPointDansRepere(p);
     }
 
     public double distanceCamera(Point3D x3d) {

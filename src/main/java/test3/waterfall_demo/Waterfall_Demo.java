@@ -178,6 +178,7 @@ public class Waterfall_Demo extends TestObjetSub {
 
         Waterfall_Demo waterfall_demo3 = new Waterfall_Demo();
         waterfall_demo3.setMaxFrames(1*60*25);
+        waterfall_demo3.setPublish(true);
         waterfall_demo3.setCurve_shape(waterfall_demo0.CURVE_RANDOM);
         waterfall_demo3.setOption_curve_cut(!waterfall_demo0.OPTION_CURVE_CUT);
         waterfall_demo3.setName("waterfall_demos/3");
