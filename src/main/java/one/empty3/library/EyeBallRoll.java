@@ -8,6 +8,7 @@ import org.slf4j.helpers.MarkerIgnoringBase;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -28,10 +29,14 @@ public class EyeBallRoll extends JPanel {
     private String inscr = "";
     private boolean clicked;
     private JTextArea text = new JTextArea();
+    private boolean selectPoints = true;
+    private JButton jButtonSelect;
+    private boolean rotateObject = true;
+    private JButton jButtonRotate;
 
 
     public void out(String s) {
-        text.setText(s+"\n"+text.getText());
+        text.setText(s + "\n" + text.getText());
     }
 
     public class Draw extends Thread {
@@ -52,26 +57,24 @@ public class EyeBallRoll extends JPanel {
 
         @Override
         public void run() {
-            scene.add(freePoints);
 
             while (isRunning()) {
+                scene.add(freePoints);
+                z.scene(scene);
 
                 Graphics graphics = getGraphics();
 
                 try {
-                    z.scene(scene);
 
                     z.idzpp();
 
                     Matrix33 matrice2 = Matrix33.I;
 
-                    scene.cameraActive(new Camera(Point3D.Z.mult(-4.), Point3D.O0, perp1(Point3D.Z)));//???
-
-                    scene.rotation.setElem(new Rotation(matrice, Point3D.O0));
+//                    scene.cameraActive(new Camera(Point3D.Z.mult(-4.), Point3D.O0, perp1(Point3D.Z)));//???
 
                     Point3D[] rowVectors = matrice.getRowVectors();
 
-                    Point3D z1 = Point3D.Z;
+                    Point3D z1 = rowVectors[2].norme1();//Point3D.Z;
                     Point3D x1 = rowVectors[0].norme1();
                     Point3D y1 = rowVectors[1].norme1();
 
@@ -84,7 +87,7 @@ public class EyeBallRoll extends JPanel {
                             matrice1.mult(z1.mult(-8.).plus(x1.mult(-8.).plus(y1.mult(8.)))),
                     }, new ColorTexture(Color.RED));
 
-                    Point3D z0 = Point3D.Z;
+                    Point3D z0 = z1;//Point3D.Z;
                     Point3D x0 = x1;
                     Point3D y0 = y1;
 
@@ -97,15 +100,18 @@ public class EyeBallRoll extends JPanel {
                     //scene.cameraActive(new Camera2Quad(z, p1, p0));//???
                     //scene.cameraActive().imposerMatrice(matrice.tild());
                     scene.cameraActive(new Camera2Quad(z, p0, p1));
-                    synchronized(freePoints.getListRepresentable()) {
-                        for(Representable r : freePoints.getListRepresentable()) {
-                            if(r instanceof Point3D) {
+
+                    synchronized (freePoints.getListRepresentable()) {
+                        for (Representable r : freePoints.getListRepresentable()) {
+                            if (r instanceof Point3D) {
                                 Point3D p = (Point3D) r;
                                 Sphere sphere = new Sphere(p, 0.5);
                                 //z.draw(sphere);
                             }
                         }
                     }
+
+                    z.draw();
 
                     ECBufferedImage image = z.image2();
 
@@ -161,7 +167,7 @@ public class EyeBallRoll extends JPanel {
 
 
                 try {
-                    out("draw");
+                    //out("draw");
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -209,7 +215,17 @@ public class EyeBallRoll extends JPanel {
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (!clicked) {
+                if (selectPoints) {
+                    for (Representable r : draw.freePoints.getListRepresentable()) {
+                        if (r instanceof Point3D) {
+                            Point3D p = (Point3D) r;
+                            Point point = draw.scene.cameraActive().coordonneesPoint2D(p, draw.z);
+                            double x = point.getX();
+                            double y = point.getY();
+
+                        }
+                    }
+                } else if (rotateObject) {
                     clicked = true;
                     if (e.getX() >= 0 && e.getY() < RES && e.getX() >= 0 && e.getY() < RES) {
                         vAxe = vAxe.equals(Point3D.X) ? Point3D.Y : (vAxe.equals(Point3D.Y) ? Point3D.Z : (vAxe.equals(Point3D.Z) ? Point3D.X : Point3D.X));
@@ -220,7 +236,7 @@ public class EyeBallRoll extends JPanel {
                     } else if (e.getX() >= RES && e.getX() < TOTAL_SIZE && e.getY() >= RES && e.getY() < TOTAL_SIZE) {
                         Scene scene = draw.scene;
                         if (scene != null) {
-                            Point3D invert = draw.z.invert(new Point3D((double) e.getX(), (double) e.getY(), 1.0), scene.cameraActive(), 1.);
+                            Point3D invert = draw.z.invert(new Point3D((double) e.getX() / getWidth(), (double) e.getY() / getHeight(), 1.0), scene.cameraActive(), 1.);
 
                             out("Invert=" + invert);
                             draw.freePoints.add(invert);
@@ -446,10 +462,25 @@ public class EyeBallRoll extends JPanel {
         jPanel.setSize(new Dimension(600, 600));
 
 
-        JButton jButton = new JButton("Select object");
-        jPanel.add(jButton);
-        jButton = new JButton("Rotate scene's camera");
-        jPanel.add(jButton);
+        panelSphereMove.jButtonSelect = new JButton("Select object");
+        jPanel.add(panelSphereMove.jButtonSelect);
+        panelSphereMove.jButtonSelect.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelSphereMove.selectPoints = true;
+                panelSphereMove.rotateObject = false;
+                //panelSphereMove.jButtonSelect.setEnabled(panelSphereMove.selectPoints);
+            }
+        });
+        panelSphereMove.jButtonRotate = new JButton("Rotate scene's camera");
+        jPanel.add(panelSphereMove.jButtonRotate);
+        panelSphereMove.jButtonRotate.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelSphereMove.rotateObject = true;
+                panelSphereMove.selectPoints = false;
+            }
+        });
         jPanel.add(new JButton("Move"));
         jPanel.add(new JButton("Begin polygon"));
         jPanel.add(new JButton("Edit polygon"));
