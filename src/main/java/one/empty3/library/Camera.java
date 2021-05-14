@@ -150,7 +150,7 @@ public class Camera extends CameraBox {
     }
 
     public Point3D calculerPointDansRepere(Point3D p) {
-        Point3D p2 =matrice.getElem().mult(p).moins(getEye());
+        Point3D p2 = matrice.getElem().mult(p.moins(getEye()));
         p2.texture(p.texture());
         return p2;
     }
@@ -163,19 +163,14 @@ public class Camera extends CameraBox {
     }
 
     public Point3D getEye() {
-        return calculerPoint(eye.getElem());
+        return eye.getElem();
     }
-
-    private Point3D calculerPoint(Point3D elem) {
-        return elem;
-    }
-
     public void setEye(Point3D eye) {
         this.eye.setElem(eye);
     }
 
     public Point3D getLookat() {
-        return calculerPoint(lookat.getElem());
+        return lookat.getElem();
     }
 
     public void setLookat(Point3D lookat) {

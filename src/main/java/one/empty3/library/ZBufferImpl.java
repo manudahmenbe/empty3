@@ -1555,33 +1555,24 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         return p;
     }
 
-    /*__
-     *
-     * @param p point 3D à inverser dans le repère de la caméra
-     * @param camera Caméra où calculer. null="this.camera()"
-     * @return point3d inversion
-     */
-    public Point3D invert(Point2D p, Camera camera, double returnedDist) {
-        double scale = (1.0 / (returnedDist));
-        // Axe profondeur de la caméra
-        Point3D[] v = camera.getMatrice().getRowVectors();
-        Point3D x = v[0], y = v[1], z = v[2];
-
-        Point3D point3D = new Point3D(x.dot(P.n(p.getX(), p.getY(), 1)),
-                y.dot(P.n(p.getX(), p.getY(), 1)),
-                z.dot(P.n(p.getX(), p.getY(), 1)));
-        return camera.getEye().plus(point3D/*.mult(returnedDist)*/);
-    }
 
     /*__
      *
      * @param p point 3D à inverser dans le repère de la caméra
-     * @param camera Caméra où calculer. null="this.camera()"
+     * @param camera Caméra null="this.camera()"
      * @return point3d inversion
+     *
+     * P = M(P-E)
+     * MT p' = P-E
+     * P = MT p' + E
      */
-    public Point3D invert(Point3D p, Camera camera) {
+    public Point3D invert(Point3D p, Camera camera, double returnedDist) {
+        p =(Point3D) p.clone();
+        p.setX(1./la*returnedDist);
+        p.setY(1./ha*returnedDist);
+        p.setZ(returnedDist);
         return camera.getMatrice().tild()
-                .mult(p).moins(camera.getEye());
+                .mult(p).plus(camera.getEye());
     }
 
 
@@ -1704,6 +1695,6 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 //                ime.ime.setElementProf(i, j, INFINITY_DEEP);
 //                ime = new ImageMap(la, ha);
 //            }
-        ime = new ImageMap(la, ha);
+        //ime = new ImageMap(la, ha);
     }
 }

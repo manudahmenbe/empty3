@@ -85,7 +85,7 @@ public class CameraArcBall {
 
     }
     public void moveTo(int x, int y) {
-        Point3D mult = zBuffer.invert(new Point3D((double) x, (double) y, 0.0), currentCamera);
+        Point3D mult = zBuffer.invert(new Point3D((double) x, (double) y, 0.0), currentCamera, 1.0);//??
         Point3D intersect = intersect(new Axe(currentCamera.eye(), mult));
         computeMatrix(pointCenter, currentPosition, intersect);
         currentPosition = intersect;

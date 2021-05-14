@@ -1,9 +1,7 @@
 package one.empty3.tests;
 
-import one.empty3.library.Camera;
-import one.empty3.library.LumierePonctuelle;
-import one.empty3.library.Point3D;
-import one.empty3.library.ZBufferImpl;
+import one.empty3.library.*;
+import one.empty3.library.Polygon;
 import one.empty3.library.core.testing.TestObjetSub;
 import one.empty3.library.core.tribase.Tubulaire3;
 
@@ -23,8 +21,20 @@ public class TestHumainCourt extends TestObjetSub {
     public void finit() {
         scene().cameras().clear();
         scene().getObjets().getData1d().clear();
-        Camera c = new Camera(Point3D.Z.mult(-120.), Point3D.O0);
-        scene().cameras().add(c);
+        Camera c = new Camera2Quad(
+                z(), new one.empty3.library.Polygon(new Point3D[]{
+                new Point3D(-20., -20., -80.),
+                new Point3D(20.,  -20., -80.),
+                new Point3D(20., 20., -80.),
+                new Point3D(-20.,  20., -80.)},
+                Color.BLUE),
+                new Polygon(new Point3D[]{
+                        new Point3D(-50., -50., 0.),
+                        new Point3D(50.,  -50., 0.),
+                        new Point3D(50., 50., 0.),
+                        new Point3D(-50.,  50., 0.)},
+                        Color.BLUE)
+        );scene().cameras().add(c);
         c.declareProperties();
         scene().cameraActive(c);
 

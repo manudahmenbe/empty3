@@ -3,6 +3,7 @@ package one.empty3.library;
 import one.empty3.library.*;
 import one.empty3.library.Polygon;
 import one.empty3.library.core.gdximports.gdx_BSplineCurve;
+import one.empty3.library.core.script.InterpreteFacade;
 import org.slf4j.helpers.MarkerIgnoringBase;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 
 public class EyeBallRoll extends JPanel {
     private static int RES = 200;
+    private static int TOTAL_SIZE = 1000;
     private Draw draw;
     private boolean move = true;
     private Matrix33 matrice = Matrix33.I;
@@ -25,11 +27,18 @@ public class EyeBallRoll extends JPanel {
     private Point3D vAxe = Point3D.X;
     private String inscr = "";
     private boolean clicked;
+    private JTextArea text = new JTextArea();
+
+
+    public void out(String s) {
+        text.setText(s+"\n"+text.getText());
+    }
 
     public class Draw extends Thread {
         private ZBufferImpl z;
         private Scene scene;
         private boolean running;
+        private RepresentableConteneur freePoints = new RepresentableConteneur();
 
         public Draw(Scene scene1) {
             this.z = new ZBufferImpl(RES, RES);
@@ -43,6 +52,8 @@ public class EyeBallRoll extends JPanel {
 
         @Override
         public void run() {
+            scene.add(freePoints);
+
             while (isRunning()) {
 
                 Graphics graphics = getGraphics();
@@ -52,9 +63,6 @@ public class EyeBallRoll extends JPanel {
 
                     z.idzpp();
 
-                    z.draw();
-
-
                     Matrix33 matrice2 = Matrix33.I;
 
                     scene.cameraActive(new Camera(Point3D.Z.mult(-4.), Point3D.O0, perp1(Point3D.Z)));//???
@@ -63,37 +71,45 @@ public class EyeBallRoll extends JPanel {
 
                     Point3D[] rowVectors = matrice.getRowVectors();
 
-                    Point3D z1 = Point3D.Z ;
-                    Point3D x1 = rowVectors[0];
-                    Point3D y1 = rowVectors[1];
+                    Point3D z1 = Point3D.Z;
+                    Point3D x1 = rowVectors[0].norme1();
+                    Point3D y1 = rowVectors[1].norme1();
 
 
                     Matrix33 matrice1 = matrice.I;
-                    Polygon p1 = new Polygon(new Point3D[] {
-                            matrice1.mult(z1.mult(-8.).plus(x1.mult(-2.).plus(y1.mult(-2.)))),
-                            matrice1.mult(z1.mult(-8.).plus(x1.mult(2.).plus(y1.mult(-2.)))),
-                            matrice1.mult(z1.mult(-8.).plus(x1.mult(2.).plus(y1.mult(2.)))),
-                            matrice1.mult(z1.mult(-8.).plus(x1.mult(-2.).plus(y1.mult(2.)))),
+                    Polygon p1 = new Polygon(new Point3D[]{
+                            matrice1.mult(z1.mult(-8.).plus(x1.mult(-8.).plus(y1.mult(-8.)))),
+                            matrice1.mult(z1.mult(-8.).plus(x1.mult(8.).plus(y1.mult(-8.)))),
+                            matrice1.mult(z1.mult(-8.).plus(x1.mult(8.).plus(y1.mult(8.)))),
+                            matrice1.mult(z1.mult(-8.).plus(x1.mult(-8.).plus(y1.mult(8.)))),
                     }, new ColorTexture(Color.RED));
 
-                    Point3D z0 = Point3D.O0;
+                    Point3D z0 = Point3D.Z;
                     Point3D x0 = x1;
                     Point3D y0 = y1;
 
-                    Polygon p0 = new Polygon(new Point3D[] {
-                            matrice1.mult(z0.mult(2.).plus(x0.mult(-4.).plus(y0.mult(-4.)))),
-                            matrice1.mult(z0.mult(-2.).plus(x0.mult(4.).plus(y0.mult(-4.)))),
-                            matrice1.mult(z0.mult(2.).plus(x0.mult(4.).plus(y0.mult(4.)))),
-                            matrice1.mult(z0.mult(-2.).plus(x0.mult(-2.).plus(y0.mult(2.)))),
+                    Polygon p0 = new Polygon(new Point3D[]{
+                            matrice1.mult(z0.mult(-12.).plus(x0.mult(-4.).plus(y0.mult(-4.)))),
+                            matrice1.mult(z0.mult(-12.).plus(x0.mult(4.).plus(y0.mult(-4.)))),
+                            matrice1.mult(z0.mult(-12.).plus(x0.mult(4.).plus(y0.mult(4.)))),
+                            matrice1.mult(z0.mult(-12.).plus(x0.mult(-2.).plus(y0.mult(2.)))),
                     }, new ColorTexture(Color.RED));
-                    scene.cameraActive(new Camera2Quad(z, p1, p0));//???
-                    scene.cameraActive().imposerMatrice(matrice.tild());
-
-                    z.draw();
+                    //scene.cameraActive(new Camera2Quad(z, p1, p0));//???
+                    //scene.cameraActive().imposerMatrice(matrice.tild());
+                    scene.cameraActive(new Camera2Quad(z, p0, p1));
+                    synchronized(freePoints.getListRepresentable()) {
+                        for(Representable r : freePoints.getListRepresentable()) {
+                            if(r instanceof Point3D) {
+                                Point3D p = (Point3D) r;
+                                Sphere sphere = new Sphere(p, 0.5);
+                                //z.draw(sphere);
+                            }
+                        }
+                    }
 
                     ECBufferedImage image = z.image2();
 
-                    graphics.drawImage(image, RES, 0, 800, 800, null);
+                    graphics.drawImage(image, RES, RES, 800, 800, null);
 
 
                 } catch (NullPointerException ex) {
@@ -118,32 +134,34 @@ public class EyeBallRoll extends JPanel {
                     graphics.drawLine(RES / 2, RES / 2, (int) ey.getX(), (int) ey.getY());
                     graphics.setColor(Color.BLUE);
                     graphics.drawLine(RES / 2, RES / 2, (int) ez.getX(), (int) ez.getY());
-                    //System.out.println("ex, ey, ez" + ex + "\n" + ey + "\n" + ez);
+                    //out(.println("ex, ey, ez" + ex + "\n" + ey + "\n" + ez);
 
 
                     ex = transform3D2D1(Point3D.X);
                     ey = transform3D2D1(Point3D.Y);
                     ez = transform3D2D1(Point3D.Z);
-                    //System.out.println("Systeme d'origine ex, ey, ez" + ex + "\n" + ey + "\n" + ez);
+                    //out(.println("Systeme d'origine ex, ey, ez" + ex + "\n" + ey + "\n" + ez);
 
                     graphics.setColor(Color.RED);
-                    graphics.drawString("eX", (int) ex.getX(), (int) ex.getY());
+                    graphics.drawLine(RES / 2, RES / 2, (int) ex.getX(), (int) ex.getY());
                     graphics.setColor(Color.GREEN);
-                    graphics.drawString("eY", (int) ey.getX(), (int) ey.getY());
+                    graphics.drawLine(RES / 2, RES / 2, (int) ey.getX(), (int) ey.getY());
                     graphics.setColor(Color.BLUE);
-                    graphics.drawString("eZ", (int) ez.getX(), (int) ez.getY());
+                    graphics.drawLine(RES / 2, RES / 2, (int) ez.getX(), (int) ez.getY());
+                    //out(.println("ex, ey, ez" + ex + "\n" + ey + "\n" + ez);
 
                     graphics.drawString(inscr, 0, 0);
 /*
-                    System.out.println("Angle px,py " + Math.acos(colVectors[0].norme1().dot(colVectors[1].norme1())) / Math.PI * 2);
-                    System.out.println("Angle py,pz " + Math.acos(colVectors[1].norme1().dot(colVectors[2].norme1())) / Math.PI * 2);
-                    System.out.println("Angle pz,px " + Math.acos(colVectors[2].norme1().dot(colVectors[0].norme1())) / Math.PI * 2);
-                    System.out.println("Angle pz,py " + Math.acos(colVectors[2].norme1().dot(colVectors[1].norme1())) / Math.PI * 2);
+                    out(.println("Angle px,py " + Math.acos(colVectors[0].norme1().dot(colVectors[1].norme1())) / Math.PI * 2);
+                    out(.println("Angle py,pz " + Math.acos(colVectors[1].norme1().dot(colVectors[2].norme1())) / Math.PI * 2);
+                    out(.println("Angle pz,px " + Math.acos(colVectors[2].norme1().dot(colVectors[0].norme1())) / Math.PI * 2);
+                    out(.println("Angle pz,py " + Math.acos(colVectors[2].norme1().dot(colVectors[1].norme1())) / Math.PI * 2);
 */
                 }
 
 
                 try {
+                    out("draw");
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -191,20 +209,31 @@ public class EyeBallRoll extends JPanel {
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(!clicked) {
+                if (!clicked) {
                     clicked = true;
-                    vAxe = vAxe.equals(Point3D.X) ? Point3D.Y : (vAxe.equals(Point3D.Y) ? Point3D.Z : (vAxe.equals(Point3D.Z) ? Point3D.X : Point3D.X));
-                    inscr = "vAxe" + vAxe;
-                    pInitial = null;
-                    pMoved = null;
-                    getGraphics().drawString("Axe: " + vAxe, 10, 10);
+                    if (e.getX() >= 0 && e.getY() < RES && e.getX() >= 0 && e.getY() < RES) {
+                        vAxe = vAxe.equals(Point3D.X) ? Point3D.Y : (vAxe.equals(Point3D.Y) ? Point3D.Z : (vAxe.equals(Point3D.Z) ? Point3D.X : Point3D.X));
+                        inscr = "vAxe" + vAxe;
+                        pInitial = null;
+                        pMoved = null;
+                        getGraphics().drawString("Axe: " + vAxe, 10, 10);
+                    } else if (e.getX() >= RES && e.getX() < TOTAL_SIZE && e.getY() >= RES && e.getY() < TOTAL_SIZE) {
+                        Scene scene = draw.scene;
+                        if (scene != null) {
+                            Point3D invert = draw.z.invert(new Point3D((double) e.getX(), (double) e.getY(), 1.0), scene.cameraActive(), 1.);
+
+                            out("Invert=" + invert);
+                            draw.freePoints.add(invert);
+                        }
+                    }
+                    clicked = false;
+
                 }
-                clicked = false;
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if(!clicked) {
+                if (!clicked) {
                     clicked = true;
                     if (e.getX() >= 0 && e.getY() < RES && e.getX() >= 0 && e.getY() < RES) {
                         store(e.getX(), e.getY());
@@ -215,7 +244,7 @@ public class EyeBallRoll extends JPanel {
                         pInitial = null;
                         pMoved = null;
                         getGraphics().drawString("cursor not in window" + vAxe, 10, 10);
-                        System.out.println("Error Point2D out");
+                        //out(.println("Error Point2D out");
                     }
                 }
                 clicked = false;
@@ -248,11 +277,11 @@ public class EyeBallRoll extends JPanel {
 
                 store(e.getX(), e.getY());
 
-                /*System.out.println("Current location in space (move from ) " + pInitial);
-                System.out.println("Current location in space (move to   ) " + pMoved);
-                System.out.println("Current location in space i column     " + i_current);
-                System.out.println("Current location in space j row        " + j_current);
-                System.out.println("Matrice                                " + matrice);
+                /*out(.println("Current location in space (move from ) " + pInitial);
+                out(.println("Current location in space (move to   ) " + pMoved);
+                out(.println("Current location in space i column     " + i_current);
+                out(.println("Current location in space j row        " + j_current);
+                out(.println("Matrice                                " + matrice);
 */
                 move = false;
             }
@@ -268,10 +297,10 @@ public class EyeBallRoll extends JPanel {
 
     public Point3D transform2D3D(Point2D p) {
         Point2D p2 = new Point2D(p);
-        p2.x = (p.x / RES - 0.5)*2;
-        p2.y = (-p.y / RES + 0.5)*2 ;
+        p2.x = (p.x / RES - 0.5) * 2;
+        p2.y = (-p.y / RES + 0.5) * 2;
         double z = 2. - p.x * p.x - p.y * p.y;
-        return (new Point3D(p2.x, p2.y, Math.signum(z)*Math.sqrt(Math.abs(z))));
+        return (new Point3D(p2.x, p2.y, Math.signum(z) * Math.sqrt(Math.abs(z))));
     }
 
 //    public Point2D transform3D2D(Point3D p) {
@@ -362,7 +391,6 @@ public class EyeBallRoll extends JPanel {
     }
 
 
-
     public void updateRotation(Matrix33 matrix, Point3D p) {
 
     }
@@ -370,15 +398,19 @@ public class EyeBallRoll extends JPanel {
     public void addPoint(int x, int y) {
 
     }
+
     public void updatePoint(int x, int y) {
 
     }
+
     public void deletePoint(int x, int y) {
 
     }
+
     public void newPoly(int x, int y) {
 
     }
+
     public void endPoly(int x, int y) {
 
     }
@@ -394,13 +426,30 @@ public class EyeBallRoll extends JPanel {
 
         JSplitPane jLayeredPane = new JSplitPane();
 
-        jLayeredPane.setRightComponent(panelSphereMove);
+
+        JSplitPane jSplitPane = new
+                JSplitPane();
+
+
+        panelSphereMove.setSize(new Dimension(800, 800));
+        panelSphereMove.setMinimumSize(new Dimension(600, 600));
+        jSplitPane.setLeftComponent(panelSphereMove);
+        jSplitPane.setRightComponent(panelSphereMove.text);
+        jSplitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        jLayeredPane.setRightComponent(jSplitPane);
 
         JPanel jPanel = new JPanel();
 
-       jPanel.setLayout(new GridLayout(10, 1));
+        jPanel.setLayout(new GridLayout(10, 1));
 
-        jPanel.add(new JButton("Rotate scene's camera"));
+
+        jPanel.setSize(new Dimension(600, 600));
+
+
+        JButton jButton = new JButton("Select object");
+        jPanel.add(jButton);
+        jButton = new JButton("Rotate scene's camera");
+        jPanel.add(jButton);
         jPanel.add(new JButton("Move"));
         jPanel.add(new JButton("Begin polygon"));
         jPanel.add(new JButton("Edit polygon"));
@@ -416,9 +465,7 @@ public class EyeBallRoll extends JPanel {
         frame.setContentPane(jLayeredPane);
 
 
-
-
-        frame.setSize(new Dimension(1000+RES,800+ RES));
+        frame.setSize(new Dimension(1000 + RES, 800 + RES));
         frame.setResizable(false);
         frame.setVisible(true);
 
@@ -427,7 +474,6 @@ public class EyeBallRoll extends JPanel {
         scene.add(new LineSegment(Point3D.O0, Point3D.Y, new ColorTexture(Color.GREEN)));
         scene.add(new LineSegment(Point3D.O0, Point3D.Z, new ColorTexture(Color.BLUE)));
 //        scene.add(new Cube(new ColorTexture(Color.BLACK)));
-        scene.cameraActive(new Camera(Point3D.Z.mult(-4.), Point3D.O0, Point3D.Y));
         panelSphereMove.draw = panelSphereMove.new Draw(scene);
         panelSphereMove.draw.start();
 
