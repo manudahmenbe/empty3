@@ -1,11 +1,5 @@
 package one.empty3.library;
 
-import one.empty3.library.*;
-import one.empty3.library.Polygon;
-import one.empty3.library.core.gdximports.gdx_BSplineCurve;
-import one.empty3.library.core.script.InterpreteFacade;
-import org.slf4j.helpers.MarkerIgnoringBase;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -217,6 +211,7 @@ public class EyeBallRoll extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (selectPoints) {
                     for (Representable r : draw.freePoints.getListRepresentable()) {
+
                         if (r instanceof Point3D) {
                             Point3D p = (Point3D) r;
                             Point point = draw.scene.cameraActive().coordonneesPoint2D(p, draw.z);
@@ -249,8 +244,7 @@ public class EyeBallRoll extends JPanel {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if (!clicked) {
-                    clicked = true;
+                if (rotateObject) {
                     if (e.getX() >= 0 && e.getY() < RES && e.getX() >= 0 && e.getY() < RES) {
                         store(e.getX(), e.getY());
                         pInitial = pMoved;
@@ -263,9 +257,8 @@ public class EyeBallRoll extends JPanel {
                         //out(.println("Error Point2D out");
                     }
                 }
-                clicked = false;
-
             }
+
 
             @Override
             public void mouseReleased(MouseEvent e) {
