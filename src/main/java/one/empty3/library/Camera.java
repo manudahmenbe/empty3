@@ -60,7 +60,9 @@ public class Camera extends CameraBox {
     }
 
     private Barycentre position;
+    public Camera(boolean pass) {
 
+    }
     public Camera() {
         this(new Point3D(0d, 0d, -100d), Point3D.O0, Point3D.Y);
         verticale.setElem(new Point3D(Point3D.Y));
@@ -138,7 +140,7 @@ public class Camera extends CameraBox {
         if (!imposerMatrice.getElem()) {
             if (verticale == null)
                 verticale = calculerVerticaleParDefaut(getLookat().moins(eye.getElem()));
-
+        }
 /*
             Point3D z = getLookat().moins(getEye()).norme1();
             Point3D x = z.prodVect(verticale).norme1();
@@ -149,7 +151,7 @@ public class Camera extends CameraBox {
             Point3D x = y.prodVect(z);//verticale;
 
             setMatrix(x, y, z);
-        }
+            matrice.setElem(matrice.getElem().tild());
     }
 
     public Point3D calculerPointDansRepere(Point3D p) {

@@ -54,13 +54,16 @@ public class CameraInPath extends Camera {
     protected final StructureMatrix<Double> t = new StructureMatrix<>(0, Double.class);
 
     public CameraInPath() {
-        super();
+        super(false);
+        this.courbe.setElem(new Point3DS(Point3D.Z));
         t.setElem(0.0);
         calculerMatriceT(Point3D.Y);
     }
 
     public CameraInPath(ParametricCurve maCourbe) {
-        super();
+        super(false);
+        setEye(maCourbe.calculerPoint3D(0.0));
+        setLookat(maCourbe.calculerPoint3D(0.1));
         t.setElem(0.0);
         this.courbe.setElem(maCourbe);
 
@@ -68,7 +71,9 @@ public class CameraInPath extends Camera {
     }
 
     public CameraInPath(ParametricCurve maCourbe, Point3D vectVert) {
-
+        super(false);
+        setEye(maCourbe.calculerPoint3D(0.0));
+        setLookat(maCourbe.calculerPoint3D(0.1));
         t.setElem(0.0);
         this.courbe.setElem(maCourbe);
         this.getVerticale().setElem(vectVert);
