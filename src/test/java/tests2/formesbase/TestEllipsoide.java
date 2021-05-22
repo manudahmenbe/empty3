@@ -39,8 +39,6 @@ public class TestEllipsoide extends TestObjetSub {
     public void testScene() {
         TRIEllipsoide e = new TRIEllipsoide(Point3D.O0, 5.0, 2.0, 1.0);
 
-        e.setMaxX(100);
-        e.setMaxY(100);
 
         scene().add(e);
 

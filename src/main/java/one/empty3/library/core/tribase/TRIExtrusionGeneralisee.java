@@ -47,8 +47,6 @@ public class TRIExtrusionGeneralisee extends ParametricSurface {
     private Point3D normaleFixe;
 
     public TRIExtrusionGeneralisee() {
-        setCirculaireY(true);
-        setCirculaireX(false);
 
     }
 

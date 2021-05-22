@@ -43,9 +43,6 @@ public class TestCylindre extends TestObjetSub {
 
         //eg.setSurface(new SurfaceCercle(2));
 
-        eg.setMaxX(100);
-
-        eg.setMaxY(100);
 
         eg.texture(new TextureCol(Color.WHITE));
 

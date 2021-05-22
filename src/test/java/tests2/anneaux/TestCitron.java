@@ -37,8 +37,6 @@ public class TestCitron extends TestObjetSub {
                             1.0 * frame() / getMaxFrames(), 0.0, DIM),
                     DIM * 4);
             citrons[i].texture(new TextureCol(Color.ORANGE));
-            citrons[i].setMaxX(20);
-            citrons[i].setMaxY(20);
             try {
                 citrons[i].texture(new TextureImg(ECBufferedImage.getFromFile(new java.io.File("samples/img/herbe.jpg"))));
             } catch (IOException e) {

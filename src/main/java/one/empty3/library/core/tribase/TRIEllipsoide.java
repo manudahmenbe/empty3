@@ -52,8 +52,7 @@ public class TRIEllipsoide extends ParametricSurface {
         radius.add(1, 10.0);
         radius.add(1, 10.0);
         radius.add(1, 10.0);
-        setCirculaireY(true);
-        setCirculaireX(false);
+
     }
 
     public TRIEllipsoide(Point3D c, Double rx, Double ry, Double rz) {

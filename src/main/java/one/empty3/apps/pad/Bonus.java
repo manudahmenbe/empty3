@@ -74,10 +74,6 @@ public class Bonus extends RepresentableConteneur {
 
             s.texture(new ColorTexture(Color.RED));
 
-            s.setMaxX(maxx);
-
-            s.setMaxY(maxy);
-
             s.setGameObject(new SimpleBonus());
 
             add(s);
@@ -88,11 +84,6 @@ public class Bonus extends RepresentableConteneur {
             TRISphere2<Cheval_Licorne> s;
             s = new TRISphere2(this, random(), 0.01);
             s.texture(new ColorTexture(Color.BLUE));
-
-            s.setMaxX(maxx);
-
-            s.setMaxY(maxy);
-
             s.setGameObject(new Cheval_Licorne());
             add(s);
 
@@ -100,10 +91,6 @@ public class Bonus extends RepresentableConteneur {
         for (int i = 0; i < escargot; i++) {
             TRISphere2<Escargot> s = new TRISphere2<Escargot>(this, random(), 0.01);
             s.texture(new ColorTexture(Color.BLACK));
-
-            s.setMaxX(maxx);
-
-            s.setMaxY(maxy);
             s.setGameObject(new Escargot());
 
             add(s);
@@ -112,11 +99,6 @@ public class Bonus extends RepresentableConteneur {
         for (int i = 0; i < fuite; i++) {
             TRISphere2 s = new TRISphere2<>(this, random(), 0.01);
             s.texture(new ColorTexture(Color.GRAY));
-
-            s.setMaxX(maxx);
-
-            s.setMaxY(maxy);
-
             s.setGameObject(new MouvementDirectionnel());
             add(s);
 

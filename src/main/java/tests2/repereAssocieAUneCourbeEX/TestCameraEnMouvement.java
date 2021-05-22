@@ -54,9 +54,6 @@ public class TestCameraEnMouvement extends TestObjet {
         textureMov.setTransparent(Color.BLACK);
         e.texture(textureMov);
 
-        e.setMaxX(40);
-        e.setMaxY(40);
-
         scene().add(e);
 
         scene().cameraActive(new Camera(new Point3D(30d, 0d, -30d), new Point3D(0d, 0d, 0d)));

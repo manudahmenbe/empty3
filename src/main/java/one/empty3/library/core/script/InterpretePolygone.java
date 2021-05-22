@@ -86,21 +86,16 @@ public class InterpretePolygone implements Interprete {
                     pos = pp.getPosition();
                     points.add(p);
                 }
-            } catch (Exception ex) {
+            } catch (InterpreteException ex) {
                 md5 = false;
             }
         }
+
+
         ib = new InterpretesBase();
         pattern = new ArrayList<Integer>();
         pattern.add(ib.BLANK);
         pattern.add(ib.RIGHTPARENTHESIS);
-        pattern.add(ib.BLANK);
-        ib.compile(pattern);
-        ib.read(text, pos);
-        pos = ib.getPosition();
-
-        ib = new InterpretesBase();
-        pattern = new ArrayList<Integer>();
         pattern.add(ib.BLANK);
         pattern.add(ib.RIGHTPARENTHESIS);
         pattern.add(ib.BLANK);

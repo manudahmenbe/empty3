@@ -24,8 +24,10 @@ import one.empty3.library.StructureMatrix;
  * Created by manue on 29-12-19.
  */
 public class ExtrusionB1B1 extends ExtrusionCurveCurve {
-    private StructureMatrix<CourbeParametriquePolynomialeBezier> base = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
-    private StructureMatrix<CourbeParametriquePolynomialeBezier> path = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
+    {
+        base = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
+        path = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
+    }
     private StructureMatrix<Point3D> path0ref = new StructureMatrix<>();
 
     public ExtrusionB1B1() {
@@ -41,8 +43,6 @@ public class ExtrusionB1B1 extends ExtrusionCurveCurve {
     public void declareProperties()
     {
         super.declareProperties();
-        getDeclaredDataStructure().put("base/courbe a extruder", base);
-        getDeclaredDataStructure().put("path/courbe normale d'extrusion", path);
     }
 
     @Override

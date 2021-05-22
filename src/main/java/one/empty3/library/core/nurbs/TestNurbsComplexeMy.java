@@ -130,9 +130,6 @@ public class TestNurbsComplexeMy extends TestObjetSub {
 
         n.texture(new TextureCol(Color.WHITE));
 
-        n.setMaxX(30);
-        n.setMaxY(30);
-
         n.creerNurbs();
 
         scene().add(n);

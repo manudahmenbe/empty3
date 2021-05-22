@@ -45,8 +45,6 @@ public class TestPH1 extends TestObjet {
         double a = Math.sqrt(frame() + 1);
         double b = Math.sqrt(frame() + 1);
         ph = new ParaboloideHyperbolique(a, b, 2);
-        ph.setMaxX(100);
-        ph.setMaxY(100);
         scene().add(ph);
         ph.texture(new TextureCol(Color.RED));
     }

@@ -214,13 +214,13 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         gl.glBegin(GL2.GL_TRIANGLES);
 
 
-        for (int i = 0; i < s.getMaxX(); i++) {
-            for (int j = 0; j < s.getMaxY(); j++) {
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 100; j++) {
                 TRI[] tris = new TRI[2];
                 Point3D INFINI = Point3D.INFINI;
                 tris[0] = new TRI(INFINI, INFINI, INFINI);
                 tris[1] = new TRI(INFINI, INFINI, INFINI);
-                s.getTris(i, j, tris);
+                // TODO s.getTris(i, j, tris);
                 draw2(tris[0], glu, gl, true);
                 draw2(tris[1], glu, gl, true);
             }
@@ -231,13 +231,13 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     private void draw3(TRISphere2 s, GLU glu, GL2 gl) {
         gl.glBegin(GL2.GL_TRIANGLES);
         s.setCentre(getTerrain().p3(s.getCoords()));
-        for (int i = 0; i < s.getMaxX(); i++) {
-            for (int j = 0; j < s.getMaxY(); j++) {
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 100; j++) {
                 TRI[] tris = new TRI[2];
                 Point3D INFINI = Point3D.INFINI;
                 tris[0] = new TRI(INFINI, INFINI, INFINI);
                 tris[1] = new TRI(INFINI, INFINI, INFINI);
-                s.getTris(i, j, tris);
+                // TODO s.getTris(i, j, tris);
                 draw2(tris[0], glu, gl, true);
                 draw2(tris[1], glu, gl, true);
             }
@@ -430,7 +430,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
             path.diam(0.01);
             path.generate();
 
-            draw2(path, glu, gl);
+            // TODO draw2(path, glu, gl);
         }
 
         //if (toggleMenu.isDisplayGroundGrid())
@@ -504,8 +504,8 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         courbeParametriquePolynomialeBezierTubulaireN22.curve(new CourbeParametriquePolynomialeBezier(arc[1]));
         courbeParametriquePolynomialeBezierTubulaireN22.texture(new ColorTexture(Color.GREEN));
 
-        draw(courbeParametriquePolynomialeBezierTubulaireN2, glu, gl);
-        draw(courbeParametriquePolynomialeBezierTubulaireN22, glu, gl);
+        // TODO draw(courbeParametriquePolynomialeBezierTubulaireN2, glu, gl);
+        // TODO draw(courbeParametriquePolynomialeBezierTubulaireN22, glu, gl);
 
     }
     private void displayTerrain(GLU glu, GL2 gl) {

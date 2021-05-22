@@ -46,9 +46,6 @@ public class TestCoeur extends TestObjetSub {
             Logger.getLogger(TestCoeur.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        coeur.setMaxX(200);
-        coeur.setMaxY(200);
-
 
         scene().cameraActive(new Camera(Point3D.Z.mult(-5d), Point3D.O0));
 

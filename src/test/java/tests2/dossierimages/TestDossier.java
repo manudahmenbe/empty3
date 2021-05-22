@@ -57,8 +57,6 @@ public class TestDossier extends TestObjetSub {
         for (int i = 0; i < size; i++) {
             Plan3D plan3D = new Plan3D();
 
-            plan3D.setMaxX(1);
-            plan3D.setMaxY(1);
 
             plan3D.texture(new TextureImg(dos.getImages().get(i)));
 

@@ -30,8 +30,6 @@ public class Tihange extends RepresentableConteneur {
             {
                 setIncrU(0.01);
                 setIncrV(0.01);
-                setCirculaireX(true);
-                setCirculaireY(false);
                 texture(texture1);
             }
 
@@ -49,8 +47,6 @@ public class Tihange extends RepresentableConteneur {
             {
                 setIncrU(0.01);
                 setIncrV(0.01);
-                setCirculaireX(true);
-                setCirculaireY(false);
                 texture(texture2);
             }
 
@@ -68,8 +64,6 @@ public class Tihange extends RepresentableConteneur {
             {
                 setIncrU(0.01);
                 setIncrV(0.01);
-                setCirculaireX(true);
-                setCirculaireY(false);
                 texture(texture3);
             }
 
@@ -87,8 +81,6 @@ public class Tihange extends RepresentableConteneur {
             {
                 setIncrU(0.01);
                 setIncrV(0.01);
-                setCirculaireX(true);
-                setCirculaireY(false);
                 texture(texture4);
             }
 
@@ -105,8 +97,6 @@ public class Tihange extends RepresentableConteneur {
             {
                 setIncrU(0.01);
                 setIncrV(0.01);
-                setCirculaireX(true);
-                setCirculaireY(false);
                 texture(texture5);
             }
 
@@ -125,8 +115,7 @@ public class Tihange extends RepresentableConteneur {
             {
                 setIncrU(0.01);
                 setIncrV(0.01);
-                setCirculaireX(true);
-                setCirculaireY(false);
+
             }
 
             @Override

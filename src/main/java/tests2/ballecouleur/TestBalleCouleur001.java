@@ -73,9 +73,6 @@ public class TestBalleCouleur001 extends TestObjetSub {
 
         ballec = new BalleClous2(Point3D.O0, 1);
 
-        ballec.setMaxX(100);
-        ballec.setMaxY(100);
-
         ballec.param(ballecparam);
 
 

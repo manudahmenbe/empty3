@@ -24,8 +24,8 @@ import one.empty3.library.StructureMatrix;
  * Created by manue on 23-11-19.
  */
 public class ExtrusionCurveCurve extends ParametricSurface {
-    private StructureMatrix<ParametricCurve> base = new StructureMatrix<>(0, ParametricCurve.class);
-    private StructureMatrix<ParametricCurve> path = new StructureMatrix<>(0, ParametricCurve.class);
+    protected StructureMatrix<ParametricCurve> base = new StructureMatrix<>(0, ParametricCurve.class);
+    protected StructureMatrix<ParametricCurve> path = new StructureMatrix<>(0, ParametricCurve.class);
 
 
     public ExtrusionCurveCurve() {

@@ -45,8 +45,6 @@ public class TRIBezier2D extends ParametricSurface {
 
     public TRIBezier2D(BezierCubique2D bez) {
         this.bez = bez;
-        setCirculaireX(false);
-        setCirculaireY(false);
     }
 
     @Override
@@ -54,9 +52,5 @@ public class TRIBezier2D extends ParametricSurface {
         return bez.calculerPoint3D(u, v);
     }
 
-    @Override
-    public Point3D coordPoint3D(int a, int b) {
-        return bez.calculerPoint3D(1.0 * a / getMaxX(), 1.0 * b / getMaxY());
-    }
 
 }

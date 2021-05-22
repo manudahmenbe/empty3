@@ -40,15 +40,17 @@
  */
 package one.empty3.library.core.nurbs;
 
+import com.mongodb.ReadPreference;
 import one.empty3.library.Point3D;
 import one.empty3.library.Polygon;
+import one.empty3.library.Representable;
 import one.empty3.library.StructureMatrix;
 import one.empty3.library.core.tribase.TRIObjetGenerateurAbstract;
 
 /*__
  * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
-public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
+public abstract class ParametricSurface extends Representable {
 
 
 
@@ -181,10 +183,6 @@ public abstract class ParametricSurface extends TRIObjetGenerateurAbstract {
 
     public Point3D velocity(Double u1, Double v1, Double u2, Double v2) {
         return calculerPoint3D(u2, v2).moins(calculerPoint3D(u1, v1));
-    }
-
-    public Point3D coordPoint3D(int x, int y) {
-        return calculerPoint3D(1.0 * x / getMaxX(), 1.0 * y / getMaxY());
     }
 
     public Polygon getElementSurface(Double u, Double incrU, Double v, Double incrV) {

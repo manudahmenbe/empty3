@@ -33,15 +33,6 @@ public class TestTore extends TestObjetSub {
 
         TRIExtrusionGeneralisee tri = new TRIExtrusionGeneralisee();
 
-        tri.setCirculaireX(true);
-        tri.setCirculaireY(true);
-
-       // tri.setSurface(s);
-
-      //  tri.setChemin(c);
-
-        tri.setMaxX(100);
-        tri.setMaxY(100);
 
         tri.texture(new TextureCol(Color.WHITE));
 

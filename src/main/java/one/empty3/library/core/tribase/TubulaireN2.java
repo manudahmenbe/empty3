@@ -96,12 +96,10 @@ public class TubulaireN2<T extends ParametricCurve> extends ParametricSurface {
 
     public void nbrAnneaux(int n) {
         surve.getParameters().setIncrU(1.0 / n);
-        setMaxX(n);
     }
 
     public void nbrRotations(int r) {
         this.N_TOURS = r;
-        setMaxY(r);
     }
 
     public void radius(double d) {
