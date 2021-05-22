@@ -42,9 +42,9 @@ public class TestCrane extends TestObjetSub {
             camera.setLookat(Point3D.O0);
             camera2.calculerMatriceT(Point3D.Y);
 */
-            camera.setMatrice(new Matrix33(new double[]{1, 0, 0,
+            /*camera.setMatrice(new Matrix33(new double[]{1, 0, 0,
                     0, 1, 0, 0, 0, -1}));
-
+*/
             scene().cameraActive(camera);
 
 
