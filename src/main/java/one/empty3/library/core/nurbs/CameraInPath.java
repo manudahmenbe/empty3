@@ -106,9 +106,9 @@ public class CameraInPath extends Camera {
         Point3D dir = getEye().moins(getLookat()).norme1();
         d = dir.dot(eye());
         double k = vVert.dot(dir)-eye().dot(dir);
-        Point3D projeté = vVert.plus(dir.mult(k));
+        Point3D projete = vVert.plus(dir.mult(k));
 
-        return projeté;
+        return projete;
     }
     public void calculerMatriceT(Point3D verticale) {
         double t = this.t.getElem();

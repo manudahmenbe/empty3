@@ -127,15 +127,15 @@ public class Rotation2 {
 
         if (Math.abs(den) < Epsilon)
             throw new ArithmeticException("Denominator equal to zero => Vector V is a vector null.");
-        Point3D projeté = X.plus(V.mult(num / den));
+        Point3D projete = X.plus(V.mult(num / den));
 
         for (int i = 0; i < 3; i++) {
-            if (projeté.get(i) == Double.NaN) {
-                projeté = P;
+            if (projete.get(i) == Double.NaN) {
+                projete = P;
             }
         }
 
-        return projeté;
+        return projete;
     }
 
 

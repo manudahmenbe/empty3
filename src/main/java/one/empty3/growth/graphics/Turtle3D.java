@@ -110,14 +110,14 @@ public class Turtle3D {
     }
 
     public void line(double to) {
-        Point3D extrémité = positionTete.plus(vecteurDirecteur.mult(to));
-        positionTete = extrémité;
+        Point3D extremite = positionTete.plus(vecteurDirecteur.mult(to));
+        positionTete = extremite;
     }
 
     public void move(double to) {
-        Point3D extrémité = positionTete.plus(vecteurDirecteur.mult(to));
-        zBuffer.scene().add(new LineSegment(positionTete, extrémité));
-        positionTete = extrémité;
+        Point3D extremite = positionTete.plus(vecteurDirecteur.mult(to));
+        zBuffer.scene().add(new LineSegment(positionTete, extremite));
+        positionTete = extremite;
     }
 
     public void placeObjectHere(Representable representable) {

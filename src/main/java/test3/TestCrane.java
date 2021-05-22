@@ -13,7 +13,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
-import static one.empty3.library.P.p;
 
 public class TestCrane extends TestObjetSub {
     public void ginit() {
@@ -28,17 +27,17 @@ public class TestCrane extends TestObjetSub {
                     "joue.-x",
                     "temporal.x",
                     "temporal.-x"};
-            for(String polyString : strings) {
+            for (String polyString : strings) {
                 polyString = properties.getProperty(polyString);
                 Polygon polygon = (Polygon) new InterpretePolygone().interprete(polyString, 0);
                 polygon.texture(new ColorTexture(Color.BLACK));
                 scene().add(polygon);
             }
             scene().cameraActive(new Camera(
-                            Point3D.Y.mult(10), Point3D.O0, Point3D.X));
+                    Point3D.Y.mult(-20), Point3D.O0, Point3D.X));
 
 
-            System.out.println("Scene= "+scene());
+            System.out.println("Scene= " + scene());
         } catch (IOException | InterpreteException e) {
 
 
@@ -51,7 +50,7 @@ public class TestCrane extends TestObjetSub {
         super.finit();
     }
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         TestCrane testCrane = new TestCrane();
         testCrane.setDimension(TestObjet.HD720);
         testCrane.setMaxFrames(1);
