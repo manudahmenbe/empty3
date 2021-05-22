@@ -33,15 +33,15 @@ public class TestCrane extends TestObjetSub {
             }
 
             Camera camera = new Camera(
-                    Point3D.Z.mult(30), Point3D.O0, Point3D.Y.mult(-1.0));
-            CameraInPath camera2 = new CameraInPath(new LineSegment(
+                    Point3D.Z.mult(50), Point3D.O0, Point3D.Y.mult(-1.0));
+            /*CameraInPath camera2 = new CameraInPath(new LineSegment(
                     new Point3D(0., 0., 30.),
                     new Point3D(0., 0., 0.)
-                    ));
+                    ), Point3D.Y);
             camera2.setT(0.0);
             camera.setLookat(Point3D.O0);
             camera2.calculerMatriceT(Point3D.Y);
-
+*/
             camera.setMatrice(new Matrix33(new double[]{1, 0, 0,
                     0, 1, 0, 0, 0, -1}));
 
