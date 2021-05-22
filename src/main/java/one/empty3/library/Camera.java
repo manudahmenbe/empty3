@@ -46,11 +46,10 @@ public class Camera extends CameraBox {
     private static final long serialVersionUID = 2743860672948547944L;
     public int type_perspective = PERSPECTIVE_OEIL;
 
-    public static Camera PARDEFAULT = new Camera();
-
     protected StructureMatrix<Point3D> eye = new StructureMatrix<>(0, Point3D.class);
     protected StructureMatrix<Point3D> lookat = new StructureMatrix<>(0, Point3D.class);
 
+    private StructureMatrix<Double> scale = new StructureMatrix<>(1, Double.class);
     protected StructureMatrix<Boolean> imposerMatrice = new StructureMatrix<>(0, Point3D.class);
     protected StructureMatrix<Matrix33> matrice = new StructureMatrix<>(0, Matrix33.class);
     private StructureMatrix<Point3D> verticale = new StructureMatrix<>(0, Point3D.class);
@@ -140,10 +139,14 @@ public class Camera extends CameraBox {
             if (verticale == null)
                 verticale = calculerVerticaleParDefaut(getLookat().moins(eye.getElem()));
 
-
-            Point3D z = getLookat().moins(eye.getElem()).norme1();
-            Point3D x = z.prodVect(verticale/* Y */).norme1();
+/*
+            Point3D z = getLookat().moins(getEye()).norme1();
+            Point3D x = z.prodVect(verticale).norme1();
             Point3D y = z.prodVect(x);//verticale;
+*/
+            Point3D z = getLookat().moins(getEye()).norme1();
+            Point3D y = (verticale).norme1();
+            Point3D x = y.prodVect(z);//verticale;
 
             setMatrix(x, y, z);
         }
@@ -267,4 +270,11 @@ public class Camera extends CameraBox {
 
     }
 
+    public StructureMatrix<Double> getScale() {
+        return scale;
+    }
+
+    public void setScale(StructureMatrix<Double> scale) {
+        this.scale = scale;
+    }
 }

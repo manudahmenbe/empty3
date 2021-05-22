@@ -74,7 +74,6 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     private Painter painter = null;
     private int RENDERING_DEFAULT = 0;
     protected Render render; //= Render.getInstance(0, -1);
-    protected Point3D scale;
     protected StructureMatrix<T> T; // = new StructureMatrix<T>(0, one.empty3.library.T.class);
     protected static HashMap<String,StructureMatrix> defaultHashMapData = new HashMap<String,StructureMatrix>();
     public Representable() {
@@ -310,15 +309,6 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     public void setCFAST(ITexture CFAST) {
         this.CFAST = CFAST;
     }
-
-    public Point3D getScale() {
-        return scale;
-    }
-
-    public void setScale(Point3D scale) {
-        this.scale = scale;
-    }
-
 
     public void xmlRepresentation(String filesPath, StringBuilder stringBuilder, Double o) {
         stringBuilder.append("<Double class=\"" + o.getClass() + "\">" + o + "</Double>");

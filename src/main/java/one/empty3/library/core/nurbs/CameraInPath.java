@@ -119,7 +119,7 @@ public class CameraInPath extends Camera {
         Point3D dir = getLookat().moins(eye).norme1();
         Point3D tan = eye.moins(courbe.getElem().calculerPoint3D(t - 0.001)).norme1();
         Point3D vert = /*getVerticale().getElem()==null?*/(tan.prodVect(dir).norme1());//:getVerticale().data0d;
-        Point3D vert2 = pProjVerticale(verticale).moins(eye().norme1());
+        Point3D vert2 = pProjVerticale(verticale).moins(eye().norme1()).norme1();
         matrice.setElem(new Matrix33(new Point3D[]{tan, vert2,
                 tan.prodVect(vert2).norme1()}).tild());
 

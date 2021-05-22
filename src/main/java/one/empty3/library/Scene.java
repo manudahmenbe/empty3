@@ -124,12 +124,12 @@ public class Scene extends Representable implements Serializable {
         } else if (cameras.data1d.size() > 0) {
             return cameras.getElem(0);
         }
-        return Camera.PARDEFAULT;
+        return null;
     }
 
     public void cameraActive(Camera c) {
         this.cameraActive.setElem(c);
-        if (!cameras.getData1d().contains(c)) {
+        if (!(cameras.getData0d()==c)) {
             cameras.getData1d().add(0, c);
         }
     }

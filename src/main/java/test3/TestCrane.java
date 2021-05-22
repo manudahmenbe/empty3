@@ -2,6 +2,8 @@ package test3;
 
 import one.empty3.library.*;
 import one.empty3.library.Polygon;
+import one.empty3.library.core.nurbs.CameraInPath;
+import one.empty3.library.core.nurbs.Point3DS;
 import one.empty3.library.core.script.InterpreteException;
 import one.empty3.library.core.script.InterpretePolygone;
 import one.empty3.library.core.testing.TestObjet;
@@ -19,22 +21,31 @@ public class TestCrane extends TestObjetSub {
         Properties properties = new Properties();
         try {
             properties.load(new BufferedReader(new FileReader("samples/head.properties")));
-            String[] strings = {"frontal.x",
-                    "frontal.-x",
-                    "nose.x",
-                    "nose.-x",
-                    "joue.x",
-                    "joue.-x",
-                    "temporal.x",
-                    "temporal.-x"};
+            String[] strings = {"frontal.x", "frontal.-x",
+                    "nose.x", "nose.-x",
+                    "joue.x", "joue.-x",
+                    "temporal.x", "temporal.-x"};
             for (String polyString : strings) {
                 polyString = properties.getProperty(polyString);
                 Polygon polygon = (Polygon) new InterpretePolygone().interprete(polyString, 0);
                 polygon.texture(new ColorTexture(Color.BLACK));
                 scene().add(polygon);
             }
-            scene().cameraActive(new Camera(
-                    Point3D.Y.mult(-20), Point3D.O0, Point3D.X));
+
+            Camera camera = new Camera(
+                    Point3D.Z.mult(30), Point3D.O0, Point3D.Y.mult(-1.0));
+            CameraInPath camera2 = new CameraInPath(new LineSegment(
+                    new Point3D(0., 0., 30.),
+                    new Point3D(0., 0., 0.)
+                    ));
+            camera2.setT(0.0);
+            camera.setLookat(Point3D.O0);
+            camera2.calculerMatriceT(Point3D.Y);
+
+            camera.setMatrice(new Matrix33(new double[]{1, 0, 0,
+                    0, 1, 0, 0, 0, -1}));
+
+            scene().cameraActive(camera);
 
 
             System.out.println("Scene= " + scene());
