@@ -50,8 +50,8 @@ public class CameraInPath extends Camera {
         this.angleB = angleBRad;
     }*/
 
-    private StructureMatrix<ParametricCurve> courbe = new StructureMatrix<>(0, ParametricCurve.class);
-    private final StructureMatrix<Double> t = new StructureMatrix(0, Double.class);
+    protected final StructureMatrix<ParametricCurve> courbe = new StructureMatrix<>(0, ParametricCurve.class);
+    protected final StructureMatrix<Double> t = new StructureMatrix<>(0, Double.class);
 
     public CameraInPath() {
         super();
@@ -60,9 +60,10 @@ public class CameraInPath extends Camera {
     }
 
     public CameraInPath(ParametricCurve maCourbe) {
-
+        super();
         t.setElem(0.0);
         this.courbe.setElem(maCourbe);
+
         calculerMatriceT(Point3D.Y);
     }
 
@@ -118,11 +119,10 @@ public class CameraInPath extends Camera {
 
         Point3D dir = getLookat().moins(eye).norme1();
         Point3D tan = eye.moins(courbe.getElem().calculerPoint3D(t - 0.001)).norme1();
-        Point3D vert = /*getVerticale().getElem()==null?*/(tan.prodVect(dir).norme1());//:getVerticale().data0d;
         Point3D vert2 = pProjVerticale(verticale).moins(eye().norme1()).norme1();
         matrice.setElem(new Matrix33(new Point3D[]{tan, vert2,
                 tan.prodVect(vert2).norme1()}).tild());
-
+        setVerticale(vert2);
         System.out.println("Matrice (tan, vert, dir)" + matrice.getElem().toString());
         setEye(eye);
     }
@@ -154,13 +154,10 @@ public class CameraInPath extends Camera {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredDataStructure().put("courbe", courbe);
-
+        getDeclaredDataStructure().put("courbe/Courbe 0-1", courbe);
+        getDeclaredDataStructure().put("t/Temps 0-1", t);
     }
 
-    public void setCourbe(StructureMatrix<ParametricCurve> courbe) {
-        this.courbe = courbe;
-    }
 
     public void setT(double t) {
         this.t.setElem(t);

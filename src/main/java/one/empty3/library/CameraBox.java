@@ -45,8 +45,8 @@ public class CameraBox extends Representable {
 
     public static final int PERSPECTIVE_ISOMETRIQUE = 1;
     public static final int PERSPECTIVE_POINTDEFUITE = 1;
-    private StructureMatrix<Double> angleX = new StructureMatrix<>(0, Double.class);
-    private StructureMatrix<Double> angleY = new StructureMatrix<>(0, Double.class);
+    protected StructureMatrix<Double> angleX = new StructureMatrix<>(0, Double.class);
+    protected StructureMatrix<Double> angleY = new StructureMatrix<>(0, Double.class);
     private int type = PERSPECTIVE_ISOMETRIQUE;
 
     public CameraBox() {

@@ -44,15 +44,15 @@ public class Camera extends CameraBox {
     public static final int PERSPECTIVE_ISOM = 0;
     public static final int PERSPECTIVE_OEIL = 1;
     private static final long serialVersionUID = 2743860672948547944L;
-    public int type_perspective = PERSPECTIVE_OEIL;
+    protected int type_perspective = PERSPECTIVE_OEIL;
 
     protected StructureMatrix<Point3D> eye = new StructureMatrix<>(0, Point3D.class);
     protected StructureMatrix<Point3D> lookat = new StructureMatrix<>(0, Point3D.class);
 
-    private StructureMatrix<Double> scale = new StructureMatrix<>(1, Double.class);
+    protected StructureMatrix<Double> scale = new StructureMatrix<>(1, Double.class);
     protected StructureMatrix<Boolean> imposerMatrice = new StructureMatrix<>(0, Point3D.class);
     protected StructureMatrix<Matrix33> matrice = new StructureMatrix<>(0, Matrix33.class);
-    private StructureMatrix<Point3D> verticale = new StructureMatrix<>(0, Point3D.class);
+    protected StructureMatrix<Point3D> verticale = new StructureMatrix<>(0, Point3D.class);
 
     {
 
@@ -276,5 +276,9 @@ public class Camera extends CameraBox {
 
     public void setScale(StructureMatrix<Double> scale) {
         this.scale = scale;
+    }
+
+    protected void setVerticale(Point3D vert2) {
+        this.verticale.setElem(vert2);
     }
 }
