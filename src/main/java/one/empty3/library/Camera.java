@@ -77,7 +77,9 @@ public class Camera extends CameraBox {
     }
 
     public Camera(Point3D eye, Point3D lookat) {
+
         this(eye, lookat, null);
+
     }
 
     public Camera(Point3D eye, Point3D lookat, Point3D up) {
@@ -136,22 +138,25 @@ public class Camera extends CameraBox {
         this.matrice.setElem(m.tild());
     }
 
-    public void calculerMatrice(Point3D verticale) {
+    public void calculerMatrice(Point3D vertical) {
         if (!imposerMatrice.getElem()) {
-            if (verticale == null)
-                verticale = calculerVerticaleParDefaut(getLookat().moins(eye.getElem()));
-        }
-/*
+            if (vertical == null) {
+                vertical = calculerVerticaleParDefaut(getLookat().moins(eye.getElem()));
+                this.verticale.setElem(vertical);
+            }
+///*
             Point3D z = getLookat().moins(getEye()).norme1();
-            Point3D x = z.prodVect(verticale).norme1();
+            Point3D x = z.prodVect(vertical).norme1();
             Point3D y = z.prodVect(x);//verticale;
-*/
+//*/
+/*
             Point3D z = getLookat().moins(getEye()).norme1();
             Point3D y = (verticale).norme1();
             Point3D x = y.prodVect(z);//verticale;
-
+*/
             setMatrix(x, y, z);
             matrice.setElem(matrice.getElem().tild());
+        }
     }
 
     public Point3D calculerPointDansRepere(Point3D p) {
