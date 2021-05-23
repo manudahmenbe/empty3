@@ -15,17 +15,17 @@ public class TestHumanModel extends TestObjetSub {
 
     public void ginit() {
         setMaxFrames(18);
-        z.setDisplayType(ZBufferImpl.DISPLAY_ALL);
+        z().setDisplayType(ZBufferImpl.DISPLAY_ALL);
         humanoidModel = new Human();
         humanoidModel.init();
         humanoidModel.update();
         scene().add(humanoidModel);
+        Camera c = new Camera(Point3D.Z.mult(-4.), Point3D.O0);
+        scene().cameras().add(c);
+        scene().cameraActive(c);
     }
 
     public void finit() {
-        scene().cameras().clear();
-        Camera c = new Camera(Point3D.Z.mult(-100.), Point3D.O0);
-        scene().cameraActive(c);
     }
 
     public static void main(String [] args) {
