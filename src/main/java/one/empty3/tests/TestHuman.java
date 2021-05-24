@@ -1,15 +1,9 @@
 package one.empty3.tests;
 
-import one.empty3.apps.pad.models.HumanoidModel;
 import one.empty3.library.*;
-import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
-import one.empty3.library.core.nurbs.FctXY;
 import one.empty3.library.core.testing.TestObjetSub;
-import one.empty3.library.core.tribase.Tubulaire3;
 
-import java.awt.*;
-
-public class TestHumanModel extends TestObjetSub {
+public class TestHuman extends TestObjetSub {
 
     private Human humanoidModel;
 
@@ -29,7 +23,7 @@ public class TestHumanModel extends TestObjetSub {
     }
 
     public static void main(String [] args) {
-        TestHumanModel testHumanModel = new TestHumanModel();
+        TestHuman testHumanModel = new TestHuman();
         testHumanModel.setPublish(true);
 
         new Thread(testHumanModel).start();

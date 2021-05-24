@@ -536,14 +536,24 @@ public class Point3D extends Representable {
         if (point3D.coordArr.data1d.size() !=
                 this.coordArr.data1d.size())
             return false;
-        for (int i = 0; i < 3; i++)
-            if (!coordArr.getElem(i).equals(point3D.get(i)))
+        for (int i = 0; i < 3; i++) {
+            if (!(coordArr.getElem(i) - (point3D.get(i)) < 1E-10))
                 return false;
-
+            if(coordArr.getElem(i).equals(Double.NaN)|| coordArr.getElem(i).equals(Double.NaN)) {
+                return false;
+            }
+        }
         return true;
     }
 
-
+    public boolean isAnyNaN() {
+        for (int i = 0; i < 3; i++) {
+            if (coordArr.getElem(i).equals(Double.NaN)) {
+                return true;
+            }
+        }
+        return false;
+    }
     public void declareProperties() {
         super.declareProperties();
         getDeclaredDataStructure().put("coordArr/coordonnées", coordArr);

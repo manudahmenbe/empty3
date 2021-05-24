@@ -24,14 +24,14 @@ public class Human extends RepresentableConteneur {
     protected Membre[] doigtsMainGauche;
     protected Membre[] doigtsMainDroite;
     protected Membre tete;
-    protected double hauteurTroncHaut = 1.4;
-    protected double hauteurTroncBas = 1.0;
+    protected double hauteurSommet = 2.0;
     private double hauteurTete = 1.6;
+    protected double hauteurTroncHaut = 1.4;
+    protected double hauteurTroncBas = 1.05;
     private double largeurPoitrine = 0.9;
     private double hauteurBassin = 0.9;
     private double hauteurRotule = 0.5;
     private double hauteurCheville = 0.1;
-    protected double hauteurSommet = 2.0;
     public Human() {
 
     }
