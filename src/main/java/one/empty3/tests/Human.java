@@ -48,14 +48,14 @@ public class Human extends RepresentableConteneur {
                 Point3D.Y.plus(Point3D.Y.mult(hauteurTroncHaut)).moins(Point3D.Y).plus(Point3D.X.mult(-largeurPoitrine))),
                 (hauteurTete + hauteurTroncHaut) / 2.));
         troncHaut = new Membre(t);
-        TubulaireN2 lineSegmentTubulaireN21 = new TubulaireN2(new LineSegment(Point3D.Y.mult(hauteurRotule).plus(Point3D.X.mult(largeurPoitrine)),
+        TubulaireN2 jhgT = new TubulaireN2(new LineSegment(Point3D.Y.mult(hauteurRotule).plus(Point3D.X.mult(largeurPoitrine)),
                 Point3D.Y.mult(hauteurBassin).plus(Point3D.X.mult(largeurPoitrine))
         ), 1.0);
-        TubulaireN2 lineSegmentTubulaireN2 = new TubulaireN2(new LineSegment(Point3D.Y.mult(hauteurRotule).plus(Point3D.X.mult(-largeurPoitrine)),
+        TubulaireN2 jhdT = new TubulaireN2(new LineSegment(Point3D.Y.mult(hauteurRotule).plus(Point3D.X.mult(-largeurPoitrine)),
                 Point3D.Y.mult(hauteurBassin).plus(Point3D.X.mult(-largeurPoitrine))
         ), 1.0);
-        jambeHautGauche = new Membre(lineSegmentTubulaireN21);
-        jambeHautDroite = new Membre(lineSegmentTubulaireN2);
+        jambeHautGauche = new Membre(jhgT);
+        jambeHautDroite = new Membre(jhdT);
         TubulaireN2 jambeBasG = new TubulaireN2(new LineSegment(Point3D.Y.mult(hauteurCheville).plus(Point3D.X.mult(largeurPoitrine)),
                 Point3D.Y.mult(hauteurRotule).plus(Point3D.X.mult(largeurPoitrine))
         ), 1.0);
