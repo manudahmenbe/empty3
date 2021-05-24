@@ -149,9 +149,12 @@ public class TubulaireN2 extends ParametricSurface {
     private Point3D[] vectPerp(double t) {
         Point3D[][] vecteurs = new Point3D[3][3];
 
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
-                vecteurs[i][j] = Point3D.O0;
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++) {
+                vecteurs[i][j] = new Point3D(0., 0., 0.);
+                for (int k = 0; k < 3; k++)
+                    vecteurs[i][j].set(j, k == i ? 1. : 0.);
+            }
 
         Point3D tangente = calculerTangente(t);
         if(tangente.equals(Point3D.O0)||tangente.isAnyNaN()) {
@@ -188,23 +191,24 @@ public class TubulaireN2 extends ParametricSurface {
 
         int j = 0;
         double min = 3;
+        double minI = Math.sqrt(3); // TODO
         for (int i = 0; i < 3; i++) {
             Point3D px = tangente.prodVect(normal.prodVect(refs[i])).norme1();
 
             Point3D py = px.prodVect(tangente).norme1();
 
 
-            vecteurs[i][0] = tangente;
-            vecteurs[i][1] = px;
-            vecteurs[i][2] = py;
+            vecteurs[i][0] = px;
+            vecteurs[i][1] = py;
+            vecteurs[i][2] = tangente;
 
-            double minI = Math.sqrt(3); // TODO
             if (minI < min) {
                 min = minI;
                 j = i;
             }
         }
-
+        if(min<minI)
+            System.out.println("Error vectPerp : TubulaireN2");
         return vecteurs[j];
     }
 

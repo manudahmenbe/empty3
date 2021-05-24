@@ -14,7 +14,7 @@ public class TestHuman extends TestObjetSub {
         humanoidModel.init();
         humanoidModel.update();
         scene().add(humanoidModel);
-        Camera c = new Camera(Point3D.Z.mult(-4.), Point3D.O0);
+        Camera c = new Camera(Point3D.Z.mult(-8.), Point3D.O0);
         scene().cameras().add(c);
         scene().cameraActive(c);
     }
