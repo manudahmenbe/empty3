@@ -122,7 +122,7 @@ public class Tubulaire3 extends ParametricSurface {
             vecteurs[i][1] = px;
             vecteurs[i][2] = py;
 
-            double minI = Math.abs(tangente.plus(px).plus(py).norme() - Math.sqrt(3));
+            double minI = Math.sqrt(3);// TODO double minI = Math.abs(tangente.plus(px).plus(py).norme() - Math.sqrt(3));
             if (minI < min) {
                 min = minI;
                 j = i;

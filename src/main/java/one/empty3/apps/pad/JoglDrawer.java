@@ -59,7 +59,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     double INCR_AA = 0.01;
     double DISTANCE_MIN = 100;
     Timer timer;
-    TubulaireN2<Lines> path;
+    //TubulaireN2<LineSegment> path;
     private double maximize = INCR_AA / 10;
     private double minimize = INCR_AA;
     private PositionUpdate mover;
@@ -420,18 +420,18 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         if (toggleMenu.isDisplaySky())
             draw3(new Ciel().getBleu(), glu, gl);
 
-        if (mover.getPath().size() >= 2) {
-            path = new TubulaireN2<Lines>();
-            mover.setPath(new Path());
-            Lines lines = new Lines(getMover().getPath());
-            path.curve(lines);
-            path.nbrAnneaux(100);
-            path.nbrRotations(4);
-            path.diam(0.01);
-            path.generate();
-
-            // TODO draw2(path, glu, gl);
-        }
+//        if (mover.getPath().size() >= 2) {
+//            path = new TubulaireN2<Lines>();
+//            mover.setPath(new Path());
+//            Lines lines = new Lines(getMover().getPath());
+//            path.curve(lines);
+//            path.nbrAnneaux(100);
+//            path.nbrRotations(4);
+//            path.diam(0.01);
+//            path.generate();
+//
+//            // TODO draw2(path, glu, gl);
+//        }
 
         //if (toggleMenu.isDisplayGroundGrid())
         //  draw(terrain, glu, gl);
@@ -446,12 +446,12 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         if (toggleMenu.isDisplayCharacter()) {
             if (getPlotter3D().isActive()) {
                 CourbeParametriquePolynomiale courbeParametriquePolynomiale = null;
-                TubulaireN2<CourbeParametriquePolynomiale> segmentDroiteTubulaireN2 = new TubulaireN2<>();
-                segmentDroiteTubulaireN2.diam(0.01);
-                segmentDroiteTubulaireN2.curve(courbeParametriquePolynomiale = new CourbeParametriquePolynomiale(new Point3D[]{getMover().getPositionMobile().calcPosition2D(),
-                        getMover().getPositionMobile().calcDirection2D()}));
-                segmentDroiteTubulaireN2.generate();
-                draw(courbeParametriquePolynomiale, glu, gl);
+//                TubulaireN2<CourbeParametriquePolynomiale> segmentDroiteTubulaireN2 = new TubulaireN2<>();
+//                segmentDroiteTubulaireN2.diam(0.01);
+//                segmentDroiteTubulaireN2.curve(courbeParametriquePolynomiale = new CourbeParametriquePolynomiale(new Point3D[]{getMover().getPositionMobile().calcPosition2D(),
+//                        getMover().getPositionMobile().calcDirection2D()}));
+//                segmentDroiteTubulaireN2.generate();
+//                draw(courbeParametriquePolynomiale, glu, gl);
             } else {
                 Cube object = vaisseau.getObject();
                 object.setPosition(mover.calcCposition());
@@ -495,14 +495,14 @@ public class JoglDrawer extends Drawer implements GLEventListener {
                         P.n(0.5 + 1, 0.5 + 1, 0)}
         };
 
-        TubulaireN2<CourbeParametriquePolynomialeBezier> courbeParametriquePolynomialeBezierTubulaireN2 = new TubulaireN2<>();
-        courbeParametriquePolynomialeBezierTubulaireN2.curve(new CourbeParametriquePolynomialeBezier(arc[0]));
-        courbeParametriquePolynomialeBezierTubulaireN2.texture(new ColorTexture(Color.GREEN));
-
-
-        TubulaireN2<CourbeParametriquePolynomialeBezier> courbeParametriquePolynomialeBezierTubulaireN22 = new TubulaireN2<>();
-        courbeParametriquePolynomialeBezierTubulaireN22.curve(new CourbeParametriquePolynomialeBezier(arc[1]));
-        courbeParametriquePolynomialeBezierTubulaireN22.texture(new ColorTexture(Color.GREEN));
+//        TubulaireN2<CourbeParametriquePolynomialeBezier> courbeParametriquePolynomialeBezierTubulaireN2 = new TubulaireN2<>();
+//        courbeParametriquePolynomialeBezierTubulaireN2.curve(new CourbeParametriquePolynomialeBezier(arc[0]));
+//        courbeParametriquePolynomialeBezierTubulaireN2.texture(new ColorTexture(Color.GREEN));
+//
+//
+//        TubulaireN2<CourbeParametriquePolynomialeBezier> courbeParametriquePolynomialeBezierTubulaireN22 = new TubulaireN2<>();
+//        courbeParametriquePolynomialeBezierTubulaireN22.curve(new CourbeParametriquePolynomialeBezier(arc[1]));
+//        courbeParametriquePolynomialeBezierTubulaireN22.texture(new ColorTexture(Color.GREEN));
 
         // TODO draw(courbeParametriquePolynomialeBezierTubulaireN2, glu, gl);
         // TODO draw(courbeParametriquePolynomialeBezierTubulaireN22, glu, gl);

@@ -51,7 +51,7 @@ public class Horloge extends JFrame {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                if (e.getKeyChar() == new Character('f')) {
+                if (e.getKeyChar() == 'f') {
                 } else {
                     c.showAndReturnBack();
 
@@ -139,19 +139,12 @@ public class Horloge extends JFrame {
         sc.add(droite1);
         sc.add(droite2);
 
-        TubulaireN2<LineSegment> segmentDroiteTubulaireN20 = new TubulaireN2<>();
-        segmentDroiteTubulaireN20.curve(droite0);
-        segmentDroiteTubulaireN20.diam(20);
+        TubulaireN2 segmentDroiteTubulaireN20 = new TubulaireN2(droite0, 20);
         sc.add(segmentDroiteTubulaireN20);
-        TubulaireN2<LineSegment> segmentDroiteTubulaireN21 = new TubulaireN2<>();
-        segmentDroiteTubulaireN21.curve(droite1);
-        sc.add(segmentDroiteTubulaireN21);
-        segmentDroiteTubulaireN20.diam(20);
-        TubulaireN2<LineSegment> segmentDroiteTubulaireN22 = new TubulaireN2<>();
-        segmentDroiteTubulaireN22.curve(droite2);
+        TubulaireN2 segmentDroiteTubulaireN21 = new TubulaireN2(droite1, 20);
+        TubulaireN2 segmentDroiteTubulaireN22 = new TubulaireN2(droite2, 20);
         sc.add(segmentDroiteTubulaireN22);
-        segmentDroiteTubulaireN20.diam(20);
-
+        sc.add(segmentDroiteTubulaireN21);
         sc.cameraActive(new Camera(Point3D.Z.mult(-200d), Point3D.O0));
         sc.cameraActive().calculerMatrice(Point3D.Y);
     }

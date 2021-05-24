@@ -2,6 +2,7 @@ package one.empty3.tests;
 
 import one.empty3.library.*;
 import one.empty3.library.Polygon;
+import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
 import one.empty3.library.core.testing.TestObjetSub;
 import one.empty3.library.core.tribase.Tubulaire3;
 
@@ -9,7 +10,7 @@ import java.awt.*;
 
 public class TestHumainMarche extends TestObjetSub {
     public void tubeAddPoint(Tubulaire3 tube, Point3D p) {
-        tube.getSoulCurve().getElem().getCoefficients().getData1d().add(p);
+        ((CourbeParametriquePolynomialeBezier)tube.getSoulCurve().getElem()).getCoefficients().getData1d().add(p);
     }
 
     public void ginit() {

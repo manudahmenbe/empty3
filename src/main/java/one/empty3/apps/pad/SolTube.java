@@ -46,15 +46,15 @@ import java.util.Iterator;
 public class SolTube extends Terrain  {
     public SolTube(/*Game game*/) {
         setDessineMurs(false);
-        TubulaireN2<CourbeParametriquePolynomialeBezier> n2 = new TubulaireN2<>();
+        TubulaireN2 n2 = new TubulaireN2();
         CourbeParametriquePolynomialeBezier courbeParametriquePolynomialeBezier;
         courbeParametriquePolynomialeBezier = new CourbeParametriquePolynomialeBezier(new Point3D[]{Point3D.O0, Point3D.X, Point3D.Y, Point3D.Z});
-        n2.curve(courbeParametriquePolynomialeBezier);
+        //n2.curve(courbeParametriquePolynomialeBezier);
         n2.nbrAnneaux(40);
         n2.nbrRotations(20);
-        n2.diam(1);
+        //n2.diam(1);
 
-        n2.generate();
+        //n2.generate();
 
         ps = n2;
 
