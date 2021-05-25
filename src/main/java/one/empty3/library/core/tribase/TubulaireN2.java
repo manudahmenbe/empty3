@@ -53,7 +53,7 @@ import java.awt.*;
 import java.util.Iterator;
 
 public class TubulaireN2 extends ParametricSurface {
-    public double TAN_FCT_INCR =  0.00000001;
+    public double TAN_FCT_INCR = 0.00000001;
     public double NORM_FCT_INCR = 0.00001;
 
     protected StructureMatrix<ParametricCurve> soulCurve = new StructureMatrix<>(0, ParametricCurve.class);
@@ -73,13 +73,13 @@ public class TubulaireN2 extends ParametricSurface {
         soulCurve.setElem(curve);
         soulCurve.getElem().texture(new ColorTexture(Color.BLACK));
         FctXY fctXY = new FctXY();
-        fctXY.setFormulaX(""+diameter);
+        fctXY.setFormulaX("" + diameter);
         diameterFunction.setElem(fctXY);
         declareProperties();
     }
 
     public Point3D calculerNormale(double t) {
-        return calculerTangente(t + NORM_FCT_INCR).moins(calculerTangente(t)).mult(1.0 / NORM_FCT_INCR);
+        return calculerTangente(t + NORM_FCT_INCR).prodVect(calculerTangente(t)).mult(1.0 / NORM_FCT_INCR);
     }
 
     public Point3D calculerTangente(double t) {
@@ -151,19 +151,19 @@ public class TubulaireN2 extends ParametricSurface {
     public Point3D[] vectPerp(double t, double v) {
         Point3D[][] vecteurs = new Point3D[3][3];
 
-        for(int i = 0; i < 3; i++)
-            for(int j = 0; j < 3; j++) {
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++) {
                 vecteurs[i][j] = new Point3D(0., 0., 0.);
                 for (int k = 0; k < 3; k++)
                     vecteurs[i][j].set(j, k == i ? 1. : 0.);
             }
 
         Point3D tangente = calculerTangente(t);
-        if(tangente.equals(Point3D.O0)||tangente.isAnyNaN()) {
-            if(lastTan!=null) {
+        if (tangente.equals(Point3D.O0) || tangente.isAnyNaN()) {
+            if (lastTan != null) {
                 tangente = lastTan;
             } else
-                tangente = Point3D.X;//TODO
+                tangente = Point3D.Y;//TODO
         } else {
             lastTan = tangente;
         }
@@ -184,15 +184,15 @@ public class TubulaireN2 extends ParametricSurface {
         double minI = 1000; // TODO
         for (int i = 0; i < 3; i++) {
             Point3D normal = calculerNormale(t);
-            if(normal.equals(Point3D.O0)||normal.isAnyNaN()) {
-                if(lastNorm!=null) {
+            if (normal.equals(Point3D.O0) || normal.isAnyNaN()) {
+                if (lastNorm != null) {
                     normal = lastNorm;
                     //normal = tangente.prodVect(refs[i]);//TODO .prodVect(refs[i])).norme1();
                 } else
-                    normal = calculerNormalePerp(t, v);//TODO .prodVect(refs[i])).norme1();
-//                normal = tangente.prodVect(refs[i]);//TODO .prodVect(refs[i])).norme1();
-                    //normal = tangente.prodVect(soulCurve.getElem().calculerPoint3D(0.5));
-            }  else {
+                    //normal = calculerNormalePerp(t, v);//TODO .prodVect(refs[i])).norme1();
+                    normal = tangente.prodVect(refs[i]);//TODO .prodVect(refs[i])).norme1();
+                //normal = tangente.prodVect(soulCurve.getElem().calculerPoint3D(0.5));
+            } else {
                 lastNorm = normal;
             }
 
@@ -202,11 +202,11 @@ public class TubulaireN2 extends ParametricSurface {
             Point3D py = tangente.prodVect(px).norme1();
 
 
-            vecteurs[i][0] = tangente.norme1();
             vecteurs[i][1] = px.norme1();
             vecteurs[i][2] = py.norme1();
+            vecteurs[i][0] = tangente.norme1();
 
-            minI = px.prodVect(py).norme()-1;;
+            minI = Math.abs(px.prodVect(py).norme() - 1);
             //minI2  = px.prodVect(py).norme()-1;
             if (minI < min) {
                 min = minI;
@@ -225,15 +225,16 @@ public class TubulaireN2 extends ParametricSurface {
                 vectPerp[1].mult(diameterFunction.getElem().result(u) * Math.cos(2 * Math.PI * v))).plus(
                 vectPerp[2].mult(diameterFunction.getElem().result(u) * Math.sin(2 * Math.PI * v)));
     }
-/*old
-    @Override
-    public Point3D calculerPoint3D(double u, double v) {
-        Point3D[] vectPerp = vectPerp(u);
-        return soulCurve.getElem().calculerPoint3D(u).plus(
-                vectPerp[1].mult(diameterFunction.getElem().result(u) * Math.cos(2 * Math.PI * v))).plus(
-                vectPerp[2].mult(diameterFunction.getElem().result(u) * Math.sin(2 * Math.PI * v)));
-    }
-*/
+
+    /*old
+        @Override
+        public Point3D calculerPoint3D(double u, double v) {
+            Point3D[] vectPerp = vectPerp(u);
+            return soulCurve.getElem().calculerPoint3D(u).plus(
+                    vectPerp[1].mult(diameterFunction.getElem().result(u) * Math.cos(2 * Math.PI * v))).plus(
+                    vectPerp[2].mult(diameterFunction.getElem().result(u) * Math.sin(2 * Math.PI * v)));
+        }
+    */
     @Override
     public void declareProperties() {
         super.declareProperties();
@@ -260,7 +261,7 @@ public class TubulaireN2 extends ParametricSurface {
 
     public void setDiameter(double d) {
         FctXY fctXY = new FctXY();
-        fctXY.setFormulaX(""+d);
+        fctXY.setFormulaX("" + d);
         this.diameterFunction.setElem(fctXY);
     }
 }

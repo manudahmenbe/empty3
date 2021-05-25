@@ -9,6 +9,7 @@ public class Human extends RepresentableConteneur {
     protected RepresentableConteneur actualBody = new RepresentableConteneur();
     protected Membre troncHaut;
     protected Membre troncBas;
+    protected Membre tronc;
     protected Membre jambeHautGauche;
     protected Membre jambeHautDroite;
     protected Membre jambeBasGauche;
@@ -25,7 +26,7 @@ public class Human extends RepresentableConteneur {
     protected Membre[] doigtsMainDroite;
     protected Membre tete;
     protected double hauteurSommet = 2.0;
-    private double hauteurTete = 1.6;
+    private double hauteurTete = 1.8;
     protected double hauteurTroncHaut = 1.4;
     protected double hauteurTroncBas = 1.05;
     private double largeurPoitrine = 0.4;
@@ -44,12 +45,19 @@ public class Human extends RepresentableConteneur {
         actualBody.getListRepresentable().clear();
         troncBas = new Membre(new Sphere(new Axe(Point3D.Y.mult(hauteurTroncHaut).plus(Point3D.Y), Point3D.Y.mult(hauteurTroncHaut).moins(Point3D.Y)),
                 (largeurPoitrine) / 3.));
+
+        TubulaireN2 tronc2 = new TubulaireN2(new LineSegment(Point3D.Y.mult(hauteurTroncBas).plus(Point3D.X.mult(0)),
+                Point3D.Y.mult(hauteurTete).plus(Point3D.X.mult(0))
+        ), largeurPoitrine/2);
+        tronc = new Membre(tronc2);
+
+
         RepresentableConteneur t = new RepresentableConteneur();
-        t.getListRepresentable().add(new Sphere(new Axe(Point3D.Y.plus(Point3D.Y.mult(hauteurTroncHaut).plus(Point3D.Y)).plus(Point3D.X.mult(largeurPoitrine*2/3)),
-                Point3D.Y.plus(Point3D.Y.mult(hauteurTroncHaut)).moins(Point3D.Y).plus(Point3D.X.mult(largeurPoitrine*2/3))),
+        t.getListRepresentable().add(new Sphere(new Axe(Point3D.Y.mult(hauteurTroncHaut).plus(Point3D.X.mult(largeurPoitrine*2/3)),
+                Point3D.Y.mult(hauteurTroncHaut).moins(Point3D.Y).plus(Point3D.X.mult(largeurPoitrine*2/3))),
                 largeurPoitrine / 4.));
-        t.getListRepresentable().add(new Sphere(new Axe(Point3D.Y.plus(Point3D.Y.mult(hauteurTroncHaut).plus(Point3D.Y)).plus(Point3D.X.mult(-largeurPoitrine*2/3)),
-                Point3D.Y.plus(Point3D.Y.mult(hauteurTroncHaut)).moins(Point3D.Y).plus(Point3D.X.mult(-largeurPoitrine*2/3))),
+        t.getListRepresentable().add(new Sphere(new Axe(Point3D.Y.mult(hauteurTroncHaut).plus(Point3D.X.mult(-largeurPoitrine*2/3)),
+                Point3D.Y.mult(hauteurTroncHaut).moins(Point3D.Y).plus(Point3D.X.mult(-largeurPoitrine*2/3))),
                 largeurPoitrine / 4.));
         troncHaut = new Membre(t);
         TubulaireN2 jhgT = new TubulaireN2(new LineSegment(Point3D.Y.mult(hauteurRotule).plus(Point3D.X.mult(largeurPoitrine)),
@@ -112,7 +120,7 @@ public class Human extends RepresentableConteneur {
         actualBody.add(tete.getRepresentable());
         actualBody.add(piedGauche.getRepresentable());
         actualBody.add(piedDroit.getRepresentable());
-
+        actualBody.add(tronc.getRepresentable());
 
         add(actualBody) ;
 
