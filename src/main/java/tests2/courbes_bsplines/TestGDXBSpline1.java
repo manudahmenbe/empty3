@@ -13,7 +13,7 @@ import java.awt.*;
  */
 public class TestGDXBSpline1 extends TestObjet {
     private static final double INCR_PRECISION = 0.00001;
-    TubulaireN2 t = new TubulaireN2<>();
+    TubulaireN2 t = new TubulaireN2();
     private gdx_BSplineCurve b;
 
     public static void main(String[] args) {
@@ -42,10 +42,10 @@ public class TestGDXBSpline1 extends TestObjet {
 
         b.texture(new TextureCol(Color.WHITE));
 
-        t.curve(b);
+        t.setSoulCurve(b);
 
         t.nbrAnneaux((int) (1 / INCR_PRECISION));
-        t.diam(1);
+        t.setDiameter(1);
         t.nbrRotations(10);
         t.texture(new TextureCol(Color.WHITE));
 

@@ -83,7 +83,7 @@ public class FctXY extends Fct1D_1D {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredDataStructure().put("formulaX/fonction Y=f(x)", formulaX);
+        getDeclaredDataStructure().put("formulaX/fonction f(x)", formulaX);
     }
 
     @Override

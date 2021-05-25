@@ -3,6 +3,7 @@ package one.empty3.tests;
 import one.empty3.library.*;
 import one.empty3.library.core.testing.TestObjet;
 import one.empty3.library.core.testing.TestObjetSub;
+import one.empty3.library.core.tribase.TubulaireN2;
 
 public class TestHuman extends TestObjetSub {
 
@@ -18,6 +19,13 @@ public class TestHuman extends TestObjetSub {
         Camera c = new Camera(Point3D.Z.mult(-8.), Point3D.O0);
         scene().cameras().add(c);
         scene().cameraActive(c);
+
+        for(Representable r : humanoidModel.actualBody.getListRepresentable()) {
+            if(r instanceof TubulaireN2) {
+                humanoidModel.add(((TubulaireN2)r).getSoulCurve().getElem());
+            }
+        }
+
     }
 
     public void finit() {

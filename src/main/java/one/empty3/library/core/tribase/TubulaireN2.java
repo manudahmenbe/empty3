@@ -42,12 +42,14 @@
  */
 package one.empty3.library.core.tribase;
 
+import one.empty3.library.ColorTexture;
 import one.empty3.library.Point3D;
 import one.empty3.library.StructureMatrix;
 import one.empty3.library.core.gdximports.gdx_BSplineCurve;
 import one.empty3.library.core.nurbs.*;
 import org.apache.xmlbeans.impl.tool.Extension;
 
+import java.awt.*;
 import java.util.Iterator;
 
 public class TubulaireN2 extends ParametricSurface {
@@ -67,8 +69,8 @@ public class TubulaireN2 extends ParametricSurface {
     }
 
     public TubulaireN2(ParametricCurve curve, double diameter) {
-        this();
         soulCurve.setElem(curve);
+        soulCurve.getElem().texture(new ColorTexture(Color.BLACK));
         FctXY fctXY = new FctXY();
         fctXY.setFormulaX(""+diameter);
         diameterFunction.setElem(fctXY);
@@ -236,7 +238,7 @@ public class TubulaireN2 extends ParametricSurface {
         soulCurve.getElem().declareProperties();
         diameterFunction.getElem().declareProperties();
         getDeclaredDataStructure().put("soulCurve/Ame de la courbe", soulCurve);
-        getDeclaredDataStructure().put("diameterFunction/Fonction de la longueur du diamètre (var=x)", diameterFunction);
+        getDeclaredDataStructure().put("diameterFunction/Fonction de positon sur la courbe - diamètre (var='x')", diameterFunction);
 
     }
 
@@ -250,7 +252,7 @@ public class TubulaireN2 extends ParametricSurface {
     }
 
 
-    public void setSoulCurve(gdx_BSplineCurve b) {
+    public void setSoulCurve(ParametricCurve b) {
         this.soulCurve.setElem(b);
     }
 

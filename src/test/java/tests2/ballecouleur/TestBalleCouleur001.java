@@ -35,6 +35,7 @@ public class TestBalleCouleur001 extends TestObjetSub {
 
         th.loop(true);
 
+        th.setPublish(true);
 
         th.setGenerate(GENERATE_IMAGE | GENERATE_MOVIE);
 
@@ -154,7 +155,7 @@ public class TestBalleCouleur001 extends TestObjetSub {
 
             TubulaireN2 tubulaireN2;
             tubulaireN2 = new TubulaireN2(gdx_BSplineCurve, TUBE_RAYON);
-            tubulaireN2.texture(new TextureImg(new ECBufferedImage(ImageIO.read(new File("C:\\EmptyCanvas\\Images\\PHOTO-NU.jpg")))));
+            tubulaireN2.texture(new TextureImg(new ECBufferedImage(ImageIO.read(new File("samples/img/PHOTO-NU.jpg")))));
 
             scene().add(tubulaireN2);
 

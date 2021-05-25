@@ -85,7 +85,7 @@ public class Human extends RepresentableConteneur {
         tete = new Membre(new Sphere(new Axe(Point3D.Y.mult(hauteurSommet), Point3D.Y.mult(hauteurTete)), 0.2));
     }
 
-    public void update() {
+    public synchronized void update() {
         actualBody.add(troncBas.getRepresentable());
         actualBody.add(troncHaut.getRepresentable());
         actualBody.add(jambeHautGauche.getRepresentable());
@@ -98,6 +98,11 @@ public class Human extends RepresentableConteneur {
         actualBody.add(brasBasDroit.getRepresentable());
         actualBody.add(tete.getRepresentable());
 
+
         add(actualBody) ;
+
+
     }
+
+
 }

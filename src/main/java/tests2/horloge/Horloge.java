@@ -139,18 +139,18 @@ public class Horloge extends JFrame {
         sc.add(droite1);
         sc.add(droite2);
 
-        TubulaireN2<LineSegment> segmentDroiteTubulaireN20 = new TubulaireN2<>();
-        segmentDroiteTubulaireN20.curve(droite0);
-        segmentDroiteTubulaireN20.diam(20);
+        TubulaireN2 segmentDroiteTubulaireN20 = new TubulaireN2();
+        segmentDroiteTubulaireN20.setSoulCurve(droite0);
+        segmentDroiteTubulaireN20.setDiameter(20);
         sc.add(segmentDroiteTubulaireN20);
-        TubulaireN2<LineSegment> segmentDroiteTubulaireN21 = new TubulaireN2<>();
-        segmentDroiteTubulaireN21.curve(droite1);
+        TubulaireN2 segmentDroiteTubulaireN21 = new TubulaireN2();
+        segmentDroiteTubulaireN21.setSoulCurve(droite1);
         sc.add(segmentDroiteTubulaireN21);
-        segmentDroiteTubulaireN20.diam(20);
-        TubulaireN2<LineSegment> segmentDroiteTubulaireN22 = new TubulaireN2<>();
-        segmentDroiteTubulaireN22.curve(droite2);
+        segmentDroiteTubulaireN20.setDiameter(20);
+        TubulaireN2 segmentDroiteTubulaireN22 = new TubulaireN2();
+        segmentDroiteTubulaireN22.setSoulCurve(droite2);
         sc.add(segmentDroiteTubulaireN22);
-        segmentDroiteTubulaireN20.diam(20);
+        segmentDroiteTubulaireN20.setDiameter(20);
 
         sc.cameraActive(new Camera(Point3D.Z.mult(-200d), Point3D.O0));
         sc.cameraActive().calculerMatrice(Point3D.Y);
