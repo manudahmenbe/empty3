@@ -185,28 +185,6 @@ public class LineSegment extends ParametricCurve implements CurveElem {
         return intersect3D_RayTriangle(this, tri);
     }
 
-    public Representable place(MODObjet aThis) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public Barycentre position() {
-        throw new UnsupportedOperationException("Not supported yet."); // To
-        // change
-        // body
-        // of
-        // generated
-        // methods,
-        // choose
-        // Tools
-        // |
-        // Templates.
-    }
-
-
-    @Override
-    public boolean supporteTexture() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
     public String toString() {
@@ -214,15 +192,6 @@ public class LineSegment extends ParametricCurve implements CurveElem {
         return "Droite (\n\t" + origine.toString() + "\n\t"
                 + extremite.toString() + "\n\t( " + c.getRed() + " , "
                 + c.getGreen() + " , " + c.getBlue() + " )\n)\n";
-    }
-
-    public int mesure() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Point3D calculerVitesse3D(double t) {
-        return getExtremite().moins(getOrigine()).norme1();
     }
 
     @Override

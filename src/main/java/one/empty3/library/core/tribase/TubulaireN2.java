@@ -54,9 +54,8 @@ public class TubulaireN2 extends ParametricSurface {
     public double TAN_FCT_INCR = 0.000001;
     public double NORM_FCT_INCR = 0.000001;
 
-    //private StructureMatrix<CourbeParametriquePolynomialeBezier> soulCurve = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
-    private StructureMatrix<ParametricCurve> soulCurve = new StructureMatrix<>(0, ParametricCurve.class);
-    private StructureMatrix<FctXY> diameterFunction = new StructureMatrix<>(0, FctXY.class);
+    protected StructureMatrix<ParametricCurve> soulCurve = new StructureMatrix<>(0, ParametricCurve.class);
+    protected StructureMatrix<FctXY> diameterFunction = new StructureMatrix<>(0, FctXY.class);
     private Point3D lastTan = null;
     private Point3D lastNorm = null;
 
@@ -71,7 +70,7 @@ public class TubulaireN2 extends ParametricSurface {
         this();
         soulCurve.setElem(curve);
         FctXY fctXY = new FctXY();
-        fctXY.setFormulaX("1.0");
+        fctXY.setFormulaX(""+diameter);
         diameterFunction.setElem(fctXY);
         declareProperties();
     }
@@ -174,41 +173,44 @@ public class TubulaireN2 extends ParametricSurface {
         refs[2] = new Point3D(0d, 1d, 0d);
 
         tangente = tangente.norme1();
-        Point3D normal = calculerNormale(t);
-        if(normal.equals(Point3D.O0)||normal.isAnyNaN()) {
-            if(lastNorm!=null) {
-                normal = lastNorm;
-            } else
-                normal = tangente.prodVect(soulCurve.getElem().calculerPoint3D(0.5));
-        }  else {
-            lastNorm = tangente;
-        }
 
-        normal = normal.norme1();
-
-        double[] maxs = new double[3];
-
+        Point3D px;
 
         int j = 0;
         double min = 3;
-        double minI = Math.sqrt(3); // TODO
+        double minI = 1000; // TODO
         for (int i = 0; i < 3; i++) {
-            Point3D px = tangente.prodVect(normal.prodVect(refs[i])).norme1();
+            Point3D normal = calculerNormale(t);
+            if(normal.equals(Point3D.O0)||normal.isAnyNaN()) {
+                if(lastNorm!=null) {
+                    normal = lastNorm;
+                    //normal = tangente.prodVect(refs[i]);//TODO .prodVect(refs[i])).norme1();
+                } else
+                    normal = tangente.prodVect(refs[i]);//TODO .prodVect(refs[i])).norme1();
+                    //normal = tangente.prodVect(soulCurve.getElem().calculerPoint3D(0.5));
+            }  else {
+                lastNorm = normal;
+            }
 
-            Point3D py = px.prodVect(tangente).norme1();
+            normal = normal.norme1();
+            px = tangente.prodVect(normal);//TODO .prodVect(refs[i])).norme1();
+
+            Point3D py = tangente.prodVect(px).norme1();
 
 
-            vecteurs[i][0] = px;
-            vecteurs[i][1] = py;
-            vecteurs[i][2] = tangente;
+            vecteurs[i][0] = tangente.norme1();
+            vecteurs[i][1] = px.norme1();
+            vecteurs[i][2] = py.norme1();
+
+            minI = Math.abs(px.prodVect(py).norme()-1.0);
 
             if (minI < min) {
                 min = minI;
                 j = i;
             }
         }
-        if(min<minI)
-            System.out.println("Error vectPerp : TubulaireN2");
+        //if(min<minI)
+        // TODO    System.out.println("Error vectPerp : TubulaireN2");
         return vecteurs[j];
     }
 
@@ -233,8 +235,8 @@ public class TubulaireN2 extends ParametricSurface {
         super.declareProperties();
         soulCurve.getElem().declareProperties();
         diameterFunction.getElem().declareProperties();
-        getDeclaredDataStructure().put("soulCurve/ame de la courbe", soulCurve);
-        getDeclaredDataStructure().put("diameterFunction/ fonction de la longueur du diamètre", diameterFunction);
+        getDeclaredDataStructure().put("soulCurve/Ame de la courbe", soulCurve);
+        getDeclaredDataStructure().put("diameterFunction/Fonction de la longueur du diamètre (var=x)", diameterFunction);
 
     }
 
