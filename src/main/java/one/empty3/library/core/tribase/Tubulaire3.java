@@ -54,6 +54,8 @@ public class Tubulaire3 extends ParametricSurface {
 
     private StructureMatrix<CourbeParametriquePolynomialeBezier> soulCurve = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
     private StructureMatrix<FctXY> diameterFunction = new StructureMatrix<>(0, FctXY.class);
+    private Point3D lastNorm;
+    private Point3D lastTan;
 
     public Tubulaire3() {
         super();
@@ -88,14 +90,25 @@ public class Tubulaire3 extends ParametricSurface {
     }
 
 
-    private Point3D[] vectPerp(double t) {
+    public Point3D[] vectPerp(double t, double v) {
         Point3D[][] vecteurs = new Point3D[3][3];
 
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
-                vecteurs[i][j] = Point3D.O0;
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++) {
+                vecteurs[i][j] = new Point3D(0., 0., 0.);
+                for (int k = 0; k < 3; k++)
+                    vecteurs[i][j].set(j, k == i ? 1. : 0.);
+            }
 
         Point3D tangente = calculerTangente(t);
+        if(tangente.equals(Point3D.O0)||tangente.isAnyNaN()) {
+            if(lastTan!=null) {
+                tangente = lastTan;
+            } else
+                tangente = Point3D.X;//TODO
+        } else {
+            lastTan = tangente;
+        }
 
 
         Point3D[] refs = new Point3D[3];
@@ -105,36 +118,51 @@ public class Tubulaire3 extends ParametricSurface {
         refs[2] = new Point3D(0d, 1d, 0d);
 
         tangente = tangente.norme1();
-        Point3D normale = calculerNormale(t).norme1();
 
-        double[] maxs = new double[3];
-
+        Point3D px;
 
         int j = 0;
         double min = 3;
+        double minI = 1000; // TODO
         for (int i = 0; i < 3; i++) {
-            Point3D px = tangente.prodVect(normale.prodVect(refs[i])).norme1();
+            Point3D normal = calculerNormale(t);
+            if(normal.equals(Point3D.O0)||normal.isAnyNaN()) {
+                if(lastNorm!=null) {
+                    normal = lastNorm;
+                    //normal = tangente.prodVect(refs[i]);//TODO .prodVect(refs[i])).norme1();
+                } else
+                    normal = calculerNormalePerp(t, v);//TODO .prodVect(refs[i])).norme1();
+//                normal = tangente.prodVect(refs[i]);//TODO .prodVect(refs[i])).norme1();
+                //normal = tangente.prodVect(soulCurve.getElem().calculerPoint3D(0.5));
+            }  else {
+                lastNorm = normal;
+            }
 
-            Point3D py = px.prodVect(tangente).norme1();
+            normal = normal.norme1();
+            px = tangente.prodVect(normal);//TODO .prodVect(refs[i])).norme1();
+
+            Point3D py = tangente.prodVect(px).norme1();
 
 
-            vecteurs[i][0] = tangente;
-            vecteurs[i][1] = px;
-            vecteurs[i][2] = py;
+            vecteurs[i][0] = tangente.norme1();
+            vecteurs[i][1] = px.norme1();
+            vecteurs[i][2] = py.norme1();
 
-            double minI = Math.sqrt(3);// TODO double minI = Math.abs(tangente.plus(px).plus(py).norme() - Math.sqrt(3));
+            minI = px.prodVect(py).norme()-1;;
+            //minI2  = px.prodVect(py).norme()-1;
             if (minI < min) {
                 min = minI;
                 j = i;
             }
         }
-
+        //if(min<minI)
+        // TODO    System.out.println("Error vectPerp : TubulaireN2");
         return vecteurs[j];
     }
 
     @Override
     public Point3D calculerPoint3D(double u, double v) {
-        Point3D[] vectPerp = vectPerp(u);
+        Point3D[] vectPerp = vectPerp(u, v);
         return soulCurve.getElem().calculerPoint3D(u).plus(
                 vectPerp[1].mult(diameterFunction.getElem().result(u) * Math.cos(2 * Math.PI * v))).plus(
                 vectPerp[2].mult(diameterFunction.getElem().result(u) * Math.sin(2 * Math.PI * v)));

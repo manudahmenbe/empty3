@@ -53,7 +53,8 @@ import one.empty3.library.core.tribase.TRIObjetGenerateurAbstract;
 public abstract class ParametricSurface extends Representable {
 
 
-
+    private static final double MIN_NORMGT0 = 0.000000001;
+    private static final double TANGENT_INCR = 0.00000001;
     private static Globals globals;
 
 
@@ -141,6 +142,15 @@ public abstract class ParametricSurface extends Representable {
         return moins1.mult(1.0 / incrVitesse.getElem()).norme1();
     }
 
+    public Point3D calculerNormalePerp(double u, double v) {
+
+        Point3D mult = calculerTangenteU(u+TANGENT_INCR, v).prodVect(calculerTangenteV(u, v+TANGENT_INCR)).mult(1.0);
+        if(mult.norme()<=MIN_NORMGT0) {
+            return mult;
+        } else {
+            return mult;
+        }
+    }
     public Double incr1() {
         return incrU.getElem();
     }
