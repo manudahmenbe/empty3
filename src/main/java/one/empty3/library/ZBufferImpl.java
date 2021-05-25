@@ -175,7 +175,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             Point3D p = (Point3D) r;
             ime.testDeep(p);
         }
-        if (r instanceof ThickSurface) {
+        else if (r instanceof ThickSurface) {
             // System.out.println("Surface");
             ThickSurface n = (ThickSurface) r;
             // TODO Dessiner les bords
@@ -225,7 +225,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                     }
                 }
             }
-        }
+        } else
         if (r instanceof TRI) {
             TRI tri = (TRI) r;
             switch (displayType) {
@@ -248,7 +248,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                     break;
 
             }
-        }
+        } else
         // GENERATORS
         if (r instanceof ParametricSurface) {
             ParametricSurface n = (ParametricSurface) r;
@@ -366,17 +366,17 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 }
 
             }
-        }
+        } else
         if (r instanceof TRIGenerable) {
             r = ((TRIGenerable) r).generate();
 
         } else if (r instanceof PGenerator) {
             r = ((PGenerator) r).generatePO();
-        }
+        } else
         if (r instanceof TRIConteneur) {
             r = ((TRIConteneur) r).getObj();
         }
-
+        else
         // OBJETS
         if (r instanceof TRIObject) {
             TRIObject o = (TRIObject) r;
@@ -393,7 +393,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             LineSegment s = (LineSegment) r;
             Point3D pO = s.getOrigine();
             Point3D pE = s.getExtremite();
-            line(rotate(pO, r), rotate(pE, r), s.texture());
+            line(pO, pE, s.texture());
         } else if (r instanceof BezierCubique) {
             BezierCubique b = (BezierCubique) r;
             int nt = largeur() / 10;

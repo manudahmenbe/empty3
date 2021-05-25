@@ -1,30 +1,42 @@
 package one.empty3.tests;
 
 import one.empty3.library.*;
+import one.empty3.library.core.nurbs.ParametricCurve;
 import one.empty3.library.core.testing.TestObjet;
 import one.empty3.library.core.testing.TestObjetSub;
 import one.empty3.library.core.tribase.TubulaireN2;
 
+import java.awt.*;
+
 public class TestHuman extends TestObjetSub {
 
-    private Human humanoidModel;
+    private Human humanModel;
 
-    public void ginit() {
+    public synchronized void ginit() {
         setMaxFrames(18);
         z().setDisplayType(ZBufferImpl.DISPLAY_ALL);
-        humanoidModel = new Human();
-        humanoidModel.init();
-        humanoidModel.update();
-        scene().add(humanoidModel);
+        humanModel = new Human();
+        humanModel.init();
+        humanModel.update();
+        scene().add(humanModel);
         Camera c = new Camera(Point3D.Z.mult(-8.), Point3D.O0);
         scene().cameras().add(c);
         scene().cameraActive(c);
 
-        for(Representable r : humanoidModel.actualBody.getListRepresentable()) {
+        RepresentableConteneur rc = new RepresentableConteneur();
+        for(Representable r : humanModel.actualBody.getListRepresentable()) {
             if(r instanceof TubulaireN2) {
-                humanoidModel.add(((TubulaireN2)r).getSoulCurve().getElem());
+                ParametricCurve elem = ((TubulaireN2) r).getSoulCurve().getElem();
+                elem.texture(new ColorTexture(Color.BLUE));
+                if(elem==null)
+                    System.out.println("Error parametric curve == null // TubulaireN2.getSoulCurve");
+                else
+                    System.out.println(""+elem.getClass()+" "+((LineSegment)elem).getOrigine()+" "
+                                    +((LineSegment)elem).getExtremite()+" "+((LineSegment)elem).getLength()+" ");
+                rc.add(elem);
             }
         }
+        humanModel.add(rc);
 
     }
 

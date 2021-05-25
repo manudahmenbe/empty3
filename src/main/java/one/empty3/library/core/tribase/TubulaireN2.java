@@ -53,8 +53,8 @@ import java.awt.*;
 import java.util.Iterator;
 
 public class TubulaireN2 extends ParametricSurface {
-    public double TAN_FCT_INCR = 0.000001;
-    public double NORM_FCT_INCR = 0.000001;
+    public double TAN_FCT_INCR =  0.00000001;
+    public double NORM_FCT_INCR = 0.00001;
 
     protected StructureMatrix<ParametricCurve> soulCurve = new StructureMatrix<>(0, ParametricCurve.class);
     protected StructureMatrix<FctXY> diameterFunction = new StructureMatrix<>(0, FctXY.class);
@@ -80,7 +80,9 @@ public class TubulaireN2 extends ParametricSurface {
     public Point3D calculerNormale(double t) {
         return calculerTangente(t + NORM_FCT_INCR).moins(calculerTangente(t)).mult(1.0 / NORM_FCT_INCR);
     }
-
+    public Point3D calculerNormalePerp(double t) {
+        return calculerTangente(t + NORM_FCT_INCR).prodVect(calculerTangente(t)).mult(1.0 / NORM_FCT_INCR);
+    }
     public Point3D calculerTangente(double t) {
         return soulCurve.getElem().calculerPoint3D(t + TAN_FCT_INCR).moins(
                 soulCurve.getElem().calculerPoint3D(t)).mult(1.0 / TAN_FCT_INCR);

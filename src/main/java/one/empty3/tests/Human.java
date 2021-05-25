@@ -59,7 +59,7 @@ public class Human extends RepresentableConteneur {
         TubulaireN2 jambeBasG = new TubulaireN2(new LineSegment(Point3D.Y.mult(hauteurCheville).plus(Point3D.X.mult(largeurPoitrine)),
                 Point3D.Y.mult(hauteurRotule).plus(Point3D.X.mult(largeurPoitrine))
         ), 1.0);
-        TubulaireN2 jambeBasD = new TubulaireN2(new LineSegment(Point3D.Y.mult(hauteurRotule).plus(Point3D.X.mult(-largeurPoitrine)),
+        TubulaireN2 jambeBasD = new TubulaireN2(new LineSegment(Point3D.Y.mult(hauteurCheville).plus(Point3D.X.mult(-largeurPoitrine)),
                 Point3D.Y.mult(hauteurRotule).plus(Point3D.X.mult(-largeurPoitrine))
         ), 1.0);
         jambeBasGauche = new Membre(jambeBasG);
