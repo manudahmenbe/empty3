@@ -55,10 +55,10 @@ public class Human extends RepresentableConteneur {
         RepresentableConteneur t = new RepresentableConteneur();
         t.getListRepresentable().add(new Sphere(new Axe(Point3D.Y.mult(hauteurTroncHaut).plus(Point3D.X.mult(largeurPoitrine*2/3)),
                 Point3D.Y.mult(hauteurTroncHaut).moins(Point3D.Y).plus(Point3D.X.mult(largeurPoitrine*2/3))),
-                largeurPoitrine / 4.));
+                largeurPoitrine *2/3));
         t.getListRepresentable().add(new Sphere(new Axe(Point3D.Y.mult(hauteurTroncHaut).plus(Point3D.X.mult(-largeurPoitrine*2/3)),
                 Point3D.Y.mult(hauteurTroncHaut).moins(Point3D.Y).plus(Point3D.X.mult(-largeurPoitrine*2/3))),
-                largeurPoitrine / 4.));
+                largeurPoitrine *2/3));
         troncHaut = new Membre(t);
         TubulaireN2 jhgT = new TubulaireN2(new LineSegment(Point3D.Y.mult(hauteurRotule).plus(Point3D.X.mult(largeurPoitrine)),
                 Point3D.Y.mult(hauteurBassin).plus(Point3D.X.mult(largeurPoitrine))
