@@ -93,16 +93,16 @@ public class TubulaireN2 extends ParametricSurface {
         return n;
     }
 
-    public Point3D[] calculerAxes(double t, Point3D tangent) {
+    public Point3D[] calculerAxes(double t, Point3D tangent, int iMin) {
 
-        Point3D n = tangent.prodVect(Point3D.X).norme1();
+        Point3D n = Point3D.random(2.);
 
         Point3D axe2 = Point3D.random2(1.0).norme1();
         if (n.norme() != 1.0) {
-            int i = 0;
 
-            while (i < 3 && (n.norme() != 1.0 ||
-                    n.isAnyNaN())) {
+            int i = 0;
+            while (i < 3  && (n.norme() != 1.0 ||
+                    n.isAnyNaN() || i<iMin)) {
 
                 n = tangent.prodVect(new Point3D(i == 0 ? 1.0 : 0.0, i == 1 ? 1.0 : 0.0, i == 2 ? 1.0 : 0.0)).norme1();
 
@@ -121,7 +121,7 @@ public class TubulaireN2 extends ParametricSurface {
 
         }
 
-        axe2 = tangent.prodVect(n);
+        axe2 = tangent.prodVect(n).norme1();
 
         return new Point3D[] { n,axe2 };
     }
@@ -191,8 +191,10 @@ public class TubulaireN2 extends ParametricSurface {
         int j = 0;
         double min = 1d;
         double minI = 1000d; // TODO
+        int iMin = 0;
         for (int i = 0; i < 3; i++) {
-            Point3D[] perps = calculerAxes(t, tangente);
+
+            Point3D[] perps = calculerAxes(t, tangente, i);
             px = perps[0];//TODO .prodVect(refs[i])).norme1();
             py = perps[1];
 
@@ -201,7 +203,7 @@ public class TubulaireN2 extends ParametricSurface {
             vecteurs[i][1] = px;
             vecteurs[i][2] = py;
 
-            minI = Math.abs(px.prodVect(py).norme() - 1.);
+            minI = Math.abs(px.dot(py));// Math.abs(px.prodVect(py).norme() - 1.);
 
             if (minI <= min) {
                 min = minI;
