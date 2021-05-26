@@ -78,11 +78,43 @@ public class TubulaireN2 extends ParametricSurface {
         diameterFunction.setElem(fctXY);
         declareProperties();
     }
-
+/*
     public Point3D calculerNormale(double t) {
-        return calculerTangente(t + NORM_FCT_INCR).prodVect(calculerTangente(t)).mult(1.0 / NORM_FCT_INCR);
-    }
+        Point3D n = calculerTangente(t + NORM_FCT_INCR).moins(calculerTangente(t)).mult(1.0 / NORM_FCT_INCR);
+        if(n.equals(Point3D.O0)) {
+            int i=0;
+            while (i < 3 && (n.equals(Point3D.O0) ||
+                    n.isAnyNaN())) {
+                n = calculerTangente(t).prodVect(
+                        new Point3D(i==0?1.0:0.0,i==1?1.0:0.0,i==2?1.0:0.0));
 
+                i++;
+            }
+
+        }
+        return n;
+    }
+    */
+    public Point3D calculerNormale(double t, Point3D tangent) {
+    Point3D n = tangent.prodVect(Point3D.X);
+
+    if(n.equals(Point3D.O0)) {
+        int i = 0;
+
+        while (i < 3 && (n.norme()!=1.0 ||
+                n.isAnyNaN())) {
+            n = tangent
+                    .prodVect(
+                            new Point3D(
+                                    i==0?1.0:0.0,
+                                    i==1?1.0:0.0,i==2?1.0:0.0));
+
+            i++;
+        }
+
+    }
+        return n;
+    }
     public Point3D calculerTangente(double t) {
         return soulCurve.getElem().calculerPoint3D(t + TAN_FCT_INCR).moins(
                 soulCurve.getElem().calculerPoint3D(t)).mult(1.0 / TAN_FCT_INCR);
@@ -137,19 +169,19 @@ public class TubulaireN2 extends ParametricSurface {
 
         Point3D[] refs = new Point3D[3];
 
-        refs[0] = new Point3D(0d, 0d, 1d);
-        refs[1] = new Point3D(1d, 0d, 0d);
-        refs[2] = new Point3D(0d, 1d, 0d);
+        refs[0] = new Point3D(1d, 0d, 0d);
+        refs[1] = new Point3D(0d, 1d, 0d);
+        refs[2] = new Point3D(0d, 0d, 1d);
 
         tangente = tangente.norme1();
 
         Point3D px = null;
         Point3D py = null;
         int j = 0;
-        double min = 1;
-        double minI = 1000; // TODO
+        double min = 1d;
+        double minI = 1000d; // TODO
         for (int i = 0; i < 3; i++) {
-            Point3D normal = calculerNormale(t);
+            Point3D normal = calculerNormale(t, tangente);
             if (normal.equals(Point3D.O0) || normal.isAnyNaN()) {
                 normal = refs[i].prodVect(tangente);//TODO .prodVect(refs[i])).norme1();
             }
