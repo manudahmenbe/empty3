@@ -79,7 +79,7 @@ public class TubulaireN2 extends ParametricSurface {
 
     public Point3D calculerNormale(double t) {
         Point3D n = calculerTangente(t + NORM_FCT_INCR).moins(calculerTangente(t)).mult(1.0 / NORM_FCT_INCR);
-        if (n.equals(Point3D.O0)) {
+        if (n.equals(Point3D.O0)||n.isAnyNaN()) {
             int i = 0;
             while (i < 3 && (n.equals(Point3D.O0) ||
                     n.isAnyNaN())) {
@@ -95,35 +95,22 @@ public class TubulaireN2 extends ParametricSurface {
 
     public Point3D[] calculerAxes(double t, Point3D tangent, int iMin) {
 
-        Point3D n = Point3D.random(2.);
+        Point3D n = new Point3D(2., 2., 2.);
 
-        Point3D axe2 = Point3D.random2(1.0).norme1();
+        Point3D axe2;
         if (n.norme() != 1.0) {
 
             int i = 0;
-            while (i < 3  && (n.norme() != 1.0 ||
+            while (i < 3  && (n.dot(tangent) != 0.0 ||
                     n.isAnyNaN() || i<iMin)) {
-
                 n = tangent.prodVect(new Point3D(i == 0 ? 1.0 : 0.0, i == 1 ? 1.0 : 0.0, i == 2 ? 1.0 : 0.0)).norme1();
-
-                if (n.prodVect(tangent).norme() == 1.0) {
-                    axe2 = tangent.prodVect(n).norme1();
-
-                    return new Point3D[] {n, axe2};
-                }
-                /*else {
-                    n = tangent.prodVect(Point3D.random2(1.0).norme1());
-                }*/
-
-
                 i++;
             }
-
         }
 
         axe2 = tangent.prodVect(n).norme1();
 
-        return new Point3D[] { n,axe2 };
+        return new Point3D[] { n , axe2 };
     }
 
     public Point3D calculerTangente(double t) {
@@ -175,14 +162,6 @@ public class TubulaireN2 extends ParametricSurface {
         }
         if (tangente.norme() == 0.0)
             System.out.println("Error in TubulaireN2 tangente==0");
-
-        tangente = tangente.norme1();
-
-        Point3D[] refs = new Point3D[3];
-
-        refs[0] = new Point3D(1d, 0d, 0d);
-        refs[1] = new Point3D(0d, 1d, 0d);
-        refs[2] = new Point3D(0d, 0d, 1d);
 
         tangente = tangente.norme1();
 

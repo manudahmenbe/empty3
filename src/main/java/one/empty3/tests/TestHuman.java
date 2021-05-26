@@ -22,22 +22,6 @@ public class TestHuman extends TestObjetSub {
         Camera c = new Camera(Point3D.Z.mult(-8.), Point3D.O0);
         scene().cameras().add(c);
         scene().cameraActive(c);
-
-//        RepresentableConteneur rc = new RepresentableConteneur();
-//        for(Representable r : humanModel.actualBody.getListRepresentable()) {
-//            if(r instanceof TubulaireN2) {
-//                ParametricCurve elem = ((TubulaireN2) r).getSoulCurve().getElem();
-//                elem.texture(new ColorTexture(Color.BLUE));
-//                if(elem==null)
-//                    System.out.println("Error parametric curve == null // TubulaireN2.getSoulCurve");
-//                else
-//                    System.out.println(""+elem.getClass()+" "+((LineSegment)elem).getOrigine()+" "
-//                                    +((LineSegment)elem).getExtremite()+" "+((LineSegment)elem).getLength()+" ");
-//                rc.add(elem);
-//            }
-//        }
-//        humanModel.add(rc);
-
     }
 
     public void finit() {

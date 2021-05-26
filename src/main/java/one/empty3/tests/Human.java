@@ -122,7 +122,8 @@ public class Human extends RepresentableConteneur {
     }
 
     public synchronized void update() {
-        for (Membre membre : Arrays.asList(tronc, troncBas, troncHaut, jambeBasDroite, jambeBasGauche, jambeHautDroite, jambeHautGauche,
+        for (Membre membre : Arrays.asList(tronc, troncBas, troncHaut,
+                jambeBasDroite, jambeBasGauche, jambeHautDroite, jambeHautGauche,
                 brasBasDroit, brasBasGauche, brasHautGauche, brasHautDroit, tete, piedGauche, piedDroit)) {
             actualBody.add(membre.getRepresentable());
         }
