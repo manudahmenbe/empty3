@@ -44,8 +44,8 @@ public class TestBalleCouleur001 extends TestObjetSub {
 
     @Override
     public void ginit() {
-        ParametricSurface.getGlobals().setIncrU(0.1);
-        ParametricSurface.getGlobals().setIncrV(0.1);
+//        ParametricSurface.getGlobals().setIncrU(0.1);
+//        ParametricSurface.getGlobals().setIncrV(0.1);
 
 
         LumierePonctuelle lumierePonctuelle = new LumierePonctuelle(Point3D.X, Color.RED);

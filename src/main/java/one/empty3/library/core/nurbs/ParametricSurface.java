@@ -55,7 +55,7 @@ public abstract class ParametricSurface extends Representable {
 
     private static final double MIN_NORMGT0 = 0.000000001;
     private static final double TANGENT_INCR = 0.00000001;
-    private static Globals globals;
+//    private static Globals globals;
 
 
     private StructureMatrix<Double> incrU = new StructureMatrix<>(0, Double.class);
@@ -66,9 +66,9 @@ public abstract class ParametricSurface extends Representable {
     private StructureMatrix<Double> endU = new StructureMatrix<>(0, Double.class);
     private StructureMatrix<Double> startV = new StructureMatrix<>(0, Double.class);
     private StructureMatrix<Double> endV = new StructureMatrix<>(0, Double.class);
-    private ParametricSurface.Parameters parameters = new ParametricSurface.Parameters(true);
+//    private ParametricSurface.Parameters parameters = new ParametricSurface.Parameters(true);
 
-    static {
+  /*  static {
         if(globals==null)
 
         {
@@ -77,8 +77,6 @@ public abstract class ParametricSurface extends Representable {
             globals1.setIncrU(0.1);
             globals1.setIncrV(0.1);
         }
-
-
 
     }
 
@@ -91,25 +89,27 @@ public abstract class ParametricSurface extends Representable {
     public static void setGlobals(Globals globals) {
         ParametricSurface.globals = globals;
     }
+*/
+
 
     public Double getIncrU() {
        return incrU.getElem();
     }
 
     public void setIncrU(Double incr1) {
-        if (parameters.isGlobal()) {
-            parameters.setIncrU(incr1);
-        } else {
-            globals.setIncrU(incr1);
-        }
+//        if (parameters.isGlobal()) {
+//            parameters.setIncrU(incr1);
+//        } else {
+//            globals.setIncrU(incr1);
+//        }
         this.incrU.setElem(incr1);
     }
     public void setIncrV(Double incr2) {
-        if (parameters.isGlobal()) {
-            parameters.setIncrV(incr2);
-        } else {
-            globals.setIncrV(incr2);
-        }
+//        if (parameters.isGlobal()) {
+//            parameters.setIncrV(incr2);
+//        } else {
+//            globals.setIncrV(incr2);
+//        }
         this.incrV .setElem(incr2);
     }
 
@@ -299,13 +299,13 @@ public abstract class ParametricSurface extends Representable {
         getDeclaredDataStructure().put("endV/endV", endV);
     }
 
-    public Parameters getParameters() {
-        return parameters;
-    }
-
-    public void setParameters(Parameters parameters) {
-        this.parameters = parameters;
-    }
+//    public Parameters getParameters() {
+//        return parameters;
+//    }
+//
+//    public void setParameters(Parameters parameters) {
+//        this.parameters = parameters;
+//    }
 
     @Override
     public String toString() {
