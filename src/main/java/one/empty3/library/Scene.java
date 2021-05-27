@@ -45,7 +45,7 @@ import java.util.List;
 
 public class Scene extends Representable implements Serializable {
 
-    public static final String VERSION = "2019.1";
+    public static final String VERSION = "2021.6";
     /*__
      *
      */
@@ -115,7 +115,7 @@ public class Scene extends Representable implements Serializable {
 
     @Deprecated
     public void camera(Camera c) {
-        cameraActive.setElem(c);
+        cameraActive.setElem(c, 0);
     }
 
     public Camera cameraActive() {
@@ -129,7 +129,7 @@ public class Scene extends Representable implements Serializable {
 
     public void cameraActive(Camera c) {
         this.cameraActive.setElem(c);
-        if (!(cameras.getData0d()==c)) {
+        if (!(cameras.getData1d().equals(c))) {
             cameras.getData1d().add(0, c);
         }
     }

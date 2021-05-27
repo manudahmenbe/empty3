@@ -22,7 +22,6 @@ public class TestHuman extends TestObjetSub {
         humanModel.update();
         scene().add(humanModel);
         Camera c = new Camera(new Point3D(-8., 0.0, 1.0), new Point3D(0., 0.0, 1.0), Point3D.Z);
-        scene().cameras().add(c);
         scene().cameraActive(c);
 
 
@@ -34,7 +33,7 @@ public class TestHuman extends TestObjetSub {
 
         polygon.texture(new ColorTexture(Color.GRAY));
 
-        scene().add(polygon);
+        humanModel.add(polygon);
     }
 
     public void finit() {

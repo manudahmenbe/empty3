@@ -105,7 +105,7 @@ public class Camera extends CameraBox {
 
     protected Point3D calculerVerticaleParDefaut(Point3D senseAxeCamera) {
         Point3D z = senseAxeCamera.norme1();
-        return Point3D.Y.prodVect(z).mult(-1d).norme1();
+        return Point3D.Z.prodVect(z).mult(-1d).prodVect(z).norme1();
     }
 
     protected Point3D calculerHorizontaParDefaut(Point3D senseAxeCamera) {
