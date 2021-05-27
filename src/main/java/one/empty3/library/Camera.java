@@ -52,7 +52,7 @@ public class Camera extends CameraBox {
     protected StructureMatrix<Double> scale = new StructureMatrix<>(1, Double.class);
     protected StructureMatrix<Boolean> imposerMatrice = new StructureMatrix<>(0, Point3D.class);
     protected StructureMatrix<Matrix33> matrice = new StructureMatrix<>(0, Matrix33.class);
-    protected StructureMatrix<Point3D> verticale = new StructureMatrix<>(0, Point3D.class);
+    protected final StructureMatrix<Point3D> verticale = new StructureMatrix<>(0, Point3D.class);
 
     {
 
@@ -72,10 +72,6 @@ public class Camera extends CameraBox {
         return verticale;
     }
 
-    public void setVerticale(StructureMatrix<Point3D> verticale) {
-        this.verticale = verticale;
-    }
-
     public Camera(Point3D eye, Point3D lookat) {
 
         this(eye, lookat, null);
@@ -86,6 +82,8 @@ public class Camera extends CameraBox {
         imposerMatrice.setElem(false);
         this.eye.setElem(eye);
         this.lookat.setElem(lookat);
+        if(up!=null)
+            verticale.setElem(up);
         calculerMatrice(up);
 
     }
@@ -141,12 +139,11 @@ public class Camera extends CameraBox {
     public void calculerMatrice(Point3D vertical) {
         if (!imposerMatrice.getElem()) {
             if (vertical == null) {
-                vertical = calculerVerticaleParDefaut(getLookat().moins(eye.getElem()));
-                this.verticale.setElem(vertical);
+                verticale.setElem( calculerVerticaleParDefaut(getLookat().moins(eye.getElem())) );
             }
 ///*
             Point3D z = getLookat().moins(getEye()).norme1();
-            Point3D x = z.prodVect(vertical).norme1();
+            Point3D x = z.prodVect(verticale.getElem()).norme1();
             Point3D y = z.prodVect(x);//verticale;
 //*/
 /*

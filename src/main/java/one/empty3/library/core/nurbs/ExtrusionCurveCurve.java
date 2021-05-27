@@ -24,7 +24,13 @@ import one.empty3.library.StructureMatrix;
  * Created by manue on 23-11-19.
  */
 public class ExtrusionCurveCurve extends ParametricSurface {
+    /***
+     * base: chemin d'extrusion
+     */
     protected StructureMatrix<ParametricCurve> base = new StructureMatrix<>(0, ParametricCurve.class);
+    /***
+     * base: courbe à extruder le long de base
+     */
     protected StructureMatrix<ParametricCurve> path = new StructureMatrix<>(0, ParametricCurve.class);
 
 
@@ -56,17 +62,17 @@ public class ExtrusionCurveCurve extends ParametricSurface {
     }*/
     public Point3D calculerPoint3D(double u, double v) {
         Point3D T, NX, NY;
-        T = path.getElem().tangente(u);
+        T = path.getElem().tangente(v);
         // Plan normal pour le chemin
-        Point3D normale = path.getElem().calculerNormale(u);
+        Point3D normale = path.getElem().calculerNormale(v);
         T = T.norme1();
         NX = normale.norme1();
         NY = NX.prodVect(T).norme1();
 
-        return base.getElem().calculerPoint3D(v).plus(
-                path.getElem().calculerPoint3D(u).mult(NX)).
+        return base.getElem().calculerPoint3D(u).plus(
+                path.getElem().calculerPoint3D(v).mult(NX)).
             plus(
-                path.getElem().calculerPoint3D(u).mult(NY));
+                path.getElem().calculerPoint3D(v).mult(NY));
     }
 
 
