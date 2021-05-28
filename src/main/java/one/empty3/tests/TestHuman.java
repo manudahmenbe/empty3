@@ -11,7 +11,7 @@ public class TestHuman extends TestObjetSub {
 
     public synchronized void ginit() {
         setMaxFrames(1);
-        z().setDisplayType(ZBufferImpl.SURFACE_DISPLAY_COL_TRI);
+        z().setDisplayType(ZBufferImpl.DISPLAY_ALL);
 
 
         Human humanModel = new Human();
@@ -19,16 +19,16 @@ public class TestHuman extends TestObjetSub {
         humanModel.update();
 
         Polygon polygon = new Polygon();
-        polygon.getPoints().add(new Point3D(-100., -100., 0.));
-        polygon.getPoints().add(new Point3D(100., -100., 0.));
-        polygon.getPoints().add(new Point3D(100., 100., 0.));
-        polygon.getPoints().add(new Point3D(-100., 100., 0.));
+        polygon.getPoints().add(new Point3D(-10., -10., 0.));
+        polygon.getPoints().add(new Point3D(10., -10., 0.));
+        polygon.getPoints().add(new Point3D(10., 10., 0.));
+        polygon.getPoints().add(new Point3D(-10., 10., 0.));
 
         polygon.texture(new ColorTexture(Color.GRAY));
 
         scene().add(humanModel);
-        Camera c = new Camera(new Point3D(-10.0, 0.0, 1.0), new Point3D(0., 0.0, 0.0), new Point3D(0.0,0.0,1.0));
-        c.setMatrice(c.getMatrice().tild());
+        Camera c = new Camera(new Point3D(-5.0, 1.0, 1.0), new Point3D(0., 0.0, 0.0), new Point3D(0.0,0.0,1.0));
+        c.setMatrice(c.getMatrice());
         scene().cameraActive(c);
 
         humanModel.add(polygon);

@@ -64,8 +64,7 @@ public class Camera extends CameraBox {
 
     }
     public Camera() {
-        this(new Point3D(0d, 0d, -100d), Point3D.O0, Point3D.Y);
-        verticale.setElem(new Point3D(Point3D.Y));
+        this(new Point3D(100d, 0d, 0.0), Point3D.O0, Point3D.Y);
     }
 
     public StructureMatrix<Point3D> getVerticale() {
@@ -144,7 +143,7 @@ public class Camera extends CameraBox {
 ///*
             Point3D z = getLookat().moins(getEye()).norme1();
             Point3D x = z.prodVect(verticale.getElem()).norme1();
-            Point3D y = z.prodVect(x);//verticale;
+            Point3D y = z.prodVect(x).mult(-1.);//verticale;
 //*/
 /*
             Point3D z = getLookat().moins(getEye()).norme1();
@@ -152,7 +151,7 @@ public class Camera extends CameraBox {
             Point3D x = y.prodVect(z);//verticale;
 */
             setMatrix(x, y, z);
-            matrice.setElem(matrice.getElem().tild());
+            matrice.setElem(matrice.getElem());
         }
     }
 
@@ -235,8 +234,8 @@ public class Camera extends CameraBox {
 
             double scale = (1.0 / (x3d.getZ()));
             return new Point(
-                    (int) (x3d.getX() * scale * la + la / 2),
-                    (int) (-x3d.getY() *scale * ha + ha / 2));
+                    (int) (   x3d.getX() * scale * la + la / 2),
+                    (int) ( - x3d.getY() *scale * ha + ha / 2));
         }
         return null;
 
