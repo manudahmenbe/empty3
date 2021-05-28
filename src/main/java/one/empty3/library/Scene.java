@@ -39,7 +39,6 @@ import one.empty3.library.core.animation.Animation;
 
 import java.awt.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -248,32 +247,12 @@ public class Scene extends Representable implements Serializable {
         return Lumiere.getInt(t);
     }
 
-    public Representable place(MODObjet aThis) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-
     public boolean remove(Representable rem) {
         return objets.getData1d().remove(rem);
     }
 
     public int size() {
         return objets.getData1d().size();
-    }
-
-    @Override
-    public boolean supporteTexture() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void texture(ITexture c) {
-        colors.getData1d().add(c);
-    }
-
-    public ArrayList<ITexture> textures() {
-        return (ArrayList<ITexture>) colors.getData1d()
-                ;
     }
 
     @Override
@@ -303,9 +282,6 @@ public class Scene extends Representable implements Serializable {
         return str;
     }
 
-    public void updateFromText(Representable selectedComponent, String text) {
-        //throw new UnsupportedOperationException("Not yet implemented");
-    }
 
     /*__
      * @return
