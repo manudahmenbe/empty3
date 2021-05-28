@@ -15,15 +15,15 @@ public class TestHuman extends TestObjetSub {
     private Human humanModel;
 
     public synchronized void ginit() {
-        setMaxFrames(18);
+        setMaxFrames(1);
         z().setDisplayType(ZBufferImpl.DISPLAY_ALL);
         humanModel = new Human();
         humanModel.init();
         humanModel.update();
         scene().add(humanModel);
-        Camera c = new Camera(new Point3D(-8., 0.0, 1.0), new Point3D(0., 0.0, 1.0), Point3D.Z);
+        Camera c = new Camera(new Point3D(-3., 0.0, 1.0), new Point3D(0., 0.0, 1.0), Point3D.Z);
+        c.setMatrice(c.getMatrice().tild());
         scene().cameraActive(c);
-
 
         Polygon polygon = new Polygon();
         polygon.getPoints().add(new Point3D(-100., -100., 0.));

@@ -68,17 +68,14 @@ public class Scene extends Representable implements Serializable {
     {
 
     }
+
     // FOR LOADER
     private Representable dernierAjout;
 
     public Scene() {
 
         super();
-        Camera camera = new Camera();
-        cameras.setElem(camera, 0);
-        cameraActive.setElem(camera);
     }
-
 
 
     public boolean add(Representable add) {
@@ -87,7 +84,7 @@ public class Scene extends Representable implements Serializable {
 
         //add.scene(this);
 
-        objets.add(1, add);
+        objets.getData1d().add(add);
 
         return true;
 
@@ -102,7 +99,7 @@ public class Scene extends Representable implements Serializable {
 
         add.setPainter(new Painter(zBuffer, this));
 
-        objets.add(1, add);
+        objets.getData1d().add(add);
 
         return true;
 
@@ -115,7 +112,7 @@ public class Scene extends Representable implements Serializable {
 
     @Deprecated
     public void camera(Camera c) {
-        cameraActive.setElem(c, 0);
+        cameraActive.setElem(c);
     }
 
     public Camera cameraActive() {
@@ -129,7 +126,7 @@ public class Scene extends Representable implements Serializable {
 
     public void cameraActive(Camera c) {
         this.cameraActive.setElem(c);
-        if (!(cameras.getData1d().equals(c))) {
+        if (!(cameras.getData1d().contains(c))) {
             cameras.getData1d().add(0, c);
         }
     }
@@ -213,7 +210,7 @@ public class Scene extends Representable implements Serializable {
         if (lumiereActive != null) {
             return lumiereActive;
         } else if (lumieres.getData1d().size() > 0) {
-            return lumieres.getData1d(). get(0);
+            return lumieres.getData1d().get(0);
         }
         return LumierePointSimple.PARDEFAUT;
     }
@@ -223,7 +220,7 @@ public class Scene extends Representable implements Serializable {
     }
 
     public int lumiereTotaleCouleur(int c, Point3D p, Point3D n) {
-        if(n==null||Point3D.INFINI.equals(p) ||lumieres.getData1d().isEmpty()) {
+        if (n == null || Point3D.INFINI.equals(p) || lumieres.getData1d().isEmpty()) {
             return c;
         }
 
@@ -232,13 +229,13 @@ public class Scene extends Representable implements Serializable {
         int cpt = 0;
 
         for (Lumiere l : lumieres.getData1d()) {
-            
+
 
             int cP = l.getCouleur(c, p, n);
 
-            
+
             double[] tadd = Lumiere.getDoubles(cP);
-            for(int j=0;j<3;j++)
+            for (int j = 0; j < 3; j++)
                 t[j] += tadd[j];
 
             cpt++;
@@ -328,10 +325,10 @@ public class Scene extends Representable implements Serializable {
     @Override
     public void declareProperties() {
         super.declareProperties();
-        getDeclaredDataStructure().put("objets/Objets à peindre",objets);
-        getDeclaredDataStructure().put("animations/Animation (pas implémenté maintenant jamais",animations);
-        getDeclaredDataStructure().put("cameras/Caméras de la scène. cameraActive caméra en cours",cameras);
-        getDeclaredDataStructure().put("lumieres/Lumières additionnelles",lumieres);
+        getDeclaredDataStructure().put("objets/Objets à peindre", objets);
+        getDeclaredDataStructure().put("animations/Animation (pas implémenté maintenant jamais", animations);
+        getDeclaredDataStructure().put("cameras/Caméras de la scène. cameraActive caméra en cours", cameras);
+        getDeclaredDataStructure().put("lumieres/Lumières additionnelles", lumieres);
         getDeclaredDataStructure().put("cameraActive/cameraActive", this.cameraActive);
     }
 
