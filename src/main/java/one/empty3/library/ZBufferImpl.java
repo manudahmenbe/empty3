@@ -140,10 +140,6 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         return camera().calculerPointDansRepere(super.rotate(p0, ref));
     }
 
-    public ImageMap getIme() {
-        return ime;
-    }
-
     public synchronized void draw(Representable r) {
         if (r == null) {
             System.out.println("r is null return");

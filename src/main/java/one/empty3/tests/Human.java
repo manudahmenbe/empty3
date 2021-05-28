@@ -2,6 +2,8 @@ package one.empty3.tests;
 
 import one.empty3.library.*;
 import one.empty3.library.core.lighting.Colors;
+import one.empty3.library.core.nurbs.ExtrusionCurveCurve;
+import one.empty3.library.core.nurbs.TourRevolution;
 import one.empty3.library.core.tribase.TubulaireN2;
 
 import java.util.Arrays;
@@ -129,8 +131,39 @@ public class Human extends RepresentableConteneur {
         }
         add(actualBody);
 
-
+        addSexe(true);
     }
+    public void addSexe(boolean man) {
+        if(man) {
+            TubulaireN2 sexe = new TubulaireN2(new LineSegment(
+                    new Point3D(0.2, 0.0, hauteurTroncBas),
+                    new Point3D(0.3, 0.0, hauteurBassin)
 
+            ), 0.13);
+            Sphere [] spheres = new Sphere[] {
+                    new Sphere(new Axe(
+                            new Point3D( 1.0,largeurBassin/3*4, (hauteurBassin+hauteurTroncBas)/2),
+                            new Point3D( -1.0,largeurBassin/3*4, (hauteurBassin+hauteurTroncBas)/2)
+                        ), 0.13),
+
+                    new Sphere(new Axe(
+                            new Point3D(1.0,- largeurBassin/3*4, (hauteurBassin+hauteurTroncBas)/2),
+                            new Point3D(-1.0,- largeurBassin/3*4, (hauteurBassin+hauteurTroncBas)/2)
+                    ), 0.13)
+            };
+            actualBody.add(sexe);
+            actualBody.add(sexe);
+            actualBody.add(spheres[0]);
+            actualBody.add(spheres[1]);
+
+        } else {
+            ExtrusionCurveCurve extrusionCurveCurve = new ExtrusionCurveCurve();
+            extrusionCurveCurve.getBase().setElem(new Circle(new Axe(
+
+                            new Point3D(1.0, largeurBassin/8, (hauteurBassin)/2).plus(Point3D.Z),
+                            new Point3D(-1.0,- largeurBassin/8, (hauteurBassin)/2).plus(Point3D.Z)
+                    ), 0.2));
+        }
+    }
 
 }
