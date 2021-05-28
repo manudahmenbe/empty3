@@ -142,13 +142,13 @@ public class Human extends RepresentableConteneur {
             ), 0.13);
             Sphere [] spheres = new Sphere[] {
                     new Sphere(new Axe(
-                            new Point3D( 1.0,largeurBassin/3*4, (hauteurBassin+hauteurTroncBas)/2),
-                            new Point3D( -1.0,largeurBassin/3*4, (hauteurBassin+hauteurTroncBas)/2)
+                            new Point3D( 1.0,largeurBassin/5*1, (hauteurBassin+hauteurTroncBas)/2),
+                            new Point3D( -1.0,largeurBassin/5*1, (hauteurBassin+hauteurTroncBas)/2)
                         ), 0.13),
 
                     new Sphere(new Axe(
-                            new Point3D(1.0,- largeurBassin/3*4, (hauteurBassin+hauteurTroncBas)/2),
-                            new Point3D(-1.0,- largeurBassin/3*4, (hauteurBassin+hauteurTroncBas)/2)
+                            new Point3D(1.0,- largeurBassin/5*1, (hauteurBassin+hauteurTroncBas)/2),
+                            new Point3D(-1.0,- largeurBassin/5*1, (hauteurBassin+hauteurTroncBas)/2)
                     ), 0.13)
             };
             actualBody.add(sexe);
