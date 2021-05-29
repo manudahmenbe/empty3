@@ -51,6 +51,8 @@ public class EcDrawer extends Drawer implements Runnable {
 
         z = new ZBufferImpl(640, 480);
 
+        ((ZBufferImpl)z).setDisplayType(ZBufferImpl.SURFACE_DISPLAY_COL_TRI);
+
         darkFortress.setSize(640, 480);
 
         darkFortress.pack();
@@ -68,9 +70,6 @@ public class EcDrawer extends Drawer implements Runnable {
         ah = h;
         aw = w;
     }
-    /* (non-Javadoc)
-     * @see be.ibiiztera.darkfortress.Drawer#setLogic(be.ibiiztera.darkfortress.GameLogic)
-     */
 
     @Override
     public void setLogic(PositionUpdate m) {
@@ -81,9 +80,6 @@ public class EcDrawer extends Drawer implements Runnable {
         mover.ennemi(bonus);
     }
 
-    /* (non-Javadoc)
-     * @see be.ibiiztera.darkfortress.Drawer#run()
-     */
     @Override
     public void run() {
 
@@ -104,9 +100,7 @@ public class EcDrawer extends Drawer implements Runnable {
         }
     }
 
-    /* (non-Javadoc)
-     * @see be.ibiiztera.darkfortress.Drawer#dessiner()
-     */
+
     public void dessiner() {
         Graphics g = component.getGraphics();
 
@@ -147,7 +141,7 @@ public class EcDrawer extends Drawer implements Runnable {
 
     @Override
     public LineSegment click(Point2D p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

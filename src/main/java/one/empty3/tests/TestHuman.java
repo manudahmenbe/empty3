@@ -9,13 +9,16 @@ import java.awt.*;
 
 public class TestHuman extends TestObjetSub {
 
-    public synchronized void ginit() {
-        setMaxFrames(1);
+    public void finit() {
+        scene().clear();
+
         z().setDisplayType(ZBufferImpl.DISPLAY_ALL);
 
 
         Human humanModel = new Human();
-        humanModel.init();
+
+        humanModel.init(frame() == 1);
+
         humanModel.update();
 
         Polygon polygon = new Polygon();
@@ -34,13 +37,12 @@ public class TestHuman extends TestObjetSub {
         humanModel.add(polygon);
     }
 
-    public void finit() {
-    }
-
     public static void main(String [] args) {
         TestHuman testHumanModel = new TestHuman();
         testHumanModel.setPublish(true);
         testHumanModel.setGenerate(testHumanModel.getGenerate()| TestObjet.GENERATE_MODEL);
+        testHumanModel.setMaxFrames(2);
+
         testHumanModel.setDimension(TestObjet.VGA);
         new Thread(testHumanModel).start();
     }
