@@ -35,15 +35,17 @@ package one.empty3.apps.pad;
 import one.empty3.apps.pad.menu.ToggleMenu;
 
 import javax.swing.*;
+import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public final class DarkFortressGUI extends JFrame {
-    private final Class clazz;
+public final class DarkFortressGUI extends Frame {
+    private final Class<? extends Drawer> clazz;
     protected PositionUpdate mover;
     Plotter3D plotter3D;
     private Drawer drawer;
-    private Class drawerType;
+    private Class<? extends Drawer> drawerType;
     String Title;
     private one.empty3.apps.pad.DarkFortressGUIKeyListener gameKeyListener;
     private Game game;
@@ -53,18 +55,19 @@ public final class DarkFortressGUI extends JFrame {
         return plotter3D;
     }
 
-    public DarkFortressGUI(Class clazz) {
+    public DarkFortressGUI(Class<? extends Drawer> clazz) {
         super();
         this.clazz = clazz;
+        this.drawerType = clazz;
         Title = "Dark Fortress ";
         setTitle(Title);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        //setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        //setVisible(true);
     }
 
-    public void setLevel(Class sol, Player player) {
+    public void setLevel(Class<Terrain> sol, Player player) {
         try {
-            Terrain t;
-            t = (Terrain) sol.newInstance();
+            Terrain t = (Terrain) sol.getConstructor().newInstance();
             mover = new PositionUpdateImpl(t, player);
             //new Thread(mover).start();
             gameKeyListener= new DarkFortressGUIKeyListener(mover);
@@ -75,18 +78,20 @@ public final class DarkFortressGUI extends JFrame {
             new Thread(plotter3D).start();
 
 
-            this.drawerType = clazz;
-
             Logger.getLogger(DarkFortressGUI.class.getName()).log(Level.INFO, drawerType.getSimpleName());
 
             if (drawerType.equals(JoglDrawer.class)) {
                 Title += "with OpenGL bindings";
                 drawer = new JoglDrawer(this);
+                drawerType = JoglDrawer.class;
 
             } else if (drawerType.equals(EcDrawer.class)) {
                 Title += "with Empty Canvas rendering";
                 drawer = new EcDrawer(this);
+                drawerType = JoglDrawer.class;
             }
+
+
 
 
             drawer.setLogic(mover);
@@ -97,9 +102,8 @@ public final class DarkFortressGUI extends JFrame {
             addKeyListener(gameKeyListener);
             addKeyListener(plotter3D);
 
-
-            setVisible(true);
-        } catch (InstantiationException | IllegalAccessException ex) {
+            //setVisible(true);
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
             Logger.getLogger(DarkFortressGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 

@@ -50,16 +50,18 @@ public abstract class Drawer {
 
     public abstract void setLogic(PositionUpdate l);
 
-    public void initFrame(JFrame component) {
+    public void initFrame(Frame component) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        JFrame.setDefaultLookAndFeelDecorated(true);
+        //JFrame.setDefaultLookAndFeelDecorated(true);
 
         JMenuBar jMenuBar = new JMenuBar();
 
         jMenuBar.add(new JMenu("Game"));
 
-        component.setJMenuBar(jMenuBar);
+        //component.setJMenuBar(jMenuBar);
+
+        //component.setContentPane(new Panel());
 
         screenSize.setSize(screenSize.getWidth() - 100, screenSize.getHeight() - 100);
 
@@ -70,7 +72,7 @@ public abstract class Drawer {
         imageList.add(image);
         component.setIconImages(imageList);
 
-        toggleMenu.setDisplaySky(false);
+        toggleMenu.setDisplaySky(true);
         toggleMenu.setDisplayGround(true);
         toggleMenu.setDisplayGroundGrid(true);
 

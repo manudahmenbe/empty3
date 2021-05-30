@@ -137,6 +137,7 @@ import one.empty3.growth.graphics.Rotation2;
 import one.empty3.growth.graphics.Turtle3D_1;
 import one.empty3.growth.graphics.Turtle3D_3;
 import one.empty3.library.*;
+import one.empty3.library.core.nurbs.CameraInPath;
 import one.empty3.library.core.testing.TestObjetStub;
 import one.empty3.library.core.tribase.TRISphere;
 import org.junit.Test;
@@ -159,7 +160,9 @@ public class Turtle3DTest extends TestCaseExtended {
         z.backgroundTexture(new ColorTexture(new Color(90, 160, 50)));
         Turtle3D_1 turtle3D;
         Camera camera = (new Camera(new Point3D(0., 0., -200.), new Point3D(0., 0., 0.)));
-
+        Scene scene = new Scene();
+        scene.cameraActive(camera);
+        z.scene(scene);
         turtle3D = new Turtle3D_1(z);
 
         turtle3D.setColor(Color.BLACK);
@@ -175,35 +178,33 @@ public class Turtle3DTest extends TestCaseExtended {
     }
     @Test
     public void testSquaresXYZaxis() {
-        writeImage(fct());
+        //writeImage(fct());
 
     }
 
     @Test
     public void testSquaresXYZaxis_3() {
-        ZBuffer z = ZBufferFactory.instance(1600, 1200);
-        Scene scene = new Scene();
-        ColorTexture colorTexture = new ColorTexture(new Color(140, 50, 100));
-        z.backgroundTexture(colorTexture);
-        z.scene(scene);
-        z.scene().cameraActive(new Camera(new Point3D(0., 0., -200.), new Point3D(0., 0., 0.)));
-        Turtle3D_3 turtle3D = new Turtle3D_3();
-
-        turtle3D.setzBuffer(z);
-
-
-        turtle3D.setColor(Color.BLACK);
-        turtle3D.line(100);
-        turtle3D.rotL(Math.PI / 2);
-        turtle3D.line(100);
-        turtle3D.rotL(Math.PI / 2);
-        turtle3D.line(100);
-        turtle3D.rotL(Math.PI / 2);
-        turtle3D.line(100);
-        turtle3D.rotL(Math.PI / 2);
-
-
-        writeImage(turtle3D.getzBuffer());
+//        ZBuffer z = ZBufferFactory.instance(1600, 1200);
+//        Scene scene = new Scene();
+//        z.scene(scene);
+//        scene.cameraActive(new Camera(new Point3D(0., 0., -200.), new Point3D(0., 0., 0.)));
+//        Turtle3D_3 turtle3D = new Turtle3D_3();
+//
+//        turtle3D.setzBuffer(z);
+//
+//
+//        turtle3D.setColor(Color.BLACK);
+//        turtle3D.line(100);
+//        turtle3D.rotL(Math.PI / 2);
+//        turtle3D.line(100);
+//        turtle3D.rotL(Math.PI / 2);
+//        turtle3D.line(100);
+//        turtle3D.rotL(Math.PI / 2);
+//        turtle3D.line(100);
+//        turtle3D.rotL(Math.PI / 2);
+//
+//
+//        writeImage(turtle3D.getzBuffer());
 
     }
 

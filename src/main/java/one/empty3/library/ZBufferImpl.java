@@ -94,6 +94,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     public ZBufferImpl() {
         that = this;
+        scene = new Scene();
         texture(new TextureCol(Color.BLACK));
     }
 
@@ -124,7 +125,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     public Camera camera() {
 
-        return this.scene().cameraActive();
+        return this.scene().cameraActive()!=null?this.scene.cameraActive():
+                (this.scene.cameras().get(0)==null)?
+        this.scene.cameras().get(0):new Camera();
     }
 
     public void camera(Camera c) {

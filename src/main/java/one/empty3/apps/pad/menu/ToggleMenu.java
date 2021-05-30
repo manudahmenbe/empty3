@@ -41,7 +41,7 @@ import java.util.HashMap;
 public class ToggleMenu {
     private HashMap<String, Boolean> items = new HashMap<>();
     {
-        items.put("displayMenu",false);
+        items.put("displayMenu",true);
         items.put("displaySky",true);
         items.put("displayGround",true);
         items.put("displayBonus",true);

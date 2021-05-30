@@ -136,7 +136,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                    <mainClass>tests2.TestObjTeapot<!--one.empty3.Run--></mainClass>
+                    <mainClass>one.empty3.apps.pad.PanelGraphics<!--one.empty3.Run  tests2.TestObjTeapot--></mainClass>
                     <arguments>
 
                         <!--<argument>class=tests2.ver.Serpentins</argument>-->
@@ -356,7 +356,7 @@
         <dependency>
             <groupId>org.jogamp.jocl</groupId>
             <artifactId>jocl-main</artifactId>
-            <version>2.0.2-rc12</version>
+            <version>2.3.2</version>
         </dependency>
         <dependency>
             <groupId>org.jogamp.joal</groupId>

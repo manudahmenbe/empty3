@@ -111,7 +111,7 @@ public class Scene extends Representable implements Serializable {
 
     @Deprecated
     public void camera(Camera c) {
-        cameraActive.setElem(c);
+        cameraActive(c);
     }
 
     public Camera cameraActive() {
@@ -126,7 +126,7 @@ public class Scene extends Representable implements Serializable {
     public void cameraActive(Camera c) {
         this.cameraActive.setElem(c);
         if (!(cameras.getData1d().contains(c))) {
-            cameras.getData1d().add(0, c);
+            cameras.setElem( c, 0);
         }
     }
 

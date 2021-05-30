@@ -101,7 +101,7 @@ public class E3Example extends EcDrawer {
 
     public static void main(String[] args) {
         DarkFortressGUI darkFortressGUI = new DarkFortressGUI(E3Example.class);
-        darkFortressGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       // darkFortressGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         darkFortressGUI.setVisible(true);
         new E3Example(darkFortressGUI);
 

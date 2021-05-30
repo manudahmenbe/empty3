@@ -36,6 +36,8 @@ import com.jogamp.common.nio.Buffers;
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.glu.gl2.GLUgl2;
+import com.jogamp.opengl.util.Animator;
 import com.jogamp.opengl.util.FPSAnimator;
 import com.jogamp.opengl.util.awt.TextRenderer;
 import one.empty3.apps.pad.help.PiloteAuto;
@@ -74,6 +76,8 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     private PiloteAuto piloteAuto;
     private Point3D del;
     private Point3D diff;
+    //private GL2 gl2;
+    private GL2 gl;
 
     {
         Plasma.scale = 2;
@@ -81,7 +85,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     }
 
     {
-        glu = new GLU();
+        glu = new GLUgl2();
     }
 
     public JoglDrawer(DarkFortressGUI darkFortressGUI) {
@@ -90,10 +94,10 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         //GLProfile.initSingleton();
         //GLProfile.initProfiles(GLProfile.getDefaultDevice());
         GLProfile profile = null;
-        if (GLProfile.isAvailable(GLProfile.GL2)) {
-            profile = GLProfile.get(GLProfile.GL2);
-        } else if (GLProfile.isAvailable(GLProfile.GL4)) {
+        if (GLProfile.isAvailable(GLProfile.GL4)) {
             profile = GLProfile.get(GLProfile.GL4);
+        } else if (GLProfile.isAvailable(GLProfile.GL2)) {
+            profile = GLProfile.get(GLProfile.GL2);
         } else
             System.err.println("GL not available");
 
@@ -104,20 +108,143 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
         glcanvas.addGLEventListener(this);
 
+        ((Frame)component).add(glcanvas);
+
+        Animator animator = new Animator(glcanvas);
+        glcanvas.setAnimator(animator);
+
         glcanvas.addKeyListener(darkFortressGUI.getPlotter3D());
         glcanvas.addKeyListener(darkFortressGUI.getGameKeyListener());
 
         glcanvas.setSize(640, 480);
 
-        initFrame((JFrame) component);
+        initFrame((Frame) component);
 
-        ((JFrame) component).add(glcanvas);
+        //((JFrame) component).setContentPane(glcanvas.getComponentAt(00000000,0));
 
         timer = new Timer();
         timer.init();
 
         glcanvas.setFocusable(true);
 
+
+
+        animator.start();
+        //glcanvas.display();
+    }
+
+    @Override
+    public void display(GLAutoDrawable gLDrawable) {
+
+
+        gl = gLDrawable.getGL().getGL2();
+        // Change to projection matrix.
+        gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
+
+        glu.gluPerspective(60, 1.33, 0.001, 1.0);
+        gl.glLoadIdentity();
+
+
+        Camera camera;
+        if (mover.getPlotter3D().isActive())
+            camera = mover.getPositionMobile().calcCameraMobile();
+        else
+            camera = mover.getPositionMobile().calcCamera();
+        Point3D pos = camera.getEye();
+        Point3D dir = camera.getLookat();
+        diff = dir.moins(pos);
+
+        /*
+        if(del0!=null) {
+            if (del.moins(del0).norme() > 0)
+                diff = del.moins(del0).prodVect(del).norme1();
+            if (diff.norme() == 0)
+                diff = Point3D.Y;
+            if (diff.prodScalaire(normale0) < 0)
+                diff = diff.mult(-1);
+        }
+        */
+
+        Point3D position = pos;//getMover().getPositionMobile().calcPosition();
+
+        Point3D normale = /*dir.prodVect(pos);*/getTerrain().calcNormale(position.getX(), position.getY());
+
+
+        glu.gluLookAt(pos.get(0), pos.get(1),
+                pos.get(2), dir
+                        .get(0), dir.get(1),
+                dir.get(2),
+                diff.prodVect(normale.prodVect(diff))
+                        .norme1().get(0),
+                diff.prodVect(normale.prodVect(diff))
+                        .norme1().get(1),
+                diff.prodVect(normale.prodVect(diff))
+                        .norme1().get(2));
+        /*if(circuit==null)
+         circuit = mover.getCircuit();
+         if(circuit!=null)
+         draw((TRIConteneur)circuit, glu, gl);
+        */
+        if (toggleMenu == null)
+            return;
+        if (toggleMenu.isDisplayBonus()) {
+            bonus.getListRepresentable().forEach(representable -> {
+                Point3D center = ((TRISphere2) representable).getCoords();
+                ((TRISphere2) representable).getCircle().getAxis().getElem().setCenter(terrain.p3(center));
+            });
+            draw(bonus, glu, gl);
+        }
+        if (toggleMenu.isDisplaySky())
+            draw3(new Ciel().getBleu(), glu, gl);
+
+//        if (mover.getPath().size() >= 2) {
+//            path = new TubulaireN2<Lines>();
+//            mover.setPath(new Path());
+//            Lines lines = new Lines(getMover().getPath());
+//            path.curve(lines);
+//            path.nbrAnneaux(100);
+//            path.nbrRotations(4);
+//            path.diam(0.01);
+//            path.generate();
+//
+//            // TODO draw2(path, glu, gl);
+//        }
+
+        //if (toggleMenu.isDisplayGroundGrid())
+        //  draw(terrain, glu, gl);
+        if (toggleMenu.isDisplayGround()) {
+            if (terrain.isDessineMurs()) {
+                displayGround(glu, gl);
+            }
+        }
+        if (toggleMenu.isDisplayArcs() && SolPlan.class.equals(getLevel())) {
+            displayArcs(glu, gl);
+        }
+        if (toggleMenu.isDisplayCharacter()) {
+            if (getPlotter3D().isActive()) {
+                CourbeParametriquePolynomiale courbeParametriquePolynomiale = null;
+//                TubulaireN2<CourbeParametriquePolynomiale> segmentDroiteTubulaireN2 = new TubulaireN2<>();
+//                segmentDroiteTubulaireN2.diam(0.01);
+//                segmentDroiteTubulaireN2.curve(courbeParametriquePolynomiale = new CourbeParametriquePolynomiale(new Point3D[]{getMover().getPositionMobile().calcPosition2D(),
+//                        getMover().getPositionMobile().calcDirection2D()}));
+//                segmentDroiteTubulaireN2.generate();
+//                draw(courbeParametriquePolynomiale, glu, gl);
+            } else {
+                Cube object = vaisseau.getObject();
+                object.setPosition(mover.calcCposition());
+                draw(object, glu, gl);
+            }
+        }
+
+        if (toggleMenu.isDisplayScore())
+            draw("Score :  " + mover.score(), Color.WHITE, glu, gl);
+        if (toggleMenu.isDisplayEnergy())
+            draw("Life :  " + mover.energy(), new Dimension(30, 10), Color.GREEN, glu, gl);
+
+
+        drawToggleMenu(glu, gl);
+
+        drawTrajectory(getPlotter3D(), glu, gl);
 
     }
 
@@ -352,134 +479,9 @@ public class JoglDrawer extends Drawer implements GLEventListener {
      d = ((JFrame)component).getSize();
      }
      //gl.glDrawPixels(0, 0, d.getWidth(), d.getHeight(),  buffer);
-            
+
      }*/
 
-    @Override
-    public void display(GLAutoDrawable gLDrawable) {
-
-
-        final GL2 gl = gLDrawable.getGL().getGL2();
-
-        // Change to projection matrix.
-        gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
-
-        //glu.gluPerspective(60, 1.33, 0.001, 1.0);
-        gl.glLoadIdentity();
-
-
-        Camera camera;
-        if (mover.getPlotter3D().isActive())
-            camera = mover.getPositionMobile().calcCameraMobile();
-        else
-            camera = mover.getPositionMobile().calcCamera();
-        Point3D pos = camera.getEye();
-        Point3D dir = camera.getLookat();
-        diff = dir.moins(pos);
-
-        /*
-        if(del0!=null) {
-            if (del.moins(del0).norme() > 0)
-                diff = del.moins(del0).prodVect(del).norme1();
-            if (diff.norme() == 0)
-                diff = Point3D.Y;
-            if (diff.prodScalaire(normale0) < 0)
-                diff = diff.mult(-1);
-        }
-        */
-
-        Point3D position = pos;//getMover().getPositionMobile().calcPosition();
-
-        Point3D normale = /*dir.prodVect(pos);*/getTerrain().calcNormale(position.getX(), position.getY());
-
-
-        glu.gluLookAt(pos.get(0), pos.get(1),
-                pos.get(2), dir
-                        .get(0), dir.get(1),
-                dir.get(2),
-                diff.prodVect(normale.prodVect(diff))
-                        .norme1().get(0),
-                diff.prodVect(normale.prodVect(diff))
-                        .norme1().get(1),
-                diff.prodVect(normale.prodVect(diff))
-                        .norme1().get(2));
-        /*if(circuit==null)
-         circuit = mover.getCircuit();
-         if(circuit!=null)
-         draw((TRIConteneur)circuit, glu, gl);
-        */
-        if (toggleMenu == null)
-            return;
-        if (toggleMenu.isDisplayBonus()) {
-            bonus.getListRepresentable().forEach(representable -> {
-                Point3D center = ((TRISphere2) representable).getCoords();
-                ((TRISphere2) representable).getCircle().getAxis().getElem().setCenter(terrain.p3(center));
-            });
-            draw(bonus, glu, gl);
-        }
-        if (toggleMenu.isDisplaySky())
-            draw3(new Ciel().getBleu(), glu, gl);
-
-//        if (mover.getPath().size() >= 2) {
-//            path = new TubulaireN2<Lines>();
-//            mover.setPath(new Path());
-//            Lines lines = new Lines(getMover().getPath());
-//            path.curve(lines);
-//            path.nbrAnneaux(100);
-//            path.nbrRotations(4);
-//            path.diam(0.01);
-//            path.generate();
-//
-//            // TODO draw2(path, glu, gl);
-//        }
-
-        //if (toggleMenu.isDisplayGroundGrid())
-        //  draw(terrain, glu, gl);
-        if (toggleMenu.isDisplayGround()) {
-            if (terrain.isDessineMurs()) {
-                displayGround(glu, gl);
-            }
-        }
-        if (toggleMenu.isDisplayArcs() && SolPlan.class.equals(getLevel())) {
-            displayArcs(glu, gl);
-        }
-        if (toggleMenu.isDisplayCharacter()) {
-            if (getPlotter3D().isActive()) {
-                CourbeParametriquePolynomiale courbeParametriquePolynomiale = null;
-//                TubulaireN2<CourbeParametriquePolynomiale> segmentDroiteTubulaireN2 = new TubulaireN2<>();
-//                segmentDroiteTubulaireN2.diam(0.01);
-//                segmentDroiteTubulaireN2.curve(courbeParametriquePolynomiale = new CourbeParametriquePolynomiale(new Point3D[]{getMover().getPositionMobile().calcPosition2D(),
-//                        getMover().getPositionMobile().calcDirection2D()}));
-//                segmentDroiteTubulaireN2.generate();
-//                draw(courbeParametriquePolynomiale, glu, gl);
-            } else {
-                Cube object = vaisseau.getObject();
-                object.setPosition(mover.calcCposition());
-                draw(object, glu, gl);
-            }
-        }
-
-        if (toggleMenu.isDisplayScore())
-            draw("Score :  " + mover.score(), Color.WHITE, glu, gl);
-        if (toggleMenu.isDisplayEnergy())
-            draw("Life :  " + mover.energy(), new Dimension(30, 10), Color.GREEN, glu, gl);
-
-
-        drawToggleMenu(glu, gl);
-
-        drawTrajectory(getPlotter3D(), glu, gl);
-        Graphics g = null;
-        /*if (component instanceof JApplet) {
-            g = ((JApplet) component).getGraphics();
-        }*/
-        if (component instanceof JFrame) {
-            g = ((JFrame) component).getGraphics();
-        }
-
-        if (g == null) {
-            throw new NullPointerException("Problem initialising JFrame graphics");
-        }
-    }
 
     private void displayArcs(GLU glu, GL2 gl) {
         Point3D[][] arc = new Point3D[][]{
@@ -573,7 +575,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
     public void displayChanged(GLAutoDrawable gLDrawable, boolean modeChanged,
                                boolean deviceChanged) {
-        System.out.println("displayChanged called");
+        reshape(gLDrawable, 0, 0, glcanvas.getWidth(), glcanvas.getHeight());
     }
 
     @Override
