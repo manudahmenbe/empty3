@@ -56,8 +56,9 @@ import java.util.Iterator;
 
 public class JoglDrawer extends Drawer implements GLEventListener {
     private final GLU glu;
-    private final Object component;
+    private final JFrame component;
     private final GLCanvas glcanvas;
+    private final Animator animator;
     double INCR_AA = 0.01;
     double DISTANCE_MIN = 100;
     Timer timer;
@@ -94,23 +95,28 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         //GLProfile.initSingleton();
         //GLProfile.initProfiles(GLProfile.getDefaultDevice());
         GLProfile profile = null;
-        if (GLProfile.isAvailable(GLProfile.GL4)) {
+/*        if (GLProfile.isAvailable(GLProfile.GL4)) {
             profile = GLProfile.get(GLProfile.GL4);
-        } else if (GLProfile.isAvailable(GLProfile.GL2)) {
+            System.out.println("GL4");
+        } else */
+        if (GLProfile.isAvailable(GLProfile.GL2)) {
             profile = GLProfile.get(GLProfile.GL2);
+            System.out.println("GL2");
         } else
             System.err.println("GL not available");
 
         GLCapabilities capabilities = new GLCapabilities(profile);
+
         capabilities.setDoubleBuffered(true);
 
         glcanvas = new GLCanvas(capabilities);
 
+
         glcanvas.addGLEventListener(this);
 
-        ((Frame)component).add(glcanvas);
+        component.add(glcanvas);
 
-        Animator animator = new Animator(glcanvas);
+        animator = new Animator(glcanvas);
         glcanvas.setAnimator(animator);
 
         glcanvas.addKeyListener(darkFortressGUI.getPlotter3D());
@@ -129,7 +135,6 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
 
 
-        animator.start();
         //glcanvas.display();
     }
 
@@ -835,4 +840,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         this.plotter3D = plotter3D;
     }
 
+    public Animator getAnimator() {
+        return animator;
+    }
 }

@@ -40,7 +40,6 @@
  */
 package one.empty3.library.core.nurbs;
 
-import com.mongodb.ReadPreference;
 import one.empty3.library.Point3D;
 import one.empty3.library.Polygon;
 import one.empty3.library.Representable;

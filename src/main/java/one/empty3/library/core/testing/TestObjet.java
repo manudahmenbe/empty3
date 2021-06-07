@@ -37,7 +37,7 @@
  * 2013-2020 Manuel Dahmen
  */
 package one.empty3.library.core.testing;
-
+/*
 import one.empty3.library.objloader.ModelLoaderOBJ;
 import ru.sbtqa.monte.media.avi.AVIWriter;
 import ru.sbtqa.monte.media.Format;
@@ -46,6 +46,7 @@ import ru.sbtqa.monte.media.FormatKeys.MediaType;
 import ru.sbtqa.monte.media.VideoFormatKeys;
 import ru.sbtqa.monte.media.avi.AVIWriter;
 import ru.sbtqa.monte.media.math.Rational;
+*/
 import one.empty3.library.*;
 import one.empty3.library.core.export.ObjExport;
 import one.empty3.library.core.export.STLExport;
@@ -104,7 +105,7 @@ public abstract class TestObjet implements Test, Runnable {
     Properties properties = new Properties();
     ShowTestResult str;
     private File avif;
-    private AVIWriter aw;
+    //private AVIWriter aw;
     private boolean aviOpen = false;
     private String filmName;
     private int idxFilm;
@@ -240,21 +241,21 @@ public abstract class TestObjet implements Test, Runnable {
                 initCompiler();*/
             } else {
                 if (isAviOpen()) {
-                    try {
-                        aw.finish();
-                        aw.close();
-                        aw = null;
+      //              try {
+      //                  aw.finish();
+      //                  aw.close();
+      //                  aw = null;
                         aviOpen = false;
-                    } catch (IOException e) {
-                        o.println("Can't close or flush movie" + runtimeInfoSucc());
-                    }
+      //              } catch (IOException e) {
+      //                  o.println("Can't close or flush movie" + runtimeInfoSucc());
+      //              }
 
 
                     //aw = null;
                 }
                 int track = -1;
-                try {
-                    aw = new AVIWriter(avif);
+    //            try {
+        /*            aw = new AVIWriter(avif);
 
                     Properties properties = new Properties();
                     // TODO ADD PROPERTIES
@@ -269,7 +270,7 @@ public abstract class TestObjet implements Test, Runnable {
                     // new Format(properties));
                     // Determine audio format
                     audioIn = null;
-/*
+*//*
             if (audioTrack != null) {
                 if (audioTrack.getName().toLowerCase().endsWith(".mp3")) {
                     audioIn = new MP3AudioInputStream(audioTrack);
@@ -287,9 +288,9 @@ public abstract class TestObjet implements Test, Runnable {
                     aviOpen = true;
                     //} catch (UnsupportedAudioFileException e) {
                     //    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+  //              } catch (IOException e) {
+  //                  e.printStackTrace();
+  //              }
             }
         }
     }
@@ -706,6 +707,10 @@ public abstract class TestObjet implements Test, Runnable {
         }
     }
 
+    private boolean getPublish() {
+        return publish;
+    }
+
     public void publishResult(boolean publish) {
         this.publish = publish;
     }
@@ -925,6 +930,7 @@ public abstract class TestObjet implements Test, Runnable {
 
                 if ((generate & GENERATE_MOVIE) > 0 && isAviOpen()) {
                     if (encoder == ENCODER_MONTE) {
+                        /*
                         try {
 
                             aw.write(videoTrackNo, ri, 1);
@@ -933,7 +939,7 @@ public abstract class TestObjet implements Test, Runnable {
                         } catch (IOException e) {
                             reportException(e);
                             return;
-                        }
+                        }*/
                     } else if (encoder == ENCODER_HUMBLE) {
                         //compiler.frame((BufferedImage) ri);
                     }
@@ -1005,13 +1011,13 @@ public abstract class TestObjet implements Test, Runnable {
         }
         if ((generate & GENERATE_MOVIE) > 0 && true) {
             if (encoder == ENCODER_MONTE) {
-                try {
+                /*try {
                     aw.finish();
                     aw.close();
 
                 } catch (IOException e) {
                     o.println("Can't close or flush movie" + runtimeInfoSucc());
-                }
+                }*/
 
             } else {
 
@@ -1218,10 +1224,6 @@ public abstract class TestObjet implements Test, Runnable {
 
     public Color v2main() {
         return null;
-    }
-
-    public Boolean getPublish() {
-        return publish;
     }
 
     public void setPublish(boolean publish) {

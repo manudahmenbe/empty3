@@ -211,7 +211,7 @@ public class PanelGraphics extends JDialog {
         jButtonStart.setForeground(new Color(51, 0, 255));
         jButtonStart.setText(bundle.getString("PanelGraphics.jButtonStart.text"));
         jButtonStart.setName("jButton1");
-        jButtonStart.addActionListener(e -> jButton1ActionPerformed(e));
+        jButtonStart.addActionListener(this::jButton1ActionPerformed);
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -307,11 +307,17 @@ public class PanelGraphics extends JDialog {
 
         df.setGame(game);
 
+
         df.setLevel(loadClass, game.getLocalPlayer());
 
         //df.pack();
+        try {
+            df.pack();
+            df.setVisible(true);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
 
-        df.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosed(WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

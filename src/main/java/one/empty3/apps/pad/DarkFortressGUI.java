@@ -40,7 +40,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public final class DarkFortressGUI extends Frame {
+public final class DarkFortressGUI extends JFrame {
     private final Class<? extends Drawer> clazz;
     protected PositionUpdate mover;
     Plotter3D plotter3D;
@@ -101,6 +101,14 @@ public final class DarkFortressGUI extends Frame {
 
             addKeyListener(gameKeyListener);
             addKeyListener(plotter3D);
+
+            if(drawer instanceof JoglDrawer)
+                //((JoglDrawer)drawer).getGlcanvas().display();
+                ((JoglDrawer)drawer).getAnimator().start();
+
+            //setVisible(true);
+
+
 
             //setVisible(true);
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
