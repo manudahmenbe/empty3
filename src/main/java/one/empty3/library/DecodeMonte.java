@@ -1,4 +1,4 @@
-package one.empty3.library;
+/*package one.empty3.library;
 import ru.sbtqa.monte.media.*;
 import ru.sbtqa.monte.media.image.Images;
 import ru.sbtqa.monte.media.FormatKeys.*;
@@ -70,33 +70,15 @@ if(in==null)
 }36
 /* finally {
  in.close();
- }*/
- 
+ }
 // return frames.toArray(new BufferedImage[frames.size()]);
  
 }
 
- 
-/**
- * @(#)Main.java
- * Copyright © 2011-2012 Werner Randelshofer, Switzerland.
- * You may only use this software in accordance with the license terms.
- */
 
 
 
 
-/**
- * Demonstrates the use of {@link AVIReader} and {@link AVIWriter}.
- *
- * @author Werner Randelshofer
- * @version $Id: Main.java 364 2016-11-09 19:54:25Z werner $
- */
-
-
-    /**
-     * @param args the command line arguments
-     */
     public void tests(String[] args) {
         //System.out.println("AVIDemo " + DecodeMonte.class.getPackage().getImplementationVersion());
         System.out.println("This is a demo of the Monte Media library.");
@@ -241,9 +223,6 @@ in.read(track, img);
         
     
 
-    /**
-     * Creates a buffered image of the specified depth with a random color palette.
-     */
     private static BufferedImage createImage(Format format) {
         int depth = format.get(DepthKey);
         int width = format.get(WidthKey);
@@ -298,3 +277,4 @@ in.read(track, img);
         return img;
     }
 }
+*/
