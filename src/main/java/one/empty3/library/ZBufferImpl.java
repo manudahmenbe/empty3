@@ -72,7 +72,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     protected double angleX = Math.PI / 3;
     protected double angleY = Math.PI / 3;
     protected ECBufferedImage bi;
-    protected ImageMap ime;
+    public ImageMap ime;
     protected int ha;
     protected int la;
     public static Point3D INFINITY = new Point3D(0d, 0d, INFINITY_DEEP);
@@ -125,9 +125,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     public Camera camera() {
 
-        return this.scene().cameraActive()!=null?this.scene.cameraActive():
-                (this.scene.cameras().get(0)==null)?
-        this.scene.cameras().get(0):new Camera();
+        return scene().cameraActive();
     }
 
     public void camera(Camera c) {
@@ -136,7 +134,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     }
 
     public synchronized void draw() {
-        draw(currentScene);
+        draw(scene());
     }
 
     public Point3D rotate(Point3D p0, Representable ref) {
