@@ -64,7 +64,9 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     public static Point3D SCALE1;
     protected static ArrayList<Painter> classPainters = new ArrayList<Painter>();
     protected static HashMap<String, StructureMatrix> defaultHashMapData = new HashMap<String, StructureMatrix>();
-    protected static final int PATH_ELEM_STRUCTURE_MATRIX = 1;
+    public static final int PATH_ELEM_STRUCTURE_MATRIX = 1;
+    public static int PATH_ELEM_DOUBLE_VALUES = 2;
+    public static int PATH_ELEM_REPRESENTABLE = 4;
     public StructureMatrix<Rotation> rotation = new StructureMatrix<>(0, Rotation.class);
     protected double NFAST = 100;
     protected RtMatiere materiau;

@@ -60,12 +60,18 @@ public class Animation extends Representable {
                             ((StructureMatrix<Object>) path.getRepresentable()).setElem(move.getMoved());
                         }
                         if (((StructureMatrix) path.getRepresentable()).getDim() == 1) {
-                            ((StructureMatrix<Object>) path.getRepresentable()).setElem(move.getMoved(), path.getIndexI() );
+                            ((StructureMatrix<Object>) path.getRepresentable()).setElem(move.getMoved(), path.getIndexI());
                         }
                         if (((StructureMatrix) path.getRepresentable()).getDim() == 2) {
                             ((StructureMatrix<Object>) path.getRepresentable()).setElem(move.getMoved(), path.getIndexI()
                                     , path.getIndexJ());
                         }
+                    }
+                    if (path.getPathElemType() == Representable.PATH_ELEM_DOUBLE_VALUES) {
+
+                    }
+                    if (path.getPathElemType() == Representable.PATH_ELEM_REPRESENTABLE) {
+
                     }
                 } else {
                     System.out.println("catched error... Cannot invoke \"one.empty3.tests.Path.getPathElemType()\" because \"path\" is null");
