@@ -7,17 +7,18 @@ import java.util.List;
 
 public class MoveCollection {
     private HashMap<String, Move> moves;
-    private List<Double> tStart = new ArrayList<>();
-    private List<Double> tEnd = new ArrayList<>();
+    private HashMap<String,Double> tStart = new HashMap<>();
+    private HashMap<String,Double> tEnd = new HashMap<>();
     public MoveCollection(double tStart, double tEnd) {
         this.moves = new HashMap<>();
-        this.tStart.add(tStart);
-        this.tEnd.add(tEnd);
     }
 
-    public void addAll(String humanWalks, Move... movesAdd) {
+    public void addAll(String humanWalks, double tStart, double tEnd,
+                       Move... movesAdd) {
         for (Move move : movesAdd) {
             moves.put(humanWalks, move);
+            this.tStart.put(humanWalks, tStart);
+            this.tEnd.put(humanWalks, tEnd);
         }
     }
 
