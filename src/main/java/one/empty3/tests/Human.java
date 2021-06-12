@@ -244,5 +244,6 @@ public class Human extends RepresentableConteneur {
     }
 
     public void move(double frame, double fps) {
+        animation.anime(this, frame/fps);
     }
 }

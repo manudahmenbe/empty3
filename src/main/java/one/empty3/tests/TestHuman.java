@@ -9,34 +9,38 @@ import java.awt.*;
 
 public class TestHuman extends TestObjetSub {
 
-    public void finit() {
-        scene().clear();
+    private Human humanModel;
 
-        z().setDisplayType(ZBufferImpl.DISPLAY_ALL);
+    public void ginit() {
+       scene().clear();
+
+       z().setDisplayType(ZBufferImpl.DISPLAY_ALL);
 
 
-        Human humanModel = new Human();
+       humanModel = new Human();
 
-        humanModel.init(frame() == 1);
+       humanModel.init(frame() == 1);
 
-        humanModel.update();
+       humanModel.update();
 
-        Polygon polygon = new Polygon();
-        polygon.getPoints().add(new Point3D(-10., -10., 0.));
-        polygon.getPoints().add(new Point3D(10., -10., 0.));
-        polygon.getPoints().add(new Point3D(10., 10., 0.));
-        polygon.getPoints().add(new Point3D(-10., 10., 0.));
+       Polygon polygon = new Polygon();
+       polygon.getPoints().add(new Point3D(-10., -10., 0.));
+       polygon.getPoints().add(new Point3D(10., -10., 0.));
+       polygon.getPoints().add(new Point3D(10., 10., 0.));
+       polygon.getPoints().add(new Point3D(-10., 10., 0.));
 
-        polygon.texture(new ColorTexture(Color.GRAY));
+       polygon.texture(new ColorTexture(Color.GRAY));
 
-        scene().add(humanModel);
-        Camera c = new Camera(new Point3D(-5.0, 1.0, 1.0), new Point3D(0., 0.0, 0.0), new Point3D(0.0,0.0,1.0));
-        c.setMatrice(c.getMatrice());
-        scene().cameraActive(c);
+       scene().add(humanModel);
+       Camera c = new Camera(new Point3D(-5.0, 1.0, 1.0), new Point3D(0., 0.0, 0.0), new Point3D(0.0, 0.0, 1.0));
+       c.setMatrice(c.getMatrice());
+       scene().cameraActive(c);
 
-        humanModel.add(polygon);
-    }
-
+       humanModel.add(polygon);
+   }
+   public void finit() {
+        humanModel.move(frame(), 25.);
+   }
     public static void main(String [] args) {
         TestHuman testHumanModel = new TestHuman();
         testHumanModel.setPublish(true);
