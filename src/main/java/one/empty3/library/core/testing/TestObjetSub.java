@@ -34,9 +34,6 @@ package one.empty3.library.core.testing;
 
 public class TestObjetSub extends TestObjet {
 
-    public static void main(String[] args) {
-
-    }
 
     public void finit() throws Exception {
 

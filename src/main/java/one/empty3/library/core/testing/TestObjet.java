@@ -833,12 +833,6 @@ public abstract class TestObjet implements Test, Runnable {
         }
 
 
-        ginit();
-
-
-        /*if (scene().texture() != null) {
-            z.backgroundTexture(scene().texture());
-        }*/
 
         o.println("");
         o.println(directory().getAbsolutePath());
@@ -846,6 +840,7 @@ public abstract class TestObjet implements Test, Runnable {
 
         o.println("Starting movie  {0}" + runtimeInfoSucc());
 
+        ginit();
 
         while ((nextFrame() || unterminable()) && !stop) {
 

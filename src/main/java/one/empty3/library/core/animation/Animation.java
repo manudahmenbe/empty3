@@ -38,6 +38,7 @@ import one.empty3.tests.Move;
 import one.empty3.tests.MoveCollection;
 import one.empty3.tests.Path;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 public class Animation extends Representable {
@@ -48,7 +49,9 @@ public class Animation extends Representable {
     }
 
     public Representable anime(Representable item, double t) {
-        for (Move move : animations.get(item.getClass()).getMoves()) {
+        Collection<Move> moves = animations.get(item.getClass()).getMoves();
+        if(moves!=null)
+        for (Move move : moves) {
             if (move.getO() instanceof Representable) {
                 Path path = ((Representable) move.getO()).getPath(move.getProperty());
                 switch (path.getPathElemType()) {
@@ -62,6 +65,7 @@ public class Animation extends Representable {
                 }
             }
         }
+        else System.out.println("Animation anime error moves == null");
         return item;
     }
 }
