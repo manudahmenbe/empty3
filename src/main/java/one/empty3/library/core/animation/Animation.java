@@ -33,8 +33,26 @@
 package one.empty3.library.core.animation;
 
 import one.empty3.library.Representable;
+import one.empty3.tests.Human;
+import one.empty3.tests.Move;
+import one.empty3.tests.MoveCollection;
+
+import java.util.HashMap;
 
 public class Animation extends Representable{
+    private final HashMap<Class, MoveCollection> animations = new HashMap<>();
+
+    public Animation(Class<? extends Representable> anime, MoveCollection moveCollection) {
+        this.animations.put(anime.getClass(), moveCollection );
+    }
+
+    public Representable anime(Representable item, double t) {
+        for(Move move : animations.get(item.getClass()).getMoves()) {
+            Object path = item.getPath(move.getProperty());
+
+        }
+        return item;
+    }
 /*    protected List<Point3D> points = new ArrayList<>();
     protected List<AnimationTime> time = new ArrayList<>();
 

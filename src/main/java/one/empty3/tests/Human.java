@@ -1,10 +1,10 @@
 package one.empty3.tests;
 
 import one.empty3.library.*;
+import one.empty3.library.core.animation.Animation;
 import one.empty3.library.core.lighting.Colors;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
 import one.empty3.library.core.nurbs.ExtrusionCurveCurve;
-import one.empty3.library.core.nurbs.TourRevolution;
 import one.empty3.library.core.tribase.TubulaireN2;
 
 import java.util.Arrays;
@@ -198,5 +198,48 @@ public class Human extends RepresentableConteneur {
             sexe = new Membre(extrusionCurveCurve);
         }
     }
+    public void walking() {
+        MoveCollection moveCollection = new MoveCollection(0.0, 3.0);
+        Move teteBas = new Move("humanWalks", tete.getRepresentable(), "axe,origine", 0.0, 3.0, new Point3D(0.0, 1.7, 0.0));
+        Move teteHaut = new Move("humanWalks", tete.getRepresentable(), "axe,extremite", 0.0, 3.0, new Point3D(0.0, 1.7, 0.0));
+        Move piedGaucheWalk0 = new Move("humanWalks", piedGauche.getRepresentable(), "coefficients:0", 0.0, 1.5, new Point3D(0.0, 1.7/2, 0.0));
+        Move piedDroiteWalk0 = new Move("humanWalks", piedDroit.getRepresentable(), "coefficients:1", 0.0, 1.5, new Point3D(0.0, 0.0, 0.0));
+        Move piedGaucheWalk1 = new Move("humanWalks", piedGauche.getRepresentable(), "coefficients:0", 0.0, 1.5, new Point3D(0.0, 0.0, 0.0));
+        Move piedDroiteWalk1 = new Move("humanWalks", piedDroit.getRepresentable(), "coefficients:1", 0.0, 1.5, new Point3D(0.0, 1.7/2, 0.0));
+        Move jbg1 = new Move("humanWalks", jambeBasGauche.getRepresentable(), "coefficients:0", 0.0, 1.5, new Point3D(0., 1.7/2/2, 0.0));
+        Move jbg2 = new Move("humanWalks", jambeBasGauche.getRepresentable(), "coefficients:1", 0.0, 1.5, new Point3D(0., 1.7/2, 0.0));
+        Move jbd1 = new Move("humanWalks", jambeBasDroite.getRepresentable(), "coefficients:0", 0.0, 1.5, new Point3D(0., 1.7/2, 0.0));
+        Move jbd2 = new Move("humanWalks", jambeBasDroite.getRepresentable(), "coefficients:1", 0.0, 1.5, new Point3D(0., 1.7/2/2, 0.0));
+        Move jhg1 = new Move("humanWalks", jambeHautGauche.getRepresentable(), "coefficients:0", 0.0, 1.5, new Point3D(0., 1.7/2/2, 0.0));
+        Move jhg2 = new Move("humanWalks", jambeHautGauche.getRepresentable(), "coefficients:1", 0.0, 1.5, new Point3D(0., 1.7/2, 0.0));
+        Move jhd1 = new Move("humanWalks", jambeHautDroite.getRepresentable(), "coefficients:0", 0.0, 1.5, new Point3D(0., 1.7/2, 0.0));
+        Move jhd2 = new Move("humanWalks", jambeHautDroite.getRepresentable(), "coefficients:1", 0.0, 1.5, new Point3D(0., 1.7/2/2, 0.0));
+        Move bhg1 = new Move("humanWalks", brasHautGauche.getRepresentable(), "coefficients:0", 0.0, 1.5, new Point3D(0., 1.7/2/2,0.));
+        Move bhg2 = new Move("humanWalks", brasHautDroit.getRepresentable(), "coefficients:1", 0.0, 1.5,new Point3D(0., 1.7/2/2,0.));
+        Move bhd1 = new Move("humanWalks", brasHautGauche.getRepresentable(), "coefficients:0", 0.0, 1.5,new Point3D(0., 1.7/2/2,0.));
+        Move bhd2 = new Move("humanWalks", brasHautDroit.getRepresentable(), "coefficients:1", 0.0, 1.5,new Point3D(0., 1.7/2/2,0.));
+        Move bbg1 = new Move("humanWalks", brasBasGauche.getRepresentable(), "coefficients:0", 0.0, 1.5, new Point3D(0., 1.7/2/2,0.));
+        Move bbg2 = new Move("humanWalks", brasBasDroit.getRepresentable(), "coefficients:1", 0.0, 1.5,new Point3D(0., 1.7/2/2,0.));
+        Move bbd1 = new Move("humanWalks", brasBasGauche.getRepresentable(), "coefficients:0", 0.0, 1.5,new Point3D(0., 1.7/2/2,0.));
+        Move bbd2 = new Move("humanWalks", brasBasDroit.getRepresentable(), "coefficients:1", 0.0, 1.5,new Point3D(0., 1.7/2/2,0.));
 
+        moveCollection.addAll("humanWalks", teteBas, teteHaut, piedDroiteWalk0, piedDroiteWalk1, piedGaucheWalk0, piedGaucheWalk1, jbd1, jbd2, jbg1, jbg2,
+                jhd1, jhd2, jhg1, jhg1, bhg1, bhd2, bbg1, bbd1);
+
+        new Animation(this.getClass(), moveCollection);
+    }
+
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        StructureMatrix<Representable> structureMatrix = new StructureMatrix<>(0, Representable.class);
+        structureMatrix.setElem(tete.getRepresentable());
+        getDeclaredDataStructure().put("tete/Tête", structureMatrix);
+        structureMatrix = new StructureMatrix<>(0, Representable.class);
+        structureMatrix.setElem(piedGauche.getRepresentable());
+        getDeclaredDataStructure().put("piedGauche/Pied gauche", structureMatrix);
+        structureMatrix = new StructureMatrix<>(0, Representable.class);
+        structureMatrix.setElem(piedDroit.getRepresentable());
+        getDeclaredDataStructure().put("piedDroit/Pied droit", structureMatrix);
+    }
 }

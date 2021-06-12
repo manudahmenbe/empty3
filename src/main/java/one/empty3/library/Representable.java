@@ -40,6 +40,7 @@ import one.empty3.library.core.lighting.Colors;
 import one.empty3.library.core.raytracer.RtIntersectInfo;
 import one.empty3.library.core.raytracer.RtMatiere;
 import one.empty3.library.core.raytracer.RtRay;
+import tests2.dragons.StructureDragon;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -52,16 +53,16 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
 
     public static final int DISPLAY_ALL = 0;
     public static final int SURFACE_DISPLAY_TEXT_QUADS = 1;
-    private static final int SURFACE_DISPLAY_TEXT_TRI = 2;
     public static final int SURFACE_DISPLAY_COL_QUADS = 3;
     public static final int SURFACE_DISPLAY_COL_TRI = 4;
     public static final int SURFACE_DISPLAY_LINES = 5;
     public static final int SURFACE_DISPLAY_POINTS = 6;
-    private static final String[] displayTypes = {"All", "Textured Quad", "SURFACE_DISPLAY_TEXT_TRI", "SURFACE_DISPLAY_COL_QUADS", "SURFACE_DISPLAY_COL_TRI", "SURFACE_DISPLAY_LINES", "SURFACE_DISPLAY_POINTS"};
-    private int displayType = 0; //SURFACE_DISPLAY_TEXT_QUADS;
-    public static Point3D SCALE1;
     public static final ITexture DEFAULT_TEXTURE = new TextureCol(Colors.random());
+    private static final int SURFACE_DISPLAY_TEXT_TRI = 2;
+    private static final String[] displayTypes = {"All", "Textured Quad", "SURFACE_DISPLAY_TEXT_TRI", "SURFACE_DISPLAY_COL_QUADS", "SURFACE_DISPLAY_COL_TRI", "SURFACE_DISPLAY_LINES", "SURFACE_DISPLAY_POINTS"};
+    public static Point3D SCALE1;
     protected static ArrayList<Painter> classPainters = new ArrayList<Painter>();
+    protected static HashMap<String, StructureMatrix> defaultHashMapData = new HashMap<String, StructureMatrix>();
     public StructureMatrix<Rotation> rotation = new StructureMatrix<>(0, Rotation.class);
     protected double NFAST = 100;
     protected RtMatiere materiau;
@@ -70,15 +71,18 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     protected Representable parent;
     protected Scene scene;
     protected ITexture texture = DEFAULT_TEXTURE;
+    protected Render render; //= Render.getInstance(0, -1);
+    protected StructureMatrix<T> T; // = new StructureMatrix<T>(0, one.empty3.library.T.class);
+    private int displayType = 0; //SURFACE_DISPLAY_TEXT_QUADS;
     private String id;
     private Painter painter = null;
     private int RENDERING_DEFAULT = 0;
-    protected Render render; //= Render.getInstance(0, -1);
-    protected StructureMatrix<T> T; // = new StructureMatrix<T>(0, one.empty3.library.T.class);
-    protected static HashMap<String,StructureMatrix> defaultHashMapData = new HashMap<String,StructureMatrix>();
+    private Map<String, StructureMatrix> declaredDataStructure;// = Collections.synchronizedMap(new HashMap());
+    private Map<String, StructureMatrix> declaredLists;//= new HashMap<>();
+
     public Representable() {
         if (!(this instanceof Matrix33 || this instanceof Point3D || this instanceof Camera)) {
-            rotation .setElem(new Rotation());
+            rotation.setElem(new Rotation());
             //scale = new Point3D(1d, 1d, 1d);
             //texture = new TextureCol(Colors.random());
 
@@ -95,6 +99,10 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
         return classPainters;
     }
 
+    public static String[] getDisplayTypes() {
+        return displayTypes;
+    }
+
     public StructureMatrix<Rotation> getRotation() {
         return rotation;
     }
@@ -106,16 +114,21 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     public Point3D rotate(Point3D p0, Representable ref) {
         if (p0 == null) {
             return Point3D.O0;
-        } else if (ref != null && ref.getRotation() != null && ref.getRotation().getElem()!=null)
+        } else if (ref != null && ref.getRotation() != null && ref.getRotation().getElem() != null)
             return ref.getRotation().getElem().rotation(p0);
         else
             return p0;
     }
 
-
     public String id() {
         return id;
     }
+/*
+    public void scene(Scene scene) {
+        this.scene = scene;
+
+    }
+*/
 
     public void id(String id) {
         this.id = id;
@@ -125,16 +138,9 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
         this.parent = parent;
     }
 
-
     public void replace(String moo) {
         throw new UnsupportedOperationException("Operation non supportee");
     }
-/*
-    public void scene(Scene scene) {
-        this.scene = scene;
-
-    }
-*/
 
     public boolean supporteTexture() {
         return false;
@@ -147,7 +153,6 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     public void texture(ITexture tc) {
         this.texture = tc;
     }
-
 
     /*__
      * DOn't call ZBuffer dessiine methods here: it would loop.
@@ -235,19 +240,13 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
         return getDeclaredDataStructure().get(name);
     }
 
-
-
-    private Map<String, StructureMatrix> declaredDataStructure;// = Collections.synchronizedMap(new HashMap());
-
     public Map<String, StructureMatrix> getDeclaredDataStructure() {
-        if((!(this instanceof Point3D )) && (declaredDataStructure==null))
+        if ((!(this instanceof Point3D)) && (declaredDataStructure == null))
             declaredDataStructure = Collections.synchronizedMap(new HashMap());
-        else declaredDataStructure =defaultHashMapData;
-            
+        else declaredDataStructure = defaultHashMapData;
+
         return declaredDataStructure;
     }
-
-    private Map<String, StructureMatrix> declaredLists ;//= new HashMap<>();
 
     public Map<String, StructureMatrix> getDeclaredLists() {
         return declaredLists;
@@ -285,14 +284,12 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
         return "Representable()";
     }
 
-
     public void declareProperties() {
         getDeclaredDataStructure().clear();
-        if(getRotation()!=null && getRotation().getElem()!=null) {
+        if (getRotation() != null && getRotation().getElem() != null) {
             getDeclaredDataStructure().put("rotation/Rotation", rotation);
         }
     }
-
 
     public Map<String, StructureMatrix> declarations() {
         declareProperties();
@@ -300,7 +297,6 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
         getDeclaredDataStructure().forEach((s, structureMatrix) -> dec.put(s, structureMatrix));
         return dec;
     }
-
 
     public ITexture getCFAST() {
         return CFAST;
@@ -318,15 +314,15 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
         stringBuilder.append("<Boolean class=\"" + o.getClass() + "\">" + o + "</Boolean>");
     }
 
-    public void xmlRepresentation(String filesPath,  StringBuilder stringBuilder, Integer o) {
+    public void xmlRepresentation(String filesPath, StringBuilder stringBuilder, Integer o) {
         stringBuilder.append("<Integer class=\"" + o.getClass() + "\">" + o + "</Integer>");
     }
 
-    public void xmlRepresentation(String filesPath,StringBuilder stringBuilder, String o) {
+    public void xmlRepresentation(String filesPath, StringBuilder stringBuilder, String o) {
         stringBuilder.append("<String class=\"" + o.getClass() + "\"> <![CDATA[ " + o + " ]]> </String>");
     }
 
-    public void xmlRepresentation(String filesPath,  StringBuilder stringBuilder, File o) {
+    public void xmlRepresentation(String filesPath, StringBuilder stringBuilder, File o) {
         stringBuilder.append("<String filename=\"" + o.getName() + "\"class=\"" + o.getClass() + "\"> <![CDATA[ " + o.getName() + " ]]> </String>");
         try {
             FileInputStream fileInputStream = new FileInputStream(o);
@@ -353,7 +349,7 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     }
 
     public void xmlRepresentation(String filesPath, StringBuilder stringBuilder, Object o) {
-        if(o == null) return;
+        if (o == null) return;
         if (o instanceof StructureMatrix) {
             xmlRepresentation(filesPath, stringBuilder, (StructureMatrix) o);
         } else if (o instanceof Representable) {
@@ -370,7 +366,7 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
                     xmlRepresentation(filesPath, stringBuilder, ((Integer) o));
                     break;
                 case "java.lang.String":
-                    xmlRepresentation(filesPath,  stringBuilder, ((String) o));
+                    xmlRepresentation(filesPath, stringBuilder, ((String) o));
                     break;
                 case "java.util.ArrayList":
                     //xmlRepresentation(filesPath, (XmlRepresentable)parent, stringBuilder, ((ArrayList) o));
@@ -383,18 +379,16 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
         }
     }
 
-
     public void xmlRepresentation(String filesPath, StringBuilder stringBuilder, Representable is) {
-        if(stringBuilder.toString().length()==0)
-        {
+        if (stringBuilder.toString().length() == 0) {
             stringBuilder.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
         }
         stringBuilder.append("<Representable class=\"" + is.getClass().getName() + "\">\n");
         is.declareProperties();
         is.declarations().forEach((s, o) -> {
-            if(o instanceof StructureMatrix) {
-                StructureMatrix b = (StructureMatrix)o;
-                xmlRepresentation(filesPath, s, stringBuilder,  o);
+            if (o instanceof StructureMatrix) {
+                StructureMatrix b = (StructureMatrix) o;
+                xmlRepresentation(filesPath, s, stringBuilder, o);
             }
 
         });
@@ -402,7 +396,7 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     }
 
     public void xmlRepresentation(String filesPath, MatrixPropertiesObject parent, StringBuilder stringBuilder) {
-            xmlRepresentation(filesPath, stringBuilder, (Representable)parent);
+        xmlRepresentation(filesPath, stringBuilder, (Representable) parent);
     }
 
     public void xmlRepresentation(String filesPath, String name, StringBuilder stringBuilder, StructureMatrix is) {
@@ -459,16 +453,16 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
         stringBuilder.append("</StructureMatrix>");
     }
 
-/*
-    Map<String, Double> data = new HashMap<>();
-    public void addData(String key, double number) {
-        data.put(key, number);
-    }
-    public double getData(String key)
-    {
-        return data.get(key);
-    }
-*/
+    /*
+        Map<String, Double> data = new HashMap<>();
+        public void addData(String key, double number) {
+            data.put(key, number);
+        }
+        public double getData(String key)
+        {
+            return data.get(key);
+        }
+    */
     public MatrixPropertiesObject copy() throws CopyRepresentableError, IllegalAccessException, InstantiationException {
         Class<? extends Representable> aClass = this.getClass();
         try {
@@ -492,8 +486,7 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
                 }
             });
             return representable;
-        } catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
@@ -508,11 +501,6 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     public void setDisplayType(int displayType) {
         this.displayType = displayType;
     }
-
-    public static String[] getDisplayTypes() {
-        return displayTypes;
-    }
-
 
     @Override
     public double T(T t) {
@@ -537,6 +525,63 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
 
     public void setPosition(Point3D calcCposition) {
         getRotation().getElem().getCentreRot().setElem(calcCposition);
+    }
+
+    public Object getPath(String property) {
+        String[] split = property.split(",");
+
+        Object o;
+
+        Representable representable1 = this;
+        Object value = null;
+        MatrixPropertiesObject declaredProperty = null;
+        for (int k = 0; k < split.length; k++) {
+            String split0 = split[k].split("/")[0];
+            if(value!=null) {
+                if(value instanceof StructureMatrix) {
+                    declaredProperty = (MatrixPropertiesObject) value;
+                }
+                else  if(declaredProperty instanceof Representable) {
+                    representable1 = (Representable) declaredProperty;
+                }
+            }
+            String[] split1 = split0.split(":");
+            int i=-1;
+            int j=-1;
+            if(split1.length>1) {
+                i = Integer.parseInt(split1[1]);
+            }
+            if(split1.length>2) {
+                j = Integer.parseInt(split1[2]);
+            }
+
+            declaredProperty = (MatrixPropertiesObject) representable1.getDeclaredProperty(split1[0]);
+
+            if (declaredProperty == null)
+                return null;
+            else {
+                if(declaredProperty instanceof StructureMatrix) {
+
+                    StructureMatrix sm = (StructureMatrix) declaredProperty;
+                    switch (sm.getDim()) {
+                        case 0:
+                            Object data0d = sm.getData0d();
+                            value = sm.getElem();
+                            break;
+                        case 1:
+                            List data1d = sm.getData1d();
+                            value = sm.getElem(i);
+                            break;
+                        case 2:
+                            List data2d = sm.getData2d();
+                            value = sm.getElem(i, j);
+                            break;
+                    }
+                }
+            }
+        }
+
+        return value;
     }
 }
 

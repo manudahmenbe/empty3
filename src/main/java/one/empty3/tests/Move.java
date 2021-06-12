@@ -1,4 +1,4 @@
-package test3;
+package one.empty3.tests;
 
 import one.empty3.library.Point3D;
 import one.empty3.library.Representable;
@@ -10,30 +10,35 @@ import java.util.List;
 
 public class Move {
 
+    private final double time2;
+    private final Object moved;
+    private double time1;
     private String moveName;
     private Representable representable;
     private double time;
     private Point3D[] positions;
+    private String property;
 
     /***
      *
      * @param moveName
      * @param representable
      * @param property
-     * @param time
-     * @param positions
+     * @param time1
+     * @param time2
+     * @param moved
      */
-    public void addMove(String moveName, Representable representable, String property, double time, Point3D... positions) {
+    public Move(String moveName, Representable representable, String property, double time1, double time2,
+                Object moved) {
         this.moveName = moveName;
         this.representable = representable;
-        this.time = time;
-        this.positions = positions;
+        this.property = property;
+        this.time1 = time1;
+        this.time2 = time2;
+        this.moved = moved;
     }
-}
-class MoveCollection {
-    Human human;
-    HashMap<String, List<Move>> moves;
-    public double move(double dt) {
-        return 0.0;
+
+    public String getProperty() {
+        return property;
     }
 }
