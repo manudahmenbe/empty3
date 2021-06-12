@@ -32,6 +32,15 @@
 
 package one.empty3.apps.pad;
 
+import com.jogamp.nativewindow.GraphicsConfigurationFactory;
+import com.jogamp.nativewindow.awt.AWTGraphicsDevice;
+import com.jogamp.newt.event.KeyListener;
+import com.jogamp.opengl.GLCapabilities;
+import com.jogamp.opengl.GLProfile;
+import com.jogamp.newt.event.WindowAdapter;
+import com.jogamp.newt.event.WindowEvent;
+import com.jogamp.newt.opengl.GLWindow;
+import com.jogamp.opengl.util.FPSAnimator;
 import com.jogamp.common.nio.Buffers;
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
@@ -40,6 +49,7 @@ import com.jogamp.opengl.glu.gl2.GLUgl2;
 import com.jogamp.opengl.util.Animator;
 import com.jogamp.opengl.util.FPSAnimator;
 import com.jogamp.opengl.util.awt.TextRenderer;
+import jogamp.nativewindow.DefaultGraphicsConfigurationFactoryImpl;
 import one.empty3.apps.pad.help.PiloteAuto;
 import one.empty3.library.*;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomiale;
@@ -56,9 +66,9 @@ import java.util.Iterator;
 
 public class JoglDrawer extends Drawer implements GLEventListener {
     private final GLU glu;
-    private final JFrame component;
+    private final Frame component;
     private final GLCanvas glcanvas;
-    private final Animator animator;
+    private FPSAnimator animator;
     double INCR_AA = 0.01;
     double DISTANCE_MIN = 100;
     Timer timer;
@@ -90,52 +100,50 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     }
 
     public JoglDrawer(DarkFortressGUI darkFortressGUI) {
+
+        super();
+        // Get the default OpenGL profile, reflecting the best for your running platform
+        GLProfile glp = GLProfile.getDefault();
+        // Specifies a set of OpenGL capabilities, based on your profile.
+        GLCapabilities caps = new GLCapabilities(glp);
+        // Create the OpenGL rendering canvas
+        GLWindow window = GLWindow.create(caps);
+
+        // Create a animator that drives canvas' display() at the specified FPS.
+        animator = new FPSAnimator(window, FPS, true);
+
+        initFrame(darkFortressGUI);
+
+
+        JPanel contentPane = new JPanel();
+        window.addGLEventListener(this);
+        window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        window.setTitle(TITLE);
         this.component = darkFortressGUI;
 
-        //GLProfile.initSingleton();
-        //GLProfile.initProfiles(GLProfile.getDefaultDevice());
-        GLProfile profile = null;
-/*        if (GLProfile.isAvailable(GLProfile.GL4)) {
-            profile = GLProfile.get(GLProfile.GL4);
-            System.out.println("GL4");
-        } else */
-        if (GLProfile.isAvailable(GLProfile.GL2)) {
-            profile = GLProfile.get(GLProfile.GL2);
-            System.out.println("GL2");
-        } else
-            System.err.println("GL not available");
 
-        GLCapabilities capabilities = new GLCapabilities(profile);
+        GLCapabilities capabilities = new GLCapabilities(glp);
 
-        capabilities.setDoubleBuffered(true);
+        //capabilities.setDoubleBuffered(true);
 
-        glcanvas = new GLCanvas(capabilities);
+        glcanvas = new GLCanvas(/*capabilities*/);
 
-
-        glcanvas.addGLEventListener(this);
-
-        component.add(glcanvas);
-
-        animator = new Animator(glcanvas);
-        glcanvas.setAnimator(animator);
-
-        glcanvas.addKeyListener(darkFortressGUI.getPlotter3D());
-        glcanvas.addKeyListener(darkFortressGUI.getGameKeyListener());
+        window.addKeyListener(darkFortressGUI.getPlotter3D());
+        window.addKeyListener(darkFortressGUI.getGameKeyListener());
 
         glcanvas.setSize(640, 480);
 
-        initFrame((Frame) component);
+        component.add(glcanvas);
+
+        //initFrame(component);
 
         //((JFrame) component).setContentPane(glcanvas.getComponentAt(00000000,0));
-
+        //component.setContentPane(contentPane);
         timer = new Timer();
         timer.init();
 
         glcanvas.setFocusable(true);
 
-
-
-        //glcanvas.display();
     }
 
     @Override
@@ -515,8 +523,9 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         // TODO draw(courbeParametriquePolynomialeBezierTubulaireN22, glu, gl);
 
     }
+
     private void displayTerrain(GLU glu, GL2 gl) {
-        draw((RepresentableConteneur)terrain, glu, gl);
+        draw((RepresentableConteneur) terrain, glu, gl);
     }
 
     private void displayGround(GLU glu, GL2 gl) {
@@ -528,8 +537,8 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
                 final Double[][][] faces = Cube.getData();
                 TRI[] tris = new TRI[14];
-                tris[12] = new TRI(new Point3D(i, j+INCR_AA, 0.), new Point3D(1.+INCR_AA, j+INCR_AA, 0.), new Point3D(0., j+INCR_AA, 0.));
-                tris[13] = new TRI(new Point3D(1.+INCR_AA, j, 0.), new Point3D(1.+INCR_AA, j+INCR_AA, 0.), new Point3D(0.+INCR_AA, j, 0.));
+                tris[12] = new TRI(new Point3D(i, j + INCR_AA, 0.), new Point3D(1. + INCR_AA, j + INCR_AA, 0.), new Point3D(0., j + INCR_AA, 0.));
+                tris[13] = new TRI(new Point3D(1. + INCR_AA, j, 0.), new Point3D(1. + INCR_AA, j + INCR_AA, 0.), new Point3D(0. + INCR_AA, j, 0.));
 
                 for (int g = 0; g < 3; g++) {
                     tris[12].getSommet().setElem(terrain.p3(tris[12].getSommet().getElem(g)), g);
@@ -840,7 +849,23 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         this.plotter3D = plotter3D;
     }
 
-    public Animator getAnimator() {
+    public FPSAnimator getAnimator() {
         return animator;
     }
+
+    /**
+     * A program that draws with JOGL in a NEWT GLWindow.
+     */
+    private static String TITLE = "JOGL 2 with NEWT";  // window's title
+    private static final int WINDOW_WIDTH = 640;  // width of the drawable
+    private static final int WINDOW_HEIGHT = 480; // height of the drawable
+    private static final int FPS = 60; // animator's target frames per second
+
+    static {
+        GLProfile.initSingleton();  // The method allows JOGL to prepare some Linux-specific locking optimizations
+    }
+
+    /**
+     * The entry main() method.
+     */
 }

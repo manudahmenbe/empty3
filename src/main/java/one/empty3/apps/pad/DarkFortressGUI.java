@@ -32,6 +32,7 @@
 
 package one.empty3.apps.pad;
 
+import com.jogamp.newt.event.KeyListener;
 import one.empty3.apps.pad.menu.ToggleMenu;
 
 import javax.swing.*;
@@ -40,14 +41,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public final class DarkFortressGUI extends JFrame {
+public final class DarkFortressGUI extends Frame {
     private final Class<? extends Drawer> clazz;
     protected PositionUpdate mover;
     Plotter3D plotter3D;
     private Drawer drawer;
     private Class<? extends Drawer> drawerType;
     String Title;
-    private one.empty3.apps.pad.DarkFortressGUIKeyListener gameKeyListener;
+    private DarkFortressGUIKeyListener gameKeyListener;
     private Game game;
 
 
@@ -93,24 +94,19 @@ public final class DarkFortressGUI extends JFrame {
 
 
 
-
             drawer.setLogic(mover);
             drawer.setPlotter3D(plotter3D);
             drawer.setToggleMenu(new ToggleMenu());
             drawer.setLevel(sol);
 
-            addKeyListener(gameKeyListener);
-            addKeyListener(plotter3D);
+            //addKeyListener(gameKeyListener);
+            //addKeyListener(plotter3D);
 
+            setVisible(true);
             if(drawer instanceof JoglDrawer)
                 //((JoglDrawer)drawer).getGlcanvas().display();
                 ((JoglDrawer)drawer).getAnimator().start();
 
-            //setVisible(true);
-
-
-
-            //setVisible(true);
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
             Logger.getLogger(DarkFortressGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -118,8 +114,8 @@ public final class DarkFortressGUI extends JFrame {
     }
 
 
-    public DarkFortressGUIKeyListener getGameKeyListener() {
-        return gameKeyListener;
+    public KeyListener getGameKeyListener() {
+        return ( KeyListener) gameKeyListener;
     }
 
     public void setGame(Game game) {

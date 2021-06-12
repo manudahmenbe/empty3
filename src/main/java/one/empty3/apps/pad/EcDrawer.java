@@ -47,6 +47,10 @@ public class EcDrawer extends Drawer implements Runnable {
     private PositionUpdate mover;
 
     public EcDrawer(DarkFortressGUI darkFortress) {
+
+        super();
+
+
         this.component = darkFortress;
 
         z = new ZBufferImpl(640, 480);
@@ -54,8 +58,6 @@ public class EcDrawer extends Drawer implements Runnable {
         ((ZBufferImpl)z).setDisplayType(ZBufferImpl.SURFACE_DISPLAY_COL_TRI);
 
         darkFortress.setSize(640, 480);
-
-        darkFortress.pack();
 
         new Thread(this).start();
 

@@ -286,7 +286,13 @@ public class PanelGraphics extends JDialog {
             df = new DarkFortressGUI(JoglDrawer.class);
         }
 
-        levelMenu.setIndex(jComboBoxTerrain.getSelectedIndex());
+        int selectedIndex = jComboBoxTerrain.getSelectedIndex();
+
+        if (selectedIndex < 0 || selectedIndex >= levelMenu.getLevel().length) {
+            System.out.println("Error creating init Level");
+        } else {
+            levelMenu.setIndex(selectedIndex);
+        }
 
         Class<Terrain> loadClass = levelMenu.loadClass();
 
@@ -310,13 +316,6 @@ public class PanelGraphics extends JDialog {
 
         df.setLevel(loadClass, game.getLocalPlayer());
 
-        //df.pack();
-        try {
-            df.pack();
-            df.setVisible(true);
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -33,10 +33,10 @@
 package one.empty3.apps.pad;
 
 
+import com.jogamp.newt.event.KeyEvent;
+import com.jogamp.newt.event.KeyListener;
 import one.empty3.apps.pad.menu.ToggleMenu;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 
 /*__
@@ -57,10 +57,6 @@ public class DarkFortressGUIKeyListener implements KeyListener, Runnable {
         toggleMenu = new ToggleMenu();
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
 
     @Override
     public void keyPressed(KeyEvent e) {
