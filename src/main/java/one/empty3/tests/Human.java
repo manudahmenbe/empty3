@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Human extends RepresentableConteneur {
-
+    Animation animation;
     protected RepresentableConteneur actualBody = new RepresentableConteneur();
     protected Membre troncHaut;
     protected Membre troncBas;
@@ -226,7 +226,7 @@ public class Human extends RepresentableConteneur {
         moveCollection.addAll("humanWalks", teteBas, teteHaut, piedDroiteWalk0, piedDroiteWalk1, piedGaucheWalk0, piedGaucheWalk1, jbd1, jbd2, jbg1, jbg2,
                 jhd1, jhd2, jhg1, jhg1, bhg1, bhd2, bbg1, bbd1);
 
-        new Animation(this.getClass(), moveCollection);
+        animation = new Animation(this.getClass(), moveCollection);
     }
 
     @Override
@@ -241,5 +241,8 @@ public class Human extends RepresentableConteneur {
         structureMatrix = new StructureMatrix<>(0, Representable.class);
         structureMatrix.setElem(piedDroit.getRepresentable());
         getDeclaredDataStructure().put("piedDroit/Pied droit", structureMatrix);
+    }
+
+    public void move(double frame, double fps) {
     }
 }

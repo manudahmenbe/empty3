@@ -40,6 +40,7 @@ import one.empty3.library.core.lighting.Colors;
 import one.empty3.library.core.raytracer.RtIntersectInfo;
 import one.empty3.library.core.raytracer.RtMatiere;
 import one.empty3.library.core.raytracer.RtRay;
+import one.empty3.tests.Path;
 import tests2.dragons.StructureDragon;
 
 import java.io.*;
@@ -63,6 +64,7 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
     public static Point3D SCALE1;
     protected static ArrayList<Painter> classPainters = new ArrayList<Painter>();
     protected static HashMap<String, StructureMatrix> defaultHashMapData = new HashMap<String, StructureMatrix>();
+    protected static final int PATH_ELEM_STRUCTURE_MATRIX = 1;
     public StructureMatrix<Rotation> rotation = new StructureMatrix<>(0, Rotation.class);
     protected double NFAST = 100;
     protected RtMatiere materiau;
@@ -527,7 +529,7 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
         getRotation().getElem().getCentreRot().setElem(calcCposition);
     }
 
-    public Object getPath(String property) {
+    public Path getPath(String property) {
         String[] split = property.split(",");
 
         Object o;
@@ -535,6 +537,8 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
         Representable representable1 = this;
         Object value = null;
         MatrixPropertiesObject declaredProperty = null;
+        int i=-1;
+        int j=-1;
         for (int k = 0; k < split.length; k++) {
             String split0 = split[k].split("/")[0];
             if(value!=null) {
@@ -546,8 +550,6 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
                 }
             }
             String[] split1 = split0.split(":");
-            int i=-1;
-            int j=-1;
             if(split1.length>1) {
                 i = Integer.parseInt(split1[1]);
             }
@@ -580,8 +582,9 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
                 }
             }
         }
+        return new Path(declaredProperty, property, Representable.PATH_ELEM_STRUCTURE_MATRIX, i, j);
 
-        return value;
+
     }
 }
 

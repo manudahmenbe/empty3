@@ -30,13 +30,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-package one.empty3.library.core.animation;
+package one.empty3.tests;
 
 import one.empty3.library.Representable;
-import one.empty3.library.StructureMatrix;
+import one.empty3.tests.Human;
 import one.empty3.tests.Move;
 import one.empty3.tests.MoveCollection;
-import one.empty3.tests.Path;
 
 import java.util.HashMap;
 
@@ -49,18 +48,8 @@ public class Animation extends Representable {
 
     public Representable anime(Representable item, double t) {
         for (Move move : animations.get(item.getClass()).getMoves()) {
-            if (move.getO() instanceof Representable) {
-                Path path = ((Representable) move.getO()).getPath(move.getProperty());
-                switch (path.getPathElemType()) {
-                    case Representable.PATH_ELEM_STRUCTURE_MATRIX:
-                        switch (((StructureMatrix) path.getRepresentable()).getDim()) {
-                            case 0:
-                                ((StructureMatrix<Object>) path.getRepresentable()).setElem(move.getMoved());
+            Object path = item.getPath(move.getProperty());
 
-                                break;
-                        }
-                }
-            }
         }
         return item;
     }
