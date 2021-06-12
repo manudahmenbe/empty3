@@ -45,27 +45,28 @@ public class Animation extends Representable {
     private final HashMap<Class, MoveCollection> animations = new HashMap<>();
 
     public Animation(Class<? extends Representable> anime, MoveCollection moveCollection) {
-        this.animations.put(anime.getClass(), moveCollection);
+        this.animations.put(anime, moveCollection);
     }
 
     public Representable anime(Representable item, double t) {
-        Collection<Move> moves = animations.get(item.getClass()).getMoves();
+        MoveCollection moves = animations.get(item.getClass());
         if(moves!=null)
-        for (Move move : moves) {
+        for (Move move : moves.getMoves()) {
             if (move.getO() instanceof Representable) {
                 Path path = ((Representable) move.getO()).getPath(move.getProperty());
-                switch (path.getPathElemType()) {
-                    case Representable.PATH_ELEM_STRUCTURE_MATRIX:
-                        switch (((StructureMatrix) path.getRepresentable()).getDim()) {
-                            case 0:
-                                ((StructureMatrix<Object>) path.getRepresentable()).setElem(move.getMoved());
-
-                                break;
+                if(path!=null ) {
+                    if (path.getPathElemType() == Representable.PATH_ELEM_STRUCTURE_MATRIX) {
+                        if (((StructureMatrix) path.getRepresentable()).getDim() == 0) {
+                            ((StructureMatrix<Object>) path.getRepresentable()).setElem(move.getMoved());
                         }
+                    }
+                } else {
+                    System.out.println("catched error... Cannot invoke \"one.empty3.tests.Path.getPathElemType()\" because \"path\" is null");
                 }
             }
         }
-        else System.out.println("Animation anime error moves == null");
+        else
+            System.out.println("Animation anime error moves == null");
         return item;
     }
 }
