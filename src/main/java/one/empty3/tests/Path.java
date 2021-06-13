@@ -27,13 +27,6 @@ public class Path {
         this.declaredProperty = declaredProperty;
     }
 
-    public MatrixPropertiesObject getRepresentable() {
-        return representable;
-    }
-
-    public void setRepresentable(MatrixPropertiesObject o) {
-        this.representable = representable;
-    }
 
     public String getPropertyPathString() {
         return propertyPathString;
@@ -78,15 +71,6 @@ public class Path {
     public void setO(Object o) {
         this.o = o;
     }
-
-    public StructureMatrix<Object> getContainer() {
-        return container;
-    }
-
-    public void setContainer(StructureMatrix<Object> container) {
-        this.container = container;
-    }
-
     public StructureMatrix<Object> getDeclaredProperty() {
         return declaredProperty;
     }

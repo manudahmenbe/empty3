@@ -65,11 +65,7 @@ package one.empty3.tests;
 import one.empty3.library.Point3D;
 import one.empty3.library.Representable;
 import one.empty3.library.StructureMatrix;
-import one.empty3.tests.Move;
-import one.empty3.tests.MoveCollection;
-import one.empty3.tests.Path;
 
-import java.util.Collection;
 import java.util.HashMap;
 
 public class Animation extends Representable {
