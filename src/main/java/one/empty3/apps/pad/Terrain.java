@@ -64,9 +64,7 @@ public abstract class Terrain extends RepresentableConteneur {
     {
         //isDessineMurs = b;
     }
-    public Terrain(/*Game game*/)
-    {
-        //this.game = game;
+    public Terrain() {
     }
 
 

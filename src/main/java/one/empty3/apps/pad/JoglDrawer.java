@@ -32,31 +32,18 @@
 
 package one.empty3.apps.pad;
 
-import com.jogamp.nativewindow.GraphicsConfigurationFactory;
-import com.jogamp.nativewindow.awt.AWTGraphicsDevice;
-import com.jogamp.newt.event.KeyListener;
-import com.jogamp.opengl.GLCapabilities;
-import com.jogamp.opengl.GLProfile;
-import com.jogamp.newt.event.WindowAdapter;
-import com.jogamp.newt.event.WindowEvent;
-import com.jogamp.newt.opengl.GLWindow;
-import com.jogamp.opengl.util.FPSAnimator;
 import com.jogamp.common.nio.Buffers;
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
-import com.jogamp.opengl.glu.gl2.GLUgl2;
 import com.jogamp.opengl.util.Animator;
 import com.jogamp.opengl.util.FPSAnimator;
 import com.jogamp.opengl.util.awt.TextRenderer;
-import jogamp.nativewindow.DefaultGraphicsConfigurationFactoryImpl;
 import one.empty3.apps.pad.help.PiloteAuto;
 import one.empty3.library.*;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomiale;
-import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
 import one.empty3.library.core.nurbs.ParametricCurve;
 import one.empty3.library.core.tribase.TRIObjetGenerateur;
-import one.empty3.library.core.tribase.TubulaireN2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -67,12 +54,10 @@ import java.util.Iterator;
 public class JoglDrawer extends Drawer implements GLEventListener {
     private final GLU glu;
     private final Frame component;
-    private final GLCanvas glcanvas;
-    private FPSAnimator animator;
+    private Animator animator;
     double INCR_AA = 0.01;
     double DISTANCE_MIN = 100;
     Timer timer;
-    //TubulaireN2<LineSegment> path;
     private double maximize = INCR_AA / 10;
     private double minimize = INCR_AA;
     private PositionUpdate mover;
@@ -87,8 +72,8 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     private PiloteAuto piloteAuto;
     private Point3D del;
     private Point3D diff;
-    //private GL2 gl2;
     private GL2 gl;
+    private GLCanvas glCanvas;
 
     {
         Plasma.scale = 2;
@@ -96,53 +81,38 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     }
 
     {
-        glu = new GLUgl2();
+        glu = new GLU();
     }
 
     public JoglDrawer(DarkFortressGUI darkFortressGUI) {
 
-        super();
-        // Get the default OpenGL profile, reflecting the best for your running platform
-        GLProfile glp = GLProfile.getDefault();
+        GLProfile glp = GLProfile.getGL4ES3();
+
         // Specifies a set of OpenGL capabilities, based on your profile.
-        GLCapabilities caps = new GLCapabilities(glp);
-        // Create the OpenGL rendering canvas
-        GLWindow window = GLWindow.create(caps);
+        GLCapabilitiesImmutable caps = new GLCapabilities(glp);
+
+        glCanvas = new GLCanvas();
+
+        glCanvas.setSize(640, 480);
+        glCanvas.setAutoSwapBufferMode(true);
+        glCanvas.setGL(gl);
 
         // Create a animator that drives canvas' display() at the specified FPS.
-        animator = new FPSAnimator(window, FPS, true);
+        animator = new Animator();
+        glCanvas.setAnimator(animator);
 
         initFrame(darkFortressGUI);
 
-
-        JPanel contentPane = new JPanel();
-        window.addGLEventListener(this);
-        window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-        window.setTitle(TITLE);
         this.component = darkFortressGUI;
 
+        JPanel panel = new JPanel();
 
-        GLCapabilities capabilities = new GLCapabilities(glp);
+        panel.setMinimumSize(new Dimension(640, 480));
+        panel.add(glCanvas);
+        component.add(panel);
 
-        //capabilities.setDoubleBuffered(true);
-
-        glcanvas = new GLCanvas(/*capabilities*/);
-
-        window.addKeyListener(darkFortressGUI.getPlotter3D());
-        window.addKeyListener(darkFortressGUI.getGameKeyListener());
-
-        glcanvas.setSize(640, 480);
-
-        component.add(glcanvas);
-
-        //initFrame(component);
-
-        //((JFrame) component).setContentPane(glcanvas.getComponentAt(00000000,0));
-        //component.setContentPane(contentPane);
         timer = new Timer();
         timer.init();
-
-        glcanvas.setFocusable(true);
 
     }
 
@@ -589,7 +559,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
     public void displayChanged(GLAutoDrawable gLDrawable, boolean modeChanged,
                                boolean deviceChanged) {
-        reshape(gLDrawable, 0, 0, glcanvas.getWidth(), glcanvas.getHeight());
+        reshape(gLDrawable, 0, 0, glCanvas.getWidth(), glCanvas.getHeight());
     }
 
     @Override
@@ -794,7 +764,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     }
 
     public GLCanvas getGlcanvas() {
-        return glcanvas;
+        return glCanvas;
     }
 
     public int getBUFSIZE() {
@@ -849,23 +819,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         this.plotter3D = plotter3D;
     }
 
-    public FPSAnimator getAnimator() {
+    public Animator getAnimator() {
         return animator;
     }
-
-    /**
-     * A program that draws with JOGL in a NEWT GLWindow.
-     */
-    private static String TITLE = "JOGL 2 with NEWT";  // window's title
-    private static final int WINDOW_WIDTH = 640;  // width of the drawable
-    private static final int WINDOW_HEIGHT = 480; // height of the drawable
-    private static final int FPS = 60; // animator's target frames per second
-
-    static {
-        GLProfile.initSingleton();  // The method allows JOGL to prepare some Linux-specific locking optimizations
-    }
-
-    /**
-     * The entry main() method.
-     */
 }

@@ -33,6 +33,9 @@
 package one.empty3.apps.pad;
 
 import com.jogamp.newt.event.KeyListener;
+import com.jogamp.opengl.GLCapabilities;
+import com.jogamp.opengl.GLDrawableFactory;
+import com.jogamp.opengl.awt.GLCanvas;
 import one.empty3.apps.pad.menu.ToggleMenu;
 
 import javax.swing.*;
@@ -41,7 +44,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public final class DarkFortressGUI extends Frame {
+public final class DarkFortressGUI extends JFrame {
     private final Class<? extends Drawer> clazz;
     protected PositionUpdate mover;
     Plotter3D plotter3D;
@@ -62,13 +65,12 @@ public final class DarkFortressGUI extends Frame {
         this.drawerType = clazz;
         Title = "Dark Fortress ";
         setTitle(Title);
-        //setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //setVisible(true);
+
     }
 
     public void setLevel(Class<Terrain> sol, Player player) {
         try {
-            Terrain t = (Terrain) sol.getConstructor().newInstance();
+            Terrain t = sol.getConstructor().newInstance();
             mover = new PositionUpdateImpl(t, player);
             //new Thread(mover).start();
             gameKeyListener= new DarkFortressGUIKeyListener(mover);
@@ -103,8 +105,9 @@ public final class DarkFortressGUI extends Frame {
             //addKeyListener(plotter3D);
 
             setVisible(true);
+
             if(drawer instanceof JoglDrawer)
-                //((JoglDrawer)drawer).getGlcanvas().display();
+                ((JoglDrawer)drawer).getGlcanvas().display();
                 ((JoglDrawer)drawer).getAnimator().start();
 
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
