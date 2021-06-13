@@ -16,7 +16,7 @@ public class MoveCollection {
     public void addAll(String humanWalks, double tStart, double tEnd,
                        Move... movesAdd) {
         for (Move move : movesAdd) {
-            moves.put(humanWalks, move);
+            moves.put(move.getMoveName(), move);
             this.tStart.put(humanWalks, tStart);
             this.tEnd.put(humanWalks, tEnd);
         }

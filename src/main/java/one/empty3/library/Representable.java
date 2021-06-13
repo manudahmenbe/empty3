@@ -240,8 +240,13 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
 
     @Override
     public StructureMatrix getDeclaredProperty(String name) {
-
-        return getDeclaredDataStructure().get(name);
+        declareProperties();
+        for (String s : getDeclaredDataStructure().keySet()) {
+            if(s.startsWith(name)) {
+                return getDeclaredDataStructure().get(s);
+            }
+        }
+        return null;
     }
 
     public Map<String, StructureMatrix> getDeclaredDataStructure() {
@@ -538,18 +543,16 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
 
         Representable representable1 = this;
         Object value = null;
-        MatrixPropertiesObject declaredProperty = null;
+        StructureMatrix declaredProperty = null;
         int i=-1;
         int j=-1;
         for (int k = 0; k < split.length; k++) {
             String split0 = split[k].split("/")[0];
             if(value!=null) {
-                if(value instanceof StructureMatrix) {
-                    declaredProperty = (MatrixPropertiesObject) value;
+                if(value instanceof Representable) {
+                    representable1 = ((Representable)value);
                 }
-                else  if(declaredProperty instanceof Representable) {
-                    representable1 = (Representable) declaredProperty;
-                }
+
             }
             String[] split1 = split0.split(":");
             if(split1.length>1) {
@@ -559,7 +562,7 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
                 j = Integer.parseInt(split1[2]);
             }
 
-            declaredProperty = (MatrixPropertiesObject) representable1.getDeclaredProperty(split1[0]);
+            declaredProperty = (StructureMatrix) representable1.getDeclaredProperty(split1[0]);
 
             if (declaredProperty == null)
                 return null;
@@ -584,7 +587,7 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
                 }
             }
         }
-        return new Path(declaredProperty, property, Representable.PATH_ELEM_STRUCTURE_MATRIX, i, j);
+        return new Path(declaredProperty, value, property, Representable.PATH_ELEM_STRUCTURE_MATRIX, i, j);
 
 
     }

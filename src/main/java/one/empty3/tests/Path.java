@@ -2,6 +2,8 @@ package one.empty3.tests;
 
 import one.empty3.library.MatrixPropertiesObject;
 import one.empty3.library.Representable;
+import one.empty3.library.StructureMatrix;
+import org.jcodec.common.tools.MainUtils;
 
 public class Path {
     private Representable representable;
@@ -10,20 +12,27 @@ public class Path {
     private int indexI;
     private int indexJ;
     private Object o;
-    public Path(Object o, String propertyPathString, int pathElemType, int indexI, int indexJ) {
-        this.o = o;
+    private StructureMatrix<Object> container;
+    private StructureMatrix<Object> declaredProperty;
+
+
+    public Path( StructureMatrix<Object> declaredProperty,
+                 Object representable, String propertyPathString, int pathElemType, int indexI, int indexJ) {
+        this.o = representable;
+        this.representable = (Representable) representable;
         this.propertyPathString = propertyPathString;
         this.pathElemType = pathElemType;
         this.indexI = indexI;
         this.indexJ = indexJ;
+        this.declaredProperty = declaredProperty;
     }
 
-    public Object getRepresentable() {
-        return o;
+    public MatrixPropertiesObject getRepresentable() {
+        return representable;
     }
 
-    public void setRepresentable(Object o) {
-        this.o = o;
+    public void setRepresentable(MatrixPropertiesObject o) {
+        this.representable = representable;
     }
 
     public String getPropertyPathString() {
@@ -58,5 +67,31 @@ public class Path {
         this.indexJ = indexJ;
     }
 
+    public void setRepresentable(Representable representable) {
+        this.representable = representable;
+    }
 
+    public Object getO() {
+        return o;
+    }
+
+    public void setO(Object o) {
+        this.o = o;
+    }
+
+    public StructureMatrix<Object> getContainer() {
+        return container;
+    }
+
+    public void setContainer(StructureMatrix<Object> container) {
+        this.container = container;
+    }
+
+    public StructureMatrix<Object> getDeclaredProperty() {
+        return declaredProperty;
+    }
+
+    public void setDeclaredProperty(StructureMatrix<Object> declaredProperty) {
+        this.declaredProperty = declaredProperty;
+    }
 }

@@ -35,12 +35,11 @@
  */
 package one.empty3.library;
 
-import one.empty3.library.core.animation.Animation;
-
 import java.awt.*;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
+import one.empty3.tests.Animation;
 
 public class Scene extends Representable implements Serializable {
 
@@ -53,7 +52,7 @@ public class Scene extends Representable implements Serializable {
     public String description;
     public StructureMatrix<Camera> cameraActive = new StructureMatrix<>(0, Camera.class);
     private StructureMatrix<Representable> objets = new StructureMatrix<>(1, Representable.class);
-    private StructureMatrix<Animation> animations = new StructureMatrix<>(1, Animation.class);
+    private StructureMatrix<one.empty3.tests.Animation> animations = new StructureMatrix<>(1, Animation.class);
     private StructureMatrix<Camera> cameras = new StructureMatrix<>(1, Camera.class);
     private StructureMatrix<ITexture> colors = new StructureMatrix<>(1, ITexture.class);
     private StructureMatrix<Lumiere> lumieres = new StructureMatrix<>(1, Lumiere.class);
@@ -357,11 +356,11 @@ public class Scene extends Representable implements Serializable {
         this.objets = objets;
     }
 
-    public StructureMatrix<Animation> getAnimations() {
+    public StructureMatrix<one.empty3.tests.Animation> getAnimations() {
         return animations;
     }
 
-    public void setAnimations(StructureMatrix<Animation> animations) {
+    public void setAnimations(StructureMatrix<one.empty3.tests.Animation> animations) {
         this.animations = animations;
     }
 

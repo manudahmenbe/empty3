@@ -40,6 +40,8 @@
  */
 package one.empty3.library.core.animation;
 
+import one.empty3.tests.Animation;
+
 public class AnimationGenerator extends Thread {
 
     private final Animation animation;
