@@ -4,6 +4,7 @@ import one.empty3.library.Polygon;
 import one.empty3.library.*;
 import one.empty3.library.core.testing.TestObjet;
 import one.empty3.library.core.testing.TestObjetSub;
+import one.empty3.library.core.tribase.TubulaireN2;
 
 import java.awt.*;
 
@@ -57,7 +58,12 @@ public class TestHuman extends TestObjetSub {
         if(humanModel.animation!=null) {
             humanModel.move(frame(), 25.);
         }else
-            System.err.println("Humain animation == null");
+            System.err.println("Human animation == null");
+
+        System.out.println(((TubulaireN2)humanModel.jambeHautGauche.getRepresentable()).getSoulCurve().getElem()
+                .calculerPoint3D(0.0));
+        System.out.println(((TubulaireN2)humanModel.jambeHautGauche.getRepresentable()).getSoulCurve().getElem()
+                .calculerPoint3D(1.0));
     }
 
 }

@@ -32,6 +32,7 @@
 
 package one.empty3.library.core.animation;
 
+import one.empty3.library.Point3D;
 import one.empty3.library.Representable;
 import one.empty3.library.StructureMatrix;
 import one.empty3.tests.Move;
@@ -48,22 +49,29 @@ public class Animation extends Representable {
         this.animations.put(anime, moveCollection);
     }
 
-    public Representable anime(Representable item, double t) {
+    public Representable anime(Representable item, double tAnim) {
         MoveCollection moves = animations.get(item.getClass());
         if(moves!=null)
         for (Move move : moves.getMoves()) {
             if (move.getO() instanceof Representable) {
                 Path path = ((Representable) move.getO()).getPath(move.getProperty());
                 if(path!=null ) {
+                    Point3D plus = Point3D.O0;
+                    if(move.getMoved() instanceof Point3D) {
+                        plus = ((Point3D) (move.getMoved())).plus( // MOVE TYPE
+                                (Point3D) ((StructureMatrix<Object>) path.getRepresentable()).getElem()
+                        );
+                    }
                     if (path.getPathElemType() == Representable.PATH_ELEM_STRUCTURE_MATRIX) {
                         if (((StructureMatrix) path.getRepresentable()).getDim() == 0) {
-                            ((StructureMatrix<Object>) path.getRepresentable()).setElem(move.getMoved());
+
+                            ((StructureMatrix<Object>) path.getRepresentable()).setElem(plus);
                         }
                         if (((StructureMatrix) path.getRepresentable()).getDim() == 1) {
-                            ((StructureMatrix<Object>) path.getRepresentable()).setElem(move.getMoved(), path.getIndexI());
+                            ((StructureMatrix<Object>) path.getRepresentable()).setElem(plus, path.getIndexI());
                         }
                         if (((StructureMatrix) path.getRepresentable()).getDim() == 2) {
-                            ((StructureMatrix<Object>) path.getRepresentable()).setElem(move.getMoved(), path.getIndexI()
+                            ((StructureMatrix<Object>) path.getRepresentable()).setElem(plus, path.getIndexI()
                                     , path.getIndexJ());
                         }
                     }
