@@ -93,9 +93,9 @@ public class Animation extends Representable {
                                 continue;
                             }
                             if (path.getDeclaredProperty().getDim()==0) {
-                                if(move.getMoved() instanceof Point3D && move.getO() instanceof Point3D)  {
+                                if(move.getMoved() instanceof Point3D)  {
                                     plus = ((Point3D) (move.getMoved())).plus( // MOVE TYPE
-                                            (Point3D) ((StructureMatrix<Object>) path.getRepresentable()).getElem()
+                                            (Point3D) ((StructureMatrix<Object>) path.getDeclaredProperty()).getElem()
                                     );
                                 }
 
@@ -104,7 +104,7 @@ public class Animation extends Representable {
                             if (path.getDeclaredProperty().getDim()==1) {
                                 if(move.getMoved() instanceof Point3D) {
                                     plus = ((Point3D) (move.getMoved())).plus( // MOVE TYPE
-                                            (Point3D) ((StructureMatrix<Object>) path.getRepresentable()).getElem(path.getIndexI())
+                                            (Point3D) ((StructureMatrix<Object>) path.getDeclaredProperty()).getElem(path.getIndexI())
                                     );
                                 }
 
@@ -113,7 +113,7 @@ public class Animation extends Representable {
                             if (path.getDeclaredProperty().getDim()==2) {
                                 if(move.getMoved() instanceof Point3D) {
                                     plus = ((Point3D) (move.getMoved())).plus( // MOVE TYPE
-                                            (Point3D) ((StructureMatrix<Object>) path.getRepresentable()).getElem(path.getIndexI(), path.getIndexJ())
+                                            (Point3D) ((StructureMatrix<Object>) path.getDeclaredProperty()).getElem(path.getIndexI(), path.getIndexJ())
                                     );
                                 }
                                 ((StructureMatrix<Object>) path.getDeclaredProperty()).setElem(plus, path.getIndexI()
