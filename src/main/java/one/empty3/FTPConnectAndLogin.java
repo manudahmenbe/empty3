@@ -6,7 +6,7 @@ import org.apache.commons.net.ftp.FTPReply;
 
 public class FTPConnectAndLogin {
     private static void showServerReply(FTPClient ftp) {
-        String[] replies = ftp.getReplyStrings(); 
+        String[] replies = ftp.getReplyStrings();
         if (replies != null && replies.length > 0) {
         for (String aReply : replies) {
             System.out.println("SERVER: " + aReply);

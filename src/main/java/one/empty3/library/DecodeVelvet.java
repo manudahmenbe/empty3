@@ -7,16 +7,17 @@ import java.io.IOException;
 import java.util.Arrays;
 import javax.sound.sampled.AudioFormat;
 
-import com.zakgof.velvetvideo.*;
-import com.zakgof.velvetvideo.impl.VelvetVideoLib;
+//import com.zakgof.velvetvideo.*;
+//import com.zakgof.velvetvideo.implVelvetVideoLib;
 
-public class DecodeVelvet extends VideoDecoder {
-   
+//public class DecodeVelvet extends VideoDecoder {
+//
 /***
 * init, start, run, and block on maxsize reached
 * @param file video to draw on surface
 * @param refTextureMov texture to apply
 */
+/*
     public DecodeVelvet(File file, TextureMov refTextureMov) {
         super(file, refTextureMov);
 
@@ -29,7 +30,9 @@ public class DecodeVelvet extends VideoDecoder {
 	    while ((videoFrame = videoStream.nextFrame()) != null) {
 	   	    BufferedImage image = videoFrame.image();
 	   	    imgBuf. add(new ECBufferedImage(image) );
-                    while(imgBuf.size()>4/*MAX_SIZE*/)
+                    while(imgBuf.size()>4*/
+/*MAX_SIZE*//*
+)
 		    try {
 			    Thread.sleep(200);
 	            } catch(Exception ex) {
@@ -39,3 +42,4 @@ public class DecodeVelvet extends VideoDecoder {
 	}      
     }
 }
+*/
