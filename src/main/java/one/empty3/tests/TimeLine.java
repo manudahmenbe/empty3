@@ -4,8 +4,10 @@
 
 package one.empty3.tests;
 
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.*;
+import com.intellij.uiDesigner.core.*;
 import net.miginfocom.swing.*;
 
 /**
@@ -21,20 +23,16 @@ public class TimeLine extends JFrame {
         // Generated using JFormDesigner non-commercial license
         scrollPane1 = new JScrollPane();
         table1 = new JTable();
+        panel2 = new JPanel();
+        panel1 = new JPanel();
 
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "hidemode 3",
+            "fill,hidemode 3",
             // columns
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
             "[fill]",
             // rows
-            "[]" +
-            "[]" +
-            "[]" +
             "[]"));
 
         //======== scrollPane1 ========
@@ -60,7 +58,36 @@ public class TimeLine extends JFrame {
             ));
             scrollPane1.setViewportView(table1);
         }
-        contentPane.add(scrollPane1, "cell 0 0 4 4,dock center");
+        contentPane.add(scrollPane1, "cell 0 0,dock center");
+
+        //======== panel2 ========
+        {
+            panel2.setLayout(new MigLayout(
+                "fill,hidemode 3",
+                // columns
+                "[fill]" +
+                "[fill]" +
+                "[fill]" +
+                "[fill]" +
+                "[fill]",
+                // rows
+                "[]"));
+
+            //======== panel1 ========
+            {
+                panel1.setLayout(new MigLayout(
+                    "hidemode 3",
+                    // columns
+                    "[fill]" +
+                    "[fill]",
+                    // rows
+                    "[]" +
+                    "[]" +
+                    "[]"));
+            }
+            panel2.add(panel1, "cell 0 0 5 1");
+        }
+        contentPane.add(panel2, "cell 0 0,dock center");
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -70,5 +97,7 @@ public class TimeLine extends JFrame {
     // Generated using JFormDesigner non-commercial license
     private JScrollPane scrollPane1;
     private JTable table1;
+    private JPanel panel2;
+    private JPanel panel1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
