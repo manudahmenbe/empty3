@@ -50,7 +50,7 @@ public class TestHuman extends TestObjetSub {
         c.setMatrice(c.getMatrice());
         scene().cameraActive(c);
 
-        humanModel.add(polygon);
+        //humanModel.add(polygon);
     }
 
     @Override

@@ -47,18 +47,21 @@ import ru.sbtqa.monte.media.VideoFormatKeys;
 import ru.sbtqa.monte.media.avi.AVIWriter;
 import ru.sbtqa.monte.media.math.Rational;
 */
+
 import one.empty3.library.*;
 import one.empty3.library.core.export.ObjExport;
 import one.empty3.library.core.export.STLExport;
 import one.empty3.library.core.script.ExtensionFichierIncorrecteException;
 import one.empty3.library.core.script.Loader;
 import one.empty3.library.core.script.VersionNonSupporteeException;
+import org.jcodec.api.awt.AWTSequenceEncoder;
+import org.jcodec.common.io.FileChannelWrapper;
+import org.jcodec.common.io.NIOUtils;
+import org.jcodec.common.model.Rational;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
@@ -75,13 +78,6 @@ import java.util.logging.Logger;
  * @author Manuel DAHMEN
  */
 public abstract class TestObjet implements Test, Runnable {
-    public static Resolution PAL = new Resolution(1280, 720);
-    public static Resolution HD720 = new Resolution(1280, 720);
-    public static Resolution HD1080 = new Resolution(1920, 1080);
-    public static Resolution UHD = new Resolution(1920 * 2, 1080 * 2);
-    public static Resolution VGA = new Resolution(640, 480);
-    public static Resolution VGAZIZI = new Resolution(320, 200);
-
     public static final int GENERATE_NOTHING = 0;
     public static final int GENERATE_IMAGE = 1;
     public static final int GENERATE_MODEL = 2;
@@ -96,12 +92,20 @@ public abstract class TestObjet implements Test, Runnable {
     public static final int ON_MAX_FRAMES_CONTINUE = 1;
     public static final int ENCODER_MONTE = 0;
     public static final int ENCODER_HUMBLE = 1;
-    protected int encoder = 0;
+    public static Resolution PAL = new Resolution(1280, 720);
+    public static Resolution HD720 = new Resolution(1280, 720);
+    public static Resolution HD1080 = new Resolution(1920, 1080);
+    public static Resolution UHD = new Resolution(1920 * 2, 1080 * 2);
+    public static Resolution VGA = new Resolution(640, 480);
+    public static Resolution VGAZIZI = new Resolution(320, 200);
     protected Scene scene = new Scene();
     protected String description = "@ Manuel Dahmen \u2610";
     protected Camera c;
     protected int frame = 0;
     protected ArrayList<TestInstance.Parameter> dynParams;
+    protected ITexture couleurFond;
+    protected ZBufferImpl z;
+    AWTSequenceEncoder encoder;
     Properties properties = new Properties();
     ShowTestResult str;
     private File avif;
@@ -147,11 +151,9 @@ public abstract class TestObjet implements Test, Runnable {
     private File fileD;
     private boolean pause = false;
     private boolean pauseActive = false;
-    protected ITexture couleurFond;
     private File directory;
     private ZipWriter zip;
     private boolean stop = false;
-    protected ZBufferImpl z;
     private RegisterOutput o = new RegisterOutput();
     private int onTextureEnds = ON_TEXTURE_ENDS_STOP;
     private int onMaxFrameEvent = ON_MAX_FRAMES_STOP;
@@ -168,10 +170,7 @@ public abstract class TestObjet implements Test, Runnable {
     private AudioFormat audioFormat;
     private Resolution dimension = HD1080;
     private String name;
-
-    protected ZBufferImpl z() {
-        return z;
-    }
+    private FileChannelWrapper out;
 
     public TestObjet() {
 
@@ -181,7 +180,6 @@ public abstract class TestObjet implements Test, Runnable {
     public TestObjet(ArrayList<TestInstance.Parameter> params) {
         init();
     }
-
 
     public TestObjet(boolean binit) {
         if (binit) {
@@ -194,15 +192,19 @@ public abstract class TestObjet implements Test, Runnable {
         }
     }
 
-    public void setProperties(Properties p) {
-        this.getClass();
-    }
-
     public static void main(String[] args) {
         TestObjet gui = new TestObjetSub();
         gui.loop(true);
         gui.setMaxFrames(2000);
         new Thread(gui).start();
+    }
+
+    protected ZBufferImpl z() {
+        return z;
+    }
+
+    public void setProperties(Properties p) {
+        this.getClass();
     }
 
     public ExportAnimationData getDataWriter() {
@@ -232,67 +234,17 @@ public abstract class TestObjet implements Test, Runnable {
         avif = new File(this.dir.getAbsolutePath() + File.separator
                 + sousdossier + this.getClass().getName() + "__" + filmName + idxFilm + ".AVI");
 
-        if ((generate & GENERATE_MOVIE) > 0) {
-
-            if (encoder == 1) {
-
-                /*if (compiler != null && frame > 0)
-                    compiler.end();
-                initCompiler();*/
-            } else {
-                if (isAviOpen()) {
-      //              try {
-      //                  aw.finish();
-      //                  aw.close();
-      //                  aw = null;
-                        aviOpen = false;
-      //              } catch (IOException e) {
-      //                  o.println("Can't close or flush movie" + runtimeInfoSucc());
-      //              }
-
-
-                    //aw = null;
-                }
-                int track = -1;
-    //            try {
-        /*            aw = new AVIWriter(avif);
-
-                    Properties properties = new Properties();
-                    // TODO ADD PROPERTIES
-                    Format format = new Format(
-                            FormatKeys.MediaTypeKey, MediaType.VIDEO, FormatKeys.EncodingKey,
-                            VideoFormatKeys.ENCODING_AVI_MJPG, FormatKeys.FrameRateKey,
-                            new Rational(25, 1), VideoFormatKeys.WidthKey, resx,
-                            VideoFormatKeys.HeightKey, resy, VideoFormatKeys.DepthKey,
-                            24);
-
-                    videoTrackNo = aw.addTrack(format);
-                    // new Format(properties));
-                    // Determine audio format
-                    audioIn = null;
-*//*
-            if (audioTrack != null) {
-                if (audioTrack.getName().toLowerCase().endsWith(".mp3")) {
-                    audioIn = new MP3AudioInputStream(audioTrack);
-                } else {
-                    audioIn = AudioSystem.getAudioInputStream(audioTrack);
-                }
-                AudioFormat audioFormat = audioIn.getFormat();
-                audioTrackNo = aw.addTrack(AudioFormatKeys.fromAudioFormat(audioFormat));
-                int movieTime = 0;
-                int imgIndex = 0;
-                isAudioDone = false;
-                buf = new Buffer();
-            }
-            */
-                    aviOpen = true;
-                    //} catch (UnsupportedAudioFileException e) {
-                    //    e.printStackTrace();
-  //              } catch (IOException e) {
-  //                  e.printStackTrace();
-  //              }
-            }
+        out = null;
+        encoder = null;
+        try {
+            out = NIOUtils.writableFileChannel(avif.getAbsolutePath());
+            // for Android use: AndroidSequenceEncoder
+            encoder = new AWTSequenceEncoder(out, Rational.R(25, 1));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+            NIOUtils.closeQuietly(out);
         }
+        aviOpen = true;
     }
 
     private boolean unterminable() {
@@ -300,7 +252,7 @@ public abstract class TestObjet implements Test, Runnable {
     }
 
     public boolean isAviOpen() {
-        return (/*compiler != null && encoder == 1*/false) || (aviOpen && encoder == 0);
+        return (aviOpen && encoder != null);
     }
 
     public void setAviOpen(boolean aviOpen) {
@@ -332,11 +284,11 @@ public abstract class TestObjet implements Test, Runnable {
     }
 
     public Camera camera() {
-        return scene().cameraActive ();
+        return scene().cameraActive();
     }
 
     public void camera(Camera c) {
-        scene(). cameraActive (c);
+        scene().cameraActive(c);
     }
 
     public boolean D3() {
@@ -384,11 +336,11 @@ public abstract class TestObjet implements Test, Runnable {
     public void exportFrame(String format, String filename) throws IOException {
 
         STLExport.save(
-                new File(directory.getAbsolutePath() + File.separator +"stlExportFormatTXT"+ filename + ".stl"),
+                new File(directory.getAbsolutePath() + File.separator + "stlExportFormatTXT" + filename + ".stl"),
                 scene(),
                 false);
         ObjExport.save(
-                new File(directory.getAbsolutePath() + File.separator + "objExportFormatTXT"+filename + ".obj"),
+                new File(directory.getAbsolutePath() + File.separator + "objExportFormatTXT" + filename + ".obj"),
                 scene(),
                 false);
     }
@@ -711,6 +663,10 @@ public abstract class TestObjet implements Test, Runnable {
         return publish;
     }
 
+    public void setPublish(boolean publish) {
+        this.publish = publish;
+    }
+
     public void publishResult(boolean publish) {
         this.publish = publish;
     }
@@ -806,7 +762,7 @@ public abstract class TestObjet implements Test, Runnable {
 
         this.biic = new ImageContainer();
 
-        if(getPublish()) {
+        if (getPublish()) {
             publishResult();
 
         }
@@ -833,7 +789,6 @@ public abstract class TestObjet implements Test, Runnable {
         }
 
 
-
         o.println("");
         o.println(directory().getAbsolutePath());
         o.println("Generate (0 NOTHING  1 IMAGE  2 MODEL  4 OPENGL) {0}" + getGenerate());
@@ -842,13 +797,14 @@ public abstract class TestObjet implements Test, Runnable {
 
         ginit();
 
+
         while ((nextFrame() || unterminable()) && !stop) {
 
 
             byte[] audioBuffer = null;
             // Advance audio to movie time + 1 second (audio must be ahead of video by 1 second)
             while (audioTrack != null && !isAudioDone /*&& aw.getDuration(audioTrackNo).doubleValue() < 1.0
-            *frame() / fps*/) {
+             *frame() / fps*/) {
                 // => variable bit rate: format can change at any time
                 audioFormat = audioIn.getFormat();
                 if (audioFormat == null) {
@@ -868,11 +824,7 @@ public abstract class TestObjet implements Test, Runnable {
                 if (len == -1) {
                     isAudioDone = true;
                 } else {
-                    // try {
-                    // aw.writeSamples(audioTrackNo, len, audioBuffer, 0, len, true);
-                    //  } catch (IOException e) {
-                    //       e.printStackTrace();
-                    //      }
+
                 }
             }
 
@@ -923,20 +875,12 @@ public abstract class TestObjet implements Test, Runnable {
 
                 // ri.getGraphics().drawString(description, 0, 0);
 
-                if ((generate & GENERATE_MOVIE) > 0 && isAviOpen()) {
-                    if (encoder == ENCODER_MONTE) {
-                        /*
-                        try {
+                if ((generate & GENERATE_MOVIE) > 0 && encoder != null) {
 
-                            aw.write(videoTrackNo, ri, 1);
-                            dataWriter.writeFrameData(frame(), "Writing movie frame");
-
-                        } catch (IOException e) {
-                            reportException(e);
-                            return;
-                        }*/
-                    } else if (encoder == ENCODER_HUMBLE) {
-                        //compiler.frame((BufferedImage) ri);
+                    try {
+                        encoder.encodeImage((BufferedImage) ri);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 } else {
                     o.println(
@@ -979,15 +923,15 @@ public abstract class TestObjet implements Test, Runnable {
 
             }
 
-/*
-            if(publish) {
+
+            if (publish) {
                 ImageContainer imageContainer = new ImageContainer();
                 biic.setImage(ri);
                 imageContainer.setImage(biic.getImage());
 
                 str.setImageContainer(imageContainer);
             }
-  */
+
             z.idzpp();
 
         }
@@ -1004,22 +948,16 @@ public abstract class TestObjet implements Test, Runnable {
                 //reportException(e);
             }
         }
-        if ((generate & GENERATE_MOVIE) > 0 && true) {
-            if (encoder == ENCODER_MONTE) {
-                /*try {
-                    aw.finish();
-                    aw.close();
+        if ((generate & GENERATE_MOVIE) > 0 && encoder != null) {
+            try {
+                encoder.finish();
+            } catch (IOException e) {
+                e.printStackTrace();
 
-                } catch (IOException e) {
-                    o.println("Can't close or flush movie" + runtimeInfoSucc());
-                }*/
-
-            } else {
-
-                //compiler.end();
+            } finally {
+                NIOUtils.closeQuietly(out);
             }
         }
-
         String cmd;
 
         if (loop() && avif != null) {
@@ -1053,7 +991,6 @@ public abstract class TestObjet implements Test, Runnable {
         o.println("Quit run method " + runtimeInfoSucc());
 
     }
-
 
     public void saveBMood(boolean b) {
         saveTxt = b;
@@ -1203,14 +1140,14 @@ public abstract class TestObjet implements Test, Runnable {
         throw new ClassNotFoundException("Impossible to initialize class");
     }
 
+    public Resolution getDimension() {
+        return dimension;
+    }
+
     public void setDimension(Resolution dimension) {
         this.resx = dimension.x();
         this.resy = dimension.y();
         this.dimension = dimension;
-    }
-
-    public Resolution getDimension() {
-        return dimension;
     }
 
     public void setName(String name) {
@@ -1219,9 +1156,5 @@ public abstract class TestObjet implements Test, Runnable {
 
     public Color v2main() {
         return null;
-    }
-
-    public void setPublish(boolean publish) {
-        this.publish = publish;
     }
 }
