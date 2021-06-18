@@ -21,6 +21,7 @@ public class TimeLine extends JFrame {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner non-commercial license
+        scrollPane2 = new JScrollPane();
         scrollPane1 = new JScrollPane();
         table1 = new JTable();
         panel2 = new JPanel();
@@ -33,7 +34,9 @@ public class TimeLine extends JFrame {
             // columns
             "[fill]",
             // rows
+            "[]" +
             "[]"));
+        contentPane.add(scrollPane2, "cell 0 1");
 
         //======== scrollPane1 ========
         {
@@ -85,7 +88,7 @@ public class TimeLine extends JFrame {
                     "[]" +
                     "[]"));
             }
-            panel2.add(panel1, "cell 0 0 5 1");
+            panel2.add(panel1, "cell 0 0 5 1,dock center");
         }
         contentPane.add(panel2, "cell 0 0,dock center");
         pack();
@@ -95,6 +98,7 @@ public class TimeLine extends JFrame {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner non-commercial license
+    private JScrollPane scrollPane2;
     private JScrollPane scrollPane1;
     private JTable table1;
     private JPanel panel2;

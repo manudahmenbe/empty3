@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Human extends RepresentableConteneur {
+
     Animation animation;
     protected RepresentableConteneur actualBody = new RepresentableConteneur();
     protected Membre troncHaut;
@@ -152,6 +153,8 @@ public class Human extends RepresentableConteneur {
 
 
     }
+
+
     public void addSexe() {
         man = (int) (Math.random() * 2)==0;
 
@@ -201,33 +204,33 @@ public class Human extends RepresentableConteneur {
         double distancePas2 = 1.7;
         MoveCollection moveCollection = new MoveCollection(0.0, 3.0);
         Move teteBas = new Move("humanWalks1", tete.getRepresentable(), "axe,origine",
-                0.0, 3.0, new Point3D(0.0, 0.0, distancePas2));
+                0.0, 3.0, new Point3D(distancePas2,  0.0, 0.0));
         Move teteHaut = new Move("humanWalks2", tete.getRepresentable(), "axe,extremite",
-                0.0, 3.0, new Point3D(0.0, 0.0, distancePas2));
+                0.0, 3.0, new Point3D(distancePas2,  0.0, 0.0));
         Move piedGaucheWalk0 = new Move("humanWalks3", piedGauche.getRepresentable(), "soulCurve:0,origine:0",
-                0.0, 1.5, new Point3D(0.0, 0.0, distancePas2));
+                0.0, 1.5, new Point3D(distancePas2,  0.0, 0.0));
         Move piedDroiteWalk0 = new Move("humanWalks4", piedDroit.getRepresentable(), "soulCurve:0,origine:1",
-                0.0, 1.5, new Point3D(0.0, 0.0, distancePas2));
+                0.0, 1.5, new Point3D(distancePas2,  0.0, 0.0));
         Move piedGaucheWalk1 = new Move("humanWalks5", piedGauche.getRepresentable(), "soulCurve:0,origine:0",
                 0.0, 1.5, new Point3D(0.0,0.0, distancePas2));
         Move piedDroiteWalk1 = new Move("humanWalks6", piedDroit.getRepresentable(), "soulCurve:0,origine:1",
                 0.0, 1.5, new Point3D(0.0,  0.0, distancePas2));
         Move jbg1 = new Move("humanWalks7", jambeBasGauche.getRepresentable(), "soulCurve:0,origine:0",
-                0.0, 1.5, new Point3D(0., 0.0, distancePas2));
+                0.0, 1.5, new Point3D(distancePas2,  0.0, 0.0));
         Move jbg2 = new Move("humanWalks8", jambeBasGauche.getRepresentable(), "soulCurve:0,origine:1",
-                0.0, 1.5, new Point3D(0., 0.0, distancePas2));
+                0.0, 1.5, new Point3D(distancePas2,  0.0, 0.0));
         Move jbd1 = new Move("humanWalks9", jambeBasDroite.getRepresentable(), "soulCurve:0,origine:0",
-                0.0, 1.5, new Point3D(0., 0.0, distancePas2));
+                0.0, 1.5, new Point3D(distancePas2,  0.0, 0.0));
         Move jbd2 = new Move("humanWalks10", jambeBasDroite.getRepresentable(), "soulCurve:0,origine:1",
-                0.0, 1.5, new Point3D(0., 0.0, distancePas2));
+                0.0, 1.5, new Point3D(distancePas2,  0.0, 0.0));
         Move jhg1 = new Move("humanWalks11", jambeHautGauche.getRepresentable(), "soulCurve:0,origine:0",
-                0.0, 1.5, new Point3D(0., 0.0, distancePas2));
+                0.0, 1.5, new Point3D(distancePas2,  0.0, 0.0));
         Move jhg2 = new Move("humanWalks12", jambeHautGauche.getRepresentable(), "soulCurve:0,origine:1",
-                0.0, 1.5, new Point3D(0., 0.0, distancePas2));
+                0.0, 1.5, new Point3D(distancePas2,  0.0, 0.0));
         Move jhd1 = new Move("humanWalks13", jambeHautDroite.getRepresentable(), "soulCurve:0,origine:0",
-                0.0, 1.5, new Point3D(0., 0.0, distancePas2));
+                0.0, 1.5, new Point3D(distancePas2,  0.0, 0.0));
         Move jhd2 = new Move("humanWalks14", jambeHautDroite.getRepresentable(), "soulCurve:0,origine:1",
-                0.0, 1.5, new Point3D(0., 0.0, distancePas2));
+                0.0, 1.5, new Point3D(distancePas2,  0.0, 0.0));
         Move bhg1 = new Move("humanWalks15", brasHautGauche.getRepresentable(), "soulCurve:0,origine:0",
                 0.0, 1.5, new Point3D(0., 0., distancePas2));
         Move bhg2 = new Move("humanWalks16", brasHautGauche.getRepresentable(), "soulCurve:0,origine:1",

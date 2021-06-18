@@ -13,7 +13,8 @@ public class Move {
     private double time;
     private Point3D[] positions;
     private String property;
-
+    private Point3D vGlobal;
+    private Point3D vMembre;
     /***
      *
      * @param moveName
@@ -84,5 +85,21 @@ public class Move {
 
     public void setProperty(String property) {
         this.property = property;
+    }
+
+    public Point3D getvGlobal() {
+        return vGlobal;
+    }
+
+    public void setvGlobal(Point3D vGlobal) {
+        this.vGlobal = vGlobal;
+    }
+
+    public Point3D getvMembre() {
+        return vMembre;
+    }
+
+    public void setvMembre(Point3D vMembre) {
+        this.vMembre = vMembre;
     }
 }
