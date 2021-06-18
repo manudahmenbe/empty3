@@ -31,7 +31,6 @@
  */
 package one.empty3.library;
 
-import one.empty3.library.core.nurbs.Fct1D_1D;
 import one.empty3.library.core.nurbs.ParametricCurve;
 import one.empty3.library.core.nurbs.ParametricSurface;
 
