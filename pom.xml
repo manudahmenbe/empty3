@@ -124,7 +124,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                    <mainClass>one.empty3.apps.pad.PanelGraphics<!--one.empty3.Run  tests2.TestObjTeapot--></mainClass>
+                    <mainClass>one.empty3.apps.pad.PanelGraphics<!--one.empty3.Run  tests.tests2.TestObjTeapot--></mainClass>
                     <arguments>
                         <argument>class=one.empty3.Run</argument>
                         <argument>publish=false</argument>
@@ -284,7 +284,7 @@
       <executions>
         <execution>
           <id>audit-dependencies</id>
-          <phase>validate</phase>
+          <phase>install</phase>
           <goals>
             <goal>audit</goal>
           </goals>
@@ -297,6 +297,11 @@
 
 
     <repositories>
+        <repository>
+            <id>maven-central</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+<!--
         <repository>
             <id>mvnrepo</id>
             <url>https://www.dcm4che.org/maven2/</url>
@@ -315,10 +320,6 @@
             <url>https://repo.spring.io/plugins-release/</url>
         </repository>
         <repository>
-            <id>maven-central</id>
-            <url>https://repo1.maven.org/maven2/</url>
-        </repository>
-        <repository>
             <id>netbeans</id>
             <url>http://bits.netbeans.org/maven2/</url>
         </repository>
@@ -330,20 +331,22 @@
             <id>openimaj</id>
             <url>http://maven.ecs.soton.ac.uk/content/repositories/openimaj-releases/</url>
         </repository>
+-->
     </repositories>
     <dependencies>
-       <dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<scope>test</scope>
-<version>5.2.0</version>
-		</dependency> 
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.5.3</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.0-M1</version>
+            <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.jogamp.jogl/jogl-all-main -->
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>5.8.0-M1</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.jogamp.jogl</groupId>
             <artifactId>jogl-all-main</artifactId>

@@ -68,11 +68,15 @@ public class ExtrusionCurveCurve extends ParametricSurface {
         T = T.norme1();
         NX = normale.norme1();
         NY = NX.prodVect(T).norme1();
-
+/*
         return base.getElem().calculerPoint3D(u).plus(
                 path.getElem().calculerPoint3D(v).mult(NX)).
             plus(
                 path.getElem().calculerPoint3D(v).mult(NY));
+*/
+        // CORRECTION ERREUR INATTENDUE.
+        return base.getElem().calculerPoint3D(u).plus(
+            path.getElem().calculerPoint3D(v));
     }
 
 

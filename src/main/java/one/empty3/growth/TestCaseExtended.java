@@ -163,7 +163,6 @@ package one.empty3.growth;
 import junit.framework.TestCase;
 import one.empty3.library.Point3D;
 import one.empty3.library.ZBuffer;
-import org.junit.BeforeClass;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -178,7 +177,7 @@ public class TestCaseExtended extends TestCase {
     private static TestCaseExtended caseExtended;
     private int serId;
 
-    @BeforeClass
+
     @Override
     public void setUp() throws Exception {
         super.setUp();

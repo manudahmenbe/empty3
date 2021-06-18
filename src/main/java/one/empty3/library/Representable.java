@@ -41,7 +41,6 @@ import one.empty3.library.core.raytracer.RtIntersectInfo;
 import one.empty3.library.core.raytracer.RtMatiere;
 import one.empty3.library.core.raytracer.RtRay;
 import one.empty3.tests.Path;
-import tests2.dragons.StructureDragon;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;

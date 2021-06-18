@@ -3,16 +3,15 @@
  */
 
 package one.empty3.tests;
-
-import java.awt.*;
+/*
 import javax.swing.*;
 import javax.swing.table.*;
-import com.intellij.uiDesigner.core.*;
 import net.miginfocom.swing.*;
 
 /**
  * @author Manuel Dahmen
  */
+/*
 public class TimeLine extends JFrame {
     public TimeLine() {
         initComponents();
@@ -105,3 +104,4 @@ public class TimeLine extends JFrame {
     private JPanel panel1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
+*/

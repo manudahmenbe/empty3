@@ -3,7 +3,6 @@ package one.empty3.tests;
 import one.empty3.library.MatrixPropertiesObject;
 import one.empty3.library.Representable;
 import one.empty3.library.StructureMatrix;
-import org.jcodec.common.tools.MainUtils;
 
 public class Path {
     private Representable representable;
