@@ -38,14 +38,16 @@ public class ModelingInterface extends JFrame {
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 0.));
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 10.));
         tubulaire4.getDiameterFunction().getElem().setFormulaX("10.0");
+        System.out.printf("%f", tubulaire4.getDiameterFunction().getElem().result(0.0));
+        tubulaire4.texture(new ColorTexture(Color.BLUE));
 
-        tubulaire4.texture(new ColorTexture(Colors.random()));
 
 
+        camera = new Camera(Point3D.Y.mult(-40.), Point3D.O0, Point3D.Z);
+       // camera = new Camera(new Point3D(-100.0, 1.0, 1.0), new Point3D(0., 0.0, 0.0), new Point3D(0.0, 0.0, 1.0));
 
-        camera = new Camera(Point3D.Y.mult(-40.), Point3D.O0);
-        camera = new Camera(new Point3D(-40.0, 1.0, 1.0), new Point3D(0., 0.0, 0.0), new Point3D(0.0, 0.0, 1.0));
 
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     private void menuItemRefresh3DActionPerformed(ActionEvent e) {
@@ -53,15 +55,19 @@ public class ModelingInterface extends JFrame {
     }
     public void refresh() {
         ZBufferImpl zBuffer = new ZBufferImpl(panel3.getWidth(), panel3.getHeight());
+        zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_COL_QUADS);
+        zBuffer.texture(new ColorTexture(Color.WHITE));
         Scene scene = new Scene();
+        tubulaire4.updateBitmap(image);
         scene.add(tubulaire4);
         scene.cameraActive(camera);
         zBuffer.scene(scene);
         zBuffer.camera(camera);
 
+        zBuffer.draw();
+
         ECBufferedImage ecBufferedImage = zBuffer.image2();
 
-        tubulaire4.updateBitmap(image);
 
 
         Graphics graphics = panel3.getGraphics();
@@ -84,7 +90,7 @@ public class ModelingInterface extends JFrame {
     }
     public void initImage() {
         Graphics graphics = image.getGraphics();
-        graphics.setColor(Color.GRAY);
+        graphics.setColor(Color.RED);
         graphics.fillRect(0, 0, image.getWidth(), image.getHeight());
     }
     private BufferedImage getImage() {

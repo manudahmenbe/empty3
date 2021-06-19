@@ -249,9 +249,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 // System.out.println("Surface");
                 System.out.println("class" + n.getClass());
                 // TODO Dessiner les bords
-                for (double u = n.getStartU(); u <= n.getEndU(); u += n.getIncrU()) {
+                for (double u = n.getStartU(); u+n.getIncrU() <= n.getEndU(); u += n.getIncrU()) {
                     // System.out.println("(u,v) = ("+u+","+")");
-                    for (double v = n.getStartV(); v <= n.getEndV(); v += n.getIncrV()) {
+                    for (double v = n.getStartV(); v+n.getIncrV() <= n.getEndV(); v += n.getIncrV()) {
                         /*
                          * draw(new TRI(n.calculerPoint3D(u, v), n.calculerPoint3D(u + n.getIncrU(), v),
                          * n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()), n.texture()), n);
