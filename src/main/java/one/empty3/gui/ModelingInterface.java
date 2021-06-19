@@ -18,7 +18,7 @@ import java.awt.image.BufferedImage;
  */
 public class ModelingInterface extends JFrame {
     private static final int PAINT_POINT = 1;
-    private final Tubulaire4map tubulaire4;
+    private Tubulaire4map tubulaire4;
     private final int RES_Y = 2000;
     private final int RES_X = 2000;
     private Camera camera;
@@ -44,27 +44,28 @@ public class ModelingInterface extends JFrame {
     private JLabel label1;
     public ModelingInterface() {
         initComponents();
+        init();
+    }
+    public void init() {
 
         image = new BufferedImage(RES_X, RES_Y, BufferedImage.TYPE_INT_RGB);
         initImage();
         tubulaire4 = new Tubulaire4map();
+        tubulaire4.declareProperties();
         tubulaire4.getSoulCurve().setElem(new CourbeParametriquePolynomialeBezier());
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 10.));
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 0.));
         tubulaire4.getDiameterFunction().getElem().setFormulaX("10.0");
         System.out.printf("%f", tubulaire4.getDiameterFunction().getElem().result(0.0));
         tubulaire4.texture(new ColorTexture(Color.BLUE));
-        tubulaire4.setIncrU(0.01);
-        tubulaire4.setIncrV(0.01);
+        tubulaire4.setIncrU(0.1);
+        tubulaire4.setIncrV(0.1);
 
 
-        camera = new Camera(Point3D.Y.mult(-40.), Point3D.O0, Point3D.Z);
-        // camera = new Camera(new Point3D(-100.0, 1.0, 1.0), new Point3D(0., 0.0, 0.0), new Point3D(0.0, 0.0, 1.0));
-
+        camera = new Camera(Point3D.Y.mult(-100.), Point3D.O0, Point3D.Z);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
     public static void main(String[] args) {
         ModelingInterface modelingInterface = new ModelingInterface();
         modelingInterface.setVisible(true);

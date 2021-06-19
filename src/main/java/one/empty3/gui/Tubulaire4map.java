@@ -15,9 +15,16 @@ public class Tubulaire4map extends Tubulaire3 {
 
     public Tubulaire4map() {
         super();
+        mapVolume.setElem(new ECBufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB));
     }
     public void updateBitmap(BufferedImage bufferedImage) {
         this.mapVolume.setElem(new ECBufferedImage(bufferedImage));
+    }
+
+    @Override
+    public void declareProperties() {
+        super.declareProperties();
+        getDeclaredDataStructure().put("mapVolume/Image de deformation", mapVolume);
     }
 
     /***

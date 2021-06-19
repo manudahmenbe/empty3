@@ -52,10 +52,10 @@ public class Tubulaire3 extends ParametricSurface {
     public double TAN_FCT_INCR = 0.000001;
     public double NORM_FCT_INCR = 0.000001;
 
-    private StructureMatrix<CourbeParametriquePolynomialeBezier> soulCurve = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
-    private StructureMatrix<FctXY> diameterFunction = new StructureMatrix<>(0, FctXY.class);
-    private Point3D lastNorm;
-    private Point3D lastTan;
+    protected StructureMatrix<CourbeParametriquePolynomialeBezier> soulCurve = new StructureMatrix<>(0, CourbeParametriquePolynomialeBezier.class);
+    protected StructureMatrix<FctXY> diameterFunction = new StructureMatrix<>(0, FctXY.class);
+    protected Point3D lastNorm;
+    protected Point3D lastTan;
 
     public Tubulaire3() {
         super();
