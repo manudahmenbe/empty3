@@ -857,10 +857,10 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     @Override
     public boolean checkScreen(Point p1) {
-        if (p1 != null && (p1.getX() < 0d || p1.getY() >= la
-                || p1.getY() < 0d || p1.getY() >= ha))
-            return false;
-        return true;
+        if (p1 != null && p1.getX()>= 0d && p1.getY() < la
+                && p1.getY() >= 0d && p1.getY() < ha)
+            return true;
+        return false;
 
     }
 
@@ -901,22 +901,18 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                         pFinal.setNormale(normale);
                         pFinal.texture(texture);
                     } else {
-                        pFinal = pFinal;
-
                         pFinal.setNormale(normale);
                         pFinal.texture(texture);
 
                     }
                 }
                 if (displayType <= SURFACE_DISPLAY_TEXT_QUADS) {
-                    //Point3D point3D = n.calculerNormale3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b);
                     double u = u0 + (u1 - u0) * a;
                     double v = v0 + (v1 - v0) * b;
                     ime.testDeep(pFinal, n.texture(),
                             u, v, n);
                 } else {
                     ime.testDeep(pFinal, col);
-                    //ime.testDeep(pFinal, texture.getColorAt(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b), n);
 
                 }
             }

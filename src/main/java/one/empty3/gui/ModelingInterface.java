@@ -4,16 +4,14 @@
 
 package one.empty3.gui;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import javax.swing.*;
-import net.miginfocom.swing.*;
+import net.miginfocom.swing.MigLayout;
 import one.empty3.library.*;
-import one.empty3.library.core.lighting.Colors;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
-import one.empty3.library.core.nurbs.FctXY;
-import one.empty3.library.core.tribase.Tubulaire3;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 
 /**
  * @author Manuel Dahmen
@@ -27,7 +25,23 @@ public class ModelingInterface extends JFrame {
     private BufferedImage image;
     private Color paintColor = Color.WHITE;
     private int drawUtil;
-
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    // Generated using JFormDesigner non-commercial license
+    private JMenuBar menuBar3;
+    private JSplitPane splitPane1;
+    private JScrollPane scrollPane1;
+    private JPanel panel2;
+    private JMenuBar menuBar1;
+    private JMenuItem menuItem1;
+    private JPanel panel3;
+    private JScrollPane scrollPane2;
+    private JPanel panel1;
+    private JMenuBar menuBar2;
+    private JMenuItem menuItem2;
+    private JMenuItem menuItem3;
+    private JMenuItem menuItem4;
+    private JPanel panel4;
+    private JLabel label1;
     public ModelingInterface() {
         initComponents();
 
@@ -35,28 +49,36 @@ public class ModelingInterface extends JFrame {
         initImage();
         tubulaire4 = new Tubulaire4map();
         tubulaire4.getSoulCurve().setElem(new CourbeParametriquePolynomialeBezier());
-        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 0.));
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 10.));
+        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 0.));
         tubulaire4.getDiameterFunction().getElem().setFormulaX("10.0");
         System.out.printf("%f", tubulaire4.getDiameterFunction().getElem().result(0.0));
         tubulaire4.texture(new ColorTexture(Color.BLUE));
-
+        tubulaire4.setIncrU(0.01);
+        tubulaire4.setIncrV(0.01);
 
 
         camera = new Camera(Point3D.Y.mult(-40.), Point3D.O0, Point3D.Z);
-       // camera = new Camera(new Point3D(-100.0, 1.0, 1.0), new Point3D(0., 0.0, 0.0), new Point3D(0.0, 0.0, 1.0));
+        // camera = new Camera(new Point3D(-100.0, 1.0, 1.0), new Point3D(0., 0.0, 0.0), new Point3D(0.0, 0.0, 1.0));
 
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+    public static void main(String[] args) {
+        ModelingInterface modelingInterface = new ModelingInterface();
+        modelingInterface.setVisible(true);
+    }
+
     private void menuItemRefresh3DActionPerformed(ActionEvent e) {
         refresh();
     }
+
     public void refresh() {
         ZBufferImpl zBuffer = new ZBufferImpl(panel3.getWidth(), panel3.getHeight());
-        zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_COL_QUADS);
+        zBuffer.setDisplayType(ZBufferImpl.DISPLAY_ALL);
         zBuffer.texture(new ColorTexture(Color.WHITE));
+        zBuffer.backgroundTexture(new ColorTexture(Color.WHITE));
         Scene scene = new Scene();
         tubulaire4.updateBitmap(image);
         scene.add(tubulaire4);
@@ -69,9 +91,7 @@ public class ModelingInterface extends JFrame {
         ECBufferedImage ecBufferedImage = zBuffer.image2();
 
 
-
         Graphics graphics = panel3.getGraphics();
-
 
 
         graphics.drawImage(
@@ -88,11 +108,13 @@ public class ModelingInterface extends JFrame {
     private void menuItemUpdateViewActionPerformed(ActionEvent e) {
         refresh();
     }
+
     public void initImage() {
         Graphics graphics = image.getGraphics();
         graphics.setColor(Color.RED);
         graphics.fillRect(0, 0, image.getWidth(), image.getHeight());
     }
+
     private BufferedImage getImage() {
         return image;
     }
@@ -102,13 +124,14 @@ public class ModelingInterface extends JFrame {
         jColorChooser.setVisible(true);
         Color color = jColorChooser.getColor();
 
-        if(color!=null)
+        if (color != null)
             this.paintColor = color;
     }
 
     private void menuItemDrawActionPerformed(ActionEvent e) {
         this.drawUtil = PAINT_POINT;
     }
+    // JFormDesigner - End of variables declaration  //GEN-END:variables
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -132,17 +155,17 @@ public class ModelingInterface extends JFrame {
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "hidemode 3",
-            // columns
-            "[fill]" +
-            "[fill]",
-            // rows
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]"));
+                "hidemode 3",
+                // columns
+                "[fill]" +
+                        "[fill]",
+                // rows
+                "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]"));
         setJMenuBar(menuBar3);
 
         //======== splitPane1 ========
@@ -156,14 +179,14 @@ public class ModelingInterface extends JFrame {
                 //======== panel2 ========
                 {
                     panel2.setLayout(new MigLayout(
-                        "fill,hidemode 3",
-                        // columns
-                        "[fill]" +
-                        "[fill]",
-                        // rows
-                        "[]" +
-                        "[]" +
-                        "[]"));
+                            "fill,hidemode 3",
+                            // columns
+                            "[fill]" +
+                                    "[fill]",
+                            // rows
+                            "[]" +
+                                    "[]" +
+                                    "[]"));
 
                     //======== menuBar1 ========
                     {
@@ -178,14 +201,14 @@ public class ModelingInterface extends JFrame {
                     //======== panel3 ========
                     {
                         panel3.setLayout(new MigLayout(
-                            "hidemode 3",
-                            // columns
-                            "[fill]" +
-                            "[fill]",
-                            // rows
-                            "[]" +
-                            "[]" +
-                            "[]"));
+                                "hidemode 3",
+                                // columns
+                                "[fill]" +
+                                        "[fill]",
+                                // rows
+                                "[]" +
+                                        "[]" +
+                                        "[]"));
                     }
                     panel2.add(panel3, "cell 0 1 2 2,dock center");
                 }
@@ -199,14 +222,14 @@ public class ModelingInterface extends JFrame {
                 //======== panel1 ========
                 {
                     panel1.setLayout(new MigLayout(
-                        "fill,hidemode 3",
-                        // columns
-                        "[fill]" +
-                        "[fill]",
-                        // rows
-                        "[]" +
-                        "[]" +
-                        "[]"));
+                            "fill,hidemode 3",
+                            // columns
+                            "[fill]" +
+                                    "[fill]",
+                            // rows
+                            "[]" +
+                                    "[]" +
+                                    "[]"));
 
                     //======== menuBar2 ========
                     {
@@ -231,14 +254,14 @@ public class ModelingInterface extends JFrame {
                     //======== panel4 ========
                     {
                         panel4.setLayout(new MigLayout(
-                            "hidemode 3",
-                            // columns
-                            "[fill]" +
-                            "[fill]",
-                            // rows
-                            "[]" +
-                            "[]" +
-                            "[]"));
+                                "hidemode 3",
+                                // columns
+                                "[fill]" +
+                                        "[fill]",
+                                // rows
+                                "[]" +
+                                        "[]" +
+                                        "[]"));
                     }
                     panel1.add(panel4, "cell 0 1 2 2,dock center");
                 }
@@ -254,30 +277,5 @@ public class ModelingInterface extends JFrame {
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
-    }
-
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner non-commercial license
-    private JMenuBar menuBar3;
-    private JSplitPane splitPane1;
-    private JScrollPane scrollPane1;
-    private JPanel panel2;
-    private JMenuBar menuBar1;
-    private JMenuItem menuItem1;
-    private JPanel panel3;
-    private JScrollPane scrollPane2;
-    private JPanel panel1;
-    private JMenuBar menuBar2;
-    private JMenuItem menuItem2;
-    private JMenuItem menuItem3;
-    private JMenuItem menuItem4;
-    private JPanel panel4;
-    private JLabel label1;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
-
-
-    public static void main(String [] args) {
-        ModelingInterface modelingInterface = new ModelingInterface();
-        modelingInterface.setVisible(true);
     }
 }
