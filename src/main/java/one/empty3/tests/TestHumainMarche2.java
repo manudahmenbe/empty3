@@ -34,6 +34,7 @@ public class TestHumainMarche2 extends TestObjetSub {
     public static void main(String[] args) {
         TestHumainMarche2 testHumain = new TestHumainMarche2();
         testHumain.setPublish(true);
+        testHumain.setGenerate(testHumain.getGenerate()|GENERATE_MODEL);
         new Thread(testHumain).start();
     }
 

@@ -83,9 +83,17 @@ public class HumainMarche extends RepresentableConteneur {
             tubeAddPoint(patte[i+2], new Point3D(0., 9., 2. * (2 * i - 1)));
             rotateZ(patte[i+2], 1, 4, Math.signum(i - 0.5), Math.sin(2.*Math.PI*2*t)/8.);
         }
+
+        Tubulaire3 basVentre = new Tubulaire3();
+        basVentre.getSoulCurve().add(new CourbeParametriquePolynomialeBezier(new Point3D[] {
+                new Point3D(0.,9.,0.),
+                new Point3D(0.,10.,0.)}));
+        basVentre.getDiameterFunction().getElem().setFormulaX("1.6");
+
         add(corps);
         add(tetes);
         add(ventre);
+        add(basVentre);
         for (int i = 0; i < 4; i++) {
             add(patte[i]);
 

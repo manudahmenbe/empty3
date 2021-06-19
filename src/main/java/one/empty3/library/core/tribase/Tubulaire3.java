@@ -88,18 +88,26 @@ public class Tubulaire3 extends ParametricSurface {
         s += "\n\n)\n\t" + diameterFunction.toString() + "\n\t" + texture().toString() + "\n)\n";
         return s;
     }
+    private Point3D calculerTangenteUpart(double u, double v) {
+        return soulCurve.data0d.calculerTangente(u);
+    }
 
+    private Object calculerTangenteVpart(double u, double v) {
+        return calculerTangenteUpart(u, v).prodVect(calculerTangenteUpart(u+TAN_FCT_INCR, v)).norme1();//?????
+    }
 
-    public Point3D[] vectPerp(double t, double v) {
-        Point3D[][] vecteurs = new Point3D[3][3];
+    Point3D[][] vecteurs = new Point3D[3][3];
 
-        for(int i = 0; i < 3; i++)
-            for(int j = 0; j < 3; j++) {
+    {
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++) {
                 vecteurs[i][j] = new Point3D(0., 0., 0.);
                 for (int k = 0; k < 3; k++)
                     vecteurs[i][j].set(j, k == i ? 1. : 0.);
             }
+    }
 
+    public Point3D[] vectPerp(double t, double v) {
         Point3D tangente = calculerTangente(t);
         if(tangente.equals(Point3D.O0)||tangente.isAnyNaN()) {
             if(lastTan!=null) {
@@ -126,7 +134,7 @@ public class Tubulaire3 extends ParametricSurface {
         double minI = 1000; // TODO
         for (int i = 0; i < 3; i++) {
             Point3D normal = calculerNormale(t);
-            if(normal.equals(Point3D.O0)||normal.isAnyNaN()) {
+        /*    if(normal.equals(Point3D.O0)||normal.isAnyNaN()) {
                 if(lastNorm!=null) {
                     normal = lastNorm;
                     //normal = tangente.prodVect(refs[i]);//TODO .prodVect(refs[i])).norme1();
@@ -137,7 +145,7 @@ public class Tubulaire3 extends ParametricSurface {
             }  else {
                 lastNorm = normal;
             }
-
+*/
             normal = normal.norme1();
             px = tangente.prodVect(normal);//TODO .prodVect(refs[i])).norme1();
 
@@ -155,8 +163,6 @@ public class Tubulaire3 extends ParametricSurface {
                 j = i;
             }
         }
-        //if(min<minI)
-        // TODO    System.out.println("Error vectPerp : TubulaireN2");
         return vecteurs[j];
     }
 
