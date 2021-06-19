@@ -1,5 +1,6 @@
 package one.empty3.gui;
 
+import one.empty3.library.Lumiere;
 import one.empty3.library.Point3D;
 import one.empty3.library.core.tribase.Tubulaire3;
 
@@ -19,9 +20,10 @@ public class Tubulaire4map extends Tubulaire3 {
     @Override
     public Point3D calculerPoint3D(double u, double v) {
         Point3D[] vectPerp = vectPerp(u, v);
+        double  lum = Lumiere.getDoubles(mapVolume.getRGB(getX(u), getY(v)))[0];
         return getSoulCurve().getElem().calculerPoint3D(u).plus(
-                vectPerp[1].mult(mapVolume.getRGB(getX(u), getY(v))).mult(Math.cos(2 * Math.PI * v))).plus(
-                vectPerp[2].mult(mapVolume.getRGB(getX(u), getY(v))).mult(Math.sin(2 * Math.PI * v)));
+                vectPerp[1].mult(lum).mult(Math.cos(2 * Math.PI * v))).plus(
+                vectPerp[2].mult(lum).mult(Math.sin(2 * Math.PI * v)));
     }
 
     private int getY(double v) {

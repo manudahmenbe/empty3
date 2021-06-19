@@ -6,6 +6,7 @@ package one.empty3.gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import javax.swing.*;
 import net.miginfocom.swing.*;
 import one.empty3.library.*;
@@ -18,13 +19,20 @@ import one.empty3.library.core.tribase.Tubulaire3;
  * @author Manuel Dahmen
  */
 public class ModelingInterface extends JFrame {
+    private static final int PAINT_POINT = 1;
     private final Tubulaire4map tubulaire4;
-    private final Camera camera;
+    private final int RES_Y = 2000;
+    private final int RES_X = 2000;
+    private Camera camera;
+    private BufferedImage image;
+    private Color paintColor = Color.WHITE;
+    private int drawUtil;
 
     public ModelingInterface() {
         initComponents();
 
-
+        image = new BufferedImage(RES_X, RES_Y, BufferedImage.TYPE_INT_RGB);
+        initImage();
         tubulaire4 = new Tubulaire4map();
         tubulaire4.getSoulCurve().setElem(new CourbeParametriquePolynomialeBezier());
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 0.));
@@ -33,10 +41,17 @@ public class ModelingInterface extends JFrame {
 
         tubulaire4.texture(new ColorTexture(Colors.random()));
 
+
+
         camera = new Camera(Point3D.Y.mult(-40.), Point3D.O0);
+        camera = new Camera(new Point3D(-40.0, 1.0, 1.0), new Point3D(0., 0.0, 0.0), new Point3D(0.0, 0.0, 1.0));
+
     }
 
     private void menuItemRefresh3DActionPerformed(ActionEvent e) {
+        refresh();
+    }
+    public void refresh() {
         ZBufferImpl zBuffer = new ZBufferImpl(panel3.getWidth(), panel3.getHeight());
         Scene scene = new Scene();
         scene.add(tubulaire4);
@@ -46,6 +61,7 @@ public class ModelingInterface extends JFrame {
 
         ECBufferedImage ecBufferedImage = zBuffer.image2();
 
+        tubulaire4.updateBitmap(image);
 
 
         Graphics graphics = panel3.getGraphics();
@@ -56,6 +72,36 @@ public class ModelingInterface extends JFrame {
                 ecBufferedImage, 0, 0,
                 panel3.getWidth(), panel3.getHeight(), null);
 
+        graphics = panel4.getGraphics();
+
+
+        graphics.drawImage(image, 0, 0, panel4.getWidth(), panel4.getHeight(), null);
+
+    }
+
+    private void menuItemUpdateViewActionPerformed(ActionEvent e) {
+        refresh();
+    }
+    public void initImage() {
+        Graphics graphics = image.getGraphics();
+        graphics.setColor(Color.GRAY);
+        graphics.fillRect(0, 0, image.getWidth(), image.getHeight());
+    }
+    private BufferedImage getImage() {
+        return image;
+    }
+
+    private void menuItemChooseColorActionPerformed(ActionEvent e) {
+        JColorChooser jColorChooser = new JColorChooser(paintColor);
+        jColorChooser.setVisible(true);
+        Color color = jColorChooser.getColor();
+
+        if(color!=null)
+            this.paintColor = color;
+    }
+
+    private void menuItemDrawActionPerformed(ActionEvent e) {
+        this.drawUtil = PAINT_POINT;
     }
 
     private void initComponents() {
@@ -71,6 +117,9 @@ public class ModelingInterface extends JFrame {
         scrollPane2 = new JScrollPane();
         panel1 = new JPanel();
         menuBar2 = new JMenuBar();
+        menuItem2 = new JMenuItem();
+        menuItem3 = new JMenuItem();
+        menuItem4 = new JMenuItem();
         panel4 = new JPanel();
         label1 = new JLabel();
 
@@ -152,6 +201,25 @@ public class ModelingInterface extends JFrame {
                         "[]" +
                         "[]" +
                         "[]"));
+
+                    //======== menuBar2 ========
+                    {
+
+                        //---- menuItem2 ----
+                        menuItem2.setText("Update View");
+                        menuItem2.addActionListener(e -> menuItemUpdateViewActionPerformed(e));
+                        menuBar2.add(menuItem2);
+
+                        //---- menuItem3 ----
+                        menuItem3.setText("Color");
+                        menuItem3.addActionListener(e -> menuItemChooseColorActionPerformed(e));
+                        menuBar2.add(menuItem3);
+
+                        //---- menuItem4 ----
+                        menuItem4.setText("Draw");
+                        menuItem4.addActionListener(e -> menuItemDrawActionPerformed(e));
+                        menuBar2.add(menuItem4);
+                    }
                     panel1.add(menuBar2, "cell 0 0");
 
                     //======== panel4 ========
@@ -194,6 +262,9 @@ public class ModelingInterface extends JFrame {
     private JScrollPane scrollPane2;
     private JPanel panel1;
     private JMenuBar menuBar2;
+    private JMenuItem menuItem2;
+    private JMenuItem menuItem3;
+    private JMenuItem menuItem4;
     private JPanel panel4;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
