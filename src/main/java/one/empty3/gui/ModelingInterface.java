@@ -4,6 +4,7 @@
 
 package one.empty3.gui;
 
+import java.awt.event.*;
 import net.miginfocom.swing.MigLayout;
 import one.empty3.library.*;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
@@ -19,13 +20,20 @@ import java.awt.image.BufferedImage;
  */
 public class ModelingInterface extends JFrame {
     private static final int PAINT_POINT = 1;
+    private static final int PAINT_RECT = 2;
     private Tubulaire4map tubulaire4;
     private final int RES_Y = 2000;
     private final int RES_X = 2000;
     private Camera camera;
     private BufferedImage image;
     private Color paintColor = Color.WHITE;
-    private int drawUtil;
+    private int drawUtil = 2;
+    private boolean runningViewDisplay = false;
+    private Point p1;
+    private Point p2;
+
+
+
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner non-commercial license
     private JMenuBar menuBar3;
@@ -54,6 +62,8 @@ public class ModelingInterface extends JFrame {
     private JPanel panel4;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+
+
     public ModelingInterface() {
         initComponents();
         init();
@@ -68,50 +78,61 @@ public class ModelingInterface extends JFrame {
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(1., 5., 15.));
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 10.));
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 0.));
+        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(-1., 0., -1.));
         tubulaire4.getDiameterFunction().setElem(new FctXY());
         tubulaire4.getDiameterFunction().getElem().setFormulaX("10.0");
-        System.out.printf("%f", tubulaire4.getDiameterFunction().getElem().result(0.0));
         tubulaire4.texture(new ColorTexture(Color.BLUE));
-        tubulaire4.setIncrU(0.1);
-        tubulaire4.setIncrV(0.1);
+        tubulaire4.setIncrU(0.01);
+        tubulaire4.setIncrV(0.01);
 
 
-        camera = new Camera(Point3D.Y.mult(-100.), Point3D.O0, Point3D.Z);
+        camera = new Camera(Point3D.Y.mult(-20.), Point3D.O0, Point3D.Z);
+
+        Graphics g = image.getGraphics();
+        g.setColor(Color.RED);
+        g.fillRect(0, 0, image.getWidth(), image.getHeight());
+
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public void refresh() {
-        ZBufferImpl zBuffer = new ZBufferImpl(panel3.getWidth(), panel3.getHeight());
-        zBuffer.setDisplayType(ZBufferImpl.DISPLAY_ALL);
-        zBuffer.texture(new ColorTexture(Color.WHITE));
-        zBuffer.backgroundTexture(new ColorTexture(Color.WHITE));
-        Scene scene = new Scene();
-        tubulaire4.updateBitmap(image);
-        scene.add(tubulaire4);
-        scene.cameraActive(camera);
-        zBuffer.scene(scene);
-        zBuffer.camera(camera);
+        if(!runningViewDisplay)
+            new Thread(() -> {
+                runningViewDisplay = true;
 
-        zBuffer.idzpp();
+                ZBufferImpl zBuffer = new ZBufferImpl(panel3.getWidth(), panel3.getHeight());
+                zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_POINTS);
+                zBuffer.texture(new ColorTexture(Color.WHITE));
+                zBuffer.backgroundTexture(new ColorTexture(Color.WHITE));
+                Scene scene = new Scene();
+                tubulaire4.updateBitmap(image);
+                scene.add(tubulaire4);
+                scene.cameraActive(camera);
+                zBuffer.scene(scene);
+                zBuffer.camera(camera);
 
-        zBuffer.draw();
+                zBuffer.idzpp();
 
-        ECBufferedImage ecBufferedImage = zBuffer.image2();
+                zBuffer.draw();
 
-
-        Graphics graphics = panel3.getGraphics();
-
-
-        graphics.drawImage(
-                ecBufferedImage, 0, 0,
-                panel3.getWidth(), panel3.getHeight(), null);
-
-        graphics = panel4.getGraphics();
+                ECBufferedImage ecBufferedImage = zBuffer.image2();
 
 
-        graphics.drawImage(image, 0, 0, panel4.getWidth(), panel4.getHeight(), null);
+                Graphics graphics = panel3.getGraphics();
 
+
+                graphics.drawImage(
+                        ecBufferedImage, 0, 0,
+                        panel3.getWidth(), panel3.getHeight(), null);
+
+                graphics = panel4.getGraphics();
+
+
+                graphics.drawImage(image, 0, 0, panel4.getWidth(), panel4.getHeight(), null);
+
+                runningViewDisplay = false;
+            }).start();
     }
 
     public static void main(String[] args) {
@@ -120,30 +141,62 @@ public class ModelingInterface extends JFrame {
     }
 
     private void menuItemRefresh3DActionPerformed(ActionEvent e) {
-        // TODO add your code here
+        refresh();
     }
 
     private void menuItemUpdateViewActionPerformed(ActionEvent e) {
-        // TODO add your code here
+        refresh();
     }
 
     private void menuItemChooseColorActionPerformed(ActionEvent e) {
         JColorChooser colorChooser = new JColorChooser(paintColor);
         colorChooser.setVisible(true);
-        if(colorChooser.getColor()!=null) {
-            paintColor = colorChooser.getColor();
-
+        if((paintColor=JColorChooser.showDialog(this, "Choose paint color", paintColor))!=null) {
+            menuItem3.setBackground(paintColor);
         }
-        menuItem3.setBackground(paintColor);
-    }
-
-    private void menuItemDrawActionPerformed(ActionEvent e) {
-        menuItemChooseColorActionPerformed(e);
     }
 
     private void menuItem3ActionPerformed(ActionEvent e) {
+        refresh();
+    }
+
+    private void menuItem2ActionPerformed(ActionEvent e) {
+        refresh();
+    }
+
+    private void menuItemDrawRectangleActionPerformed(ActionEvent e) {
+        drawUtil = PAINT_RECT;
+    }
+
+    private void panel4MouseDragged(MouseEvent e) {
+        p2 = e.getPoint();
+        draw(p1, p2);
+    }
+
+    private void draw(Point p1, Point p2) {
+        Graphics g = image.getGraphics();
+        switch (drawUtil) {
+            case PAINT_RECT:
+                g.setColor(paintColor);
+                g.fillRect((int)(p1.getX()/panel3.getWidth()*image.getWidth()), (int)(p1.getY()/panel3.getHeight()*image.getHeight()),
+                        (int)(p2.getX()/panel3.getWidth()*image.getWidth()), (int)(p2.getY()/panel3.getHeight()*image.getHeight()));
+                break;
+        }
 
     }
+
+    private void panel4MousePressed(MouseEvent e) {
+        p1 = e.getPoint();
+    }
+
+    private void panel4MouseClicked(MouseEvent e) {
+        p1 = e.getPoint();
+    }
+
+    private void panel4MouseReleased(MouseEvent e) {
+        draw(p1, p2);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner non-commercial license
@@ -270,6 +323,7 @@ public class ModelingInterface extends JFrame {
 
                             //---- menuItem5 ----
                             menuItem5.setText("Rectangle");
+                            menuItem5.addActionListener(e -> menuItemDrawRectangleActionPerformed(e));
                             menu1.add(menuItem5);
 
                             //======== menu2 ========
@@ -320,6 +374,26 @@ public class ModelingInterface extends JFrame {
 
                     //======== panel4 ========
                     {
+                        panel4.addMouseMotionListener(new MouseMotionAdapter() {
+                            @Override
+                            public void mouseDragged(MouseEvent e) {
+                                panel4MouseDragged(e);
+                            }
+                        });
+                        panel4.addMouseListener(new MouseAdapter() {
+                            @Override
+                            public void mouseClicked(MouseEvent e) {
+                                panel4MouseClicked(e);
+                            }
+                            @Override
+                            public void mousePressed(MouseEvent e) {
+                                panel4MousePressed(e);
+                            }
+                            @Override
+                            public void mouseReleased(MouseEvent e) {
+                                panel4MouseReleased(e);
+                            }
+                        });
                         panel4.setLayout(new MigLayout(
                             "hidemode 3",
                             // columns
