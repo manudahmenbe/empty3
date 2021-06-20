@@ -7,15 +7,19 @@ package one.empty3.gui;
 import java.awt.event.*;
 import net.miginfocom.swing.MigLayout;
 import one.empty3.library.*;
+import one.empty3.library.core.export.STLExport;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
 import one.empty3.library.core.nurbs.F;
 import one.empty3.library.core.nurbs.Fct1D_1D;
 import one.empty3.library.core.nurbs.FctXY;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @author Manuel Dahmen
@@ -33,6 +37,7 @@ public class ModelingInterface extends JFrame {
     private boolean runningViewDisplay = false;
     private Point p1;
     private Point p2;
+    private Scene scene;
 
 
 
@@ -43,6 +48,7 @@ public class ModelingInterface extends JFrame {
     private JScrollPane scrollPane1;
     private JPanel panel2;
     private JMenuBar menuBar1;
+    private JMenuItem menuItem16;
     private JMenuItem menuItem1;
     private JPanel panel3;
     private JScrollPane scrollPane2;
@@ -119,7 +125,7 @@ public class ModelingInterface extends JFrame {
                 zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_POINTS);
                 zBuffer.texture(new ColorTexture(Color.WHITE));
                 zBuffer.backgroundTexture(new ColorTexture(Color.WHITE));
-                Scene scene = new Scene();
+                scene = new Scene();
                 tubulaire4.updateBitmap(image);
                 scene.add(tubulaire4);
                 scene.cameraActive(camera);
@@ -194,9 +200,10 @@ public class ModelingInterface extends JFrame {
                 g.setColor(paintColor);
                 g.fillRect((int)(p1.getX()/panel3.getWidth()*image.getWidth()), (int)(p1.getY()/panel3.getHeight()*image.getHeight()),
                         (int)(p2.getX()/panel3.getWidth()*image.getWidth()), (int)(p2.getY()/panel3.getHeight()*image.getHeight()));
+                System.out.printf("Action: ", "Rect drawn");
                 break;
         }
-
+        refresh();
     }
 
     private void panel4MousePressed(MouseEvent e) {
@@ -211,6 +218,20 @@ public class ModelingInterface extends JFrame {
         draw(p1, p2);
     }
 
+    private void menuItemExportModelActionPerformed(ActionEvent e) {
+        File file = new File("objet"+Math.random()+".stl");
+        try {
+            STLExport.save(file, scene, false);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        try {
+            ImageIO.write(image, "jpg", new File(file.getAbsolutePath()+".jpg"));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner non-commercial license
@@ -219,6 +240,7 @@ public class ModelingInterface extends JFrame {
         scrollPane1 = new JScrollPane();
         panel2 = new JPanel();
         menuBar1 = new JMenuBar();
+        menuItem16 = new JMenuItem();
         menuItem1 = new JMenuItem();
         panel3 = new JPanel();
         scrollPane2 = new JScrollPane();
@@ -284,6 +306,11 @@ public class ModelingInterface extends JFrame {
 
                     //======== menuBar1 ========
                     {
+
+                        //---- menuItem16 ----
+                        menuItem16.setText("Save model");
+                        menuItem16.addActionListener(e -> menuItemExportModelActionPerformed(e));
+                        menuBar1.add(menuItem16);
 
                         //---- menuItem1 ----
                         menuItem1.setText("Refresh");

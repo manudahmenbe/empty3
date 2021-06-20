@@ -254,13 +254,21 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                     for (double v = n.getStartV(); v+n.getIncrV() <= n.getEndV(); v += n.getIncrV()) {
                         Point3D p1, p2, p3, p4;
                         p1 = n.calculerPoint3D(u, v);
-                        if (displayType == SURFACE_DISPLAY_POINTS) {
-                            //p1.setNormale(n.calculerNormale3D(u, v));
-                            ime.testDeep(p1, n.texture(), u, v, n);
-                        } else {
                         p2 = n.calculerPoint3D(u + n.getIncrU(), v);
                         p3 = n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV());
                         p4 = n.calculerPoint3D(u, v + n.getIncrV());
+                        if (displayType == SURFACE_DISPLAY_POINTS) {
+                            double v1 = maxDistance(camera().coordonneesPoint2D(p1, this), camera().coordonneesPoint2D(p2, this),
+                                    camera().coordonneesPoint2D(p3, this), camera().coordonneesPoint2D(p4, this));
+                            if(v1<la && v1< ha && v1>=0) {
+                                for(int i=0; i<v1; i++)
+                                    for(int j=0; j<v1; j++) {
+                                        double u2 = u+n.getIncrU()/(1+v1);
+                                        double v2 = v+n.getIncrV()/(1+v1);
+                                        ime.testDeep(p1, n.texture(), u2, v2, n);
+                                    }
+                            }
+                        } else {
                         if (n instanceof HeightMapSurface) {
                             Point3D n1, n2, n3, n4;
                             HeightMapSurface h = (HeightMapSurface) n;
