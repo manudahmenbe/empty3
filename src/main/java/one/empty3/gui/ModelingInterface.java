@@ -7,6 +7,7 @@ package one.empty3.gui;
 import net.miginfocom.swing.MigLayout;
 import one.empty3.library.*;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
+import one.empty3.library.core.nurbs.FctXY;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,65 +47,11 @@ public class ModelingInterface extends JFrame {
         initComponents();
         init();
     }
-    public void init() {
-
-        image = new BufferedImage(RES_X, RES_Y, BufferedImage.TYPE_INT_RGB);
-        initImage();
-        tubulaire4 = new Tubulaire4map();
-        tubulaire4.declareProperties();
-        tubulaire4.getSoulCurve().setElem(new CourbeParametriquePolynomialeBezier());
-        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 10.));
-        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 0.));
-        tubulaire4.getDiameterFunction().getElem().setFormulaX("10.0");
-        System.out.printf("%f", tubulaire4.getDiameterFunction().getElem().result(0.0));
-        tubulaire4.texture(new ColorTexture(Color.BLUE));
-        tubulaire4.setIncrU(0.1);
-        tubulaire4.setIncrV(0.1);
-
-
-        camera = new Camera(Point3D.Y.mult(-100.), Point3D.O0, Point3D.Z);
-
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
-    public static void main(String[] args) {
-        ModelingInterface modelingInterface = new ModelingInterface();
-        modelingInterface.setVisible(true);
-    }
 
     private void menuItemRefresh3DActionPerformed(ActionEvent e) {
         refresh();
     }
 
-    public void refresh() {
-        ZBufferImpl zBuffer = new ZBufferImpl(panel3.getWidth(), panel3.getHeight());
-        zBuffer.setDisplayType(ZBufferImpl.DISPLAY_ALL);
-        zBuffer.texture(new ColorTexture(Color.WHITE));
-        zBuffer.backgroundTexture(new ColorTexture(Color.WHITE));
-        Scene scene = new Scene();
-        tubulaire4.updateBitmap(image);
-        scene.add(tubulaire4);
-        scene.cameraActive(camera);
-        zBuffer.scene(scene);
-        zBuffer.camera(camera);
-
-        zBuffer.draw();
-
-        ECBufferedImage ecBufferedImage = zBuffer.image2();
-
-
-        Graphics graphics = panel3.getGraphics();
-
-
-        graphics.drawImage(
-                ecBufferedImage, 0, 0,
-                panel3.getWidth(), panel3.getHeight(), null);
-
-        graphics = panel4.getGraphics();
-
-
-        graphics.drawImage(image, 0, 0, panel4.getWidth(), panel4.getHeight(), null);
-
-    }
 
     private void menuItemUpdateViewActionPerformed(ActionEvent e) {
         refresh();
@@ -134,6 +81,65 @@ public class ModelingInterface extends JFrame {
     }
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
+    public void init() {
+
+        image = new BufferedImage(RES_X, RES_Y, BufferedImage.TYPE_INT_RGB);
+        initImage();
+        tubulaire4 = new Tubulaire4map();
+        tubulaire4.declareProperties();
+        tubulaire4.getSoulCurve().setElem(new CourbeParametriquePolynomialeBezier());
+        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 10.));
+        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 0.));
+        tubulaire4.getDiameterFunction().setElem(new FctXY());
+        tubulaire4.getDiameterFunction().getElem().setFormulaX("10.0");
+        System.out.printf("%f", tubulaire4.getDiameterFunction().getElem().result(0.0));
+        tubulaire4.texture(new ColorTexture(Color.BLUE));
+        tubulaire4.setIncrU(0.1);
+        tubulaire4.setIncrV(0.1);
+
+
+        camera = new Camera(Point3D.Y.mult(-100.), Point3D.O0, Point3D.Z);
+
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    public void refresh() {
+        ZBufferImpl zBuffer = new ZBufferImpl(panel3.getWidth(), panel3.getHeight());
+        zBuffer.setDisplayType(ZBufferImpl.DISPLAY_ALL);
+        zBuffer.texture(new ColorTexture(Color.WHITE));
+        zBuffer.backgroundTexture(new ColorTexture(Color.WHITE));
+        Scene scene = new Scene();
+        tubulaire4.updateBitmap(image);
+        scene.add(tubulaire4);
+        scene.cameraActive(camera);
+        zBuffer.scene(scene);
+        zBuffer.camera(camera);
+
+        zBuffer.idzpp();
+
+        zBuffer.draw();
+
+        ECBufferedImage ecBufferedImage = zBuffer.image2();
+
+
+        Graphics graphics = panel3.getGraphics();
+
+
+        graphics.drawImage(
+                ecBufferedImage, 0, 0,
+                panel3.getWidth(), panel3.getHeight(), null);
+
+        graphics = panel4.getGraphics();
+
+
+        graphics.drawImage(image, 0, 0, panel4.getWidth(), panel4.getHeight(), null);
+
+    }
+
+    public static void main(String[] args) {
+        ModelingInterface modelingInterface = new ModelingInterface();
+        modelingInterface.setVisible(true);
+    }
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner non-commercial license
