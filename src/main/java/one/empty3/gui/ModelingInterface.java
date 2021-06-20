@@ -39,55 +39,33 @@ public class ModelingInterface extends JFrame {
     private JPanel panel1;
     private JMenuBar menuBar2;
     private JMenuItem menuItem2;
+    private JMenu menu1;
+    private JMenuItem menuItem6;
+    private JMenuItem menuItem5;
+    private JMenu menu2;
+    private JMenuItem menuItem10pc;
+    private JMenuItem menuItem20pc;
+    private JMenuItem menuItem30pc;
+    private JMenuItem menuItem40pc;
+    private JMenuItem menuItem50pc;
+    private JMenuItem menuItem60pc;
+    private JMenuItem menuItem7;
     private JMenuItem menuItem3;
-    private JMenuItem menuItem4;
     private JPanel panel4;
     private JLabel label1;
+    // JFormDesigner - End of variables declaration  //GEN-END:variables
     public ModelingInterface() {
         initComponents();
         init();
     }
-
-    private void menuItemRefresh3DActionPerformed(ActionEvent e) {
-        refresh();
-    }
-
-
-    private void menuItemUpdateViewActionPerformed(ActionEvent e) {
-        refresh();
-    }
-
-    public void initImage() {
-        Graphics graphics = image.getGraphics();
-        graphics.setColor(Color.RED);
-        graphics.fillRect(0, 0, image.getWidth(), image.getHeight());
-    }
-
-    private BufferedImage getImage() {
-        return image;
-    }
-
-    private void menuItemChooseColorActionPerformed(ActionEvent e) {
-        JColorChooser jColorChooser = new JColorChooser(paintColor);
-        jColorChooser.setVisible(true);
-        Color color = jColorChooser.getColor();
-
-        if (color != null)
-            this.paintColor = color;
-    }
-
-    private void menuItemDrawActionPerformed(ActionEvent e) {
-        this.drawUtil = PAINT_POINT;
-    }
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
-
     public void init() {
 
         image = new BufferedImage(RES_X, RES_Y, BufferedImage.TYPE_INT_RGB);
-        initImage();
+        //initImage();
         tubulaire4 = new Tubulaire4map();
         tubulaire4.declareProperties();
         tubulaire4.getSoulCurve().setElem(new CourbeParametriquePolynomialeBezier());
+        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(1., 5., 15.));
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 10.));
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 0.));
         tubulaire4.getDiameterFunction().setElem(new FctXY());
@@ -140,6 +118,32 @@ public class ModelingInterface extends JFrame {
         ModelingInterface modelingInterface = new ModelingInterface();
         modelingInterface.setVisible(true);
     }
+
+    private void menuItemRefresh3DActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void menuItemUpdateViewActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void menuItemChooseColorActionPerformed(ActionEvent e) {
+        JColorChooser colorChooser = new JColorChooser(paintColor);
+        colorChooser.setVisible(true);
+        if(colorChooser.getColor()!=null) {
+            paintColor = colorChooser.getColor();
+
+        }
+        menuItem3.setBackground(paintColor);
+    }
+
+    private void menuItemDrawActionPerformed(ActionEvent e) {
+        menuItemChooseColorActionPerformed(e);
+    }
+
+    private void menuItem3ActionPerformed(ActionEvent e) {
+
+    }
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner non-commercial license
@@ -154,25 +158,35 @@ public class ModelingInterface extends JFrame {
         panel1 = new JPanel();
         menuBar2 = new JMenuBar();
         menuItem2 = new JMenuItem();
+        menu1 = new JMenu();
+        menuItem6 = new JMenuItem();
+        menuItem5 = new JMenuItem();
+        menu2 = new JMenu();
+        menuItem10pc = new JMenuItem();
+        menuItem20pc = new JMenuItem();
+        menuItem30pc = new JMenuItem();
+        menuItem40pc = new JMenuItem();
+        menuItem50pc = new JMenuItem();
+        menuItem60pc = new JMenuItem();
+        menuItem7 = new JMenuItem();
         menuItem3 = new JMenuItem();
-        menuItem4 = new JMenuItem();
         panel4 = new JPanel();
         label1 = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-                "hidemode 3",
-                // columns
-                "[fill]" +
-                        "[fill]",
-                // rows
-                "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]"));
+            "hidemode 3",
+            // columns
+            "[fill]" +
+            "[fill]",
+            // rows
+            "[]" +
+            "[]" +
+            "[]" +
+            "[]" +
+            "[]" +
+            "[]"));
         setJMenuBar(menuBar3);
 
         //======== splitPane1 ========
@@ -186,14 +200,14 @@ public class ModelingInterface extends JFrame {
                 //======== panel2 ========
                 {
                     panel2.setLayout(new MigLayout(
-                            "fill,hidemode 3",
-                            // columns
-                            "[fill]" +
-                                    "[fill]",
-                            // rows
-                            "[]" +
-                                    "[]" +
-                                    "[]"));
+                        "fill,hidemode 3",
+                        // columns
+                        "[fill]" +
+                        "[fill]",
+                        // rows
+                        "[]" +
+                        "[]" +
+                        "[]"));
 
                     //======== menuBar1 ========
                     {
@@ -208,14 +222,14 @@ public class ModelingInterface extends JFrame {
                     //======== panel3 ========
                     {
                         panel3.setLayout(new MigLayout(
-                                "hidemode 3",
-                                // columns
-                                "[fill]" +
-                                        "[fill]",
-                                // rows
-                                "[]" +
-                                        "[]" +
-                                        "[]"));
+                            "hidemode 3",
+                            // columns
+                            "[fill]" +
+                            "[fill]",
+                            // rows
+                            "[]" +
+                            "[]" +
+                            "[]"));
                     }
                     panel2.add(panel3, "cell 0 1 2 2,dock center");
                 }
@@ -229,14 +243,14 @@ public class ModelingInterface extends JFrame {
                 //======== panel1 ========
                 {
                     panel1.setLayout(new MigLayout(
-                            "fill,hidemode 3",
-                            // columns
-                            "[fill]" +
-                                    "[fill]",
-                            // rows
-                            "[]" +
-                                    "[]" +
-                                    "[]"));
+                        "fill,hidemode 3",
+                        // columns
+                        "[fill]" +
+                        "[fill]",
+                        // rows
+                        "[]" +
+                        "[]" +
+                        "[]"));
 
                     //======== menuBar2 ========
                     {
@@ -246,29 +260,75 @@ public class ModelingInterface extends JFrame {
                         menuItem2.addActionListener(e -> menuItemUpdateViewActionPerformed(e));
                         menuBar2.add(menuItem2);
 
+                        //======== menu1 ========
+                        {
+                            menu1.setText("Draw");
+
+                            //---- menuItem6 ----
+                            menuItem6.setText("Line");
+                            menu1.add(menuItem6);
+
+                            //---- menuItem5 ----
+                            menuItem5.setText("Rectangle");
+                            menu1.add(menuItem5);
+
+                            //======== menu2 ========
+                            {
+                                menu2.setText("text");
+
+                                //---- menuItem10pc ----
+                                menuItem10pc.setText("10%");
+                                menu2.add(menuItem10pc);
+
+                                //---- menuItem20pc ----
+                                menuItem20pc.setText("20%");
+                                menu2.add(menuItem20pc);
+
+                                //---- menuItem30pc ----
+                                menuItem30pc.setText("30%");
+                                menu2.add(menuItem30pc);
+
+                                //---- menuItem40pc ----
+                                menuItem40pc.setText("40%");
+                                menu2.add(menuItem40pc);
+
+                                //---- menuItem50pc ----
+                                menuItem50pc.setText("50%");
+                                menu2.add(menuItem50pc);
+
+                                //---- menuItem60pc ----
+                                menuItem60pc.setText("60pc");
+                                menu2.add(menuItem60pc);
+                            }
+                            menu1.add(menu2);
+
+                            //---- menuItem7 ----
+                            menuItem7.setText("Text");
+                            menu1.add(menuItem7);
+                        }
+                        menuBar2.add(menu1);
+
                         //---- menuItem3 ----
                         menuItem3.setText("Color");
-                        menuItem3.addActionListener(e -> menuItemChooseColorActionPerformed(e));
+                        menuItem3.addActionListener(e -> {
+			menuItemChooseColorActionPerformed(e);
+			menuItem3ActionPerformed(e);
+		});
                         menuBar2.add(menuItem3);
-
-                        //---- menuItem4 ----
-                        menuItem4.setText("Draw");
-                        menuItem4.addActionListener(e -> menuItemDrawActionPerformed(e));
-                        menuBar2.add(menuItem4);
                     }
                     panel1.add(menuBar2, "cell 0 0");
 
                     //======== panel4 ========
                     {
                         panel4.setLayout(new MigLayout(
-                                "hidemode 3",
-                                // columns
-                                "[fill]" +
-                                        "[fill]",
-                                // rows
-                                "[]" +
-                                        "[]" +
-                                        "[]"));
+                            "hidemode 3",
+                            // columns
+                            "[fill]" +
+                            "[fill]",
+                            // rows
+                            "[]" +
+                            "[]" +
+                            "[]"));
                     }
                     panel1.add(panel4, "cell 0 1 2 2,dock center");
                 }
