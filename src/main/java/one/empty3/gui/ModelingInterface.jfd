@@ -110,6 +110,30 @@ new FormModel {
 								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItemChooseColorActionPerformed", true ) )
 								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem3ActionPerformed", true ) )
 							} )
+							add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+								name: "menu3"
+								"text": "Gradient"
+								add( new FormComponent( "javax.swing.JMenuItem" ) {
+									name: "menuItem13"
+									"text": "Radius"
+								} )
+								add( new FormComponent( "javax.swing.JTextField" ) {
+									name: "textField1"
+									"text": "40"
+								} )
+								add( new FormComponent( "javax.swing.JMenuItem" ) {
+									name: "menuItem14"
+									"text": "Intensity"
+								} )
+								add( new FormComponent( "javax.swing.JTextField" ) {
+									name: "textField2"
+									"text": "20"
+								} )
+								add( new FormComponent( "javax.swing.JMenuItem" ) {
+									name: "menuItem15"
+									"text": "Apply"
+								} )
+							} )
 						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 							"value": "cell 0 0"
 						} )

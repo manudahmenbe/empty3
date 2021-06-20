@@ -61,6 +61,12 @@ public class ModelingInterface extends JFrame {
     private JMenuItem menuItem60pc;
     private JMenuItem menuItem7;
     private JMenuItem menuItem3;
+    private JMenu menu3;
+    private JMenuItem menuItem13;
+    private JTextField textField1;
+    private JMenuItem menuItem14;
+    private JTextField textField2;
+    private JMenuItem menuItem15;
     private JPanel panel4;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
@@ -231,6 +237,12 @@ public class ModelingInterface extends JFrame {
         menuItem60pc = new JMenuItem();
         menuItem7 = new JMenuItem();
         menuItem3 = new JMenuItem();
+        menu3 = new JMenu();
+        menuItem13 = new JMenuItem();
+        textField1 = new JTextField();
+        menuItem14 = new JMenuItem();
+        textField2 = new JTextField();
+        menuItem15 = new JMenuItem();
         panel4 = new JPanel();
         label1 = new JLabel();
 
@@ -377,6 +389,32 @@ public class ModelingInterface extends JFrame {
 			menuItem3ActionPerformed(e);
 		});
                         menuBar2.add(menuItem3);
+
+                        //======== menu3 ========
+                        {
+                            menu3.setText("Gradient");
+
+                            //---- menuItem13 ----
+                            menuItem13.setText("Radius");
+                            menu3.add(menuItem13);
+
+                            //---- textField1 ----
+                            textField1.setText("40");
+                            menu3.add(textField1);
+
+                            //---- menuItem14 ----
+                            menuItem14.setText("Intensity");
+                            menu3.add(menuItem14);
+
+                            //---- textField2 ----
+                            textField2.setText("20");
+                            menu3.add(textField2);
+
+                            //---- menuItem15 ----
+                            menuItem15.setText("Apply");
+                            menu3.add(menuItem15);
+                        }
+                        menuBar2.add(menu3);
                     }
                     panel1.add(menuBar2, "cell 0 0");
 
