@@ -129,12 +129,12 @@ public class Tubulaire3 extends ParametricSurface {
 
         Point3D px;
 
-        int j = 0;
+        int j = -1;
         double min = 3;
-        double minI = 1000; // TODO
+        double minI = Double.POSITIVE_INFINITY; // TODO
         for (int i = 0; i < 3; i++) {
             Point3D normal = calculerNormale(t);
-            if(normal.equals(Point3D.O0)||normal.isAnyNaN()) {
+            if(normal.equals(Point3D.O0)||normal.isAnyNaN()||normal.norme()<0.8) {
                     normal = tangente.prodVect(refs[i]);//TODO .prodVect(refs[i])).norme1();
             }
             normal = normal.norme1();
