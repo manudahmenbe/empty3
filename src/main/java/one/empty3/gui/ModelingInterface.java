@@ -8,6 +8,8 @@ import java.awt.event.*;
 import net.miginfocom.swing.MigLayout;
 import one.empty3.library.*;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
+import one.empty3.library.core.nurbs.F;
+import one.empty3.library.core.nurbs.Fct1D_1D;
 import one.empty3.library.core.nurbs.FctXY;
 
 import javax.swing.*;
@@ -75,18 +77,24 @@ public class ModelingInterface extends JFrame {
         tubulaire4 = new Tubulaire4map();
         tubulaire4.declareProperties();
         tubulaire4.getSoulCurve().setElem(new CourbeParametriquePolynomialeBezier());
-        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(1., 5., 15.));
-        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 10.));
-        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 0.));
-        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(-1., 0., -1.));
+        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(1., 0., 10.));
+        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 2.5));
+        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., -2.5));
+        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 1., -10.));
+        Fct1D_1D fct1D_1D = new Fct1D_1D() {
+            @Override
+            public double result(double input) {
+                return 10.0;
+            }
+        };
         tubulaire4.getDiameterFunction().setElem(new FctXY());
         tubulaire4.getDiameterFunction().getElem().setFormulaX("10.0");
         tubulaire4.texture(new ColorTexture(Color.BLUE));
-        tubulaire4.setIncrU(0.01);
-        tubulaire4.setIncrV(0.01);
+        tubulaire4.setIncrU(0.004);
+        tubulaire4.setIncrV(0.004);
 
 
-        camera = new Camera(Point3D.Y.mult(-20.), Point3D.O0, Point3D.Z);
+        camera = new Camera(Point3D.Y.mult(-80.), Point3D.O0, Point3D.Z);
 
         Graphics g = image.getGraphics();
         g.setColor(Color.RED);

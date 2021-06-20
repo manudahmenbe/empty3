@@ -255,7 +255,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                         Point3D p1, p2, p3, p4;
                         p1 = n.calculerPoint3D(u, v);
                         if (displayType == SURFACE_DISPLAY_POINTS) {
-                            p1.setNormale(n.calculerNormale3D(u, v));
+                            //p1.setNormale(n.calculerNormale3D(u, v));
                             ime.testDeep(p1, n.texture(), u, v, n);
                         } else {
                         p2 = n.calculerPoint3D(u + n.getIncrU(), v);
