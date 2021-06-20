@@ -330,12 +330,14 @@ public class ModelingInterface extends JFrame {
 
                         //---- menuItem2 ----
                         menuItem2.setText("Update View");
+                        menuItem2.setHorizontalAlignment(SwingConstants.LEFT);
                         menuItem2.addActionListener(e -> menuItemUpdateViewActionPerformed(e));
                         menuBar2.add(menuItem2);
 
                         //======== menu1 ========
                         {
                             menu1.setText("Draw");
+                            menu1.setHorizontalAlignment(SwingConstants.LEFT);
 
                             //---- menuItem6 ----
                             menuItem6.setText("Line");
@@ -384,6 +386,7 @@ public class ModelingInterface extends JFrame {
 
                         //---- menuItem3 ----
                         menuItem3.setText("Color");
+                        menuItem3.setHorizontalAlignment(SwingConstants.LEFT);
                         menuItem3.addActionListener(e -> {
 			menuItemChooseColorActionPerformed(e);
 			menuItem3ActionPerformed(e);
@@ -393,6 +396,7 @@ public class ModelingInterface extends JFrame {
                         //======== menu3 ========
                         {
                             menu3.setText("Gradient");
+                            menu3.setHorizontalAlignment(SwingConstants.LEFT);
 
                             //---- menuItem13 ----
                             menuItem13.setText("Radius");
@@ -416,7 +420,7 @@ public class ModelingInterface extends JFrame {
                         }
                         menuBar2.add(menu3);
                     }
-                    panel1.add(menuBar2, "cell 0 0");
+                    panel1.add(menuBar2, "cell 0 0 2 1");
 
                     //======== panel4 ========
                     {
