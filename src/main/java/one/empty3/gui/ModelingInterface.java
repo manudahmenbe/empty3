@@ -27,6 +27,7 @@ import java.io.IOException;
 public class ModelingInterface extends JFrame {
     private static final int PAINT_POINT = 1;
     private static final int PAINT_RECT = 2;
+    private static final int PAINT_GRAD = 4;
     private final int RES_Y = 2000;
     private final int RES_X = 2000;
     private Tubulaire4map tubulaire4;
@@ -74,6 +75,7 @@ public class ModelingInterface extends JFrame {
     private JMenuItem menuItem15;
     private JPanel panel4;
     private JLabel label1;
+    private int pc;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
 
@@ -196,6 +198,9 @@ public class ModelingInterface extends JFrame {
                         (int) (p2.getX() / panel4.getWidth() * image.getWidth()), (int) (p2.getY() / panel4.getHeight() * image.getHeight()));
                 System.out.printf("Action: Rect drawn");
                 break;
+            case PAINT_GRAD:
+
+                break;
         }
         refresh();
     }
@@ -225,6 +230,11 @@ public class ModelingInterface extends JFrame {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
+    }
+
+    private void menuItemGradPCActionPerformed(ActionEvent e) {
+        pc = Integer.parseInt(((JButton) e.getSource()).getText().substring(0, 2));
+        drawUtil = PAINT_GRAD;
     }
 
     private void initComponents() {
@@ -372,30 +382,36 @@ public class ModelingInterface extends JFrame {
 
                             //======== menu2 ========
                             {
-                                menu2.setText("text");
+                                menu2.setText("Gradient");
 
                                 //---- menuItem10pc ----
                                 menuItem10pc.setText("10%");
+                                menuItem10pc.addActionListener(e -> menuItemGradPCActionPerformed(e));
                                 menu2.add(menuItem10pc);
 
                                 //---- menuItem20pc ----
                                 menuItem20pc.setText("20%");
+                                menuItem20pc.addActionListener(e -> menuItemGradPCActionPerformed(e));
                                 menu2.add(menuItem20pc);
 
                                 //---- menuItem30pc ----
                                 menuItem30pc.setText("30%");
+                                menuItem30pc.addActionListener(e -> menuItemGradPCActionPerformed(e));
                                 menu2.add(menuItem30pc);
 
                                 //---- menuItem40pc ----
                                 menuItem40pc.setText("40%");
+                                menuItem40pc.addActionListener(e -> menuItemGradPCActionPerformed(e));
                                 menu2.add(menuItem40pc);
 
                                 //---- menuItem50pc ----
                                 menuItem50pc.setText("50%");
+                                menuItem50pc.addActionListener(e -> menuItemGradPCActionPerformed(e));
                                 menu2.add(menuItem50pc);
 
                                 //---- menuItem60pc ----
                                 menuItem60pc.setText("60pc");
+                                menuItem60pc.addActionListener(e -> menuItemGradPCActionPerformed(e));
                                 menu2.add(menuItem60pc);
                             }
                             menu1.add(menu2);
