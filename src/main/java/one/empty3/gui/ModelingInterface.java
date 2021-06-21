@@ -179,9 +179,11 @@ public class ModelingInterface extends JFrame {
     }
 
     private void panel4MouseDragged(MouseEvent e) {
-        p2 = new Point((int)(e.getLocationOnScreen().getX()-panel4.getLocation().getX()-this.getLocation().getX()),
+        /*p2 = new Point((int)(e.getLocationOnScreen().getX()-panel4.getLocation().getX()-this.getLocation().getX()),
                 (int)(e.getLocationOnScreen().getY()-panel4.getLocation().getY()-this.getLocation().getY()));
-        draw(p1, p2);
+        */
+        //p2 = e.getPoint();
+        //draw(p1, p2);
     }
 
     private void draw(Point p1, Point p2) {
@@ -190,9 +192,9 @@ public class ModelingInterface extends JFrame {
         switch (drawUtil) {
             case PAINT_RECT:
                 g.setColor(paintColor);
-                g.fillRect((int) (p1.getX() / panel3.getWidth() * image.getWidth()), (int) (p1.getY() / panel3.getHeight() * image.getHeight()),
-                        (int) (p2.getX() / panel3.getWidth() * image.getWidth()), (int) (p2.getY() / panel3.getHeight() * image.getHeight()));
-                System.out.printf("Action: ", "Rect drawn");
+                g.fillRect((int) (p1.getX() / panel4.getWidth() * image.getWidth()), (int) (p1.getY() / panel4.getHeight() * image.getHeight()),
+                        (int) (p2.getX() / panel4.getWidth() * image.getWidth()), (int) (p2.getY() / panel4.getHeight() * image.getHeight()));
+                System.out.printf("Action: Rect drawn");
                 break;
         }
         refresh();
@@ -207,6 +209,7 @@ public class ModelingInterface extends JFrame {
     }
 
     private void panel4MouseReleased(MouseEvent e) {
+        p2 = e.getPoint();
         draw(p1, p2);
     }
 
@@ -263,17 +266,17 @@ public class ModelingInterface extends JFrame {
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-                "hidemode 3",
-                // columns
-                "[fill]" +
-                        "[fill]",
-                // rows
-                "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]"));
+            "hidemode 3",
+            // columns
+            "[fill]" +
+            "[fill]",
+            // rows
+            "[]" +
+            "[]" +
+            "[]" +
+            "[]" +
+            "[]" +
+            "[]"));
         setJMenuBar(menuBar3);
 
         //======== splitPane1 ========
@@ -287,14 +290,14 @@ public class ModelingInterface extends JFrame {
                 //======== panel2 ========
                 {
                     panel2.setLayout(new MigLayout(
-                            "fill,hidemode 3",
-                            // columns
-                            "[fill]" +
-                                    "[fill]",
-                            // rows
-                            "[]" +
-                                    "[]" +
-                                    "[]"));
+                        "fill,hidemode 3",
+                        // columns
+                        "[fill]" +
+                        "[fill]",
+                        // rows
+                        "[]" +
+                        "[]" +
+                        "[]"));
 
                     //======== menuBar1 ========
                     {
@@ -314,14 +317,14 @@ public class ModelingInterface extends JFrame {
                     //======== panel3 ========
                     {
                         panel3.setLayout(new MigLayout(
-                                "hidemode 3",
-                                // columns
-                                "[fill]" +
-                                        "[fill]",
-                                // rows
-                                "[]" +
-                                        "[]" +
-                                        "[]"));
+                            "hidemode 3",
+                            // columns
+                            "[fill]" +
+                            "[fill]",
+                            // rows
+                            "[]" +
+                            "[]" +
+                            "[]"));
                     }
                     panel2.add(panel3, "cell 0 1 2 2,dock center");
                 }
@@ -335,14 +338,14 @@ public class ModelingInterface extends JFrame {
                 //======== panel1 ========
                 {
                     panel1.setLayout(new MigLayout(
-                            "fill,hidemode 3",
-                            // columns
-                            "[fill]" +
-                                    "[fill]",
-                            // rows
-                            "[]" +
-                                    "[]" +
-                                    "[]"));
+                        "fill,hidemode 3",
+                        // columns
+                        "[fill]" +
+                        "[fill]",
+                        // rows
+                        "[]" +
+                        "[]" +
+                        "[]"));
 
                     //======== menuBar2 ========
                     {
@@ -407,9 +410,9 @@ public class ModelingInterface extends JFrame {
                         menuItem3.setText("Color");
                         menuItem3.setHorizontalAlignment(SwingConstants.LEFT);
                         menuItem3.addActionListener(e -> {
-                            menuItemChooseColorActionPerformed(e);
-                            menuItem3ActionPerformed(e);
-                        });
+			menuItemChooseColorActionPerformed(e);
+			menuItem3ActionPerformed(e);
+		});
                         menuBar2.add(menuItem3);
 
                         //======== menu3 ========
@@ -454,26 +457,25 @@ public class ModelingInterface extends JFrame {
                             public void mouseClicked(MouseEvent e) {
                                 panel4MouseClicked(e);
                             }
-
                             @Override
                             public void mousePressed(MouseEvent e) {
                                 panel4MousePressed(e);
                             }
-
                             @Override
                             public void mouseReleased(MouseEvent e) {
+                                panel4MouseReleased(e);
                                 panel4MouseReleased(e);
                             }
                         });
                         panel4.setLayout(new MigLayout(
-                                "hidemode 3",
-                                // columns
-                                "[fill]" +
-                                        "[fill]",
-                                // rows
-                                "[]" +
-                                        "[]" +
-                                        "[]"));
+                            "hidemode 3",
+                            // columns
+                            "[fill]" +
+                            "[fill]",
+                            // rows
+                            "[]" +
+                            "[]" +
+                            "[]"));
                     }
                     panel1.add(panel4, "cell 0 1 2 2,dock center");
                 }
