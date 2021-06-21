@@ -8,7 +8,6 @@ import net.miginfocom.swing.MigLayout;
 import one.empty3.library.*;
 import one.empty3.library.core.export.STLExport;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
-import one.empty3.library.core.nurbs.Fct1D_1D;
 import one.empty3.library.core.nurbs.FctXY;
 
 import javax.imageio.ImageIO;
@@ -99,17 +98,11 @@ public class ModelingInterface extends JFrame {
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 2.5));
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., -2.5));
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0.25, -10.));
-        Fct1D_1D fct1D_1D = new Fct1D_1D() {
-            @Override
-            public double result(double input) {
-                return 10.0;
-            }
-        };
         tubulaire4.getDiameterFunction().setElem(new FctXY());
         tubulaire4.getDiameterFunction().getElem().setFormulaX("10.0");
         tubulaire4.texture(new ColorTexture(Color.BLUE));
-        tubulaire4.setIncrU(0.004);
-        tubulaire4.setIncrV(0.004);
+        tubulaire4.setIncrU(0.01);
+        tubulaire4.setIncrV(0.01);
 
 
         camera = new Camera(Point3D.Y.mult(-80.), Point3D.O0, Point3D.Z);
@@ -181,21 +174,19 @@ public class ModelingInterface extends JFrame {
         refresh();
     }
 
-    private void menuItem2ActionPerformed(ActionEvent e) {
-        refresh();
-    }
-
     private void menuItemDrawRectangleActionPerformed(ActionEvent e) {
         drawUtil = PAINT_RECT;
     }
 
     private void panel4MouseDragged(MouseEvent e) {
-        p2 = e.getPoint();
+        p2 = new Point((int)(e.getLocationOnScreen().getX()-panel4.getLocation().getX()-this.getLocation().getX()),
+                (int)(e.getLocationOnScreen().getY()-panel4.getLocation().getY()-this.getLocation().getY()));
         draw(p1, p2);
     }
 
     private void draw(Point p1, Point p2) {
         Graphics g = image.getGraphics();
+
         switch (drawUtil) {
             case PAINT_RECT:
                 g.setColor(paintColor);
