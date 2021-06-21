@@ -210,14 +210,23 @@ public class ModelingInterface extends JFrame {
                     p1.setLocation(p1.getX(), p2.getY());
                     p2.setLocation(p1.getX(), s);
                 }
+
+
+                double[] doubles1 = Lumiere.getDoubles(paintColor.getRGB());
                 for (double i = p1.getX(); i < p2.getX(); i++) {
                     for (double j = p1.getY(); j < p2.getY(); j++) {
-                        int ix = ((int) i / panel4.getWidth()  * image.getWidth() );
+                        int ix = (int)( i / panel4.getWidth()  * image.getWidth() );
                         int iy = (int) (j / panel4.getHeight() * image.getHeight());
                         double[] doubles = Lumiere.getDoubles(image.getRGB(ix,iy));
+
+                        double k = pc/100.*pc/100.;
+                        double exp = Math.exp(-k * (ix * ix + iy * iy));
+
+                        for (int i1 = 0; i1 < doubles.length; i1++) {
+                            doubles[i1] = doubles[i1]+(doubles1[i1]-doubles[i1])*exp;
+                        }
                         int anInt = Lumiere.getInt(doubles);
                         image.setRGB(ix, iy, anInt);
-
                     }
                 }
 
