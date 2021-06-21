@@ -199,6 +199,27 @@ public class ModelingInterface extends JFrame {
                 System.out.printf("Action: Rect drawn");
                 break;
             case PAINT_GRAD:
+                double s;
+                if(p1.getX()>p2.getX()) {
+                    s = p1.getX();
+                    p1.setLocation(p2.getX(), p1.getY());
+                    p2.setLocation(s, p1.getY());
+                }
+                if(p1.getY()>p2.getY()) {
+                    s = p1.getY();
+                    p1.setLocation(p1.getX(), p2.getY());
+                    p2.setLocation(p1.getX(), s);
+                }
+                for (double i = p1.getX(); i < p2.getX(); i++) {
+                    for (double j = p1.getY(); j < p2.getY(); j++) {
+                        int ix = ((int) i / panel4.getWidth()  * image.getWidth() );
+                        int iy = (int) (j / panel4.getHeight() * image.getHeight());
+                        double[] doubles = Lumiere.getDoubles(image.getRGB(ix,iy));
+                        int anInt = Lumiere.getInt(doubles);
+                        image.setRGB(ix, iy, anInt);
+
+                    }
+                }
 
                 break;
         }
