@@ -60,6 +60,14 @@ public class Tubulaire3 extends ParametricSurface {
     protected Point3D lastTan = Point3D.Z;
     Point3D[][] vecteurs = new Point3D[3][3];
 
+    {
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++) {
+                vecteurs[i][j] = new Point3D(0., 0., 0.);
+                for (int k = 0; k < 3; k++)
+                    vecteurs[i][j].set(j, k == i ? 1. : 0.);
+            }
+    }
 
     public Tubulaire3() {
         super();
@@ -100,14 +108,6 @@ public class Tubulaire3 extends ParametricSurface {
     private Object calculerTangenteVpart(double u, double v) {
         return calculerTangenteUpart(u, v).prodVect(calculerTangenteUpart(u + TAN_FCT_INCR, v)).norme1();//?????
     }
-    {
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++) {
-                vecteurs[i][j] = new Point3D(0., 0., 0.);
-                for (int k = 0; k < 3; k++)
-                    vecteurs[i][j].set(j, k == i ? 1. : 0.);
-            }
-    }
 
     public Point3D[] vectPerp(double t, double v) {
         int j = -1;
@@ -132,13 +132,20 @@ public class Tubulaire3 extends ParametricSurface {
             tangente = tangente.norme1();
 
             Point3D px;
+            Point3D normal;
 
-            Point3D normal = calculerNormale(t);
-            if(normal.equals(Point3D.O0)||normal.isAnyNaN()||normal.norme()<0.8) {
-                normal = tangente.prodVect(refs[i]);//TODO .prodVect(refs[i])).norme1();
-            }
-            if(normal.equals(Point3D.O0)||normal.isAnyNaN()||normal.norme()<0.8) {
-                break;
+            normal = lastNorm;
+
+            if (normal!=null && Math.abs(normal.prodScalaire(tangente)) >= 0.00001) {
+                normal = calculerNormale(t);
+                if (normal.equals(Point3D.O0) || normal.isAnyNaN() || normal.norme() < 0.8) {
+                    normal = tangente.prodVect(refs[i]);//TODO .prodVect(refs[i])).norme1();
+                }
+                if (normal.equals(Point3D.O0) || normal.isAnyNaN() || normal.norme() < 0.8) {
+
+                } else {
+                    lastNorm = normal;
+                }
             }
 
             normal = normal.norme1();
@@ -158,7 +165,7 @@ public class Tubulaire3 extends ParametricSurface {
                 j = i;
             }
         }
-        if(j==-1) {
+        if (j == -1) {
             System.out.println("Error j==-1");
             j = 0;
         }

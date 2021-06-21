@@ -263,7 +263,7 @@ public class ModelingInterface extends JFrame {
     }
 
     private void menuItemGradPCActionPerformed(ActionEvent e) {
-        pc = Integer.parseInt(((JButton) e.getSource()).getText().substring(0, 2));
+        pc = Integer.parseInt(((JMenuItem) e.getSource()).getText().substring(0, 2));
         drawUtil = PAINT_GRAD;
     }
 
