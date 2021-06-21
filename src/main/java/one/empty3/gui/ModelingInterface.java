@@ -95,10 +95,10 @@ public class ModelingInterface extends JFrame {
         tubulaire4 = new Tubulaire4map();
         tubulaire4.declareProperties();
         tubulaire4.getSoulCurve().setElem(new CourbeParametriquePolynomialeBezier());
-        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(1., 0., 10.));
+        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0.25, 0., 10.));
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 2.5));
         tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., -2.5));
-        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 1., -10.));
+        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0.25, -10.));
         Fct1D_1D fct1D_1D = new Fct1D_1D() {
             @Override
             public double result(double input) {
@@ -220,7 +220,7 @@ public class ModelingInterface extends JFrame {
     }
 
     private void menuItemExportModelActionPerformed(ActionEvent e) {
-        File file = new File("objet" + Math.random() + ".stl");
+        File file = new File("sauvegardes/objet" + Math.random() + ".stl");
         try {
             STLExport.save(file, scene, false);
         } catch (IOException ioException) {

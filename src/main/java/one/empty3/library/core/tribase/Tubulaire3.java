@@ -60,14 +60,6 @@ public class Tubulaire3 extends ParametricSurface {
     protected Point3D lastTan = Point3D.Z;
     Point3D[][] vecteurs = new Point3D[3][3];
 
-    {
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++) {
-                vecteurs[i][j] = new Point3D(0., 0., 0.);
-                for (int k = 0; k < 3; k++)
-                    vecteurs[i][j].set(j, k == i ? 1. : 0.);
-            }
-    }
 
     public Tubulaire3() {
         super();
@@ -108,10 +100,18 @@ public class Tubulaire3 extends ParametricSurface {
     private Object calculerTangenteVpart(double u, double v) {
         return calculerTangenteUpart(u, v).prodVect(calculerTangenteUpart(u + TAN_FCT_INCR, v)).norme1();//?????
     }
+    {
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++) {
+                vecteurs[i][j] = new Point3D(0., 0., 0.);
+                for (int k = 0; k < 3; k++)
+                    vecteurs[i][j].set(j, k == i ? 1. : 0.);
+            }
+    }
 
     public Point3D[] vectPerp(double t, double v) {
         int j = -1;
-        double min = 3;
+        double min = Double.POSITIVE_INFINITY;
         double minI = Double.POSITIVE_INFINITY; // TODO
         for (int i = 0; i < 3; i++) {
             Point3D tangente = calculerTangente(t);
@@ -151,13 +151,16 @@ public class Tubulaire3 extends ParametricSurface {
             vecteurs[i][1] = px.norme1();
             vecteurs[i][2] = py.norme1();
 
-            minI = px.prodVect(py).norme() - 1;
-            ;
-            //minI2  = px.prodVect(py).norme()-1;
+            minI = px.prodVect(py).norme() - 1.0;
+
             if (minI < min) {
                 min = minI;
                 j = i;
             }
+        }
+        if(j==-1) {
+            System.out.println("Error j==-1");
+            j = 0;
         }
         return vecteurs[j];
     }

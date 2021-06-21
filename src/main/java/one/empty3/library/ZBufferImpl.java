@@ -261,10 +261,12 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                             double v1 = maxDistance(camera().coordonneesPoint2D(p1, this), camera().coordonneesPoint2D(p2, this),
                                     camera().coordonneesPoint2D(p3, this), camera().coordonneesPoint2D(p4, this));
                             if(v1<la && v1< ha && v1>=0) {
-                                for(int i=0; i<v1; i++)
-                                    for(int j=0; j<v1; j++) {
-                                        double u2 = u+n.getIncrU()/(1+v1);
-                                        double v2 = v+n.getIncrV()/(1+v1);
+                                int i = 0;
+                                int j = 0;
+                                for(i=0; i<v1; i++)
+                                    for(j=0; j<v1; j++) {
+                                        double u2 = u+n.getIncrU()/(1+v1)*i;
+                                        double v2 = v+n.getIncrV()/(1+v1)*j;
                                         ime.testDeep(p1, n.texture(), u2, v2, n);
                                     }
                             }
