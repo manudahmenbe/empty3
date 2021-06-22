@@ -128,7 +128,7 @@ public class ModelingInterface extends JFrame {
                 runningViewDisplay = true;
                 long nanos = System.nanoTime();
                 ZBufferImpl zBuffer = new ZBufferImpl(panel3.getWidth(), panel3.getHeight());
-                zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_POINTS_DEEP);
+                zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_POINTS);
                 zBuffer.texture(new ColorTexture(Color.WHITE));
                 zBuffer.backgroundTexture(new ColorTexture(Color.WHITE));
                 scene = new Scene();
@@ -187,8 +187,14 @@ public class ModelingInterface extends JFrame {
         switch (drawUtil) {
             case PAINT_RECT:
                 g.setColor(paintColor);
-                g.fillRect((int) (p1.getX() / panel4.getWidth() * image.getWidth()), (int) (p1.getY() / panel4.getHeight() * image.getHeight()),
-                        (int) (p2.getX() / panel4.getWidth() * image.getWidth()), (int) (p2.getY() / panel4.getHeight() * image.getHeight()));
+                g.fillRect((int) (p1.getX() / panel4.getWidth() * image.getWidth()),
+                        (int) (p1.getY() / panel4.getHeight() * image.getHeight()),
+
+                        (int) (p2.getX() / panel4.getWidth() * image.getWidth())
+                        -(int) (p1.getX() / panel4.getWidth() * image.getWidth()),
+
+                        (int) (p2.getY() / panel4.getHeight() * image.getHeight())
+                                - (int) (p1.getY() / panel4.getHeight() * image.getHeight()));
                 System.out.printf("Action: Rect drawn\n");
                 break;
             case PAINT_GRAD:

@@ -60,6 +60,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     public static final int SURFACE_DISPLAY_LINES = 16;
     public static final int SURFACE_DISPLAY_POINTS = 32;
     public static final int SURFACE_DISPLAY_POINTS_DEEP = 64;
+    private static final int SURFACE_DISPLAY_POINTS_LARGE = 128;
     public static int CURVES_MAX_SIZE = 10000;
     public static int SURFAS_MAX_SIZE = 1000000;
     public static int CURVES_MAX_DEEP = 10;
@@ -270,15 +271,14 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                         if (displayType == SURFACE_DISPLAY_POINTS_DEEP) {
                             double v1 = maxDistance(camera().coordonneesPoint2D(p1, this), camera().coordonneesPoint2D(p2, this),
                                     camera().coordonneesPoint2D(p3, this), camera().coordonneesPoint2D(p4, this));
-
-                            if (v1>1 && v1 < la && v1 < ha) {
+                            if (v1 > 1 && v1 < la && v1 < ha) {
                                 int i = 0;
                                 int j = 0;
-                                for (i = 0; i < v1; i += 1 / v1)
-                                    for (j = 0; j < v1; j += 1 / v1) {
+                                for (i = 0; i < v1; i += 1)
+                                    for (j = 0; j < v1; j += 1) {
                                         double u2 = u + n.getIncrU() / (1 + v1) * i;
                                         double v2 = v + n.getIncrV() / (1 + v1) * j;
-                                        ime.testDeep(p1, n.texture(), u2, v2, n);
+                                        ime.testDeep(n.calculerPoint3D(u2, v2), n.texture(), u2, v2, n);
                                     }
                             }
                         }
