@@ -40,6 +40,7 @@ public class ModelingInterface extends JFrame {
     private Point p1;
     private Point p2;
     private Scene scene;
+    private int pc;
 
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
@@ -76,7 +77,6 @@ public class ModelingInterface extends JFrame {
     private JMenuItem menuItem15;
     private JPanel panel4;
     private JLabel label1;
-    private int pc;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
 
@@ -93,7 +93,6 @@ public class ModelingInterface extends JFrame {
     public void init() {
 
         image = new BufferedImage(RES_X, RES_Y, BufferedImage.TYPE_INT_RGB);
-        //initImage();
         tubulaire4 = new Tubulaire4map();
         tubulaire4.declareProperties();
         tubulaire4.getSoulCurve().setElem(new CourbeParametriquePolynomialeBezier());
@@ -127,9 +126,9 @@ public class ModelingInterface extends JFrame {
         if (!runningViewDisplay)
             new Thread(() -> {
                 runningViewDisplay = true;
-
+                long nanos = System.nanoTime();
                 ZBufferImpl zBuffer = new ZBufferImpl(panel3.getWidth(), panel3.getHeight());
-                zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_TEXT_TRI);
+                zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_POINTS_DEEP);
                 zBuffer.texture(new ColorTexture(Color.WHITE));
                 zBuffer.backgroundTexture(new ColorTexture(Color.WHITE));
                 scene = new Scene();
@@ -138,26 +137,14 @@ public class ModelingInterface extends JFrame {
                 scene.cameraActive(camera);
                 zBuffer.scene(scene);
                 zBuffer.camera(camera);
-
                 zBuffer.idzpp();
-
                 zBuffer.draw();
-
                 ECBufferedImage ecBufferedImage = zBuffer.image2();
-
-
                 Graphics graphics = panel3.getGraphics();
-
-
-                graphics.drawImage(
-                        ecBufferedImage, 0, 0,
-                        panel3.getWidth(), panel3.getHeight(), null);
-
+                graphics.drawImage(ecBufferedImage, 0, 0, panel3.getWidth(), panel3.getHeight(), null);
                 graphics = panel4.getGraphics();
-
-
                 graphics.drawImage(image, 0, 0, panel4.getWidth(), panel4.getHeight(), null);
-
+                System.out.println("Nano time ellapsed: " + (nanos-System.nanoTime())/1000000000d);
                 runningViewDisplay = false;
             }).start();
     }
