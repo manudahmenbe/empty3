@@ -177,7 +177,7 @@ public class Tubulaire3 extends ParametricSurface {
     }
 
     @Override
-    public Point3D calculerPoint3D(double v, double u) {
+    public Point3D calculerPoint3D(double u, double v) {
         Point3D[] vectPerp = vectPerp(u, v);
         return soulCurve.getElem().calculerPoint3D(u).plus(
                 vectPerp[1].mult(diameterFunction.getElem().result(u) * Math.cos(2 * Math.PI * v))).plus(
