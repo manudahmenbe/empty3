@@ -134,20 +134,23 @@ public class Tubulaire3 extends ParametricSurface {
             Point3D px;
             Point3D normal;
 
-            normal = lastNorm;
-
-            if (normal!=null && Math.abs(normal.prodScalaire(tangente)) >= 0.00001) {
-                normal = calculerNormale(t);
-                if (normal.equals(Point3D.O0) || normal.isAnyNaN() || normal.norme() < 0.8) {
-                    normal = tangente.prodVect(refs[i]);//TODO .prodVect(refs[i])).norme1();
+            //normal = lastNorm;
+            Point3D tangente1 = tangente;
+            Point3D tangente2 = tangente.prodVect(refs[i]);
+            normal = tangente1.prodVect(tangente2);
+            if (normal != null) {
+                if (Math.abs(normal.prodScalaire(tangente)) >= 0.00001) {
+                    normal = calculerNormale(t);
+                    if (normal.equals(Point3D.O0) || normal.isAnyNaN() || normal.norme() < 0.8) {
+                        normal = tangente.prodVect(refs[i]);//TODO .prodVect(refs[i])).norme1();
+                    }
                 }
-                if (normal.equals(Point3D.O0) || normal.isAnyNaN() || normal.norme() < 0.8) {
-
-                } else {
-                    lastNorm = normal;
-                }
+            } else {
+                normal = lastNorm;
             }
-
+            if (!normal.equals(Point3D.O0) && !normal.isAnyNaN() && !(normal.norme() < 0.8)) {
+                lastNorm = normal;
+            }
             normal = normal.norme1();
             px = tangente.prodVect(normal);//TODO .prodVect(refs[i])).norme1();
 
@@ -158,7 +161,7 @@ public class Tubulaire3 extends ParametricSurface {
             vecteurs[i][1] = px.norme1();
             vecteurs[i][2] = py.norme1();
 
-            minI = px.prodVect(py).norme() - 1.0;
+            minI = Math.abs(px.prodVect(py).norme() - 1.0);
 
             if (minI < min) {
                 min = minI;
@@ -169,11 +172,12 @@ public class Tubulaire3 extends ParametricSurface {
             System.out.println("Error j==-1");
             j = 0;
         }
+
         return vecteurs[j];
     }
 
     @Override
-    public Point3D calculerPoint3D(double u, double v) {
+    public Point3D calculerPoint3D(double v, double u) {
         Point3D[] vectPerp = vectPerp(u, v);
         return soulCurve.getElem().calculerPoint3D(u).plus(
                 vectPerp[1].mult(diameterFunction.getElem().result(u) * Math.cos(2 * Math.PI * v))).plus(

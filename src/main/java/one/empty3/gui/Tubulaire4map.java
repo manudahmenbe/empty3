@@ -36,7 +36,7 @@ public class Tubulaire4map extends Tubulaire3 {
      * @return coordonnées du point 3D de la surface.
      */
     @Override
-    public Point3D calculerPoint3D(double u, double v) {
+    public Point3D calculerPoint3D(double v, double u) {
         Point3D[] vectPerp = vectPerp(u, v);
         double  lum = Lumiere.getDoubles(mapVolume.getElem().getRGB(getX(u), getY(v)))[0];
         Point3D plus = getSoulCurve().getElem().calculerPoint3D(u).plus(

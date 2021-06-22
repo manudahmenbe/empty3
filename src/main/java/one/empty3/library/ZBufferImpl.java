@@ -66,6 +66,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     public static final int SURFACE_DISPLAY_COL_TRI = 8;
     public static final int SURFACE_DISPLAY_LINES = 16;
     public static final int SURFACE_DISPLAY_POINTS = 32;
+    public static final int SURFACE_DISPLAY_DEEP = 64;
     // DEFINITIONS
     public static double INFINITY_DEEP = Double.MAX_VALUE;
     protected boolean colorationActive = false;
@@ -242,9 +243,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                     break;
 
             }
-        } else
-            // GENERATORS
-            if (r instanceof ParametricSurface) {
+        } else if (r instanceof ParametricSurface) {
                 ParametricSurface n = (ParametricSurface) r;
                 // System.out.println("Surface");
                 System.out.println("class" + n.getClass());
@@ -257,20 +256,6 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                         p2 = n.calculerPoint3D(u + n.getIncrU(), v);
                         p3 = n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV());
                         p4 = n.calculerPoint3D(u, v + n.getIncrV());
-                        if (displayType == SURFACE_DISPLAY_POINTS) {
-                            double v1 = maxDistance(camera().coordonneesPoint2D(p1, this), camera().coordonneesPoint2D(p2, this),
-                                    camera().coordonneesPoint2D(p3, this), camera().coordonneesPoint2D(p4, this));
-                            if(v1<la && v1< ha && v1>=0) {
-                                int i = 0;
-                                int j = 0;
-                                for(i=0; i<v1; i++)
-                                    for(j=0; j<v1; j++) {
-                                        double u2 = u+n.getIncrU()/(1+v1)*i;
-                                        double v2 = v+n.getIncrV()/(1+v1)*j;
-                                        ime.testDeep(p1, n.texture(), u2, v2, n);
-                                    }
-                            }
-                        } else {
                         if (n instanceof HeightMapSurface) {
                             Point3D n1, n2, n3, n4;
                             HeightMapSurface h = (HeightMapSurface) n;
@@ -283,7 +268,23 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                             p3 = p3.plus(n3.norme1().mult(h.height(u + n.getIncrU(), v + n.getIncrV())));
                             p4 = p4.plus(n4.norme1().mult(h.height(u, v + n.getIncrV())));
                         }
-                        if (displayType == SURFACE_DISPLAY_LINES) {
+                        if (displayType == SURFACE_DISPLAY_POINTS || displayType==SURFACE_DISPLAY_DEEP) {
+                            ime.testDeep(p1, n.texture(), u, v, n);
+                            if (displayType==SURFACE_DISPLAY_DEEP) {
+                                double v1 = maxDistance(camera().coordonneesPoint2D(p1, this), camera().coordonneesPoint2D(p2, this),
+                                        camera().coordonneesPoint2D(p3, this), camera().coordonneesPoint2D(p4, this));
+                                if (v1 < la && v1 < ha && v1 >= 0) {
+                                    int i = 0;
+                                    int j = 0;
+                                    for (i = 0; i < v1; i++)
+                                        for (j = 0; j < v1; j++) {
+                                            double u2 = u + n.getIncrU() / (1 + v1) * i;
+                                            double v2 = v + n.getIncrV() / (1 + v1) * j;
+                                            ime.testDeep(p1, n.texture(), u2, v2, n);
+                                        }
+                                }
+                            }
+                        } else if (displayType == SURFACE_DISPLAY_LINES) {
                             tracerLines(p1
                                     , p2,
                                     p3,
@@ -313,8 +314,6 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
                             tracerQuad(p1, p2, p3, p4, n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
                         }
-                        }
-
                     }
 
                 }

@@ -4,6 +4,7 @@
 
 package one.empty3.gui;
 
+import com.github.sarxos.webcam.ds.buildin.WebcamDefaultDevice;
 import net.miginfocom.swing.MigLayout;
 import one.empty3.library.*;
 import one.empty3.library.core.export.STLExport;
@@ -96,21 +97,26 @@ public class ModelingInterface extends JFrame {
         tubulaire4 = new Tubulaire4map();
         tubulaire4.declareProperties();
         tubulaire4.getSoulCurve().setElem(new CourbeParametriquePolynomialeBezier());
-        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0.25, 0., 10.));
-        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., 2.5));
-        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0., -2.5));
-        tubulaire4.getSoulCurve().getElem().getCoefficients().add(new Point3D(0., 0.25, -10.));
+        tubulaire4.getSoulCurve().getElem().getCoefficients().setElem(new Point3D(0.25, 0., 10.),    0);
+        tubulaire4.getSoulCurve().getElem().getCoefficients().setElem(new Point3D(0., 0., 2.5),      1);
+        tubulaire4.getSoulCurve().getElem().getCoefficients().setElem(new Point3D(0., 0., -2.5),     2);
+        tubulaire4.getSoulCurve().getElem().getCoefficients().setElem(new Point3D(0., 0.25, -10.),   3);
         tubulaire4.getDiameterFunction().setElem(new FctXY());
-        tubulaire4.getDiameterFunction().getElem().setFormulaX("10.0");
-        tubulaire4.texture(new ColorTexture(Color.BLUE));
+        tubulaire4.getDiameterFunction().getElem().setFormulaX("20.0");
+        try {
+            tubulaire4.texture(new TextureImg(ECBufferedImage.getFromFile(new File("sauvegardes/WIN_20210622_09_55_55_Pro.jpg"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+            tubulaire4.texture(new ColorTexture(Color.WHITE));
+        }
         tubulaire4.setIncrU(0.01);
         tubulaire4.setIncrV(0.01);
 
-
-        camera = new Camera(Point3D.Y.mult(-80.), Point3D.O0, Point3D.Z);
+        camera = new Camera(Point3D.X.mult(-80.), Point3D.O0, Point3D.Z);
 
         Graphics g = image.getGraphics();
-        g.setColor(Color.RED);
+        Color color = new Color(0.5f, 0.0f, 0.0f);
+        g.setColor(color);
         g.fillRect(0, 0, image.getWidth(), image.getHeight());
 
 
@@ -123,7 +129,7 @@ public class ModelingInterface extends JFrame {
                 runningViewDisplay = true;
 
                 ZBufferImpl zBuffer = new ZBufferImpl(panel3.getWidth(), panel3.getHeight());
-                zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_POINTS);
+                zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_TEXT_TRI);
                 zBuffer.texture(new ColorTexture(Color.WHITE));
                 zBuffer.backgroundTexture(new ColorTexture(Color.WHITE));
                 scene = new Scene();
@@ -196,7 +202,7 @@ public class ModelingInterface extends JFrame {
                 g.setColor(paintColor);
                 g.fillRect((int) (p1.getX() / panel4.getWidth() * image.getWidth()), (int) (p1.getY() / panel4.getHeight() * image.getHeight()),
                         (int) (p2.getX() / panel4.getWidth() * image.getWidth()), (int) (p2.getY() / panel4.getHeight() * image.getHeight()));
-                System.out.printf("Action: Rect drawn");
+                System.out.printf("Action: Rect drawn\n");
                 break;
             case PAINT_GRAD:
                 double s;
@@ -220,15 +226,18 @@ public class ModelingInterface extends JFrame {
                         double[] doubles = Lumiere.getDoubles(image.getRGB(ix,iy));
 
                         double k = pc/100.*pc/100.;
-                        double exp = Math.exp(-k * (ix * ix + iy * iy));
+                        double k2 = 1.0;
+                        double exp = Math.exp(- (ix * ix + iy * iy) / k);
 
-                        for (int i1 = 0; i1 < doubles.length; i1++) {
-                            doubles[i1] = doubles[i1]+(doubles1[i1]-doubles[i1])*exp;
+                        for (int comp = 0; comp < doubles.length; comp++) {
+                            double l = k2 * (doubles1[comp] - doubles[comp]);
+                            doubles[comp] = doubles[comp]+l*exp;
                         }
                         int anInt = Lumiere.getInt(doubles);
                         image.setRGB(ix, iy, anInt);
                     }
                 }
+                System.out.printf("Action: Gradient drawn\n");
 
                 break;
         }
@@ -257,6 +266,12 @@ public class ModelingInterface extends JFrame {
         }
         try {
             ImageIO.write(image, "jpg", new File(file.getAbsolutePath() + ".jpg"));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        try {
+            ImageIO.write(((TextureImg)tubulaire4.texture()).getImage(), "jpg",
+                    new File(file.getAbsolutePath() + "_text.jpg"));
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
