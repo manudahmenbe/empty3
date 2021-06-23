@@ -1327,6 +1327,20 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 ime.setElementPoint(x, y, x3d);
                 ime.setElementCouleur(x, y, c.getRGB());
                 ime.setDeep(x, y, prof);
+            }else if(checkScreen(ce)) {
+                int elementCouleur = ime.getElementCouleur(x, y);
+                double [] nc = Lumiere.getRgb(c);
+                double [] ac = Lumiere.getDoubles(elementCouleur);
+                double[] b = new double[3];
+                for (int i = 0; i < 3; i++) {
+                    b[i] = nc[i]*c.getAlpha()/255.+(1-c.getAlpha()/255.)*ac[i];
+                }
+                int anInt = Lumiere.getInt(b);
+                ime.setElementID(x, y, idImg);
+                ime.setElementPoint(x, y, x3d);
+                ime.setElementCouleur(x, y, anInt);
+                ime.setDeep(x, y, prof);
+
             }
         }
 
