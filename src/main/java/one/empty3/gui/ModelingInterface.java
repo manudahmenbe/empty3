@@ -24,6 +24,7 @@ import java.io.IOException;
 
 /**
  * @author Manuel Dahmen
+ * cr 2021
  */
 public class ModelingInterface extends JFrame {
     private static final int PAINT_POINT = 1;
@@ -128,7 +129,7 @@ public class ModelingInterface extends JFrame {
                 runningViewDisplay = true;
                 long nanos = System.nanoTime();
                 ZBufferImpl zBuffer = new ZBufferImpl(panel3.getWidth(), panel3.getHeight());
-                zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_POINTS);
+                zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_LINES);
                 zBuffer.texture(new ColorTexture(Color.WHITE));
                 zBuffer.backgroundTexture(new ColorTexture(Color.WHITE));
                 scene = new Scene();
@@ -144,7 +145,7 @@ public class ModelingInterface extends JFrame {
                 graphics.drawImage(ecBufferedImage, 0, 0, panel3.getWidth(), panel3.getHeight(), null);
                 graphics = panel4.getGraphics();
                 graphics.drawImage(image, 0, 0, panel4.getWidth(), panel4.getHeight(), null);
-                System.out.println("Nano time ellapsed: " + (nanos-System.nanoTime())/1000000000d);
+                System.out.println("Nano time ellapsed: " + (System.nanoTime()-nanos)/1000000000d);
                 runningViewDisplay = false;
             }).start();
     }
