@@ -281,12 +281,11 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                                         ime.testDeep(n.calculerPoint3D(u2, v2), n.texture(), u2, v2, n);
                                     }
                             }
-                        } else if(displayType == SURFACE_DISPLAY_POINTS_LARGE) {
-                            tracerQuad(p1, p2, p3, p4, n.texture(), u, u+n.getIncrU(), v, v+n.getStartV(), n);
+                        } else if (displayType == SURFACE_DISPLAY_POINTS_LARGE) {
+                            tracerQuad(p1, p2, p3, p4, n.texture(), u, u + n.getIncrU(), v, v + n.getStartV(), n);
                         }
                     } else if (displayType == SURFACE_DISPLAY_LINES) {
                         tracerLines(p1, p2, p3, p4, n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
-                        break;
                     } else if (displayType == SURFACE_DISPLAY_COL_TRI ||
                             displayType == SURFACE_DISPLAY_TEXT_TRI) {
                         tracerTriangle(
@@ -420,12 +419,12 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     }
 
 
-    private void tracerLines(Point3D p1, Point3D p2, Point3D p3, Point3D p4, ITexture texture, double u, double v,
-                             double u1, double v1, ParametricSurface n) {
-        line(p1, p2, texture, u, v, u + u1, v, n);
-        line(p2, p3, texture, u + u1, v, u + u1, v + v1, n);
-        line(p3, p4, texture, u + u1, v+v1, u, v + v1, n);
-        line(p4, p1, texture, u, v + v1, u, v, n);
+    private void tracerLines(Point3D p1, Point3D p2, Point3D p3, Point3D p4, ITexture texture, double u1, double v1,
+                             double u2, double v2, ParametricSurface n) {
+        line(p1, p2, texture, u1, v1, u2, v1, n);
+        line(p2, p3, texture, u2, v1, u2, v2, n);
+        line(p3, p4, texture, u2, v2, u1, v2, n);
+        line(p4, p1, texture, u1, v2, u1, v1, n);
     }
 
 
@@ -551,8 +550,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             return;
         }
         Point3D n = p2.moins(p1).norme1();
-        double itere = Math.sqrt((x1.getX() - x2.getX())*(x1.getX() - x2.getX())
-                + (x1.getY() - x2.getY())*(x1.getY() - x2.getY()))+1;
+        double itere = Math.sqrt((x1.getX() - x2.getX()) * (x1.getX() - x2.getX())
+                + (x1.getY() - x2.getY()) * (x1.getY() - x2.getY())) + 1;
         for (int i = 0; i < itere; i++) {
             Point3D p = p1.plus(n.mult(i / itere));
             double u = u1 + i / itere * (u2 - u1);
@@ -860,7 +859,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
                     }
                 }
-                if(displayType==SURFACE_DISPLAY_POINTS_LARGE) {
+                if (displayType == SURFACE_DISPLAY_POINTS_LARGE) {
                     double u = u0 + (u1 - u0) * a;
                     double v = v0 + (v1 - v0) * b;
                     ime.testDeep(pFinal, n.texture().getColorAt(u, v));
@@ -1367,10 +1366,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 return false;
             int x = (int) ce.getX();
             int y = (int) ce.getY();
-            double deep = //camera().distanceCamera(x3d);
-                x3d.moins(camera().getEye()).getZ();//TODO
+            double deep = camera().distanceCamera(x3d);
             if (x >= 0 & x < la & y >= 0 & y < ha
-                    && deep>0 && (deep < ime.getElementProf(x, y)) ) {
+                    && (deep < ime.getElementProf(x, y))) {
                 Point3D n = x3d.getNormale();
                 if (n == null || n.norme() == 0)
                     n = x3d.moins(camera().getEye());
@@ -1511,7 +1509,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
 
         public void setElementRepresentable(int x, int y, Representable representable) {
-                Simerepresentable[x][y] = representable;
+            Simerepresentable[x][y] = representable;
         }
 
         public boolean checkCordinates(int x, int y) {
@@ -1534,15 +1532,15 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
 
         public long getElementID(int x, int y) {
-                return Simeid[x][y];
+            return Simeid[x][y];
         }
 
         public Point3D getElementPoint(int x, int y) {
-                return Scordinate[x][y];
+            return Scordinate[x][y];
         }
 
         private double getElementProf(int x, int y) {
-                return Simeprof[x][y];
+            return Simeprof[x][y];
         }
 
         public ImageMapElement getInstance(int x, int y) {
@@ -1558,17 +1556,17 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
 
         public void setElementCouleur(int x, int y, int pc) {
-                setElementID(x, y, idImg);
-                setRGBInts(pc, Scolor, x, y);
+            setElementID(x, y, idImg);
+            setRGBInts(pc, Scolor, x, y);
         }
 
         public void setElementID(int x, int y, long id) {
-                Simeid[x][y] = idImg;
+            Simeid[x][y] = idImg;
         }
 
         public void setElementPoint(int x, int y, Point3D px) {
-                setElementID(x, y, idImg);
-                Scordinate[x][y] = px;
+            setElementID(x, y, idImg);
+            Scordinate[x][y] = px;
         }
 
         public double[][] getuMap() {

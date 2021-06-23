@@ -109,10 +109,10 @@ public class ModelingInterface extends JFrame {
             e.printStackTrace();
             tubulaire4.texture(new ColorTexture(Color.WHITE));
         }
-        tubulaire4.setIncrU(0.01);
-        tubulaire4.setIncrV(0.01);
+        tubulaire4.setIncrU(0.1);
+        tubulaire4.setIncrV(0.1);
 
-        camera = new Camera(Point3D.X.mult(-80.), Point3D.O0, Point3D.Z);
+        camera = new Camera(Point3D.Y.mult(80.), Point3D.O0, Point3D.Z);
 
         Graphics g = image.getGraphics();
         Color color = new Color(0.5f, 0.0f, 0.0f);
@@ -129,7 +129,7 @@ public class ModelingInterface extends JFrame {
                 runningViewDisplay = true;
                 long nanos = System.nanoTime();
                 ZBufferImpl zBuffer = new ZBufferImpl(panel3.getWidth(), panel3.getHeight());
-                zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_LINES);
+                zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_TEXT_QUADS);
                 zBuffer.texture(new ColorTexture(Color.WHITE));
                 zBuffer.backgroundTexture(new ColorTexture(Color.WHITE));
                 scene = new Scene();
@@ -252,6 +252,7 @@ public class ModelingInterface extends JFrame {
     }
 
     private void menuItemExportModelActionPerformed(ActionEvent e) {
+        long nanos = System.nanoTime();
         File file = new File("sauvegardes/objet" + Math.random() + ".stl");
         try {
             STLExport.save(file, scene, false);
@@ -269,6 +270,26 @@ public class ModelingInterface extends JFrame {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
+        ZBufferImpl zBuffer = new ZBufferImpl(Resolution.HD1080RESOLUTION.x(),
+                Resolution.HD1080RESOLUTION.y());
+        zBuffer.setDisplayType(ZBufferImpl.DISPLAY_ALL);
+        zBuffer.texture(new ColorTexture(Color.WHITE));
+        zBuffer.backgroundTexture(new ColorTexture(Color.WHITE));
+        scene = new Scene();
+        tubulaire4.updateBitmap(image);
+        scene.add(tubulaire4);
+        scene.cameraActive(camera);
+        zBuffer.scene(scene);
+        zBuffer.camera(camera);
+        zBuffer.idzpp();
+        zBuffer.draw();
+        ECBufferedImage ecBufferedImage = zBuffer.image2();
+        try {
+            ImageIO.write(ecBufferedImage, "jpg", new File(file.getAbsolutePath()+"-renderedImage.jpg"));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        System.out.println("Nano time ellapsed (save): " + (System.nanoTime()-nanos)/1000000000d);
     }
 
     private void menuItemGradPCActionPerformed(ActionEvent e) {
