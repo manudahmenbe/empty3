@@ -197,15 +197,16 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                                     n.calculerPoint3D(u + n.getIncrU(),
                                             v + n.getIncrV()),
                                     n.texture(),
-                                    u,
-                                    v, u + n.getIncrU(), v + n.getEndV());
-                            tracerTriangle(n.calculerPoint3D(u, v),
-                                    n.calculerPoint3D(u, v + n.getIncrV()),
+                                    u, v, u + n.getIncrU(), v + n.getEndV());
+                            tracerTriangle(
                                     n.calculerPoint3D(u + n.getIncrU(),
                                             v + n.getIncrV()),
+                                    n.calculerPoint3D(u, v + n.getIncrV()),
+                                    n.calculerPoint3D(u, v),
                                     n.texture(),
-                                    u,
-                                    v, u + n.getIncrU(), v + n.getEndV());
+                                     u + n.getIncrU(), v + n.getEndV(),
+                                             u, v+n.getIncrV()
+                                    );
                             break;
                         case SURFACE_DISPLAY_LINES:
                             tracerLines(p1, p2, p3, p4, n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
@@ -776,8 +777,13 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         // |
         // Templates.
     }
-
-    public void tracerTriangle(Point3D pp1, Point3D pp2, Point3D pp3, ITexture t, double u0, double u1, double v0, double v1) {
+    public double mathUtilPow2(Point p1, Point p2) {
+        return Math.sqrt(
+                ((p1.getX()-p2.getX())*(p1.getX()-p2.getX()))+
+                        ((p1.getY()-p2.getY())*(p1.getY()-p2.getY()))
+        );
+    }
+    public void tracerTriangle(Point3D pp1, Point3D pp2, Point3D pp3, ITexture t, double u0, double v0, double u1, double v1) {
         Point p1 = camera().coordonneesPoint2D(pp1, this);
         Point p2 = camera().coordonneesPoint2D(pp2, this);
         Point p3 = camera().coordonneesPoint2D(pp3, this);
@@ -787,12 +793,12 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         Point3D n = pp1.moins(pp2).prodVect(pp3.moins(pp2)).norme1();
         int col = t.getColorAt(u0, v0);
 
-        double iteres1 = 1.0 / (Math.abs(p1.getX() - p2.getX()) + Math.abs(p1.getY() - p2.getY()));
+        double iteres1 = 1.0 / (1+mathUtilPow2(p1, p2));
         for (double a = 0; a < 1.0; a += iteres1) {
             Point3D p3d = pp1.plus(pp1.mult(-1d).plus(pp2).mult(a));
             Point pp = camera().coordonneesPoint2D(p3d, this);
             if (pp != null) {
-                double iteres2 = 1.0 / (Math.abs(pp.getX() - p3.getX()) + Math.abs(pp.getY() - p3.getY()));
+                double iteres2 = 1.0 / (1+mathUtilPow2(p3, pp));
                 for (double b = 0; b < 1.0; b += iteres2) {
                     Point3D p = p3d.plus(p3d.mult(-1d).plus(pp3).mult(b));
                     p.setNormale(n);

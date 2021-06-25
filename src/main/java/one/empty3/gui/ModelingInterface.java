@@ -109,7 +109,7 @@ public class ModelingInterface extends JFrame {
             e.printStackTrace();
             tubulaire4.texture(new ColorTexture(Color.WHITE));
         }
-        tubulaire4.setIncrU(0.1);
+        tubulaire4.setIncrU(0.01);
         tubulaire4.setIncrV(0.1);
 
         camera = new Camera(Point3D.Y.mult(80.), Point3D.O0, Point3D.Z);
@@ -129,7 +129,7 @@ public class ModelingInterface extends JFrame {
                 runningViewDisplay = true;
                 long nanos = System.nanoTime();
                 ZBufferImpl zBuffer = new ZBufferImpl(panel3.getWidth(), panel3.getHeight());
-                zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_TEXT_QUADS);
+                zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_POINTS_DEEP);
                 zBuffer.texture(new ColorTexture(Color.WHITE));
                 zBuffer.backgroundTexture(new ColorTexture(Color.WHITE));
                 scene = new Scene();
@@ -221,7 +221,7 @@ public class ModelingInterface extends JFrame {
 
                         double k = pc/100.*pc/100.;
                         double k2 = 1.0;
-                        double exp = Math.exp(- (ix * ix + iy * iy) / k);
+                        double exp = Math.exp(- (ix * ix + iy * iy) * k);
 
                         for (int comp = 0; comp < doubles.length; comp++) {
                             double l = k2 * (doubles1[comp] - doubles[comp]);
@@ -272,7 +272,7 @@ public class ModelingInterface extends JFrame {
         }
         ZBufferImpl zBuffer = new ZBufferImpl(Resolution.HD1080RESOLUTION.x(),
                 Resolution.HD1080RESOLUTION.y());
-        zBuffer.setDisplayType(ZBufferImpl.DISPLAY_ALL);
+        zBuffer.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_POINTS_DEEP);
         zBuffer.texture(new ColorTexture(Color.WHITE));
         zBuffer.backgroundTexture(new ColorTexture(Color.WHITE));
         scene = new Scene();

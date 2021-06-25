@@ -102,7 +102,8 @@ public class TextureImg extends ITexture {
                 .getElem().getRGB(x, y)
                 :
                 transparent;
-
+        if(c==transparent)
+            System.out.println("Transparent");
         return c;
     }
 
