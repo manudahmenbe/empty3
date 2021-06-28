@@ -161,7 +161,7 @@ public class Tubulaire3 extends ParametricSurface {
             vecteurs[i][1] = px.norme1();
             vecteurs[i][2] = py.norme1();
 
-            minI = Math.abs(px.prodVect(py).norme() - 1.0);
+            minI = (px.prodVect(py).norme() - 1.0)*(px.prodVect(py).norme() - 1.0);
 
             if (minI < min) {
                 min = minI;

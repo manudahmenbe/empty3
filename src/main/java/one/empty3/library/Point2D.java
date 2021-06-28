@@ -92,6 +92,14 @@ public class Point2D {
         double distance = Math.sqrt((x - p2a.getX()) * (x - p2a.getX()) + (y - p2a.getY()) * (y - p2a.getY()));
         return distance > d && distance < e;
     }
+    public double prodScalaire(Point2D v2) {
+        return getX()*v2.getX()+getY()*v2.getY();
+    }
+
+    public Point2D prodVect(Point2D v2) {
+        return new Point2D(v2.getY() - getX(),   getY() - v2.getX());
+
+    }
 
     public double getX() {
         return x;

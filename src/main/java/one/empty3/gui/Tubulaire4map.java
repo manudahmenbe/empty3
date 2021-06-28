@@ -31,7 +31,7 @@ public class Tubulaire4map extends Tubulaire3 {
      * Epaisseur de pourtour renseignée par la composante ROUGE de la couleur
      * au pixel (u,v) de l'image
      * @param u Le long de la "courbe d'âme" le squelette
-     * @param v Autour du squelette (choir)
+     * @param v Autour du squelette (chair)
      *
      * @return coordonnées du point 3D de la surface.
      */
