@@ -1,3 +1,4 @@
 language: java
 sudo: false
 script: mvn install -Dgpg.skip=true
+jdk: openjdk11
