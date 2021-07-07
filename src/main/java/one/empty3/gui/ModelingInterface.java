@@ -4,7 +4,6 @@
 
 package one.empty3.gui;
 
-import com.github.sarxos.webcam.ds.buildin.WebcamDefaultDevice;
 import net.miginfocom.swing.MigLayout;
 import one.empty3.library.*;
 import one.empty3.library.core.export.STLExport;
@@ -334,7 +333,7 @@ public class ModelingInterface extends JFrame {
         label1 = new JLabel();
 
         //======== this ========
-        var contentPane = getContentPane();
+        Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
             "hidemode 3",
             // columns

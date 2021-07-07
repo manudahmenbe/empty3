@@ -96,7 +96,6 @@
 
 package one.empty3.growth.test;
 
-import one.empty3.growth.TestCaseExtended;
 import one.empty3.growth.graphics.Rotation2;
 import one.empty3.library.Point3D;
 

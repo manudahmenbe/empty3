@@ -32,7 +32,6 @@
 
 package one.empty3.apps.pad;
 
-import com.jogamp.common.nio.Buffers;
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
@@ -89,7 +88,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         GLProfile glp = GLProfile.getGL4ES3();
 
         // Specifies a set of OpenGL capabilities, based on your profile.
-        GLCapabilitiesImmutable caps = new GLCapabilities(glp);
+        //GLCapabilitiesImmutable caps = new GLCapabilities(glp);
 
         glCanvas = new GLCanvas();
 
@@ -777,38 +776,6 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
     public PiloteAuto getPiloteAuto() {
         return piloteAuto;
-    }
-
-    private void pickRects(GL2 gl) {
-        int[] selectBuf = new int[BUFSIZE];
-        IntBuffer selectBuffer = Buffers.newDirectIntBuffer(BUFSIZE);
-        int hits;
-        int viewport[] = new int[4];
-        // int coordArr, y;
-
-        gl.glGetIntegerv(GL.GL_VIEWPORT, viewport, 0);
-
-        gl.glSelectBuffer(BUFSIZE, selectBuffer);
-        gl.glRenderMode(GL2.GL_SELECT);
-
-        gl.glInitNames();
-        gl.glPushName(-1);
-
-        gl.glMatrixMode(GL2.GL_PROJECTION);
-        gl.glPushMatrix();
-        gl.glLoadIdentity();
-        /* create 5x5 pixel picking region near cursor location */
-        glu.gluPickMatrix(pickPoint.getX(),
-                viewport[3] - pickPoint.getY(), //
-                5.0, 5.0, viewport, 0);
-        gl.glOrtho(0.0, 8.0, 0.0, 8.0, -0.5, 2.5);
-        drawRects(gl, GL2.GL_SELECT);
-        gl.glPopMatrix();
-        gl.glFlush();
-
-        hits = gl.glRenderMode(GL2.GL_RENDER);
-        selectBuffer.get(selectBuf);
-        processHits(hits, selectBuf);
     }
 
     public Plotter3D getPlotter3D() {

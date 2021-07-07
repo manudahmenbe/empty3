@@ -134,7 +134,7 @@ import one.empty3.growth.NotWellFormattedSystem;
 import one.empty3.growth.Symbol;
 import one.empty3.growth.SymbolSequence;
 
-public class TestBasic extends TestCase {
+public class TestBasic extends TestCaseExtended {
     public void generate1(LSystem lSystem) {
         try {
             lSystem.applyRules();

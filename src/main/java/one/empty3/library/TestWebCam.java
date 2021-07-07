@@ -34,7 +34,6 @@ package one.empty3.library;/*
  * 2013 Manuel Dahmen
  */
 
-import com.github.sarxos.webcam.Webcam;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -47,7 +46,7 @@ import javax.imageio.ImageIO;
  * @author Se7en
  */
 public class TestWebCam {
-
+/*
     public static void main(String[] args) {
         Webcam webcam = Webcam.getDefault();
         boolean isOpen = webcam.isOpen();
@@ -63,5 +62,5 @@ public class TestWebCam {
         if (!isOpen) {
             webcam.close();
         }
-    }
+    }*/
 }

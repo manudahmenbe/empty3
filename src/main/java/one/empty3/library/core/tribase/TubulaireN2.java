@@ -150,9 +150,9 @@ public class TubulaireN2 extends ParametricSurface {
             if (tangente.equals(Point3D.O0) || tangente.isAnyNaN()) {
                 //TODO
                 tangente =
-                        Objects.requireNonNullElse(lastTan,
-                                new Point3D(k == 0 ? 1. : 0,
-                                        k == 1 ? 1. : 0, k == 2 ? 1. : 0));
+                        lastTan==null?new Point3D(k == 0 ? 1. : 0,
+                                        k == 1 ? 1. : 0, k == 2 ? 1. : 0)
+                                : lastTan;
             } else {
                 lastTan = tangente;
                 break;

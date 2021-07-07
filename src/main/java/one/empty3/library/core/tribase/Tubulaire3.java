@@ -117,7 +117,7 @@ public class Tubulaire3 extends ParametricSurface {
             Point3D tangente = calculerTangente(t);
             if (tangente.equals(Point3D.O0) || tangente.isAnyNaN()) {
                 //TODO
-                tangente = Objects.requireNonNullElse(lastTan, Point3D.X);
+                tangente = lastTan==null? Point3D.X:lastTan;
             } else {
                 lastTan = tangente;
             }

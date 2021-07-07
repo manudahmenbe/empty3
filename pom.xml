@@ -55,8 +55,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.scm.id>github</project.scm.id>
     </properties>
 
@@ -83,13 +83,14 @@
         </resources>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
         <outputDirectory>${basedir}/target/classes</outputDirectory>
+        <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
         <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
 
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12.4</version>
+                <version>3.0.0-M5</version>
                 <configuration>
                     <skipTests>false</skipTests>
                     <forkMode>once</forkMode>
@@ -112,8 +113,8 @@
                 <version>3.6.2</version>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
 
             </plugin>
@@ -279,7 +280,7 @@
                 </executions>
             </plugin>
 
-            <plugin>
+            <!--<plugin>
                 <groupId>org.sonatype.ossindex.maven</groupId>
                 <artifactId>ossindex-maven-plugin</artifactId>
                 <executions>
@@ -291,7 +292,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
         </plugins>
 
     </build>
@@ -336,18 +337,11 @@
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.8.0-M1</version>
+            <groupId>org.junit</groupId>
+            <artifactId>surefire-junit5</artifactId>
+            <version>5.0.0-ALPHA</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <version>5.8.0-M1</version>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.jogamp.jogl</groupId>
             <artifactId>jogl-all-main</artifactId>
@@ -374,12 +368,6 @@
             <version>0.3.0</version>
         </dependency>
         <dependency>
-            <groupId>jep</groupId>
-            <artifactId>jep</artifactId>
-            <version>2.24</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.jogamp.jogl/jogl -->
-        <dependency>
             <groupId>org.jogamp.jogl</groupId>
             <artifactId>jogl</artifactId>
             <version>2.3.2</version>
@@ -390,44 +378,30 @@
             <version>2.3.2</version>
         </dependency>
         <dependency>
-            <groupId>com.github.sarxos</groupId>
-            <artifactId>webcam-capture</artifactId>
-            <version>0.3.9</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/commons-cli/commons-cli -->
-        <dependency>
             <groupId>commons-cli</groupId>
             <artifactId>commons-cli</artifactId>
             <version>1.4</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.badlogicgames.gdx/gdx -->
         <dependency>
             <groupId>com.badlogicgames.gdx</groupId>
             <artifactId>gdx</artifactId>
             <version>1.9.10</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/xuggle/xuggle-xuggler -->
-
-        <dependency>
-            <groupId>com.github.dexecutor</groupId>
-            <artifactId>dexecutor-core</artifactId>
-            <version>2.1.1</version>
-        </dependency>
-
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
             <version>3.5</version>
         </dependency>
-        <!--<dependency>
-            <groupId>org.jcodec</groupId>
-            <artifactId>jcodec</artifactId>
-            <version>0.2.5</version>
-        </dependency>-->
         <dependency>
             <groupId>org.jcodec</groupId>
             <artifactId>jcodec-javase</artifactId>
             <version>0.2.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.miglayout/miglayout-swing -->
+        <dependency>
+            <groupId>com.miglayout</groupId>
+            <artifactId>miglayout-swing</artifactId>
+            <version>5.0</version>
         </dependency>
 
     </dependencies>

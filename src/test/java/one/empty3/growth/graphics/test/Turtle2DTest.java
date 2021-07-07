@@ -145,11 +145,15 @@
 package one.empty3.growth.graphics.test;
 
 import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Before;
+import org.junit.Test;
+
 import one.empty3.growth.graphics.Turtle2D;
 import one.empty3.library.Point2D;
 import one.empty3.library.Point3D;
-import org.junit.After;
-import org.junit.Before;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -157,15 +161,7 @@ import java.io.IOException;
 
 public class Turtle2DTest extends TestCase {
 
-    @Before
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
+    @Test
     public void testLineRotate() {
         BufferedImage bufferedImage = new BufferedImage(1024, 768, BufferedImage.TYPE_INT_RGB);
         Turtle2D turtle2D = new Turtle2D(bufferedImage);

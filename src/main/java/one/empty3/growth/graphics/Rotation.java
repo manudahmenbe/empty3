@@ -48,16 +48,12 @@
 
 package one.empty3.growth.graphics;
 
-import com.jhlabs.vecmath.Matrix4f;
+import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector3;
 import one.empty3.library.Point3D;
 
-import com.jhlabs.vecmath.Matrix4f;
-import com.jhlabs.vecmath.Vector3f;
-
-import java.util.Arrays;
-
 public class Rotation {
-    private Matrix4f matriceRotation;
+    private Matrix4 matriceRotation;
     private Point3D origin;
 
     public Rotation(Point3D vecteur, Point3D origin, double angle) {
@@ -68,7 +64,7 @@ public class Rotation {
         float[] mat44 = new float[16];
         qm(mat44, pointAngle);
 
-        matriceRotation = new Matrix4f();
+        matriceRotation = new Matrix4();
         matriceRotation.set(mat44);
 
 
@@ -86,8 +82,8 @@ public class Rotation {
 
     public Point3D rotate(Point3D p) {
         p = p.moins(origin);
-        Vector3f p2 = new Vector3f((float)(double)(p.getX()), (float)(double)(p.getY()), (float)(double)(p.getZ()));
-        matriceRotation.transform(p2);
+        Vector3 p2 = new Vector3((float)(double)(p.getX()), (float)(double)(p.getY()), (float)(double)(p.getZ()));
+        p2.rot(matriceRotation);
         return new Point3D((double)p2.x, (double)p2.y, (double)p2.z).plus(origin);
     }
 

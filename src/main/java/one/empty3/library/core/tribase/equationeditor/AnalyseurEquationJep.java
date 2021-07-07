@@ -41,11 +41,10 @@
 
 package one.empty3.library.core.tribase.equationeditor;
 
-import org.nfunk.jep.JEP;
-
 /*__
  * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
+/*
 public class AnalyseurEquationJep {
     private final JEP myParser;
     private String strParser;
@@ -94,3 +93,4 @@ public class AnalyseurEquationJep {
 
 
 }
+*/

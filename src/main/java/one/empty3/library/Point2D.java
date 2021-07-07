@@ -130,7 +130,7 @@ public class Point2D {
     }
 
     public Point2D norme1() {
-        return this.mult(1 / norme());
+        return mult(1 / norme());
     }
 
     public Point2D plus(Point2D p) {

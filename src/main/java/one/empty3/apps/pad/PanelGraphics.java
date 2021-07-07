@@ -148,7 +148,7 @@ public class PanelGraphics extends JDialog {
                 formWindowClosed(e);
             }
         });
-        var contentPane = getContentPane();
+        Container contentPane = getContentPane();
 
         //---- jLabel1 ----
         jLabel1.setFont(new Font("Parchment", Font.PLAIN, 48));
@@ -270,7 +270,7 @@ public class PanelGraphics extends JDialog {
         setLocationRelativeTo(null);
 
         //---- buttonGroupGraphics ----
-        var buttonGroupGraphics = new ButtonGroup();
+        ButtonGroup buttonGroupGraphics = new ButtonGroup();
         buttonGroupGraphics.add(jRadioButtonECGraph);
         buttonGroupGraphics.add(jRadioButtonOGLGraph);
     }// </editor-fold>//GEN-END:initComponents

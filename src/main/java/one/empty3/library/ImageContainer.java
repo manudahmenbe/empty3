@@ -123,10 +123,10 @@ public class ImageContainer extends Representable implements ResourceLoader {
 
     private void loadVideo(File path) {
         if (path != null) {
-            vd = new StructureMatrix<>(0, DecodeAndEncodeFrames.class);
+/*            vd = new StructureMatrix<>(0, DecodeAndEncodeFrames.class);
             DecodeAndEncodeFrames vd2 = new DecodeAndEncodeFrames(path, new TextureMov());
             vd.setElem(vd2);
-            isMovie = true;
+  */          isMovie = true;
             try {
                 image.setElem(ImageIO.read(new FileInputStream(path)));
             } catch (IOException e) {
@@ -142,11 +142,11 @@ public class ImageContainer extends Representable implements ResourceLoader {
                 Object content = url.getContent();
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+            }/*
             vd = new StructureMatrix<>(0, DecodeAndEncodeFrames.class);
             DecodeAndEncodeFrames vd2 = new DecodeAndEncodeFrames(new File(url.getFile()), new TextureMov());
             vd.setElem(vd2);
-            isMovie = true;
+           */isMovie = true;
             try {
                 image.setElem(ImageIO.read(new FileInputStream(new File(url.getFile()))));
             } catch (IOException e) {

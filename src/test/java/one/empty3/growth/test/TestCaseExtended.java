@@ -158,7 +158,7 @@
  *     along with Plants-Growth-2.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package one.empty3.growth;
+package one.empty3.growth.test;
 
 import junit.framework.TestCase;
 import one.empty3.library.Point3D;

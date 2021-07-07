@@ -39,8 +39,6 @@ import one.empty3.library.ECBufferedImage;
 import one.empty3.library.core.testing.ImageContainer;
 import one.empty3.library.core.testing.TestObjet;
 import one.empty3.library.core.testing.TextAreaOutputStream;
-import one.empty3.library.core.tribase.equationeditor.AnalyseurEquationJep;
-import one.empty3.library.core.tribase.equationeditor.TRIObjetSurfaceEquationParametrique;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -577,11 +575,6 @@ public final class ShowTestResult extends JFrame implements Runnable {
         sx = (String) jTableEquations.getCellEditor(0, 1).getCellEditorValue();
         sy = (String) jTableEquations.getCellEditor(1, 1).getCellEditorValue();
         sz = (String) jTableEquations.getCellEditor(2, 1).getCellEditorValue();
-        TRIObjetSurfaceEquationParametrique eq
-                = new TRIObjetSurfaceEquationParametrique(
-                new AnalyseurEquationJep(sx),
-                new AnalyseurEquationJep(sy), new AnalyseurEquationJep(sz));
-        testRef.scene().add(eq);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
