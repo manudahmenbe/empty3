@@ -26,21 +26,17 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit:junit-launcher:5.0.0-ALPHA" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit:junit5-engine:5.0.0-ALPHA" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit:junit5-api:5.0.0-ALPHA" level="project" />
-    <orderEntry type="library" name="Maven: org.jogamp.jogl:jogl-all-main:2.3.2" level="project" />
-    <orderEntry type="library" name="Maven: org.jogamp.gluegen:gluegen-rt-main:2.3.2" level="project" />
     <orderEntry type="library" name="Maven: org.swinglabs:swing-layout:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: io.humble:humble-video-all:0.3.0" level="project" />
     <orderEntry type="library" name="Maven: io.humble:humble-video-arch-x86_64-w64-mingw32:0.3.0" level="project" />
     <orderEntry type="library" name="Maven: io.humble:humble-video-noarch:0.3.0" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.5" level="project" />
-    <orderEntry type="library" name="Maven: org.jogamp.jogl:jogl:2.3.2" level="project" />
-    <orderEntry type="library" name="Maven: org.jogamp.jogl:jogl-all:2.3.2" level="project" />
-    <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.4" level="project" />
     <orderEntry type="library" name="Maven: com.badlogicgames.gdx:gdx:1.9.10" level="project" />
     <orderEntry type="library" name="Maven: commons-net:commons-net:3.5" level="project" />
     <orderEntry type="library" name="Maven: org.jcodec:jcodec-javase:0.2.5" level="project" />
     <orderEntry type="library" name="Maven: org.jcodec:jcodec:0.2.5" level="project" />
     <orderEntry type="library" name="Maven: com.miglayout:miglayout-swing:5.0" level="project" />
     <orderEntry type="library" name="Maven: com.miglayout:miglayout-core:5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.jogamp.jogl:jogl-all:2.3.2" level="project" />
   </component>
 </module>
