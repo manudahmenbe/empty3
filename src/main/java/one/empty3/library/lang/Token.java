@@ -7,4 +7,12 @@ public class Token {
         literal = literal;
         this.tt = tt;
     }
+
+    @Override
+    public String toString() {
+        return "Token{" +
+                "literal='" + literal + '\'' +
+                ", tt='" + tt + '\'' +
+                '}';
+    }
 }
