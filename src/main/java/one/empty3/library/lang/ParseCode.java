@@ -131,8 +131,9 @@ public class ParseCode {
                             parseKeyword() ||
                             parseName() ||
                             parseLiteral();
+
                 }catch (Exception ex) {
-                    //ex.printStackTrace();
+                    ex.printStackTrace();
                 }
 
                 //sb.append(brut.charAt(i));
@@ -158,7 +159,7 @@ public class ParseCode {
         }
         if (b) {
             tokens.add(new Token("space",
-                    uncomm.substring(i, pos)));
+                    uncomm.substring(i, pos), Token.TokenTypeTxt.Space));
             pos = i;
             return true;
         }
@@ -191,7 +192,7 @@ public class ParseCode {
             String k = uncomm.substring(i, i + j);
             if (k.length() > 0 && list.contains(k))
                 tokens.add(new Token("keyword",
-                        k));
+                        k, Token.TokenTypeTxt.Keyword));
             return true;
         }
         return false;
@@ -211,7 +212,7 @@ public class ParseCode {
         String k = uncomm.substring(i, i + j);
         if (k.length() > 0 && !list.contains(k)) {
             tokens.add(new Token("name",
-                    k));
+                    k, Token.TokenTypeTxt.Name));
             i = i + j;
             return true;
         }
@@ -266,13 +267,13 @@ public class ParseCode {
         // bool
         if (uncomm.substring(i, i + "false".length()).equals("false")) {
             tokens.add(new Token("boolean:false",
-                    uncomm.substring(i, i + "false".length())));
+                    uncomm.substring(i, i + "false".length()), Token.TokenTypeTxt.Literal));
 
             return true;
         }
         if (uncomm.substring(i, i + "true".length()).equals("true")) {
             tokens.add(new Token("boolean:true",
-                    uncomm.substring(i, i + "true".length())));
+                    uncomm.substring(i, i + "true".length()), Token.TokenTypeTxt.Literal));
             return true;
         }
 
