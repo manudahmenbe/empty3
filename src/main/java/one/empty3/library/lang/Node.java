@@ -36,8 +36,9 @@ public class Node {
 
     public void run() {
         int index = 0;
-        switch (children.get(index).tt) {
-        }
+        TokenType tt = children.get(index).tt;
+
+
         while(!isExiting()) {
             if(children.get(index).canExec())
                 children.get(index).run();

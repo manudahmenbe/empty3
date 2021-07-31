@@ -307,6 +307,7 @@ public class ParseCode {
         ParseCode parseCode = new ParseCode();
         parseCode.setBrut("/* */ ");
         parseCode.removeComments();
+        parseCode.parseTokensToTree();
     }
 
     public List<Token> parseFile(File txt) {
