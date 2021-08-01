@@ -263,7 +263,6 @@ public class ParseCode {
     }
 
     public boolean parseLiteral() {
-        int pos = i;
         // bool
         if (uncomm.substring(i, i + "false".length()).equals("false")) {
             tokens.add(new Token("boolean:false",
