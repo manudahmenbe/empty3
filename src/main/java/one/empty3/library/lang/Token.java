@@ -16,6 +16,31 @@ public class Token {
         Name,
         Literal
     }
+
+    public TokenTypeTxt getTypeTxt() {
+        return typeTxt;
+    }
+
+    public void setTypeTxt(TokenTypeTxt typeTxt) {
+        this.typeTxt = typeTxt;
+    }
+
+    public String getLiteral() {
+        return literal;
+    }
+
+    public void setLiteral(String literal) {
+        this.literal = literal;
+    }
+
+    public String getTt() {
+        return tt;
+    }
+
+    public void setTt(String tt) {
+        this.tt = tt;
+    }
+
     @Override
     public String toString() {
         return "Token{" +

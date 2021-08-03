@@ -1,5 +1,7 @@
 package one.empty3.library.lang;
 
+import one.empty3.library.lang.Token.TokenTypeTxt;
+
 import java.util.*;
 
 
@@ -7,7 +9,7 @@ public class Node {
 
     public static final int declaration = 1;
     public static final int instruction = 2;
-    public static final int assignement = 4;
+    public static final int inference   = 4;
     public static final int declarationTypeClass = 1;
     public static final int declarationTypeMethod = 2;
     public static final int declarationTypeScalar = 4;
@@ -27,7 +29,76 @@ public class Node {
     List<Node> children = new ArrayList();
 
     public Node(List<Token> tokens) {
+        int index = 0;
+        while((index < tokens.size())) {
+            Token t = tokens.get(index);
+            switch (t.getTypeTxt()) {
+                case Space:
+                    break;
+                case SpecialChar:
+                    switch (t.getLiteral()) {
+                        case "=":
+                            break;
+                        case "<":
+                            break;
+                        case ">":
+                            break;
+                        case "!":
+                            break;
+                        case "+":
+                            break;
+                        case "-":
+                            break;
+                        case "*":
+                            break;
+                        case "/":
+                            break;
+                        case "(":
+                            break;
+                        case ")":
+                            break;
+                        case "{":
+                            break;
+                        case "}":
+                            break;
+                        case "[":
+                            break;
+                        case "]":
+                            break;
+                        case "&":
+                            break;
+                        case "|":
+                            break;
+                        case "\'":
+                            break;
+                        case "\"":
+                            break;
+                        case "\\":
+                            break;
+                        case ":":
+                            break;
+                        case ",":
+                            break;
+                        case ";":
+                            break;
+                        case ".":
+                            break;
+                        case "?":
+                            break;
+                    }
+                    break;
+                case Keyword:
+                    break;
+                case Name:
+                    break;
+                case Literal:
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + t.getTypeTxt());
 
+            }
+            index++;
+        }
     }
 
     public boolean canExec() {
