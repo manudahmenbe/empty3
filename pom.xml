@@ -315,7 +315,7 @@
             <artifactId>swing-layout</artifactId>
             <version>1.0.3</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>io.humble</groupId>
             <artifactId>humble-video-all</artifactId>
             <version>0.3.0</version>
@@ -325,6 +325,7 @@
             <artifactId>humble-video-noarch</artifactId>
             <version>0.3.0</version>
         </dependency>
+    -->
         <dependency>
             <groupId>com.badlogicgames.gdx</groupId>
             <artifactId>gdx</artifactId>
@@ -351,6 +352,10 @@
             <artifactId>jogl-all</artifactId>
             <version>2.3.2</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.0-alpha4</version>
+        </dependency>
     </dependencies>
 </project>
