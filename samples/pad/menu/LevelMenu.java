@@ -1,4 +1,4 @@
-/*
+++++/*
  *  This file is part of Empty3.
  *
  *     Empty3 is free software: you can redistribute it and/or modify
@@ -30,19 +30,53 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/*__
- * *
- * Global license : * Microsoft Public Licence
- * <p>
- * author Manuel Dahmen _manuel.dahmen@gmx.com_
- * <p>
- * *
- */
-package one.empty3.library.core.tribase.simpleapps;
+package one.empty3.apps.pad.menu;
 
 /*__
- * @author Manuel Dahmen _manuel.dahmen@gmx.com_
+ * Created by manuel on 21-05-17.
  */
-public class GenererUnModele {
+public class LevelMenu {
+    private final  String[] level = new String[]{
+            "SolPlan",
+            "SolRelief",
+            "SolReliefMouvant",
+            "SolSphere",
+            "SolTube"};
+    private int index = 0;
+    private int maxIndex = 5;
+
+    public String[] getLevel() {
+        return level;
+    }
+
+    public void setLevel(String[] level) {
+        level = level;
+    }
+
+    public Class loadClass() {
+        String package1 ="one.empty3.apps.pad.";
+        String solClass = package1+(getLevel()[index]);
+        try {
+            return Class.forName(solClass);
+        } catch (ClassNotFoundException e) {
+            System.err.println("ClassNotFoundException - Error: "+solClass);
+            System.exit(1);
+        } catch (NoClassDefFoundError e) {
+            System.err.println("NoClassDefFoundError - Error: "+solClass);
+            System.exit(1);
+        }
+        return null;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index % maxIndex;
+        if (index < 0)
+            this.index = maxIndex - 1;
+        System.out.println(index);
+    }
 
 }

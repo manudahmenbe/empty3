@@ -29,9 +29,9 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
-
 package one.empty3.apps.pad;
 
+/*
 import com.jogamp.newt.event.KeyEvent;
 import com.jogamp.newt.event.KeyListener;
 import one.empty3.apps.pad.menu.ToggleMenu;
@@ -42,9 +42,11 @@ import java.awt.*;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
+*/
 /*__
  * Created by manuel on 07-06-17.
- */
+ *//*
+
 public class Plotter3D implements KeyListener, Runnable {
     private final ResourceBundle bundle;
 
@@ -307,3 +309,4 @@ public class Plotter3D implements KeyListener, Runnable {
         }
     }
 }
+*/

@@ -261,6 +261,14 @@ assertFalse(true);
     public void testSimple() {
         assertTrue(testResult("1", 1.0, false));
     }
+    @Test
+    public void testSimple3() {
+        assertTrue(testResult("1+1", 2.0, false));
+    }
+    @Test
+    public void testSimpleParentheses() {
+        assertTrue(testResult("(2+3)*(4+5)", (2+3)*(4+5), false));
+    }
 
     @Test
     public void testSimple2() {

@@ -19,11 +19,11 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>empty3-ossrh</id>
+            <id>empty3_ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
-            <id>empty3-ossrh</id>
+            <id>empty3_ossrh</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
@@ -196,9 +196,10 @@
                 <version>1.6.7</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <serverId>empty3-ossrh</serverId>
+                    <serverId>empty3_ossrh</serverId>
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
+
                 </configuration>
             </plugin>
 
@@ -310,11 +311,11 @@
             <version>5.0.0-ALPHA</version>
             <scope>test</scope>
         </dependency>
-       <dependency>
+<!--       <dependency>
             <groupId>org.swinglabs</groupId>
             <artifactId>swing-layout</artifactId>
             <version>1.0.3</version>
-        </dependency>
+        </dependency>-->
 <!--        <dependency>
             <groupId>io.humble</groupId>
             <artifactId>humble-video-all</artifactId>
@@ -327,30 +328,24 @@
         </dependency>
     -->
         <dependency>
+            <groupId>org.jogamp.jogl</groupId>
+            <artifactId>jogl-main</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <dependency>
             <groupId>com.badlogicgames.gdx</groupId>
             <artifactId>gdx</artifactId>
             <version>1.9.10</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-net</groupId>
-            <artifactId>commons-net</artifactId>
-            <version>3.5</version>
         </dependency>
         <dependency>
             <groupId>org.jcodec</groupId>
             <artifactId>jcodec-javase</artifactId>
             <version>0.2.5</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.miglayout/miglayout-swing -->
         <dependency>
             <groupId>com.miglayout</groupId>
             <artifactId>miglayout-swing</artifactId>
             <version>5.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jogamp.jogl</groupId>
-            <artifactId>jogl-all</artifactId>
-            <version>2.3.2</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
