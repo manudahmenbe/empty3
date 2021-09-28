@@ -507,8 +507,8 @@ public class Point3D extends Representable {
         return this;
     }
 
-    public static Point3D n(double i, double i1, double i2) {
-        return new Point3D(i, i1, i2);
+    public static Point3D n(double x, double y, double z) {
+        return new Point3D(x, y, z);
     }
 
     public double getLength() {

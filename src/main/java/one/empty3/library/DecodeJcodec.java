@@ -42,20 +42,22 @@ public void run() {
             in = NIOUtils.readableChannel(file);
         try {
             fg = AWTFrameGrab.createAWTFrameGrab(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JCodecException e) {
+        } catch (IOException | JCodecException e) {
             e.printStackTrace();
         }
         int i=0;
+        int j=-1;
         BufferedImage frame = null;
-        while ( true&&frame!=null) {
+        while ( frame==null || i!=j) {
+            j = i;
             if(imgBuf.size()>MAXSIZE) {
                 try {
+                    assert fg != null;
                     frame = fg.getFrame();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                assert frame != null;
                 imgBuf.add(new ECBufferedImage(frame));
                 i++;
             } else {
