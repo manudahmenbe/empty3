@@ -42,10 +42,12 @@
  */
 package one.empty3.library.core.tribase;
 
+import one.empty3.library.LineSegment;
 import one.empty3.library.Point3D;
 import one.empty3.library.StructureMatrix;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
 import one.empty3.library.core.nurbs.FctXY;
+import one.empty3.library.core.nurbs.ParametricCurve;
 import one.empty3.library.core.nurbs.ParametricSurface;
 
 import java.util.Objects;
@@ -74,6 +76,15 @@ public class Tubulaire3 extends ParametricSurface {
         soulCurve.setElem(new CourbeParametriquePolynomialeBezier());
         diameterFunction.setElem(new FctXY());
         declareProperties();
+    }
+
+    public Tubulaire3(ParametricCurve lineSegment, double rayonMembres) {
+        this();
+        this.soulCurve.getElem().getCoefficients().setElem(lineSegment.calculerPoint3D(0.0), 0);
+        this.soulCurve.getElem().getCoefficients().setElem(lineSegment.calculerPoint3D(1.0), 1);
+        FctXY fctXY = new FctXY();
+        fctXY.setFormulaX(""+rayonMembres);
+        this.diameterFunction.setElem(fctXY);
     }
 
     public Point3D calculerNormale(double t) {

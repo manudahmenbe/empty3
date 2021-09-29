@@ -4,7 +4,7 @@ import one.empty3.library.*;
 import one.empty3.library.core.lighting.Colors;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
 import one.empty3.library.core.nurbs.ExtrusionCurveCurve;
-import one.empty3.library.core.tribase.TubulaireN2;
+import one.empty3.library.core.tribase.Tubulaire3;
 
 import java.util.Arrays;
 import java.util.List;
@@ -58,7 +58,7 @@ public class Human extends RepresentableConteneur {
                 pos().plus(Point3D.Z.mult(hauteurTroncHaut).moins(Point3D.Z))),
                 (largeurBassin) / 3.));
 
-        TubulaireN2 tronc2 = new TubulaireN2(new LineSegment(pos().plus(Point3D.Z.mult(hauteurBassin).plus(Point3D.Y.mult(0))),
+        Tubulaire3 tronc2 = new Tubulaire3(new LineSegment(pos().plus(Point3D.Z.mult(hauteurBassin).plus(Point3D.Y.mult(0))),
                 pos().plus(Point3D.Z.mult(hauteurTete).plus(Point3D.Y.mult(0)))
         ), largeurBassin / 2);
         tronc = new Membre(tronc2);
@@ -83,46 +83,46 @@ public class Human extends RepresentableConteneur {
         troncHaut = new Membre(t);
 
 
-        TubulaireN2 bhg = new TubulaireN2(new LineSegment(
+        Tubulaire3 bhg = new Tubulaire3(new LineSegment(
                 pos().plus(new Point3D(0.0, largeurEpaule, hauteurTroncHaut)),
                         pos().plus(new Point3D(0.0, largeurEpaule, hauteurTroncBas))), rayonMembresHaut);
-        TubulaireN2 bhd = new TubulaireN2(new LineSegment(
+        Tubulaire3 bhd = new Tubulaire3(new LineSegment(
                 pos().plus(new Point3D(0.0, -largeurEpaule, hauteurTroncHaut)),
                         pos().plus(new Point3D(0.0, -largeurEpaule, hauteurTroncBas))), rayonMembresHaut);
         brasHautGauche = new Membre(bhg);
         brasHautDroit = new Membre(bhd);
 
 
-        TubulaireN2 bbg = new TubulaireN2(new LineSegment(pos().plus(new Point3D(0.0, largeurEpaule, hauteurTroncBas)),
+        Tubulaire3 bbg = new Tubulaire3(new LineSegment(pos().plus(new Point3D(0.0, largeurEpaule, hauteurTroncBas)),
                 pos().plus(new Point3D(0.0, largeurEpaule, hauteurBassin))), rayonMembresHaut);
-        TubulaireN2 bbd = new TubulaireN2(new LineSegment(
+        Tubulaire3 bbd = new Tubulaire3(new LineSegment(
                 pos().plus(new Point3D(0.0, -largeurEpaule, hauteurTroncBas)),
                 pos().plus(new Point3D(0.0, -largeurEpaule, hauteurBassin))), rayonMembresHaut);
         brasBasGauche = new Membre(bbg);
         brasBasDroit = new Membre(bbd);
 
 
-        TubulaireN2 jhgT = new TubulaireN2(new LineSegment(pos().plus(Point3D.Z.mult(hauteurRotule).plus(Point3D.Y.mult(largeurBassin))),
+        Tubulaire3 jhgT = new Tubulaire3(new LineSegment(pos().plus(Point3D.Z.mult(hauteurRotule).plus(Point3D.Y.mult(largeurBassin))),
                 pos().plus(Point3D.Z.mult(hauteurBassin).plus(Point3D.Y.mult(largeurBassin)))
         ), rayonMembres);
-        TubulaireN2 jhdT = new TubulaireN2(new LineSegment(pos().plus(Point3D.Z.mult(hauteurRotule).plus(Point3D.Y.mult(-largeurBassin))),
+        Tubulaire3 jhdT = new Tubulaire3(new LineSegment(pos().plus(Point3D.Z.mult(hauteurRotule).plus(Point3D.Y.mult(-largeurBassin))),
                 pos().plus(Point3D.Z.mult(hauteurBassin).plus(Point3D.Y.mult(-largeurBassin)))
         ), rayonMembres);
         jambeHautGauche = new Membre(jhgT);
         jambeHautDroite = new Membre(jhdT);
-        TubulaireN2 jambeBasG = new TubulaireN2(new LineSegment(pos().plus(Point3D.Z.mult(hauteurCheville).plus(Point3D.Y.mult(largeurBassin))),
+        Tubulaire3 jambeBasG = new Tubulaire3(new LineSegment(pos().plus(Point3D.Z.mult(hauteurCheville).plus(Point3D.Y.mult(largeurBassin))),
                 pos().plus(Point3D.Z.mult(hauteurRotule).plus(Point3D.Y.mult(largeurBassin)))
         ), rayonMembres);
-        TubulaireN2 jambeBasD = new TubulaireN2(new LineSegment(pos().plus(Point3D.Z.mult(hauteurCheville).plus(Point3D.Y.mult(-largeurBassin))),
+        Tubulaire3 jambeBasD = new Tubulaire3(new LineSegment(pos().plus(Point3D.Z.mult(hauteurCheville).plus(Point3D.Y.mult(-largeurBassin))),
                 pos().plus(Point3D.Z.mult(hauteurRotule).plus(Point3D.Y.mult(-largeurBassin)))
         ), rayonMembres);
         jambeBasGauche = new Membre(jambeBasG);
         jambeBasDroite = new Membre(jambeBasD);
 
 
-        TubulaireN2 piedG = new TubulaireN2(new LineSegment(pos().plus(Point3D.Z.mult(hauteurCheville).plus(Point3D.Y.mult(largeurBassin))),
+        Tubulaire3 piedG = new Tubulaire3(new LineSegment(pos().plus(Point3D.Z.mult(hauteurCheville).plus(Point3D.Y.mult(largeurBassin))),
                 pos().plus(Point3D.Z.mult(hauteurSol).plus(Point3D.Y.mult(largeurBassin)).plus(Point3D.X.mult(0.2)))), rayonMembres);
-        TubulaireN2 piedD = new TubulaireN2(new LineSegment(pos().plus(Point3D.Z.mult(hauteurCheville).plus(Point3D.Y.mult(-largeurBassin))),
+        Tubulaire3 piedD = new Tubulaire3(new LineSegment(pos().plus(Point3D.Z.mult(hauteurCheville).plus(Point3D.Y.mult(-largeurBassin))),
                 pos().plus(Point3D.Z.mult(hauteurSol).plus(Point3D.Y.mult(-largeurBassin)).plus(Point3D.X.mult(0.2)))), rayonMembres);
         piedGauche = new Membre(piedG);
         piedDroit = new Membre(piedD);
@@ -159,7 +159,7 @@ public class Human extends RepresentableConteneur {
         man = (int) (Math.random() * 2)==0;
 
         if(man) {
-            TubulaireN2 sexe1 = new TubulaireN2(new LineSegment(
+            Tubulaire3 sexe1 = new Tubulaire3(new LineSegment(
                     new Point3D(0.2, 0.0, hauteurTroncBas),
                     new Point3D(0.3, 0.0, hauteurBassin)
 

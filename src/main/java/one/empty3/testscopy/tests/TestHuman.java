@@ -4,7 +4,7 @@ import one.empty3.library.Polygon;
 import one.empty3.library.*;
 import one.empty3.library.core.testing.TestObjet;
 import one.empty3.library.core.testing.TestObjetSub;
-import one.empty3.library.core.tribase.TubulaireN2;
+import one.empty3.library.core.tribase.Tubulaire3;
 
 import java.awt.*;
 
@@ -55,15 +55,20 @@ public class TestHuman extends TestObjetSub {
 
     @Override
     public void finit() {
-        if(humanModel.animation!=null) {
+        if (humanModel.animation != null) {
             humanModel.move(frame(), 25.);
-        }else
+        } else
             System.err.println("Human animation == null");
 
-        System.out.println(((TubulaireN2)humanModel.jambeHautGauche.getRepresentable()).getSoulCurve().getElem()
+        System.out.println(((Tubulaire3) humanModel.jambeHautGauche.getRepresentable()).getSoulCurve().getElem()
                 .calculerPoint3D(0.0));
-        System.out.println(((TubulaireN2)humanModel.jambeHautGauche.getRepresentable()).getSoulCurve().getElem()
+        System.out.println(((Tubulaire3) humanModel.jambeHautGauche.getRepresentable()).getSoulCurve().getElem()
                 .calculerPoint3D(1.0));
+
+
+        Camera c = new Camera(new Point3D(-5.0, 2 * Math.cos(1.0 * frame() / 20), 2 * Math.cos(1.0 * frame() / 23)), new Point3D(0., 0.0, 0.0), new Point3D(0.0, 0.0, 1.0));
+        c.setMatrice(c.getMatrice());
+        scene().cameraActive(c);
     }
 
 }
