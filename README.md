@@ -32,3 +32,13 @@ If you miss a property check this
 https://maven.apache.org/guides/introduction/introduction-to-profiles.html
 
 Or make a new issue.
+
+#In progress 
+##October 2021 : move
+Movement : make persona walk. Idea: program object for moving
+cylinder and sphere and beziers. Make it move from/to (Vec3 
+linear displacement).
+MoveCollection: actions (to walk, to run, to sit, to smoke)
+Move: individual member move. 
+ie. tubulaire3.soulCurve.coefficients[0] from current
+position to vec3 moveVector in 3 sec.

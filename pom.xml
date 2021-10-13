@@ -10,7 +10,7 @@
 
     <groupId>one.empty3</groupId>
     <artifactId>empty3-library-3d-android</artifactId>
-    <version>2021.9.1</version><!-- -SNAPSHOT -->
+    <version>2021.9.2</version><!-- -SNAPSHOT -->
     <description>3D rendering engine. Plus modeling. Expected glsl textures 3d and 2d rendering. ANDROID VERSION.
         2021
     </description>
@@ -100,7 +100,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.0</version>
+                <version>2.4</version>
                 <configuration>
                     <archive>
                         <manifestFile>META-INF/MANIFEST.MF</manifestFile>
@@ -110,7 +110,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.2</version>
+                <version>3.8.1</version>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
                     <source>1.8</source>
@@ -201,6 +201,14 @@
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
 
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.thoughtworks.xstream</groupId>
+                        <artifactId>xstream</artifactId>
+                        <version>1.4.15</version>
+                    </dependency>
+
+                </dependencies>
             </plugin>
 
             <plugin>
@@ -226,7 +234,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>copy-resources</id>
@@ -294,7 +302,6 @@
                 </executions>
             </plugin>-->
         </plugins>
-
     </build>
 
 
@@ -347,10 +354,7 @@
             <artifactId>miglayout-swing</artifactId>
             <version>5.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>2.0.0-alpha4</version>
-        </dependency>
+
+
     </dependencies>
 </project>

@@ -31,6 +31,7 @@
  */
 
 package one.empty3.apps.pad;
+/*__
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -38,9 +39,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/*__
  * Created by manuel on 19-05-17.
  */
+/*
 public class ListSearch<E> extends ArrayList<E> {
     public E search(String fieldOrGetter, Object value) throws IllegalAccessException {
         Iterator<E> it = this.iterator();
@@ -77,3 +78,4 @@ public class ListSearch<E> extends ArrayList<E> {
         return null;
     }
 }
+*/

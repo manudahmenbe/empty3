@@ -76,13 +76,18 @@ public class Animation extends Representable {
         this.animations.put(anime, moveCollection);
     }
 
-    public Representable anime(Representable item, double tAnim) {
+    public Representable anime(Representable item, double tAnim, double fps) {
         MoveCollection moves = animations.get(item.getClass());
         if(moves!=null)
             for (Move move : moves.getMoves()) {
                 if (move.getO() instanceof Representable) {
                     Path path = ((Representable) move.getO()).getPath(move.getProperty());
                     if(path!=null ) {
+                        double t0 = move.getTime1();
+                        double t1 = move.getTime2();
+
+                        if (tAnim >= t0 && tAnim <= t1) {
+                            double pcMove = (t1-t0)/fps;
                         Point3D plus = Point3D.O0;
                         if (path.getPathElemType() == Representable.PATH_ELEM_STRUCTURE_MATRIX) {
                             if(path.getDeclaredProperty()==null ) {
@@ -91,16 +96,17 @@ public class Animation extends Representable {
                             }
                             if (path.getDeclaredProperty().getDim()==0) {
                                 if(move.getMoved() instanceof Point3D)  {
-                                    plus = ((Point3D) (move.getMoved())).plus( // MOVE TYPE
+                                    plus = ((Point3D) (move.getMoved())).mult(pcMove).plus( // MOVE TYPE
                                             (Point3D) ((StructureMatrix<Object>) path.getDeclaredProperty()).getElem()
-                                    );
+
+                                                    );
                                 }
 
                                 ((StructureMatrix<Object>) path.getDeclaredProperty()).setElem(plus);
                             }
                             if (path.getDeclaredProperty().getDim()==1) {
                                 if(move.getMoved() instanceof Point3D) {
-                                    plus = ((Point3D) (move.getMoved())).plus( // MOVE TYPE
+                                    plus = ((Point3D) (move.getMoved())).mult(pcMove).plus( // MOVE TYPE
                                             (Point3D) ((StructureMatrix<Object>) path.getDeclaredProperty()).getElem(path.getIndexI())
                                     );
                                 }
@@ -109,7 +115,7 @@ public class Animation extends Representable {
                             }
                             if (path.getDeclaredProperty().getDim()==2) {
                                 if(move.getMoved() instanceof Point3D) {
-                                    plus = ((Point3D) (move.getMoved())).plus( // MOVE TYPE
+                                    plus = ((Point3D) (move.getMoved())).mult(pcMove).plus( // MOVE TYPE
                                             (Point3D) ((StructureMatrix<Object>) path.getDeclaredProperty()).getElem(path.getIndexI(), path.getIndexJ())
                                     );
                                 }
@@ -128,9 +134,12 @@ public class Animation extends Representable {
                     }
                 }
             }
+            }
         else
             System.out.println("Animation anime error moves == null");
         return item;
     }
+
+
 }
 

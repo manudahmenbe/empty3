@@ -535,6 +535,11 @@ public class Representable /*extends RepresentableT*/ implements Serializable, C
         getRotation().getElem().getCentreRot().setElem(calcCposition);
     }
 
+    /***
+     * Evaluates property of current object or of a subproperty
+     * @param property propertyName:arrayIndex1:arrayIndex2,subpropertyName:i2:j2,subpro...
+     * @return atomic property
+     */
     public Path getPath(String property) {
         String[] split = property.split(",");
 

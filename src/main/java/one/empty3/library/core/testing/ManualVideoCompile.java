@@ -1,4 +1,5 @@
 package one.empty3.library.core.testing;
+/*
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -31,3 +32,4 @@ public class ManualVideoCompile {
 		return result;
 	}
 }
+*/
