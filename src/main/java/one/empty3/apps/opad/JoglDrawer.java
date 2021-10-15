@@ -81,20 +81,25 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     }
 
     {
-        glu = new GLU();
-
     }
 
     public JoglDrawer(DarkFortressGUI darkFortressGUI) {
+
         //getting the capabilities object of GL2 profile
         final GLProfile profile = GLProfile.get(GLProfile.GL2);
         GLCapabilities capabilities = new GLCapabilities(profile);
+
+
         // The canvas
         glCanvas = new GLCanvas(capabilities);
         glCanvas.setSize(640, 480);
         //glCanvas.setAutoSwapBufferMode(true);
         glCanvas.setGL(gl);
         glCanvas.addGLEventListener(this);
+
+        glu = GLU.createGLU();
+
+
         // Create a animator that drives canvas' display() at the specified FPS.
         animator = new FPSAnimator(25);
         glCanvas.setAnimator(animator);
@@ -124,7 +129,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
 
         gl = gLDrawable.getGL().getGL2();
-        glu = GLU.createGLU();
+        //glu = GLU.createGLU();
 
         // Change to projection matrix.
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
@@ -198,8 +203,8 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 //            // TODO draw2(path, glu, gl);
 //        }
 
-        //if (toggleMenu.isDisplayGroundGrid())
-        //  draw(terrain, glu, gl);
+        if (toggleMenu.isDisplayGroundGrid())
+          draw(terrain, glu, gl);
         if (toggleMenu.isDisplayGround()) {
             if (terrain.isDessineMurs()) {
                 displayGround(glu, gl);
@@ -329,8 +334,8 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         gl.glBegin(GL2.GL_TRIANGLES);
 
 
-        for (int i = 0; i < 100; i++) {
-            for (int j = 0; j < 100; j++) {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
                 TRI[] tris = new TRI[2];
                 Point3D INFINI = Point3D.INFINI;
                 tris[0] = new TRI(INFINI, INFINI, INFINI);
@@ -345,9 +350,9 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
     private void draw3(TRISphere2 s, GLU glu, GL2 gl) {
         gl.glBegin(GL2.GL_TRIANGLES);
-        s.setCentre(getTerrain().p3(s.getCoords()));
-        for (int i = 0; i < 100; i++) {
-            for (int j = 0; j < 100; j++) {
+        s.getCircle().setCenter(getTerrain().p3(s.getCoords()));
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
                 TRI[] tris = new TRI[2];
                 Point3D INFINI = Point3D.INFINI;
                 tris[0] = new TRI(INFINI, INFINI, INFINI);
@@ -386,7 +391,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
                 draw((LineSegment) r, glu, gl);
             } else if (r instanceof TRISphere2) {
                 TRISphere2 s = (TRISphere2) r;
-                s.setCentre(getTerrain().p3(s.getCoords()));
+                s.getCircle().setCenter(getTerrain().p3(s.getCoords()));
                 draw2(s, glu, gl);
             } else if (r instanceof TRIObjetGenerateur) {
                 TRIObjetGenerateur s = (TRIObjetGenerateur) r;

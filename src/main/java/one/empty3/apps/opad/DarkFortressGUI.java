@@ -53,6 +53,7 @@ public final class DarkFortressGUI extends JFrame {
     String Title;
     private DarkFortressGUIKeyListener gameKeyListener;
     private Game game;
+    private Plotter3D plotter3D;
 
 
     /*public Plotter3D getPlotter3D() {
@@ -72,13 +73,13 @@ public final class DarkFortressGUI extends JFrame {
         try {
             Terrain t = sol.getConstructor().newInstance();
             mover = new PositionUpdateImpl(t, player);
-            //new Thread(mover).start();
+            new Thread(mover).start();
             gameKeyListener= new DarkFortressGUIKeyListener(mover);
-            //plotter3D = new Plotter3D(mover);
-            //mover.setPlotter3D(plotter3D);
+            plotter3D = new Plotter3D(mover);
+            mover.setPlotter3D(plotter3D);
             new Thread(mover).start();
             new Thread(gameKeyListener).start();
-            //new Thread(plotter3D).start();
+            new Thread(plotter3D).start();
 
 
             Logger.getLogger(DarkFortressGUI.class.getName()).log(Level.INFO, drawerType.getSimpleName());
@@ -87,6 +88,7 @@ public final class DarkFortressGUI extends JFrame {
                 Title += "with OpenGL bindings";
                 drawer = new JoglDrawer(this);
                 drawerType = JoglDrawer.class;
+
 
             } else if (drawerType.equals(EcDrawer.class)) {
                 Title += "with Empty Canvas rendering";

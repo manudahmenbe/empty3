@@ -48,6 +48,7 @@ package one.empty3.apps.opad;
 import one.empty3.library.ColorTexture;
 import one.empty3.library.Point3D;
 import one.empty3.library.Representable;
+import one.empty3.library.Sphere;
 import one.empty3.library.core.tribase.TubulaireN;
 
 import java.awt.*;
@@ -71,7 +72,7 @@ public class Circuit extends TubulaireN
         while(iterator.hasNext()) {
             Representable next = iterator.next();
             if(next != null && next instanceof TRISphere2) {
-                addPoint(((TRISphere2)next).getCentre());
+                addPoint(((Sphere)next).getCircle().getCenter());
             }
 
             this.texture(new ColorTexture(Color.ORANGE));

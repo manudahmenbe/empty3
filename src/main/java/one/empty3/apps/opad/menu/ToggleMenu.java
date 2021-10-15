@@ -39,10 +39,10 @@ import java.util.HashMap;
  * Created by manuel on 20-05-17.
  */
 public class ToggleMenu {
-    private HashMap<String, Boolean> items = new HashMap<>();
+    private final HashMap<String, Boolean> items = new HashMap<>();
     {
-        items.put("displayMenu",true);
-        items.put("displaySky",true);
+        items.put("displayMenu",false);
+        items.put("displaySky",false);
         items.put("displayGround",true);
         items.put("displayBonus",true);
         items.put("displayCharacter",true);
@@ -54,7 +54,7 @@ public class ToggleMenu {
 
 
     private int index = 0;
-    private int maxIndex = 7;
+    private int maxIndex = items.size();
 
     public boolean isDisplayMenu() {
         return items.get("displayMenu");

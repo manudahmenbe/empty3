@@ -32,6 +32,7 @@
 
 package one.empty3.apps.opad;
 
+import one.empty3.apps.opad.help.BonusClass;
 import one.empty3.library.*;
 import one.empty3.library.core.nurbs.ParametricLine;
 
@@ -229,18 +230,21 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
                 for (Representable representable : bonus.getListRepresentable()) {
                     Representable bon = representable;
                     if (bon != null && bon instanceof TRISphere2
-                            && Point3D.distance(((TRISphere2) bon).getCentre(), pos) < ((TRISphere2) bon).getCircle().getRadius()) {
+                            && Point3D.distance(((Sphere) bon).getCircle().getCenter(), pos)
+                            < ((Sphere) bon).getCircle().getRadius()) {
                      bonus.remove(bon);
 
                         double points = 0.0;
 
-                        points = ((TRISphere2) bon).getGameObject().getValue();
+                        points = ((TRISphere2<BonusClass>) bon).getGameObject().getValue();
 
                         score += points;
 
                         Sounds.playSoundBonusHit();
 
-                        Mouvement mouvement = new Mouvement(bon, 10000, new ParametricLine(new LineSegment(((TRISphere2) bon).getCentre(), ((TRISphere2) bon).getCentre().plus(P.n(0, 0, 10))))) {
+                        Mouvement mouvement = new Mouvement(bon, 10000,
+                                new ParametricLine(new LineSegment(((Sphere) bon).getCircle().getCenter(),
+                                        ((Sphere) bon).getCircle().getCenter().plus(P.n(0, 0, 10))))) {
 
 
                             @Override
