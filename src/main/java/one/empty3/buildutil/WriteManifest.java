@@ -79,7 +79,7 @@ public class WriteManifest {
             StringBuilder stringBuilder = new StringBuilder("Class-Path: ");
             recurse(dir, stringBuilder);
             pw.println(stringBuilder.toString());
-            //Main-Class: be.manudahmen.empty3.apps.pad.PanelGraphics
+            //Main-Class: be.manudahmen.empty3.app.opad.PanelGraphics
             pw.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

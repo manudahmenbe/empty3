@@ -56,7 +56,7 @@
       "type": "java",
       "name": "Debug (Launch)-PanelGraphics<empty3-library-3d>",
       "request": "launch",
-      "mainClass": "one.empty3.apps.pad.PanelGraphics",
+      "mainClass": "one.empty3.apps.opad.PanelGraphics",
       "projectName": "empty3-library-3d"
     },
     {
