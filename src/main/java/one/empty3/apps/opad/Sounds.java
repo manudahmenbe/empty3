@@ -36,6 +36,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 
 public class Sounds {
 
@@ -46,23 +48,24 @@ public class Sounds {
             public void run() {
                 try {
 
-                    BufferedInputStream myStream = new BufferedInputStream(getClass().getResourceAsStream(resourcePath));
+                    BufferedInputStream myStream = new BufferedInputStream(new FileInputStream(new File(resourcePath)));
                     AudioInputStream audio2 = AudioSystem.getAudioInputStream(myStream);
                     Clip clip = AudioSystem.getClip();
                     clip.open(audio2);
                     clip.start();
                 } catch (Exception e) {
                     System.err.println(e.getMessage());
+                    e.printStackTrace();
                 }
             }
         }).start();
     }
 
     public static synchronized void playSoundBonusHit() {
-        playSound("/sounds/bonusHit.wav");
+        playSound("resources/sounds/bonusHit.wav");
     }
 
     public static synchronized void playMusic() {
-        playSound("/sounds/musicIntro.wav");
+        playSound("resources/sounds/musicIntro.wav");
     }
 }

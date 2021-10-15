@@ -54,7 +54,7 @@ import java.util.Iterator;
 public class JoglDrawer extends Drawer implements GLEventListener {
     private final GLU glu;
     private final Frame component;
-    private Animator animator;
+    private FPSAnimator animator;
     double INCR_AA = 0.01;
     double DISTANCE_MIN = 100;
     Timer timer;
@@ -86,15 +86,17 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     }
 
     public JoglDrawer(DarkFortressGUI darkFortressGUI) {
-
-        glCanvas = new GLCanvas();
-
-        glCanvas.setSize(640, 480);
+        //getting the capabilities object of GL2 profile
+        final GLProfile profile = GLProfile.get(GLProfile.GL2);
+        GLCapabilities capabilities = new GLCapabilities(profile);
+        // The canvas
+        glCanvas = new GLCanvas(capabilities);
+        glCanvas.setSize(darkFortressGUI.getWidth(), darkFortressGUI.getHeight());
         glCanvas.setAutoSwapBufferMode(true);
         glCanvas.setGL(gl);
 
         // Create a animator that drives canvas' display() at the specified FPS.
-        animator = new Animator();
+        animator = new FPSAnimator(25);
         glCanvas.setAnimator(animator);
 
         initFrame(darkFortressGUI);
@@ -105,11 +107,12 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
         panel.setMinimumSize(new Dimension(640, 480));
         panel.add(glCanvas);
-        component.add(panel);
+        ((JFrame)component).add(panel);
 
         timer = new Timer();
         timer.init();
 
+        ((JFrame)component).setContentPane(panel);
     }
 
     @Override
@@ -783,7 +786,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         this.plotter3D = plotter3D;
     }
 
-    public Animator getAnimator() {
+    public FPSAnimator getAnimator() {
         return animator;
     }
 }

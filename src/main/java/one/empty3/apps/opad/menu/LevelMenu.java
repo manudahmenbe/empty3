@@ -11,7 +11,7 @@ public class LevelMenu {
             "SolSphere",
             "SolTube"};
     private int index = 0;
-    private int maxIndex = 5;
+    private int maxIndex = level.length;
 
     public String[] getLevel() {
         return level;
