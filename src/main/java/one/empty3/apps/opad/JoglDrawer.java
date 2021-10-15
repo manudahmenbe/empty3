@@ -91,7 +91,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         GLCapabilities capabilities = new GLCapabilities(profile);
         // The canvas
         glCanvas = new GLCanvas(capabilities);
-        glCanvas.setSize(darkFortressGUI.getWidth(), darkFortressGUI.getHeight());
+        glCanvas.setSize(640, 480);
         glCanvas.setAutoSwapBufferMode(true);
         glCanvas.setGL(gl);
 
@@ -106,7 +106,8 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         JPanel panel = new JPanel();
 
         panel.setMinimumSize(new Dimension(640, 480));
-        panel.add(glCanvas);
+        panel.setSize(640, 480);
+                panel.add(glCanvas);
         ((JFrame)component).add(panel);
 
         timer = new Timer();
