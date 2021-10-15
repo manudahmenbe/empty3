@@ -52,7 +52,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 public class JoglDrawer extends Drawer implements GLEventListener {
-    private final GLU glu;
+    private GLU glu;
     private final Frame component;
     private FPSAnimator animator;
     double INCR_AA = 0.01;
@@ -92,28 +92,31 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         // The canvas
         glCanvas = new GLCanvas(capabilities);
         glCanvas.setSize(640, 480);
-        glCanvas.setAutoSwapBufferMode(true);
+        //glCanvas.setAutoSwapBufferMode(true);
         glCanvas.setGL(gl);
-
+        glCanvas.addGLEventListener(this);
         // Create a animator that drives canvas' display() at the specified FPS.
         animator = new FPSAnimator(25);
         glCanvas.setAnimator(animator);
+
+        mover = darkFortressGUI.mover;
+
 
         initFrame(darkFortressGUI);
 
         this.component = darkFortressGUI;
 
-        JPanel panel = new JPanel();
+        //JPanel panel = new JPanel();
 
-        panel.setMinimumSize(new Dimension(640, 480));
-        panel.setSize(640, 480);
-                panel.add(glCanvas);
-        ((JFrame)component).add(panel);
+        //panel.setMinimumSize(new Dimension(640, 480));
+        //panel.setSize(640, 480);
+        //        panel.add(glCanvas);
+        //((JFrame)component).add(panel);
 
         timer = new Timer();
         timer.init();
 
-        ((JFrame)component).setContentPane(panel);
+        ((JFrame)component).getContentPane().add(glCanvas);
     }
 
     @Override
@@ -121,6 +124,8 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
 
         gl = gLDrawable.getGL().getGL2();
+        glu = GLU.createGLU();
+
         // Change to projection matrix.
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
 
@@ -129,7 +134,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
 
         Camera camera;
-        if (mover.getPlotter3D().isActive())
+        if (mover.getPlotter3D()!=null&&mover.getPlotter3D().isActive())
             camera = mover.getPositionMobile().calcCameraMobile();
         else
             camera = mover.getPositionMobile().calcCamera();
@@ -204,7 +209,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
             displayArcs(glu, gl);
         }
         if (toggleMenu.isDisplayCharacter()) {
-            if (getPlotter3D().isActive()) {
+            if (getPlotter3D()!=null&&getPlotter3D().isActive()) {
                 CourbeParametriquePolynomiale courbeParametriquePolynomiale = null;
 //                TubulaireN2<CourbeParametriquePolynomiale> segmentDroiteTubulaireN2 = new TubulaireN2<>();
 //                segmentDroiteTubulaireN2.diam(0.01);
@@ -547,6 +552,8 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     }
 
     private void drawTrajectory(Plotter3D plotter3D, GLU glu, GL2 gl) {
+        if(plotter3D==null)
+            return;
         Point3D impact = plotter3D.getImpact();
         draw(new CourbeParametriquePolynomiale(new Point3D[]
                         {
@@ -585,8 +592,6 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         gl.glClearColor(0f, 0f, 0f, 1f);
 
         // Start animator (which should be a field).
-        FPSAnimator animator = new FPSAnimator(gLDrawable, 60);
-        animator.start();
         renderer = new TextRenderer(new Font("SansSerif", Font.BOLD, 36));
     }
 
@@ -607,6 +612,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         gl.glViewport(0, 0, width, height);
         gl.glMatrixMode(GL2.GL_PROJECTION);
         gl.glLoadIdentity();
+
 
         glu.gluPerspective(60f, h, 0.001f, 2f);
 

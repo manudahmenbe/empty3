@@ -105,7 +105,7 @@ public final class DarkFortressGUI extends JFrame {
             //addKeyListener(plotter3D);
 
             if(drawer instanceof JoglDrawer) {
-                ((JoglDrawer) drawer).getGlcanvas().display();
+//                ((JoglDrawer) drawer).getGlcanvas().display();
                 ((JoglDrawer) drawer).getAnimator().start();
             }
 
