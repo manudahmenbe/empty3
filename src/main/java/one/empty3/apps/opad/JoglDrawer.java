@@ -567,7 +567,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
          * gl.glShadeModel(GL2.GL_FLAT);
          */
 
-        GL2 gl = gLDrawable.getGL().getGL2();
+        gl = gLDrawable.getGL().getGL2();
         gLDrawable.setGL(new DebugGL2(gl));
 
         // Global settings.
