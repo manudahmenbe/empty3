@@ -42,10 +42,7 @@ Global license :
 
 package one.empty3.apps.opad;
 
-import one.empty3.library.ColorTexture;
-import one.empty3.library.ECBufferedImage;
-import one.empty3.library.ImageTexture;
-import one.empty3.library.Point3D;
+import one.empty3.library.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -57,10 +54,10 @@ import java.net.URL;
  * @author Manuel Dahmen _manuel.dahmen@gmx.com_
  */
 public class Ciel {
-    private TRISphere2 bleu;
+    private final Sphere bleu;
 
     public Ciel() {
-        bleu = new TRISphere2(null, new Point3D(0.5, 0.5, 0.0), 2);
+        bleu = new Sphere(new Point3D(0.5, 0.5, 0.0), 2);
 
         try {
             URL resource = getClass().getResource("one.empty3.library/apps/darz/marssurface.jpg");
@@ -74,7 +71,7 @@ public class Ciel {
         }
     }
 
-    public TRISphere2 getBleu() {
+    public Sphere getBleu() {
         return bleu;
     }
 

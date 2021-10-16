@@ -32,13 +32,13 @@
 package one.empty3.apps.opad;
 
 
-import com.jogamp.newt.event.KeyEvent;
-import com.jogamp.newt.event.KeyListener;
 import one.empty3.apps.opad.menu.ToggleMenu;
 import one.empty3.library.*;
 
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
@@ -132,6 +132,11 @@ public class Plotter3D implements KeyListener, Runnable {
         return true;
     }
 
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
 
     @Override
     public void keyPressed(KeyEvent e) {

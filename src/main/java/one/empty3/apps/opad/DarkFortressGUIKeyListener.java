@@ -34,8 +34,9 @@ package one.empty3.apps.opad;
 
 
 import com.jogamp.newt.event.KeyEvent;
-import com.jogamp.newt.event.KeyListener;
 import one.empty3.apps.opad.menu.ToggleMenu;
+
+import java.awt.event.KeyListener;
 
 
 
@@ -56,76 +57,6 @@ public class DarkFortressGUIKeyListener implements KeyListener, Runnable {
     public DarkFortressGUIKeyListener(PositionUpdate mover) {
         this.mover = mover;
         toggleMenu = new ToggleMenu();
-    }
-
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyChar()== 't')
-            toggleMenu.setDisplayMenu(!toggleMenu.isDisplayMenu());
-        if (e.getKeyChar()== '+')
-            toggleMenu.setIndex(toggleMenu.getIndex()+1);
-        if (e.getKeyChar()== '-')
-            toggleMenu.setIndex(toggleMenu.getIndex()-1);
-        if (e.getKeyChar()== '\n')
-            toggleMenu.setOption(toggleMenu.getIndex(), !toggleMenu.getOption(toggleMenu.getIndex()));
-        if (e.getKeyCode() == KeyEvent.VK_CONTROL
-                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
-            ctrl = true;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_UP
-                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
-            release_up = false;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_SPACE
-                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
-            release_space = false;
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_DOWN
-                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
-            release_down = false;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT
-                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
-            release_left = false;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT
-                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
-            release_right = false;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_CONTROL
-                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
-            ctrl = false;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_UP
-                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
-            release_up = true;
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_DOWN
-                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
-            release_down = true;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT
-                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
-            release_left = true;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT
-                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
-            release_right = true;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_SPACE
-                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
-            release_space = true;
-        }
     }
 
     private void cont(long timeKeyPress) {
@@ -173,4 +104,79 @@ public class DarkFortressGUIKeyListener implements KeyListener, Runnable {
 
     }
 
+    @Override
+    public void keyTyped(java.awt.event.KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(java.awt.event.KeyEvent e) {
+        if (e.getKeyChar()== 't')
+            toggleMenu.setDisplayMenu(!toggleMenu.isDisplayMenu());
+        if (e.getKeyChar()== '+')
+            toggleMenu.setIndex(toggleMenu.getIndex()+1);
+        if (e.getKeyChar()== '-')
+            toggleMenu.setIndex(toggleMenu.getIndex()-1);
+        if (e.getKeyChar()== '\n')
+            toggleMenu.setOption(toggleMenu.getIndex(), !toggleMenu.getOption(toggleMenu.getIndex()));
+        if (e.getKeyCode() == KeyEvent.VK_CONTROL
+                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
+            ctrl = true;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_UP
+                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
+            release_up = false;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE
+                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
+            release_space = false;
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_DOWN
+                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
+            release_down = false;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_LEFT
+                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
+            release_left = false;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT
+                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
+            release_right = false;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            System.exit(0);
+        }
+
+    }
+
+    @Override
+    public void keyReleased(java.awt.event.KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_CONTROL
+                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
+            ctrl = false;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_UP
+                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
+            release_up = true;
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_DOWN
+                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
+            release_down = true;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_LEFT
+                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
+            release_left = true;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT
+                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
+            release_right = true;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE
+                && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
+            release_space = true;
+        }
+
+    }
 }

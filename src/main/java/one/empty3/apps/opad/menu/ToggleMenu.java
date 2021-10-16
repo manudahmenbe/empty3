@@ -43,7 +43,7 @@ public class ToggleMenu {
     {
         items.put("displayMenu",false);
         items.put("displaySky",false);
-        items.put("displayGround",true);
+        items.put("displayGround",false);
         items.put("displayBonus",true);
         items.put("displayCharacter",true);
         items.put("displayGroundGrid",true);

@@ -41,8 +41,10 @@ import com.jogamp.opengl.util.FPSAnimator;
 import com.jogamp.opengl.util.awt.TextRenderer;
 import one.empty3.apps.opad.help.PiloteAuto;
 import one.empty3.library.*;
+import one.empty3.library.Polygon;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomiale;
 import one.empty3.library.core.nurbs.ParametricCurve;
+import one.empty3.library.core.nurbs.ParametricSurface;
 import one.empty3.library.core.tribase.TRIObjetGenerateur;
 
 import javax.swing.*;
@@ -97,7 +99,6 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         glCanvas.setGL(gl);
         glCanvas.addGLEventListener(this);
 
-        glu = GLU.createGLU();
 
 
         // Create a animator that drives canvas' display() at the specified FPS.
@@ -122,11 +123,14 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         timer.init();
 
         ((JFrame)component).getContentPane().add(glCanvas);
+
+
     }
 
     @Override
     public void display(GLAutoDrawable gLDrawable) {
-
+        if(glu==null)
+            glu = GLU.createGLU();
 
         gl = gLDrawable.getGL().getGL2();
         //glu = GLU.createGLU();
@@ -143,9 +147,13 @@ public class JoglDrawer extends Drawer implements GLEventListener {
             camera = mover.getPositionMobile().calcCameraMobile();
         else
             camera = mover.getPositionMobile().calcCamera();
-        Point3D pos = camera.getEye();
-        Point3D dir = camera.getLookat();
-        diff = dir.moins(pos);
+        Camera camera1 = new Camera(
+                mover.calcCposition(),
+                mover.calcDirection()
+        );
+        Point3D pos = camera1.getEye();
+        Point3D dir = camera1.getLookat();
+        diff = dir.moins(pos).norme1();
 
         /*
         if(del0!=null) {
@@ -158,20 +166,19 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         }
         */
 
-        Point3D position = pos;//getMover().getPositionMobile().calcPosition();
-
-        Point3D normale = /*dir.prodVect(pos);*/getTerrain().calcNormale(position.getX(), position.getY());
+        //Point3D normale = /*dir.prodVect(pos);*/getTerrain()
+        //        .calcNormale(pos.getX(), pos.getY()).norme1();
 
 
         glu.gluLookAt(pos.get(0), pos.get(1),
                 pos.get(2), dir
                         .get(0), dir.get(1),
                 dir.get(2),
-                diff.prodVect(normale.prodVect(diff))
+                camera1.getVerticale().getElem()
                         .norme1().get(0),
-                diff.prodVect(normale.prodVect(diff))
+                camera1.getVerticale().getElem()
                         .norme1().get(1),
-                diff.prodVect(normale.prodVect(diff))
+                camera1.getVerticale().getElem()
                         .norme1().get(2));
         /*if(circuit==null)
          circuit = mover.getCircuit();
@@ -188,7 +195,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
             draw(bonus, glu, gl);
         }
         if (toggleMenu.isDisplaySky())
-            draw3(new Ciel().getBleu(), glu, gl);
+            draw(new Ciel().getBleu(), glu, gl);
 
 //        if (mover.getPath().size() >= 2) {
 //            path = new TubulaireN2<Lines>();
@@ -330,41 +337,6 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         gl.glEnd();
     }
 
-    private void draw2(TRISphere2 s, GLU glu, GL2 gl) {
-        gl.glBegin(GL2.GL_TRIANGLES);
-
-
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                TRI[] tris = new TRI[2];
-                Point3D INFINI = Point3D.INFINI;
-                tris[0] = new TRI(INFINI, INFINI, INFINI);
-                tris[1] = new TRI(INFINI, INFINI, INFINI);
-                // TODO s.getTris(i, j, tris);
-                draw2(tris[0], glu, gl, true);
-                draw2(tris[1], glu, gl, true);
-            }
-        }
-        gl.glEnd();
-    }
-
-    private void draw3(TRISphere2 s, GLU glu, GL2 gl) {
-        gl.glBegin(GL2.GL_TRIANGLES);
-        s.getCircle().setCenter(getTerrain().p3(s.getCoords()));
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                TRI[] tris = new TRI[2];
-                Point3D INFINI = Point3D.INFINI;
-                tris[0] = new TRI(INFINI, INFINI, INFINI);
-                tris[1] = new TRI(INFINI, INFINI, INFINI);
-                // TODO s.getTris(i, j, tris);
-                draw2(tris[0], glu, gl, true);
-                draw2(tris[1], glu, gl, true);
-            }
-        }
-        gl.glEnd();
-    }
-
     public void draw(TRIGenerable gen, GLU glu, GL2 gl) {
         draw(gen.generate(), glu, gl);
     }
@@ -389,16 +361,29 @@ public class JoglDrawer extends Drawer implements GLEventListener {
                 draw((TRI) r, glu, gl);
             } else if (r instanceof LineSegment) {
                 draw((LineSegment) r, glu, gl);
-            } else if (r instanceof TRISphere2) {
-                TRISphere2 s = (TRISphere2) r;
-                s.getCircle().setCenter(getTerrain().p3(s.getCoords()));
-                draw2(s, glu, gl);
-            } else if (r instanceof TRIObjetGenerateur) {
-                TRIObjetGenerateur s = (TRIObjetGenerateur) r;
-                draw(s, glu, gl);
+            } else if(r instanceof ParametricSurface) {
+                draw((ParametricSurface) r, glu, gl);
             }
 
         }
+    }
+
+    private void draw(ParametricSurface s, GLU glu, GL2 gl) {
+        gl.glBegin(GL2.GL_TRIANGLES);
+        for (double  i = 0; i < s.getIncrU(); i++) {
+            for (double j = 0; j < s.getIncrV(); j++) {
+                Polygon elementSurface = s.getElementSurface(i, s.getIncrU(), j, s.getIncrV());
+                Point3D INFINI = Point3D.INFINI;
+                draw2( new TRI(elementSurface.getPoints().getElem(0),
+                        elementSurface.getPoints().getElem(1),
+                        elementSurface.getPoints().getElem(2)), glu, gl, true);
+                draw2( new TRI(elementSurface.getPoints().getElem(2),
+                        elementSurface.getPoints().getElem(3),
+                        elementSurface.getPoints().getElem(0)), glu, gl, true);
+            }
+        }
+        gl.glEnd();
+
     }
 
 
@@ -603,6 +588,8 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     @Override
     public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width,
                         int height) {
+        if(glu==null)
+            glu = new GLU();
         System.out.println("reshape() called: coordArr = " + x + ", y = " + y
                 + ", width = " + width + ", height = " + height);
         final GL2 gl = gLDrawable.getGL().getGL2();

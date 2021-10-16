@@ -103,8 +103,8 @@ public final class DarkFortressGUI extends JFrame {
             drawer.setToggleMenu(new ToggleMenu());
             drawer.setLevel(sol);
 
-            //addKeyListener(gameKeyListener);
-            //addKeyListener(plotter3D);
+            addKeyListener(gameKeyListener);
+            addKeyListener(plotter3D);
 
             if(drawer instanceof JoglDrawer) {
 //                ((JoglDrawer) drawer).getGlcanvas().display();
