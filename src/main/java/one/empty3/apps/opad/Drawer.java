@@ -14,14 +14,14 @@ public abstract class Drawer {
 
     protected ToggleMenu toggleMenu =new ToggleMenu();
     //protected Plotter3D plotter3D;
-    private Class level;
+    protected Class level;
 
     public abstract void setLogic(PositionUpdate l);
 
     public void initFrame(Frame component) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        JFrame.setDefaultLookAndFeelDecorated(true);
+        //JFrame.setDefaultLookAndFeelDecorated(true);
 
         JMenuBar jMenuBar = new JMenuBar();
 

@@ -103,18 +103,20 @@ public final class DarkFortressGUI extends JFrame {
             drawer.setToggleMenu(new ToggleMenu());
             drawer.setLevel(sol);
 
-            addKeyListener(gameKeyListener);
-            addKeyListener(plotter3D);
+            //addKeyListener(plotter3D);
+
 
             if(drawer instanceof JoglDrawer) {
-//                ((JoglDrawer) drawer).getGlcanvas().display();
+                ((JoglDrawer) drawer).getGlcanvas().display();
                 ((JoglDrawer) drawer).getAnimator().start();
             }
 
-            setVisible(true);
 
+            //setVisible(true);
 
-        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
+            addKeyListener(gameKeyListener);
+
+        } catch(InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
             Logger.getLogger(DarkFortressGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 

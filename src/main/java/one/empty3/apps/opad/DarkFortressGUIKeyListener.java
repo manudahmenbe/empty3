@@ -93,6 +93,7 @@ public class DarkFortressGUIKeyListener implements KeyListener, Runnable {
             timeBefore = System.nanoTime();
 
             cont(timeAfter - timeBefore);
+
             timeAfter = System.nanoTime();
 
             try {

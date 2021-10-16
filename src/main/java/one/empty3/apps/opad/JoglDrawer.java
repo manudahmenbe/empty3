@@ -88,14 +88,16 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     public JoglDrawer(DarkFortressGUI darkFortressGUI) {
 
         //getting the capabilities object of GL2 profile
-        final GLProfile profile = GLProfile.get(GLProfile.GL2);
-        GLCapabilities capabilities = new GLCapabilities(profile);
 
+        GLProfile.initSingleton();
+
+        final GLProfile profile = GLProfile.get(GLProfile.GL4);
+        GLCapabilities capabilities = new GLCapabilities(profile);
 
         // The canvas
         glCanvas = new GLCanvas(capabilities);
         glCanvas.setSize(640, 480);
-        //glCanvas.setAutoSwapBufferMode(true);
+        glCanvas.setAutoSwapBufferMode(true);
         glCanvas.setGL(gl);
         glCanvas.addGLEventListener(this);
 
@@ -124,7 +126,6 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
         ((JFrame)component).getContentPane().add(glCanvas);
 
-
     }
 
     @Override
@@ -135,6 +136,10 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         gl = gLDrawable.getGL().getGL2();
         //glu = GLU.createGLU();
 
+        if(!component.isVisible()) {
+            glCanvas.setGL(gl);
+            component.setVisible(true);
+        }
         // Change to projection matrix.
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
 
@@ -567,7 +572,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
          * gl.glShadeModel(GL2.GL_FLAT);
          */
 
-        GL2 gl = gLDrawable.getGL().getGL2();
+        gl = gLDrawable.getGL().getGL2();
         gLDrawable.setGL(new DebugGL2(gl));
 
         // Global settings.
@@ -606,7 +611,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         gl.glLoadIdentity();
 
 
-        glu.gluPerspective(60f, h, 0.001f, 2f);
+        glu.gluPerspective(60f, h, 0.1f, 2f);
 
         gl.glMatrixMode(GL2.GL_MODELVIEW);
 
