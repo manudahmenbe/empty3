@@ -112,7 +112,7 @@ public final class DarkFortressGUI extends JFrame {
             }
 
 
-            //setVisible(true);
+            setVisible(true);
 
             addKeyListener(gameKeyListener);
 

@@ -33,6 +33,7 @@
 package one.empty3.apps.opad;
 
 import com.jogamp.graph.curve.opengl.RegionRenderer;
+import com.jogamp.nativewindow.AbstractGraphicsDevice;
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
@@ -91,7 +92,11 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
         GLProfile.initSingleton();
 
-        final GLProfile profile = GLProfile.get(GLProfile.GL4);
+        final GLProfile profile = GLProfile.getDefault();
+
+        AbstractGraphicsDevice defaultDevice = GLProfile.getDefaultDevice();
+        defaultDevice.open();
+
         GLCapabilities capabilities = new GLCapabilities(profile);
 
         // The canvas
@@ -114,18 +119,18 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
         this.component = darkFortressGUI;
 
-        //JPanel panel = new JPanel();
+        JPanel panel = new JPanel();
 
-        //panel.setMinimumSize(new Dimension(640, 480));
-        //panel.setSize(640, 480);
-        //        panel.add(glCanvas);
-        //((JFrame)component).add(panel);
+        panel.setMinimumSize(new Dimension(640, 480));
+        panel.setSize(640, 480);
+        panel.add(glCanvas);
+        component.add(panel);
 
         timer = new Timer();
         timer.init();
 
+        ((JFrame)component).getContentPane().removeAll();
         ((JFrame)component).getContentPane().add(glCanvas);
-
     }
 
     @Override
