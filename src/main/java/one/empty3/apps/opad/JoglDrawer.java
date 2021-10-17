@@ -616,7 +616,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         gl.glLoadIdentity();
 
 
-        glu.gluPerspective(60f, h, 0.1f, 2f);
+        glu.gluPerspective(60f, h, 0.1f, 200f);
 
         gl.glMatrixMode(GL2.GL_MODELVIEW);
 
@@ -699,7 +699,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
             System.out.println();
         }
     }
-
+/*
     private void drawRects(GL2 gl, int mode) {
         if (mode == GL2.GL_SELECT) {
             gl.glLoadName(1);
@@ -722,7 +722,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         gl.glVertex3i(5, 2, -2);
         gl.glEnd();
     }
-
+*/
     public GLU getGlu() {
         return glu;
     }
