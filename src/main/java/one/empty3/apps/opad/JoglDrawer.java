@@ -148,7 +148,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         // Change to projection matrix.
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
 
-        glu.gluPerspective(60, 1.33, 0.001, 1.0);
+        glu.gluPerspective(60, 1.33, 0.01, 10.0);
         gl.glLoadIdentity();
 
 
@@ -178,18 +178,11 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
         //Point3D normale = /*dir.prodVect(pos);*/getTerrain()
         //        .calcNormale(pos.getX(), pos.getY()).norme1();
-
-
-        glu.gluLookAt(pos.get(0), pos.get(1),
-                pos.get(2), dir
-                        .get(0), dir.get(1),
-                dir.get(2),
-                camera1.getVerticale().getElem()
-                        .norme1().get(0),
-                camera1.getVerticale().getElem()
-                        .norme1().get(1),
-                camera1.getVerticale().getElem()
-                        .norme1().get(2));
+        Point3D posCam = pos.moins(dir.norme1().mult(0.1));
+        Point3D vertical = camera1.getVerticale().getElem().norme1();
+        glu.gluLookAt(posCam.get(0), posCam.get(1), posCam.get(2),
+                        dir.get(0), dir.get(1), dir.get(2),
+                vertical.get(0), vertical.get(1), vertical.get(2));
         /*if(circuit==null)
          circuit = mover.getCircuit();
          if(circuit!=null)
@@ -616,7 +609,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         gl.glLoadIdentity();
 
 
-        glu.gluPerspective(60f, h, 0.1f, 200f);
+        glu.gluPerspective(60f, h, 0.01f, 200f);
 
         gl.glMatrixMode(GL2.GL_MODELVIEW);
 
@@ -673,56 +666,6 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         return null;
     }
 
-    /*
-     * prints out the contents of the selection array.
-     */
-    private void processHits(int hits, int buffer[]) {
-        int names, ptr = 0;
-
-        System.out.println("hits = " + hits);
-        // ptr = (GLuint *) buffer;
-        for (int i = 0; i < hits; i++) { /* for each hit */
-
-            names = buffer[ptr];
-            System.out.println(" number of names for hit = " + names);
-            ptr++;
-            System.out.println("  z1 is " + buffer[ptr]);
-            ptr++;
-            System.out.println(" z2 is " + buffer[ptr]);
-            ptr++;
-            System.out.print("\n   the name is ");
-            for (int j = 0; j < names; j++) { /* for each name */
-
-                System.out.println("" + buffer[ptr]);
-                ptr++;
-            }
-            System.out.println();
-        }
-    }
-/*
-    private void drawRects(GL2 gl, int mode) {
-        if (mode == GL2.GL_SELECT) {
-            gl.glLoadName(1);
-        }
-        gl.glBegin(GL2.GL_QUADS);
-        gl.glColor3f(1.0f, 1.0f, 0.0f);
-        gl.glVertex3i(2, 0, 0);
-        gl.glVertex3i(2, 6, 0);
-        gl.glVertex3i(6, 6, 0);
-        gl.glVertex3i(6, 0, 0);
-        gl.glColor3f(0.0f, 1.0f, 1.0f);
-        gl.glVertex3i(3, 2, -1);
-        gl.glVertex3i(3, 8, -1);
-        gl.glVertex3i(8, 8, -1);
-        gl.glVertex3i(8, 2, -1);
-        gl.glColor3f(1.0f, 0.0f, 1.0f);
-        gl.glVertex3i(0, 2, -2);
-        gl.glVertex3i(0, 7, -2);
-        gl.glVertex3i(5, 7, -2);
-        gl.glVertex3i(5, 2, -2);
-        gl.glEnd();
-    }
-*/
     public GLU getGlu() {
         return glu;
     }

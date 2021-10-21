@@ -66,6 +66,8 @@ class Vaisseau {
     }
 
     public Cube getObject() {
-        return new Cube(mlc, gm.getPositionMobile().calcPosition(), new ColorTexture(Color.GREEN));
+        Cube cube = new Cube(mlc, gm.getPositionMobile().calcPosition(), new ColorTexture(Color.YELLOW));
+        cube.generate();
+        return cube;
     }
 }
