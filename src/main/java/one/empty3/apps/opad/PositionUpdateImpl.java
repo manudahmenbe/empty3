@@ -136,7 +136,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable, ActionListe
     public void update() {
         if(main.drawer instanceof JoglDrawer) {
             JoglDrawer drawer = (JoglDrawer) main.drawer;
-            drawer.getGlcanvas().display();
+            //drawer.getGlcanvas().display();
             drawer.getGlcanvas().requestFocusInWindow();
         }
     }

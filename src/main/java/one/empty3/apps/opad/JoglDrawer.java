@@ -32,13 +32,11 @@
 
 package one.empty3.apps.opad;
 
-import com.jogamp.graph.curve.opengl.RegionRenderer;
 import com.jogamp.nativewindow.AbstractGraphicsDevice;
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.Animator;
-import com.jogamp.opengl.util.FPSAnimator;
 import com.jogamp.opengl.util.awt.TextRenderer;
 import one.empty3.apps.opad.help.PiloteAuto;
 import one.empty3.library.*;
@@ -50,14 +48,13 @@ import one.empty3.library.core.tribase.TRIObjetGenerateur;
 
 import javax.swing.*;
 import java.awt.*;
-import java.nio.IntBuffer;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 public class JoglDrawer extends Drawer implements GLEventListener {
     private GLU glu;
     private final Frame component;
-    private FPSAnimator animator;
+    private Animator animator;
     double INCR_AA = 0.01;
     double DISTANCE_MIN = 100;
     Timer timer;
@@ -113,7 +110,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
 
         // Create a animator that drives canvas' display() at the specified FPS.
-        animator = new FPSAnimator(25);
+        animator = new Animator(this.glCanvas);
         glCanvas.setAnimator(animator);
         mover = darkFortressGUI.mover;
 
@@ -758,7 +755,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         this.plotter3D = plotter3D;
     }
 
-    public FPSAnimator getAnimator() {
+    public Animator getAnimator() {
         return animator;
     }
 
