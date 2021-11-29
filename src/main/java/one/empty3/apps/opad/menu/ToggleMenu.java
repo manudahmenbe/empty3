@@ -42,8 +42,8 @@ public class ToggleMenu {
     private final HashMap<String, Boolean> items = new HashMap<>();
     {
         items.put("displayMenu",false);
-        items.put("displaySky",false);
-        items.put("displayGround",false);
+        items.put("displaySky",true);
+        items.put("displayGround",true);
         items.put("displayBonus",true);
         items.put("displayCharacter",true);
         items.put("displayGroundGrid",true);

@@ -42,7 +42,7 @@ import java.util.ResourceBundle;
 
 public class PositionUpdateImpl implements PositionUpdate, Runnable {
     protected Path path;
-    protected static int STATE_GAME_IN_PROGRESS;
+    protected static int STATE_GAME_IN_PROGRESS = 1;
     private final ResourceBundle bundle;
     private final Ciel bleu;
     protected Point3D positionOrigine;
@@ -55,7 +55,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
     protected double angle;
     protected double angleY;
     protected CompletePositionMobile positionMobile;
-    private double unitPerMillis;
+    private double unitPerSec;
     private double rotationPerNano;
     private Point2D position2D;
     private Point2D direction2D;
@@ -72,14 +72,16 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
     private double positionEpsilon = 0.000001;
     private Player player;
     private double calibrage = 1;
-    private long accera = 0;
+    private double accera = 0;
+    private double tourSec;
 
     public PositionUpdateImpl(Terrain t, Player player) {
         bundle = ResourceBundle.getBundle("one.empty3.apps.opad.Bundle"); // NOI18N
-        unitPerMillis = Double.parseDouble(bundle.getString("unitPerMillis"));
+        unitPerSec = Double.parseDouble(bundle.getString("unitPerSec"));
+        tourSec = Double.parseDouble(bundle.getString("tourSec"));
         rotationPerNano = Double.parseDouble(bundle.getString("rotationPerNanos"));
         hauteur = Double.parseDouble(bundle.getString("hauteur"));
-        positionOrigine = new Point3D(0.5, 0.5, hauteur);
+        positionOrigine = new Point3D(0.5, 0.5, 0.0);
         position = positionOrigine;
         positionIncrement = Double.parseDouble(bundle.getString("positionIncrement"));
         positionIncrement2 = Double.parseDouble(bundle.getString("positionIncrement2"));
@@ -151,29 +153,33 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
     public Point3D getVecDir2D() {
         Point3D dir2D = new Point3D(Math.cos(positionMobile.getAngleVisee().getZ() * Math.PI * 2),
                 Math.sin(positionMobile.getAngleVisee().getZ() * Math.PI * 2),
-                0.0).mult(directionNorme * 1);
+                0.0).mult(directionNorme * 1).norme1();
         return dir2D;
     }
 
     @Override
     public void acc(long timeNano) {
-        Point3D direction2D = getVecDir2D().mult(-positionIncrement2);
+        System.out.println("ACC"+timeNano);
+        Point3D direction2D = getVecDir2D().norme1().mult(timeNano*1E-9/unitPerSec);
         accera += timeNano;
-        Point3D p2 = positionMobile.getPositionSol().plus(direction2D.mult((double) timeNano));
+        Point3D p2 = positionMobile.getPositionSol().plus(direction2D);
         //System.out.println("acc:" + p2.toString());
         if (isPositionOk(p2, true)) {
             positionMobile.setPositionSol(p2);
-        }
+        } else
+            System.out.println("OUT acc:" + p2.toString());
     }
 
     @Override
     public void dec(long timeNano) {
-        Point3D direction2D = getVecDir2D().mult(positionIncrement2);
+        System.out.println("DEC"+timeNano);
+        Point3D direction2D = getVecDir2D().norme1().mult(timeNano*1E-9/unitPerSec);
         accera -= timeNano;
-        Point3D p2 = positionMobile.getPositionSol().plus(direction2D.mult((double) timeNano));
+        Point3D p2 = positionMobile.getPositionSol().plus(direction2D);
         if (isPositionOk(p2, true)) {
             positionMobile.setPositionSol(p2);
-        }
+        } else
+            System.out.println("OUT acc:" + p2.toString());
     }
 
     @Override
@@ -183,7 +189,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
 
     @Override
     public void moveUp(long timeKeyPress) {
-        double z = positionMobile.getPositionSol().getZ() + timeKeyPress * unitPerMillis;
+        double z = positionMobile.getPositionSol().getZ() + timeKeyPress * unitPerSec;
         if (isPositionOk(new Point3D(positionMobile.getPositionSol().getX(), positionMobile.getPositionSol().getY(), z), false))
 
         {
@@ -193,7 +199,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
 
     @Override
     public void moveDown(long timeKeyPress) {
-        double z = positionMobile.getPositionSol().getZ() - timeKeyPress * unitPerMillis;
+        double z = positionMobile.getPositionSol().getZ() - timeKeyPress * unitPerSec;
         if (isPositionOk(new Point3D(positionMobile.getPositionSol().getX(), positionMobile.getPositionSol().getY(), z), false))
 
         {
@@ -207,13 +213,13 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
 
     @Override
     public void rotationGauche(long timeNano) {
-        angle = positionMobile.getAngleVisee().getZ() + rotationPerNano * timeNano;
+        angle = positionMobile.getAngleVisee().getZ() + tourSec * timeNano*1E-9;
         positionMobile.getAngleVisee().setZ(angle);
     }
 
     @Override
     public void rotationDroite(long timeNano) {
-        angle = positionMobile.getAngleVisee().getZ() - rotationPerNano * timeNano;
+        angle = positionMobile.getAngleVisee().getZ() -  tourSec * timeNano*1E-9;
         positionMobile.getAngleVisee().setZ(angle);
     }
 

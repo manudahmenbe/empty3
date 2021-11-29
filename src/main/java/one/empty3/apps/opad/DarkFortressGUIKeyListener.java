@@ -87,6 +87,7 @@ public class DarkFortressGUIKeyListener implements KeyListener, Runnable {
 
     @Override
     public void run() {
+
         long timeBefore = System.nanoTime();
         long timeAfter = timeBefore;
         while (true) {
@@ -178,6 +179,5 @@ public class DarkFortressGUIKeyListener implements KeyListener, Runnable {
                 && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
             release_space = true;
         }
-
     }
 }
