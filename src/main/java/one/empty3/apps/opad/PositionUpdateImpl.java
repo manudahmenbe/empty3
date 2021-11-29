@@ -134,7 +134,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
     }
 
     protected boolean isPositionOk(Point3D p, boolean repositionne) {
-        //System.out.println("candidate new position : " + p);
+        System.out.println("candidate new position : " + p+"\n"+getPositionMobile().getAngleVisee());
         if (p.getX() >= -positionEpsilon && p.getX() <= 1 + positionEpsilon
                 && p.getY() >= -positionEpsilon && p.getY() <= 1 + positionEpsilon)
             return true;
@@ -159,8 +159,8 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
 
     @Override
     public void acc(long timeNano) {
-        System.out.println("ACC"+timeNano);
-        Point3D direction2D = getVecDir2D().norme1().mult(timeNano*1E-9/unitPerSec);
+        System.out.println("ACC" + timeNano);
+        Point3D direction2D = getVecDir2D().norme1().mult(1.0 * timeNano * 1E-9 * unitPerSec);
         accera += timeNano;
         Point3D p2 = positionMobile.getPositionSol().plus(direction2D);
         //System.out.println("acc:" + p2.toString());
@@ -172,8 +172,8 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
 
     @Override
     public void dec(long timeNano) {
-        System.out.println("DEC"+timeNano);
-        Point3D direction2D = getVecDir2D().norme1().mult(timeNano*1E-9/unitPerSec);
+        System.out.println("DEC" + timeNano);
+        Point3D direction2D = getVecDir2D().norme1().mult(timeNano * 1E-9 * unitPerSec);
         accera -= timeNano;
         Point3D p2 = positionMobile.getPositionSol().plus(direction2D);
         if (isPositionOk(p2, true)) {
@@ -190,9 +190,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
     @Override
     public void moveUp(long timeKeyPress) {
         double z = positionMobile.getPositionSol().getZ() + timeKeyPress * unitPerSec;
-        if (isPositionOk(new Point3D(positionMobile.getPositionSol().getX(), positionMobile.getPositionSol().getY(), z), false))
-
-        {
+        if (isPositionOk(new Point3D(positionMobile.getPositionSol().getX(), positionMobile.getPositionSol().getY(), z), false)) {
             positionMobile.getPositionSol().setZ(z);
         }
     }
@@ -200,27 +198,30 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
     @Override
     public void moveDown(long timeKeyPress) {
         double z = positionMobile.getPositionSol().getZ() - timeKeyPress * unitPerSec;
-        if (isPositionOk(new Point3D(positionMobile.getPositionSol().getX(), positionMobile.getPositionSol().getY(), z), false))
-
-        {
+        if (isPositionOk(new Point3D(positionMobile.getPositionSol().getX(), positionMobile.getPositionSol().getY(), z), false)) {
             positionMobile.getPositionSol().setZ(z);
         }
     }
 
     public int state() {
-        return STATE_GAME_IN_PROGRESS;
+        return STATE_GAME_IN_PROGRESS();
     }
 
     @Override
     public void rotationGauche(long timeNano) {
-        angle = positionMobile.getAngleVisee().getZ() + tourSec * timeNano*1E-9;
+        angle = positionMobile.getAngleVisee().getZ() + tourSec * timeNano * 1E-9;
         positionMobile.getAngleVisee().setZ(angle);
+        if (isPositionOk(getPositionMobile().getPositionSol(), false)) {
+            ;
+        }
     }
-
     @Override
     public void rotationDroite(long timeNano) {
-        angle = positionMobile.getAngleVisee().getZ() -  tourSec * timeNano*1E-9;
+        angle = positionMobile.getAngleVisee().getZ() - tourSec * timeNano * 1E-9;
         positionMobile.getAngleVisee().setZ(angle);
+            if (isPositionOk(getPositionMobile().getPositionSol(), false)) {
+                ;
+            }
     }
 
     public synchronized void testCollision(PositionMobile positionMobile) {
@@ -232,13 +233,13 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
 
         boolean catched = true;
         while (catched)
-            try { // TODO Les bonus sont tous bouffés d'un coup depuis que j'ai implementé les StructureMatrix.
+            try {
                 for (Representable representable : bonus.getListRepresentable()) {
                     Representable bon = representable;
                     if (bon != null && bon instanceof TRISphere2
                             && Point3D.distance(((Sphere) bon).getCircle().getCenter(), pos)
                             < ((Sphere) bon).getCircle().getRadius()) {
-                     bonus.remove(bon);
+                        bonus.remove(bon);
 
                         double points = 0.0;
 

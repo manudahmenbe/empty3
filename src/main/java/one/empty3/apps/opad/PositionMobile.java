@@ -81,9 +81,9 @@ public class PositionMobile {
         return positionSol;
     }
 
-    public void setPositionSol(
-            Point3D positionSol) {
+    public void setPositionSol(Point3D positionSol) {
         trace.put(System.nanoTime(), this.positionSol);
+        System.out.println("+");
         this.positionSol = positionSol;
     }
 

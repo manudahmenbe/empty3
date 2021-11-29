@@ -60,22 +60,26 @@ public class DarkFortressGUIKeyListener implements KeyListener, Runnable {
     }
 
     private void cont(long timeKeyPress) {
+        timeKeyPress = Math.abs(timeKeyPress);
+        //System.out.println("cont"+timeKeyPress);
+        //System.out.println("ctrl"+ctrl+"releaseUp"+release_up);
+
         if(!ctrl) {
             if (!release_up) {
+                System.out.println("Acc");
                 mover.acc(timeKeyPress);
-                //System.out.println("Acc");
             }
             if (!release_down) {
                 mover.dec(timeKeyPress);
-                //System.out.println("Dec");
+                System.out.println("Dec");
             }
             if (!release_left) {
                 mover.rotationGauche(timeKeyPress);
-                //System.out.println("Left");
+                System.out.println("Left");
             }
             if (!release_right) {
                 mover.rotationDroite(timeKeyPress);
-                //System.out.println("Right");
+                System.out.println("Right");
             }
             if(!release_space) {
                 mover.moveUp(timeKeyPress);
@@ -87,7 +91,6 @@ public class DarkFortressGUIKeyListener implements KeyListener, Runnable {
 
     @Override
     public void run() {
-
         long timeBefore = System.nanoTime();
         long timeAfter = timeBefore;
         while (true) {
@@ -113,6 +116,7 @@ public class DarkFortressGUIKeyListener implements KeyListener, Runnable {
 
     @Override
     public void keyPressed(java.awt.event.KeyEvent e) {
+        System.out.println("Key Pressed"+(e.getKeyCode()==KeyEvent.VK_Z));
         if (e.getKeyChar()== 't')
             toggleMenu.setDisplayMenu(!toggleMenu.isDisplayMenu());
         if (e.getKeyChar()== '+')
@@ -125,8 +129,9 @@ public class DarkFortressGUIKeyListener implements KeyListener, Runnable {
                 && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
             ctrl = true;
         }
-        if (e.getKeyCode() == KeyEvent.VK_UP
+        if (e.getExtendedKeyCode() == KeyEvent.VK_Z
                 && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
+            System.out.println("UPPRESSED");
             release_up = false;
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE
@@ -134,15 +139,15 @@ public class DarkFortressGUIKeyListener implements KeyListener, Runnable {
             release_space = false;
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_DOWN
+        if (e.getKeyCode() == KeyEvent.VK_S
                 && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
             release_down = false;
         }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT
+        if (e.getKeyCode() == KeyEvent.VK_Q
                 && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
             release_left = false;
         }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT
+        if (e.getKeyCode() == KeyEvent.VK_D
                 && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
             release_right = false;
         }
@@ -158,20 +163,20 @@ public class DarkFortressGUIKeyListener implements KeyListener, Runnable {
                 && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
             ctrl = false;
         }
-        if (e.getKeyCode() == KeyEvent.VK_UP
+        if (e.getKeyCode() == KeyEvent.VK_Z
                 && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
             release_up = true;
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_DOWN
+        if (e.getKeyCode() == KeyEvent.VK_S
                 && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
             release_down = true;
         }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT
+        if (e.getKeyCode() == KeyEvent.VK_Q
                 && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
             release_left = true;
         }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT
+        if (e.getKeyCode() == KeyEvent.VK_D
                 && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
             release_right = true;
         }
@@ -179,5 +184,6 @@ public class DarkFortressGUIKeyListener implements KeyListener, Runnable {
                 && mover.state() == mover.STATE_GAME_IN_PROGRESS()) {
             release_space = true;
         }
+
     }
 }
