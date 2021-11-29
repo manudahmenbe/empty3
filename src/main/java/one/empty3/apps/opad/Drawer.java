@@ -44,6 +44,10 @@ public abstract class Drawer {
     public void setLevel(Class level) {
         this.level = level;
         Logger.getAnonymousLogger().info("Level: " + level.getCanonicalName());
+
     }
 
+    public void update() {
+
+    }
 }

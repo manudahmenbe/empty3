@@ -37,6 +37,7 @@ import com.jogamp.opengl.GLCapabilities;
 import com.jogamp.opengl.GLDrawableFactory;
 import com.jogamp.opengl.awt.GLCanvas;
 import one.empty3.apps.opad.menu.ToggleMenu;
+import one.empty3.gui.ModelingInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,14 +47,15 @@ import java.util.logging.Logger;
 
 public final class DarkFortressGUI extends JFrame {
     private final Class<? extends Drawer> clazz;
+    public PositionUpdateImpl positionUpdate;
     protected PositionUpdate mover;
     //Plotter3D plotter3D;
-    private Drawer drawer;
+    Drawer drawer;
     private Class<? extends Drawer> drawerType;
     String Title;
     private DarkFortressGUIKeyListener gameKeyListener;
     private Game game;
-    private Plotter3D plotter3D;
+    Plotter3D plotter3D;
 
 
     /*public Plotter3D getPlotter3D() {
@@ -108,13 +110,16 @@ public final class DarkFortressGUI extends JFrame {
 
             if(drawer instanceof JoglDrawer) {
                 ((JoglDrawer) drawer).getGlcanvas().display();
-                ((JoglDrawer) drawer).getAnimator().start();
+                ((JoglDrawer) drawer).getGlcanvas().getAnimator().start();
+                mover.setMain(this);
             }
 
             setSize(640, 480);
 
             addKeyListener(gameKeyListener);
             addKeyListener(plotter3D);
+
+
 
             setVisible(true);
 

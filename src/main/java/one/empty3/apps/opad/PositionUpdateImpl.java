@@ -37,10 +37,12 @@ import one.empty3.library.*;
 import one.empty3.library.core.nurbs.ParametricLine;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ConcurrentModificationException;
 import java.util.ResourceBundle;
 
-public class PositionUpdateImpl implements PositionUpdate, Runnable {
+public class PositionUpdateImpl implements PositionUpdate, Runnable, ActionListener {
     protected Path path;
     protected static int STATE_GAME_IN_PROGRESS = 1;
     private final ResourceBundle bundle;
@@ -74,6 +76,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
     private double calibrage = 1;
     private double accera = 0;
     private double tourSec;
+    private DarkFortressGUI main;
 
     public PositionUpdateImpl(Terrain t, Player player) {
         bundle = ResourceBundle.getBundle("one.empty3.apps.opad.Bundle"); // NOI18N
@@ -131,13 +134,20 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
 
     @Override
     public void update() {
+        if(main.drawer instanceof JoglDrawer) {
+            JoglDrawer drawer = (JoglDrawer) main.drawer;
+            drawer.getGlcanvas().display();
+            drawer.getGlcanvas().requestFocusInWindow();
+        }
     }
 
     protected boolean isPositionOk(Point3D p, boolean repositionne) {
         System.out.println("candidate new position : " + p+"\n"+getPositionMobile().getAngleVisee());
         if (p.getX() >= -positionEpsilon && p.getX() <= 1 + positionEpsilon
-                && p.getY() >= -positionEpsilon && p.getY() <= 1 + positionEpsilon)
+                && p.getY() >= -positionEpsilon && p.getY() <= 1 + positionEpsilon) {
+            update();
             return true;
+        }
         else {
             if (repositionne) {
                 p.setX(0.5);
@@ -156,6 +166,9 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
                 0.0).mult(directionNorme * 1).norme1();
         return dir2D;
     }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    }
 
     @Override
     public void acc(long timeNano) {
@@ -166,6 +179,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
         //System.out.println("acc:" + p2.toString());
         if (isPositionOk(p2, true)) {
             positionMobile.setPositionSol(p2);
+
         } else
             System.out.println("OUT acc:" + p2.toString());
     }
@@ -392,6 +406,17 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable {
     public synchronized void setPath(Path path) {
         this.path = path;
     }
+
+    @Override
+    public void setMain(DarkFortressGUI darkFortressGUI) {
+        this.main = darkFortressGUI;
+    }
+
+    @Override
+    public DarkFortressGUI getMain() {
+        return main;
+    }
+
 
     public Player getPlayer() {
         return player;

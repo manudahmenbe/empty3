@@ -78,6 +78,10 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     private GL2 gl;
     private GLCanvas glCanvas;
     private Plotter3D plotter3D;
+    private long millis;
+    private long millis0;
+    private boolean wasAnimating = false;
+
     {
         Plasma.scale = 2;
         Plasma.t_factor = 0.000001;
@@ -111,7 +115,6 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         // Create a animator that drives canvas' display() at the specified FPS.
         animator = new FPSAnimator(25);
         glCanvas.setAnimator(animator);
-
         mover = darkFortressGUI.mover;
 
 
@@ -129,18 +132,37 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         timer = new Timer();
         timer.init();
 
+
         ((JFrame)component).getContentPane().removeAll();
         ((JFrame)component).getContentPane().add(glCanvas);
     }
 
     @Override
     public void display(GLAutoDrawable gLDrawable) {
-        if(glu==null)
-            glu = GLU.createGLU();
+        if (!wasAnimating){
+            animator.start();
+            wasAnimating = true;
+        }
 
-        gl = gLDrawable.getGL().getGL2();
-        //glu = GLU.createGLU();
+        millis = System.currentTimeMillis();
+        System.out.println("FPS "+(millis-millis0));
+        millis0 = millis;
 
+        try {
+            if (glu == null)
+                glu = GLU.createGLU();
+
+            gl = gLDrawable.getGL().getGL2();
+            //glu = GLU.createGLU();
+        } catch (Exception e) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+            return;
+        }
         if(!component.isVisible()) {
             glCanvas.setGL(gl);
             component.setVisible(true);
@@ -738,5 +760,15 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
     public FPSAnimator getAnimator() {
         return animator;
+    }
+
+    public void start() {
+        while(isRunning()) {
+            display(glCanvas);
+        }
+    }
+
+    private boolean isRunning() {
+        return true;
     }
 }

@@ -117,4 +117,8 @@ public interface PositionUpdate extends Runnable
     Path getPath();
 
     void setPath(Path path);
+
+    void setMain(DarkFortressGUI darkFortressGUI);
+
+    DarkFortressGUI getMain();
 }
