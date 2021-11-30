@@ -46,7 +46,7 @@ public class ToggleMenu {
         items.put("displayGround",true);
         items.put("displayBonus",true);
         items.put("displayCharacter",true);
-        items.put("displayGroundGrid",true);
+        items.put("displayGroundGrid",false);
         items.put("displayScore",true);
         items.put("displayEnergy",true);
         items.put("displayArcs", false);

@@ -116,7 +116,7 @@ public class DarkFortressGUIKeyListener implements KeyListener, Runnable {
 
     @Override
     public void keyPressed(java.awt.event.KeyEvent e) {
-        System.out.println("Key Pressed"+(e.getKeyCode()==KeyEvent.VK_Z));
+        System.out.println("Key Pressed");
         if (e.getKeyChar()== 't')
             toggleMenu.setDisplayMenu(!toggleMenu.isDisplayMenu());
         if (e.getKeyChar()== '+')

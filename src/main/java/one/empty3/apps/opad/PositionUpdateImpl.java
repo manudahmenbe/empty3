@@ -134,7 +134,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable, ActionListe
 
     @Override
     public void update() {
-        if(main.drawer instanceof JoglDrawer) {
+        if (main.drawer instanceof JoglDrawer) {
             JoglDrawer drawer = (JoglDrawer) main.drawer;
             //drawer.getGlcanvas().display();
             drawer.getGlcanvas().requestFocusInWindow();
@@ -142,13 +142,12 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable, ActionListe
     }
 
     protected boolean isPositionOk(Point3D p, boolean repositionne) {
-        System.out.println("candidate new position : " + p+"\n"+getPositionMobile().getAngleVisee());
+        System.out.println("candidate new position : " + p + "\n" + getPositionMobile().getAngleVisee());
         if (p.getX() >= -positionEpsilon && p.getX() <= 1 + positionEpsilon
                 && p.getY() >= -positionEpsilon && p.getY() <= 1 + positionEpsilon) {
             update();
             return true;
-        }
-        else {
+        } else {
             if (repositionne) {
                 p.setX(0.5);
                 p.setY(0.5);
@@ -166,6 +165,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable, ActionListe
                 0.0).mult(directionNorme * 1).norme1();
         return dir2D;
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
     }
@@ -229,13 +229,14 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable, ActionListe
             ;
         }
     }
+
     @Override
     public void rotationDroite(long timeNano) {
         angle = positionMobile.getAngleVisee().getZ() - tourSec * timeNano * 1E-9;
         positionMobile.getAngleVisee().setZ(angle);
-            if (isPositionOk(getPositionMobile().getPositionSol(), false)) {
-                ;
-            }
+        if (isPositionOk(getPositionMobile().getPositionSol(), false)) {
+            ;
+        }
     }
 
     public synchronized void testCollision(PositionMobile positionMobile) {
