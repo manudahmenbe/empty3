@@ -177,7 +177,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable, ActionListe
         accera += timeNano;
         Point3D p2 = positionMobile.getPositionSol().plus(direction2D);
         //System.out.println("acc:" + p2.toString());
-        if (isPositionOk(p2, true)) {
+        if (isPositionOk(p2, false)) {
             positionMobile.setPositionSol(p2);
 
         } else
@@ -190,7 +190,7 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable, ActionListe
         Point3D direction2D = getVecDir2D().norme1().mult(timeNano * 1E-9 * unitPerSec);
         accera -= timeNano;
         Point3D p2 = positionMobile.getPositionSol().plus(direction2D);
-        if (isPositionOk(p2, true)) {
+        if (isPositionOk(p2, false)) {
             positionMobile.setPositionSol(p2);
         } else
             System.out.println("OUT acc:" + p2.toString());
@@ -221,10 +221,11 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable, ActionListe
         return STATE_GAME_IN_PROGRESS();
     }
 
+    int numAxe = 2;
     @Override
     public void rotationGauche(long timeNano) {
-        angle = positionMobile.getAngleVisee().getZ() + tourSec * timeNano * 1E-9;
-        positionMobile.getAngleVisee().setZ(angle);
+        angle = positionMobile.getAngleVisee().get(numAxe) + tourSec * timeNano * 1E-9;
+        positionMobile.getAngleVisee().set(numAxe, angle);
         if (isPositionOk(getPositionMobile().getPositionSol(), false)) {
             ;
         }
@@ -232,8 +233,8 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable, ActionListe
 
     @Override
     public void rotationDroite(long timeNano) {
-        angle = positionMobile.getAngleVisee().getZ() - tourSec * timeNano * 1E-9;
-        positionMobile.getAngleVisee().setZ(angle);
+        angle = positionMobile.getAngleVisee().get(numAxe) - tourSec * timeNano * 1E-9;
+        positionMobile.getAngleVisee().set(numAxe, angle);
         if (isPositionOk(getPositionMobile().getPositionSol(), false)) {
             ;
         }

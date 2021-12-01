@@ -65,7 +65,7 @@ public class PositionMobile {
         this.terrain = positionUpdate.getTerrain();
         positionSol = new Point3D(0.5, 0.5, 0.0);
         getPositionSol().setZ(Double.parseDouble(bundle.getString("hauteur")));
-        angleVisee = new Point3D(Point3D.X);
+        angleVisee = new Point3D(Point3D.O0);
         trace = new HashMap<>();
     }
 
