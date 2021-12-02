@@ -51,8 +51,12 @@ class TRISphere2<T extends BonusClass> extends Sphere {
 
     public TRISphere2(Bonus bonus, Point3D c, double r) {
         super(c, r);
-        setIncrU(0.5);
-        setIncrV(0.5);
+        setIncrU(0.19);
+        setIncrV(0.19);
+        setStartU(0.0);
+        setStartV(0.0);
+        setEndU(1.0);
+        setEndV(1.0);
         this.coords = c;
         this.bonus = bonus;
         clazz = new BonusClass();
