@@ -38,6 +38,7 @@ import one.empty3.library.RepresentableConteneur;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
 import one.empty3.library.core.tribase.TubulaireN2;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 /*__
@@ -48,8 +49,12 @@ public class SolTube extends Terrain  {
         setDessineMurs(false);
         TubulaireN2 n2 = new TubulaireN2();
         CourbeParametriquePolynomialeBezier courbeParametriquePolynomialeBezier;
-        courbeParametriquePolynomialeBezier = new CourbeParametriquePolynomialeBezier(new Point3D[]{Point3D.O0, Point3D.X, Point3D.Y, Point3D.Z});
-        //n2.curve(courbeParametriquePolynomialeBezier);
+        courbeParametriquePolynomialeBezier = new CourbeParametriquePolynomialeBezier();
+        courbeParametriquePolynomialeBezier.getCoefficients().add(Point3D.O0);
+        courbeParametriquePolynomialeBezier.getCoefficients().add(Point3D.X);
+        courbeParametriquePolynomialeBezier.getCoefficients().add(Point3D.Y);
+        courbeParametriquePolynomialeBezier.getCoefficients().add(Point3D.Z);
+        n2.getSoulCurve().setElem(courbeParametriquePolynomialeBezier);
         n2.nbrAnneaux(40);
         n2.nbrRotations(20);
         //n2.diam(1);
