@@ -55,6 +55,7 @@ public abstract class Terrain extends RepresentableConteneur {
     private Game game;
     private double calibrage;
     private boolean isDessineMurs = true;
+    private double incrCalcNormale = 0.0001;
 
     public boolean isDessineMurs()
     {
@@ -70,10 +71,16 @@ public abstract class Terrain extends RepresentableConteneur {
 
     public Point3D calcNormale(double u, double v)
     {
-        Point3D v1 = ps.calculerPoint3D(u+ps.getIncrU(), v).moins(ps.calculerPoint3D(u, v));
-        Point3D v2 = ps.calculerPoint3D(u, v+ps.getIncrV()).moins(ps.calculerPoint3D(u, v));
+        Point3D v1 = ps.calculerPoint3D(u+ getaDouble(), v).moins(ps.calculerPoint3D(u, v));
+        Point3D v2 = ps.calculerPoint3D(u, v+getaDouble()).moins(ps.calculerPoint3D(u, v));
+
         return v1.prodVect(v2);
     }
+
+    private double getaDouble() {
+        return incrCalcNormale;
+    }
+
     /*__
      * 
      * @param u X-coordonnée [0-1] sur la surface
