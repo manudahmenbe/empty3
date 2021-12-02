@@ -374,15 +374,15 @@ public class JoglDrawer extends Drawer implements GLEventListener {
             Representable r = null;
             try {
                 r = it.next();
+                if (r instanceof TRI) {
+                    draw((TRI) r, glu, gl);
+                } else if (r instanceof LineSegment) {
+                    draw((LineSegment) r, glu, gl);
+                } else if(r instanceof ParametricSurface) {
+                    draw(terrain, (ParametricSurface) r, glu, gl);
+                }
             } catch (ConcurrentModificationException ex) {
-                break;
-            }
-            if (r instanceof TRI) {
-                draw((TRI) r, glu, gl);
-            } else if (r instanceof LineSegment) {
-                draw((LineSegment) r, glu, gl);
-            } else if(r instanceof ParametricSurface) {
-                draw((ParametricSurface) r, glu, gl);
+                ex.printStackTrace();
             }
 
         }
@@ -400,6 +400,23 @@ public class JoglDrawer extends Drawer implements GLEventListener {
                 draw2( new TRI(elementSurface.getPoints().getElem(2),
                         elementSurface.getPoints().getElem(3),
                         elementSurface.getPoints().getElem(0)), glu, gl, true);
+            }
+        }
+        gl.glEnd();
+
+    }
+    private void draw(Terrain t, ParametricSurface s, GLU glu, GL2 gl) {
+        gl.glBegin(GL2.GL_TRIANGLES);
+        for (double  i = 0; i < s.getIncrU(); i++) {
+            for (double j = 0; j < s.getIncrV(); j++) {
+                Polygon elementSurface = s.getElementSurface(i, s.getIncrU(), j, s.getIncrV());
+                Point3D INFINI = Point3D.INFINI;
+                draw2( new TRI(t.p3( elementSurface.getPoints().getElem(0)),
+                        t.p3( elementSurface.getPoints().getElem(1)),
+                                t.p3( elementSurface.getPoints().getElem(2))), glu, gl, true);
+                draw2( new TRI(t.p3( elementSurface.getPoints().getElem(2)),
+                        t.p3( elementSurface.getPoints().getElem(3)),
+                                t.p3( elementSurface.getPoints().getElem(0))), glu, gl, true);
             }
         }
         gl.glEnd();

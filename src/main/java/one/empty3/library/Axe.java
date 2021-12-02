@@ -103,8 +103,8 @@ public class Axe extends Representable{
 
     public Axe setCenter(Point3D center) {
         Point3D currentCenter = p2.getElem().moins(p1.getElem()).mult(0.5);
-        Point3D p12 = center.plus(p1.getElem());
-        Point3D p22 = center.plus(p2.getElem());
+        Point3D p12 = center.plus(p1.getElem().moins(p2.getElem()).mult(0.5));
+        Point3D p22 = center.plus(p2.getElem().moins(p1.getElem()).mult(0.5));
 
         getP1().setElem(p12);
         getP2().setElem(p22);
