@@ -70,7 +70,7 @@ public class Bonus extends RepresentableConteneur {
     public Bonus() {
 
         for (int i = 0; i < SIZE; i++) {
-            TRISphere2<SimpleBonus> s = new TRISphere2<SimpleBonus>(this, random(), 0.01);
+            TRISphere2<SimpleBonus> s = new TRISphere2<SimpleBonus>(this, random(), Double.parseDouble(bundle.getString("bonus.scale")));
 
             s.texture(new ColorTexture(Color.RED));
 
@@ -82,14 +82,14 @@ public class Bonus extends RepresentableConteneur {
 
         for (int i = 0; i < licorne; i++) {
             TRISphere2<Cheval_Licorne> s;
-            s = new TRISphere2(this, random(), 0.01);
+            s = new TRISphere2(this, random(), Double.parseDouble(bundle.getString("bonus.scale")));
             s.texture(new ColorTexture(Color.BLUE));
             s.setGameObject(new Cheval_Licorne());
             add(s);
 
         }
         for (int i = 0; i < escargot; i++) {
-            TRISphere2<Escargot> s = new TRISphere2<Escargot>(this, random(), 0.01);
+            TRISphere2<Escargot> s = new TRISphere2<Escargot>(this, random(), Double.parseDouble(bundle.getString("bonus.scale")));
             s.texture(new ColorTexture(Color.BLACK));
             s.setGameObject(new Escargot());
 
@@ -97,7 +97,7 @@ public class Bonus extends RepresentableConteneur {
 
         }
         for (int i = 0; i < fuite; i++) {
-            TRISphere2 s = new TRISphere2<>(this, random(), 0.01);
+            TRISphere2 s = new TRISphere2<>(this, random(), Double.parseDouble(bundle.getString("bonus.scale")));
             s.texture(new ColorTexture(Color.GRAY));
             s.setGameObject(new MouvementDirectionnel());
             add(s);

@@ -300,7 +300,6 @@ public class JoglDrawer extends Drawer implements GLEventListener {
      }*/
 
     public void draw(TRI tri, GLU glu, GL2 gl) {
-        gl.glBegin(GL2.GL_TRIANGLES);
         color(gl, new Color(tri.texture().getColorAt(0.5, 0.5)));
         for (Point3D sommet : tri.getSommet().getData1d()) {
             Point3D p = getTerrain().p3(sommet);
@@ -308,7 +307,6 @@ public class JoglDrawer extends Drawer implements GLEventListener {
                     (float) (double) p.get(1),
                     (float) (double) p.get(2));
         }
-        gl.glEnd();
     }
 
     public void draw2(TRI tri, GLU glu, GL2 gl, boolean guard) {
@@ -350,8 +348,8 @@ public class JoglDrawer extends Drawer implements GLEventListener {
                 tris[0] = new TRI(INFINI, INFINI, INFINI);
                 tris[1] = new TRI(INFINI, INFINI, INFINI);
                 s.getTris(i, j, tris);
-                draw2(tris[0], glu, gl, true);
-                draw2(tris[1], glu, gl, true);
+                draw(tris[0], glu, gl);
+                draw(tris[1], glu, gl);
             }
         }
         gl.glEnd();
@@ -368,7 +366,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
     }
 
-    public void draw(RepresentableConteneur rc, GLU glu, GL2 gl) {
+    public synchronized void draw(RepresentableConteneur rc, GLU glu, GL2 gl) {
         Iterator<Representable> it = rc.iterator();
         while (it.hasNext()) {
             Representable r = null;
@@ -379,10 +377,11 @@ public class JoglDrawer extends Drawer implements GLEventListener {
                 } else if (r instanceof LineSegment) {
                     draw((LineSegment) r, glu, gl);
                 } else if(r instanceof ParametricSurface) {
-                    draw(terrain, (ParametricSurface) r, glu, gl);
+                    draw((ParametricSurface) r, glu, gl);
                 }
             } catch (ConcurrentModificationException ex) {
                 ex.printStackTrace();
+                break;
             }
 
         }
@@ -396,10 +395,12 @@ public class JoglDrawer extends Drawer implements GLEventListener {
                 Point3D INFINI = Point3D.INFINI;
                 draw2( new TRI(elementSurface.getPoints().getElem(0),
                         elementSurface.getPoints().getElem(1),
-                        elementSurface.getPoints().getElem(2)), glu, gl, true);
+                        elementSurface.getPoints().getElem(2), s.texture()
+                        ), glu, gl, true);
                 draw2( new TRI(elementSurface.getPoints().getElem(2),
                         elementSurface.getPoints().getElem(3),
-                        elementSurface.getPoints().getElem(0)), glu, gl, true);
+                        elementSurface.getPoints().getElem(0), s.texture()),
+                        glu, gl, true);
             }
         }
         gl.glEnd();

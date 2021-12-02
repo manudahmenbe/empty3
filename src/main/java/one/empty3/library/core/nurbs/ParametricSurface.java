@@ -195,17 +195,17 @@ public abstract class ParametricSurface extends Representable {
     }
 
     public Polygon getElementSurface(Double u, Double incrU, Double v, Double incrV) {
-        Double[][] uvincr = new Double[][]{
+        Double[][] uvIncr = new Double[][]{
                 {u, v},
                 {u + incrU, v},
                 {u + incrU, v + incrV},
                 {u, v + incrV}
         };
         Polygon polygon = new Polygon(new Point3D[]{
-                calculerPoint3D(uvincr[0][0], uvincr[0][1]),
-                calculerPoint3D(uvincr[1][0], uvincr[1][1]),
-                calculerPoint3D(uvincr[2][0], uvincr[2][1]),
-                calculerPoint3D(uvincr[3][0], uvincr[3][1])},
+                calculerPoint3D(uvIncr[0][0], uvIncr[0][1]),
+                calculerPoint3D(uvIncr[1][0], uvIncr[1][1]),
+                calculerPoint3D(uvIncr[2][0], uvIncr[2][1]),
+                calculerPoint3D(uvIncr[3][0], uvIncr[3][1])},
                 texture());
         return polygon;
     }
