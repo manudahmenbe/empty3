@@ -50,7 +50,10 @@ public class SolRelief extends Terrain {
         ps = new ParametricSurface() {
             @Override
             public Point3D calculerPoint3D(double u, double v) {
-                return new Point3D(u-0.5, 0.1*Math.sin(2 * Math.PI * u ) * Math.cos(2 * Math.PI * v), v-0.5);
+                double T = 6.;
+                double hauteurVague = 0.002;
+                return new Point3D(u, hauteurVague*Math.sin(2 * Math.PI * u*T )
+                        * Math.cos(2 * Math.PI * v*T), v);
             }
 
             @Override

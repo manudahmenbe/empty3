@@ -44,6 +44,7 @@ package one.empty3.apps.opad;
 import one.empty3.library.Point3D;
 import one.empty3.library.Representable;
 import one.empty3.library.RepresentableConteneur;
+import one.empty3.library.Sphere;
 import one.empty3.library.core.nurbs.ParametricSurface;
 
 import java.util.Iterator;
@@ -69,20 +70,7 @@ public class SolSphere extends Terrain {
     public SolSphere(/*Game game*/) {
         setDessineMurs(false);
         //super(game);
-        ps = new ParametricSurface() {
-            @Override
-            public Point3D calculerPoint3D(double u, double v) {
-                return coord(u, v);
-
-            }
-
-            @Override
-            public Point3D calculerVitesse3D(double u, double v) {
-                Point3D pU = calculerPoint3D(u + 0.001, v).moins(calculerPoint3D(u, v));
-                Point3D pV = calculerPoint3D(u, v + 0.001).moins(calculerPoint3D(u, v));
-                return pV.plus(pU).norme1();
-            }
-        };
+        ps = new Sphere(Point3D.O0, 10.);
         SolPP sol = new SolPP(ps);
         RepresentableConteneur generateWire = sol.generateWire();
 

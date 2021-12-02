@@ -50,7 +50,11 @@ public class SolReliefMouvant extends Terrain {
         ps = new ParametricSurface() {
             @Override
             public Point3D calculerPoint3D(double u, double v) {
-                return new Point3D(u - 0.5, Math.sin(2 * Math.PI * (u + 2) + timer.getTimeEllapsed() / 10000000.0) * Math.cos(2 * Math.PI * (v + 2)*0.1 + timer.getTimeEllapsed() / 1000000000.0), v - 0.5);
+                double T = 6.;
+                double hauteurVague = 0.002;
+                return new Point3D(u, hauteurVague*Math.sin(2 * Math.PI * u*T+timer.getTimeEllapsed() / 10000000.0 )
+                        * Math.cos(2 * Math.PI * v*T+timer.getTimeEllapsed() / 10000000.0), v);
+
             }
 
             @Override
