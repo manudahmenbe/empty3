@@ -54,12 +54,12 @@ import java.util.Iterator;
 public class JoglDrawer extends Drawer implements GLEventListener {
     private GLU glu;
     private final Frame component;
-    private Animator animator;
+    private final Animator animator;
     double INCR_AA = 0.1;
     double DISTANCE_MIN = 100;
     Timer timer;
-    private double maximize = INCR_AA / 10;
-    private double minimize = INCR_AA;
+    private final double maximize = INCR_AA / 10;
+    private final double minimize = INCR_AA;
     private PositionUpdate mover;
     private Terrain terrain;
     private Bonus bonus;
@@ -73,7 +73,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     private Point3D del;
     private Point3D diff;
     private GL2 gl;
-    private GLCanvas glCanvas;
+    private final GLCanvas glCanvas;
     private Plotter3D plotter3D;
     private long millis;
     private long millis0;
