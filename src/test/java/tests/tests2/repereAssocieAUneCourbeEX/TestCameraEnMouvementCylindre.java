@@ -3,11 +3,11 @@
  */
 package tests.tests2.repereAssocieAUneCourbeEX;
 
-import one.empty3.library.Camera;
-import one.empty3.library.EOFVideoException;
-import one.empty3.library.Point3D;
-import one.empty3.library.TextureMov;
+import one.empty3.library.*;
 import one.empty3.library.core.nurbs.CameraInPath;
+import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
+import one.empty3.library.core.nurbs.ExtrusionB1B1;
+import one.empty3.library.core.testing.Resolution;
 import one.empty3.library.core.testing.TestObjet;
 import one.empty3.library.core.tribase.TRICylindre;
 
@@ -21,14 +21,14 @@ public class TestCameraEnMouvementCylindre extends TestObjet {
 
     TextureMov textureMov;
     private CameraInPath cam;
-    private TRICylindre e;
+    private ExtrusionB1B1 e;
 
     public static void main(String[] args) {
         TestCameraEnMouvementCylindre t = new TestCameraEnMouvementCylindre();
         t.setGenerate(GENERATE_IMAGE | GENERATE_MOVIE);
         t.setMaxFrames(30 * 25);
-        t.setResx(640);
-        t.setResy(480);
+        t.setDimension(new Resolution(640, 480));
+        t.setPublish(true);
         new Thread(t).start();
     }
 
@@ -40,26 +40,26 @@ public class TestCameraEnMouvementCylindre extends TestObjet {
     @Override
     public void finit() throws EOFVideoException {
         cam.setT(frame / 25.0 / 8);
+        cam.setMatrice(cam.getMatrice().tild());
         textureMov.nextFrame();
     }
 
     @Override
     public void ginit() {
-        CourbeChoisie cc = new CourbeChoisie(11, 11, 21, 8);
+        CourbeChoisie cc = new CourbeChoisie(4, 0.8, 0.7, 8);
 
         cam = new CameraInPath(cc);
 
-        e = new TRICylindre(10, 20);
-        textureMov = new TextureMov("C:\\Users\\Win\\Videos\\MOV0007A.AVI");
+        e = new ExtrusionB1B1();
+        e.getPath().setElem(new CourbeParametriquePolynomialeBezier());
+        e.getBase().setElem(new Circle(new Axe(Point3D.Y.mult(-1), Point3D.Y), 10));
+        ((CourbeParametriquePolynomialeBezier)(e.getPath().getElem())).getCoefficients().add(Point3D.O0);
+        ((CourbeParametriquePolynomialeBezier)(e.getPath().getElem())).getCoefficients().add(Point3D.Z);
+        textureMov = new TextureMov("C:\\Users\\manue\\Videos\\mes vidéos\\VID_20201019_132528.mp4");
         textureMov.setTransparent(Color.BLACK);
         e.texture(textureMov);
 
-        e.setMaxX(40);
-        e.setMaxY(40);
-
         scene().add(e);
-
-        scene().cameraActive(new Camera(new Point3D(30d, 0d, -30d), new Point3D(0d, 0d, 0d)));
 
         scene().cameraActive(cam);
 

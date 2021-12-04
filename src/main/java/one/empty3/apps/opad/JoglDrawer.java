@@ -38,6 +38,7 @@ import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.Animator;
 import com.jogamp.opengl.util.awt.TextRenderer;
+import com.jogamp.opengl.util.awt.TextureRenderer;
 import one.empty3.apps.opad.help.PiloteAuto;
 import one.empty3.library.*;
 import one.empty3.library.Polygon;
@@ -65,6 +66,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
     private Bonus bonus;
     private TextRenderer renderer;
     private Vaisseau vaisseau;
+    private TextureRenderer textureRenderer;
     private boolean locked;
     private Circuit circuit;
     private int BUFSIZE;
@@ -114,7 +116,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         glCanvas.setAnimator(animator);
         mover = darkFortressGUI.mover;
 
-
+        //textureRenderer = new TextureRenderer();
         initFrame(darkFortressGUI);
 
         this.component = darkFortressGUI;
