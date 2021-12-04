@@ -61,7 +61,7 @@ public class Camera extends CameraBox {
 
     private Barycentre position;
     public Camera(boolean pass) {
-
+        imposerMatrice.setElem(false);
     }
     public Camera() {
         this(new Point3D(100d, 0d, 0.0), Point3D.O0, Point3D.Y);

@@ -40,7 +40,7 @@ public class TestCameraEnMouvementCylindre extends TestObjet {
     @Override
     public void finit() throws EOFVideoException {
         cam.setT(frame / 25.0 / 8);
-        cam.setMatrice(cam.getMatrice().tild());
+        //cam.setMatrice(cam.getMatrice().tild());
         textureMov.nextFrame();
     }
 

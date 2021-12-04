@@ -36,8 +36,8 @@ public class TestSpheres extends TestObjetSub {
         scene().cameraActive(camera);double t = 1.0*frame()/(getMaxFrames());
         camera.setT(t);
 
-        Point3D z = Point3D.O0.moins(camera.getCourbe().calculerPoint3D(t)).norme1();
-        Point3D x = camera.getCourbe().tangente(t).norme1().mult(-1d);
+        Point3D z = Point3D.O0.moins(camera.getCurve().calculerPoint3D(t)).norme1();
+        Point3D x = camera.getCurve().tangente(t).norme1().mult(-1d);
         Point3D y = x.prodVect(z).norme1();
         camera.setMatrix(x, y, z);
 
