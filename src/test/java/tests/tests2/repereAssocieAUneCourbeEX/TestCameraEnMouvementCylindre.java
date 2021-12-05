@@ -46,7 +46,7 @@ public class TestCameraEnMouvementCylindre extends TestObjet {
 
     @Override
     public void ginit() {
-        CourbeChoisie cc = new CourbeChoisie(4, 0.8, 0.7, 8);
+        CourbeChoisie cc = new CourbeChoisie(2, 0.8, 0.7, 8);
 
         cam = new CameraInPath(cc);
 
@@ -55,8 +55,11 @@ public class TestCameraEnMouvementCylindre extends TestObjet {
         e.getBase().setElem(new Circle(new Axe(Point3D.Y.mult(-1), Point3D.Y), 10));
         ((CourbeParametriquePolynomialeBezier)(e.getPath().getElem())).getCoefficients().add(Point3D.O0);
         ((CourbeParametriquePolynomialeBezier)(e.getPath().getElem())).getCoefficients().add(Point3D.Z);
-        textureMov = new TextureMov("C:\\Users\\manue\\Videos\\mes vidéos\\VID_20201019_132528.mp4");
-        textureMov.setTransparent(Color.BLACK);
+        try {
+            textureMov = new TextureMov("C:\\Users\\manue\\Videos\\mes vidéos\\VID_20201019_132528.mp4");
+        } catch (Exception ex) {
+            textureMov.setTransparent(Color.BLACK);
+        }
         e.texture(textureMov);
 
         scene().add(e);
