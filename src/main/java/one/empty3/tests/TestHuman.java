@@ -26,7 +26,7 @@ public class TestHuman extends TestObjetSub {
     public void ginit() {
         scene().clear();
 
-        z().setDisplayType(ZBufferImpl.DISPLAY_ALL);
+        //z().setDisplayType(ZBufferImpl.DISPLAY_ALL);
 
 
         humanModel = new Human();
@@ -55,14 +55,15 @@ public class TestHuman extends TestObjetSub {
 
     @Override
     public void finit() {
-        if(humanModel.animation!=null) {
+
+        if (humanModel.animation != null) {
             humanModel.move(frame(), 25.);
-        }else
+        } else
             System.err.println("Human animation == null");
 
-        System.out.println(((TubulaireN2)humanModel.jambeHautGauche.getRepresentable()).getSoulCurve().getElem()
+        System.out.println(((TubulaireN2) humanModel.jambeHautGauche.getRepresentable()).getSoulCurve().getElem()
                 .calculerPoint3D(0.0));
-        System.out.println(((TubulaireN2)humanModel.jambeHautGauche.getRepresentable()).getSoulCurve().getElem()
+        System.out.println(((TubulaireN2) humanModel.jambeHautGauche.getRepresentable()).getSoulCurve().getElem()
                 .calculerPoint3D(1.0));
     }
 

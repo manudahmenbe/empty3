@@ -6,8 +6,10 @@ import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
 import one.empty3.library.core.nurbs.ExtrusionCurveCurve;
 import one.empty3.library.core.tribase.TubulaireN2;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class Human extends RepresentableConteneur {
 
@@ -151,6 +153,12 @@ public class Human extends RepresentableConteneur {
         }
         add(actualBody);
 
+        actualBody.getListRepresentable().forEach(new Consumer<Representable>() {
+            @Override
+            public void accept(Representable representable) {
+                representable.texture(new ColorTexture(Color.BLACK));
+            }
+        });
 
     }
 
@@ -250,7 +258,7 @@ public class Human extends RepresentableConteneur {
 
         moveCollection.addAll("humanWalks", 0.0, 3.0, teteBas, teteHaut, piedDroiteWalk0, piedDroiteWalk1, piedGaucheWalk0, piedGaucheWalk1, jbd1, jbd2, jbg1, jbg2,
                 jhd1, jhd2, jhg1, jhg2, bhg1, bhd2, bbg1, bbd1, bbd2, bbg2, bhd1, bhg2);
-        tete.getRepresentable().texture(new TextureMov("samples/mov/manu.mp4"));
+        tete.getRepresentable().texture(new ColorTexture(Color.BLACK));
 
         animation = new Animation(this.getClass(), moveCollection);
     }

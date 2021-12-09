@@ -94,14 +94,18 @@ public class Animation extends Representable {
                                             (Point3D) ((StructureMatrix<Object>) path.getDeclaredProperty()).getElem()
                                     );
                                 }
-
+                                Point3D moved = (Point3D) (move.getMoved());
                                 ((StructureMatrix<Object>) path.getDeclaredProperty()).setElem(plus);
+                                plus.texture(moved.texture());
                             }
                             if (path.getDeclaredProperty().getDim()==1) {
                                 if(move.getMoved() instanceof Point3D) {
                                     plus = ((Point3D) (move.getMoved())).plus( // MOVE TYPE
                                             (Point3D) ((StructureMatrix<Object>) path.getDeclaredProperty()).getElem(path.getIndexI())
                                     );
+                                    ((StructureMatrix<Object>) path.getDeclaredProperty()).setElem(plus);
+                                    Point3D moved = (Point3D) (move.getMoved());
+                                    plus.texture(moved.texture());
                                 }
 
                                 ((StructureMatrix<Object>) path.getDeclaredProperty()).setElem(plus, path.getIndexI());
@@ -111,6 +115,8 @@ public class Animation extends Representable {
                                     plus = ((Point3D) (move.getMoved())).plus( // MOVE TYPE
                                             (Point3D) ((StructureMatrix<Object>) path.getDeclaredProperty()).getElem(path.getIndexI(), path.getIndexJ())
                                     );
+                                    Point3D moved = (Point3D) (move.getMoved());
+                                    plus.texture(moved.texture());
                                 }
                                 ((StructureMatrix<Object>) path.getDeclaredProperty()).setElem(plus, path.getIndexI()
                                         , path.getIndexJ());
