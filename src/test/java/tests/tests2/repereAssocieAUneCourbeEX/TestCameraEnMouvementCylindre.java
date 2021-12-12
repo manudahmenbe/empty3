@@ -42,12 +42,12 @@ public class TestCameraEnMouvementCylindre extends TestObjet {
     @Override
     public void finit() throws EOFVideoException {
         cam.setT(frame / 25.0 / 8);
-        cam.setMatrice(cam.getMatrice().tild());
+        cam.setMatrice(cam.getMatrice().mult(-1));
     }
 
     @Override
     public void ginit() {
-        CourbeChoisie cc = new CourbeChoisie(200, 80, 70, 8);
+        CourbeChoisie cc = new CourbeChoisie(200, 80, 70, 20);
 
         cam = new CameraInPath(cc);
 

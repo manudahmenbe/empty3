@@ -37,7 +37,7 @@ public class CourbeChoisie extends ParametricCurve {
         double m = 1;
         Math.sqrt(L * L + l * l);
         m = Math.sqrt(1 - t * t);
-        return new Point3D(L * Math.cos(2 * Math.PI / n * t) / m, l * Math.sin(2 * Math.PI / n * t) / m, h * n * t);
+        return new Point3D(L * Math.cos(2 * Math.PI * n * t) / m, l * Math.sin(2 * Math.PI * n * t), h * t);
     }
 
     @Override

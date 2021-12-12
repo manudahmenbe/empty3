@@ -101,7 +101,10 @@ public class Circle extends ParametricCurve {
             vectX = vectY.prodVect(vectZ);
             success = (vectX.norme() > 0.8)
                     && (vectY.norme() > 0.8)
-                    && (vectZ.norme() > 0.8);
+                    && (vectZ.norme() > 0.8)
+                    && (vectX.prodVect(vectY).norme() > 0.8)
+                    && (vectY.prodVect(vectZ).norme() > 0.8)
+                    && (vectZ.prodVect(vectX).norme() > 0.8);
             if (success)
                 break;
             i++;

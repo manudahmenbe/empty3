@@ -61,13 +61,13 @@ public class ExtrusionCurveCurve extends ParametricSurface {
 
     }*/
     public Point3D calculerPoint3D(double u, double v) {
-//        Point3D T, NX, NY;
-//        T = path.getElem().tangente(v);
-//        // Plan normal pour le chemin
-//        Point3D normale = path.getElem().calculerNormale(v);
-//        T = T.norme1();
-//        NY = normale.norme1();
-//        NX = NY.prodVect(T).norme1();
+        Point3D T, NX, NY;
+        T = path.getElem().tangente(v);
+        // Plan normal pour le chemin
+        Point3D normale = path.getElem().calculerNormale(v);
+        T = T.norme1();
+        NY = normale.norme1();
+        NX = NY.prodVect(T).norme1();
         // CORRECTION ERREUR INATTENDUE.
         return base.getElem().calculerPoint3D(u).plus(
             path.getElem().calculerPoint3D(v));
