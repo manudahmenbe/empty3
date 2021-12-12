@@ -7,8 +7,10 @@ import one.empty3.library.*;
 import one.empty3.library.core.nurbs.CameraInPath;
 import one.empty3.library.core.nurbs.CourbeParametriquePolynomialeBezier;
 import one.empty3.library.core.nurbs.ExtrusionB1B1;
+import one.empty3.library.core.nurbs.ExtrusionCurveCurve;
 import one.empty3.library.core.testing.Resolution;
 import one.empty3.library.core.testing.TestObjet;
+import one.empty3.library.core.tribase.Extrusion;
 import one.empty3.library.core.tribase.TRICylindre;
 
 import java.awt.*;
@@ -21,7 +23,7 @@ public class TestCameraEnMouvementCylindre extends TestObjet {
 
     TextureMov textureMov;
     private CameraInPath cam;
-    private ExtrusionB1B1 e;
+    private ExtrusionCurveCurve e;
 
     public static void main(String[] args) {
         TestCameraEnMouvementCylindre t = new TestCameraEnMouvementCylindre();
@@ -40,28 +42,31 @@ public class TestCameraEnMouvementCylindre extends TestObjet {
     @Override
     public void finit() throws EOFVideoException {
         cam.setT(frame / 25.0 / 8);
-        //cam.setMatrice(cam.getMatrice().tild());
-        textureMov.nextFrame();
+        cam.setMatrice(cam.getMatrice().tild());
     }
 
     @Override
     public void ginit() {
-        CourbeChoisie cc = new CourbeChoisie(2, 0.8, 0.7, 8);
+        CourbeChoisie cc = new CourbeChoisie(200, 80, 70, 8);
 
         cam = new CameraInPath(cc);
 
-        e = new ExtrusionB1B1();
-        e.getPath().setElem(new CourbeParametriquePolynomialeBezier());
-        e.getBase().setElem(new Circle(new Axe(Point3D.Y.mult(-1), Point3D.Y), 10));
-        ((CourbeParametriquePolynomialeBezier)(e.getPath().getElem())).getCoefficients().add(Point3D.O0);
-        ((CourbeParametriquePolynomialeBezier)(e.getPath().getElem())).getCoefficients().add(Point3D.Z);
-        try {
-            textureMov = new TextureMov("C:\\Users\\manue\\Videos\\mes vidéos\\VID_20201019_132528.mp4");
-        } catch (Exception ex) {
-            textureMov.setTransparent(Color.BLACK);
-        }
-        e.texture(textureMov);
+        e = new ExtrusionCurveCurve();
 
+        e.getBase().setElem(new Circle(new Axe(Point3D.Z.mult(-100), Point3D.Z.mult(100)), 200));
+
+        e.getPath().setElem(new CourbeParametriquePolynomialeBezier());
+        ((CourbeParametriquePolynomialeBezier)(e.getPath().getElem())).getCoefficients().setElem(Point3D.Z.mult(-100), 0);
+        ((CourbeParametriquePolynomialeBezier)(e.getPath().getElem())).getCoefficients().setElem(Point3D.Z.mult(100), 1);
+
+        e.texture(new ColorTexture(Color.BLACK));
+
+        Cube cube = new Cube();
+
+        cube.getCote().setElem(100.);
+        cube.texture(new ColorTexture(Color.RED));
+
+        scene().add(cube);
         scene().add(e);
 
         scene().cameraActive(cam);

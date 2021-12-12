@@ -39,29 +39,29 @@ package one.empty3.library;
 
 public class Cube extends Representable implements TRIGenerable {
     private StructureMatrix<Double> cote = new StructureMatrix<>(0, Double.class);
-    private StructureMatrix<Point3D> position = new StructureMatrix(0, Point3D.class);
+    private StructureMatrix<Point3D> position0 = new StructureMatrix(0, Point3D.class);
     private TRIObject ts = new TRIObject();
     private static Double[][][] coordCube = new Double[][][]{
             {
                     {1.0, -1.0, -1.0},
                     {1.0, 1.0, -1.0},
-                    {1.0, 1.0, 1.0},},
+                    {1.0, 1.0, 1.0}},
             {
                     {1.0, -1.0, -1.0},
                     {1.0, -1.0, 1.0},
-                    {1.0, 1.0, 1.0},},
+                    {1.0, 1.0, 1.0}},
             {
                     {-1.0, -1.0, -1.0},
                     {-1.0, 1.0, -1.0},
-                    {-1.0, 1.0, 1.0},},
+                    {-1.0, 1.0, 1.0}},
             {{-1.0, -1.0, -1.0},
                     {-1.0, -1.0, 1.0},
-                    {-1.0, 1.0, 1.0},}, {{-1.0, 1.0, -1.0},
+                    {-1.0, 1.0, 1.0}}, {{-1.0, 1.0, -1.0},
             {1.0, 1.0, -1.0},
             {1.0, 1.0, 1.0}
     }, {{-1.0, 1.0, -1.0},
             {-1.0, 1.0, 1.0},
-            {1.0, 1.0, 1.0},}, {{-1.0, -1.0, -1.0},
+            {1.0, 1.0, 1.0}}, {{-1.0, -1.0, -1.0},
             {1.0, -1.0, -1.0},
             {1.0, -1.0, 1.0}}, {
             {-1.0, -1.0, -1.0},
@@ -84,12 +84,13 @@ public class Cube extends Representable implements TRIGenerable {
     };
 
     public Cube() {
+
         cote.setElem(1.0);
+        position0.setElem(new Point3D(0.0, 0.0, 0.0));
     }
 
     public Cube(ITexture t) {
         this();
-        position.setElem(new Point3D(0.0, 0.0, 0.0));
         texture(t);
     }
 
@@ -97,12 +98,12 @@ public class Cube extends Representable implements TRIGenerable {
 
         this();
         this.cote.setElem(cote);
-        this.position .setElem(position);
+        this.position0.setElem(position);
     }
 
     public Cube(double cote, Point3D position, ITexture t) {
         this();
-        this.position.setElem(position);
+        this.position0.setElem(position);
         this.cote.setElem(cote);
         texture(t);
     }
@@ -110,11 +111,11 @@ public class Cube extends Representable implements TRIGenerable {
     public TRIObject generate() {
         ts.clear();
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < coordCube.length; i++) {
             TRI t = new TRI(
-                    new Point3D(coordCube[i][0], texture()).mult(cote.getElem()/2).plus(position.getElem()),
-                    new Point3D(coordCube[i][1], texture()).mult(cote.getElem()/2).plus(position.getElem()),
-                    new Point3D(coordCube[i][2], texture()).mult(cote.getElem()/2).plus(position.getElem()),
+                    new Point3D(coordCube[i][0], texture()).mult(cote.getElem()/2).plus(position0.getElem()),
+                    new Point3D(coordCube[i][1], texture()).mult(cote.getElem()/2).plus(position0.getElem()),
+                    new Point3D(coordCube[i][2], texture()).mult(cote.getElem()/2).plus(position0.getElem()),
                     texture());
 
             ts.add(t);
@@ -133,11 +134,11 @@ public class Cube extends Representable implements TRIGenerable {
     }
 
     public StructureMatrix<Point3D> getPosition() {
-        return position;
+        return position0;
     }
 
     public void setPosition(StructureMatrix<Point3D> position) {
-        this.position = position;
+        this.position0 = position;
     }
 
     public Representable place(MODObjet aThis) {
