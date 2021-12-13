@@ -42,6 +42,7 @@ import java.util.ResourceBundle;
  * Created by manuel on 10-07-17.
  */
 public class PositionMobile {
+    private static final double SCALE_3D = 0.1;
     protected final ResourceBundle bundle;
     protected final PositionUpdate positionUpdate;
     protected final double positionIncrement;
@@ -128,7 +129,7 @@ public class PositionMobile {
     public Camera calcCameraMobile()
     {
         final Point3D camera = calcPosition();
-        final Point3D lookAt =  getTerrain().p3(positionMobile.plus(angleVisee));
+        final Point3D lookAt =  getTerrain().p3(calcDirectionPlot().norme1().mult(SCALE_3D));
         Point3D mult = camera.moins(lookAt).norme1().mult(-positionIncrement);
         return new Camera(camera.moins(mult), lookAt);
     }
