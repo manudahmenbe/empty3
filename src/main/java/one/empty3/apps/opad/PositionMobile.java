@@ -111,6 +111,12 @@ public class PositionMobile {
     {
         return getTerrain().p3(positionSol.plus(positionUpdate.getVecDir2D()));
     }
+    public Point3D calcDirectionPlot()
+    {
+        return getTerrain().p3(positionSol.plus(new Point3D(Math.cos(getAngleVisee().getZ() * Math.PI * 2),
+                Math.sin(getAngleVisee().getZ() * Math.PI * 2),
+                0.0).mult(1).norme1()));
+    }
 
     public Point3D calcPosition2D() {
         return getPositionSol();
@@ -122,7 +128,7 @@ public class PositionMobile {
     public Camera calcCameraMobile()
     {
         final Point3D camera = calcPosition();
-        final Point3D lookAt = camera.plus(angleVisee);
+        final Point3D lookAt =  getTerrain().p3(positionMobile.plus(angleVisee));
         Point3D mult = camera.moins(lookAt).norme1().mult(-positionIncrement);
         return new Camera(camera.moins(mult), lookAt);
     }
