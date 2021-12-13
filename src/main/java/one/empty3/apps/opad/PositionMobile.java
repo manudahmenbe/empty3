@@ -112,11 +112,31 @@ public class PositionMobile {
     {
         return getTerrain().p3(positionSol.plus(positionUpdate.getVecDir2D()));
     }
-    public Point3D calcDirectionPlot()
+    public Point3D calcDirectionPlotY()
     {
-        return getTerrain().p3(positionSol.plus(new Point3D(Math.cos(getAngleVisee().getZ() * Math.PI * 2),
-                Math.sin(getAngleVisee().getZ() * Math.PI * 2),
-                0.0).mult(1).norme1()));
+        return getTerrain().p3(
+                positionSol.plus(
+                        new Point3D(
+                                Math.cos(getAngleVisee().getZ() * Math.PI * 2),
+                                    Math.sin(getAngleVisee().getZ() * Math.PI * 2),
+                                    0.0
+                        ).norme1().mult(1)));
+    }
+    public Point3D calcDirectionPlotX()
+    {
+        return getTerrain().p3(positionSol.plus(
+                new Point3D(
+                        Math.cos(getAngleVisee().getZ() * Math.PI * 2 - Math.PI/2),
+                            Math.sin(getAngleVisee().getZ() * Math.PI * 2 - Math.PI/2),
+                            0.0
+                ).norme1().mult(1)));
+    }
+    public Point3D calcDirectionPlotZ()
+    {
+        return getTerrain().p3(positionSol.plus(
+                new Point3D(
+                        0., 0., .01
+                ))).norme1().mult(1);
     }
 
     public Point3D calcPosition2D() {
@@ -129,22 +149,17 @@ public class PositionMobile {
     public Camera calcCameraMobile()
     {
         final Point3D camera = calcPosition();
-        final Point3D lookAt =  getTerrain().p3(calcDirectionPlot().norme1().mult(SCALE_3D));
-        Point3D mult = camera.moins(lookAt).norme1().mult(-positionIncrement);
-        return new Camera(camera.moins(mult), lookAt);
+        final Point3D lookAt =  getTerrain().p3(calcDirectionPlotY().norme1().mult(SCALE_3D));
+        Point3D mult = lookAt.moins(camera).norme1().mult(-positionIncrement);
+        return new Camera(camera.moins(mult), lookAt, calcDirectionPlotZ());
     }
 
     public Camera calcCamera() {
         final Point3D camera = calcPosition();
         final Point3D lookAt = calcDirection();
-        Point3D mult = camera.moins(lookAt).norme1().mult(-positionIncrement);
-        return new Camera(camera.moins(mult), lookAt);
+        Point3D mult = lookAt.moins(camera).norme1().mult(-positionIncrement);
+        return new Camera(camera.moins(mult), lookAt, calcDirectionPlotZ());
     }
-
-    public void calculerVitesseEcoulement()
-    {
-    }
-
 
     public Point3D getPositionMobile() {
         return positionMobile;

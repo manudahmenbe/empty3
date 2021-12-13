@@ -180,8 +180,9 @@ public class JoglDrawer extends Drawer implements GLEventListener {
             camera = mover.getPositionMobile().calcCamera();
 
         Point3D pos = camera.getEye();
-        Point3D dir = camera.getLookat().moins(pos);
+        Point3D dir = camera.getLookat().moins(pos).norme1();
         diff = dir.moins(pos).norme1();
+        Point3D up = camera.getVerticale().getElem();
 
         /*
         if(del0!=null) {
@@ -201,7 +202,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         Point3D vert2 = vertical.prodVect(dir).mult(-1);
         glu.gluLookAt(pos.get(0), pos.get(1), pos.get(2),
                         dir.get(0), dir.get(1), dir.get(2),
-                vert2.prodVect(dir).get(0), vert2.get(1), vert2.get(2));
+                up.get(0), up.get(1), up.get(2));
         /*if(circuit==null)
          circuit = mover.getCircuit();
          if(circuit!=null)
