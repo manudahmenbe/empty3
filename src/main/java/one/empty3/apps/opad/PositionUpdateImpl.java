@@ -160,10 +160,9 @@ public class PositionUpdateImpl implements PositionUpdate, Runnable, ActionListe
     }
 
     public Point3D getVecDir2D() {
-        Point3D dir2D = new Point3D(Math.cos(positionMobile.getAngleVisee().getZ() * Math.PI * 2),
+        return new Point3D(Math.cos(positionMobile.getAngleVisee().getZ() * Math.PI * 2),
                 Math.sin(positionMobile.getAngleVisee().getZ() * Math.PI * 2),
                 0.0).mult(directionNorme * 1).norme1();
-        return dir2D;
     }
 
     @Override

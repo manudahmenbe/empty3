@@ -76,7 +76,7 @@ public final class DarkFortressGUI extends JFrame {
             Terrain t = sol.getConstructor().newInstance();
             mover = new PositionUpdateImpl(t, player);
             new Thread(mover).start();
-            gameKeyListener= new DarkFortressGUIKeyListener(mover);
+            gameKeyListener = new DarkFortressGUIKeyListener(mover);
             plotter3D = new Plotter3D(mover);
             mover.setPlotter3D(plotter3D);
             new Thread(mover).start();
@@ -99,7 +99,6 @@ public final class DarkFortressGUI extends JFrame {
             }
 
 
-
             drawer.setLogic(mover);
             //drawer.setPlotter3D(plotter3D);
             drawer.setToggleMenu(new ToggleMenu());
@@ -108,22 +107,20 @@ public final class DarkFortressGUI extends JFrame {
             //addKeyListener(plotter3D);
 
 
-            if(drawer instanceof JoglDrawer) {
+            if (drawer instanceof JoglDrawer) {
                 ((JoglDrawer) drawer).getGlcanvas().display();
                 ((JoglDrawer) drawer).getGlcanvas().getAnimator().start();
                 mover.setMain(this);
             }
 
             setSize(640, 480);
-
             addKeyListener(gameKeyListener);
-           //addKeyListener(plotter3D);
-
+            addKeyListener(plotter3D);
 
 
             setVisible(true);
 
-        } catch(InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
             Logger.getLogger(DarkFortressGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -131,7 +128,7 @@ public final class DarkFortressGUI extends JFrame {
 
 
     public KeyListener getGameKeyListener() {
-        return ( KeyListener) gameKeyListener;
+        return (KeyListener) gameKeyListener;
     }
 
     public void setGame(Game game) {

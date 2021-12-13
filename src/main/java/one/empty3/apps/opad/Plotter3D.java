@@ -68,6 +68,7 @@ public class Plotter3D implements KeyListener, Runnable {
     private boolean haut = false;
     private boolean bas = false;
     private long timeEllapsed = 0;
+    private boolean activeShift = false;
 
     public Plotter3D(PositionUpdate positionUpdate) {
 
@@ -125,9 +126,7 @@ public class Plotter3D implements KeyListener, Runnable {
         return positionUpdate.getPositionMobile().getPositionSol().to2DwoZ();
     }
 
-    public boolean plot(Point3D position, Point3D deplacement, Cube plottee)
-
-    {
+    public boolean plot(Point3D position, Point3D deplacement, Cube plottee) {
         Point3D point3D = getTerrain().hauteur(position.getX() + deplacement.getX(), position.getY() + deplacement.getY(), position.getZ());
         plottee.setPosition(point3D);
         getScene().add(plottee);
@@ -146,6 +145,10 @@ public class Plotter3D implements KeyListener, Runnable {
             active = true;
             distanceCount = new DistanceCount();
         }
+        if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
+            activeShift = true;
+            distanceCount = new DistanceCount();
+        }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             if (isActive()) {
 
@@ -157,17 +160,17 @@ public class Plotter3D implements KeyListener, Runnable {
                     distanceCount.dir.plus(getTerrain().calcCposition(getPosition().getX(), getPosition().getY()))
                     , new Cube(0.1, Point3D.O0, new TextureCol(Color.WHITE)));
         }
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
+        if (e.getKeyCode() == KeyEvent.VK_Z) {
             release_up = false;
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+        if (e.getKeyCode() == KeyEvent.VK_S) {
             release_down = false;
         }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        if (e.getKeyCode() == KeyEvent.VK_Q) {
             release_left = false;
         }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        if (e.getKeyCode() == KeyEvent.VK_D) {
             release_right = false;
         }
     }
@@ -178,20 +181,24 @@ public class Plotter3D implements KeyListener, Runnable {
             active = false;
             distanceCount = new DistanceCount();
         }
+        if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
+            activeShift = false;
+            distanceCount = new DistanceCount();
+        }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             distanceCount.countRelease();
         }
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
+        if (e.getKeyCode() == KeyEvent.VK_Z) {
             release_up = true;
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+        if (e.getKeyCode() == KeyEvent.VK_S) {
             release_down = true;
         }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        if (e.getKeyCode() == KeyEvent.VK_Q) {
             release_left = true;
         }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        if (e.getKeyCode() == KeyEvent.VK_D) {
             release_right = true;
         }
     }
@@ -274,7 +281,7 @@ public class Plotter3D implements KeyListener, Runnable {
                     = new Point3D(
                     Math.sin(angle) * Math.cos(angleY),
                     Math.cos(angle) * Math.cos(angleY),
-                    dir.getZ());
+                    dir.getZ()+angle);
             positionUpdate.getPositionMobile().setAngleVueMobile(dir);
             System.out.println("RG");
         }
@@ -285,7 +292,7 @@ public class Plotter3D implements KeyListener, Runnable {
                     = new Point3D(
                     Math.sin(angle) * Math.cos(angleY),
                     Math.cos(angle) * Math.cos(angleY),
-                    dir.getZ());
+                    dir.getZ()+angle);
             positionUpdate.getPositionMobile().setAngleVueMobile(dir);
             System.out.println("RD");
 
@@ -299,17 +306,18 @@ public class Plotter3D implements KeyListener, Runnable {
                     Math.cos(angle) * Math.cos(angleY),
                     Math.sin(angleY));
             positionUpdate.getPositionMobile().setAngleVueMobile(dir);
+            System.out.println("RH");
         }
 
         public void rotationBas(long timeMillis) {
             angleY += Math.PI * 2 * rotationYParNano * timeMillis;
-            dir
-                    = new Point3D(
+            dir = new Point3D(
                     Math.sin(angle) * Math.cos(angleY),
                     Math.cos(angle) * Math.cos(angleY),
                     Math.sin(angleY));
 
             positionUpdate.getPositionMobile().setAngleVueMobile(dir);
+            System.out.println("RB");
         }
 
         public Point2D getDirY() {
