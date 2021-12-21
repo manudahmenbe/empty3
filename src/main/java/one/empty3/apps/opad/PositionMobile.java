@@ -126,8 +126,8 @@ public class PositionMobile {
     {
         return getTerrain().p3(positionSol.plus(
                 new Point3D(
-                        Math.cos(getAngleVisee().getZ() * Math.PI * 2 - Math.PI/2),
-                            Math.sin(getAngleVisee().getZ() * Math.PI * 2 - Math.PI/2),
+                        Math.cos(getAngleVisee().getZ() * Math.PI * 2 + Math.PI/2),
+                            Math.sin(getAngleVisee().getZ() * Math.PI * 2 + Math.PI/2),
                             0.0
                 ).norme1().mult(1)));
     }

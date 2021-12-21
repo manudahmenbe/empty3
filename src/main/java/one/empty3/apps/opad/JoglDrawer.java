@@ -720,7 +720,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
         gl.glLoadIdentity();
 
 
-        glu.gluPerspective(60f, h, 0.01f, 200f);
+        glu.gluPerspective(90f,(float) width / (float) height, 0.001f, 10f);
 
         gl.glMatrixMode(GL2.GL_MODELVIEW);
 
