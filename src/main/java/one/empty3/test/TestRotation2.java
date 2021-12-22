@@ -94,7 +94,7 @@
  *     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package one.empty3.growth.test;/*
+package one.empty3.test;/*
  * This file is part of Plants-Growth-2
  *     Foobar is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by

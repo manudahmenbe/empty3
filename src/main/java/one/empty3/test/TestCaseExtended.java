@@ -158,7 +158,7 @@
  *     along with Plants-Growth-2.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package one.empty3.growth.test;
+package one.empty3.test;
 
 import junit.framework.TestCase;
 import one.empty3.library.Point3D;
@@ -190,7 +190,7 @@ public class TestCaseExtended extends TestCase {
     }
 
     protected void assertEqualsNaNPoint3D(Point3D x) {
-        assertEquals(x.get(0) + x.get(1) + x.get(2), Double.NaN);
+        TestCase.assertEquals(x.get(0) + x.get(1) + x.get(2), Double.NaN);
     }
 
     private int loadSaveNewSerId() {
@@ -252,7 +252,7 @@ public class TestCaseExtended extends TestCase {
 
     protected void assertEqualsPoint3D(Point3D x, Point3D y, double delta) {
         for (int i = 0; i < 3; i++) {
-            assertEquals(y.get(i), x.get(i), delta);
+            TestCase.assertEquals(y.get(i), x.get(i), delta);
         }
     }
 
@@ -281,6 +281,6 @@ public class TestCaseExtended extends TestCase {
     }
 
     public void testVoid() {
-        assertTrue(((true == true) != false) | false);
+        TestCase.assertTrue(((true == true) != false) | false);
     }
 }

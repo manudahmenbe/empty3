@@ -94,7 +94,7 @@
  *     along with Plants-Growth-2.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package one.empty3.growth.test;
+package one.empty3.test;
 
 import one.empty3.growth.graphics.Rotation2;
 import one.empty3.library.Point3D;

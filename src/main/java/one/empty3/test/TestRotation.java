@@ -126,7 +126,7 @@
  *     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package one.empty3.growth.test;/*
+package one.empty3.test;/*
  * This file is part of Plants-Growth-2
  *     Foobar is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -286,7 +286,7 @@ public class TestRotation extends TestCase {
 
     public void assertEqualsPoint3D(Point3D x, Point3D y, double delta) {
         for (int i = 0; i < 3; i++) {
-            assertEquals(y.get(i), x.get(i), delta);
+            TestCase.assertEquals(y.get(i), x.get(i), delta);
         }
     }
 

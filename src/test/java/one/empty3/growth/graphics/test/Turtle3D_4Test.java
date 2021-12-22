@@ -64,7 +64,7 @@
 
 package one.empty3.growth.graphics.test;
 
-import one.empty3.growth.test.TestCaseExtended;
+import one.empty3.test.TestCaseExtended;
 import one.empty3.growth.graphics.Turtle3D_4;
 import one.empty3.library.*;
 

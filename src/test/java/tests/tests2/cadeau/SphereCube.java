@@ -9,9 +9,7 @@
 
 package tests.tests2.cadeau;
 
-import one.empty3.library.Cube;
-import one.empty3.library.Point3D;
-import one.empty3.library.TextureCol;
+import one.empty3.library.*;
 import one.empty3.library.core.testing.TestObjetSub;
 import one.empty3.library.core.tribase.TRISphere;
 
@@ -33,6 +31,8 @@ public class SphereCube extends TestObjetSub {
 
         sc.setMaxFrames(300);
 
+        sc.setPublish(true);
+
         sc.loop(true);
 
         new Thread(sc).start();
@@ -53,12 +53,15 @@ public class SphereCube extends TestObjetSub {
 
         s = new TRISphere(Point3D.X.mult(t0), d / 10);
 
-        s.texture(new TextureCol(Color.YELLOW));
+        s.texture(new ColorTexture(Color.GREEN));
 
         scene().add(c);
         scene().add(s);
 
+        scene().texture(new ColorTexture(Color.BLACK));
+        z().texture(new ColorTexture(Color.BLACK));
 
+        scene().cameraActive(new Camera());
     }
 
     @Override

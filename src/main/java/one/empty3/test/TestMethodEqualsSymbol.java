@@ -94,7 +94,7 @@
  *     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package one.empty3.growth.test;
+package one.empty3.test;
 
 import junit.framework.TestCase;
 import one.empty3.growth.Symbol;
@@ -105,24 +105,24 @@ public class TestMethodEqualsSymbol extends TestCase {
         SymbolSequence a = new SymbolSequence();
         SymbolSequence b = new SymbolSequence();
 
-        assertTrue(a.equals(b));
+        TestCase.assertTrue(a.equals(b));
     }
 
     public void testEmpty2() {
-        assertFalse(new SymbolSequence().equals(new SymbolSequence(new Symbol('a'))));
+        TestCase.assertFalse(new SymbolSequence().equals(new SymbolSequence(new Symbol('a'))));
     }
 
     public void test1symbolDiff() {
         SymbolSequence a = new SymbolSequence(new Symbol('a'));
         SymbolSequence b = new SymbolSequence(new Symbol('b'));
 
-        assertFalse(a.equals(b));
+        TestCase.assertFalse(a.equals(b));
     }
 
     public void test1symbolId() {
         SymbolSequence a = new SymbolSequence(new Symbol('a'));
         SymbolSequence b = new SymbolSequence(new Symbol('a'));
 
-        assertTrue(a.equals(b));
+        TestCase.assertTrue(a.equals(b));
     }
 }

@@ -126,7 +126,7 @@
  *     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package one.empty3.growth.test;
+package one.empty3.test;
 
 import junit.framework.TestCase;
 import one.empty3.growth.LSystem;
