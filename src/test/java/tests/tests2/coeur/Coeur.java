@@ -3,7 +3,7 @@
 
  Microsoft Public Licence
 
- author Manuel Dahmen <ibiiztera.it@gmail.com>
+ author Manuel Dahmen <manuel.dahmen@gmx.com>
 
  Creation time 25-oct.-2014
  ***/
@@ -15,7 +15,7 @@ import one.empty3.library.Point3D;
 import one.empty3.library.core.tribase.TRIObjetGenerateurAbstract;
 
 /*__
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class Coeur extends TRIObjetGenerateurAbstract {
     private double b;

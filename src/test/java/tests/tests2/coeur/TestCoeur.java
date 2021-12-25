@@ -2,7 +2,7 @@
  * *
  * Global license : * GNU GPL v3
  * <p>
- * author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * author Manuel Dahmen <manuel.dahmen@gmx.com>
  * <p>
  * Creation time 25-oct.-2014 SURFACE D'ÉLASTICITÉ DE FRESNEL Fresnel's
  * elasticity surface, Fresnelsche Elastizitätfläche
@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 /*__
  *
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class TestCoeur extends TestObjetSub {
     private tests.tests2.coeur.Coeur coeur;

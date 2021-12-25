@@ -3,7 +3,7 @@
 
  CC Attribution
 
- author Manuel Dahmen <ibiiztera.it@gmail.com>
+ author Manuel Dahmen <manuel.dahmen@gmx.com>
  ***/
 
 
@@ -15,7 +15,7 @@ import one.empty3.library.RepresentableConteneur;
 import one.empty3.library.core.testing.TestObjetSub;
 
 /*__
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class TestFeu extends TestObjetSub {
 

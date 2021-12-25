@@ -3,7 +3,7 @@
 
  CC Attribution
 
- author Manuel Dahmen <ibiiztera.it@gmail.com>
+ author Manuel Dahmen <manuel.dahmen@gmx.com>
  ***/
 
 
@@ -20,7 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /*__
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class TestBezierTextImage extends TestObjetSub {
     private final Point3D[][] coeff = new Point3D[][]{

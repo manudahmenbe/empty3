@@ -3,7 +3,7 @@
 
  CC Attribution
 
- author Manuel Dahmen <ibiiztera.it@gmail.com>
+ author Manuel Dahmen <manuel.dahmen@gmx.com>
  ***/
 
 
@@ -17,7 +17,7 @@ import one.empty3.library.TextureCol;
 import java.awt.*;
 
 /*__
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 class Axes extends RepresentableConteneur {
     public Axes(TextureCol a1, TextureCol a2, TextureCol a3) {

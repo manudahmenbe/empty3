@@ -3,14 +3,14 @@
 
  CC Attribution
 
- author Manuel Dahmen <ibiiztera.it@gmail.com>
+ author Manuel Dahmen <manuel.dahmen@gmx.com>
  ***/
 
 
 package tests.tests2.library;
 
 /*__
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class TestThreads {
 

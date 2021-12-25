@@ -2,7 +2,7 @@
  * *
  * Global license : * CC Attribution
  * <p>
- * author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * author Manuel Dahmen <manuel.dahmen@gmx.com>
  * <p>
  * *
  */
@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 /*__
  *
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class TextureImgTache extends TextureImg {
 

@@ -2,7 +2,7 @@
  * *
  * Global license : * GNU GPL v3
  * <p>
- * author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * author Manuel Dahmen <manuel.dahmen@gmx.com>
  * <p>
  * Creation time 25-oct.-2014 SURFACE D'ÉLASTICITÉ DE FRESNEL Fresnel's
  * elasticity surface, Fresnelsche Elastizitätfläche
@@ -15,7 +15,7 @@ import one.empty3.library.core.nurbs.ParametricSurface;
 
 /*__
  *
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class SurfaceElasticite extends ParametricSurface {
     private double a;

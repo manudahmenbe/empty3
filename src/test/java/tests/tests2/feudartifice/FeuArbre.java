@@ -2,7 +2,7 @@
  * *
  * Global license : * CC Attribution
  * <p>
- * author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * author Manuel Dahmen <manuel.dahmen@gmx.com>
  * <p>
  * *
  */
@@ -17,7 +17,7 @@ import java.util.Iterator;
 
 /*__
  *
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class FeuArbre {
 

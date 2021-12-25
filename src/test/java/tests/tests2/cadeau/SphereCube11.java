@@ -3,7 +3,7 @@
 
  Microsoft Public Licence
 
- author Manuel Dahmen <ibiiztera.it@gmail.com>
+ author Manuel Dahmen <manuel.dahmen@gmx.com>
  ***/
 
 
@@ -19,7 +19,7 @@ import one.empty3.library.core.tribase.TRISphere;
 import java.awt.*;
 
 /*__
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen#gmx>
  */
 public class SphereCube11 extends TestObjetSub {
     private final double t0 = -1;
@@ -82,7 +82,6 @@ public class SphereCube11 extends TestObjetSub {
 
     @Override
     public void finit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

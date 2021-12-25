@@ -14,7 +14,7 @@ import java.awt.*;
  * Global license :  *
  * Microsoft Public Licence
  * <p>
- * author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * author Manuel Dahmen <manuel.dahmen@gmx.com>
  * <p>
  * Creation time 02-nov.-2014
  * <p>
@@ -23,7 +23,7 @@ import java.awt.*;
 
 /*__
  *
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class TestAxesAnim extends TestObjetSub {
     private Camera camera;

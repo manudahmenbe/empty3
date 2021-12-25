@@ -3,7 +3,7 @@
 
  Microsoft Public Licence
 
- author Manuel Dahmen <ibiiztera.it@gmail.com>
+ author Manuel Dahmen <manuel.dahmen@gmx.com>
  ***/
 
 
@@ -19,7 +19,7 @@ import one.empty3.library.core.tribase.TRISphere;
 import java.awt.*;
 
 /*__
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class SphereCube1 extends TestObjetSub {
     private final double t0 = -1;

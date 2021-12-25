@@ -3,7 +3,7 @@
 
  Microsoft Public Licence
 
- author Manuel Dahmen <ibiiztera.it@gmail.com>
+ author Manuel Dahmen <manuel.dahmen@gmx.com>
  ***/
 
 
@@ -16,14 +16,14 @@ import one.empty3.library.core.tribase.TRISphere;
 import java.awt.*;
 
 /*__
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class SphereCube extends TestObjetSub {
     private final double t0 = -1;
     private final double t1 = 1;
     double d = 90;
-    private TRISphere s;
-
+    private Sphere s;
+    private Cube c;
     public static void main(String[] args) {
 
 
@@ -43,15 +43,13 @@ public class SphereCube extends TestObjetSub {
     @Override
     public void ginit() {
 
-        Cube c;
-
         //c.texture(new TextureCol(Color.RED));
         c = new Cube(d / 10, Point3D.O0);
 
 
         c.texture(new TextureCol(Color.BLUE));
 
-        s = new TRISphere(Point3D.X.mult(t0), d / 10);
+        s = new Sphere(Point3D.X.mult(t0), d / 10);
 
         s.texture(new ColorTexture(Color.GREEN));
 
@@ -71,13 +69,16 @@ public class SphereCube extends TestObjetSub {
 
         double TT;
         TT = t0 + (t1 - t0) * pc;
-
-        s.setCentre(Point3D.X.mult(TT * d));
+        s.getCircle().getAxis().getElem().setCenter(Point3D.X.mult(TT * d));
 
     }
 
     @Override
     public void finit() {
+        Point3D mult = c.getPosition().getElem().plus(s.getCircle().getCenter()).mult(0.5).prodVect(Point3D.Y);
+        Point3D zCam = Point3D.Y.mult(mult.norme());
+        scene().cameraActive().setEye(zCam);
+        scene().cameraActive().setLookat(mult);
     }
 
 }

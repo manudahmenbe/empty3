@@ -3,7 +3,7 @@
 
  Microsoft Public Licence
 
- author Manuel Dahmen <ibiiztera.it@gmail.com>
+ author Manuel Dahmen <manuel.dahmen@gmx.com>
 
  Creation time 05-nov.-2014
  ***/
@@ -24,7 +24,7 @@ import java.awt.*;
  * Representable.setSelectionZoneId(long szid);
  * ZBuffer.getSelectionZoneId(int coordArr, int y);
  *
- * @author Manuel Dahmen <ibiiztera.it@gmail.com>
+ * @author Manuel Dahmen <manuel.dahmen@gmx.com>
  */
 public class TestGetObjectAt extends TestObjetSub {
 
