@@ -22,9 +22,8 @@ public class SphereCube12 extends TestObjetSub {
     private final double t0 = -1;
     private final double t1 = 1;
     double d = 90;
-    private TRISphere s;
+    private Sphere s;
 
-    private double F = 3;
     private Camera cam;
 
     public static void main(String[] args) {
@@ -52,14 +51,15 @@ public class SphereCube12 extends TestObjetSub {
 
         c.texture(new TextureCol(Color.BLUE));
 
-        s = new TRISphere(Point3D.X.mult(t0), d / 10);
+        s = new Sphere(Point3D.X.mult(t0), d / 10);
 
         s.texture(new TextureCol(Color.YELLOW));
 
         scene().add(c);
         scene().add(s);
 
-        cam = new Camera(s.getCentre().mult(F), Point3D.O0);
+        double f = 3;
+        cam = new Camera(s.getCircle().getCenter().mult(f), Point3D.O0);
 
         scene().cameraActive(cam);
 
@@ -67,20 +67,18 @@ public class SphereCube12 extends TestObjetSub {
     }
 
     @Override
-    public void testScene() throws Exception {
+    public void finit() {
 
         double pc = 1.0 * frame() / getMaxFrames();
 
         double TT;
         TT = t0 + (t1 - t0) * pc;
 
-        s.setCentre(Point3D.X.mult(TT * d));
+        s.getCircle().setCenter(Point3D.X.mult(TT * d));
 
-        cam.setEye(s.getCentre().plus(Point3D.Z.mult(d / 3)).plus(Point3D.X.mult(-t0 - d / 5)));
-    }
-
-    @Override
-    public void finit() {
+        cam.setLookat(s.getCircle().getCenter());
+        cam.setEye(Point3D.Z.mult(d / 3));
+        cam.calculerMatrice(Point3D.Y);
     }
 
 }

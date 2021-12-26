@@ -129,7 +129,7 @@ public abstract class TestObjet implements Test, Runnable {
     private ECBufferedImage ri;
     private String filename = "frame";
     private String fileExtension = "JPG";
-    private boolean publish = false;
+    private boolean publish = true;
     private boolean isometrique = false;
     private boolean loop = true;
     private int maxFrames = 5000;
