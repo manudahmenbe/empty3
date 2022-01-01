@@ -43,7 +43,14 @@ public class Lines extends ParametricCurve {
         this.path = path;
     }
 
-
+  remainder(double t, double n) {
+      double sign = Math.sign(t*n);
+      if(sign! =0) {
+          double N = Math. abs(n) ;
+          double T = Math. abs(t);
+           T/N
+         } 
+  } 
     @Override
     public Point3D calculerPoint3D(double t) {
         try {
@@ -52,7 +59,7 @@ public class Lines extends ParametricCurve {
             if (path.size() >= 2) {
                 LineSegment segmentDroite = new LineSegment(path.get(segm), path.get(segm + 1));
 
-                double v = Math.IEEEremainder(t * path.size(), segm);
+                double v = remainder(t * path.size(), segm);
 
                 return segmentDroite.calculerPoint3D(v);
             } else
