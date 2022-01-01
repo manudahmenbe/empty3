@@ -48,8 +48,12 @@ public class Lines extends ParametricCurve {
       if(sign! =0) {
           double N = Math. abs(n) ;
           double T = Math. abs(t);
-           T/N
+          double r =((int)) T*/((int) N) 
+              * N;
+          
+               return r;
          } 
+     return Double.Nan;
   } 
     @Override
     public Point3D calculerPoint3D(double t) {
