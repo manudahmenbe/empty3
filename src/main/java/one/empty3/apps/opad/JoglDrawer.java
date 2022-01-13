@@ -197,10 +197,15 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 
         //Point3D normale = /*dir.prodVect(pos);*/getTerrain()
         //        .calcNormale(pos.getX(), pos.getY()).norme1();
-        Point3D posCam = pos.moins(dir.norme1());
+        Point3D posCam = pos;//.moins(dir.norme1());
         Point3D vertical = camera.getVerticale().getElem().norme1();
         Point3D vert2 = vertical.prodVect(dir).mult(-1);
-        glu.gluLookAt(pos.get(0), pos.get(1), pos.get(2),
+        Point3D positionCamRear = posCam
+                .plus(camera.getLookat().moins(posCam).mult(-0.05));
+
+        posCam = positionCamRear;
+
+        glu.gluLookAt(posCam.get(0), posCam.get(1), posCam.get(2),
                         dir.get(0), dir.get(1), dir.get(2),
                 up.get(0), up.get(1), up.get(2));
         /*if(circuit==null)
@@ -208,6 +213,7 @@ public class JoglDrawer extends Drawer implements GLEventListener {
          if(circuit!=null)
          draw((TRIConteneur)circuit, glu, gl);
         */
+
         if (toggleMenu == null)
             return;
         if (toggleMenu.isDisplayBonus()) {
@@ -244,6 +250,9 @@ public class JoglDrawer extends Drawer implements GLEventListener {
             displayArcs(glu, gl);
         }
         if (toggleMenu.isDisplayCharacter()) {
+            Cube object = vaisseau.getObject();
+            object.setPosition(mover.calcCposition());
+            draw(object, glu, gl);
             if (getPlotter3D()!=null&&getPlotter3D().isActive()) {
                 CourbeParametriquePolynomiale courbeParametriquePolynomiale = null;
 //                TubulaireN2<CourbeParametriquePolynomiale> segmentDroiteTubulaireN2 = new TubulaireN2<>();
@@ -253,9 +262,6 @@ public class JoglDrawer extends Drawer implements GLEventListener {
 //                segmentDroiteTubulaireN2.generate();
 //                draw(courbeParametriquePolynomiale, glu, gl);
             } else {
-                Cube object = vaisseau.getObject();
-                object.setPosition(mover.calcCposition());
-                draw(object, glu, gl);
             }
         }
 

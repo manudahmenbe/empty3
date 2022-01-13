@@ -43,17 +43,15 @@ public class Lines extends ParametricCurve {
         this.path = path;
     }
 
-  remainder(double t, double n) {
-      double sign = Math.sign(t*n);
-      if(sign! =0) {
+  public double remainder(double t, double n) {
+      double sign = Math.signum(t*n);
+      if(sign!=0) {
           double N = Math. abs(n) ;
           double T = Math. abs(t);
-          double r =T/N-((int)) T*N) /((int) N) ;
-              
-          
+          double r = (T/N-(int)( T*N)) /((int) N) ;
                return r;
          } 
-     return n==0?Double.Nan:0;
+     return n==0?Double.NaN:0;
   } 
     @Override
     public Point3D calculerPoint3D(double t) {
