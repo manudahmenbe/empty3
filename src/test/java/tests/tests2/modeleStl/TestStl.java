@@ -44,13 +44,14 @@ public class TestStl extends TestObjetSub {
             TRI t = (TRI)((RepresentableConteneur) scene().getObjets().getElem(0)).getListRepresentable().get(i);
             t.texture(colorTexture0);
         }
+        //System.out.println(((RepresentableConteneur) scene().getObjets().getElem(0)).getListRepresentable().size());
 
 
         Sphere s = new Sphere(new Axe(new Point3D(0., -1., 0.),
                 new Point3D(0., 1., 0.)), 10.0);
         s.texture(new ColorTexture(Color.BLACK));
 
-        scene().add(s);
+        //scene().add(s);
 
         scene().getObjets().getElem(0).texture(new ColorTexture(Color.BLACK));
 

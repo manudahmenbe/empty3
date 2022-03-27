@@ -234,8 +234,8 @@ public class Camera extends CameraBox {
 
             double scale = (1.0 / (x3d.getZ()));
             return new Point(
-                    (int) (   x3d.getX() * scale * la + la / 2),
-                    (int) ( - x3d.getY() *scale * ha + ha / 2));
+                    (int) (   x3d.getX() * scale /* la*/ + la / 2),
+                    (int) ( - x3d.getY() *scale /* ha*/ + ha / 2));
         }
         return null;
 
