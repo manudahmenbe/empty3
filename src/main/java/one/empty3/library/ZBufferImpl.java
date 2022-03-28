@@ -148,10 +148,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
         r.texture().timeNext();
 
-        Iterator<Representable> it;
         if (r instanceof Scene) {
             Scene scene = (Scene) r;
-            //this.setTexture(scene.texture() == null ? this.texture() : scene.texture());
             scene.getObjets().getData1d().forEach(representable -> draw(representable));
             return;
         } else if (r instanceof RepresentableConteneur) {
@@ -890,12 +888,13 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         }
         double iteres1 = 1.0 / (maxDistance(p1, p2, p3) + 1) / 3;
         for (double a = 0; a < 1.0; a += iteres1) {
-            Point3D p3d = pp1.plus(pp1.mult(-1d).plus(pp2).mult(a));
+            Point3D p11 = pp1.plus(pp1.mult(-1d).plus(pp2).mult(a));
             double iteres2 = 1.0 / maxDistance(p1, p2, p3) / 3;
             for (double b = 0; b < 1.0; b += iteres2) {
-                Point3D p = p3d.plus(p3d.mult(-1d).plus(pp3).mult(b));
-                p.setNormale(n);
-                ime.testDeep(p, c.getColorAt(a, b));
+                Point3D p21 = p11.plus(p11.mult(-1d).plus(pp3).mult(b));
+                p21.setNormale(n);
+                p21.texture(c);
+                ime.testDeep(p21);
             }
         }
     }

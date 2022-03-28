@@ -24,6 +24,8 @@ public class TestStl extends TestObjetSub {
         super.ginit();
 
 
+        z().setDisplayType(ZBufferImpl.DISPLAY_ALL);
+
         StlFile file = new StlFile();
         Scene load = new Scene();
         try {

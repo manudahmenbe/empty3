@@ -78,13 +78,12 @@ public class Scene extends Representable implements Serializable {
 
     public boolean add(Representable add) {
         objets.getData1d().add(add);
-        return true;
+        return objets.getData1d().add(add);
     }
 
     public boolean add(Representable add, ZBuffer zBuffer) {
         add.setPainter(new Painter(zBuffer, this));
-        objets.getData1d().add(add);
-        return true;
+        return objets.getData1d().add(add);
 
     }
 
