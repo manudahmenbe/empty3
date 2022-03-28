@@ -57,11 +57,19 @@ public class TestStl extends TestObjetSub {
 
         scene().cameraActive(new Camera());
 
-        Camera camera = new Camera(Point3D.Y.mult(-5), Point3D.O0, Point3D.Z);
+        Camera camera = new Camera(Point3D.Y.mult(-50), Point3D.O0, Point3D.Z);
 
         //camera.calculerMatrice(Point3D.Y);
 
         scene().cameraActive(camera);
+
+        scene().lumieres().add(new Lumiere() {
+            @Override
+            public int getCouleur(int base, Point3D p, Point3D n) {
+                double dot = (n.norme1().dot(p.norme1()));
+                return Lumiere.getInt(new double[]{dot, dot, dot});
+            }
+        });
     }
 
 
