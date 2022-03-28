@@ -153,7 +153,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             scene.getObjets().getData1d().forEach(representable -> draw(representable));
             return;
         } else if (r instanceof RepresentableConteneur) {
-            scene.getObjets().getData1d().forEach(representable -> draw(representable));
+            ((RepresentableConteneur)r).getListRepresentable().forEach(representable -> draw(representable));
             return;
         }
 
@@ -213,26 +213,23 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 }
             }
         } else if (r instanceof TRI) {
+            //System.out.print("Draw TRI");
             TRI tri = (TRI) r;
-            switch (displayType) {
-                case SURFACE_DISPLAY_LINES:
-                    for (int i = 0; i < 3; i++)
-                        line(rotate(tri.getSommet().getElem(i), r),
-                                rotate(tri.getSommet().getElem((i + 1) % 3), r)
-                                , tri.texture);
-                    break;
-                case SURFACE_DISPLAY_POINTS:
-                    for (int i = 0; i < 3; i++)
-                        ime.testDeep(rotate(tri.getSommet().getElem(i), r)
-                                , tri.texture);
-                    break;
-                default:
-                    tracerTriangle(rotate(tri.getSommet().getElem(0), r),
-                            rotate(tri.getSommet().getElem(1), r),
-                            rotate(tri.getSommet().getElem(2), r)
-                            , tri.texture());
-                    break;
-
+            if (displayType == SURFACE_DISPLAY_LINES) {
+                for (int i = 0; i < 3; i++)
+                    line(rotate(tri.getSommet().getElem(i), r),
+                            rotate(tri.getSommet().getElem((i + 1) % 3), r)
+                            , tri.texture);
+            } else if (displayType == SURFACE_DISPLAY_POINTS) {
+                for (int i = 0; i < 3; i++)
+                    ime.testDeep(rotate(tri.getSommet().getElem(i), r)
+                            , tri.texture);
+            } else {
+                tracerTriangle(rotate(tri.getSommet().getElem(0), r),
+                        rotate(tri.getSommet().getElem(1), r),
+                        rotate(tri.getSommet().getElem(2), r)
+                        , tri.texture());
+                //System.out.print("Triangle");
             }
         } else if (r instanceof ParametricSurface) {
             ParametricSurface n = (ParametricSurface) r;
@@ -797,9 +794,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                     // Point p22 = coordonneesPoint2D(p);
                     if (displayType <= SURFACE_DISPLAY_TEXT_TRI) {
                         ime.testDeep(p, t.getColorAt(u0 + a * (u1 - u0), v0 + b * (v1 - v0)));
-                    } else if (displayType == SURFACE_DISPLAY_COL_TRI)
+                    } else if (displayType >= SURFACE_DISPLAY_COL_TRI)
                         ime.testDeep(p, col);
-                    else ;
                     // LINES, POINTS;
                 }
             }
