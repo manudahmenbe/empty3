@@ -125,17 +125,20 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                    <mainClass>
-                        one.empty3.apps.opad.PanelGraphics<!--one.empty3.Run  tests.tests2.TestObjTeapot--></mainClass>
+                    <mainClass>one.empty3.TestRun
+                        <!--one.empty3.apps.opad.PanelGraphics-->
+                        <!--one.empty3.Run  tests.tests2.TestObjTeapot--></mainClass>
                     <arguments>
-                        <argument>class=one.empty3.Run</argument>
+                        <argument>class=one.empty3.testscopy.tests.tests2.modeleStl.TestStl</argument>
                         <argument>publish=false</argument>
+                        <argument>maxFrames=1</argument>
 
-                        <argument>resx=640</argument>
-                        <argument>resy=480</argument>
-                        <argument>maxFrames=3000</argument>
+<!--
+                        <argument>resx=100</argument>
+                        <argument>resy=100</argument>
                         <argument>-Xms4000m</argument>
                         <argument>-Xmx4000m</argument>
+                        -->
 <argument>--add-exports java.base/java.lang=ALL-UNNAMED
 --add-exports java.desktop/sun.awt=ALL-UNNAMED
 --add-exports java.desktop/sun.java2d=ALL-UNNAMED</argument>

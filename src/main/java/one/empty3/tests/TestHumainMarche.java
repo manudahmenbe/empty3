@@ -48,6 +48,7 @@ public class TestHumainMarche extends TestObjetSub {
 
     public static void main(String[] args) {
         TestHumainMarche testHumain = new TestHumainMarche();
+        testHumain.setMaxFrames(1);
         testHumain.setPublish(true);
         new Thread(testHumain).start();
     }

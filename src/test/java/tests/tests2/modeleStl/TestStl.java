@@ -23,7 +23,7 @@ public class TestStl extends TestObjetSub {
     public void ginit() {
         super.ginit();
 
-        setResolution(100, 100);
+        setResolution(1000, 1000);
 
         StlFile file = new StlFile();
         Scene load = new Scene();
@@ -39,21 +39,22 @@ public class TestStl extends TestObjetSub {
 
         scene().add(load.getObjets().getElem(0));
 
-        ITexture colorTexture0 = new ColorTexture(Color.BLUE);
+        ITexture colorTexture0 = new ColorTexture(Color.MAGENTA);
         for (int i = 0; i < ((RepresentableConteneur) scene().getObjets().getElem(0)).getListRepresentable().size(); i++) {
             TRI t = (TRI)((RepresentableConteneur) scene().getObjets().getElem(0)).getListRepresentable().get(i);
             t.texture(colorTexture0);
         }
-        //System.out.println(((RepresentableConteneur) scene().getObjets().getElem(0)).getListRepresentable().size());
+        load.getObjets().getElem(0).texture(colorTexture0);
+        System.out.println(((RepresentableConteneur) scene().getObjets().getElem(0)).getListRepresentable().size());
 
 
         Sphere s = new Sphere(new Axe(new Point3D(0., -1., 0.),
                 new Point3D(0., 1., 0.)), 10.0);
-        s.texture(new ColorTexture(Color.BLACK));
+        s.texture(new ColorTexture(Color.PINK));
 
-        //scene().add(s);
+        scene().add(s);
 
-        scene().getObjets().getElem(0).texture(new ColorTexture(Color.BLACK));
+        //scene().getObjets().getElem(0).texture(new ColorTexture(Color.BLACK));
 
         scene().cameraActive(new Camera());
 
@@ -74,8 +75,6 @@ public class TestStl extends TestObjetSub {
 
         Camera camera = new Camera(Point3D.Z.mult(-1000), Point3D.O0, Point3D.Y);
 
-        scene().cameras().add(camera);
-        camera.declareProperties();
         scene().cameraActive(camera);
     }
 
@@ -85,6 +84,7 @@ public class TestStl extends TestObjetSub {
 
     public static void main(String[] args) {
         TestStl stl = new TestStl();
+        stl.setMaxFrames(1);
         new Thread(stl).start();
     }
 
