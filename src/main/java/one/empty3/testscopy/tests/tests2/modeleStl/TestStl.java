@@ -67,7 +67,9 @@ public class TestStl extends TestObjetSub {
             @Override
             public int getCouleur(int base, Point3D p, Point3D n) {
                 double dot = (n.norme1().dot(p.norme1()));
-                return Lumiere.getInt(new double[]{dot, dot, dot});
+                double [] pc = Lumiere.getDoubles(base);
+                return Lumiere.getInt(
+                        new double[]{dot*pc[0], dot*pc[1], dot*pc[2]});
             }
         });
     }
