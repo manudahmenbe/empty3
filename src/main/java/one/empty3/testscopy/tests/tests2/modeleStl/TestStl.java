@@ -48,14 +48,14 @@ public class TestStl extends TestObjetSub {
         //System.out.println(((RepresentableConteneur) scene().getObjets().getElem(0)).getListRepresentable().size());
 
         Sphere s = new Sphere(new Axe(new Point3D(0., -1., 0.),
-                new Point3D(0., 1., 0.)), 10.0);
+                new Point3D(0., 1., 0.)), 1.0);
         s.texture(new TextureCol(Colors.random()));
 
         scene().add(s);
 
         scene().cameraActive(new Camera());
 
-        Camera camera = new Camera(Point3D.Z.mult(-50), Point3D.O0, Point3D.Y);
+        Camera camera = new Camera(Point3D.Y.mult(-5), Point3D.O0, Point3D.Z);
 
         //camera.calculerMatrice(Point3D.Y);
 
