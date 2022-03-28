@@ -77,28 +77,13 @@ public class Scene extends Representable implements Serializable {
 
 
     public boolean add(Representable add) {
-
-        this.dernierAjout = add;
-
-        //add.scene(this);
-
         objets.getData1d().add(add);
-
         return true;
-
     }
 
     public boolean add(Representable add, ZBuffer zBuffer) {
-
-        this.dernierAjout = add;
-
-
-        //add.scene(this);
-
         add.setPainter(new Painter(zBuffer, this));
-
         objets.getData1d().add(add);
-
         return true;
 
     }
@@ -124,9 +109,7 @@ public class Scene extends Representable implements Serializable {
 
     public void cameraActive(Camera c) {
         this.cameraActive.setElem(c);
-        if (!(cameras.getData1d().contains(c))) {
-            cameras.setElem( c, 0);
-        }
+        cameras.setElem( c, 0);
     }
 
     public List<Camera> cameras() {
@@ -276,7 +259,7 @@ public class Scene extends Representable implements Serializable {
             str += "\n\t" + itC.next().toString() + "\n";
         }
         str += "\n)";
-
+        str+= cameraActive.toString();
         str += "\n\n)\n";
         return str;
     }

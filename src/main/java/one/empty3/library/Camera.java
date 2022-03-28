@@ -151,12 +151,13 @@ public class Camera extends CameraBox {
             Point3D x = y.prodVect(z);//verticale;
 */
             setMatrix(x, y, z);
-            matrice.setElem(matrice.getElem());
+            matrice.setElem(matrice.getElem().tild());
         }
     }
 
     public Point3D calculerPointDansRepere(Point3D p) {
-        Point3D p2 = matrice.getElem().mult(p.moins(getEye()));
+        //Point3D p2 = matrice.getElem().mult(p.moins(getEye()));
+        Point3D p2 = matrice.getElem().mult(eye().mult(-1)).plus(p);
         p2.texture(p.texture());
         return p2;
     }
@@ -235,12 +236,15 @@ public class Camera extends CameraBox {
 
             double x = Math.atan(x3d.getX() / x3d.getZ())/x3d.getZ()*la;
             double y = Math.atan(x3d.getX() / x3d.getZ())/x3d.getZ()*ha;
-            /*return new Point(
-                    (int) ((   x3d.getX() * scale * la + la / 2)/laMax),
-                    (int) (( - x3d.getY() *scale * ha + ha / 2)/haMax));
-        */
-            return new Point((int) (x+la/2), (int) (y+ha/2));
-        }
+            return new Point(
+                    (int) ((   x3d.getX() * scale * la + la / 2)),
+                    (int) (( - x3d.getY() *scale * ha + ha / 2)));
+/*
+            Point p = new Point((int) (x + la / 2), (int) (y + ha / 2));
+            System.out.println(p.toString());
+
+            return p;
+  */      }
         return null;
 
     }

@@ -137,7 +137,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     }
 
     public Point3D rotate(Point3D p0, Representable ref) {
-        return camera().calculerPointDansRepere(super.rotate(p0, ref));
+        return p0;
+        //return camera().calculerPointDansRepere(super.rotate(p0, ref));
     }
 
     public synchronized void draw(Representable r) {
@@ -151,17 +152,10 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         if (r instanceof Scene) {
             Scene scene = (Scene) r;
             //this.setTexture(scene.texture() == null ? this.texture() : scene.texture());
-            it = scene.iterator();
-            while (it.hasNext()) {
-                draw(it.next());
-            }
+            scene.getObjets().getData1d().forEach(representable -> draw(representable));
             return;
         } else if (r instanceof RepresentableConteneur) {
-            RepresentableConteneur rc = (RepresentableConteneur) r;
-            it = rc.iterator();
-            while (it.hasNext()) {
-                draw(it.next());
-            }
+            scene.getObjets().getData1d().forEach(representable -> draw(representable));
             return;
         }
 
