@@ -10,7 +10,7 @@ public class TestGoal extends TestObjetSub {
     int fps = 25;
     Point3D pa = new Point3D(-100., 0., 0.);
     Point3D pb = new Point3D(100., 0., 0.);
-    private double tempsTotal = 10;
+    private int tempsTotal = 10;
     Point3D v = pb.moins(pa).mult(1./fps/tempsTotal);
     private Point3D current = pa;
     private Cube cubeA;
@@ -24,9 +24,9 @@ public class TestGoal extends TestObjetSub {
     }
 
     public void ginit() {
-        setMaxFrames(180);
-        z.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_COL_QUADS);
-        scene().lumieres().add(new LumierePonctuelle(new Point3D(10., 10., 2.), Color.BLUE));
+        setMaxFrames(tempsTotal*25);
+        z.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_TEXT_TRI);
+        //scene().lumieres().add(new LumierePonctuelle(new Point3D(10., 10., 2.), Color.BLUE));
     }
 
     public void finit() {
@@ -47,6 +47,8 @@ public class TestGoal extends TestObjetSub {
         scene().add(cubeA1);
         scene().add(cubeB1);
 
+        scene().add(new LineSegment(pa, pb, new ColorTexture(Color.BLUE)));
+
 
         // Plus ligne
         Sphere sphere = new Sphere(new Axe(current.plus(Point3D.Y),
@@ -54,11 +56,13 @@ public class TestGoal extends TestObjetSub {
         sphere.texture(new ColorTexture(Color.WHITE));
         scene().add(sphere);
 
-        current = current.plus(v);
         Point3D eye = current.plus(Point3D.Z.mult(100));
         Camera camera = new Camera(eye, current, Point3D.Y.mult(-1));
         camera.declareProperties();
         scene().cameraActive(camera);
+
+        current = pa.plus(v.mult(frame()));
+
     }
 
     public static void main(String[] args) {

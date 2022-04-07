@@ -47,7 +47,7 @@ public class TestHuman extends TestObjetSub {
 
         scene().add(humanModel);
         Camera c = new Camera(new Point3D(-5.0, 1.0, 1.0), new Point3D(0., 0.0, 0.0), new Point3D(0.0, 0.0, 1.0));
-        c.setMatrice(c.getMatrice());
+        c.declareProperties();
         scene().cameraActive(c);
 
         //humanModel.add(polygon);
@@ -55,9 +55,8 @@ public class TestHuman extends TestObjetSub {
 
     @Override
     public void finit() {
-        z().idzpp();
         if (humanModel.animation != null) {
-            humanModel.move(frame(), 25.);
+            humanModel.move(1/*frame()*/, 25.);
         } else
             System.err.println("Human animation == null");
 
@@ -66,10 +65,6 @@ public class TestHuman extends TestObjetSub {
         System.out.println(((Tubulaire3) humanModel.jambeHautGauche.getRepresentable()).getSoulCurve().getElem()
                 .calculerPoint3D(1.0));
 
-/*
-        Camera c = new Camera(new Point3D(-5.0, 2 * Math.cos(1.0 * frame() / 20), 2 * Math.cos(1.0 * frame() / 23)), new Point3D(0., 0.0, 0.0), new Point3D(0.0, 0.0, 1.0));
-        c.setMatrice(c.getMatrice());
-        scene().cameraActive(c);*/
     }
 
 }

@@ -1058,17 +1058,18 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
     public void idzpp() {
         idImg++;
-//        for(int i=0;i<la; i++)
-//            for(int j=0;j<ha; j++) {
-//                Scolor[j * la + i] = texture().getColorAt(1. * i / la, 1. * j / ha);
-//                ime.ime.setElementPoint(i, j, Point3D.INFINI);
-//                ime.ime.setDeep(i, j, INFINITY_DEEP);
-//                ime.ime.setElementID(i, j, idImg());
-//                ime.ime.setElementCouleur(i, j, Scolor[j*la+i]);
-//                ime.ime.setElementProf(i, j, INFINITY_DEEP);
-//                ime = new ImageMap(la, ha);
-//            }
-        //ime = new ImageMap(la, ha);
+        ime = new ImageMap(la, ha);
+/*        for(int i=0;i<la; i++)
+            for(int j=0;j<ha; j++) {
+                Scolor[j * la + i] = texture().getColorAt(1. * i / la, 1. * j / ha);
+                ime.ime.setElementPoint(i, j, Point3D.INFINI);
+                ime.ime.setDeep(i, j, INFINITY_DEEP);
+                ime.ime.setElementID(i, j, idImg());
+                ime.ime.setElementCouleur(i, j, Scolor[j*la+i]);
+                ime.ime.setElementProf(i, j, INFINITY_DEEP);
+                ime = new ImageMap(la, ha);
+            }
+  */
     }
 
     public class Box2D {
