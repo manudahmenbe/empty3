@@ -77,7 +77,7 @@ public class Scene extends Representable implements Serializable {
 
 
     public boolean add(Representable add) {
-        objets.getData1d().add(add);
+        //objets.getData1d().add(add);
         return objets.getData1d().add(add);
     }
 

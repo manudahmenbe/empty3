@@ -863,7 +863,7 @@ public abstract class TestObjet implements Test, Runnable {
 
             if ((generate & GENERATE_IMAGE) > 0) {
                 try {
-                    z.draw();
+                    z.draw(scene());
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

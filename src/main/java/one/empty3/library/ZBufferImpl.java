@@ -313,8 +313,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             // OBJETS
             if (r instanceof TRIObject) {
                 TRIObject o = (TRIObject) r;
+                System.out.println("Objets triangle n°"+((TRIObject)r).getTriangles().size());
                 for (TRI t : o.getTriangles()) {
-                    // System.out.println("Triangle suivant");
 
                     draw(t);
 

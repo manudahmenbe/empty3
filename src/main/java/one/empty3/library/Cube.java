@@ -39,7 +39,7 @@ package one.empty3.library;
 
 public class Cube extends Representable implements TRIGenerable {
     private StructureMatrix<Double> cote = new StructureMatrix<>(0, Double.class);
-    private StructureMatrix<Point3D> position0 = new StructureMatrix(0, Point3D.class);
+    private StructureMatrix<Point3D> position0 = new StructureMatrix<>(0, Point3D.class);
     private TRIObject ts = new TRIObject();
     private static Double[][][] coordCube = new Double[][][]{
             {
@@ -142,15 +142,6 @@ public class Cube extends Representable implements TRIGenerable {
     }
 
     public Representable place(MODObjet aThis) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public Barycentre position() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean supporteTexture() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

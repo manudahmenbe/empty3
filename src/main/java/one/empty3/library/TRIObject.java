@@ -98,11 +98,6 @@ public class TRIObject extends Representable {
         return p1;
     }
 
-
-    public TextureCol texture() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public String toLongString() {
         String s = "tris(\n";
         Iterator<TRI> tris = iterator();
