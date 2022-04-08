@@ -1385,6 +1385,10 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             if (x >= 0 & x < la & y >= 0 & y < ha
                     && (deep < ime.getElementProf(x, y))) {
                 Point3D n = x3d.getNormale();
+                // Vérifier : n.eye>0 sinon n = -n Avoir toutes les normales
+                // dans la même direction par rapport à la caméra.
+                if(n.norme1().dot(scene().cameraActive().getEye().norme1())<0)
+                    n = n.mult(-1);
                 if (n == null || n.norme() == 0)
                     n = x3d.moins(camera().getEye());
                 cc = scene().lumiereTotaleCouleur(c, x3d, n);

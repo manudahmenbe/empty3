@@ -26,7 +26,20 @@ public class TestGoal extends TestObjetSub {
     public void ginit() {
         setMaxFrames(tempsTotal*25);
         z.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_TEXT_TRI);
-        //scene().lumieres().add(new LumierePonctuelle(new Point3D(10., 10., 2.), Color.BLUE));
+        scene().lumieres().add(new Lumiere() {
+            Point3D lp = new Point3D(0., 10., 100.);
+            @Override
+            public int getCouleur(int base, Point3D p, Point3D n) {
+                Point3D baseCol = new Point3D(Lumiere.getDoubles(base));
+                StructureMatrix<Double> coordArr = lp.moins(p).prodVect(n).norme1().prodVect(baseCol).getCoordArr();
+                return Lumiere.getInt(new double[]{
+                                (coordArr.getElem(0) * 0.5 + 0.5),
+                                (coordArr.getElem(1) * 0.5 + 0.5),
+                                (coordArr.getElem(2) * 0.5 + 0.5)
+                        }
+                );
+            }
+        });
     }
 
     public void finit() {
