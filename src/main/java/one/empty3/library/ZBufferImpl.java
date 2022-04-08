@@ -66,7 +66,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     public static int CURVES_MAX_DEEP = 10;
     public static int SURFAS_MAX_DEEP = 10;
     // DEFINITIONS
-    public static double INFINITY_DEEP = Double.MAX_VALUE;
+    public static double INFINITY_DEEP = 1E10;
     public static Point3D INFINITY = new Point3D(0d, 0d, INFINITY_DEEP);
     public ImageMap ime;
     public Box2D box;
@@ -90,6 +90,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
     private double[][] Simeprof;
     private Scene currentScene;
     private int displayType = SURFACE_DISPLAY_TEXT_QUADS;
+
+    private boolean FORCE_POSITIVE_NORMALS = true;
 
     public ZBufferImpl() {
         that = this;
@@ -1387,10 +1389,10 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 Point3D n = x3d.getNormale();
                 // Vérifier : n.eye>0 sinon n = -n Avoir toutes les normales
                 // dans la même direction par rapport à la caméra.
-                if(n.norme1().dot(scene().cameraActive().getEye().norme1())<0)
-                    n = n.mult(-1);
                 if (n == null || n.norme() == 0)
                     n = x3d.moins(camera().getEye());
+                else if(FORCE_POSITIVE_NORMALS && n.norme1().dot(scene().cameraActive().getEye().norme1()) < 0)
+                    n = n.mult(-1);
                 cc = scene().lumiereTotaleCouleur(c, x3d, n);
                 ime.setElementID(x, y, idImg);
                 ime.setElementCouleur(x, y, cc);
@@ -1626,5 +1628,13 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         public void setElementProf(int i, int j, double pr) {
             Simeprof[i][j] = pr;
         }
+    }
+
+    public boolean isFORCE_POSITIVE_NORMALS() {
+        return FORCE_POSITIVE_NORMALS;
+    }
+
+    public void setFORCE_POSITIVE_NORMALS(boolean FORCE_POSITIVE_NORMALS) {
+        this.FORCE_POSITIVE_NORMALS = FORCE_POSITIVE_NORMALS;
     }
 }
