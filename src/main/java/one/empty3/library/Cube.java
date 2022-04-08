@@ -108,6 +108,7 @@ public class Cube extends Representable implements TRIGenerable {
         texture(t);
     }
 
+    @Override
     public TRIObject generate() {
         ts.clear();
 

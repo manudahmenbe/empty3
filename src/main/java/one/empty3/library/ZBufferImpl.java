@@ -153,7 +153,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             scene.getObjets().getData1d().forEach(representable -> draw(representable));
             return;
         } else if (r instanceof RepresentableConteneur) {
-            ((RepresentableConteneur)r).getListRepresentable().forEach(representable -> draw(representable));
+            ((RepresentableConteneur) r).getListRepresentable().forEach(representable -> draw(representable));
             return;
         }
 
@@ -196,9 +196,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                                     n.calculerPoint3D(u, v + n.getIncrV()),
                                     n.calculerPoint3D(u, v),
                                     n.texture(),
-                                     u + n.getIncrU(), v + n.getEndV(),
-                                             u, v+n.getIncrV()
-                                    );
+                                    u + n.getIncrU(), v + n.getEndV(),
+                                    u, v + n.getIncrV()
+                            );
                             break;
                         case SURFACE_DISPLAY_LINES:
                             tracerLines(p1, p2, p3, p4, n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
@@ -304,16 +304,19 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             }
         } else if (r instanceof TRIGenerable) {
             r = ((TRIGenerable) r).generate();
+            draw(r);
 
         } else if (r instanceof PGenerator) {
             r = ((PGenerator) r).generatePO();
+            draw(r);
         } else if (r instanceof TRIConteneur) {
             r = ((TRIConteneur) r).getObj();
+            draw(r);
         } else
             // OBJETS
             if (r instanceof TRIObject) {
                 TRIObject o = (TRIObject) r;
-                System.out.println("Objets triangle n°"+((TRIObject)r).getTriangles().size());
+                System.out.println("Objets triangle n°" + ((TRIObject) r).getTriangles().size());
                 for (TRI t : o.getTriangles()) {
 
                     draw(t);
@@ -766,12 +769,14 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         // |
         // Templates.
     }
+
     public double mathUtilPow2(Point p1, Point p2) {
         return Math.sqrt(
-                ((p1.getX()-p2.getX())*(p1.getX()-p2.getX()))+
-                        ((p1.getY()-p2.getY())*(p1.getY()-p2.getY()))
+                ((p1.getX() - p2.getX()) * (p1.getX() - p2.getX())) +
+                        ((p1.getY() - p2.getY()) * (p1.getY() - p2.getY()))
         );
     }
+
     public void tracerTriangle(Point3D pp1, Point3D pp2, Point3D pp3, ITexture t, double u0, double v0, double u1, double v1) {
         Point p1 = camera().coordonneesPoint2D(pp1, this);
         Point p2 = camera().coordonneesPoint2D(pp2, this);
@@ -782,12 +787,12 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         Point3D n = pp1.moins(pp2).prodVect(pp3.moins(pp2)).norme1();
         int col = t.getColorAt(u0, v0);
 
-        double iteres1 = 1.0 / (1+mathUtilPow2(p1, p2));
+        double iteres1 = 1.0 / (1 + mathUtilPow2(p1, p2));
         for (double a = 0; a < 1.0; a += iteres1) {
             Point3D p3d = pp1.plus(pp1.mult(-1d).plus(pp2).mult(a));
             Point pp = camera().coordonneesPoint2D(p3d, this);
             if (pp != null) {
-                double iteres2 = 1.0 / (1+mathUtilPow2(p3, pp));
+                double iteres2 = 1.0 / (1 + mathUtilPow2(p3, pp));
                 for (double b = 0; b < 1.0; b += iteres2) {
                     Point3D p = p3d.plus(p3d.mult(-1d).plus(pp3).mult(b));
                     p.setNormale(n);
@@ -1323,13 +1328,13 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 ime.setElementPoint(x, y, x3d);
                 ime.setElementCouleur(x, y, c.getRGB());
                 ime.setDeep(x, y, prof);
-            }else if(checkScreen(ce)) {
+            } else if (checkScreen(ce)) {
                 int elementCouleur = ime.getElementCouleur(x, y);
-                double [] nc = Lumiere.getRgb(c);
-                double [] ac = Lumiere.getDoubles(elementCouleur);
+                double[] nc = Lumiere.getRgb(c);
+                double[] ac = Lumiere.getDoubles(elementCouleur);
                 double[] b = new double[3];
                 for (int i = 0; i < 3; i++) {
-                    b[i] = nc[i]*c.getAlpha()/255.+(1-c.getAlpha()/255.)*ac[i];
+                    b[i] = nc[i] * c.getAlpha() / 255. + (1 - c.getAlpha() / 255.) * ac[i];
                 }
                 int anInt = Lumiere.getInt(b);
                 ime.setElementID(x, y, idImg);

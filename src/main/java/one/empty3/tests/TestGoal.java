@@ -8,15 +8,15 @@ import java.awt.*;
 
 public class TestGoal extends TestObjetSub {
     int fps = 25;
-    Point3D pa = new Point3D(-100., 0., 0.);
-    Point3D pb = new Point3D(100., 0., 0.);
-    private int tempsTotal = 10;
-    Point3D v = pb.moins(pa).mult(1./fps/tempsTotal);
+    final Point3D pa = new Point3D(-20., 0., 0.);
+    final Point3D pb = new Point3D(20., 0., 0.);
+    private final int tempsTotal = 10;
+    final Point3D v = pb.moins(pa).mult(1./fps/tempsTotal);
     private Point3D current = pa;
     private Cube cubeA;
     private Cube cubeB;
-    private Color ca = Color.PINK;
-    private Color cb = Color.ORANGE;
+    private final Color ca = Color.PINK;
+    private final Color cb = Color.ORANGE;
 
 
     public void tubeAddPoint(Tubulaire3 tube, Point3D p) {
@@ -44,25 +44,26 @@ public class TestGoal extends TestObjetSub {
         TRIObject cubeB1 = cubeA.generate();
 
 
-        scene().add(cubeA1);
-        scene().add(cubeB1);
+        scene().add(cubeA);
+        scene().add(cubeB);
 
         scene().add(new LineSegment(pa, pb, new ColorTexture(Color.BLUE)));
 
-
         // Plus ligne
-        Sphere sphere = new Sphere(new Axe(current.plus(Point3D.Y),
-                current.moins(Point3D.Y)), 10.);
+        current = pa.plus(pb.moins(pa).mult(1.0*frame()/getMaxFrames()));
+
+        Axe axe = new Axe(current.plus(Point3D.Y.mult(10.)),
+                current.moins(Point3D.Y.mult(10.)));
+
+        Sphere sphere = new Sphere(axe, 10.);
         sphere.texture(new ColorTexture(Color.WHITE));
         scene().add(sphere);
 
         Point3D eye = current.plus(Point3D.Z.mult(100));
-        Camera camera = new Camera(eye, current, Point3D.Y.mult(-1));
+        Camera camera = new Camera(eye, axe.getCenter(), Point3D.Y);
         camera.declareProperties();
         scene().cameraActive(camera);
-
-        current = pa.plus(v.mult(frame()));
-
+        //camera.setMatrice(camera.getMatrice().tild());
     }
 
     public static void main(String[] args) {
