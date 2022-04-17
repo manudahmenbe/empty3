@@ -849,10 +849,11 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 Point3D pFinal = (pElevation1.plus(pElevation1.mult(-1d).plus(pElevation2).mult(b)));
                 pFinal.setNormale(normale);
                 pFinal.texture(texture);
+                pFinal.setNormale(n.calculerNormale3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b));
                 if (n != null) {
                     if (displayType == DISPLAY_ALL) {
                         pFinal = n.calculerPoint3D(u0 + (u1 - u0) * a, v0 + (v1 - v0) * b);
-                        pFinal.setNormale(normale);
+                        ;
                         pFinal.texture(texture);
                     } else {
                         pFinal.setNormale(normale);

@@ -46,7 +46,7 @@ public class TestHuman extends TestObjetSub {
         polygon.texture(new ColorTexture(Color.GRAY));
 
         scene().add(humanModel);
-        Camera c = new Camera(new Point3D(-5.0, 1.0, 1.0), new Point3D(0., 0.0, 0.0), new Point3D(0.0, 0.0, 1.0));
+        Camera c = new Camera(new Point3D(0.0, 1.0, -3.0), new Point3D(0., 1.0, 0.0), new Point3D(0.0, 1.0, 0.0));
         c.declareProperties();
         scene().cameraActive(c);
 

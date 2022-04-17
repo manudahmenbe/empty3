@@ -46,8 +46,8 @@ public class TestHuman extends TestObjetSub {
         polygon.texture(new ColorTexture(Color.GRAY));
 
         scene().add(humanModel);
-        Camera c = new Camera(new Point3D(-5.0, 1.0, 1.0), new Point3D(0., 0.0, 0.0), new Point3D(0.0, 0.0, 1.0));
-        c.setMatrice(c.getMatrice());
+        Camera c = new Camera(new Point3D(0.0, 0.0, -10.0), new Point3D(0., 0.0, 0.0), new Point3D(0.0, 1.0, 0.0));
+        c.declareProperties();
         scene().cameraActive(c);
 
         //humanModel.add(polygon);
@@ -60,11 +60,6 @@ public class TestHuman extends TestObjetSub {
             humanModel.move(frame(), 25.);
         } else
             System.err.println("Human animation == null");
-
-        System.out.println(((TubulaireN2) humanModel.jambeHautGauche.getRepresentable()).getSoulCurve().getElem()
-                .calculerPoint3D(0.0));
-        System.out.println(((TubulaireN2) humanModel.jambeHautGauche.getRepresentable()).getSoulCurve().getElem()
-                .calculerPoint3D(1.0));
     }
 
 }

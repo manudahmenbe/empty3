@@ -1,6 +1,7 @@
 package one.empty3.tests;
 
 import one.empty3.library.*;
+import one.empty3.library.core.nurbs.ParametricSurface;
 import one.empty3.library.core.testing.TestObjetSub;
 import one.empty3.library.core.tribase.Tubulaire3;
 
@@ -25,7 +26,8 @@ public class TestGoal extends TestObjetSub {
 
     public void ginit() {
         setMaxFrames(tempsTotal*25);
-        z.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_TEXT_TRI);
+        //z.setDisplayType(ZBufferImpl.SURFACE_DISPLAY_TEXT_TRI);
+        z.setDisplayType(ZBufferImpl.DISPLAY_ALL);
         scene().lumieres().add(new Lumiere() {
             Point3D lp = new Point3D(0., 10., 100.);
             @Override
@@ -80,10 +82,11 @@ public class TestGoal extends TestObjetSub {
     }
 
     public static void main(String[] args) {
-        TestGoal testHumain = new TestGoal();
-        testHumain.setPublish(true);
-        testHumain.setGenerate(testHumain.getGenerate()|GENERATE_MODEL);
-        new Thread(testHumain).start();
+        TestGoal testGoal = new TestGoal();
+        testGoal.setResolution(Resolution.HD1080RESOLUTION.x(), Resolution.HD1080RESOLUTION.y());
+        testGoal.setPublish(true);
+        testGoal.setGenerate(testGoal.getGenerate()|GENERATE_MODEL);
+        new Thread(testGoal).start();
     }
 
 }
