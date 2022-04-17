@@ -16,7 +16,7 @@ public class Mesh {
         }
         return point3DStructureMatrix;
     }
-    public static StructureMatrix<Point3D> createMeshOnSurface(Point3D center, ParametricSurface ps, int su, int sv) {
+    public static StructureMatrix<Point3D> createMesh(Point3D center, ParametricSurface ps, int su, int sv) {
         StructureMatrix<Point3D> point3DStructureMatrix = new StructureMatrix<>(2, Point3D.class);
         for(int i=0; i<su; i++) {
             for(int j=0; j<sv; j++) {
