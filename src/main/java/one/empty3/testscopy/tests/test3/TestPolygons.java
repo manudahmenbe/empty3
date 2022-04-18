@@ -1,19 +1,18 @@
+package one.empty3.testscopy.tests.test3;
 /*__
  * ect 14-08-17 2022
  */
 
-package tests.tests2;
 
 import one.empty3.library.*;
-import one.empty3.library.core.nurbs.SurfaceParametricPolygonalBezier;
 import one.empty3.library.core.testing.TestObjetSub;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class TestThierryJaspart extends TestObjetSub {
-    private final Point3D[][] coeff = new Point3D[][]{
+public class TestPolygons extends TestObjetSub {
+    private final Point3D[][] controls = new Point3D[][]{
             {Point3D.n(2, -2, 0), Point3D.n(2, -1, 0), Point3D.n(2, 0, 0), Point3D.n(2, 1, 0), Point3D.n(2, 2, 0)},
             {Point3D.n(1, -2, 0), Point3D.n(1, -1, 0), Point3D.n(1, 0, 0), Point3D.n(1, 1, 0), Point3D.n(1, 2, 0)},
             {Point3D.n(0, -2, 0), Point3D.n(0, -1, 0), Point3D.n(0, 0, 0), Point3D.n(0, 1, 0), Point3D.n(0, 2, 0)},
@@ -21,9 +20,9 @@ public class TestThierryJaspart extends TestObjetSub {
             {Point3D.n(-2, -2, 0), Point3D.n(-2, -1, 0), Point3D.n(-2, 0, 0), Point3D.n(-2, 1, 0), Point3D.n(-2, 2, 0)}
     };
     ITexture texture;
-    private SurfaceParametricPolygonalBezier s = new SurfaceParametricPolygonalBezier(coeff);
+    private Polygons s = new Polygons();
 
-    public TestThierryJaspart() {
+    public TestPolygons() {
         setMaxFrames(25 * 60 * 5);
     }
 
@@ -34,6 +33,12 @@ public class TestThierryJaspart extends TestObjetSub {
 
     @Override
     public void ginit() {
+        z().setDisplayType(ZBufferImpl.DISPLAY_ALL);
+
+        StructureMatrix<Point3D> point3DStructureMatrix = new StructureMatrix<>(2, Point3D.class);
+        point3DStructureMatrix.setAll(controls);
+        s = new Polygons();
+        s.setCoefficients(point3DStructureMatrix);
         s.texture(texture);
         scene().add(s);
         scene().cameraActive(new Camera(Point3D.Z.mult(-5d), Point3D.O0));
@@ -68,7 +73,7 @@ public class TestThierryJaspart extends TestObjetSub {
     }
 
     public static void main(String[] args) {
-        new Thread(new TestThierryJaspart()).start();
+        new Thread(new TestPolygons()).start();
 
 
     }
