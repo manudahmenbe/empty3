@@ -23,7 +23,7 @@ public class TestPolygons extends TestObjetSub {
     private Polygons s = new Polygons();
 
     public TestPolygons() {
-        setMaxFrames(25 * 60 * 5);
+        setMaxFrames(25 * 15);
     }
 
 
@@ -40,8 +40,10 @@ public class TestPolygons extends TestObjetSub {
         s = new Polygons();
         s.setCoefficients(point3DStructureMatrix);
         s.texture(texture);
+        s.setIncrU(1./40);
+        s.setIncrV(1./40);
         scene().add(s);
-        scene().cameraActive(new Camera(Point3D.Z.mult(-5d), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-5.0), Point3D.O0));
         try {
             texture = new TextureImg(ECBufferedImage.getFromFile(
                     new File("resources/img/téléchargement.jfif")));
