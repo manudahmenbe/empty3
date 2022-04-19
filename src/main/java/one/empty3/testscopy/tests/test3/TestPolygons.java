@@ -43,7 +43,7 @@ public class TestPolygons extends TestObjetSub {
         s.setIncrU(1./40);
         s.setIncrV(1./40);
         scene().add(s);
-        scene().cameraActive(new Camera(Point3D.Z.mult(-5.0), Point3D.O0));
+        scene().cameraActive(new Camera(Point3D.Z.mult(-10.0), Point3D.O0));
         try {
             texture = new TextureImg(ECBufferedImage.getFromFile(
                     new File("resources/img/téléchargement.jfif")));
