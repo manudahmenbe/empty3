@@ -24,12 +24,12 @@ public class Polygons extends SurfaceParametriquePolynomiale {
             };
             double U = (u* coefficients.getData2d().get(0).size()-u0);
             double V = (v* coefficients.getData2d().size()-v0);
-            Point3D pUv0 = points[0].plus(points[1].moins(points[0]).mult(U));
-            Point3D pUv1 = points[3].plus(points[2].moins(points[3]).mult(U));
-            Point3D pU0v = points[0].plus(points[3].moins(points[0]).mult(V));
-            Point3D pU1v = points[2].plus(points[3].moins(points[2]).mult(V));
+            Point3D pUv1 = (points[2].moins(points[3]).mult(U));
+            Point3D pUv0 = (points[1].moins(points[0]).mult(U));
+            Point3D pU0v = (points[3].moins(points[0]).mult(V));
+            Point3D pU1v = (points[3].moins(points[2]).mult(V));
 
-            return pUv0.plus(pUv1.plus(pUv0).mult(V)); // Discutable
+            return points[0].plus(pUv1.plus(pUv0).mult(V)); // Discutable
         } catch (NullPointerException ex) {
             ex.printStackTrace();
         }
