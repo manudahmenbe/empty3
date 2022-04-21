@@ -34,7 +34,7 @@ public class TestPolygons extends TestObjetSub {
     @Override
     public void ginit() {
         z().setDisplayType(ZBufferImpl.DISPLAY_ALL);
-
+        setMaxFrames(1);
         StructureMatrix<Point3D> point3DStructureMatrix = new StructureMatrix<>(2, Point3D.class);
         point3DStructureMatrix.setAll(controls);
         s = new Polygons();

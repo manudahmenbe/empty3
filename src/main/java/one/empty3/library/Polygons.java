@@ -6,43 +6,32 @@ public class Polygons extends SurfaceParametriquePolynomiale {
     @Override
     public Point3D calculerPoint3D(double u, double v) {
         try {
-            int u0 = (int) (u * coefficients.getData2d().get(0).size());
-            int v0 = (int) (v * coefficients.getData2d().size());
-            if (u0 >= coefficients.getData2d().get(0).size()) {
-                u0 = coefficients.getData2d().get(0).size() - 1;
+            int indexU0 = (int) (u * coefficients.getData2d().get(0).size());
+            int indexV0 = (int) (v * coefficients.getData2d().size());
+            if (indexU0 >= coefficients.getData2d().get(0).size() - 1) {
+                indexU0 = coefficients.getData2d().get(0).size() - 1;
             }
-            if (v0 >= coefficients.getData2d().size()) {
-                v0 = coefficients.getData2d().size() - 1;
+            if (indexV0 >= coefficients.getData2d().size() - 1) {
+                indexV0 = coefficients.getData2d().size() - 1;
             }
-            int u1 = (int) (u0 + 1.);
-            int v1 = (int) (v0 + 1.);
-            if (u1 >= coefficients.getData2d().get(0).size()) {
-                u1 = coefficients.getData2d().get(0).size() - 1;
+            int indexU1 = (int) (indexU0 + 1.);
+            int indexV1 = (int) (indexV0 + 1.);
+            if (indexU1 >= coefficients.getData2d().get(0).size() - 1) {
+                indexU1 = coefficients.getData2d().get(0).size() - 1;
             }
-            if (v1 >= coefficients.getData2d().size()) {
-                v1 = coefficients.getData2d().size() - 1;
+            if (indexV1 >= coefficients.getData2d().size() - 1) {
+                indexV1 = coefficients.getData2d().size() - 1;
             }
             Point3D[] points = new Point3D[]{
-                    coefficients.getElem(u0, v0), coefficients.getElem(u1, v0),
-                    coefficients.getElem(u1, v1), coefficients.getElem(u0, v1)
+                    coefficients.getElem(indexU0, indexV0), coefficients.getElem(indexU1, indexV0),
+                    coefficients.getElem(indexU1, indexV1), coefficients.getElem(indexU0, indexV1)
             };
-            double U = (u * coefficients.getData2d().get(0).size() - u0)/coefficients.getData2d().get(0).size();
-            double V = (v * coefficients.getData2d().size() - v0)/coefficients.getData2d().size();
+            double U = u * (coefficients.getData2d().get(0).size()-1) - indexU0;
+            double V = v * (coefficients.getData2d().size()-1) - indexV0;
             Point3D pUv0 = points[1].moins(points[0]).mult(U);
             Point3D pUv1 = points[2].moins(points[3]).mult(U);
             Point3D pU0v = points[3].moins(points[0]).mult(V);
             Point3D pU1v = points[3].moins(points[2]).mult(V);
-/*
-            double U = (u* coefficients.getData2d().get(0).size()-u0);
-            double V = (v* coefficients.getData2d().size()-v0);
-            Point3D pUv1 = (points[2].moins(points[3]).mult(U));
-            Point3D pUv0 = (points[1].moins(points[0]).mult(U));
-            Point3D pU0v = (points[3].moins(points[0]).mult(V));
-            Point3D pU1v = (points[3].moins(points[2]).mult(V));
-
-            return points[0].plus(pUv1.plus(pUv0).mult(V)); // Discutable
-
- */
             return points[0].plus(pUv1.moins(pUv0).mult(V)); // Discutable
         } catch (NullPointerException ex) {
             ex.printStackTrace();
