@@ -11,7 +11,7 @@ public class Polygons extends SurfaceParametriquePolynomiale {
             if (u0 >= coefficients.getData2d().get(0).size())
                 u0 = coefficients.getData2d().get(0).size() - 1;
             if (v0 >= coefficients.getData2d().size())
-                v0 = coefficients.getData2d().size();
+                v0 = coefficients.getData2d().size() - 1;
             int u1 = (int) (u0 + 1.);
             int v1 = (int) (v0 + 1.);
             if (u1 >= coefficients.getData2d().get(0).size())
@@ -22,12 +22,12 @@ public class Polygons extends SurfaceParametriquePolynomiale {
                     coefficients.getElem(u0, v0), coefficients.getElem(u1, v0),
                     coefficients.getElem(u1, v1), coefficients.getElem(u0, v1)
             };
-            double U = (u* coefficients.getData2d().get(0).size()-u0);
-            double V = (v* coefficients.getData2d().size()-v0);
-            Point3D pUv0 = points[0].plus(points[1].moins(points[0]).mult(U));
-            Point3D pUv1 = points[3].plus(points[2].moins(points[3]).mult(U));
-            Point3D pU0v = points[0].plus(points[3].moins(points[0]).mult(V));
-            Point3D pU1v = points[2].plus(points[3].moins(points[2]).mult(V));
+            double U = (u * coefficients.getData2d().get(0).size() - u0);
+            double V = (v * coefficients.getData2d().size() - v0);
+            Point3D pUv0 = points[1].moins(points[0]).mult(U);
+            Point3D pUv1 = points[2].moins(points[3]).mult(U);
+            Point3D pU0v = points[3].moins(points[0]).mult(V);
+            Point3D pU1v = points[3].moins(points[2]).mult(V);
 /*
             double U = (u* coefficients.getData2d().get(0).size()-u0);
             double V = (v* coefficients.getData2d().size()-v0);
@@ -39,7 +39,7 @@ public class Polygons extends SurfaceParametriquePolynomiale {
             return points[0].plus(pUv1.plus(pUv0).mult(V)); // Discutable
 
  */
-            return pUv0.plus(pUv1.plus(pUv0).mult(V)); // Discutable
+            return points[0].plus(pUv1.moins(pUv0).mult(V)); // Discutable
         } catch (NullPointerException ex) {
             ex.printStackTrace();
         }

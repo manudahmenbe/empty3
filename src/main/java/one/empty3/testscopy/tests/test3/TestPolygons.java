@@ -40,8 +40,8 @@ public class TestPolygons extends TestObjetSub {
         s = new Polygons();
         s.setCoefficients(point3DStructureMatrix);
         s.texture(texture);
-        s.setIncrU(1./40);
-        s.setIncrV(1./40);
+        s.setIncrU(1./500);
+        s.setIncrV(1./500);
         scene().add(s);
         scene().cameraActive(new Camera(Point3D.Z.mult(-10.0), Point3D.O0));
         try {
