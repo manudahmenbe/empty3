@@ -799,7 +799,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                     // Point p22 = coordonneesPoint2D(p);
                     if (displayType <= SURFACE_DISPLAY_TEXT_TRI) {
                         ime.testDeep(p, t.getColorAt(
-                                u0 + a * (u1 - u0)*Math.sqrt(2)/2,
+                                u0 + a * (u1 - u0),
                                 v0 + b * (v1 - v0) *Math.sqrt(2)/2));
                     } else if (displayType >= SURFACE_DISPLAY_COL_TRI)
                         ime.testDeep(p, col);
