@@ -793,7 +793,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             Point pp = camera().coordonneesPoint2D(p3d, this);
             if (pp != null) {
                 double iteres2 = 1.0 / (1 + mathUtilPow2(p3, pp));
-                for (double b = 0; b < 1.0; b += iteres2) {
+                for (double b = 0; b<1.0; b += iteres2) {
                     Point3D p = p3d.plus(p3d.mult(-1d).plus(pp3).mult(b));
                     p.setNormale(n);
                     // Point p22 = coordonneesPoint2D(p);
