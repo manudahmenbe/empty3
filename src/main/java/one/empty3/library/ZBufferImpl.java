@@ -286,15 +286,11 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                                 n.calculerPoint3D(u + n.getIncrU(),
                                         v + n.getIncrV()),
                                 n.texture(),
-                                u,
-                                v, u + n.getIncrU(), v + n.getEndV());
-                        tracerTriangle(n.calculerPoint3D(u, v),
-                                n.calculerPoint3D(u, v + n.getIncrV()),
-                                n.calculerPoint3D(u + n.getIncrU(),
-                                        v + n.getIncrV()),
-                                n.texture(),
-                                u,
-                                v, u + n.getIncrU(), v + n.getEndV());
+                                u, v, u + n.getIncrU(), v + n.getEndV());
+                        tracerTriangle(
+                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
+                                n.calculerPoint3D(u, v+n.getIncrV()),
+                                n.calculerPoint3D(u, v), n.texture(), u+n.getIncrU(), v+n.getIncrV(), u, v);
 
 
                     } else {
