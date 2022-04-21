@@ -298,8 +298,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
 
                     } else {
-
-                        tracerQuad(p1, p2, p3, p4, n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
+                        if (p1 != null && p2 != null && p3 != null && p4 != null) {
+                            tracerQuad(p1, p2, p3, p4, n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
+                        }
                     }
                 }
 
