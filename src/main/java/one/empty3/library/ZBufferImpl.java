@@ -290,7 +290,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                         tracerTriangle(
                                 n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
                                 n.calculerPoint3D(u, v+n.getIncrV()),
-                                n.calculerPoint3D(u, v), n.texture(), u+n.getIncrU(), v+n.getIncrV(), u, v);
+                                n.calculerPoint3D(u+n.getIncrU(), v),
+                                n.texture(),  u+n.getIncrU(), v+n.getIncrV(), u, v);
 
 
                     } else {
@@ -797,7 +798,9 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                     p.setNormale(n);
                     // Point p22 = coordonneesPoint2D(p);
                     if (displayType <= SURFACE_DISPLAY_TEXT_TRI) {
-                        ime.testDeep(p, t.getColorAt(u0 + a * (u1 - u0), v0 + b * (v1 - v0)));
+                        ime.testDeep(p, t.getColorAt(
+                                u0 + a * (u1 - u0)*Math.sqrt(2)/2,
+                                v0 + b * (v1 - v0) *Math.sqrt(2)/2));
                     } else if (displayType >= SURFACE_DISPLAY_COL_TRI)
                         ime.testDeep(p, col);
                     // LINES, POINTS;
