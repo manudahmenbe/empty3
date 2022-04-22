@@ -33,6 +33,7 @@ public class TestPolygons extends TestObjetSub {
 
     @Override
     public void ginit() {
+        z().setFORCE_POSITIVE_NORMALS(true);
         z().setDisplayType(ZBufferImpl.SURFACE_DISPLAY_TEXT_TRI);
         setMaxFrames(1);
         StructureMatrix<Point3D> point3DStructureMatrix = new StructureMatrix<>(2, Point3D.class);
@@ -40,8 +41,8 @@ public class TestPolygons extends TestObjetSub {
         s = new Polygons();
         s.setCoefficients(point3DStructureMatrix);
         s.texture(texture);
-        s.setIncrU(1./500);
-        s.setIncrV(1./500);
+        s.setIncrU(1./50);
+        s.setIncrV(1./50);
         scene().add(s);
         scene().cameraActive(new Camera(Point3D.Z.mult(-10.0), Point3D.O0));
         try {

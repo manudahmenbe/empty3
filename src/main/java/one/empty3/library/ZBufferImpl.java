@@ -280,18 +280,8 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                         tracerLines(p1, p2, p3, p4, n.texture(), u, u + n.getIncrU(), v, v + n.getIncrV(), n);
                     } else if (displayType == SURFACE_DISPLAY_COL_TRI ||
                             displayType == SURFACE_DISPLAY_TEXT_TRI) {
-                        tracerTriangle(
-                                n.calculerPoint3D(u, v),
-                                n.calculerPoint3D(u + n.getIncrU(), v),
-                                n.calculerPoint3D(u + n.getIncrU(),
-                                        v + n.getIncrV()),
-                                n.texture(),
-                                u, v, u + n.getIncrU(), v + n.getEndV());
-                        tracerTriangle(
-                                n.calculerPoint3D(u + n.getIncrU(), v + n.getIncrV()),
-                                n.calculerPoint3D(u, v+n.getIncrV()),
-                                n.calculerPoint3D(u+n.getIncrU(), v),
-                                n.texture(),  u+n.getIncrU(), v+n.getIncrV(), u, v);
+                        tracerTriangle(p1, p2, p3, n.texture(), u, v, u + n.getIncrU(), v + n.getIncrV());
+                        tracerTriangle(p4, p3, p1, n.texture(),  u+n.getIncrU(), v+n.getIncrV(), u, v);
 
 
                     } else {
@@ -789,19 +779,19 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
         double iteres1 = 1.0 / (1 + mathUtilPow2(p1, p2));
         for (double a = 0; a < 1.0; a += iteres1) {
-            Point3D p3d = pp1.plus(pp1.mult(-1d).plus(pp2).mult(a));
+            Point3D p3d = pp1.plus(pp2.moins(pp1).mult(a));
             Point pp = camera().coordonneesPoint2D(p3d, this);
             if (pp != null) {
                 double iteres2 = 1.0 / (1 + mathUtilPow2(p3, pp));
-                for (double b = 0; b<1.0; b += iteres2) {
+                for (double b = 0; Math.sqrt(a*a+b*b)<=1; b += iteres2) {
                     // Corriger la méthode.
-                    Point3D p = p3d.plus(p3d.mult(-1d).plus(pp3).mult(b));
+                    Point3D p = p3d.plus(pp3.moins(p3d).mult(b));
                     p.setNormale(n);
                     // Point p22 = coordonneesPoint2D(p);
                     if (displayType <= SURFACE_DISPLAY_TEXT_TRI) {
                         ime.testDeep(p, t.getColorAt(
                                 u0 + a * (u1 - u0),
-                                v0 + b * (v1 - v0) *Math.sqrt(2)/2));
+                                v0 + b * (v1 - v0)));
                     } else if (displayType >= SURFACE_DISPLAY_COL_TRI)
                         ime.testDeep(p, col);
                     // LINES, POINTS;
