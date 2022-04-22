@@ -26,5 +26,6 @@ public class Mesh {
         return point3DStructureMatrix;
     }
     //Cherche un modèle de mesh et éditeur et rendu.
-    // extend, expand, contract, move, copy, remove, 
+    // extend, expand, contract, move, copy, remove,
+
 }
