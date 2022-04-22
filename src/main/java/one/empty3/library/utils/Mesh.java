@@ -25,6 +25,8 @@ public class Mesh {
         }
         return point3DStructureMatrix;
     }
+    //public static StructureMatrix<Point3D> createCubeMe
+
     //Cherche un modèle de mesh et éditeur et rendu.
     // extend, expand, contract, move, copy, remove,
 

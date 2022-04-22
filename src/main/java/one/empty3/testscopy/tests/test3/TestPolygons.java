@@ -74,7 +74,9 @@ public class TestPolygons extends TestObjetSub {
     }
 
     public static void main(String[] args) {
-        new Thread(new TestPolygons()).start();
+        TestPolygons testPolygons = new TestPolygons();
+        testPolygons.setResolution(Resolution.HD1080RESOLUTION.x()*2, Resolution.HD1080RESOLUTION.y()*2);
+        new Thread(testPolygons).start();
 
 
     }
