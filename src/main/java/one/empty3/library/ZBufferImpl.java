@@ -281,7 +281,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                     } else if (displayType == SURFACE_DISPLAY_COL_TRI ||
                             displayType == SURFACE_DISPLAY_TEXT_TRI) {
                         tracerTriangle(p1, p2, p3, n.texture(), u, v, u + n.getIncrU(), v + n.getIncrV());
-                        tracerTriangle(p3, p4, p1, n.texture(),  u+n.getIncrU(), v+n.getIncrV(), u, v);
+                        tracerTriangle(p3, p4, p1, n.texture(), u + n.getIncrU(), v + n.getIncrV(), u, v);
 
 
                     } else {
@@ -779,19 +779,20 @@ public class ZBufferImpl extends Representable implements ZBuffer {
 
         double iteres1 = 1.0 / (1 + mathUtilPow2(p1, p2));
         for (double a = 0; a < 1.0; a += iteres1) {
-            Point3D p3d = pp1.plus(pp2.moins(pp1).mult(a));
-            Point pp = camera().coordonneesPoint2D(p3d, this);
+            Point3D p3a = pp1.plus(pp2.moins(pp1).mult(a));
+            Point pp = camera().coordonneesPoint2D(p3a, this);
             if (pp != null) {
                 double iteres2 = 1.0 / (1 + mathUtilPow2(p3, pp));
-                for (double b = 0; /*Math.sqrt(a*a+b*b)<=1*/; b += iteres2) {
+                Point3D p3ab;
+                for (double b = 0; Math.sqrt(Math.exp(Math.log(2)* p3a.moins(pp3).norme())-pp2.moins(pp1).norme())>=b; b += iteres2) {
+                    p3ab = p3a.plus(pp3.moins(p3a).mult(b));
                     // Corriger la méthode.
-                    Point3D p = p3d.plus(pp3.moins(p3d).mult(b));
-                    p.setNormale(n);
+                    p3ab.setNormale(n);
                     // Point p22 = coordonneesPoint2D(p);
                     if (displayType <= SURFACE_DISPLAY_TEXT_TRI) {
-                        ime.testDeep(p, t.getColorAt(u0 + a * (u1 - u0), v0 + b * (v1 - v0)));
+                        ime.testDeep(p3ab, t.getColorAt(u0 + a * (u1 - u0), v0 + b * (v1 - v0)));
                     } else if (displayType >= SURFACE_DISPLAY_COL_TRI)
-                        ime.testDeep(p, col);
+                        ime.testDeep(p3ab, col);
                     // LINES, POINTS;
                 }
             }
@@ -1381,7 +1382,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                 // dans la même direction par rapport à la caméra.
                 if (n == null || n.norme() == 0)
                     n = x3d.moins(camera().getEye());
-                else if(FORCE_POSITIVE_NORMALS && n.norme1().dot(scene().cameraActive().getEye().norme1()) < 0)
+                else if (FORCE_POSITIVE_NORMALS && n.norme1().dot(scene().cameraActive().getEye().norme1()) < 0)
                     n = n.mult(-1);
                 cc = scene().lumiereTotaleCouleur(c, x3d, n);
                 ime.setElementID(x, y, idImg);

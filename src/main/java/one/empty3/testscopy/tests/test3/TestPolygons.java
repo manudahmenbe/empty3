@@ -41,13 +41,13 @@ public class TestPolygons extends TestObjetSub {
         s = new Polygons();
         s.setCoefficients(point3DStructureMatrix);
         s.texture(texture);
-        s.setIncrU(1./50);
-        s.setIncrV(1./50);
+        s.setIncrU(1./10);
+        s.setIncrV(1./10);
         scene().add(s);
         scene().cameraActive(new Camera(Point3D.Z.mult(-10.0), Point3D.O0));
         try {
             texture = new TextureImg(ECBufferedImage.getFromFile(
-                    new File("resources/img/2018-03-31 11.51.58.jpg")));
+                    new File("resources/img/CIMG0454-modif-cs4.jpg")));
         } catch (IOException e) {
             e.printStackTrace();
         }
