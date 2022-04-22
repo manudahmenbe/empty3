@@ -281,7 +281,7 @@ public class ZBufferImpl extends Representable implements ZBuffer {
                     } else if (displayType == SURFACE_DISPLAY_COL_TRI ||
                             displayType == SURFACE_DISPLAY_TEXT_TRI) {
                         tracerTriangle(p1, p2, p3, n.texture(), u, v, u + n.getIncrU(), v + n.getIncrV());
-                        tracerTriangle(p4, p3, p1, n.texture(),  u+n.getIncrU(), v+n.getIncrV(), u, v);
+                        tracerTriangle(p3, p4, p1, n.texture(),  u+n.getIncrU(), v+n.getIncrV(), u, v);
 
 
                     } else {
@@ -783,15 +783,13 @@ public class ZBufferImpl extends Representable implements ZBuffer {
             Point pp = camera().coordonneesPoint2D(p3d, this);
             if (pp != null) {
                 double iteres2 = 1.0 / (1 + mathUtilPow2(p3, pp));
-                for (double b = 0; Math.sqrt(a*a+b*b)<=1; b += iteres2) {
+                for (double b = 0; /*Math.sqrt(a*a+b*b)<=1*/; b += iteres2) {
                     // Corriger la méthode.
                     Point3D p = p3d.plus(pp3.moins(p3d).mult(b));
                     p.setNormale(n);
                     // Point p22 = coordonneesPoint2D(p);
                     if (displayType <= SURFACE_DISPLAY_TEXT_TRI) {
-                        ime.testDeep(p, t.getColorAt(
-                                u0 + a * (u1 - u0),
-                                v0 + b * (v1 - v0)));
+                        ime.testDeep(p, t.getColorAt(u0 + a * (u1 - u0), v0 + b * (v1 - v0)));
                     } else if (displayType >= SURFACE_DISPLAY_COL_TRI)
                         ime.testDeep(p, col);
                     // LINES, POINTS;
