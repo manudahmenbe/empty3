@@ -774,23 +774,30 @@ public class ZBufferImpl extends Representable implements ZBuffer {
         if (p1 == null || p2 == null || p3 == null) {
             return;
         }
+        Point3D [] uvs = new Point3D[]
+                {Point3D.n(u0, v0, 0.0), Point3D.n(u1, v0, 0.0), Point3D.n(u1, v1, 0.0),
+                        Point3D.n(u0, v1, 0.0)};
         Point3D n = pp1.moins(pp2).prodVect(pp3.moins(pp2)).norme1();
         int col = t.getColorAt(u0, v0);
 
         double iteres1 = 1.0 / (1 + mathUtilPow2(p1, p2));
         for (double a = 0; a < 1.0; a += iteres1) {
             Point3D p3a = pp1.plus(pp2.moins(pp1).mult(a));
+            Point3D uv3a = uvs[0].plus(uvs[1].moins(uvs[0]).mult(a));
             Point pp = camera().coordonneesPoint2D(p3a, this);
             if (pp != null) {
                 double iteres2 = 1.0 / (1 + mathUtilPow2(p3, pp));
                 Point3D p3ab;
-                for (double b = 0; Math.sqrt(Math.exp(Math.log(2)* p3a.moins(pp3).norme())-pp2.moins(pp1).norme())>=b; b += iteres2) {
+                for (double b = 0; b<=1.0/*Math.sqrt(p3a.moins(pp3).norme()*p3a.moins(pp3).norme()
+                        -pp2.moins(pp1).norme()*pp2.moins(pp1).norme())>=b*/; b += iteres2) {
                     p3ab = p3a.plus(pp3.moins(p3a).mult(b));
+                    Point3D uv3ab = uv3a.plus(uvs[2].moins(uv3a).mult(b));
                     // Corriger la méthode.
                     p3ab.setNormale(n);
                     // Point p22 = coordonneesPoint2D(p);
                     if (displayType <= SURFACE_DISPLAY_TEXT_TRI) {
-                        ime.testDeep(p3ab, t.getColorAt(u0 + a * (u1 - u0), v0 + b * (v1 - v0)));
+                        //ime.testDeep(p3ab, t.getColorAt(u0 + a * (u1 - u0), v0 + b * (v1 - v0)));
+                        ime.testDeep(p3ab, t.getColorAt(uv3ab.getX(), uv3ab.getY()));
                     } else if (displayType >= SURFACE_DISPLAY_COL_TRI)
                         ime.testDeep(p3ab, col);
                     // LINES, POINTS;
