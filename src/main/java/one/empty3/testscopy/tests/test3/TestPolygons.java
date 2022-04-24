@@ -47,7 +47,8 @@ public class TestPolygons extends TestObjetSub {
         scene().cameraActive(new Camera(Point3D.Z.mult(-10.0), Point3D.O0));
         try {
             texture = new TextureImg(ECBufferedImage.getFromFile(
-                    new File("resources/img/CIMG0454-modif-cs4.jpg")));
+                    new File("resources/img/2020-10-19 13.24.58.jpg")));
+            texture = new TextureMov("resources/mov/VID_20200416_201314.mp4");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,6 +64,7 @@ public class TestPolygons extends TestObjetSub {
                 for (int k = 0; k < 3; k++)
                     s.getCoefficients().getElem(i,j).set(k, s.getCoefficients().getElem(i,j).get(k)+point3D.get(k));
             }
+        //((TextureMov)texture).timeNext();
     }
 
 

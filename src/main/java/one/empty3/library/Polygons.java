@@ -8,18 +8,18 @@ public class Polygons extends SurfaceParametriquePolynomiale {
         try {
             int indexU0 = (int) (u * coefficients.getData2d().get(0).size());
             int indexV0 = (int) (v * coefficients.getData2d().size());
-            if (indexU0 >= coefficients.getData2d().get(0).size() - 1) {
+            if (indexU0 > coefficients.getData2d().get(0).size() - 1) {
                 indexU0 = coefficients.getData2d().get(0).size() - 1;
             }
-            if (indexV0 >= coefficients.getData2d().size() - 1) {
+            if (indexV0 > coefficients.getData2d().size() - 1) {
                 indexV0 = coefficients.getData2d().size() - 1;
             }
             int indexU1 = (int) (indexU0 + 1.);
             int indexV1 = (int) (indexV0 + 1.);
-            if (indexU1 >= coefficients.getData2d().get(0).size() - 1) {
+            if (indexU1 > coefficients.getData2d().get(0).size() - 1) {
                 indexU1 = coefficients.getData2d().get(0).size() - 1;
             }
-            if (indexV1 >= coefficients.getData2d().size() - 1) {
+            if (indexV1 > coefficients.getData2d().size() - 1) {
                 indexV1 = coefficients.getData2d().size() - 1;
             }
             Point3D[] points = new Point3D[]{

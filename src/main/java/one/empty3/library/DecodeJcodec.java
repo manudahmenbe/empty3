@@ -31,7 +31,7 @@ public class DecodeJcodec extends VideoDecoder {
 public DecodeJcodec(File f, TextureMov tex) {
      super(f,tex);
 }
-    double startSec = 51.632;
+    double startSec = 0.0;
     long frameCount = MAXSIZE;
 public void run() {
 
@@ -50,7 +50,7 @@ public void run() {
         BufferedImage frame = null;
         while ( frame==null || i!=j) {
             j = i;
-            if(imgBuf.size()>MAXSIZE) {
+            if(imgBuf.size()<MAXSIZE) {
                 try {
                     assert fg != null;
                     frame = fg.getFrame();
@@ -63,6 +63,7 @@ public void run() {
             } else {
                 try {
                     Thread.sleep(100);
+                    j = -1;///????
                 } catch (InterruptedException interruptedException) {
                     interruptedException.printStackTrace();
                 }
